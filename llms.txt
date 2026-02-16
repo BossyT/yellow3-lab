@@ -1,0 +1,29 @@
+# yellow3 lab
+
+> yellow3 lab is an AI research studio based in Copenhagen, Denmark. We build AI-powered platforms that delete complexity.
+
+## About
+
+yellow3 lab was founded by Thomas Christian Melskens. The studio designs and develops AI platforms for industries where complexity has become the barrier to progress. Our philosophy: the best technology is the technology you forget is there.
+
+## Research Areas
+
+- AI Agent Architecture: Multi-agent systems that collaborate autonomously — interpreting intent, generating output, and ensuring quality without human intervention.
+- Design Intelligence: Teaching AI to think like a design studio, not a template engine. Every output meets professional standards by default.
+- Prompt-to-Product: Turning natural language into real, working digital products. Bridging the gap between what people say and what they mean.
+
+## What We Build
+
+yellow3 lab develops AI platforms that turn plain language into production-ready software. No code, no designers, no agencies. Describe what you need and get working software — built, deployed, and ready.
+
+Our first platform is launching soon.
+
+## Partnerships
+
+yellow3 lab partners with forward-thinking companies exploring what AI makes possible. We work best with organizations that want to explore, not just execute a brief.
+
+## Contact
+
+- Email: hello@yellow3.io
+- Website: https://yellow3.io
+- Location: Copenhagen, Denmark
