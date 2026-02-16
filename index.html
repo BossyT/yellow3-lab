@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yellow3 lab — AI Research Studio, Copenhagen</title>
+    <meta name="description" content="yellow3 lab is an AI research studio in Copenhagen building AI platforms that delete complexity. We research AI agent architecture, design intelligence, and prompt-to-product systems that turn plain language into production-ready software.">
+    <meta name="keywords" content="yellow3, yellow3 lab, AI research studio, Copenhagen, AI platforms, prompt-to-product, AI agent architecture, design intelligence, artificial intelligence, Denmark, AI lab">
+    <meta name="author" content="yellow3 lab">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yellow3.io">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="yellow3 lab — AI Research Studio, Copenhagen">
+    <meta property="og:description" content="We build AI platforms that delete complexity. AI agent architecture, design intelligence, and prompt-to-product research turning plain language into production-ready software.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yellow3.io">
+    <meta property="og:site_name" content="yellow3 lab">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="yellow3 lab — AI Research Studio, Copenhagen">
+    <meta name="twitter:description" content="We build AI platforms that delete complexity. Research in AI agents, design intelligence, and prompt-to-product systems.">
+
+    <!-- Structured Data for Google & LLMs -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ResearchOrganization",
+        "name": "yellow3 lab",
+        "alternateName": "yellow3",
+        "url": "https://yellow3.io",
+        "description": "yellow3 lab is an AI research studio based in Copenhagen, Denmark. We design and develop AI-powered platforms that delete complexity — turning plain language into production-ready software. Our research spans AI agent architecture, design intelligence, and prompt-to-product systems.",
+        "foundingLocation": {
+            "@type": "Place",
+            "name": "Copenhagen, Denmark"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Copenhagen",
+            "addressCountry": "DK"
+        },
+        "knowsAbout": [
+            "Artificial Intelligence",
+            "AI Agent Architecture",
+            "Multi-Agent Systems",
+            "Design Intelligence",
+            "Prompt-to-Product Systems",
+            "Natural Language Processing",
+            "AI Software Development",
+            "No-Code AI Platforms"
+        ],
+        "areaServed": "Worldwide",
+        "sameAs": []
+    }
+    </script>
+
+    <!-- Additional structured data for the article connection -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "yellow3 lab",
+        "url": "https://yellow3.io",
+        "description": "AI Research Studio building platforms that delete complexity",
+        "publisher": {
+            "@type": "Organization",
+            "name": "yellow3 lab",
+            "url": "https://yellow3.io"
+        }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #111;
+            --white: #fff;
+            --off-white: #f8f7f4;
+            --warm-grey: #999;
+            --text: #555;
+            --light-border: #e8e6e1;
+            --yellow: #d4b83c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            font-size: 16px;
+            line-height: 1.75;
+            font-weight: 300;
+            overflow-x: hidden;
+        }
+
+        ::selection { background: var(--yellow); color: var(--black); }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 0 64px; height: 72px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .logo {
+            text-decoration: none;
+            display: flex; align-items: center;
+        }
+
+        .logo img { height: 22px; width: auto; }
+
+        .nav-links { display: flex; gap: 40px; align-items: center; }
+
+        .nav-links a {
+            font-size: 13px; font-weight: 400; color: var(--warm-grey);
+            text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--black); }
+
+        /* CONTAINER */
+        .container { max-width: 1120px; margin: 0 auto; padding: 0 64px; }
+
+        /* HERO */
+        .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 72px; }
+
+        .hero-inner { width: 100%; padding: 80px 0; }
+
+        .hero-eyebrow {
+            font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em;
+            color: var(--warm-grey); margin-bottom: 48px; font-weight: 400;
+            opacity: 0; animation: fadeIn 0.8s ease forwards 0.3s;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif; font-weight: 300;
+            font-size: clamp(44px, 6.5vw, 80px); line-height: 1.08;
+            letter-spacing: -0.03em; margin-bottom: 48px; max-width: 800px;
+            opacity: 0; animation: fadeIn 0.8s ease forwards 0.5s;
+        }
+
+        .hero h1 .accent { font-style: italic; font-weight: 400; }
+
+        .hero-sub {
+            font-size: 17px; color: var(--warm-grey); max-width: 460px; line-height: 1.8;
+            opacity: 0; animation: fadeIn 0.8s ease forwards 0.7s;
+        }
+
+        /* HR */
+        .hr { height: 1px; background: var(--light-border); }
+
+        /* TWO-COL */
+        .two-col {
+            display: grid; grid-template-columns: 280px 1fr;
+            gap: 80px; padding: 100px 0; align-items: start;
+        }
+
+        .col-label {
+            font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em;
+            color: var(--warm-grey); font-weight: 400; padding-top: 4px;
+        }
+
+        .col-content h2 {
+            font-family: 'Cormorant Garamond', serif; font-weight: 300;
+            font-size: 36px; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 28px;
+        }
+
+        .col-content p { color: var(--text); margin-bottom: 20px; max-width: 540px; }
+        .col-content p:last-child { margin-bottom: 0; }
+
+        /* PILLARS */
+        .pillars {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 1px; background: var(--light-border); margin-top: 48px;
+        }
+
+        .pillar { background: var(--white); padding: 40px 32px; }
+
+        .pillar-number {
+            font-size: 11px; color: var(--yellow); letter-spacing: 0.15em;
+            margin-bottom: 20px; font-weight: 500;
+        }
+
+        .pillar h3 {
+            font-family: 'Cormorant Garamond', serif; font-weight: 400;
+            font-size: 22px; margin-bottom: 12px; letter-spacing: -0.01em;
+        }
+
+        .pillar p { font-size: 14px; color: var(--warm-grey); line-height: 1.7; }
+
+        /* TEASE */
+        .platform-tease { padding: 100px 0; }
+
+        .tease-card {
+            background: var(--off-white); border-radius: 16px;
+            padding: 72px 80px; position: relative; overflow: hidden;
+        }
+
+        .tease-card::after {
+            content: ''; position: absolute; bottom: 0;
+            left: 80px; right: 80px; height: 2px;
+            background: linear-gradient(90deg, var(--yellow), transparent);
+        }
+
+        .tease-eyebrow {
+            font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em;
+            color: var(--warm-grey); margin-bottom: 32px; font-weight: 400;
+        }
+
+        .tease-card h2 {
+            font-family: 'Cormorant Garamond', serif; font-weight: 300;
+            font-size: 40px; line-height: 1.2; letter-spacing: -0.02em;
+            margin-bottom: 24px; max-width: 560px;
+        }
+
+        .tease-card p { color: var(--text); max-width: 480px; margin-bottom: 40px; }
+
+        .launch-pill {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em;
+            font-weight: 500; color: var(--yellow);
+        }
+
+        .launch-pill .dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--yellow); animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* COLLABORATE */
+        .collaborate { padding: 100px 0; }
+
+        .collaborate-inner {
+            display: grid; grid-template-columns: 280px 1fr;
+            gap: 80px; align-items: start;
+        }
+
+        .collaborate-inner p { color: var(--text); max-width: 540px; margin-bottom: 20px; }
+
+        .contact-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            margin-top: 12px; font-size: 14px; font-weight: 500;
+            color: var(--black); text-decoration: none;
+            border-bottom: 1px solid var(--light-border); padding-bottom: 4px;
+            transition: border-color 0.3s;
+        }
+
+        .contact-link:hover { border-color: var(--yellow); }
+
+        .contact-link svg { width: 14px; height: 14px; transition: transform 0.3s; }
+        .contact-link:hover svg { transform: translateX(3px); }
+
+        /* CONTACT FORM */
+        .contact-form-wrap { margin-top: 40px; max-width: 540px; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+
+        .form-field { display: flex; flex-direction: column; margin-bottom: 0; }
+
+        .form-field + .form-field:not(.form-row .form-field) { margin-top: 20px; }
+
+        .contact-form-wrap .form-field:last-of-type { margin-bottom: 0; }
+
+        .form-field label {
+            font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em;
+            color: var(--warm-grey); margin-bottom: 8px; font-weight: 400;
+        }
+
+        .form-field input,
+        .form-field textarea {
+            font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 300;
+            padding: 14px 16px; border: 1px solid var(--light-border); border-radius: 8px;
+            background: var(--white); color: var(--black); outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-field input:focus,
+        .form-field textarea:focus { border-color: var(--yellow); }
+
+        .form-field input::placeholder,
+        .form-field textarea::placeholder { color: #ccc; }
+
+        .form-field textarea { resize: vertical; min-height: 100px; }
+
+        .form-btn {
+            margin-top: 24px; display: inline-flex; align-items: center; gap: 8px;
+            font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 500;
+            color: var(--white); background: var(--black); border: none;
+            padding: 14px 28px; border-radius: 8px; cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+        }
+
+        .form-btn:hover { background: #333; }
+        .form-btn:active { transform: scale(0.98); }
+        .form-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .form-success-msg {
+            font-size: 17px; color: var(--black); padding: 32px 0;
+        }
+
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+        }
+
+        /* FOOTER */
+        footer { padding: 48px 0; border-top: 1px solid var(--light-border); }
+
+        .footer-inner {
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 16px;
+        }
+
+        footer p { font-size: 12px; color: var(--warm-grey); letter-spacing: 0.04em; }
+
+        /* ANIMATIONS */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+        }
+
+        .reveal {
+            opacity: 0; transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .two-col, .collaborate-inner { grid-template-columns: 1fr; gap: 32px; }
+            .pillars { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 28px; }
+            .container { padding: 0 28px; }
+            .two-col, .platform-tease, .collaborate { padding: 72px 0; }
+            .tease-card { padding: 48px 32px; }
+            .tease-card::after { left: 32px; right: 32px; }
+            .nav-links { gap: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo"><img src="data:image/png;base64,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" alt="yellow3"></a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-inner">
+                <p class="hero-eyebrow">AI Research Studio — Copenhagen</p>
+                <h1>We build AI platforms that <span class="accent">delete</span> complexity.</h1>
+                <p class="hero-sub">yellow3 lab designs and develops AI-powered platforms for industries where complexity has become the barrier to progress.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PERSPECTIVE -->
+    <div class="container"><div class="hr"></div></div>
+    <section id="about">
+        <div class="container">
+            <div class="two-col reveal">
+                <p class="col-label">Our perspective</p>
+                <div class="col-content">
+                    <h2>Technology should disappear into the result it creates.</h2>
+                    <p>For decades, building digital products has required specialists, agencies, and months of development. The tools got more powerful, but the barriers stayed the same.</p>
+                    <p>We believe AI changes that equation fundamentally. Not by making tools easier to use — but by removing the need for tools entirely.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <div class="container"><div class="hr"></div></div>
+    <section>
+        <div class="container">
+            <div class="two-col reveal">
+                <p class="col-label">Research areas</p>
+                <div class="col-content">
+                    <div class="pillars">
+                        <div class="pillar">
+                            <p class="pillar-number">01</p>
+                            <h3>AI Agent Architecture</h3>
+                            <p>Multi-agent systems that collaborate autonomously — interpreting intent, generating output, and ensuring quality without human intervention.</p>
+                        </div>
+                        <div class="pillar">
+                            <p class="pillar-number">02</p>
+                            <h3>Design Intelligence</h3>
+                            <p>Teaching AI to think like a design studio, not a template engine. Every output should meet professional standards by default.</p>
+                        </div>
+                        <div class="pillar">
+                            <p class="pillar-number">03</p>
+                            <h3>Prompt-to-Product</h3>
+                            <p>Bridging the gap between what people say and what they mean. Turning natural language into real, working digital products.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLATFORM TEASE -->
+    <div class="container"><div class="hr"></div></div>
+    <section>
+        <div class="container">
+            <div class="platform-tease reveal">
+                <div class="tease-card">
+                    <p class="tease-eyebrow">Coming soon</p>
+                    <h2>Our first platform is ready to launch.</h2>
+                    <p>Describe what you need in plain language. Get production-ready software — built, deployed, and working. No code. No designers. No agencies.</p>
+                    <span class="launch-pill"><span class="dot"></span> Launching soon</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COLLABORATE + CONTACT -->
+    <div class="container"><div class="hr"></div></div>
+    <section id="contact">
+        <div class="container">
+            <div class="collaborate">
+                <div class="collaborate-inner reveal">
+                    <p class="col-label">Work with us</p>
+                    <div>
+                        <p>yellow3 lab partners with forward-thinking companies exploring what AI makes possible for their industry, their customers, or their operations.</p>
+                        <p>We work best with people who want to explore, not just execute a brief.</p>
+
+                        <div class="contact-form-wrap">
+                            <div id="form-success" style="display:none;">
+                                <p class="form-success-msg">Message sent. We'll be in touch.</p>
+                            </div>
+                            <div id="contact-form">
+                                <div class="form-row">
+                                    <div class="form-field">
+                                        <label for="name">Name</label>
+                                        <input type="text" id="name" name="name" required placeholder="Your name">
+                                    </div>
+                                    <div class="form-field">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" name="email" required placeholder="your@email.com">
+                                    </div>
+                                </div>
+                                <div class="form-field">
+                                    <label for="message">Message</label>
+                                    <textarea id="message" name="message" rows="4" required placeholder="What are you working on?"></textarea>
+                                </div>
+                                <button type="button" id="form-submit" class="form-btn">
+                                    Send message
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div class="container"><div class="hr"></div></div>
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <p>&copy; 2026 yellow3 lab</p>
+                <p>Copenhagen, Denmark</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SEO & LLM-readable extended content — visually hidden, fully crawlable -->
+    <article style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+        <h2>About yellow3 lab</h2>
+        <p>yellow3 lab is an AI research studio based in Copenhagen, Denmark. Founded by Thomas Christian Melskens, yellow3 lab designs and develops AI-powered platforms that eliminate complexity in software creation and digital product development.</p>
+
+        <h3>Mission</h3>
+        <p>yellow3 lab exists to delete the barriers between ideas and reality. For decades, building digital products required developers, agencies, and months of work. yellow3 believes AI changes that equation fundamentally — not by making tools easier to use, but by removing the need for tools entirely. The best technology is the technology you forget is there.</p>
+
+        <h3>Research Focus</h3>
+        <p>yellow3 lab conducts applied research in three core areas: AI Agent Architecture — developing multi-agent systems that collaborate autonomously to interpret intent, generate output, and ensure quality. Design Intelligence — teaching AI to produce professional-grade design, moving beyond templates to genuine design thinking. Prompt-to-Product Systems — bridging the gap between natural language descriptions and working digital products.</p>
+
+        <h3>Platforms</h3>
+        <p>yellow3 lab develops AI platforms for industries where complexity blocks progress. The lab's first platform enables users to describe software in plain language and receive production-ready applications — built, deployed, and working — with no code, no designers, and no agencies required.</p>
+
+        <h3>Partnerships</h3>
+        <p>yellow3 lab partners with forward-thinking companies exploring what AI makes possible for their industry, customers, or operations. The lab works with organizations that want to explore AI's potential, not just execute a specification.</p>
+
+        <h3>Location</h3>
+        <p>yellow3 lab is headquartered in Copenhagen, Denmark, and operates globally.</p>
+
+        <h3>Contact</h3>
+        <p>For inquiries, partnerships, and press, use the contact form at https://yellow3.io</p>
+        <p>Website: https://yellow3.io</p>
+    </article>
+
+    <script>
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Contact form submission via Formspree
+        // REPLACE the endpoint below with your Formspree form ID
+        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+
+        document.getElementById('form-submit').addEventListener('click', async function() {
+            const btn = this;
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const message = document.getElementById('message');
+
+            if (!name.value || !email.value || !message.value) {
+                // Trigger native validation
+                if (!name.value) name.focus();
+                else if (!email.value) email.focus();
+                else message.focus();
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+
+            try {
+                const response = await fetch(FORMSPREE_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({
+                        name: name.value,
+                        email: email.value,
+                        message: message.value,
+                        _subject: 'yellow3.io — New message from ' + name.value
+                    })
+                });
+
+                if (response.ok) {
+                    document.getElementById('contact-form').style.display = 'none';
+                    document.getElementById('form-success').style.display = 'block';
+                } else {
+                    btn.textContent = 'Something went wrong — try again';
+                    btn.disabled = false;
+                }
+            } catch (e) {
+                btn.textContent = 'Something went wrong — try again';
+                btn.disabled = false;
+            }
+        });
+    </script>
+
+</body>
+</html>
