@@ -584,6 +584,44 @@
             }
         });
     </script>
-
+<!-- Cookie Consent Banner for GDPR -->
+    <div id="cookie-consent" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#111;color:#fff;padding:16px 24px;font-family:inherit;font-size:14px;z-index:9999;box-shadow:0 -2px 10px rgba(0,0,0,0.3);">
+        <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+            <p style="margin:0;flex:1;min-width:200px;">We use cookies to understand how you use our site and improve your experience.</p>
+            <div style="display:flex;gap:8px;flex-shrink:0;">
+                <button onclick="acceptCookies()" style="background:#f5c518;color:#111;border:none;padding:8px 20px;border-radius:4px;cursor:pointer;font-weight:600;font-size:14px;">Accept</button>
+                <button onclick="declineCookies()" style="background:transparent;color:#fff;border:1px solid #555;padding:8px 20px;border-radius:4px;cursor:pointer;font-size:14px;">Decline</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function acceptCookies() {
+            gtag('consent', 'update', {
+                'analytics_storage': 'granted',
+                'ad_storage': 'granted',
+                'ad_user_data': 'granted',
+                'ad_personalization': 'granted'
+            });
+            localStorage.setItem('cookie_consent', 'accepted');
+            document.getElementById('cookie-consent').style.display = 'none';
+        }
+        function declineCookies() {
+            localStorage.setItem('cookie_consent', 'declined');
+            document.getElementById('cookie-consent').style.display = 'none';
+        }
+        (function() {
+            var consent = localStorage.getItem('cookie_consent');
+            if (consent === 'accepted') {
+                gtag('consent', 'update', {
+                    'analytics_storage': 'granted',
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted'
+                });
+            } else if (!consent) {
+                document.getElementById('cookie-consent').style.display = 'flex';
+            }
+        })();
+    </script>
 </body>
 </html>
