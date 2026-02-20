@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>yellow3 CMS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #111;
+            --white: #fff;
+            --off-white: #f8f7f4;
+            --warm-grey: #999;
+            --text: #444;
+            --light-border: #e8e6e1;
+            --yellow: #d4b83c;
+            --yellow-soft: rgba(212, 184, 60, 0.08);
+            --yellow-hover: rgba(212, 184, 60, 0.15);
+            --red: #c0392b;
+            --green: #27ae60;
+            --blue: #2980b9;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--off-white);
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* AUTH SCREEN */
+        .auth-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        .auth-box {
+            background: var(--white);
+            border: 1px solid var(--light-border);
+            border-radius: 8px;
+            padding: 48px;
+            max-width: 420px;
+            width: 100%;
+        }
+
+        .auth-box h1 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 4px;
+        }
+
+        .auth-box h1 span { color: var(--yellow); }
+
+        .auth-box p {
+            font-size: 13px;
+            color: var(--warm-grey);
+            margin-bottom: 24px;
+        }
+
+        .auth-box label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--black);
+            margin-bottom: 6px;
+            letter-spacing: 0.03em;
+        }
+
+        .auth-box input {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--light-border);
+            border-radius: 6px;
+            font-family: var(--mono);
+            font-size: 13px;
+            margin-bottom: 20px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .auth-box input:focus { border-color: var(--yellow); }
+
+        .auth-hint {
+            font-size: 11px;
+            color: var(--warm-grey);
+            margin-top: -16px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 18px;
+            border: 1px solid var(--light-border);
+            border-radius: 6px;
+            background: var(--white);
+            color: var(--text);
+            font-family: 'Manrope', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .btn:hover { border-color: var(--yellow); color: var(--black); }
+
+        .btn-primary {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+        }
+
+        .btn-primary:hover { background: #222; border-color: #222; }
+
+        .btn-yellow {
+            background: var(--yellow);
+            color: var(--black);
+            border-color: var(--yellow);
+            font-weight: 600;
+        }
+
+        .btn-yellow:hover { background: #c5ab35; border-color: #c5ab35; }
+
+        .btn-danger {
+            color: var(--red);
+        }
+
+        .btn-danger:hover { border-color: var(--red); background: rgba(192,57,43,0.05); }
+
+        .btn-sm { padding: 5px 12px; font-size: 12px; }
+
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        /* LAYOUT */
+        .cms { display: none; height: 100vh; flex-direction: column; }
+
+        .cms.active { display: flex; }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            height: 56px;
+            background: var(--white);
+            border-bottom: 1px solid var(--light-border);
+            flex-shrink: 0;
+        }
+
+        .topbar-left { display: flex; align-items: center; gap: 16px; }
+
+        .topbar h1 { font-size: 15px; font-weight: 600; color: var(--black); }
+        .topbar h1 span { color: var(--yellow); }
+
+        .topbar-right { display: flex; align-items: center; gap: 10px; }
+
+        .main { display: flex; flex: 1; overflow: hidden; }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 280px;
+            background: var(--white);
+            border-right: 1px solid var(--light-border);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--light-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar-header h2 {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--warm-grey);
+        }
+
+        .file-tree {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px 0;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 20px;
+            cursor: pointer;
+            transition: background 0.1s;
+            font-size: 13px;
+        }
+
+        .file-item:hover { background: var(--yellow-soft); }
+        .file-item.active { background: var(--yellow-hover); color: var(--black); font-weight: 500; }
+
+        .file-item .icon { font-size: 14px; width: 18px; text-align: center; flex-shrink: 0; }
+        .file-item .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .file-item .folder-name { font-weight: 500; color: var(--black); }
+
+        .file-indent { padding-left: 36px; }
+
+        /* CONTENT AREA */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .content-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--light-border);
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .content-header h3 {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--black);
+            font-family: var(--mono);
+        }
+
+        .content-body {
+            flex: 1;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* EDITOR */
+        .editor-wrap {
+            flex: 1;
+            overflow: auto;
+            padding: 0;
+        }
+
+        .editor {
+            width: 100%;
+            min-height: 100%;
+            padding: 20px 24px;
+            border: none;
+            outline: none;
+            resize: none;
+            font-family: var(--mono);
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--black);
+            background: var(--off-white);
+            tab-size: 2;
+        }
+
+        /* WELCOME / EMPTY STATE */
+        .welcome {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 48px;
+        }
+
+        .welcome h2 {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--black);
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: var(--warm-grey);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .welcome-actions { display: flex; gap: 10px; justify-content: center; }
+
+        /* UPLOAD ZONE */
+        .upload-zone {
+            border: 2px dashed var(--light-border);
+            border-radius: 8px;
+            padding: 48px;
+            text-align: center;
+            margin: 24px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .upload-zone:hover, .upload-zone.dragover {
+            border-color: var(--yellow);
+            background: var(--yellow-soft);
+        }
+
+        .upload-zone p { color: var(--warm-grey); margin-top: 8px; font-size: 13px; }
+
+        .upload-zone .icon { font-size: 32px; }
+
+        /* NEW ARTICLE FORM */
+        .article-form {
+            padding: 32px 24px;
+            max-width: 600px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .article-form h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 24px;
+        }
+
+        .form-group { margin-bottom: 20px; }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--black);
+            margin-bottom: 6px;
+            letter-spacing: 0.03em;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--light-border);
+            border-radius: 6px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+            background: var(--white);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus { border-color: var(--yellow); }
+
+        .form-group textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
+
+        .form-group .hint { font-size: 11px; color: var(--warm-grey); margin-top: 4px; }
+
+        /* STATUS BAR */
+        .statusbar {
+            padding: 8px 24px;
+            background: var(--white);
+            border-top: 1px solid var(--light-border);
+            font-size: 12px;
+            color: var(--warm-grey);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .status-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+        .status-dot.green { background: var(--green); }
+        .status-dot.yellow { background: var(--yellow); }
+        .status-dot.red { background: var(--red); }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--white);
+            background: var(--black);
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .toast.visible { transform: translateY(0); opacity: 1; }
+        .toast.success { background: var(--green); }
+        .toast.error { background: var(--red); }
+
+        /* MODAL */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 500;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 32px;
+            max-width: 480px;
+            width: 100%;
+            margin: 24px;
+        }
+
+        .modal h3 { font-size: 16px; font-weight: 600; color: var(--black); margin-bottom: 8px; }
+        .modal p { font-size: 13px; color: var(--text); margin-bottom: 20px; }
+        .modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+        /* DIFF INDICATOR */
+        .modified-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--yellow);
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<!-- AUTH SCREEN -->
+<div class="auth-screen" id="authScreen">
+    <div class="auth-box">
+        <h1>yellow<span>3</span> CMS</h1>
+        <p>Push changes directly to yellow3.io via GitHub.</p>
+        <label>GitHub Personal Access Token</label>
+        <input type="password" id="tokenInput" placeholder="github_pat_..." autocomplete="off">
+        <div class="auth-hint">
+            Fine-grained token scoped to BossyT/yellow3-lab with Contents read/write.
+            <br>Create one at github.com/settings/tokens
+        </div>
+        <button class="btn btn-primary" style="width:100%;" onclick="authenticate()">Connect</button>
+    </div>
+</div>
+
+<!-- CMS -->
+<div class="cms" id="cms">
+    <div class="topbar">
+        <div class="topbar-left">
+            <h1>yellow<span>3</span> CMS</h1>
+        </div>
+        <div class="topbar-right">
+            <a href="https://yellow3.io" target="_blank" class="btn btn-sm">View site &#8599;</a>
+            <button class="btn btn-sm" onclick="logout()">Logout</button>
+        </div>
+    </div>
+    <div class="main">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Files</h2>
+                <button class="btn btn-sm" onclick="refreshFiles()" title="Refresh">&#8635;</button>
+            </div>
+            <div class="file-tree" id="fileTree">
+                <div style="padding:20px;color:var(--warm-grey);font-size:13px;">Loading...</div>
+            </div>
+        </div>
+        <div class="content" id="content">
+            <div class="welcome" id="welcomeView">
+                <div>
+                    <h2>Welcome to yellow3 CMS</h2>
+                    <p>Select a file to edit, or create something new.</p>
+                    <div class="welcome-actions">
+                        <button class="btn" onclick="showNewArticle()">+ New article</button>
+                        <button class="btn" onclick="showUpload()">Upload files</button>
+                    </div>
+                </div>
+            </div>
+            <div id="editorView" style="display:none;flex:1;flex-direction:column;">
+                <div class="content-header">
+                    <h3 id="editorFilename"></h3>
+                    <div style="display:flex;gap:8px;align-items:center;">
+                        <span id="modifiedIndicator" style="display:none;" title="Unsaved changes"><span class="modified-dot"></span></span>
+                        <button class="btn btn-sm" id="commitBtn" onclick="commitFile()" disabled>Commit &amp; deploy</button>
+                    </div>
+                </div>
+                <div class="content-body">
+                    <div class="editor-wrap">
+                        <textarea class="editor" id="editor" spellcheck="false"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div id="uploadView" style="display:none;flex:1;flex-direction:column;">
+                <div class="content-header">
+                    <h3>Upload files</h3>
+                </div>
+                <div class="content-body">
+                    <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+                        <div class="icon">&#8593;</div>
+                        <p>Drop files here or click to browse<br>Images, HTML, or any static files</p>
+                        <input type="file" id="fileInput" multiple style="display:none;" onchange="handleUpload(this.files)">
+                    </div>
+                    <div id="uploadTarget" style="padding:0 24px;">
+                        <div class="form-group">
+                            <label>Upload to folder</label>
+                            <select id="uploadFolder">
+                                <option value="">/ (root)</option>
+                                <option value="insights/">insights/</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="uploadQueue" style="padding:0 24px;"></div>
+                </div>
+            </div>
+            <div id="newArticleView" style="display:none;flex:1;flex-direction:column;overflow:hidden;">
+                <div class="content-header">
+                    <h3>New article</h3>
+                </div>
+                <div class="article-form">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="articleTitle" placeholder="e.g. The Future of European AI">
+                    </div>
+                    <div class="form-group">
+                        <label>Slug (URL path)</label>
+                        <input type="text" id="articleSlug" placeholder="e.g. future-of-european-ai">
+                        <div class="hint">Will be published at yellow3.io/insights/[slug]</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Tag</label>
+                        <input type="text" id="articleTag" placeholder="e.g. Analysis, Policy, Opinion" value="Analysis">
+                    </div>
+                    <div class="form-group">
+                        <label>Read time</label>
+                        <input type="text" id="articleReadTime" placeholder="e.g. 8 min read" value="8 min read">
+                    </div>
+                    <div class="form-group">
+                        <label>Meta description</label>
+                        <textarea id="articleDesc" rows="2" placeholder="Short description for SEO and social sharing..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Lede (opening blockquote)</label>
+                        <textarea id="articleLede" rows="3" placeholder="The bold opening statement..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Article body (HTML)</label>
+                        <textarea id="articleBody" rows="12" style="font-family:var(--mono);font-size:13px;" placeholder="<p>Your article content...</p>
+
+<h2>Section heading</h2>
+
+<p>More content...</p>
+
+<blockquote>A pull quote</blockquote>"></textarea>
+                    </div>
+                    <div style="display:flex;gap:10px;">
+                        <button class="btn btn-yellow" onclick="createArticle()">Create &amp; deploy</button>
+                        <button class="btn" onclick="showWelcome()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="statusbar">
+        <div id="statusText"><span class="status-dot green"></span> Connected to BossyT/yellow3-lab</div>
+        <div id="lastDeploy"></div>
+    </div>
+</div>
+
+<!-- COMMIT MODAL -->
+<div class="modal-overlay" id="commitModal">
+    <div class="modal">
+        <h3>Commit &amp; deploy</h3>
+        <p>This will push to GitHub and trigger a Vercel deploy. Live in ~30 seconds.</p>
+        <div class="form-group">
+            <label>Commit message</label>
+            <input type="text" id="commitMessage" placeholder="Update article...">
+        </div>
+        <div class="modal-actions">
+            <button class="btn" onclick="closeModal('commitModal')">Cancel</button>
+            <button class="btn btn-yellow" id="confirmCommitBtn" onclick="confirmCommit()">Deploy</button>
+        </div>
+    </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+const REPO = 'BossyT/yellow3-lab';
+const BRANCH = 'main';
+let TOKEN = '';
+let files = [];
+let currentFile = null;
+let originalContent = '';
+let folderSet = new Set();
+
+// AUTH
+function authenticate() {
+    const token = document.getElementById('tokenInput').value.trim();
+    if (!token) return;
+    TOKEN = token;
+    sessionStorage.setItem('y3_token', token);
+    ghFetch('').then(data => {
+        if (data) {
+            document.getElementById('authScreen').style.display = 'none';
+            document.getElementById('cms').classList.add('active');
+            refreshFiles();
+        } else {
+            toast('Authentication failed. Check your token.', 'error');
+        }
+    });
+}
+
+function logout() {
+    TOKEN = '';
+    sessionStorage.removeItem('y3_token');
+    document.getElementById('cms').classList.remove('active');
+    document.getElementById('authScreen').style.display = 'flex';
+    document.getElementById('tokenInput').value = '';
+}
+
+// Check session on load
+(function() {
+    const saved = sessionStorage.getItem('y3_token');
+    if (saved) {
+        TOKEN = saved;
+        document.getElementById('authScreen').style.display = 'none';
+        document.getElementById('cms').classList.add('active');
+        refreshFiles();
+    }
+})();
+
+// GITHUB API
+async function ghFetch(path, options = {}) {
+    try {
+        const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}?ref=${BRANCH}`, {
+            headers: {
+                'Authorization': `Bearer ${TOKEN}`,
+                'Accept': 'application/vnd.github.v3+json',
+                ...options.headers
+            },
+            ...options
+        });
+        if (!res.ok) {
+            if (res.status === 401 || res.status === 403) return null;
+            throw new Error(`GitHub API ${res.status}`);
+        }
+        return res.json();
+    } catch (e) {
+        console.error('GitHub API error:', e);
+        return null;
+    }
+}
+
+async function ghPut(path, content, message, sha = null) {
+    const body = {
+        message,
+        content: btoa(unescape(encodeURIComponent(content))),
+        branch: BRANCH
+    };
+    if (sha) body.sha = sha;
+
+    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+        method: 'PUT',
+        headers: {
+            'Authorization': `Bearer ${TOKEN}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    });
+    if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.message || `GitHub API ${res.status}`);
+    }
+    return res.json();
+}
+
+async function ghPutBinary(path, base64Content, message, sha = null) {
+    const body = {
+        message,
+        content: base64Content,
+        branch: BRANCH
+    };
+    if (sha) body.sha = sha;
+
+    const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+        method: 'PUT',
+        headers: {
+            'Authorization': `Bearer ${TOKEN}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    });
+    if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.message || `GitHub API ${res.status}`);
+    }
+    return res.json();
+}
+
+// FILE TREE
+async function refreshFiles() {
+    setStatus('loading', 'Loading files...');
+    files = [];
+    folderSet = new Set(['']);
+
+    const root = await ghFetch('');
+    if (!root) { setStatus('error', 'Failed to load files'); return; }
+
+    for (const item of root) {
+        if (item.type === 'file') {
+            files.push({ path: item.path, sha: item.sha, type: 'file', size: item.size });
+        } else if (item.type === 'dir') {
+            folderSet.add(item.path + '/');
+            const sub = await ghFetch(item.path);
+            if (sub) {
+                for (const subItem of sub) {
+                    if (subItem.type === 'file') {
+                        files.push({ path: subItem.path, sha: subItem.sha, type: 'file', size: subItem.size });
+                    }
+                }
+            }
+        }
+    }
+
+    // Update folder dropdown
+    const sel = document.getElementById('uploadFolder');
+    sel.innerHTML = '<option value="">/ (root)</option>';
+    folderSet.forEach(f => {
+        if (f) sel.innerHTML += `<option value="${f}">${f}</option>`;
+    });
+
+    renderFileTree();
+    setStatus('connected', `Connected to ${REPO}`);
+}
+
+function renderFileTree() {
+    const tree = document.getElementById('fileTree');
+    const grouped = {};
+
+    files.forEach(f => {
+        const parts = f.path.split('/');
+        if (parts.length === 1) {
+            if (!grouped['']) grouped[''] = [];
+            grouped[''].push(f);
+        } else {
+            const folder = parts.slice(0, -1).join('/');
+            if (!grouped[folder]) grouped[folder] = [];
+            grouped[folder].push(f);
+        }
+    });
+
+    let html = '';
+
+    // Root files
+    if (grouped['']) {
+        grouped[''].sort((a, b) => a.path.localeCompare(b.path));
+        grouped[''].forEach(f => {
+            const active = currentFile && currentFile.path === f.path ? ' active' : '';
+            html += `<div class="file-item${active}" onclick="openFile('${f.path}')">
+                <span class="icon">${fileIcon(f.path)}</span>
+                <span class="name">${f.path}</span>
+            </div>`;
+        });
+    }
+
+    // Folders
+    Object.keys(grouped).filter(k => k !== '').sort().forEach(folder => {
+        html += `<div class="file-item">
+            <span class="icon">&#128193;</span>
+            <span class="name folder-name">${folder}/</span>
+        </div>`;
+        grouped[folder].sort((a, b) => a.path.localeCompare(b.path));
+        grouped[folder].forEach(f => {
+            const name = f.path.split('/').pop();
+            const active = currentFile && currentFile.path === f.path ? ' active' : '';
+            html += `<div class="file-item file-indent${active}" onclick="openFile('${f.path}')">
+                <span class="icon">${fileIcon(name)}</span>
+                <span class="name">${name}</span>
+            </div>`;
+        });
+    });
+
+    tree.innerHTML = html;
+}
+
+function fileIcon(name) {
+    if (name.endsWith('.html')) return '&#9671;';
+    if (name.endsWith('.xml') || name.endsWith('.json')) return '&#9881;';
+    if (name.endsWith('.txt') || name.endsWith('.md')) return '&#9776;';
+    if (name.endsWith('.png') || name.endsWith('.jpg') || name.endsWith('.jpeg') || name.endsWith('.gif') || name.endsWith('.webp')) return '&#9632;';
+    return '&#9702;';
+}
+
+// OPEN FILE
+async function openFile(path) {
+    const file = files.find(f => f.path === path);
+    if (!file) return;
+
+    const ext = path.split('.').pop().toLowerCase();
+    const textExts = ['html', 'css', 'js', 'json', 'xml', 'txt', 'md', 'svg'];
+
+    if (!textExts.includes(ext)) {
+        toast('Binary files can only be replaced via upload.', 'error');
+        return;
+    }
+
+    setStatus('loading', `Loading ${path}...`);
+    const data = await ghFetch(path);
+    if (!data || !data.content) {
+        toast('Failed to load file', 'error');
+        setStatus('connected', `Connected to ${REPO}`);
+        return;
+    }
+
+    currentFile = { path: data.path, sha: data.sha };
+    const content = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+    originalContent = content;
+
+    document.getElementById('editor').value = content;
+    document.getElementById('editorFilename').textContent = path;
+    document.getElementById('commitBtn').disabled = true;
+    document.getElementById('modifiedIndicator').style.display = 'none';
+
+    showView('editorView');
+    renderFileTree();
+    setStatus('connected', `Connected to ${REPO}`);
+}
+
+// EDITOR CHANGE DETECTION
+document.getElementById('editor').addEventListener('input', function() {
+    const changed = this.value !== originalContent;
+    document.getElementById('commitBtn').disabled = !changed;
+    document.getElementById('modifiedIndicator').style.display = changed ? 'inline-block' : 'none';
+});
+
+// COMMIT
+function commitFile() {
+    if (!currentFile) return;
+    const defaultMsg = `Update ${currentFile.path}`;
+    document.getElementById('commitMessage').value = defaultMsg;
+    openModal('commitModal');
+}
+
+async function confirmCommit() {
+    const msg = document.getElementById('commitMessage').value.trim() || 'Update file';
+    const content = document.getElementById('editor').value;
+    const btn = document.getElementById('confirmCommitBtn');
+
+    btn.disabled = true;
+    btn.textContent = 'Deploying...';
+    setStatus('loading', 'Pushing to GitHub...');
+
+    try {
+        const result = await ghPut(currentFile.path, content, msg, currentFile.sha);
+        currentFile.sha = result.content.sha;
+        originalContent = content;
+
+        // Update file SHA in our list
+        const idx = files.findIndex(f => f.path === currentFile.path);
+        if (idx >= 0) files[idx].sha = result.content.sha;
+
+        document.getElementById('commitBtn').disabled = true;
+        document.getElementById('modifiedIndicator').style.display = 'none';
+
+        closeModal('commitModal');
+        toast('Deployed! Live in ~30 seconds.', 'success');
+        setStatus('connected', `Connected to ${REPO}`);
+    } catch (e) {
+        toast(`Deploy failed: ${e.message}`, 'error');
+        setStatus('error', 'Deploy failed');
+    } finally {
+        btn.disabled = false;
+        btn.textContent = 'Deploy';
+    }
+}
+
+// UPLOAD
+function showUpload() { showView('uploadView'); }
+
+const uploadZone = document.getElementById('uploadZone');
+uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('dragover'); });
+uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
+uploadZone.addEventListener('drop', e => {
+    e.preventDefault();
+    uploadZone.classList.remove('dragover');
+    handleUpload(e.dataTransfer.files);
+});
+
+async function handleUpload(fileList) {
+    const folder = document.getElementById('uploadFolder').value;
+    const queue = document.getElementById('uploadQueue');
+    queue.innerHTML = '';
+
+    for (const file of fileList) {
+        const path = folder + file.name;
+        const item = document.createElement('div');
+        item.style.cssText = 'padding:8px 0;font-size:13px;display:flex;align-items:center;gap:8px;';
+        item.innerHTML = `<span style="color:var(--warm-grey);">${path}</span> <span style="color:var(--yellow);">uploading...</span>`;
+        queue.appendChild(item);
+
+        try {
+            const base64 = await fileToBase64(file);
+
+            // Check if file exists (to get sha)
+            let sha = null;
+            const existing = files.find(f => f.path === path);
+            if (existing) sha = existing.sha;
+
+            await ghPutBinary(path, base64, `Upload ${file.name}`, sha);
+            item.innerHTML = `<span>${path}</span> <span style="color:var(--green);">&#10003; deployed</span>`;
+        } catch (e) {
+            item.innerHTML = `<span>${path}</span> <span style="color:var(--red);">&#10007; ${e.message}</span>`;
+        }
+    }
+
+    refreshFiles();
+    toast('Upload complete!', 'success');
+}
+
+function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+    });
+}
+
+// NEW ARTICLE
+function showNewArticle() { showView('newArticleView'); }
+
+async function createArticle() {
+    const title = document.getElementById('articleTitle').value.trim();
+    const slug = document.getElementById('articleSlug').value.trim();
+    const tag = document.getElementById('articleTag').value.trim();
+    const readTime = document.getElementById('articleReadTime').value.trim();
+    const desc = document.getElementById('articleDesc').value.trim();
+    const lede = document.getElementById('articleLede').value.trim();
+    const body = document.getElementById('articleBody').value;
+
+    if (!title || !slug) { toast('Title and slug are required.', 'error'); return; }
+
+    const now = new Date();
+    const dateStr = now.toISOString().split('T')[0];
+    const monthYear = now.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    const safeTitle = title.replace(/'/g, '&#39;').replace(/"/g, '&quot;');
+
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${safeTitle} &#8211; yellow3 lab</title>
+    <meta name="description" content="${desc.replace(/"/g, '&quot;')}">
+    <meta property="og:title" content="${safeTitle} &#8211; yellow3 lab">
+    <meta property="og:description" content="${desc.replace(/"/g, '&quot;')}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yellow3.io/insights/${slug}">
+    <meta property="article:published_time" content="${dateStr}">
+    <meta property="article:author" content="yellow3 lab">
+    <link rel="canonical" href="https://yellow3.io/insights/${slug}">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "${title.replace(/"/g, '\\"')}",
+        "datePublished": "${dateStr}",
+        "dateModified": "${dateStr}",
+        "author": {
+            "@type": "Person",
+            "name": "Thomas Christian Melskens",
+            "jobTitle": "Founder & CEO",
+            "worksFor": {
+                "@type": "Organization",
+                "name": "yellow3 lab",
+                "url": "https://yellow3.io"
+            }
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "yellow3 lab",
+            "url": "https://yellow3.io"
+        },
+        "description": "${desc.replace(/"/g, '\\"')}",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://yellow3.io/insights/${slug}"
+        }
+    }
+    <\/script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #111;
+            --white: #fff;
+            --off-white: #f8f7f4;
+            --warm-grey: #999;
+            --text: #444;
+            --light-border: #e8e6e1;
+            --yellow: #d4b83c;
+            --yellow-soft: rgba(212, 184, 60, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        body { font-family: 'Manrope', sans-serif; background: var(--white); color: var(--text); font-size: 17px; line-height: 1.8; font-weight: 300; }
+        ::selection { background: var(--yellow); color: var(--black); }
+        a { color: inherit; }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 64px; height: 72px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(0,0,0,0.04); }
+        .logo { text-decoration: none; }
+        .logo img { height: 22px; width: auto; }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-link { font-size: 14px; font-weight: 400; color: var(--warm-grey); letter-spacing: 0.02em; text-decoration: none; transition: color 0.2s; }
+        .nav-link:hover { color: var(--black); }
+
+        .article-header { padding: 160px 64px 64px; max-width: 780px; margin: 0 auto; }
+        .article-header .meta { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-grey); margin-bottom: 24px; display: flex; gap: 16px; align-items: center; }
+        .article-header .meta .tag { background: var(--off-white); padding: 4px 10px; border-radius: 3px; font-size: 11px; }
+        .article-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; line-height: 1.15; letter-spacing: -0.02em; color: var(--black); margin-bottom: 28px; }
+        .article-header .lede { font-size: 20px; color: var(--text); line-height: 1.65; border-left: 3px solid var(--yellow); padding-left: 20px; }
+
+        .article-body { max-width: 680px; margin: 0 auto; padding: 48px 64px 100px; }
+        .article-body p { margin-bottom: 24px; }
+        .article-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; color: var(--black); margin: 56px 0 24px; }
+        .article-body strong { font-weight: 500; color: var(--black); }
+        .article-body blockquote { margin: 40px 0; padding: 24px 28px; border-left: 3px solid var(--yellow); background: var(--yellow-soft); font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; line-height: 1.5; color: var(--black); }
+
+        .author-box { max-width: 680px; margin: 0 auto; padding: 48px 64px; border-top: 1px solid var(--light-border); }
+        .author-box p { font-size: 15px; color: var(--warm-grey); line-height: 1.7; }
+        .author-box a { color: var(--yellow); text-decoration: underline; }
+
+        .article-nav { max-width: 680px; margin: 0 auto; padding: 0 64px 80px; display: flex; justify-content: space-between; align-items: center; }
+        .back-link { font-size: 14px; font-weight: 400; color: var(--warm-grey); text-decoration: none; transition: color 0.2s; }
+        .back-link:hover { color: var(--black); }
+
+        footer { padding: 48px 64px; border-top: 1px solid var(--light-border); display: flex; justify-content: space-between; align-items: center; }
+        footer p { font-size: 13px; color: var(--warm-grey); }
+        footer .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); display: inline-block; }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 24px; }
+            .article-header { padding: 120px 24px 40px; }
+            .article-header h1 { font-size: 32px; }
+            .article-body { padding: 32px 24px 80px; }
+            .article-body h2 { font-size: 28px; }
+            .author-box { padding: 32px 24px; }
+            .article-nav { padding: 0 24px 60px; }
+            footer { padding: 32px 24px; flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo"><img src="/logo.png" alt="yellow3"></a>
+        <div class="nav-links">
+            <a href="/insights" class="nav-link">Insights</a>
+            <a href="/#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="meta">
+            <span>${monthYear}</span>
+            <span class="tag">${tag}</span>
+            <span>${readTime}</span>
+        </div>
+        <h1>${title}</h1>
+    </header>
+
+    <article class="article-body">
+
+        <blockquote>${lede}</blockquote>
+
+${body}
+
+    </article>
+
+    <div class="author-box">
+        <p><strong style="color: var(--black);">yellow3 lab</strong> is an AI research lab in Copenhagen. We research and develop autonomous AI platforms. <a href="/">Learn more &rarr;</a></p>
+    </div>
+
+    <div class="article-nav">
+        <a href="/insights" class="back-link">&larr; All insights</a>
+    </div>
+
+    <footer>
+        <p>&copy; ${now.getFullYear()} yellow3 lab. Copenhagen.</p>
+        <p><span class="dot"></span></p>
+    </footer>
+
+</body>
+</html>`;
+
+    setStatus('loading', 'Creating article...');
+
+    try {
+        await ghPut(`insights/${slug}.html`, html, `Add article: ${title}`);
+        toast('Article created and deployed!', 'success');
+        setStatus('connected', `Connected to ${REPO}`);
+        await refreshFiles();
+        openFile(`insights/${slug}.html`);
+    } catch (e) {
+        toast(`Failed: ${e.message}`, 'error');
+        setStatus('error', 'Create failed');
+    }
+}
+
+// Auto-generate slug from title
+document.getElementById('articleTitle').addEventListener('input', function() {
+    const slug = this.value.toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+    document.getElementById('articleSlug').value = slug;
+});
+
+// VIEW MANAGEMENT
+function showView(viewId) {
+    ['welcomeView', 'editorView', 'uploadView', 'newArticleView'].forEach(id => {
+        document.getElementById(id).style.display = 'none';
+    });
+    document.getElementById(viewId).style.display = 'flex';
+}
+
+function showWelcome() {
+    currentFile = null;
+    showView('welcomeView');
+    renderFileTree();
+}
+
+// MODAL
+function openModal(id) { document.getElementById(id).classList.add('active'); }
+function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+// STATUS
+function setStatus(type, text) {
+    const el = document.getElementById('statusText');
+    const dotClass = type === 'connected' ? 'green' : type === 'loading' ? 'yellow' : 'red';
+    el.innerHTML = `<span class="status-dot ${dotClass}"></span> ${text}`;
+}
+
+// TOAST
+function toast(msg, type = '') {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.className = 'toast visible ' + type;
+    setTimeout(() => el.className = 'toast', 3000);
+}
+
+// KEYBOARD SHORTCUTS
+document.addEventListener('keydown', function(e) {
+    // Cmd/Ctrl+S to commit
+    if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+        e.preventDefault();
+        if (currentFile && document.getElementById('editor').value !== originalContent) {
+            commitFile();
+        }
+    }
+});
+</script>
+
+</body>
+</html>
