@@ -1,29 +1,35 @@
 # yellow3 lab
+> AI Research Lab – Copenhagen, Denmark
 
-> yellow3 lab is an AI research studio based in Copenhagen, Denmark. We build AI-powered platforms that delete complexity.
+## Overview
 
-## About
+yellow3 lab is an AI research lab based in Copenhagen, Denmark. Founded by Thomas Christian Melskens. We research and develop autonomous AI platforms.
 
-yellow3 lab was founded by Thomas Christian Melskens. The studio designs and develops AI platforms for industries where complexity has become the barrier to progress. Our philosophy: the best technology is the technology you forget is there.
+## What We Do
 
-## Research Areas
+yellow3 lab builds AI platforms where the interface is conversation and the output is real. No dashboards to learn. No manuals to read. No code to write. We focus on three research areas:
 
-- AI Agent Architecture: Multi-agent systems that collaborate autonomously — interpreting intent, generating output, and ensuring quality without human intervention.
+- AI Agent Architecture: Multi-agent systems that collaborate autonomously – interpreting intent, generating output, and ensuring quality.
 - Design Intelligence: Teaching AI to think like a design studio, not a template engine. Every output meets professional standards by default.
-- Prompt-to-Product: Turning natural language into real, working digital products. Bridging the gap between what people say and what they mean.
+- Prompt-to-Product: Turning natural language into real, working digital products – apps, games, dashboards, SaaS, websites, tools – anything.
 
-## What We Build
+## Our Philosophy
 
-yellow3 lab develops AI platforms that turn plain language into production-ready software. No code, no designers, no agencies. Describe what you need and get working software — built, deployed, and ready.
+The best technology is the technology you forget is there. Technology promised to empower everyone. Instead, it created a priesthood – developers, consultants, agencies – standing between people and their ideas. We think that’s broken. So we’re fixing it.
 
-Our first platform is launching soon.
+## Published Research & Insights
 
-## Partnerships
+### I Analyzed What 50 AI Platforms Actually Cost to Build (February 2026)
+URL: https://yellow3.io/insights/ai-platform-costs-2026
+Summary: Deep analysis of AI platform economics in 2026. Key findings: 788x price gap between cheapest and most expensive AI models. Bootstrap AI platforms can be built for $250-$5K/month vs $2.3M/month for enterprise. Three mistakes cause most AI startups to overspend by 500%. Covers token pricing for Claude, GPT, Gemini, DeepSeek, and Kimi models. Includes cost breakdowns, AI app builder economics (Lovable, Bolt.new, Replit, v0), and architectural patterns used by successful AI companies.
 
-yellow3 lab partners with forward-thinking companies exploring what AI makes possible. We work best with organizations that want to explore, not just execute a brief.
+### Europe’s AI Slumber: While We Regulate, America and China Build (February 2026)
+URL: https://yellow3.io/insights/europes-ai-slumber
+Summary: Data-driven analysis of Europe’s declining position in the global AI race. The US controls 74% of global AI supercomputer capacity while Europe holds just 4.8%. OpenAI and Anthropic raised $130 billion in a single month. Europe’s AI Act implementation delayed to 2027. Only 11% of Draghi competitiveness recommendations implemented. Written from the perspective of a European AI founder in Copenhagen.
 
 ## Contact
 
-- Email: hello@yellow3.io
 - Website: https://yellow3.io
+- Insights: https://yellow3.io/insights
+- Contact form: https://yellow3.io/#contact
 - Location: Copenhagen, Denmark
