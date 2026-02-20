@@ -1,7 +1,10 @@
+# yellow3 lab – https://yellow3.io
+# AI Research Lab, Copenhagen
+
 User-agent: *
 Allow: /
 
-# Welcome AI crawlers
+# AI Crawlers – explicitly welcome
 User-agent: GPTBot
 Allow: /
 
@@ -11,16 +14,22 @@ Allow: /
 User-agent: Claude-Web
 Allow: /
 
-User-agent: Anthropic-AI
-Allow: /
-
-User-agent: Google-Extended
+User-agent: anthropic-ai
 Allow: /
 
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: Bytespider
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
 Allow: /
 
 Sitemap: https://yellow3.io/sitemap.xml
