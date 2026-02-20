@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights â yellow3 lab</title>
+    <meta name="description" content="Research, analysis, and perspectives on AI from yellow3 lab â an AI research lab in Copenhagen.">
+    <meta property="og:title" content="Insights â yellow3 lab">
+    <meta property="og:description" content="Research, analysis, and perspectives on AI from yellow3 lab â an AI research lab in Copenhagen.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yellow3.io/insights">
+    <link rel="canonical" href="https://yellow3.io/insights">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #111;
+            --white: #fff;
+            --off-white: #f8f7f4;
+            --warm-grey: #999;
+            --text: #555;
+            --light-border: #e8e6e1;
+            --yellow: #d4b83c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            font-size: 16px;
+            line-height: 1.75;
+            font-weight: 300;
+        }
+
+        ::selection {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 0 64px;
+            height: 72px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .logo {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            font-size: 17px;
+            letter-spacing: -0.01em;
+            color: var(--black);
+        }
+        .logo span { color: var(--yellow); }
+
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-link {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--warm-grey);
+            letter-spacing: 0.02em;
+            transition: color 0.2s;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--black); }
+
+        /* HEADER */
+        .page-header {
+            padding: 160px 64px 80px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .page-header .label {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--warm-grey);
+            margin-bottom: 24px;
+        }
+
+        .page-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 52px;
+            font-weight: 300;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: var(--black);
+            margin-bottom: 24px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: var(--text);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        /* ARTICLE LIST */
+        .articles {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 64px 120px;
+        }
+
+        .article-card {
+            display: block;
+            padding: 48px 0;
+            border-top: 1px solid var(--light-border);
+            transition: transform 0.2s ease;
+        }
+
+        .article-card:last-child {
+            border-bottom: 1px solid var(--light-border);
+        }
+
+        .article-card:hover {
+            transform: translateX(8px);
+        }
+
+        .article-meta {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--warm-grey);
+            margin-bottom: 16px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .article-meta .tag {
+            background: var(--off-white);
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 11px;
+        }
+
+        .article-card h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 400;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+            color: var(--black);
+            margin-bottom: 12px;
+        }
+
+        .article-card .excerpt {
+            font-size: 16px;
+            color: var(--text);
+            line-height: 1.65;
+            max-width: 640px;
+        }
+
+        .article-card .read-more {
+            display: inline-block;
+            margin-top: 16px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: var(--yellow);
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .article-card:hover .read-more {
+            border-color: var(--yellow);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 48px 64px;
+            border-top: 1px solid var(--light-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer p {
+            font-size: 13px;
+            color: var(--warm-grey);
+        }
+
+        footer .dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--yellow);
+            display: inline-block;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav { padding: 0 24px; }
+            .page-header { padding: 120px 24px 48px; }
+            .page-header h1 { font-size: 36px; }
+            .articles { padding: 0 24px 80px; }
+            .article-card h2 { font-size: 26px; }
+            footer { padding: 32px 24px; flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo">yellow<span>3</span></a>
+        <div class="nav-links">
+            <a href="/insights" class="nav-link active">Insights</a>
+            <a href="/#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <p class="label">Research &amp; Analysis</p>
+        <h1>Insights</h1>
+        <p>Research, analysis, and perspectives on AI â from the lab.</p>
+    </div>
+
+    <div class="articles">
+
+        <!-- ARTICLE 2 -->
+        <a href="/insights/ai-platform-costs-2026" class="article-card">
+            <div class="article-meta">
+                <span>February 2026</span>
+                <span class="tag">Economics</span>
+            </div>
+            <h2>I Analyzed What 50 AI Platforms Actually Cost to Build. The Numbers Will Make You Rethink Everything.</h2>
+            <p class="excerpt">A 788x price gap between AI models. $250/month vs $2.3M/month to build a platform. The real economics of AI â with every number, every model, every pattern laid bare.</p>
+            <span class="read-more">Read article &rarr;</span>
+        </a>
+
+        <!-- ARTICLE 1 -->
+        <a href="/insights/europes-ai-slumber" class="article-card">
+            <div class="article-meta">
+                <span>February 2026</span>
+                <span class="tag">Policy</span>
+            </div>
+            <h2>Europe's AI Slumber: While We Regulate, America and China Build</h2>
+            <p class="excerpt">The US controls 74% of global AI supercomputer capacity. Europe holds 4.8%. OpenAI and Anthropic raised $130 billion in a single month. A European founder asks: are we regulating ourselves into irrelevance?</p>
+            <span class="read-more">Read article &rarr;</span>
+        </a>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 yellow3 lab. Copenhagen.</p>
+        <p><span class="dot"></span></p>
+    </footer>
+
+</body>
+</html>
