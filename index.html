@@ -275,58 +275,6 @@
         .contact-link svg { width: 14px; height: 14px; transition: transform 0.3s; }
         .contact-link:hover svg { transform: translateX(3px); }
 
-        /* CONTACT FORM */
-        .contact-form-wrap { margin-top: 40px; max-width: 540px; }
-
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
-
-        .form-field { display: flex; flex-direction: column; margin-bottom: 0; }
-
-        .form-field + .form-field:not(.form-row .form-field) { margin-top: 20px; }
-
-        .contact-form-wrap .form-field:last-of-type { margin-bottom: 0; }
-
-        .form-field label {
-            font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em;
-            color: var(--warm-grey); margin-bottom: 8px; font-weight: 400;
-        }
-
-        .form-field input,
-        .form-field textarea {
-            font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 300;
-            padding: 14px 16px; border: 1px solid var(--light-border); border-radius: 8px;
-            background: var(--white); color: var(--black); outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .form-field input:focus,
-        .form-field textarea:focus { border-color: var(--yellow); }
-
-        .form-field input::placeholder,
-        .form-field textarea::placeholder { color: #ccc; }
-
-        .form-field textarea { resize: vertical; min-height: 100px; }
-
-        .form-btn {
-            margin-top: 24px; display: inline-flex; align-items: center; gap: 8px;
-            font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 500;
-            color: var(--white); background: var(--black); border: none;
-            padding: 14px 28px; border-radius: 8px; cursor: pointer;
-            transition: background 0.3s, transform 0.1s;
-        }
-
-        .form-btn:hover { background: #333; }
-        .form-btn:active { transform: scale(0.98); }
-        .form-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-        .form-success-msg {
-            font-size: 17px; color: var(--black); padding: 32px 0;
-        }
-
-        @media (max-width: 768px) {
-            .form-row { grid-template-columns: 1fr; }
-        }
-
         /* FOOTER */
         footer { padding: 48px 0; border-top: 1px solid var(--light-border); }
 
@@ -457,36 +405,15 @@
         <div class="container">
             <div class="collaborate">
                 <div class="collaborate-inner reveal">
-                    <p class="col-label">Work with us</p>
+                    <p class="col-label">Reach out on LinkedIn</p>
                     <div>
                         <p>yellow3 lab partners with forward-thinking companies exploring what AI makes possible for their industry, their customers, or their operations.</p>
                         <p>We work best with people who want to explore, not just execute a brief.</p>
 
-                        <div class="contact-form-wrap">
-                            <div id="form-success" style="display:none;">
-                                <p class="form-success-msg">Message sent. We'll be in touch.</p>
-                            </div>
-                            <div id="contact-form">
-                                <div class="form-row">
-                                    <div class="form-field">
-                                        <label for="name">Name</label>
-                                        <input type="text" id="name" name="name" required placeholder="Your name">
-                                    </div>
-                                    <div class="form-field">
-                                        <label for="email">Email</label>
-                                        <input type="email" id="email" name="email" required placeholder="your@email.com">
-                                    </div>
-                                </div>
-                                <div class="form-field">
-                                    <label for="message">Message</label>
-                                    <textarea id="message" name="message" rows="4" required placeholder="What are you working on?"></textarea>
-                                </div>
-                                <button type="button" id="form-submit" class="form-btn">
-                                    Send message
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                                </button>
-                            </div>
-                        </div>
+                        <a href="https://www.linkedin.com/company/yellow3" target="_blank" rel="noopener noreferrer" class="contact-link" style="margin-top: 24px;">
+                            Connect on LinkedIn
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -539,51 +466,6 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Contact form submission via Formspree
-        // REPLACE the endpoint below with your Formspree form ID
-        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
-
-        document.getElementById('form-submit').addEventListener('click', async function() {
-            const btn = this;
-            const name = document.getElementById('name');
-            const email = document.getElementById('email');
-            const message = document.getElementById('message');
-
-            if (!name.value || !email.value || !message.value) {
-                // Trigger native validation
-                if (!name.value) name.focus();
-                else if (!email.value) email.focus();
-                else message.focus();
-                return;
-            }
-
-            btn.disabled = true;
-            btn.textContent = 'Sending...';
-
-            try {
-                const response = await fetch(FORMSPREE_ENDPOINT, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                    body: JSON.stringify({
-                        name: name.value,
-                        email: email.value,
-                        message: message.value,
-                        _subject: 'yellow3.io — New message from ' + name.value
-                    })
-                });
-
-                if (response.ok) {
-                    document.getElementById('contact-form').style.display = 'none';
-                    document.getElementById('form-success').style.display = 'block';
-                } else {
-                    btn.textContent = 'Something went wrong — try again';
-                    btn.disabled = false;
-                }
-            } catch (e) {
-                btn.textContent = 'Something went wrong — try again';
-                btn.disabled = false;
-            }
-        });
     </script>
 <!-- Cookie Consent Banner for GDPR -->
     <div id="cookie-consent" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#111;color:#fff;padding:16px 24px;font-family:inherit;font-size:14px;z-index:9999;box-shadow:0 -2px 10px rgba(0,0,0,0.3);">
