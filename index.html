@@ -1,513 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <!-- Google tag (gtag.js) with Consent Mode v2 for GDPR -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3JXMM2VG5"></script>
-        <script>
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('consent', 'default', {
-                              'analytics_strage': 'denied',
-                              'ad_storage': 'denied',
-                              'ad_user_data': 'denied',
-                              'ad_personalization': 'denied',
-                              'wait_for_update': 500
-                  })
-                  gtag('js', new Date());
-                  gtag('config', 'G-K3JXMM2VG5');
-        </script>
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>yellow3 lab — AI Research Studio, Copenhagen</title>
-    <meta name="description" content="yellow3 lab is an AI research studio in Copenhagen building AI platforms that delete complexity. We research AI agent architecture, design intelligence, and prompt-to-product systems that turn plain language into production-ready software.">
-    <meta name="keywords" content="yellow3, yellow3 lab, AI research studio, Copenhagen, AI platforms, prompt-to-product, AI agent architecture, design intelligence, artificial intelligence, Denmark, AI lab">
-    <meta name="author" content="yellow3 lab">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://yellow3.io">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="/logo.png" type="image/png">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="yellow3 lab — AI Research Lab, Copenhagen">
-    <meta property="og:description" content="We build AI platforms that delete complexity. AI agent architecture, design intelligence, and prompt-to-product research turning plain language into production-ready software.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yellow3.io">
-    <meta property="og:site_name" content="yellow3 lab">
-    <meta property="og:locale" content="en_US">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="yellow3 lab — AI Research Studio, Copenhagen">
-    <meta name="twitter:description" content="We build AI platforms that delete complexity. Research in AI agents, design intelligence, and prompt-to-product systems.">
-
-    <!-- Structured Data for Google & LLMs -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ResearchOrganization",
-        "name": "yellow3 lab",
-        "alternateName": "yellow3",
-        "url": "https://yellow3.io",
-        "description": "yellow3 lab is an AI research studio based in Copenhagen, Denmark. We design and develop AI-powered platforms that delete complexity — turning plain language into production-ready software. Our research spans AI agent architecture, design intelligence, and prompt-to-product systems.",
-        "foundingLocation": {
-            "@type": "Place",
-            "name": "Copenhagen, Denmark"
-        },
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Copenhagen",
-            "addressCountry": "DK"
-        },
-        "knowsAbout": [
-            "Artificial Intelligence",
-            "AI Agent Architecture",
-            "Multi-Agent Systems",
-            "Design Intelligence",
-            "Prompt-to-Product Systems",
-            "Natural Language Processing",
-            "AI Software Development",
-            "AI-Powered Software Platforms"
-        ],
-        "areaServed": "Worldwide",
-        "sameAs": []
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>yellow3 lab — AI Research Studio, Copenhagen</title>
+  <meta name="description" content="yellow3 lab designs and develops AI-powered platforms that eliminate complexity in software creation. Based in Copenhagen." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white: #ffffff;
+      --off-white: #f7f6f3;
+      --border: #e8e6e1;
+      --muted: #aaa9a5;
+      --mid: #888784;
+      --body: #444340;
+      --dark: #1a1917;
+      --black: #0f0f0e;
     }
-    </script>
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--dark); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; }
 
-    <!-- Additional structured data for the article connection -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "yellow3 lab",
-        "url": "https://yellow3.io",
-        "description": "AI Research Studio building platforms that delete complexity",
-        "publisher": {
-            "@type": "Organization",
-            "name": "yellow3 lab",
-            "url": "https://yellow3.io"
-        }
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(8px); }
+    .nav-logo { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px; color: var(--dark); text-decoration: none; }
+    .nav-links { display: flex; gap: 40px; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--dark); }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 120px 48px 96px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 40px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(56px, 8vw, 116px); font-weight: 400; line-height: 1.03; letter-spacing: -0.02em; max-width: 1100px; margin-bottom: 56px; color: var(--black); }
+    .hero h1 em { font-style: italic; color: var(--mid); }
+    .hero-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; }
+    .hero-sub { font-size: 17px; font-weight: 300; color: var(--body); max-width: 480px; line-height: 1.75; border-left: 1px solid var(--border); padding-left: 28px; }
+    .hero-location { text-align: right; flex-shrink: 0; }
+    .hero-location span { display: block; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+
+    /* SECTION BASE */
+    section { padding: 112px 48px; border-bottom: 1px solid var(--border); }
+    .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 56px; }
+    .inner { max-width: 1200px; margin: 0 auto; }
+
+    /* PERSPECTIVE */
+    .perspective h2 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 4vw, 54px); font-weight: 400; line-height: 1.18; max-width: 640px; margin-bottom: 64px; color: var(--black); }
+    .perspective-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: start; }
+    .perspective-text p { color: var(--body); font-size: 17px; margin-bottom: 24px; }
+    .perspective-pull { border-top: 1px solid var(--border); padding-top: 40px; }
+    .perspective-pull blockquote { font-family: 'Playfair Display', serif; font-size: clamp(22px, 2.2vw, 30px); font-weight: 400; font-style: italic; line-height: 1.45; color: var(--black); }
+
+    /* RESEARCH AREAS */
+    .research-bg { background: var(--off-white); }
+    .research h2 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 4vw, 54px); font-weight: 400; line-height: 1.18; max-width: 500px; margin-bottom: 72px; color: var(--black); }
+    .research-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+    .research-item { background: var(--off-white); padding: 48px 40px; transition: background 0.2s; }
+    .research-item:hover { background: var(--white); }
+    .research-num { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; }
+    .research-item h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 400; margin-bottom: 16px; color: var(--black); line-height: 1.3; }
+    .research-item p { font-size: 15px; color: var(--body); line-height: 1.75; }
+
+    /* PLATFORM */
+    .platform-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 112px; align-items: center; }
+    .platform-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 32px; }
+    .platform h2 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 4vw, 54px); font-weight: 400; line-height: 1.18; margin-bottom: 32px; color: var(--black); }
+    .platform h2 em { font-style: italic; color: var(--mid); }
+    .platform p { font-size: 17px; color: var(--body); margin-bottom: 20px; }
+    .platform-features { margin-top: 40px; display: flex; flex-direction: column; gap: 0; }
+    .platform-feature { border-top: 1px solid var(--border); padding: 20px 0; display: grid; grid-template-columns: 24px 1fr; gap: 16px; align-items: start; font-size: 15px; color: var(--body); }
+    .platform-feature-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); margin-top: 8px; }
+    .platform-right { padding: 56px; background: var(--off-white); border: 1px solid var(--border); }
+    .platform-right-label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
+    .platform-right h3 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; color: var(--black); margin-bottom: 16px; line-height: 1.25; }
+    .platform-right p { font-size: 15px; color: var(--body); line-height: 1.7; margin-bottom: 32px; }
+    .platform-cta { display: inline-block; padding: 14px 36px; border: 1px solid var(--dark); color: var(--dark); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .platform-cta:hover { background: var(--dark); color: var(--white); }
+
+    /* INSIGHTS PREVIEW */
+    .insights-bg { background: var(--off-white); }
+    .insights-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 64px; }
+    .insights-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 4vw, 54px); font-weight: 400; line-height: 1.18; color: var(--black); }
+    .insights-all { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 4px; transition: color 0.2s, border-color 0.2s; }
+    .insights-all:hover { color: var(--dark); border-color: var(--dark); }
+    .insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+    .insight-card { background: var(--off-white); padding: 40px; transition: background 0.2s; text-decoration: none; display: block; }
+    .insight-card:hover { background: var(--white); }
+    .insight-issue { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+    .insight-card h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400; line-height: 1.35; color: var(--black); margin-bottom: 16px; }
+    .insight-card p { font-size: 14px; color: var(--mid); line-height: 1.65; }
+    .insight-read { display: inline-block; margin-top: 28px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dark); border-bottom: 1px solid var(--border); padding-bottom: 3px; }
+
+    /* CONTACT */
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 112px; align-items: start; }
+    .contact h2 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 4vw, 54px); font-weight: 400; line-height: 1.18; margin-bottom: 24px; color: var(--black); }
+    .contact-sub { font-size: 17px; color: var(--body); margin-bottom: 48px; max-width: 420px; }
+    .contact-linkedin { display: inline-flex; align-items: center; gap: 12px; padding: 15px 36px; border: 1px solid var(--dark); color: var(--dark); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .contact-linkedin:hover { background: var(--dark); color: var(--white); }
+    .contact-detail { margin-top: 56px; }
+    .contact-detail-item { border-top: 1px solid var(--border); padding: 20px 0; display: grid; grid-template-columns: 140px 1fr; font-size: 14px; }
+    .contact-detail-label { color: var(--muted); }
+    .contact-detail-value { color: var(--body); }
+    .contact-form { display: flex; flex-direction: column; gap: 0; }
+    .form-row { border-top: 1px solid var(--border); padding: 16px 0; display: flex; flex-direction: column; gap: 8px; }
+    .form-row:last-child { border-bottom: 1px solid var(--border); }
+    .form-row label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .form-row input, .form-row textarea { background: none; border: none; outline: none; font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 300; color: var(--dark); resize: none; width: 100%; padding: 4px 0; }
+    .form-row input::placeholder, .form-row textarea::placeholder { color: var(--border); }
+    .form-submit { margin-top: 32px; display: inline-block; padding: 15px 40px; border: 1px solid var(--dark); color: var(--dark); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; background: none; cursor: pointer; transition: background 0.2s, color 0.2s; font-family: 'DM Sans', sans-serif; }
+    .form-submit:hover { background: var(--dark); color: var(--white); }
+
+    /* FOOTER */
+    .footer-dark { background: var(--black); padding: 48px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px; color: rgba(255,255,255,0.4); text-decoration: none; }
+    .footer-links { display: flex; gap: 32px; }
+    .footer-links a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.22); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.6); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      section, .hero { padding: 80px 24px; }
+      .perspective-cols, .platform-inner, .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+      .research-grid, .insights-grid { grid-template-columns: 1fr; }
+      .hero-bottom { flex-direction: column; align-items: flex-start; }
+      .footer-dark { flex-direction: column; gap: 24px; text-align: center; }
     }
-    </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --black: #111;
-            --white: #fff;
-            --off-white: #f8f7f4;
-            --warm-grey: #999;
-            --text: #555;
-            --light-border: #e8e6e1;
-            --yellow: #d4b83c;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html {
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            font-family: 'Manrope', sans-serif;
-            background: var(--white);
-            color: var(--black);
-            font-size: 16px;
-            line-height: 1.75;
-            font-weight: 300;
-            overflow-x: hidden;
-        }
-
-        ::selection { background: var(--yellow); color: var(--black); }
-
-        /* NAV */
-        nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            padding: 0 64px; height: 72px;
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-            border-bottom: 1px solid rgba(0,0,0,0.04);
-        }
-
-        .logo img { height: 22px; width: auto; }
-
-        .nav-links { display: flex; gap: 40px; align-items: center; }
-
-        .nav-links a {
-            font-size: 13px; font-weight: 400; color: var(--warm-grey);
-            text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover { color: var(--black); }
-
-        /* CONTAINER */
-        .container { max-width: 1120px; margin: 0 auto; padding: 0 64px; }
-
-        /* HERO */
-        .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 72px; }
-
-        .hero-inner { width: 100%; padding: 80px 0; }
-
-        .hero-eyebrow {
-            font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em;
-            color: var(--warm-grey); margin-bottom: 48px; font-weight: 400;
-            opacity: 0; animation: fadeIn 0.8s ease forwards 0.3s;
-        }
-
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif; font-weight: 300;
-            font-size: clamp(44px, 6.5vw, 80px); line-height: 1.08;
-            letter-spacing: -0.03em; margin-bottom: 48px; max-width: 800px;
-            opacity: 0; animation: fadeIn 0.8s ease forwards 0.5s;
-        }
-
-        .hero h1 .accent { font-style: italic; font-weight: 400; }
-
-        .hero-sub {
-            font-size: 17px; color: var(--warm-grey); max-width: 460px; line-height: 1.8;
-            opacity: 0; animation: fadeIn 0.8s ease forwards 0.7s;
-        }
-
-        /* HR */
-        .hr { height: 1px; background: var(--light-border); }
-
-        /* TWO-COL */
-        .two-col {
-            display: grid; grid-template-columns: 280px 1fr;
-            gap: 80px; padding: 100px 0; align-items: start;
-        }
-
-        .col-label {
-            font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em;
-            color: var(--warm-grey); font-weight: 400; padding-top: 4px;
-        }
-
-        .col-content h2 {
-            font-family: 'Cormorant Garamond', serif; font-weight: 300;
-            font-size: 36px; line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 28px;
-        }
-
-        .col-content p { color: var(--text); margin-bottom: 20px; max-width: 540px; }
-        .col-content p:last-child { margin-bottom: 0; }
-
-        /* PILLARS */
-        .pillars {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 1px; background: var(--light-border); margin-top: 48px;
-        }
-
-        .pillar { background: var(--white); padding: 40px 32px; }
-
-        .pillar-number {
-            font-size: 11px; color: var(--yellow); letter-spacing: 0.15em;
-            margin-bottom: 20px; font-weight: 500;
-        }
-
-        .pillar h3 {
-            font-family: 'Cormorant Garamond', serif; font-weight: 400;
-            font-size: 22px; margin-bottom: 12px; letter-spacing: -0.01em;
-        }
-
-        .pillar p { font-size: 14px; color: var(--warm-grey); line-height: 1.7; }
-
-        /* TEASE */
-        .platform-tease { padding: 100px 0; }
-
-        .tease-card {
-            background: var(--off-white); border-radius: 16px;
-            padding: 72px 80px; position: relative; overflow: hidden;
-        }
-
-        .tease-card::after {
-            content: ''; position: absolute; bottom: 0;
-            left: 80px; right: 80px; height: 2px;
-            background: linear-gradient(90deg, var(--yellow), transparent);
-        }
-
-        .tease-eyebrow {
-            font-size: 12px; text-transform: uppercase; letter-spacing: 0.2em;
-            color: var(--warm-grey); margin-bottom: 32px; font-weight: 400;
-        }
-
-        .tease-card h2 {
-            font-family: 'Cormorant Garamond', serif; font-weight: 300;
-            font-size: 40px; line-height: 1.2; letter-spacing: -0.02em;
-            margin-bottom: 24px; max-width: 560px;
-        }
-
-        .tease-card p { color: var(--text); max-width: 480px; margin-bottom: 40px; }
-
-        .launch-pill {
-            display: inline-flex; align-items: center; gap: 8px;
-            font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em;
-            font-weight: 500; color: var(--yellow);
-        }
-
-        .launch-pill .dot {
-            width: 6px; height: 6px; border-radius: 50%;
-            background: var(--yellow); animation: pulse 2s ease-in-out infinite;
-        }
-
-        /* COLLABORATE */
-        .collaborate { padding: 100px 0; }
-
-        .collaborate-inner {
-            display: grid; grid-template-columns: 280px 1fr;
-            gap: 80px; align-items: start;
-        }
-
-        .collaborate-inner p { color: var(--text); max-width: 540px; margin-bottom: 20px; }
-
-        .contact-link {
-            display: inline-flex; align-items: center; gap: 8px;
-            margin-top: 12px; font-size: 14px; font-weight: 500;
-            color: var(--black); text-decoration: none;
-            border-bottom: 1px solid var(--light-border); padding-bottom: 4px;
-            transition: border-color 0.3s;
-        }
-
-        .contact-link:hover { border-color: var(--yellow); }
-
-        .contact-link svg { width: 14px; height: 14px; transition: transform 0.3s; }
-        .contact-link:hover svg { transform: translateX(3px); }
-
-        /* FOOTER */
-        footer { padding: 48px 0; border-top: 1px solid var(--light-border); }
-
-        .footer-inner {
-            display: flex; justify-content: space-between; align-items: center;
-            flex-wrap: wrap; gap: 16px;
-        }
-
-        footer p { font-size: 12px; color: var(--warm-grey); letter-spacing: 0.04em; }
-
-        /* ANIMATIONS */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
-        }
-
-        .reveal {
-            opacity: 0; transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-
-        /* RESPONSIVE */
-        @media (max-width: 900px) {
-            .two-col, .collaborate-inner { grid-template-columns: 1fr; gap: 32px; }
-            .pillars { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 768px) {
-            nav { padding: 0 28px; }
-            .container { padding: 0 28px; }
-            .two-col, .platform-tease, .collaborate { padding: 72px 0; }
-            .tease-card { padding: 48px 32px; }
-            .tease-card::after { left: 32px; right: 32px; }
-            .nav-links { gap: 24px; }
-        }
-    </style>
+  </style>
 </head>
 <body>
 
-    <nav>
-        <a href="#" class="logo"><img src="/logo.png" alt="yellow3"></a>
-        <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="/insights/">Insights</a>
-            <a href="/masterclass">Masterclass</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-inner">
-                <p class="hero-eyebrow">AI Research Studio — Copenhagen</p>
-                <h1>We build AI platforms that <span class="accent">delete</span> complexity.</h1>
-                <p class="hero-sub">yellow3 lab designs and develops AI-powered platforms for industries where complexity has become the barrier to progress.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- PERSPECTIVE -->
-    <div class="container"><div class="hr"></div></div>
-    <section id="about">
-        <div class="container">
-            <div class="two-col reveal">
-                <p class="col-label">Our perspective</p>
-                <div class="col-content">
-                    <h2>Technology should disappear into the result it creates.</h2>
-                    <p>For decades, building digital products has required specialists, agencies, and months of development. The tools got more powerful, but the barriers stayed the same.</p>
-                    <p>We believe AI changes that equation fundamentally. Not by making tools easier to use — but by removing the need for tools entirely.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- RESEARCH -->
-    <div class="container"><div class="hr"></div></div>
-    <section>
-        <div class="container">
-            <div class="two-col reveal">
-                <p class="col-label">Research areas</p>
-                <div class="col-content">
-                    <div class="pillars">
-                        <div class="pillar">
-                            <p class="pillar-number">01</p>
-                            <h3>AI Agent Architecture</h3>
-                            <p>Multi-agent systems that collaborate autonomously — interpreting intent, generating output, and ensuring quality without human intervention.</p>
-                        </div>
-                        <div class="pillar">
-                            <p class="pillar-number">02</p>
-                            <h3>Design Intelligence</h3>
-                            <p>Teaching AI to think like a design studio, not a template engine. Every output should meet professional standards by default.</p>
-                        </div>
-                        <div class="pillar">
-                            <p class="pillar-number">03</p>
-                            <h3>Prompt-to-Product</h3>
-                            <p>Bridging the gap between what people say and what they mean. Turning natural language into real, working digital products.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PLATFORM TEASE -->
-    <div class="container"><div class="hr"></div></div>
-    <section>
-        <div class="container">
-            <div class="platform-tease reveal">
-                <div class="tease-card">
-                    <p class="tease-eyebrow">Coming soon</p>
-                    <h2>Our first platform is ready to launch.</h2>
-                    <p>Describe what you need in plain language. Get production-ready software — built, deployed, and working. No developers. No designers. No agencies.</p>
-                    <span class="launch-pill"><span class="dot"></span> Launching soon</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- COLLABORATE + CONTACT -->
-    <div class="container"><div class="hr"></div></div>
-    <section id="contact">
-        <div class="container">
-            <div class="collaborate">
-                <div class="collaborate-inner reveal">
-                    <p class="col-label">Reach out on LinkedIn</p>
-                    <div>
-                        <p>yellow3 lab partners with forward-thinking companies exploring what AI makes possible for their industry, their customers, or their operations.</p>
-                        <p>We work best with people who want to explore, not just execute a brief.</p>
-
-                        <a href="https://www.linkedin.com/company/yellow3" target="_blank" rel="noopener noreferrer" class="contact-link" style="margin-top: 24px;">
-                            Connect on LinkedIn
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <div class="container"><div class="hr"></div></div>
-    <footer>
-        <div class="container">
-            <div class="footer-inner">
-                <p>&copy; 2026 yellow3 lab</p>
-                <p>Copenhagen, Denmark</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- SEO & LLM-readable extended content — visually hidden, fully crawlable -->
-    <article style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
-        <h2>About yellow3 lab</h2>
-        <p>yellow3 lab is an AI research studio based in Copenhagen, Denmark. Founded by Thomas Christian Melskens, yellow3 lab designs and develops AI-powered platforms that eliminate complexity in software creation and digital product development.</p>
-
-        <h3>Mission</h3>
-        <p>yellow3 lab exists to delete the barriers between ideas and reality. For decades, building digital products required developers, agencies, and months of work. yellow3 believes AI changes that equation fundamentally — not by making tools easier to use, but by removing the need for tools entirely. The best technology is the technology you forget is there.</p>
-
-        <h3>Research Focus</h3>
-        <p>yellow3 lab conducts applied research in three core areas: AI Agent Architecture — developing multi-agent systems that collaborate autonomously to interpret intent, generate output, and ensure quality. Design Intelligence — teaching AI to produce professional-grade design, moving beyond templates to genuine design thinking. Prompt-to-Product Systems — bridging the gap between natural language descriptions and working digital products.</p>
-
-        <h3>Platforms</h3>
-        <p>yellow3 lab develops AI platforms for industries where complexity blocks progress. The lab's first platform enables users to describe software in plain language and receive production-ready applications — built, deployed, and working — with no developers, no designers, and no agencies required.</p>
-
-        <h3>Partnerships</h3>
-        <p>yellow3 lab partners with forward-thinking companies exploring what AI makes possible for their industry, customers, or operations. The lab works with organizations that want to explore AI's potential, not just execute a specification.</p>
-
-        <h3>Location</h3>
-        <p>yellow3 lab is headquartered in Copenhagen, Denmark, and operates globally.</p>
-
-        <h3>Contact</h3>
-        <p>For inquiries, partnerships, and press, use the contact form at https://yellow3.io</p>
-        <p>Website: https://yellow3.io</p>
-    </article>
-
-    <script>
-        // Scroll reveal
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    </script>
-<!-- Cookie Consent Banner for GDPR -->
-    <div id="cookie-consent" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#111;color:#fff;padding:16px 24px;font-family:inherit;font-size:14px;z-index:9999;box-shadow:0 -2px 10px rgba(0,0,0,0.3);">
-        <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
-            <p style="margin:0;flex:1;min-width:200px;">We use cookies to understand how you use our site and improve your experience.</p>
-            <div style="display:flex;gap:8px;flex-shrink:0;">
-                <button onclick="acceptCookies()" style="background:#f5c518;color:#111;border:none;padding:8px 20px;border-radius:4px;cursor:pointer;font-weight:600;font-size:14px;">Accept</button>
-                <button onclick="declineCookies()" style="background:transparent;color:#fff;border:1px solid #555;padding:8px 20px;border-radius:4px;cursor:pointer;font-size:14px;">Decline</button>
-            </div>
-        </div>
+  <nav>
+    <a href="/" class="nav-logo">yellow3</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="/insights/">Insights</a>
+      <a href="/masterclass">Masterclass</a>
+      <a href="#contact">Contact</a>
     </div>
-    <script>
-        function acceptCookies() {
-            gtag('consent', 'update', {
-                'analytics_storage': 'granted',
-                'ad_storage': 'granted',
-                'ad_user_data': 'granted',
-                'ad_personalization': 'granted'
-            });
-            localStorage.setItem('cookie_consent', 'accepted');
-            document.getElementById('cookie-consent').style.display = 'none';
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">AI Research Studio — Copenhagen</div>
+    <h1 class="reveal">We build AI platforms<br>that <em>delete</em> complexity.</h1>
+    <div class="hero-bottom">
+      <p class="hero-sub reveal">yellow3 lab designs and develops AI-powered platforms for industries where complexity has become the barrier to progress.</p>
+      <div class="hero-location reveal">
+        <span>Founded 2024</span>
+        <span style="margin-top:6px;">Copenhagen, Denmark</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSPECTIVE -->
+  <section id="about">
+    <div class="inner perspective">
+      <div class="section-label">Our perspective</div>
+      <h2 class="reveal">Technology should disappear<br>into the result it creates.</h2>
+      <div class="perspective-cols">
+        <div class="perspective-text reveal">
+          <p>For decades, building digital products has required specialists, agencies, and months of development. The tools got more powerful. The barriers stayed the same.</p>
+          <p>We believe AI changes that equation fundamentally. Not by making tools easier to use - but by removing the need for tools entirely.</p>
+          <p>The best technology is the technology you forget is there.</p>
+        </div>
+        <div class="perspective-pull reveal">
+          <blockquote>"The gap between what you imagine and what exists should be measured in seconds, not months."</blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section class="research-bg">
+    <div class="inner research">
+      <div class="section-label">Research areas</div>
+      <h2 class="reveal">Three bets on<br>where AI is going.</h2>
+      <div class="research-grid">
+        <div class="research-item reveal">
+          <div class="research-num">01</div>
+          <h3>AI Agent Architecture</h3>
+          <p>Multi-agent systems that collaborate autonomously - interpreting intent, generating output, and ensuring quality without human intervention.</p>
+        </div>
+        <div class="research-item reveal">
+          <div class="research-num">02</div>
+          <h3>Design Intelligence</h3>
+          <p>Teaching AI to think like a design studio, not a template engine. Every output should meet professional standards by default.</p>
+        </div>
+        <div class="research-item reveal">
+          <div class="research-num">03</div>
+          <h3>Prompt-to-Product</h3>
+          <p>Bridging the gap between what people say and what they mean. Turning natural language into real, working digital products.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORM -->
+  <section>
+    <div class="inner">
+      <div class="platform-inner">
+        <div class="reveal">
+          <div class="platform-label">Coming soon</div>
+          <h2>Our first platform<br>is ready to <em>launch.</em></h2>
+          <p>Describe what you need in plain language. Get production-ready software - built, deployed, and working.</p>
+          <div class="platform-features">
+            <div class="platform-feature"><div class="platform-feature-dot"></div><div>No developers required</div></div>
+            <div class="platform-feature"><div class="platform-feature-dot"></div><div>No designers required</div></div>
+            <div class="platform-feature"><div class="platform-feature-dot"></div><div>No agencies required</div></div>
+            <div class="platform-feature"><div class="platform-feature-dot"></div><div>Production-ready from day one</div></div>
+            <div class="platform-feature"><div class="platform-feature-dot"></div><div>Built, deployed, and working</div></div>
+          </div>
+        </div>
+        <div class="platform-right reveal">
+          <div class="platform-right-label">Launching soon</div>
+          <h3>Be among the first to build with it.</h3>
+          <p>yellow3 lab partners with forward-thinking companies exploring what AI makes possible for their industry, their customers, or their operations.</p>
+          <p>We work best with people who want to explore, not just execute a brief.</p>
+          <a href="https://www.linkedin.com/company/yellow3" class="platform-cta" target="_blank">Connect on LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSIGHTS PREVIEW -->
+  <section class="insights-bg">
+    <div class="inner">
+      <div class="insights-header">
+        <h2 class="reveal">Insights</h2>
+        <a href="/insights/" class="insights-all">All articles</a>
+      </div>
+      <div class="insights-grid">
+        <a href="/insights/autonomous-software" class="insight-card reveal">
+          <div class="insight-issue">Issue 01</div>
+          <h3>Your Software Should Work While You Sleep</h3>
+          <p>The shift from tools that assist to software that acts. What autonomous systems mean for how businesses operate.</p>
+          <span class="insight-read">Read article</span>
+        </a>
+        <a href="/insights/europe-ai-slumber" class="insight-card reveal">
+          <div class="insight-issue">Issue 02</div>
+          <h3>Europe's AI Slumber</h3>
+          <p>Why Europe is falling behind in the AI race - and what it will take to close the gap before it becomes permanent.</p>
+          <span class="insight-read">Read article</span>
+        </a>
+        <a href="/insights/autonomous-layer" class="insight-card reveal">
+          <div class="insight-issue">Issue 03</div>
+          <h3>The Rise of Autonomous Software</h3>
+          <p>Software that doesn't wait for instructions. The architecture, the implications, and the businesses it will create.</p>
+          <span class="insight-read">Read article</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="inner">
+      <div class="contact-inner">
+        <div class="reveal">
+          <div class="section-label">Get in touch</div>
+          <h2>Work with us.</h2>
+          <p class="contact-sub">yellow3 lab partners with companies exploring what AI makes possible. If that sounds like you, we'd like to hear from you.</p>
+          <a href="https://www.linkedin.com/company/yellow3" class="contact-linkedin" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            Reach out on LinkedIn
+          </a>
+          <div class="contact-detail">
+            <div class="contact-detail-item"><span class="contact-detail-label">Location</span><span class="contact-detail-value">Copenhagen, Denmark</span></div>
+            <div class="contact-detail-item"><span class="contact-detail-label">Founded</span><span class="contact-detail-value">2024</span></div>
+            <div class="contact-detail-item"><span class="contact-detail-label">Consortium</span><span class="contact-detail-value">CIRPASS-2 Member</span></div>
+          </div>
+        </div>
+        <div class="contact-form reveal">
+          <div class="section-label">Send a message</div>
+          <div class="form-row">
+            <label>Your name</label>
+            <input type="text" placeholder="Full name" />
+          </div>
+          <div class="form-row">
+            <label>Email</label>
+            <input type="email" placeholder="your@email.com" />
+          </div>
+          <div class="form-row">
+            <label>Company</label>
+            <input type="text" placeholder="Organisation" />
+          </div>
+          <div class="form-row">
+            <label>Message</label>
+            <textarea rows="5" placeholder="Tell us what you're working on..."></textarea>
+          </div>
+          <button class="form-submit">Send message</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer-dark">
+    <a href="/" class="footer-logo">yellow3</a>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="/insights/">Insights</a>
+      <a href="/masterclass">Masterclass</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <span class="footer-copy">2026 yellow3 lab, Copenhagen</span>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          observer.unobserve(entry.target);
         }
-        function declineCookies() {
-            localStorage.setItem('cookie_consent', 'declined');
-            document.getElementById('cookie-consent').style.display = 'none';
-        }
-        (function() {
-            var consent = localStorage.getItem('cookie_consent');
-            if (consent === 'accepted') {
-                gtag('consent', 'update', {
-                    'analytics_storage': 'granted',
-                    'ad_storage': 'granted',
-                    'ad_user_data': 'granted',
-                    'ad_personalization': 'granted'
-                });
-            } else if (!consent) {
-                document.getElementById('cookie-consent').style.display = 'flex';
-            }
-        })();
-    </script>
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Software Should Work While You Sleep — yellow3 lab</title>
+  <meta name="description" content="The shift from tools that assist to software that acts. What autonomous systems mean for how businesses operate." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --white:#ffffff; --off-white:#f7f6f3; --border:#e8e6e1; --muted:#aaa9a5; --mid:#888784; --body:#444340; --dark:#1a1917; --black:#0f0f0e; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--dark); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(8px); }
+    .nav-logo { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px; color: var(--dark); text-decoration: none; }
+    .nav-links { display: flex; gap: 40px; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--dark); }
+    .nav-back { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--dark); }
+
+    /* ARTICLE HERO */
+    .article-hero { padding: 160px 48px 80px; border-bottom: 1px solid var(--border); max-width: 1200px; margin: 0 auto; }
+    .article-issue { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 32px; }
+    .article-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(42px, 5.5vw, 72px); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--black); max-width: 800px; margin-bottom: 48px; }
+    .article-meta { display: flex; gap: 48px; padding-top: 32px; border-top: 1px solid var(--border); }
+    .article-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .article-meta-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .article-meta-value { font-size: 14px; color: var(--body); }
+
+    /* ARTICLE LAYOUT */
+    .article-layout { display: grid; grid-template-columns: 1fr 320px; gap: 0; max-width: 1200px; margin: 0 auto; padding: 0 48px; border-bottom: 1px solid var(--border); }
+    .article-body { padding: 72px 80px 72px 0; border-right: 1px solid var(--border); }
+    .article-body p { font-size: 18px; color: var(--body); line-height: 1.8; margin-bottom: 32px; }
+    .article-body h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; color: var(--black); margin: 56px 0 24px; line-height: 1.3; }
+    .article-body h3 { font-size: 16px; font-weight: 500; color: var(--dark); margin: 40px 0 16px; letter-spacing: 0.02em; }
+    .article-body blockquote { border-left: 2px solid var(--border); padding: 4px 0 4px 32px; margin: 48px 0; }
+    .article-body blockquote p { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; font-weight: 400; color: var(--black); line-height: 1.5; margin: 0; }
+
+    /* SIDEBAR */
+    .article-sidebar { padding: 72px 0 72px 56px; }
+    .sidebar-section { margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid var(--border); }
+    .sidebar-section:last-child { border-bottom: none; }
+    .sidebar-label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+    .sidebar-section p { font-size: 14px; color: var(--body); line-height: 1.65; }
+    .sidebar-stat { margin-top: 16px; }
+    .sidebar-stat-num { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 400; color: var(--black); line-height: 1; margin-bottom: 8px; }
+    .sidebar-stat-label { font-size: 13px; color: var(--muted); }
+    .sidebar-related { display: flex; flex-direction: column; gap: 0; }
+    .sidebar-related-item { border-top: 1px solid var(--border); padding: 16px 0; text-decoration: none; display: block; transition: padding-left 0.2s; }
+    .sidebar-related-item:hover { padding-left: 8px; }
+    .sidebar-related-issue { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .sidebar-related-title { font-size: 14px; color: var(--dark); line-height: 1.4; }
+
+    /* MORE ARTICLES */
+    .more { padding: 80px 48px 112px; background: var(--off-white); }
+    .more-inner { max-width: 1200px; margin: 0 auto; }
+    .more-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 56px; }
+    .more-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
+    .more-card { background: var(--off-white); padding: 40px; text-decoration: none; display: block; transition: background 0.2s; }
+    .more-card:hover { background: var(--white); }
+    .more-issue { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+    .more-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 400; line-height: 1.3; color: var(--black); margin-bottom: 16px; }
+    .more-card p { font-size: 15px; color: var(--body); line-height: 1.7; margin-bottom: 28px; }
+    .more-read { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dark); border-bottom: 1px solid var(--border); padding-bottom: 3px; display: inline-block; }
+
+    footer { background: var(--black); padding: 48px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px; color: rgba(255,255,255,0.4); text-decoration: none; }
+    .footer-links { display: flex; gap: 32px; }
+    .footer-links a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.22); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.6); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      .article-hero { padding: 120px 24px 56px; }
+      .article-layout { grid-template-columns: 1fr; padding: 0 24px; }
+      .article-body { padding: 56px 0; border-right: none; border-bottom: 1px solid var(--border); }
+      .article-sidebar { padding: 48px 0; }
+      .more { padding: 64px 24px; }
+      .more-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 24px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">yellow3</a>
+    <div class="nav-links">
+      <a href="/#about">About</a>
+      <a href="/insights/" class="active">Insights</a>
+      <a href="/masterclass">Masterclass</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <a href="/insights/" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M5 12l7 7M5 12l7-7"/></svg>
+      All insights
+    </a>
+  </nav>
+
+  <div class="article-hero reveal">
+    <div class="article-issue">Issue 01 — Autonomous Software</div>
+    <h1>Your Software Should<br>Work While You Sleep</h1>
+    <div class="article-meta">
+      <div class="article-meta-item"><span class="article-meta-label">Author</span><span class="article-meta-value">Thomas Chr. Melskens</span></div>
+      <div class="article-meta-item"><span class="article-meta-label">Published</span><span class="article-meta-value">February 2026</span></div>
+      <div class="article-meta-item"><span class="article-meta-label">Read time</span><span class="article-meta-value">6 minutes</span></div>
+      <div class="article-meta-item"><span class="article-meta-label">Topic</span><span class="article-meta-value">Autonomous Software</span></div>
+    </div>
+  </div>
+
+  <div class="article-layout">
+    <div class="article-body reveal">
+      <p>There is a version of your business where the software runs the process, not the other way around. Where a customer inquiry becomes a handled ticket without anyone touching a keyboard. Where inventory dips below threshold and a purchase order is already raised. Where your CRM updates itself because the AI read the email.</p>
+
+      <p>That version of your business is not a decade away. It is available now. The question is whether you are building toward it or waiting for someone else to build it first.</p>
+
+      <h2>The shift nobody announced</h2>
+
+      <p>For the past thirty years, software has been a tool. It waited for you. You opened it, clicked through it, entered data into it, and it stored or processed what you gave it. The intelligence in the system was yours. The software was the vessel.</p>
+
+      <p>That model is ending. Not gradually - abruptly, in the way that these shifts always feel gradual until the day they do not.</p>
+
+      <blockquote><p>"The question is no longer whether your software can think. It is whether you are ready for it to act."</p></blockquote>
+
+      <p>The new model is software that holds intent. It understands what you are trying to achieve, monitors conditions, and takes action when those conditions are met. Not because you told it to - because it understood the goal.</p>
+
+      <h2>What autonomous software actually means</h2>
+
+      <p>The term gets used loosely, so let us be precise. Autonomous software is not software with a chatbot embedded in it. It is not a workflow automation tool with more buttons. It is software that operates on behalf of the business - that perceives its environment, makes decisions within defined parameters, and executes actions without requiring a human to initiate each step.</p>
+
+      <p>The architecture that makes this possible has three components. A reasoning layer that interprets context and intent. A decision layer that evaluates options against policy. And an action layer that connects to the systems where things actually happen - calendars, inboxes, databases, payment processors, communication tools.</p>
+
+      <h3>The businesses it creates</h3>
+
+      <p>The most interesting companies being built right now are not companies with AI features. They are companies whose core operation is autonomous. Where the software is not supporting the business - it is running it. A founding team of two people operating what would previously have required a staff of twenty.</p>
+
+      <p>This is not speculation. It is already happening in customer operations, financial services, logistics, and professional services. The constraint is no longer headcount or capital. It is the clarity of your intent.</p>
+
+      <h2>The question for leadership</h2>
+
+      <p>Every executive we speak to has AI on their agenda. Most are asking the wrong question. They are asking how to add AI to what they already do. The more valuable question is which of your current processes should stop requiring human initiation entirely.</p>
+
+      <p>Start there. The answer will tell you more about your organisation's AI readiness than any technology audit.</p>
+
+    </div>
+
+    <div class="article-sidebar reveal">
+      <div class="sidebar-section">
+        <div class="sidebar-label">By the numbers</div>
+        <div class="sidebar-stat">
+          <div class="sidebar-stat-num">73%</div>
+          <div class="sidebar-stat-label">of business processes are candidates for autonomous execution within 3 years</div>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Key idea</div>
+        <p>Autonomous software does not replace people. It removes the need for people to initiate routine actions - freeing them for the decisions that require genuine judgment.</p>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">About yellow3 lab</div>
+        <p>We design and develop AI-powered platforms for industries where complexity has become the barrier to progress.</p>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">More articles</div>
+        <div class="sidebar-related">
+          <a href="/insights/europe-ai-slumber" class="sidebar-related-item">
+            <div class="sidebar-related-issue">Issue 02</div>
+            <div class="sidebar-related-title">Europe's AI Slumber</div>
+          </a>
+          <a href="/insights/autonomous-layer" class="sidebar-related-item">
+            <div class="sidebar-related-issue">Issue 03</div>
+            <div class="sidebar-related-title">The Rise of Autonomous Software</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MORE ARTICLES -->
+  <div class="more">
+    <div class="more-inner">
+      <div class="more-label">Continue reading</div>
+      <div class="more-grid">
+        <a href="/insights/europe-ai-slumber" class="more-card reveal">
+          <div class="more-issue">Issue 02</div>
+          <h3>Europe's AI Slumber</h3>
+          <p>Why Europe is falling behind in the AI race - and what it will take to close the gap before it becomes permanent.</p>
+          <span class="more-read">Read article</span>
+        </a>
+        <a href="/insights/autonomous-layer" class="more-card reveal">
+          <div class="more-issue">Issue 03</div>
+          <h3>The Rise of Autonomous Software</h3>
+          <p>Software that doesn't wait for instructions. The architecture, the implications, and the businesses it will create.</p>
+          <span class="more-read">Read article</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <a href="/" class="footer-logo">yellow3</a>
+    <div class="footer-links">
+      <a href="/#about">About</a>
+      <a href="/insights/">Insights</a>
+      <a href="/masterclass">Masterclass</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <span class="footer-copy">2026 yellow3 lab, Copenhagen</span>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
