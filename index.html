@@ -166,7 +166,7 @@
       <a href="/masterclass">Masterclass</a>
       <a href="#contact">Contact</a>
     </div>
-    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');this.previousElementSibling.classList.toggle('open')"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');this.closest('nav').querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
   </nav>
 
   <!-- HERO -->
