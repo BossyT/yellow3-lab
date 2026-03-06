@@ -123,12 +123,23 @@
 
     @media (max-width: 900px) {
       nav { padding: 20px 24px; }
-      .nav-links { display: none; }
       section, .hero { padding: 80px 24px; }
       .perspective-cols, .platform-inner, .contact-inner { grid-template-columns: 1fr; gap: 48px; }
       .research-grid, .insights-grid { grid-template-columns: 1fr; }
       .hero-bottom { flex-direction: column; align-items: flex-start; }
       .footer-dark { flex-direction: column; gap: 24px; text-align: center; }
+    }
+
+    /* MOBILE MENU */
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 20px; height: 1.5px; background: var(--dark); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
+    @media (max-width: 900px) {
+      .nav-toggle { display: block; }
+      .nav-links { position: absolute; top: 100%; left: 0; right: 0; background: var(--white); border-bottom: 1px solid var(--border); flex-direction: column; padding: 24px; gap: 20px; }
+      .nav-links.open { display: flex; }
+      .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+      .nav-toggle.open span:nth-child(2) { opacity: 0; }
+      .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
     }
   </style>
 
@@ -155,6 +166,7 @@
       <a href="/masterclass">Masterclass</a>
       <a href="#contact">Contact</a>
     </div>
+    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');this.previousElementSibling.classList.toggle('open')"><span></span><span></span><span></span></button>
   </nav>
 
   <!-- HERO -->
