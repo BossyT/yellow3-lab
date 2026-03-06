@@ -1098,11 +1098,10 @@ async function createArticle() {
             <span>${readTime}</span>
         </div>
         <h1>${title}</h1>
+        <p class="lede">${lede}</p>
     </header>
 
     <article class="article-body">
-
-        <blockquote>${lede}</blockquote>
 
 ${body}
 
@@ -1128,6 +1127,34 @@ ${body}
 
     try {
         await ghPut(`insights/${slug}.html`, html, `Add article: ${title}`);
+
+        // Update insights/index.html with new article card
+        setStatus('loading', 'Updating insights index...');
+        try {
+            const indexData = await ghFetch('insights/index.html');
+            if (indexData) {
+                const indexContent = decodeURIComponent(escape(atob(indexData.content.replace(/\n/g, ''))));
+                const safeTag = tag.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                const safeExcerpt = desc.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                const cardHtml = `\n        <a href="/insights/${slug}" class="article-card">
+            <div class="article-meta">
+                <span>${monthYear}</span>
+                <span class="tag">${safeTag}</span>
+                <span>${readTime}</span>
+            </div>
+            <h2>${title}</h2>
+            <p class="excerpt">${safeExcerpt}</p>
+            <span class="read-more">Read article &rarr;</span>
+        </a>\n`;
+                const marker = '<div class="articles">';
+                const updatedIndex = indexContent.replace(marker, marker + '\n' + cardHtml);
+                await ghPut('insights/index.html', updatedIndex, `Add ${title} to insights index`, indexData.sha);
+            }
+        } catch (indexErr) {
+            console.error('Failed to update insights index:', indexErr);
+            toast('Article created but index update failed - update manually.', 'error');
+        }
+
         toast('Article created and deployed!', 'success');
         setStatus('connected', `Connected to ${REPO}`);
         await refreshFiles();
