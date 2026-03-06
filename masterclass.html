@@ -16,76 +16,48 @@
                   gtag('js', new Date());
                   gtag('config', 'G-K3JXMM2VG5');
         </script>
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>yellow3 lab — AI Research Studio, Copenhagen</title>
-    <meta name="description" content="yellow3 lab is an AI research studio in Copenhagen building AI platforms that delete complexity. We research AI agent architecture, design intelligence, and prompt-to-product systems that turn plain language into production-ready software.">
-    <meta name="keywords" content="yellow3, yellow3 lab, AI research studio, Copenhagen, AI platforms, prompt-to-product, AI agent architecture, design intelligence, artificial intelligence, Denmark, AI lab">
+    <title>Executive AI Masterclass - yellow3 lab</title>
+    <meta name="description" content="One-on-one executive AI masterclass with the founder of yellow3 lab. One hour. $3,000. Watch real AI build software live, cut through the hype, and leave with a strategy.">
+    <meta name="keywords" content="executive AI masterclass, AI training for executives, AI literacy, CEO AI education, yellow3 lab, AI strategy, one-on-one AI session">
     <meta name="author" content="yellow3 lab">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://yellow3.io">
+    <link rel="canonical" href="https://yellow3.io/masterclass">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/logo.png" type="image/png">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="yellow3 lab — AI Research Lab, Copenhagen">
-    <meta property="og:description" content="We build AI platforms that delete complexity. AI agent architecture, design intelligence, and prompt-to-product research turning plain language into production-ready software.">
+    <meta property="og:title" content="Executive AI Masterclass - yellow3 lab">
+    <meta property="og:description" content="One hour. One-on-one. With someone who builds AI platforms, not someone who sells slides. $3,000 per session.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yellow3.io">
+    <meta property="og:url" content="https://yellow3.io/masterclass">
     <meta property="og:site_name" content="yellow3 lab">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="yellow3 lab — AI Research Studio, Copenhagen">
-    <meta name="twitter:description" content="We build AI platforms that delete complexity. Research in AI agents, design intelligence, and prompt-to-product systems.">
+    <meta name="twitter:title" content="Executive AI Masterclass - yellow3 lab">
+    <meta name="twitter:description" content="One hour. One-on-one. With someone who builds AI platforms, not someone who sells slides. $3,000 per session.">
 
-    <!-- Structured Data for Google & LLMs -->
+    <!-- Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "ResearchOrganization",
-        "name": "yellow3 lab",
-        "alternateName": "yellow3",
-        "url": "https://yellow3.io",
-        "description": "yellow3 lab is an AI research studio based in Copenhagen, Denmark. We design and develop AI-powered platforms that delete complexity — turning plain language into production-ready software. Our research spans AI agent architecture, design intelligence, and prompt-to-product systems.",
-        "foundingLocation": {
-            "@type": "Place",
-            "name": "Copenhagen, Denmark"
-        },
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Copenhagen",
-            "addressCountry": "DK"
-        },
-        "knowsAbout": [
-            "Artificial Intelligence",
-            "AI Agent Architecture",
-            "Multi-Agent Systems",
-            "Design Intelligence",
-            "Prompt-to-Product Systems",
-            "Natural Language Processing",
-            "AI Software Development",
-            "AI-Powered Software Platforms"
-        ],
-        "areaServed": "Worldwide",
-        "sameAs": []
-    }
-    </script>
-
-    <!-- Additional structured data for the article connection -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "yellow3 lab",
-        "url": "https://yellow3.io",
-        "description": "AI Research Studio building platforms that delete complexity",
-        "publisher": {
+        "@type": "Product",
+        "name": "Executive AI Masterclass",
+        "description": "One-on-one executive AI masterclass with yellow3 lab founder Thomas Christian Melskens. One hour of live AI demonstration, strategic insight, and personalized roadmap.",
+        "brand": {
             "@type": "Organization",
             "name": "yellow3 lab",
             "url": "https://yellow3.io"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "3000",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
         }
     }
     </script>
@@ -145,6 +117,7 @@
         }
 
         .nav-links a:hover { color: var(--black); }
+        .nav-links a.active { color: var(--black); }
 
         /* CONTAINER */
         .container { max-width: 1120px; margin: 0 auto; padding: 0 64px; }
@@ -170,7 +143,7 @@
         .hero h1 .accent { font-style: italic; font-weight: 400; }
 
         .hero-sub {
-            font-size: 17px; color: var(--warm-grey); max-width: 460px; line-height: 1.8;
+            font-size: 17px; color: var(--warm-grey); max-width: 520px; line-height: 1.8;
             opacity: 0; animation: fadeIn 0.8s ease forwards 0.7s;
         }
 
@@ -216,7 +189,50 @@
 
         .pillar p { font-size: 14px; color: var(--warm-grey); line-height: 1.7; }
 
-        /* TEASE */
+        /* STEPS */
+        .steps { margin-top: 48px; }
+
+        .step {
+            display: grid; grid-template-columns: 48px 1fr;
+            gap: 24px; padding: 28px 0;
+            border-bottom: 1px solid var(--light-border);
+            align-items: baseline;
+        }
+
+        .step:first-child { padding-top: 0; }
+        .step:last-child { border-bottom: none; }
+
+        .step-number {
+            font-family: 'Cormorant Garamond', serif; font-weight: 300;
+            font-size: 28px; color: var(--yellow); letter-spacing: -0.02em;
+        }
+
+        .step-content h3 {
+            font-family: 'Cormorant Garamond', serif; font-weight: 400;
+            font-size: 22px; margin-bottom: 6px; letter-spacing: -0.01em;
+        }
+
+        .step-content p { font-size: 14px; color: var(--warm-grey); line-height: 1.7; }
+
+        /* AUDIENCE LIST */
+        .audience-list { margin-top: 8px; list-style: none; }
+
+        .audience-list li {
+            color: var(--text); padding: 12px 0;
+            border-bottom: 1px solid var(--light-border);
+            font-size: 15px;
+        }
+
+        .audience-list li:last-child { border-bottom: none; }
+
+        .audience-list li::before {
+            content: '';
+            display: inline-block; width: 6px; height: 6px;
+            border-radius: 50%; background: var(--yellow);
+            margin-right: 16px; vertical-align: middle;
+        }
+
+        /* TEASE / CTA */
         .platform-tease { padding: 100px 0; }
 
         .tease-card {
@@ -238,44 +254,44 @@
         .tease-card h2 {
             font-family: 'Cormorant Garamond', serif; font-weight: 300;
             font-size: 40px; line-height: 1.2; letter-spacing: -0.02em;
-            margin-bottom: 24px; max-width: 560px;
+            margin-bottom: 24px; max-width: 600px;
         }
 
         .tease-card p { color: var(--text); max-width: 480px; margin-bottom: 40px; }
 
-        .launch-pill {
-            display: inline-flex; align-items: center; gap: 8px;
-            font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em;
-            font-weight: 500; color: var(--yellow);
+        .cta-price {
+            font-family: 'Cormorant Garamond', serif; font-weight: 300;
+            font-size: 48px; letter-spacing: -0.03em; margin-bottom: 8px;
         }
 
-        .launch-pill .dot {
-            width: 6px; height: 6px; border-radius: 50%;
-            background: var(--yellow); animation: pulse 2s ease-in-out infinite;
+        .cta-sub {
+            font-size: 15px; color: var(--warm-grey); margin-bottom: 40px;
         }
 
-        /* COLLABORATE */
-        .collaborate { padding: 100px 0; }
-
-        .collaborate-inner {
-            display: grid; grid-template-columns: 280px 1fr;
-            gap: 80px; align-items: start;
+        .cta-button {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--black); color: var(--white);
+            padding: 16px 40px; border-radius: 6px;
+            font-size: 14px; font-weight: 500; letter-spacing: 0.06em;
+            text-transform: uppercase; text-decoration: none;
+            transition: background 0.3s, transform 0.2s;
         }
 
-        .collaborate-inner p { color: var(--text); max-width: 540px; margin-bottom: 20px; }
+        .cta-button:hover { background: #222; transform: translateY(-1px); }
 
-        .contact-link {
-            display: inline-flex; align-items: center; gap: 8px;
-            margin-top: 12px; font-size: 14px; font-weight: 500;
-            color: var(--black); text-decoration: none;
-            border-bottom: 1px solid var(--light-border); padding-bottom: 4px;
-            transition: border-color 0.3s;
+        .cta-button svg { width: 16px; height: 16px; transition: transform 0.3s; }
+        .cta-button:hover svg { transform: translateX(3px); }
+
+        /* HOST */
+        .host-name {
+            font-family: 'Cormorant Garamond', serif; font-weight: 400;
+            font-size: 24px; margin-bottom: 16px; letter-spacing: -0.01em;
         }
 
-        .contact-link:hover { border-color: var(--yellow); }
-
-        .contact-link svg { width: 14px; height: 14px; transition: transform 0.3s; }
-        .contact-link:hover svg { transform: translateX(3px); }
+        .host-title {
+            font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--yellow); font-weight: 500; margin-bottom: 20px;
+        }
 
         /* FOOTER */
         footer { padding: 48px 0; border-top: 1px solid var(--light-border); }
@@ -293,10 +309,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
-        }
-
         .reveal {
             opacity: 0; transform: translateY(20px);
             transition: opacity 0.6s ease, transform 0.6s ease;
@@ -306,29 +318,30 @@
 
         /* RESPONSIVE */
         @media (max-width: 900px) {
-            .two-col, .collaborate-inner { grid-template-columns: 1fr; gap: 32px; }
+            .two-col { grid-template-columns: 1fr; gap: 32px; }
             .pillars { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
             nav { padding: 0 28px; }
             .container { padding: 0 28px; }
-            .two-col, .platform-tease, .collaborate { padding: 72px 0; }
+            .two-col, .platform-tease { padding: 72px 0; }
             .tease-card { padding: 48px 32px; }
             .tease-card::after { left: 32px; right: 32px; }
             .nav-links { gap: 24px; }
+            .cta-price { font-size: 36px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#" class="logo"><img src="/logo.png" alt="yellow3"></a>
+        <a href="/" class="logo"><img src="/logo.png" alt="yellow3"></a>
         <div class="nav-links">
-            <a href="#about">About</a>
+            <a href="/#about">About</a>
             <a href="/insights/">Insights</a>
-            <a href="/masterclass">Masterclass</a>
-            <a href="#contact">Contact</a>
+            <a href="/masterclass" class="active">Masterclass</a>
+            <a href="/#contact">Contact</a>
         </div>
     </nav>
 
@@ -336,50 +349,50 @@
     <section class="hero">
         <div class="container">
             <div class="hero-inner">
-                <p class="hero-eyebrow">AI Research Studio — Copenhagen</p>
-                <h1>We build AI platforms that <span class="accent">delete</span> complexity.</h1>
-                <p class="hero-sub">yellow3 lab designs and develops AI-powered platforms for industries where complexity has become the barrier to progress.</p>
+                <p class="hero-eyebrow">Executive AI Masterclass</p>
+                <h1>Understand AI. <span class="accent">Lead</span> with it.</h1>
+                <p class="hero-sub">One hour. One-on-one. With someone who builds AI platforms, not someone who sells slides.</p>
             </div>
         </div>
     </section>
 
-    <!-- PERSPECTIVE -->
+    <!-- THE PROBLEM -->
     <div class="container"><div class="hr"></div></div>
-    <section id="about">
+    <section>
         <div class="container">
             <div class="two-col reveal">
-                <p class="col-label">Our perspective</p>
+                <p class="col-label">The problem</p>
                 <div class="col-content">
-                    <h2>Technology should disappear into the result it creates.</h2>
-                    <p>For decades, building digital products has required specialists, agencies, and months of development. The tools got more powerful, but the barriers stayed the same.</p>
-                    <p>We believe AI changes that equation fundamentally. Not by making tools easier to use — but by removing the need for tools entirely.</p>
+                    <h2>AI is on every boardroom agenda. Real understanding is not.</h2>
+                    <p>Most executives can't tell the difference between a chatbot and an autonomous agent. They're making million-dollar decisions based on vendor demos and analyst reports.</p>
+                    <p>The gap between what AI can actually do and what decision-makers believe it can do is widening every quarter. This session closes that gap.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- RESEARCH -->
+    <!-- WHAT YOU'LL EXPERIENCE -->
     <div class="container"><div class="hr"></div></div>
     <section>
         <div class="container">
             <div class="two-col reveal">
-                <p class="col-label">Research areas</p>
+                <p class="col-label">What you'll experience</p>
                 <div class="col-content">
                     <div class="pillars">
                         <div class="pillar">
                             <p class="pillar-number">01</p>
-                            <h3>AI Agent Architecture</h3>
-                            <p>Multi-agent systems that collaborate autonomously — interpreting intent, generating output, and ensuring quality without human intervention.</p>
+                            <h3>See AI build software live</h3>
+                            <p>Watch real enterprise software materialize from a single sentence. Not a demo. Not pre-recorded. Built in real time in front of you.</p>
                         </div>
                         <div class="pillar">
                             <p class="pillar-number">02</p>
-                            <h3>Design Intelligence</h3>
-                            <p>Teaching AI to think like a design studio, not a template engine. Every output should meet professional standards by default.</p>
+                            <h3>Understand what's real</h3>
+                            <p>Cut through the noise. Learn what AI can actually do today, what's hype, and where the real opportunities are for your business.</p>
                         </div>
                         <div class="pillar">
                             <p class="pillar-number">03</p>
-                            <h3>Prompt-to-Product</h3>
-                            <p>Bridging the gap between what people say and what they mean. Turning natural language into real, working digital products.</p>
+                            <h3>Leave with a strategy</h3>
+                            <p>Walk away with a clear, actionable AI roadmap tailored to your industry, your team, and your current tech stack.</p>
                         </div>
                     </div>
                 </div>
@@ -387,37 +400,97 @@
         </div>
     </section>
 
-    <!-- PLATFORM TEASE -->
+    <!-- HOW IT WORKS -->
+    <div class="container"><div class="hr"></div></div>
+    <section>
+        <div class="container">
+            <div class="two-col reveal">
+                <p class="col-label">How it works</p>
+                <div class="col-content">
+                    <div class="steps">
+                        <div class="step">
+                            <span class="step-number">01</span>
+                            <div class="step-content">
+                                <h3>Book your session</h3>
+                                <p>Secure your one-on-one session. $3,000 - one payment, no subscriptions.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <span class="step-number">02</span>
+                            <div class="step-content">
+                                <h3>Brief pre-call</h3>
+                                <p>A 15-minute call to understand your industry, your current AI landscape, and what questions matter most to you.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <span class="step-number">03</span>
+                            <div class="step-content">
+                                <h3>60-minute live session</h3>
+                                <p>Hands-on AI demonstration. Real software built live. Your questions answered with depth, not buzzwords.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <span class="step-number">04</span>
+                            <div class="step-content">
+                                <h3>Follow-up summary</h3>
+                                <p>A written summary with your personalized AI roadmap, key takeaways, and recommended next steps.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHO THIS IS FOR -->
+    <div class="container"><div class="hr"></div></div>
+    <section>
+        <div class="container">
+            <div class="two-col reveal">
+                <p class="col-label">Who this is for</p>
+                <div class="col-content">
+                    <h2>Leaders who need to understand AI, not just approve budgets for it.</h2>
+                    <ul class="audience-list">
+                        <li>CEOs evaluating AI investment</li>
+                        <li>CTOs choosing between build, buy, or partner</li>
+                        <li>Board members needing AI literacy</li>
+                        <li>VPs leading digital transformation</li>
+                        <li>Founders considering AI-first products</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT YOUR HOST -->
+    <div class="container"><div class="hr"></div></div>
+    <section>
+        <div class="container">
+            <div class="two-col reveal">
+                <p class="col-label">Your host</p>
+                <div class="col-content">
+                    <p class="host-name">Thomas Christian Melskens</p>
+                    <p class="host-title">Founder, yellow3 lab</p>
+                    <p>Building naffe.ai - the world's first autonomous AI software platform. Based in Copenhagen. CIRPASS-2 consortium member.</p>
+                    <p>Not a consultant. A builder. Someone who writes the code, ships the product, and has real opinions about what AI can and cannot do - because he tests those limits every day.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICE + CTA -->
     <div class="container"><div class="hr"></div></div>
     <section>
         <div class="container">
             <div class="platform-tease reveal">
                 <div class="tease-card">
-                    <p class="tease-eyebrow">Coming soon</p>
-                    <h2>Our first platform is ready to launch.</h2>
-                    <p>Describe what you need in plain language. Get production-ready software — built, deployed, and working. No developers. No designers. No agencies.</p>
-                    <span class="launch-pill"><span class="dot"></span> Launching soon</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- COLLABORATE + CONTACT -->
-    <div class="container"><div class="hr"></div></div>
-    <section id="contact">
-        <div class="container">
-            <div class="collaborate">
-                <div class="collaborate-inner reveal">
-                    <p class="col-label">Reach out on LinkedIn</p>
-                    <div>
-                        <p>yellow3 lab partners with forward-thinking companies exploring what AI makes possible for their industry, their customers, or their operations.</p>
-                        <p>We work best with people who want to explore, not just execute a brief.</p>
-
-                        <a href="https://www.linkedin.com/company/yellow3" target="_blank" rel="noopener noreferrer" class="contact-link" style="margin-top: 24px;">
-                            Connect on LinkedIn
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                        </a>
-                    </div>
+                    <p class="tease-eyebrow">Book now</p>
+                    <p class="cta-price">$3,000</p>
+                    <p class="cta-sub">One session. One hour. One shift in how you see AI.</p>
+                    <a href="STRIPE_PAYMENT_LINK_HERE" class="cta-button">
+                        Book your session
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
                 </div>
             </div>
         </div>
@@ -434,31 +507,6 @@
         </div>
     </footer>
 
-    <!-- SEO & LLM-readable extended content — visually hidden, fully crawlable -->
-    <article style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
-        <h2>About yellow3 lab</h2>
-        <p>yellow3 lab is an AI research studio based in Copenhagen, Denmark. Founded by Thomas Christian Melskens, yellow3 lab designs and develops AI-powered platforms that eliminate complexity in software creation and digital product development.</p>
-
-        <h3>Mission</h3>
-        <p>yellow3 lab exists to delete the barriers between ideas and reality. For decades, building digital products required developers, agencies, and months of work. yellow3 believes AI changes that equation fundamentally — not by making tools easier to use, but by removing the need for tools entirely. The best technology is the technology you forget is there.</p>
-
-        <h3>Research Focus</h3>
-        <p>yellow3 lab conducts applied research in three core areas: AI Agent Architecture — developing multi-agent systems that collaborate autonomously to interpret intent, generate output, and ensure quality. Design Intelligence — teaching AI to produce professional-grade design, moving beyond templates to genuine design thinking. Prompt-to-Product Systems — bridging the gap between natural language descriptions and working digital products.</p>
-
-        <h3>Platforms</h3>
-        <p>yellow3 lab develops AI platforms for industries where complexity blocks progress. The lab's first platform enables users to describe software in plain language and receive production-ready applications — built, deployed, and working — with no developers, no designers, and no agencies required.</p>
-
-        <h3>Partnerships</h3>
-        <p>yellow3 lab partners with forward-thinking companies exploring what AI makes possible for their industry, customers, or operations. The lab works with organizations that want to explore AI's potential, not just execute a specification.</p>
-
-        <h3>Location</h3>
-        <p>yellow3 lab is headquartered in Copenhagen, Denmark, and operates globally.</p>
-
-        <h3>Contact</h3>
-        <p>For inquiries, partnerships, and press, use the contact form at https://yellow3.io</p>
-        <p>Website: https://yellow3.io</p>
-    </article>
-
     <script>
         // Scroll reveal
         const observer = new IntersectionObserver((entries) => {
@@ -468,9 +516,9 @@
         }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
     </script>
-<!-- Cookie Consent Banner for GDPR -->
+
+    <!-- Cookie Consent Banner for GDPR -->
     <div id="cookie-consent" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#111;color:#fff;padding:16px 24px;font-family:inherit;font-size:14px;z-index:9999;box-shadow:0 -2px 10px rgba(0,0,0,0.3);">
         <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
             <p style="margin:0;flex:1;min-width:200px;">We use cookies to understand how you use our site and improve your experience.</p>
