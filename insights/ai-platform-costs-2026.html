@@ -58,17 +58,17 @@
     }
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
     <style>
         :root {
-            --black: #111;
-            --white: #fff;
-            --off-white: #f8f7f4;
-            --warm-grey: #999;
-            --text: #444;
-            --light-border: #e8e6e1;
+            --white: #ffffff;
+            --off-white: #f7f6f3;
+            --border: #e8e6e1;
+            --muted: #aaa9a5;
+            --mid: #888784;
+            --body: #444340;
+            --dark: #1a1917;
+            --black: #0f0f0e;
             --yellow: #d4b83c;
             --yellow-soft: rgba(212, 184, 60, 0.08);
             --red: #c0392b;
@@ -84,15 +84,15 @@
         }
 
         body {
-            font-family: 'Manrope', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             background: var(--white);
-            color: var(--text);
-            font-size: 17px;
-            line-height: 1.8;
+            color: var(--dark);
+            font-size: 16px;
+            line-height: 1.7;
             font-weight: 300;
+            -webkit-font-smoothing: antialiased;
         }
 
-        ::selection { background: var(--yellow); color: var(--black); }
         a { color: inherit; }
 
         /* NAV */
@@ -100,37 +100,36 @@
             position: fixed;
             top: 0; left: 0; right: 0;
             z-index: 100;
-            padding: 0 64px;
-            height: 72px;
+            padding: 24px 48px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-bottom: 1px solid rgba(0,0,0,0.04);
+            justify-content: space-between;
+            background: rgba(255,255,255,0.96);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(8px);
         }
 
-        .logo {
-            font-family: 'Manrope', sans-serif;
-            font-weight: 600;
-            font-size: 17px;
-            letter-spacing: -0.01em;
-            color: var(--black);
+        .nav-logo {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 15px;
+            color: var(--dark);
             text-decoration: none;
         }
-        .logo span { color: var(--yellow); }
+        .nav-logo img { height: 24px; width: auto; }
 
-        .nav-links { display: flex; gap: 32px; align-items: center; }
-        .nav-link {
-            font-size: 14px;
-            font-weight: 400;
-            color: var(--warm-grey);
-            letter-spacing: 0.02em;
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a {
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--mid);
             text-decoration: none;
             transition: color 0.2s;
         }
-        .nav-link:hover { color: var(--black); }
+        .nav-links a:hover { color: var(--dark); }
+        .nav-back { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
+        .nav-back:hover { color: var(--dark); }
 
         /* ARTICLE HEADER */
         .article-header {
@@ -144,7 +143,7 @@
             font-weight: 500;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--warm-grey);
+            color: var(--muted);
             margin-bottom: 24px;
             display: flex;
             gap: 16px;
@@ -159,9 +158,9 @@
         }
 
         .article-header h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 48px;
-            font-weight: 300;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(36px, 4.5vw, 48px);
+            font-weight: 400;
             line-height: 1.15;
             letter-spacing: -0.02em;
             color: var(--black);
@@ -169,11 +168,11 @@
         }
 
         .article-header .lede {
-            font-size: 20px;
-            color: var(--text);
-            line-height: 1.65;
-            border-left: 3px solid var(--yellow);
-            padding-left: 20px;
+            font-size: 18px;
+            color: var(--body);
+            line-height: 1.75;
+            border-left: 1px solid var(--border);
+            padding-left: 28px;
         }
 
         /* ARTICLE BODY */
@@ -188,7 +187,7 @@
         }
 
         .article-body h2 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Playfair Display', serif;
             font-size: 34px;
             font-weight: 400;
             line-height: 1.2;
@@ -203,11 +202,10 @@
         }
 
         .article-body blockquote {
-            margin: 40px 0;
-            padding: 24px 28px;
-            border-left: 3px solid var(--yellow);
-            background: var(--yellow-soft);
-            font-family: 'Cormorant Garamond', serif;
+            margin: 48px 0;
+            padding: 4px 0 4px 32px;
+            border-left: 2px solid var(--border);
+            font-family: 'Playfair Display', serif;
             font-size: 22px;
             font-style: italic;
             line-height: 1.5;
@@ -241,7 +239,7 @@
 
         tbody td {
             padding: 10px 14px;
-            border-bottom: 1px solid var(--light-border);
+            border-bottom: 1px solid var(--border);
             white-space: nowrap;
         }
 
@@ -253,7 +251,7 @@
         .cost-low { color: var(--green); font-weight: 500; }
         .table-note {
             font-size: 13px;
-            color: var(--warm-grey);
+            color: var(--muted);
             font-style: italic;
             margin-top: 8px;
         }
@@ -263,19 +261,22 @@
             max-width: 680px;
             margin: 0 auto;
             padding: 48px 64px;
-            border-top: 1px solid var(--light-border);
+            border-top: 1px solid var(--border);
         }
 
         .author-box p {
             font-size: 15px;
-            color: var(--warm-grey);
+            color: var(--muted);
             line-height: 1.7;
         }
 
         .author-box a {
-            color: var(--yellow);
+            color: var(--dark);
             text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color 0.2s;
         }
+        .author-box a:hover { color: var(--black); }
 
         /* SHARE / BACK */
         .article-nav {
@@ -290,7 +291,7 @@
         .back-link {
             font-size: 14px;
             font-weight: 400;
-            color: var(--warm-grey);
+            color: var(--muted);
             text-decoration: none;
             transition: color 0.2s;
         }
@@ -298,24 +299,21 @@
 
         /* FOOTER */
         footer {
-            padding: 48px 64px;
-            border-top: 1px solid var(--light-border);
+            background: var(--black);
+            padding: 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
-        footer p { font-size: 13px; color: var(--warm-grey); }
-        footer .dot {
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background: var(--yellow);
-            display: inline-block;
-        }
+        .footer-logo { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px; color: rgba(255,255,255,0.4); text-decoration: none; }
+        .footer-links { display: flex; gap: 32px; }
+        .footer-links a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.22); text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: rgba(255,255,255,0.6); }
+        .footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
 
         /* RESPONSIVE */
-        @media (max-width: 768px) {
-            nav { padding: 0 24px; }
+        @media (max-width: 900px) {
+            nav { padding: 20px 24px; }
             .article-header { padding: 120px 24px 40px; }
             .article-header h1 { font-size: 32px; }
             .article-body { padding: 32px 24px 80px; }
@@ -323,20 +321,37 @@
             .table-wrap { margin: 24px -8px; }
             .author-box { padding: 32px 24px; }
             .article-nav { padding: 0 24px 60px; }
-            footer { padding: 32px 24px; flex-direction: column; gap: 12px; }
+            footer { flex-direction: column; gap: 24px; text-align: center; }
         }
-    
-        .logo img { height: 22px; width: auto; }
+
+        /* MOBILE MENU */
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+        .nav-toggle span { display: block; width: 20px; height: 1.5px; background: var(--dark); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
+        @media (max-width: 900px) {
+            .nav-toggle { display: block; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); border-bottom: 1px solid var(--border); flex-direction: column; padding: 24px; gap: 20px; }
+            .nav-links.open { display: flex; }
+            .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+            .nav-toggle.open span:nth-child(2) { opacity: 0; }
+            .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="/" class="logo"><img src="/logo.png" alt="yellow3"></a>
+        <a href="/" class="nav-logo"><img src="/logo.png" alt="yellow3" /></a>
         <div class="nav-links">
-            <a href="/insights" class="nav-link">Insights</a>
-            <a href="/#contact" class="nav-link">Contact</a>
+            <a href="/#about">About</a>
+            <a href="/insights/">Insights</a>
+            <a href="/masterclass">Masterclass</a>
+            <a href="/#contact">Contact</a>
         </div>
+        <a href="/insights/" class="nav-back">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M5 12l7 7M5 12l7-7"/></svg>
+            All insights
+        </a>
+        <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');this.closest('nav').querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
     </nav>
 
     <header class="article-header">
@@ -601,9 +616,28 @@
         <a href="/insights/europes-ai-slumber" class="back-link">Previous: Europe's AI Slumber &rarr;</a>
     </div>
 
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 60);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        reveals.forEach(el => observer.observe(el));
+    </script>
+
     <footer>
-        <p>&copy; 2026 yellow3 lab. Copenhagen.</p>
-        <p><span class="dot"></span></p>
+        <a href="/" class="footer-logo">yellow3</a>
+        <div class="footer-links">
+            <a href="/#about">About</a>
+            <a href="/insights/">Insights</a>
+            <a href="/masterclass">Masterclass</a>
+            <a href="/#contact">Contact</a>
+        </div>
+        <span class="footer-copy">2026 yellow3 lab, Copenhagen</span>
     </footer>
 
 </body>
