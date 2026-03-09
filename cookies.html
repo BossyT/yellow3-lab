@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cookie Policy - yellow3 lab</title>
+  <meta name="description" content="Cookie Policy for yellow3 lab. How we use cookies on yellow3.io." />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/logo.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --white:#ffffff; --off-white:#f7f6f3; --border:#e8e6e1; --muted:#aaa9a5; --mid:#888784; --body:#444340; --dark:#1a1917; --black:#0f0f0e; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--dark); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(8px); }
+    .nav-logo { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px; color: var(--dark); text-decoration: none; }
+    .nav-links { display: flex; gap: 40px; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--dark); }
+
+    .legal-hero { padding: 160px 48px 64px; max-width: 780px; margin: 0 auto; }
+    .legal-hero .meta { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 32px; }
+    .legal-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 4.5vw, 48px); font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; color: var(--black); }
+
+    .legal-body { max-width: 680px; margin: 0 auto; padding: 48px 48px 100px; }
+    .legal-body p { font-size: 16px; color: var(--body); line-height: 1.8; margin-bottom: 24px; }
+    .legal-body h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; line-height: 1.3; color: var(--black); margin: 56px 0 24px; }
+    .legal-body h3 { font-size: 16px; font-weight: 500; color: var(--dark); margin: 32px 0 12px; }
+    .legal-body ul { margin: 0 0 24px 24px; color: var(--body); }
+    .legal-body ul li { margin-bottom: 8px; font-size: 16px; line-height: 1.8; }
+    .legal-body a { color: var(--dark); text-decoration: underline; text-underline-offset: 3px; }
+    .legal-body a:hover { color: var(--black); }
+    .legal-body strong { font-weight: 500; color: var(--dark); }
+
+    .cookie-table { width: 100%; border-collapse: collapse; margin: 24px 0 32px; font-size: 14px; }
+    .cookie-table th { background: var(--black); color: var(--white); font-weight: 500; font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; padding: 12px 14px; text-align: left; }
+    .cookie-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--body); vertical-align: top; }
+    .cookie-table tr:nth-child(even) td { background: var(--off-white); }
+
+    footer { background: var(--black); padding: 48px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px; color: rgba(255,255,255,0.4); text-decoration: none; }
+    .footer-links { display: flex; gap: 32px; }
+    .footer-links a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.22); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.6); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .legal-hero { padding: 120px 24px 40px; }
+      .legal-body { padding: 32px 24px 80px; }
+      footer { flex-direction: column; gap: 24px; text-align: center; }
+      .cookie-table { font-size: 13px; }
+      .cookie-table th, .cookie-table td { padding: 8px 10px; }
+    }
+
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 20px; height: 1.5px; background: var(--dark); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
+    @media (max-width: 900px) {
+      .nav-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); border-bottom: 1px solid var(--border); flex-direction: column; padding: 24px; gap: 20px; }
+      .nav-links.open { display: flex; }
+      .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+      .nav-toggle.open span:nth-child(2) { opacity: 0; }
+      .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo"><img src="/logo.png" alt="yellow3" style="height:24px;" /></a>
+    <div class="nav-links">
+      <a href="/#about">About</a>
+      <a href="/insights/">Insights</a>
+      <a href="/masterclass">Masterclass</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');this.closest('nav').querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </nav>
+
+  <header class="legal-hero">
+    <div class="meta">Last updated - March 2026</div>
+    <h1>Cookie Policy</h1>
+  </header>
+
+  <div class="legal-body">
+
+    <h2>1. What are cookies</h2>
+    <p>Cookies are small text files placed on your device when you visit a website. They help the website function correctly, remember your preferences, and provide information to the site owner about how the site is used.</p>
+
+    <h2>2. How we use cookies</h2>
+    <p>yellow3.io uses a minimal number of cookies. We do not use cookies for advertising or tracking across other websites.</p>
+
+    <h2>3. Cookies we use</h2>
+
+    <table class="cookie-table">
+      <thead>
+        <tr>
+          <th>Cookie</th>
+          <th>Purpose</th>
+          <th>Type</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>__vercel_live_token</td>
+          <td>Required for website hosting and deployment</td>
+          <td>Necessary</td>
+          <td>Session</td>
+        </tr>
+        <tr>
+          <td>__stripe_mid</td>
+          <td>Fraud prevention during payment processing</td>
+          <td>Necessary</td>
+          <td>1 year</td>
+        </tr>
+        <tr>
+          <td>__stripe_sid</td>
+          <td>Payment session identification</td>
+          <td>Necessary</td>
+          <td>30 minutes</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>4. Third-party cookies</h2>
+    <p>When you make a payment through our website, Stripe may set cookies on your device to process the transaction securely and prevent fraud. These cookies are governed by <a href="https://stripe.com/privacy" target="_blank" rel="noopener">Stripe's Privacy Policy</a>.</p>
+
+    <h2>5. Managing cookies</h2>
+    <p>You can control and delete cookies through your browser settings. Most browsers allow you to:</p>
+    <ul>
+      <li>See what cookies are stored and delete them individually</li>
+      <li>Block third-party cookies</li>
+      <li>Block cookies from specific sites</li>
+      <li>Block all cookies</li>
+      <li>Delete all cookies when you close the browser</li>
+    </ul>
+    <p>Please note that blocking all cookies may affect the functionality of our website, particularly during the payment process.</p>
+
+    <h2>6. Your consent</h2>
+    <p>By continuing to use yellow3.io, you consent to the use of the cookies described above. You may withdraw your consent at any time by adjusting your browser settings.</p>
+
+    <h2>7. Contact</h2>
+    <p>For questions about our use of cookies, contact us at <a href="mailto:hello@yellow3.io">hello@yellow3.io</a>.</p>
+
+    <p>See also our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms of Service</a>.</p>
+
+  </div>
+
+  <footer>
+    <a href="/" class="footer-logo"><img src="/logo.png" alt="yellow3" style="height:24px;filter:invert(1);opacity:0.4;" /></a>
+    <div class="footer-links">
+      <a href="/#about">About</a>
+      <a href="/insights/">Insights</a>
+      <a href="/masterclass">Masterclass</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <span class="footer-copy">2026 yellow3 lab, Copenhagen</span>
+    <div class="footer-links">
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/cookies">Cookies</a>
+    </div>
+  </footer>
+
+</body>
+</html>

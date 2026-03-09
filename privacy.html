@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy - yellow3 lab</title>
+  <meta name="description" content="Privacy Policy for yellow3 lab. How we collect, use, and protect your personal data." />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/logo.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --white:#ffffff; --off-white:#f7f6f3; --border:#e8e6e1; --muted:#aaa9a5; --mid:#888784; --body:#444340; --dark:#1a1917; --black:#0f0f0e; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--dark); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(8px); }
+    .nav-logo { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px; color: var(--dark); text-decoration: none; }
+    .nav-links { display: flex; gap: 40px; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--dark); }
+
+    .legal-hero { padding: 160px 48px 64px; max-width: 780px; margin: 0 auto; }
+    .legal-hero .meta { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 32px; }
+    .legal-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 4.5vw, 48px); font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; color: var(--black); }
+
+    .legal-body { max-width: 680px; margin: 0 auto; padding: 48px 48px 100px; }
+    .legal-body p { font-size: 16px; color: var(--body); line-height: 1.8; margin-bottom: 24px; }
+    .legal-body h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; line-height: 1.3; color: var(--black); margin: 56px 0 24px; }
+    .legal-body h3 { font-size: 16px; font-weight: 500; color: var(--dark); margin: 32px 0 12px; }
+    .legal-body ul { margin: 0 0 24px 24px; color: var(--body); }
+    .legal-body ul li { margin-bottom: 8px; font-size: 16px; line-height: 1.8; }
+    .legal-body a { color: var(--dark); text-decoration: underline; text-underline-offset: 3px; }
+    .legal-body a:hover { color: var(--black); }
+    .legal-body strong { font-weight: 500; color: var(--dark); }
+
+    footer { background: var(--black); padding: 48px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px; color: rgba(255,255,255,0.4); text-decoration: none; }
+    .footer-links { display: flex; gap: 32px; }
+    .footer-links a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.22); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.6); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .legal-hero { padding: 120px 24px 40px; }
+      .legal-body { padding: 32px 24px 80px; }
+      footer { flex-direction: column; gap: 24px; text-align: center; }
+    }
+
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 20px; height: 1.5px; background: var(--dark); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
+    @media (max-width: 900px) {
+      .nav-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); border-bottom: 1px solid var(--border); flex-direction: column; padding: 24px; gap: 20px; }
+      .nav-links.open { display: flex; }
+      .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+      .nav-toggle.open span:nth-child(2) { opacity: 0; }
+      .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo"><img src="/logo.png" alt="yellow3" style="height:24px;" /></a>
+    <div class="nav-links">
+      <a href="/#about">About</a>
+      <a href="/insights/">Insights</a>
+      <a href="/masterclass">Masterclass</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');this.closest('nav').querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </nav>
+
+  <header class="legal-hero">
+    <div class="meta">Last updated - March 2026</div>
+    <h1>Privacy Policy</h1>
+  </header>
+
+  <div class="legal-body">
+
+    <h2>1. Data controller</h2>
+    <p><strong>yellow3 ApS</strong><br>
+    CVR-nr: 44954087<br>
+    Hovedgaden 43, 2970 Horsholm, Denmark<br>
+    Email: <a href="mailto:hello@yellow3.io">hello@yellow3.io</a></p>
+
+    <h2>2. What data we collect</h2>
+    <p>We collect personal data only when you voluntarily provide it. This includes:</p>
+    <ul>
+      <li><strong>Contact form submissions:</strong> name, email address, and message content</li>
+      <li><strong>Masterclass bookings:</strong> name, email, company name, and payment information (processed by Stripe)</li>
+      <li><strong>Email correspondence:</strong> any information you share when contacting us directly</li>
+    </ul>
+
+    <h2>3. How we use your data</h2>
+    <p>We use your personal data for the following purposes:</p>
+    <ul>
+      <li>To respond to your enquiries</li>
+      <li>To deliver services you have purchased (e.g. masterclass sessions)</li>
+      <li>To send follow-up communications related to your booking</li>
+      <li>To improve our website and services</li>
+    </ul>
+    <p>We do not sell, rent, or share your personal data with third parties for marketing purposes.</p>
+
+    <h2>4. Legal basis for processing</h2>
+    <p>Under the General Data Protection Regulation (GDPR), we process your data based on:</p>
+    <ul>
+      <li><strong>Consent:</strong> when you submit a contact form or sign up for communications</li>
+      <li><strong>Contract:</strong> when processing is necessary to deliver a service you have purchased</li>
+      <li><strong>Legitimate interest:</strong> when we analyse website usage to improve our services</li>
+    </ul>
+
+    <h2>5. Third-party services</h2>
+    <p>We use the following third-party services that may process your data:</p>
+    <ul>
+      <li><strong>Stripe:</strong> payment processing for masterclass bookings. Stripe's privacy policy applies to all payment data.</li>
+      <li><strong>Vercel:</strong> website hosting and analytics (anonymised usage data)</li>
+    </ul>
+
+    <h2>6. Cookies</h2>
+    <p>We use cookies to ensure our website functions correctly and to understand how visitors use our site. For full details, see our <a href="/cookies">Cookie Policy</a>.</p>
+
+    <h2>7. Data retention</h2>
+    <p>We retain your personal data only for as long as necessary to fulfil the purposes described above, or as required by law. Contact form submissions are retained for up to 12 months. Financial records related to purchases are retained for 5 years as required by Danish bookkeeping law.</p>
+
+    <h2>8. Your rights</h2>
+    <p>Under the GDPR, you have the right to:</p>
+    <ul>
+      <li>Access the personal data we hold about you</li>
+      <li>Request correction of inaccurate data</li>
+      <li>Request deletion of your data</li>
+      <li>Withdraw consent at any time</li>
+      <li>Request data portability</li>
+      <li>Lodge a complaint with the Danish Data Protection Agency (Datatilsynet)</li>
+    </ul>
+    <p>To exercise any of these rights, contact us at <a href="mailto:hello@yellow3.io">hello@yellow3.io</a>.</p>
+
+    <h2>9. Data security</h2>
+    <p>We implement appropriate technical and organisational measures to protect your personal data against unauthorised access, alteration, disclosure, or destruction.</p>
+
+    <h2>10. Changes to this policy</h2>
+    <p>We may update this Privacy Policy from time to time. The latest version will always be available at this page. Material changes will be communicated where appropriate.</p>
+
+  </div>
+
+  <footer>
+    <a href="/" class="footer-logo"><img src="/logo.png" alt="yellow3" style="height:24px;filter:invert(1);opacity:0.4;" /></a>
+    <div class="footer-links">
+      <a href="/#about">About</a>
+      <a href="/insights/">Insights</a>
+      <a href="/masterclass">Masterclass</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <span class="footer-copy">2026 yellow3 lab, Copenhagen</span>
+    <div class="footer-links">
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/cookies">Cookies</a>
+    </div>
+  </footer>
+
+</body>
+</html>
