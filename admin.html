@@ -496,6 +496,7 @@
                     <p>Select a file to edit, or create something new.</p>
                     <div class="welcome-actions">
                         <button class="btn" onclick="showNewArticle()">+ New article</button>
+                        <button class="btn" onclick="showArticleList()">Edit article</button>
                         <button class="btn" onclick="showUpload()">Upload files</button>
                     </div>
                 </div>
@@ -538,7 +539,7 @@
             </div>
             <div id="newArticleView" style="display:none;flex:1;flex-direction:column;overflow:hidden;">
                 <div class="content-header">
-                    <h3>New article</h3>
+                    <h3 id="articleFormTitle">New article</h3>
                 </div>
                 <div class="article-form">
                     <div class="form-group">
@@ -581,10 +582,19 @@
 
 <blockquote>A pull quote</blockquote>"></textarea>
                     </div>
-                    <div style="display:flex;gap:10px;">
-                        <button class="btn btn-yellow" onclick="createArticle()">Create &amp; deploy</button>
+                    <div style="display:flex;gap:10px;align-items:center;">
+                        <button class="btn btn-yellow" id="articleSubmitBtn" onclick="submitArticle()">Create &amp; deploy</button>
                         <button class="btn" onclick="showWelcome()">Cancel</button>
+                        <button class="btn" id="articleDeleteBtn" style="display:none;margin-left:auto;color:var(--red);border-color:var(--red);" onclick="unpublishArticle()">Unpublish</button>
                     </div>
+                </div>
+            </div>
+            <div id="articleListView" style="display:none;flex:1;flex-direction:column;overflow:hidden;">
+                <div class="content-header">
+                    <h3>Edit article</h3>
+                </div>
+                <div style="padding:24px;overflow-y:auto;flex:1;">
+                    <div id="articleListItems" style="display:flex;flex-direction:column;gap:1px;background:var(--light-border);border:1px solid var(--light-border);border-radius:6px;overflow:hidden;"></div>
                 </div>
             </div>
         </div>
@@ -959,8 +969,6 @@ function fileToBase64(file) {
 }
 
 // NEW ARTICLE
-function showNewArticle() { showView('newArticleView'); }
-
 async function createArticle() {
     const issue = document.getElementById('articleIssue').value.trim();
     const title = document.getElementById('articleTitle').value.trim();
@@ -1184,7 +1192,7 @@ document.getElementById('articleTitle').addEventListener('input', function() {
 
 // VIEW MANAGEMENT
 function showView(viewId) {
-    ['welcomeView', 'editorView', 'uploadView', 'newArticleView'].forEach(id => {
+    ['welcomeView', 'editorView', 'uploadView', 'newArticleView', 'articleListView'].forEach(id => {
         document.getElementById(id).style.display = 'none';
     });
     document.getElementById(viewId).style.display = 'flex';
@@ -1213,6 +1221,192 @@ function toast(msg, type = '') {
     el.textContent = msg;
     el.className = 'toast visible ' + type;
     setTimeout(() => el.className = 'toast', 3000);
+}
+
+// EDIT ARTICLE
+let editingArticle = null; // { path, sha, slug }
+
+function showArticleList() {
+    const list = document.getElementById('articleListItems');
+    const articles = files.filter(f => f.path.startsWith('insights/') && f.path.endsWith('.html') && f.path !== 'insights/index.html');
+    if (!articles.length) { toast('No articles found.', 'error'); return; }
+    articles.sort((a, b) => b.path.localeCompare(a.path));
+    list.innerHTML = articles.map(f => {
+        const name = f.path.replace('insights/', '').replace('.html', '');
+        const display = name.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        return '<div style="padding:14px 20px;background:var(--white);display:flex;justify-content:space-between;align-items:center;cursor:pointer;" onclick="loadArticleForEdit(\'' + f.path + '\')">' +
+            '<span style="font-size:14px;color:var(--black);">' + display + '</span>' +
+            '<span style="font-size:12px;color:var(--warm-grey);">' + f.path + '</span>' +
+            '</div>';
+    }).join('');
+    showView('articleListView');
+}
+
+async function loadArticleForEdit(path) {
+    setStatus('loading', 'Loading article...');
+    const data = await ghFetch(path);
+    if (!data || !data.content) { toast('Failed to load article.', 'error'); setStatus('connected', 'Connected to ' + REPO); return; }
+
+    const html = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+    const slug = path.replace('insights/', '').replace('.html', '');
+
+    // Parse fields from HTML
+    var issueMatch = html.match(/<span>Issue\s*(\d+)<\/span>/);
+    var titleMatch = html.match(/<h1>([^<]+)<\/h1>/);
+    var tagMatch = html.match(/<span class="tag">([^<]+)<\/span>/);
+    var readTimeMatch = html.match(/<span>(\d+\s*min\s*read)<\/span>/);
+    var descMatch = html.match(/<meta name="description" content="([^"]*)">/);
+    var ledeMatch = html.match(/<p class="lede">([\s\S]*?)<\/p>/);
+    var bodyMatch = html.match(/<article class="article-body">([\s\S]*?)<\/article>/);
+
+    // Populate form
+    document.getElementById('articleIssue').value = issueMatch ? issueMatch[1] : '';
+    document.getElementById('articleTitle').value = titleMatch ? titleMatch[1].replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&#8211;/g, '-').replace(/&amp;/g, '&') : '';
+    document.getElementById('articleSlug').value = slug;
+    document.getElementById('articleSlug').disabled = true;
+    document.getElementById('articleTag').value = tagMatch ? tagMatch[1].trim() : '';
+    document.getElementById('articleReadTime').value = readTimeMatch ? readTimeMatch[1] : '';
+    document.getElementById('articleDesc').value = descMatch ? descMatch[1].replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&') : '';
+    document.getElementById('articleLede').value = ledeMatch ? ledeMatch[1].trim() : '';
+    document.getElementById('articleBody').value = bodyMatch ? bodyMatch[1].trim() : '';
+
+    editingArticle = { path: path, sha: data.sha, slug: slug };
+
+    document.getElementById('articleFormTitle').textContent = 'Edit article';
+    document.getElementById('articleSubmitBtn').textContent = 'Save & deploy';
+    document.getElementById('articleDeleteBtn').style.display = 'inline-block';
+
+    showView('newArticleView');
+    setStatus('connected', 'Connected to ' + REPO);
+}
+
+function showNewArticle() {
+    editingArticle = null;
+    document.getElementById('articleIssue').value = '';
+    document.getElementById('articleTitle').value = '';
+    document.getElementById('articleSlug').value = '';
+    document.getElementById('articleSlug').disabled = false;
+    document.getElementById('articleTag').value = 'Analysis';
+    document.getElementById('articleReadTime').value = '8 min read';
+    document.getElementById('articleDesc').value = '';
+    document.getElementById('articleLede').value = '';
+    document.getElementById('articleBody').value = '';
+    document.getElementById('articleFormTitle').textContent = 'New article';
+    document.getElementById('articleSubmitBtn').textContent = 'Create & deploy';
+    document.getElementById('articleDeleteBtn').style.display = 'none';
+    showView('newArticleView');
+}
+
+function submitArticle() {
+    if (editingArticle) {
+        updateArticle();
+    } else {
+        createArticle();
+    }
+}
+
+async function updateArticle() {
+    const issue = document.getElementById('articleIssue').value.trim();
+    const title = document.getElementById('articleTitle').value.trim();
+    const slug = editingArticle.slug;
+    const tag = document.getElementById('articleTag').value.trim();
+    const readTime = document.getElementById('articleReadTime').value.trim();
+    const desc = document.getElementById('articleDesc').value.trim();
+    const lede = document.getElementById('articleLede').value.trim();
+    const body = document.getElementById('articleBody').value;
+
+    if (!title) { toast('Title is required.', 'error'); return; }
+    const issueLabel = issue ? 'Issue ' + issue.replace(/^0+/, '').padStart(2, '0') : '';
+
+    const now = new Date();
+    const dateStr = now.toISOString().split('T')[0];
+    const safeTitle = title.replace(/'/g, '&#39;').replace(/"/g, '&quot;');
+
+    // Fetch current article to get published date
+    const currentData = await ghFetch(editingArticle.path);
+    let publishedDate = dateStr;
+    let monthYear = now.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+    if (currentData && currentData.content) {
+        const currentHtml = decodeURIComponent(escape(atob(currentData.content.replace(/\n/g, ''))));
+        var pubMatch = currentHtml.match(/<meta property="article:published_time" content="([^"]+)">/);
+        if (pubMatch) {
+            publishedDate = pubMatch[1];
+            var pd = new Date(publishedDate + 'T00:00:00');
+            monthYear = pd.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        }
+        editingArticle.sha = currentData.sha;
+    }
+
+    const html = '<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>' + safeTitle + ' &#8211; yellow3 lab</title>\n    <meta name="description" content="' + desc.replace(/"/g, '&quot;') + '">\n    <meta property="og:title" content="' + safeTitle + ' &#8211; yellow3 lab">\n    <meta property="og:description" content="' + desc.replace(/"/g, '&quot;') + '">\n    <meta property="og:type" content="article">\n    <meta property="og:url" content="https://yellow3.io/insights/' + slug + '">\n    <meta property="article:published_time" content="' + publishedDate + '">\n    <meta property="article:modified_time" content="' + dateStr + '">\n    <meta property="article:author" content="yellow3 lab">\n    <link rel="canonical" href="https://yellow3.io/insights/' + slug + '">\n\n    <script type="application/ld+json">\n    {\n        "@context": "https://schema.org",\n        "@type": "Article",\n        "headline": "' + title.replace(/"/g, '\\"') + '",\n        "datePublished": "' + publishedDate + '",\n        "dateModified": "' + dateStr + '",\n        "author": {\n            "@type": "Person",\n            "name": "Thomas Christian Melskens",\n            "jobTitle": "Founder & CEO",\n            "worksFor": {\n                "@type": "Organization",\n                "name": "yellow3 lab",\n                "url": "https://yellow3.io"\n            }\n        },\n        "publisher": {\n            "@type": "Organization",\n            "name": "yellow3 lab",\n            "url": "https://yellow3.io"\n        },\n        "description": "' + desc.replace(/"/g, '\\"') + '",\n        "mainEntityOfPage": {\n            "@type": "WebPage",\n            "@id": "https://yellow3.io/insights/' + slug + '"\n        }\n    }\n    <\/script>\n\n    <link rel="preconnect" href="https://fonts.googleapis.com">\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">\n    <style>\n        :root {\n            --black: #111;\n            --white: #fff;\n            --off-white: #f8f7f4;\n            --warm-grey: #999;\n            --text: #444;\n            --light-border: #e8e6e1;\n            --yellow: #d4b83c;\n            --yellow-soft: rgba(212, 184, 60, 0.08);\n        }\n\n        * { margin: 0; padding: 0; box-sizing: border-box; }\n        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }\n        body { font-family: \'Manrope\', sans-serif; background: var(--white); color: var(--text); font-size: 17px; line-height: 1.8; font-weight: 300; }\n        ::selection { background: var(--yellow); color: var(--black); }\n        a { color: inherit; }\n\n        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 64px; height: 72px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(0,0,0,0.04); }\n        .logo { text-decoration: none; }\n        .logo img { height: 22px; width: auto; }\n        .nav-links { display: flex; gap: 32px; align-items: center; }\n        .nav-link { font-size: 14px; font-weight: 400; color: var(--warm-grey); letter-spacing: 0.02em; text-decoration: none; transition: color 0.2s; }\n        .nav-link:hover { color: var(--black); }\n\n        .article-header { padding: 160px 64px 64px; max-width: 780px; margin: 0 auto; }\n        .article-header .meta { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-grey); margin-bottom: 24px; display: flex; gap: 16px; align-items: center; }\n        .article-header .meta .tag { background: var(--off-white); padding: 4px 10px; border-radius: 3px; font-size: 11px; }\n        .article-header h1 { font-family: \'Cormorant Garamond\', serif; font-size: 48px; font-weight: 300; line-height: 1.15; letter-spacing: -0.02em; color: var(--black); margin-bottom: 28px; }\n        .article-header .lede { font-size: 20px; color: var(--text); line-height: 1.65; border-left: 3px solid var(--yellow); padding-left: 20px; }\n\n        .article-body { max-width: 680px; margin: 0 auto; padding: 48px 64px 100px; }\n        .article-body p { margin-bottom: 24px; }\n        .article-body h2 { font-family: \'Cormorant Garamond\', serif; font-size: 34px; font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; color: var(--black); margin: 56px 0 24px; }\n        .article-body strong { font-weight: 500; color: var(--black); }\n        .article-body blockquote { margin: 40px 0; padding: 24px 28px; border-left: 3px solid var(--yellow); background: var(--yellow-soft); font-family: \'Cormorant Garamond\', serif; font-size: 22px; font-style: italic; line-height: 1.5; color: var(--black); }\n\n        .author-box { max-width: 680px; margin: 0 auto; padding: 48px 64px; border-top: 1px solid var(--light-border); }\n        .author-box p { font-size: 15px; color: var(--warm-grey); line-height: 1.7; }\n        .author-box a { color: var(--yellow); text-decoration: underline; }\n\n        .article-nav { max-width: 680px; margin: 0 auto; padding: 0 64px 80px; display: flex; justify-content: space-between; align-items: center; }\n        .back-link { font-size: 14px; font-weight: 400; color: var(--warm-grey); text-decoration: none; transition: color 0.2s; }\n        .back-link:hover { color: var(--black); }\n\n        footer { padding: 48px 64px; border-top: 1px solid var(--light-border); display: flex; justify-content: space-between; align-items: center; }\n        footer p { font-size: 13px; color: var(--warm-grey); }\n        footer .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); display: inline-block; }\n\n        @media (max-width: 768px) {\n            nav { padding: 0 24px; }\n            .article-header { padding: 120px 24px 40px; }\n            .article-header h1 { font-size: 32px; }\n            .article-body { padding: 32px 24px 80px; }\n            .article-body h2 { font-size: 28px; }\n            .author-box { padding: 32px 24px; }\n            .article-nav { padding: 0 24px 60px; }\n            footer { padding: 32px 24px; flex-direction: column; gap: 12px; }\n        }\n    </style>\n</head>\n<body>\n\n    <nav>\n        <a href="/" class="logo"><img src="/logo.png" alt="yellow3"></a>\n        <div class="nav-links">\n            <a href="/insights" class="nav-link">Insights</a>\n            <a href="/#contact" class="nav-link">Contact</a>\n        </div>\n    </nav>\n\n    <header class="article-header">\n        <div class="meta">\n            ' + (issueLabel ? '<span>' + issueLabel + '</span>\n            ' : '') + '<span>' + monthYear + '</span>\n            <span class="tag">' + tag + '</span>\n            <span>' + readTime + '</span>\n        </div>\n        <h1>' + title + '</h1>\n        <p class="lede">' + lede + '</p>\n    </header>\n\n    <article class="article-body">\n\n' + body + '\n\n    </article>\n\n    <div class="author-box">\n        <p><strong style="color: var(--black);">yellow3 lab</strong> is an AI research lab in Copenhagen. We research and develop autonomous AI platforms. <a href="/">Learn more &rarr;</a></p>\n    </div>\n\n    <div class="article-nav">\n        <a href="/insights" class="back-link">&larr; All insights</a>\n    </div>\n\n    <footer>\n        <p>&copy; ' + now.getFullYear() + ' yellow3 lab. Copenhagen.</p>\n        <p><span class="dot"></span></p>\n    </footer>\n\n</body>\n</html>';
+
+    setStatus('loading', 'Saving article...');
+
+    try {
+        const result = await ghPut(editingArticle.path, html, 'Update article: ' + title, editingArticle.sha);
+        editingArticle.sha = result.content.sha;
+
+        // Update index card
+        setStatus('loading', 'Updating insights index...');
+        try {
+            const indexData = await ghFetch('insights/index.html');
+            if (indexData) {
+                var indexContent = decodeURIComponent(escape(atob(indexData.content.replace(/\n/g, ''))));
+                var safeExcerpt = desc.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                // Find existing card and replace it
+                var cardRegex = new RegExp('<a href="/insights/' + slug.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '"[\\s\\S]*?</a>');
+                var newCard = '<a href="/insights/' + slug + '" class="article-card reveal">\n          <div class="article-issue">' + (issueLabel || monthYear) + '</div>\n          <h3>' + title + '</h3>\n          <p>' + safeExcerpt + '</p>\n          <span class="article-read">Read</span>\n        </a>';
+                if (cardRegex.test(indexContent)) {
+                    indexContent = indexContent.replace(cardRegex, newCard);
+                    await ghPut('insights/index.html', indexContent, 'Update ' + title + ' in insights index', indexData.sha);
+                }
+            }
+        } catch (indexErr) {
+            console.error('Failed to update insights index:', indexErr);
+        }
+
+        toast('Article updated! Live in ~30 seconds.', 'success');
+        setStatus('connected', 'Connected to ' + REPO);
+        refreshFiles();
+    } catch (e) {
+        toast('Failed: ' + e.message, 'error');
+        setStatus('error', 'Update failed');
+    }
+}
+
+// UNPUBLISH
+async function unpublishArticle() {
+    if (!editingArticle) return;
+    if (!confirm('Unpublish "' + document.getElementById('articleTitle').value + '"? This will delete the article and remove it from the index.')) return;
+
+    setStatus('loading', 'Unpublishing...');
+    try {
+        // Delete the article file
+        await fetch('https://api.github.com/repos/' + REPO + '/contents/' + editingArticle.path, {
+            method: 'DELETE',
+            headers: { 'Authorization': 'Bearer ' + TOKEN, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: 'Unpublish: ' + document.getElementById('articleTitle').value, sha: editingArticle.sha, branch: BRANCH })
+        });
+
+        // Remove card from index
+        try {
+            var indexData = await ghFetch('insights/index.html');
+            if (indexData) {
+                var indexContent = decodeURIComponent(escape(atob(indexData.content.replace(/\n/g, ''))));
+                var cardRegex = new RegExp('\\s*<a href="/insights/' + editingArticle.slug.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '"[\\s\\S]*?</a>', 'g');
+                indexContent = indexContent.replace(cardRegex, '');
+                await ghPut('insights/index.html', indexContent, 'Remove ' + editingArticle.slug + ' from insights index', indexData.sha);
+            }
+        } catch (e) { console.error('Index update failed:', e); }
+
+        editingArticle = null;
+        toast('Article unpublished. Live in ~30 seconds.', 'success');
+        setStatus('connected', 'Connected to ' + REPO);
+        refreshFiles();
+        showWelcome();
+    } catch (e) {
+        toast('Failed: ' + e.message, 'error');
+        setStatus('error', 'Unpublish failed');
+    }
 }
 
 // KEYBOARD SHORTCUTS
