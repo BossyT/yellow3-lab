@@ -542,6 +542,11 @@
                 </div>
                 <div class="article-form">
                     <div class="form-group">
+                        <label>Issue number</label>
+                        <input type="text" id="articleIssue" placeholder="e.g. 08">
+                        <div class="hint">Displayed as "Issue 08" on the card and article header</div>
+                    </div>
+                    <div class="form-group">
                         <label>Title</label>
                         <input type="text" id="articleTitle" placeholder="e.g. The Future of European AI">
                     </div>
@@ -957,6 +962,7 @@ function fileToBase64(file) {
 function showNewArticle() { showView('newArticleView'); }
 
 async function createArticle() {
+    const issue = document.getElementById('articleIssue').value.trim();
     const title = document.getElementById('articleTitle').value.trim();
     const slug = document.getElementById('articleSlug').value.trim();
     const tag = document.getElementById('articleTag').value.trim();
@@ -966,6 +972,7 @@ async function createArticle() {
     const body = document.getElementById('articleBody').value;
 
     if (!title || !slug) { toast('Title and slug are required.', 'error'); return; }
+    const issueLabel = issue ? 'Issue ' + issue.replace(/^0+/, '').padStart(2, '0') : '';
 
     const now = new Date();
     const dateStr = now.toISOString().split('T')[0];
@@ -1093,6 +1100,7 @@ async function createArticle() {
 
     <header class="article-header">
         <div class="meta">
+            ${issueLabel ? '<span>' + issueLabel + '</span>' : ''}
             <span>${monthYear}</span>
             <span class="tag">${tag}</span>
             <span>${readTime}</span>
@@ -1136,18 +1144,17 @@ ${body}
                 const indexContent = decodeURIComponent(escape(atob(indexData.content.replace(/\n/g, ''))));
                 const safeTag = tag.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
                 const safeExcerpt = desc.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                const cardHtml = `\n        <a href="/insights/${slug}" class="article-card">
-            <div class="article-meta">
-                <span>${monthYear}</span>
-                <span class="tag">${safeTag}</span>
-                <span>${readTime}</span>
-            </div>
-            <h2>${title}</h2>
-            <p class="excerpt">${safeExcerpt}</p>
-            <span class="read-more">Read article &rarr;</span>
-        </a>\n`;
-                const marker = '<div class="articles">';
-                const updatedIndex = indexContent.replace(marker, marker + '\n' + cardHtml);
+                const cardHtml = `
+        <a href="/insights/${slug}" class="article-card reveal">
+          <div class="article-issue">${issueLabel || monthYear}</div>
+          <h3>${title}</h3>
+          <p>${safeExcerpt}</p>
+          <span class="article-read">Read</span>
+        </a>`;
+                const gridEnd = indexContent.lastIndexOf('</div>', indexContent.indexOf('<footer'));
+                const innerEnd = indexContent.lastIndexOf('</div>', gridEnd - 1);
+                const articlesGridEnd = indexContent.lastIndexOf('</div>', innerEnd - 1);
+                const updatedIndex = indexContent.slice(0, articlesGridEnd) + cardHtml + '\n      ' + indexContent.slice(articlesGridEnd);
                 await ghPut('insights/index.html', updatedIndex, `Add ${title} to insights index`, indexData.sha);
             }
         } catch (indexErr) {
