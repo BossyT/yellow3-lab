@@ -1000,6 +1000,21 @@ function formatBody(text) {
         // Quoted lines starting with " become blockquotes
         if (line.charAt(0) === '"' || line.charAt(0) === '\u201c') { result.push('<blockquote>' + line + '</blockquote>'); continue; }
 
+        // Skip meta markers like "STAT BLOCK", "KEY IDEA BLOCK"
+        if (/^(STAT BLOCK|KEY IDEA BLOCK|BY THE NUMBERS)/i.test(line)) continue;
+
+        // Auto-detect title-case headings: short lines where most words are capitalized
+        if (line.length < 100) {
+            var words = line.replace(/[^a-zA-Z\s]/g, '').split(/\s+/).filter(function(w) { return w.length >= 4; });
+            if (words.length >= 2) {
+                var caps = words.filter(function(w) { return w.charAt(0) === w.charAt(0).toUpperCase() && w.charAt(0) !== w.charAt(0).toLowerCase(); });
+                if (caps.length >= words.length * 0.6) {
+                    result.push('<h2>' + line + '</h2>');
+                    continue;
+                }
+            }
+        }
+
         // Everything else is a paragraph
         result.push('<p>' + line + '</p>');
     }
