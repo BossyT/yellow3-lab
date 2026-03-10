@@ -977,37 +977,32 @@ function formatBody(text) {
     // If body already has HTML block tags, return as-is
     if (/<(p|h[1-6]|blockquote|ul|ol|li|div|section|table|pre)\b/i.test(text)) return text;
 
-    // Convert shorthand markers
+    // Each non-empty line becomes its own element
     var lines = text.split('\n');
     var result = [];
-    var currentParagraph = [];
-
-    function flushParagraph() {
-        if (currentParagraph.length > 0) {
-            result.push('<p>' + currentParagraph.join(' ') + '</p>');
-            currentParagraph = [];
-        }
-    }
 
     for (var i = 0; i < lines.length; i++) {
         var line = lines[i].trim();
-        if (!line) { flushParagraph(); continue; }
+        if (!line) continue;
 
         // [H2] or [h2] markers
         var h2Match = line.match(/^\[H2\]\s*(.*)/i);
-        if (h2Match) { flushParagraph(); result.push('<h2>' + h2Match[1] + '</h2>'); continue; }
+        if (h2Match) { result.push('<h2>' + h2Match[1] + '</h2>'); continue; }
 
         // [H3] markers
         var h3Match = line.match(/^\[H3\]\s*(.*)/i);
-        if (h3Match) { flushParagraph(); result.push('<h3>' + h3Match[1] + '</h3>'); continue; }
+        if (h3Match) { result.push('<h3>' + h3Match[1] + '</h3>'); continue; }
 
         // [BLOCKQUOTE] markers
         var bqMatch = line.match(/^\[BLOCKQUOTE\]\s*(.*)/i);
-        if (bqMatch) { flushParagraph(); result.push('<blockquote>' + bqMatch[1] + '</blockquote>'); continue; }
+        if (bqMatch) { result.push('<blockquote>' + bqMatch[1] + '</blockquote>'); continue; }
 
-        currentParagraph.push(line);
+        // Quoted lines starting with " become blockquotes
+        if (line.charAt(0) === '"' || line.charAt(0) === '\u201c') { result.push('<blockquote>' + line + '</blockquote>'); continue; }
+
+        // Everything else is a paragraph
+        result.push('<p>' + line + '</p>');
     }
-    flushParagraph();
     return result.join('\n\n');
 }
 
