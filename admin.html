@@ -1325,7 +1325,8 @@ async function loadArticleForEdit(path) {
 
 function showNewArticle() {
     editingArticle = null;
-    document.getElementById('articleIssue').value = '';
+    var articleCount = files.filter(function(f) { return f.path.startsWith('insights/') && f.path.endsWith('.html') && f.path !== 'insights/index.html'; }).length;
+    document.getElementById('articleIssue').value = String(articleCount + 1).padStart(2, '0');
     document.getElementById('articleTitle').value = '';
     document.getElementById('articleSlug').value = '';
     document.getElementById('articleSlug').disabled = false;
