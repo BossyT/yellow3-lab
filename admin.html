@@ -574,13 +574,17 @@
                     </div>
                     <div class="form-group">
                         <label>Article body (HTML)</label>
-                        <textarea id="articleBody" rows="12" style="font-family:var(--mono);font-size:13px;" placeholder="<p>Your article content...</p>
+                        <textarea id="articleBody" rows="12" style="font-family:var(--mono);font-size:13px;" placeholder="Write in plain text or HTML. Plain text is auto-formatted:
 
-<h2>Section heading</h2>
+First paragraph of text here.
 
-<p>More content...</p>
+[H2] Section heading
 
-<blockquote>A pull quote</blockquote>"></textarea>
+Next paragraph here.
+
+[BLOCKQUOTE] A pull quote or citation.
+
+Or use HTML directly: <p>, <h2>, <blockquote>"></textarea>
                     </div>
                     <div style="display:flex;gap:10px;align-items:center;">
                         <button class="btn btn-yellow" id="articleSubmitBtn" onclick="submitArticle()">Create &amp; deploy</button>
@@ -968,6 +972,45 @@ function fileToBase64(file) {
     });
 }
 
+// AUTO-FORMAT: convert plain text to HTML if no tags present
+function formatBody(text) {
+    // If body already has HTML block tags, return as-is
+    if (/<(p|h[1-6]|blockquote|ul|ol|li|div|section|table|pre)\b/i.test(text)) return text;
+
+    // Convert shorthand markers
+    var lines = text.split('\n');
+    var result = [];
+    var currentParagraph = [];
+
+    function flushParagraph() {
+        if (currentParagraph.length > 0) {
+            result.push('<p>' + currentParagraph.join(' ') + '</p>');
+            currentParagraph = [];
+        }
+    }
+
+    for (var i = 0; i < lines.length; i++) {
+        var line = lines[i].trim();
+        if (!line) { flushParagraph(); continue; }
+
+        // [H2] or [h2] markers
+        var h2Match = line.match(/^\[H2\]\s*(.*)/i);
+        if (h2Match) { flushParagraph(); result.push('<h2>' + h2Match[1] + '</h2>'); continue; }
+
+        // [H3] markers
+        var h3Match = line.match(/^\[H3\]\s*(.*)/i);
+        if (h3Match) { flushParagraph(); result.push('<h3>' + h3Match[1] + '</h3>'); continue; }
+
+        // [BLOCKQUOTE] markers
+        var bqMatch = line.match(/^\[BLOCKQUOTE\]\s*(.*)/i);
+        if (bqMatch) { flushParagraph(); result.push('<blockquote>' + bqMatch[1] + '</blockquote>'); continue; }
+
+        currentParagraph.push(line);
+    }
+    flushParagraph();
+    return result.join('\n\n');
+}
+
 // NEW ARTICLE
 async function createArticle() {
     const issue = document.getElementById('articleIssue').value.trim();
@@ -977,7 +1020,7 @@ async function createArticle() {
     const readTime = document.getElementById('articleReadTime').value.trim();
     const desc = document.getElementById('articleDesc').value.trim();
     const lede = document.getElementById('articleLede').value.trim();
-    const body = document.getElementById('articleBody').value;
+    const body = formatBody(document.getElementById('articleBody').value);
 
     if (!title || !slug) { toast('Title and slug are required.', 'error'); return; }
     const issueLabel = issue ? 'Issue ' + issue.replace(/^0+/, '').padStart(2, '0') : '';
@@ -1313,7 +1356,7 @@ async function updateArticle() {
     const readTime = document.getElementById('articleReadTime').value.trim();
     const desc = document.getElementById('articleDesc').value.trim();
     const lede = document.getElementById('articleLede').value.trim();
-    const body = document.getElementById('articleBody').value;
+    const body = formatBody(document.getElementById('articleBody').value);
 
     if (!title) { toast('Title is required.', 'error'); return; }
     const issueLabel = issue ? 'Issue ' + issue.replace(/^0+/, '').padStart(2, '0') : '';
