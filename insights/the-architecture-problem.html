@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Architecture Problem &#8211; yellow3 lab</title>
+    <meta name="description" content="Every major AI agent platform is built on the same flawed assumption: that the LLM should be in charge. It shouldn't. Here is why the dominant architecture of the AI agent wave is heading for a reckoning - and what comes next.">
+    <meta property="og:title" content="The Architecture Problem &#8211; yellow3 lab">
+    <meta property="og:description" content="Every major AI agent platform is built on the same flawed assumption: that the LLM should be in charge. It shouldn't. Here is why the dominant architecture of the AI agent wave is heading for a reckoning - and what comes next.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yellow3.io/insights/the-architecture-problem">
+    <meta property="article:published_time" content="2026-03-11">
+    <meta property="article:author" content="yellow3 lab">
+    <link rel="canonical" href="https://yellow3.io/insights/the-architecture-problem">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "The Architecture Problem",
+        "datePublished": "2026-03-11",
+        "dateModified": "2026-03-11",
+        "author": {
+            "@type": "Person",
+            "name": "Thomas Christian Melskens",
+            "jobTitle": "Founder & CEO",
+            "worksFor": {
+                "@type": "Organization",
+                "name": "yellow3 lab",
+                "url": "https://yellow3.io"
+            }
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "yellow3 lab",
+            "url": "https://yellow3.io"
+        },
+        "description": "Every major AI agent platform is built on the same flawed assumption: that the LLM should be in charge. It shouldn't. Here is why the dominant architecture of the AI agent wave is heading for a reckoning - and what comes next.",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://yellow3.io/insights/the-architecture-problem"
+        }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #111;
+            --white: #fff;
+            --off-white: #f8f7f4;
+            --warm-grey: #999;
+            --text: #444;
+            --light-border: #e8e6e1;
+            --yellow: #d4b83c;
+            --yellow-soft: rgba(212, 184, 60, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        body { font-family: 'Manrope', sans-serif; background: var(--white); color: var(--text); font-size: 17px; line-height: 1.8; font-weight: 300; }
+        ::selection { background: var(--yellow); color: var(--black); }
+        a { color: inherit; }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 64px; height: 72px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(0,0,0,0.04); }
+        .logo { text-decoration: none; }
+        .logo img { height: 22px; width: auto; }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-link { font-size: 14px; font-weight: 400; color: var(--warm-grey); letter-spacing: 0.02em; text-decoration: none; transition: color 0.2s; }
+        .nav-link:hover { color: var(--black); }
+
+        .article-header { padding: 160px 64px 64px; max-width: 780px; margin: 0 auto; }
+        .article-header .meta { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-grey); margin-bottom: 24px; display: flex; gap: 16px; align-items: center; }
+        .article-header .meta .tag { background: var(--off-white); padding: 4px 10px; border-radius: 3px; font-size: 11px; }
+        .article-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; line-height: 1.15; letter-spacing: -0.02em; color: var(--black); margin-bottom: 28px; }
+        .article-header .lede { font-size: 20px; color: var(--text); line-height: 1.65; border-left: 3px solid var(--yellow); padding-left: 20px; }
+
+        .article-body { max-width: 680px; margin: 0 auto; padding: 48px 64px 100px; }
+        .article-body p { margin-bottom: 24px; }
+        .article-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; color: var(--black); margin: 56px 0 24px; }
+        .article-body strong { font-weight: 500; color: var(--black); }
+        .article-body blockquote { margin: 40px 0; padding: 24px 28px; border-left: 3px solid var(--yellow); background: var(--yellow-soft); font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; line-height: 1.5; color: var(--black); }
+
+        .author-box { max-width: 680px; margin: 0 auto; padding: 48px 64px; border-top: 1px solid var(--light-border); }
+        .author-box p { font-size: 15px; color: var(--warm-grey); line-height: 1.7; }
+        .author-box a { color: var(--yellow); text-decoration: underline; }
+
+        .article-nav { max-width: 680px; margin: 0 auto; padding: 0 64px 80px; display: flex; justify-content: space-between; align-items: center; }
+        .back-link { font-size: 14px; font-weight: 400; color: var(--warm-grey); text-decoration: none; transition: color 0.2s; }
+        .back-link:hover { color: var(--black); }
+
+        footer { padding: 48px 64px; border-top: 1px solid var(--light-border); display: flex; justify-content: space-between; align-items: center; }
+        footer p { font-size: 13px; color: var(--warm-grey); }
+        footer .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); display: inline-block; }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 24px; }
+            .article-header { padding: 120px 24px 40px; }
+            .article-header h1 { font-size: 32px; }
+            .article-body { padding: 32px 24px 80px; }
+            .article-body h2 { font-size: 28px; }
+            .author-box { padding: 32px 24px; }
+            .article-nav { padding: 0 24px 60px; }
+            footer { padding: 32px 24px; flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo"><img src="/logo.png" alt="yellow3"></a>
+        <div class="nav-links">
+            <a href="/insights" class="nav-link">Insights</a>
+            <a href="/#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="meta">
+            <span>Issue 13</span>
+            <span>March 2026</span>
+            <span class="tag">Autonomous Software</span>
+            <span>9 min read</span>
+        </div>
+        <h1>The Architecture Problem</h1>
+        <p class="lede">Everyone is racing to build AI agents. Almost everyone is building them wrong. The problem is not the model. The problem is what they put in charge of it.</p>
+    </header>
+
+    <article class="article-body">
+
+<h2>The Hidden Flaw in Almost Every AI Agent Being Built Today</h2>
+
+<p>There is a quiet crisis running underneath the AI agent wave that almost nobody in the mainstream conversation is talking about.</p>
+
+<p>The demos are spectacular. The benchmarks are impressive. The headlines are relentless. And yet, in production - in real companies, running real workflows, on real data - AI agents are failing at a rate that would be considered catastrophic in any other category of enterprise software.</p>
+
+<p>A recent RAND Corporation study found that over 80% of AI projects fail to reach production - a rate nearly double that of typical IT projects. Sendbird</p>
+
+<p>That is not a rounding error. That is a structural problem.</p>
+
+<p>And the structure that is broken is not the AI itself. It is the architecture that almost everyone is using to deploy it.</p>
+
+<h2>The Architecture That Ate the Agent World</h2>
+
+<p>To understand the problem, you need to understand how most AI agent systems actually work under the hood.</p>
+
+<p>The dominant pattern is called a ReAct loop. It was introduced in a research paper in 2022 and became the foundational architecture for almost every major agent framework built since - LangChain, AutoGPT, and dozens of others.</p>
+
+<p>It looks like this:</p>
+
+<p>LLM</p>
+
+<p>↓</p>
+
+<p>decides next action</p>
+
+<p>↓</p>
+
+<p>calls tool</p>
+
+<p>↓</p>
+
+<p>gets result</p>
+
+<p>↓</p>
+
+<p>decides next action</p>
+
+<p>↓</p>
+
+<p>(repeat)</p>
+
+<p>Simple. Elegant. Intuitive. And deeply problematic at scale.</p>
+
+<p>The core assumption baked into this pattern is that the LLM is the right thing to put in charge of the entire operation. It reasons. It decides. It acts. It checks the result. It decides again. The model is not just the intelligence in the system - it is the controller, the scheduler, the memory manager, and the error handler all at once.</p>
+
+<p>That is a lot to ask of something that is, fundamentally, a probabilistic text predictor.</p>
+
+<h2>Problem 1: LLMs Are Brilliant. They Are Also Terrible Orchestrators.</h2>
+
+<p>Large language models are genuinely extraordinary at certain things. Reasoning through ambiguous problems. Generating code. Synthesising information. Understanding intent. These are real capabilities that have changed what software can do.</p>
+
+<p>But orchestrating a complex multi-step system is not reasoning through ambiguity. It is something else entirely.</p>
+
+<p>Real orchestration requires:</p>
+
+<p>deterministic logic</p>
+
+<p>state tracking across steps</p>
+
+<p>dependency graphs</p>
+
+<p>retry handling</p>
+
+<p>error recovery</p>
+
+<p>These are not fuzzy problems that benefit from probabilistic reasoning. These are engineering problems that require precision, repeatability, and structure. And LLMs, by their nature, operate probabilistically.</p>
+
+<p>The results of asking an LLM to handle both the thinking and the controlling are predictable and well-documented:</p>
+
+<p>agent forgets what it did two steps ago</p>
+
+<p>agent repeats actions it already completed</p>
+
+<p>agent makes contradictory decisions</p>
+
+<p>agent loops indefinitely</p>
+
+<p>Tool calling - the mechanism by which AI agents interact with systems - fails between 3% and 15% of the time in production, even in well-engineered systems. Medium</p>
+
+<p>That number sounds manageable in isolation. It is not.</p>
+
+<h2>Problem 2: The Math That Nobody Wants to Show You</h2>
+
+<p>Here is where the architecture problem becomes existential for production systems.</p>
+
+<p>If each step in an agent workflow has 95% reliability - which is optimistic for current systems - then over a 20-step workflow, the success rate drops to 36%. Production systems need 99.9% or higher. DEV Community</p>
+
+<p>Read that again. A 95% reliable agent, running a 20-step task, fails nearly two thirds of the time.</p>
+
+<p>This is not a model quality problem. This is a compounding error problem. And the only way to solve it is to stop asking the model to be responsible for every step in the chain.</p>
+
+<p>The agent frameworks have responded to this by adding guardrails. More prompting. Retry logic bolted on top. Maximum iteration limits to prevent infinite loops. Each fix adds complexity. Each layer of complexity adds new failure modes. The system becomes harder to debug, more expensive to run, and less predictable in behaviour - not more.</p>
+
+<h2>Problem 3: Context Windows Are Not Infinite. They Just Feel That Way Until They Break.</h2>
+
+<p>Most agent frameworks handle memory by doing something conceptually simple: they keep feeding everything back into the model.</p>
+
+<p>conversation history</p>
+
+<p>task list</p>
+
+<p>tool outputs</p>
+
+<p>retrieved documents</p>
+
+<p>instructions</p>
+
+<p>intermediate results</p>
+
+<p>All of it goes into the context window. All of it gets processed on every step. And as the task grows, the context grows with it.</p>
+
+<p>Chroma's research on Context Rot measured 18 LLMs and found that models do not use their context uniformly - performance grows increasingly unreliable as input length grows. Factory</p>
+
+<p>More information does not produce better results. Past a certain point, it produces worse ones. The model gets overwhelmed by noise. Important details from earlier in the task get buried under newer information. The agent starts making decisions as if it has forgotten things it was explicitly told.</p>
+
+<p>As context length increases, accuracy decreases - a phenomenon researchers are calling context rot. Like human working memory, LLMs have a limited attention budget that gets depleted by irrelevant information. Inkeep</p>
+
+<p>The enterprise reality is even harsher. A typical enterprise monorepo can span thousands of files and several million tokens - far beyond what any current context window can hold. Factory And that is just the code. Add documentation, logs, conversation history, and business rules, and you are describing a system that cannot possibly keep everything it needs in its working memory.</p>
+
+<p>The current response to this problem is to make context windows bigger. That helps at the margin. It does not solve the structural issue.</p>
+
+<h2>Problem 4: The Plan That Changes Its Own Mind</h2>
+
+<p>Many agent frameworks add a planning step before execution. The model generates a structured plan:</p>
+
+<p>1. analyse the problem</p>
+
+<p>2. retrieve relevant data</p>
+
+<p>3. generate solution</p>
+
+<p>4. validate output</p>
+
+<p>5. deploy result</p>
+
+<p>This sounds sensible. It is not, for one reason: the same model that made the plan is also running the loop. And when it hits new information mid-execution, it has no external authority preventing it from revising the plan on the fly.</p>
+
+<p>The result is behaviour that developers who work with these systems recognise immediately:</p>
+
+<p>execute step 2</p>
+
+<p>execute step 3</p>
+
+<p>reconsider step 1</p>
+
+<p>restart from beginning</p>
+
+<p>execute step 2 again</p>
+
+<p>abandon plan entirely</p>
+
+<p>The dirty secret of every production agent system is that the AI is doing maybe 30% of the work. The other 70% is tool engineering: designing feedback interfaces, managing context efficiently, handling partial failures, and building recovery mechanisms that the AI can actually understand and use. DEV Community</p>
+
+<p>That ratio is the tell. When 70% of the engineering effort goes into compensating for the architecture rather than building the product, the architecture is the problem.</p>
+
+<h2>The Deeper Issue Nobody Is Saying Out Loud</h2>
+
+<p>All of these problems - the compounding errors, the context rot, the unstable planning, the tool chaos - share a single root cause.</p>
+
+<p>Every major agent framework treats the LLM as the central controller of the system. The model is in charge of everything. It decides what happens next, manages state, calls tools, handles errors, and maintains coherence across a workflow that may run for minutes, hours, or longer.</p>
+
+<p>But the LLM should not be the controller.</p>
+
+<p>It should be the reasoning engine inside a deterministic system.</p>
+
+<p>The analogy that makes this clearest is an operating system.</p>
+
+<p>Right now, most agent architectures look like this:</p>
+
+<p>LLM = the operating system</p>
+
+<p>Everything runs through it. Everything depends on it. And because it is probabilistic rather than deterministic, everything is fragile.</p>
+
+<p>The architecture that actually works looks more like this:</p>
+
+<p>deterministic orchestrator</p>
+
+<p>↓</p>
+
+<p>task graph with dependencies</p>
+
+<p>↓</p>
+
+<p>specialized agents with defined roles</p>
+
+<p>↓</p>
+
+<p>LLM as reasoning module - called when needed</p>
+
+<p>The difference is subtle in description and enormous in practice.</p>
+
+<p>In the first architecture, the LLM is the brain of everything. In the second, the LLM is one highly capable component in a system that does not depend on it for coordination.</p>
+
+<h2>What the Next Generation Looks Like</h2>
+
+<p>The pattern emerging in the most sophisticated production systems has three consistent elements.</p>
+
+<p>First, a deterministic orchestration layer that handles everything the LLM should not be doing:</p>
+
+<p>task sequencing</p>
+
+<p>dependency management</p>
+
+<p>state persistence</p>
+
+<p>error recovery</p>
+
+<p>retry logic</p>
+
+<p>No model involved. Pure engineering. Reliable, auditable, repeatable.</p>
+
+<p>Second, specialized reasoning agents rather than one general-purpose model trying to do everything. The LLM gets called for the things it is genuinely good at:</p>
+
+<p>understanding ambiguous requirements</p>
+
+<p>generating code or content</p>
+
+<p>reasoning through novel problems</p>
+
+<p>synthesizing disparate information</p>
+
+<p>Not for remembering what step it is on.</p>
+
+<p>Third, persistent structured memory instead of dumping everything into the prompt:</p>
+
+<p>task graphs</p>
+
+<p>execution logs</p>
+
+<p>system state</p>
+
+<p>schemas</p>
+
+<p>Stored externally. Injected selectively. The model gets what it needs for the current step, not the entire history of every step before it.</p>
+
+<p>Without proper orchestration, agent interactions become unpredictable, making systems difficult to debug, monitor, and scale in production environments. AWS</p>
+
+<p>The companies building this way are quietly pulling ahead of the ones still iterating on ReAct loops with more guardrails bolted on.</p>
+
+<h2>Why This Matters Beyond Software</h2>
+
+<p>This is not an abstract architectural debate for engineers. It has direct consequences for any organisation betting on autonomous AI.</p>
+
+<p>The promise of the AI agent wave is software that runs itself. That handles complex, multi-step tasks without human intervention. That scales without headcount. That compounds value over time as it learns from its own operation.</p>
+
+<p>That promise is real. But it can only be delivered by systems that are architected to be reliable - not just intelligent.</p>
+
+<p>Intelligence is what the LLM brings. Reliability is what the surrounding architecture must provide.</p>
+
+<p>AI agents fail due to integration issues, not LLM failures. They run the LLM kernel without an operating system. The LLM is the kernel. The architecture around it is the OS. Right now, most systems are shipping the kernel without the OS. Composio</p>
+
+<p>The company that solves deterministic AI orchestration at scale will not just build a better agent framework. They will define what autonomous software actually means.</p>
+
+<p>That race is already underway. And the teams still debugging infinite loops in ReAct systems are not winning it.</p>
+
+<p>80% of AI agent projects fail to reach production (RAND Corporation)</p>
+
+<p>36% success rate for a 95%-reliable agent running a 20-step workflow</p>
+
+<p>3-15% tool call failure rate in production agent systems</p>
+
+<p>70% of engineering effort in most agent systems goes to compensating for the architecture, not building the product</p>
+
+<p>18 LLMs tested showed consistent context rot as input length increases (Chroma Research, 2025)</p>
+
+<blockquote>"The LLM should not be the controller. It should be the reasoning engine inside a deterministic system. Right now, almost nobody is building it that way."</blockquote>
+
+    </article>
+
+    <div class="author-box">
+        <p><strong style="color: var(--black);">yellow3 lab</strong> is an AI research lab in Copenhagen. We research and develop autonomous AI platforms. <a href="/">Learn more &rarr;</a></p>
+    </div>
+
+    <div class="article-nav">
+        <a href="/insights" class="back-link">&larr; All insights</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 yellow3 lab. Copenhagen.</p>
+        <p><span class="dot"></span></p>
+    </footer>
+
+</body>
+</html>
