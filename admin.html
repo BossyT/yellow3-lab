@@ -1022,6 +1022,105 @@ function formatBody(text) {
 }
 
 // NEW ARTICLE
+/**
+ * Generate a 1200x630 OG image as base64 PNG using canvas.
+ * Matches yellow3 brand: cream bg, diagonal lines, red left border, bold serif title, tag, quote mark.
+ */
+async function generateOgImage(title, tag) {
+    const W = 1200, H = 630;
+    const canvas = document.createElement('canvas');
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext('2d');
+
+    // Background
+    ctx.fillStyle = '#f8f7f4';
+    ctx.fillRect(0, 0, W, H);
+
+    // Diagonal lines
+    ctx.strokeStyle = 'rgba(0,0,0,0.03)';
+    ctx.lineWidth = 1;
+    for (let i = -H; i < W + H; i += 28) {
+        ctx.beginPath();
+        ctx.moveTo(i, 0);
+        ctx.lineTo(i - H, H);
+        ctx.stroke();
+    }
+
+    // Borders
+    ctx.fillStyle = '#c23616';
+    ctx.fillRect(48, 48, 4, H - 96); // left red bar
+    ctx.fillStyle = '#111';
+    ctx.fillRect(48, 48, W - 96, 1); // top line
+    ctx.fillRect(48, H - 48, W - 96, 1); // bottom line
+
+    // Logo
+    ctx.font = '600 18px Manrope, sans-serif';
+    ctx.fillStyle = '#111';
+    ctx.fillText('yellow3', 72, 88);
+
+    // Tag
+    ctx.font = '600 12px Manrope, sans-serif';
+    ctx.fillStyle = '#c23616';
+    const tagText = (tag || 'Insights').toUpperCase();
+    const tagWidth = ctx.measureText(tagText).width;
+    ctx.strokeStyle = '#c23616';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(72, 100, tagWidth + 20, 22);
+    ctx.fillText(tagText, 82, 116);
+
+    // Quote mark
+    ctx.font = '300 160px Cormorant Garamond, Georgia, serif';
+    ctx.fillStyle = 'rgba(0,0,0,0.06)';
+    ctx.fillText('\u201C', W - 160, 160);
+
+    // Title - word wrap
+    ctx.font = '700 68px Cormorant Garamond, Georgia, serif';
+    ctx.fillStyle = '#111';
+    const words = title.split(' ');
+    const maxWidth = 860;
+    let lines = [];
+    let currentLine = '';
+    for (const word of words) {
+        const testLine = currentLine ? currentLine + ' ' + word : word;
+        if (ctx.measureText(testLine).width > maxWidth && currentLine) {
+            lines.push(currentLine);
+            currentLine = word;
+        } else {
+            currentLine = testLine;
+        }
+    }
+    if (currentLine) lines.push(currentLine);
+
+    // Draw title lines (last word of last line in accent color)
+    let y = 200;
+    for (let i = 0; i < lines.length && i < 4; i++) {
+        if (i === lines.length - 1) {
+            // Last line: last word in red
+            const lineWords = lines[i].split(' ');
+            if (lineWords.length > 1) {
+                const lastWord = lineWords.pop();
+                const prefix = lineWords.join(' ') + ' ';
+                ctx.fillStyle = '#111';
+                ctx.fillText(prefix, 72, y);
+                const prefixWidth = ctx.measureText(prefix).width;
+                ctx.fillStyle = '#c23616';
+                ctx.fillText(lastWord, 72 + prefixWidth, y);
+            } else {
+                ctx.fillStyle = '#c23616';
+                ctx.fillText(lines[i], 72, y);
+            }
+        } else {
+            ctx.fillStyle = '#111';
+            ctx.fillText(lines[i], 72, y);
+        }
+        y += 82;
+    }
+
+    // Export as base64 PNG (strip data:image/png;base64, prefix)
+    const dataUrl = canvas.toDataURL('image/png');
+    return dataUrl.split(',')[1];
+}
+
 async function createArticle() {
     const issue = document.getElementById('articleIssue').value.trim();
     const title = document.getElementById('articleTitle').value.trim();
@@ -1049,10 +1148,17 @@ async function createArticle() {
     <meta name="description" content="${desc.replace(/"/g, '&quot;')}">
     <meta property="og:title" content="${safeTitle} &#8211; yellow3 lab">
     <meta property="og:description" content="${desc.replace(/"/g, '&quot;')}">
+    <meta property="og:image" content="https://yellow3.io/insights/og-${slug}.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://yellow3.io/insights/${slug}">
     <meta property="article:published_time" content="${dateStr}">
     <meta property="article:author" content="yellow3 lab">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="${safeTitle} &#8211; yellow3 lab">
+    <meta name="twitter:description" content="${desc.replace(/"/g, '&quot;')}">
+    <meta name="twitter:image" content="https://yellow3.io/insights/og-${slug}.png">
     <link rel="canonical" href="https://yellow3.io/insights/${slug}">
 
     <script type="application/ld+json">
@@ -1196,6 +1302,16 @@ ${body}
 
     try {
         await ghPut(`insights/${slug}.html`, html, `Add article: ${title}`);
+
+        // Auto-generate OG image (1200x630)
+        setStatus('loading', 'Generating OG image...');
+        try {
+            const ogBase64 = await generateOgImage(title, tag);
+            await ghPutBinary(`insights/og-${slug}.png`, ogBase64, `Add OG image for: ${title}`);
+        } catch (ogErr) {
+            console.error('OG image generation failed:', ogErr);
+            toast('Article created but OG image failed - add manually.', 'error');
+        }
 
         // Update insights/index.html with new article card
         setStatus('loading', 'Updating insights index...');
