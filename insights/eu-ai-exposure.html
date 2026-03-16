@@ -107,10 +107,10 @@
     /* ── INTERACTIVE VIZ ── */
     .viz-section { border-bottom: 1px solid var(--border); background: var(--white); padding: 0 38px; }
 
-    .viz-header { display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 13px 36px; border-bottom: 1px solid var(--border); gap: 24px; }
-    .viz-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; letter-spacing: -0.02em; }
+    .viz-header { display: flex; align-items: center; justify-content: center; padding: 13px 36px; border-bottom: 1px solid var(--border); gap: 24px; }
+    .viz-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; letter-spacing: -0.02em; text-align: center; }
     .viz-title em { font-style: italic; color: var(--yellow); }
-    .viz-meta { font-size: 11px; color: var(--muted); letter-spacing: 0.05em; text-align: right; line-height: 1.7; }
+    .viz-meta { display: none; }
 
     .stat-row { display: grid; grid-template-columns: repeat(5,1fr); border-bottom: 1px solid var(--border); }
     .stat { padding: 14px 20px; border-right: 1px solid var(--border); }
