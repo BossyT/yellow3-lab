@@ -1,241 +1,594 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Exposure of the EU Job Market — yellow3 lab</title>
-<meta name="description" content="40 occupation groups, 202M EU workers, scored by AI exposure. An interactive data intelligence piece by yellow3 lab.">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Who Is AI Really Coming For in Europe? - yellow3 lab</title>
+  <meta name="description" content="40 occupation groups, 202M EU workers, scored by AI exposure. An interactive data intelligence piece by yellow3 lab." />
+  <meta property="article:published_time" content="2026-03-16" />
+  <meta property="article:author" content="yellow3 lab" />
+  <link rel="canonical" href="https://yellow3.io/insights/eu-ai-exposure" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/logo.png" type="image/png" />
 
-*{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#ffffff;
-  --surface:#f8f7f4;
-  --border:#e8e4de;
-  --text:#1a1a18;
-  --muted:#88887f;
-  --faint:#c8c4bc;
-  --yellow:#c9960e;
-  --yellow-light:#fdf6e3;
-  --yellow-mid:#e8d48a;
-  --red:#b83228;
-  --orange:#c96a1a;
-  --green:#2a7a4a;
-  --serif:'Playfair Display',Georgia,serif;
-  --sans:'DM Sans',system-ui,sans-serif;
-}
-html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13px;font-weight:400;line-height:1.5}
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Who Is AI Really Coming For in Europe?",
+      "datePublished": "2026-03-16",
+      "dateModified": "2026-03-16",
+      "author": {
+          "@type": "Person",
+          "name": "Thomas Christian Melskens",
+          "jobTitle": "Founder & CEO",
+          "worksFor": {
+              "@type": "Organization",
+              "name": "yellow3 lab",
+              "url": "https://yellow3.io"
+          }
+      },
+      "publisher": {
+          "@type": "Organization",
+          "name": "yellow3 lab",
+          "url": "https://yellow3.io"
+      },
+      "description": "40 occupation groups, 202M EU workers, scored by AI exposure. An interactive data intelligence piece by yellow3 lab.",
+      "keywords": ["AI exposure", "EU jobs", "AI and employment", "ISCO-08", "Eurostat", "labour market", "generative AI", "European economy"],
+      "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://yellow3.io/insights/eu-ai-exposure"
+      },
+      "isPartOf": {
+          "@type": "WebSite",
+          "name": "yellow3 lab",
+          "url": "https://yellow3.io"
+      }
+  }
+  </script>
 
-/* HEADER */
-.hdr{display:grid;grid-template-columns:auto 1fr auto;align-items:center;padding:13px 36px;border-bottom:1px solid var(--border);gap:24px}
-.hdr-brand{font-family:var(--serif);font-size:17px;font-weight:700;letter-spacing:-.01em;white-space:nowrap;text-decoration:none;color:var(--text)}
-.hdr-brand em{font-style:normal;color:var(--yellow)}
-.hdr-title{font-family:var(--serif);font-size:20px;font-weight:900;letter-spacing:-.02em}
-.hdr-title em{font-style:italic;color:var(--yellow)}
-.hdr-meta{font-size:11px;color:var(--muted);letter-spacing:.05em;text-align:right;line-height:1.7}
-.hdr-meta a{color:var(--yellow);text-decoration:none}
-.hdr-meta a:hover{text-decoration:underline}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --white:#ffffff; --off-white:#f7f6f3; --border:#e8e6e1; --muted:#aaa9a5; --mid:#888784; --body:#444340; --dark:#1a1917; --black:#0f0f0e; --yellow:#c9960e; --yellow-light:#fdf6e3; --yellow-mid:#e8d48a; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--dark); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; }
 
-/* STAT ROW */
-.stat-row{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid var(--border)}
-.stat{padding:14px 20px;border-right:1px solid var(--border)}
-.stat:last-child{border-right:none}
-.stat-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px;font-weight:500}
-.stat-val{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;color:var(--text)}
-.stat-sub{font-size:10px;color:var(--faint);margin-top:3px}
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(8px); }
+    .nav-logo { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px; color: var(--dark); text-decoration: none; }
+    .nav-links { display: flex; gap: 40px; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--dark); }
+    .nav-back { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--dark); }
 
-/* BODY */
-.body{display:grid;grid-template-columns:1fr 240px;height:calc(100vh - 134px);min-height:520px}
+    /* ARTICLE HERO */
+    .article-hero { padding: 160px 48px 80px; border-bottom: 1px solid var(--border); max-width: 1200px; margin: 0 auto; }
+    .article-issue { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 32px; }
+    .article-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(42px, 5.5vw, 72px); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--black); max-width: 800px; margin-bottom: 48px; }
+    .article-meta { display: flex; gap: 48px; padding-top: 32px; border-top: 1px solid var(--border); }
+    .article-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .article-meta-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .article-meta-value { font-size: 14px; color: var(--body); }
 
-/* LEFT */
-.left{display:flex;flex-direction:column;border-right:1px solid var(--border);overflow:hidden}
-.tabs{display:flex;border-bottom:1px solid var(--border);padding:0 20px;flex-shrink:0;align-items:center}
-.tab{padding:9px 14px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;letter-spacing:.02em;transition:color .15s;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--sans)}
-.tab.active{color:var(--text);border-bottom-color:var(--text)}
-.tab:hover:not(.active){color:var(--text)}
-.legend{display:flex;gap:12px;flex-wrap:wrap;margin-left:auto;padding:6px 0}
-.leg-item{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted)}
-.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+    /* ARTICLE LAYOUT */
+    .article-layout { display: grid; grid-template-columns: 1fr 320px; gap: 0; max-width: 1200px; margin: 0 auto; padding: 0 48px; border-bottom: 1px solid var(--border); }
+    .article-body { padding: 72px 80px 72px 0; border-right: 1px solid var(--border); }
+    .article-body p { font-size: 18px; color: var(--body); line-height: 1.8; margin-bottom: 32px; }
+    .article-body h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; color: var(--black); margin: 56px 0 24px; line-height: 1.3; }
+    .article-body h3 { font-size: 16px; font-weight: 500; color: var(--dark); margin: 40px 0 16px; letter-spacing: 0.02em; }
+    .article-body blockquote { border-left: 2px solid var(--border); padding: 4px 0 4px 32px; margin: 48px 0; }
+    .article-body blockquote p { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; font-weight: 400; color: var(--black); line-height: 1.5; margin: 0; }
+    .article-body a { color: var(--dark); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
+    .article-body a:hover { color: var(--black); }
+    .article-body strong { font-weight: 500; color: var(--dark); }
+    .article-body .source-list { font-size: 14px; color: var(--mid); line-height: 1.8; }
+    .article-body .source-list p { font-size: 14px; color: var(--mid); margin-bottom: 8px; }
+    .article-body hr { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
 
-#treemap-wrap{flex:1;padding:14px 16px;overflow:hidden;display:flex}
-#treemap{width:100%;height:100%;position:relative;overflow:hidden}
-#scatter-wrap{flex:1;padding:14px 16px;display:none}
-#scatter-canvas{width:100%!important;height:100%!important}
+    /* SIDEBAR */
+    .article-sidebar { padding: 72px 0 72px 56px; }
+    .sidebar-section { margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid var(--border); }
+    .sidebar-section:last-child { border-bottom: none; }
+    .sidebar-label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+    .sidebar-section p { font-size: 14px; color: var(--body); line-height: 1.65; }
+    .sidebar-stat { margin-top: 16px; }
+    .sidebar-stat-num { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 400; color: var(--black); line-height: 1; margin-bottom: 8px; }
+    .sidebar-stat-label { font-size: 13px; color: var(--muted); }
+    .sidebar-related { display: flex; flex-direction: column; gap: 0; }
+    .sidebar-related-item { border-top: 1px solid var(--border); padding: 16px 0; text-decoration: none; display: block; transition: padding-left 0.2s; }
+    .sidebar-related-item:hover { padding-left: 8px; }
+    .sidebar-related-issue { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .sidebar-related-title { font-size: 14px; color: var(--dark); line-height: 1.4; }
 
-/* TREEMAP CELLS */
-.tm-cell{position:absolute;border:2px solid var(--bg);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:6px 8px 5px;cursor:default;transition:opacity .1s}
-.tm-cell:hover{opacity:.82;z-index:20}
-.tm-name{font-size:10px;font-weight:600;line-height:1.2;color:rgba(255,255,255,.92);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tm-score{font-family:var(--serif);font-size:18px;font-weight:700;color:rgba(255,255,255,.72);line-height:1}
-.tm-sub{font-size:9px;color:rgba(255,255,255,.5);margin-top:1px}
+    /* ── INTERACTIVE VIZ ── */
+    .viz-section { border-bottom: 1px solid var(--border); background: var(--white); }
+    .viz-inner { max-width: 1200px; margin: 0 auto; }
 
-/* SIDEBAR */
-.sidebar{overflow-y:auto;background:var(--surface)}
-.sb-section{padding:14px 16px;border-bottom:1px solid var(--border)}
-.sb-title{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:10px;font-weight:600;display:flex;align-items:center;justify-content:space-between}
-.clear-btn{font-size:10px;color:var(--yellow);cursor:pointer;background:none;border:none;font-family:var(--sans);padding:0;letter-spacing:.04em}
-.clear-btn:hover{text-decoration:underline}
+    .viz-header { display: grid; grid-template-columns: auto 1fr auto; align-items: center; padding: 13px 36px; border-bottom: 1px solid var(--border); gap: 24px; }
+    .viz-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; letter-spacing: -0.02em; }
+    .viz-title em { font-style: italic; color: var(--yellow); }
+    .viz-meta { font-size: 11px; color: var(--muted); letter-spacing: 0.05em; text-align: right; line-height: 1.7; }
 
-/* EXPOSURE BARS */
-.exp-row{display:flex;align-items:center;gap:5px;margin-bottom:4px;cursor:pointer;padding:3px 4px;border-radius:3px;transition:background .1s}
-.exp-row:hover{background:var(--border)}
-.exp-row.sel{background:var(--yellow-light);outline:1px solid var(--yellow-mid)}
-.exp-num{font-size:10px;width:16px;text-align:right;color:var(--muted);flex-shrink:0}
-.exp-track{flex:1;height:9px;background:var(--border);border-radius:2px;overflow:hidden}
-.exp-fill{height:100%;border-radius:2px}
-.exp-count{font-size:10px;color:var(--muted);width:36px;text-align:right;flex-shrink:0}
+    .stat-row { display: grid; grid-template-columns: repeat(5,1fr); border-bottom: 1px solid var(--border); }
+    .stat { padding: 14px 20px; border-right: 1px solid var(--border); }
+    .stat:last-child { border-right: none; }
+    .stat-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; font-weight: 500; }
+    .stat-val { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; line-height: 1; color: var(--dark); }
+    .stat-sub { font-size: 10px; color: #c8c4bc; margin-top: 3px; }
 
-/* BREAKDOWN BARS */
-.bd-row{display:flex;align-items:center;gap:7px;margin-bottom:6px}
-.bd-label{font-size:10px;color:var(--muted);width:110px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.bd-track{flex:1;height:5px;background:var(--border);border-radius:2px;overflow:hidden}
-.bd-fill{height:100%;border-radius:2px}
-.bd-val{font-size:10px;font-weight:600;width:30px;text-align:right;flex-shrink:0;color:var(--muted)}
+    .viz-body { display: grid; grid-template-columns: 1fr 240px; min-height: 520px; }
+    .viz-left { display: flex; flex-direction: column; border-right: 1px solid var(--border); overflow: hidden; }
+    .tabs { display: flex; border-bottom: 1px solid var(--border); padding: 0 20px; flex-shrink: 0; align-items: center; }
+    .tab { padding: 9px 14px; font-size: 12px; font-weight: 500; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; letter-spacing: 0.02em; transition: color 0.15s; background: none; border-top: none; border-left: none; border-right: none; font-family: 'DM Sans', sans-serif; }
+    .tab.active { color: var(--dark); border-bottom-color: var(--dark); }
+    .tab:hover:not(.active) { color: var(--dark); }
+    .legend { display: flex; gap: 12px; flex-wrap: wrap; margin-left: auto; padding: 6px 0; }
+    .leg-item { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--muted); }
+    .leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 
-/* WAGES CALLOUT */
-.wages-box{background:var(--yellow-light);border:1px solid var(--yellow-mid);border-radius:4px;padding:10px 12px}
-.wages-num{font-family:var(--serif);font-size:24px;font-weight:700;color:var(--yellow);line-height:1}
-.wages-label{font-size:10px;color:var(--muted);margin-top:3px}
+    #treemap-wrap { flex: 1; padding: 14px 16px; overflow: hidden; display: flex; min-height: 400px; }
+    #treemap { width: 100%; height: 100%; position: relative; overflow: hidden; }
+    #scatter-wrap { flex: 1; padding: 14px 16px; display: none; min-height: 400px; }
+    #scatter-canvas { width: 100%!important; height: 100%!important; }
 
-/* TOOLTIP */
-#tt{position:fixed;background:#fff;border:1px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,.12);padding:10px 13px;pointer-events:none;display:none;z-index:9999;border-radius:4px;min-width:200px;max-width:240px}
-#tt .tt-n{font-weight:600;font-size:12px;margin-bottom:3px;color:var(--text)}
-#tt .tt-s{font-size:11px;margin-bottom:2px}
-#tt .tt-i{font-size:11px;color:var(--muted)}
+    .tm-cell { position: absolute; border: 2px solid var(--white); overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 6px 8px 5px; cursor: default; transition: opacity 0.1s; }
+    .tm-cell:hover { opacity: 0.82; z-index: 20; }
+    .tm-name { font-size: 10px; font-weight: 600; line-height: 1.2; color: rgba(255,255,255,0.92); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .tm-score { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: rgba(255,255,255,0.72); line-height: 1; }
+    .tm-sub { font-size: 9px; color: rgba(255,255,255,0.5); margin-top: 1px; }
 
-/* SOURCE */
-.source{padding:8px 36px;font-size:10px;color:var(--faint);border-top:1px solid var(--border);line-height:1.6}
+    .viz-sidebar { overflow-y: auto; background: var(--off-white); font-size: 13px; }
+    .sb-section { padding: 14px 16px; border-bottom: 1px solid var(--border); }
+    .sb-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 10px; font-weight: 600; display: flex; align-items: center; justify-content: space-between; }
+    .clear-btn { font-size: 10px; color: var(--yellow); cursor: pointer; background: none; border: none; font-family: 'DM Sans', sans-serif; padding: 0; letter-spacing: 0.04em; }
+    .clear-btn:hover { text-decoration: underline; }
 
-/* LOADING */
-#loading{display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:var(--muted);font-size:14px;font-weight:500;letter-spacing:.02em}
-</style>
+    .exp-row { display: flex; align-items: center; gap: 5px; margin-bottom: 4px; cursor: pointer; padding: 3px 4px; border-radius: 3px; transition: background 0.1s; }
+    .exp-row:hover { background: var(--border); }
+    .exp-row.sel { background: var(--yellow-light); outline: 1px solid var(--yellow-mid); }
+    .exp-num { font-size: 10px; width: 16px; text-align: right; color: var(--muted); flex-shrink: 0; }
+    .exp-track { flex: 1; height: 9px; background: var(--border); border-radius: 2px; overflow: hidden; }
+    .exp-fill { height: 100%; border-radius: 2px; }
+    .exp-count { font-size: 10px; color: var(--muted); width: 36px; text-align: right; flex-shrink: 0; }
+
+    .bd-row { display: flex; align-items: center; gap: 7px; margin-bottom: 6px; }
+    .bd-label { font-size: 10px; color: var(--muted); width: 110px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .bd-track { flex: 1; height: 5px; background: var(--border); border-radius: 2px; overflow: hidden; }
+    .bd-fill { height: 100%; border-radius: 2px; }
+    .bd-val { font-size: 10px; font-weight: 600; width: 30px; text-align: right; flex-shrink: 0; color: var(--muted); }
+
+    .wages-box { background: var(--yellow-light); border: 1px solid var(--yellow-mid); border-radius: 4px; padding: 10px 12px; }
+    .wages-num { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--yellow); line-height: 1; }
+    .wages-label { font-size: 10px; color: var(--muted); margin-top: 3px; }
+
+    #tt { position: fixed; background: #fff; border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.12); padding: 10px 13px; pointer-events: none; display: none; z-index: 9999; border-radius: 4px; min-width: 200px; max-width: 240px; font-size: 13px; }
+    #tt .tt-n { font-weight: 600; font-size: 12px; margin-bottom: 3px; color: var(--dark); }
+    #tt .tt-s { font-size: 11px; margin-bottom: 2px; }
+    #tt .tt-i { font-size: 11px; color: var(--muted); }
+
+    .viz-source { padding: 8px 36px; font-size: 10px; color: #c8c4bc; border-top: 1px solid var(--border); line-height: 1.6; }
+
+    #loading { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; color: var(--muted); font-size: 14px; font-weight: 500; letter-spacing: 0.02em; }
+
+    /* MORE ARTICLES */
+    .more { padding: 80px 48px 112px; background: var(--off-white); }
+    .more-inner { max-width: 1200px; margin: 0 auto; }
+    .more-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 56px; }
+    .more-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
+    .more-card { background: var(--off-white); padding: 40px; text-decoration: none; display: block; transition: background 0.2s; }
+    .more-card:hover { background: var(--white); }
+    .more-issue { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+    .more-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 400; line-height: 1.3; color: var(--black); margin-bottom: 16px; }
+    .more-card p { font-size: 15px; color: var(--body); line-height: 1.7; margin-bottom: 28px; }
+    .more-read { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dark); border-bottom: 1px solid var(--border); padding-bottom: 3px; display: inline-block; }
+
+    footer { background: var(--black); padding: 48px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px; color: rgba(255,255,255,0.4); text-decoration: none; }
+    .footer-links { display: flex; gap: 32px; }
+    .footer-links a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.22); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.6); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .article-hero { padding: 120px 24px 56px; }
+      .article-meta { flex-wrap: wrap; gap: 24px; }
+      .article-layout { grid-template-columns: 1fr; padding: 0 24px; }
+      .article-body { padding: 56px 0; border-right: none; border-bottom: 1px solid var(--border); }
+      .article-sidebar { padding: 48px 0; }
+      .viz-header { grid-template-columns: 1fr; padding: 13px 20px; gap: 8px; }
+      .viz-meta { text-align: left; }
+      .stat-row { grid-template-columns: repeat(2, 1fr); }
+      .stat:nth-child(odd) { border-right: 1px solid var(--border); }
+      .viz-body { grid-template-columns: 1fr; }
+      .viz-left { border-right: none; }
+      #treemap-wrap { min-height: 300px; }
+      .viz-sidebar { max-height: 400px; }
+      .more { padding: 64px 24px; }
+      .more-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 24px; text-align: center; }
+    }
+
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 20px; height: 1.5px; background: var(--dark); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
+    @media (max-width: 900px) {
+      .nav-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); border-bottom: 1px solid var(--border); flex-direction: column; padding: 24px; gap: 20px; }
+      .nav-links.open { display: flex; }
+      .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+      .nav-toggle.open span:nth-child(2) { opacity: 0; }
+      .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+    }
+  </style>
+
+  <!-- OG / Social sharing -->
+  <meta property="og:image" content="/og/og-homepage.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:type" content="article" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:image" content="/og/og-homepage.png" />
+  <meta property="og:title" content="Who Is AI Really Coming For in Europe? - yellow3 lab" />
+  <meta property="og:description" content="40 occupation groups, 202M EU workers, scored by AI exposure. An interactive data intelligence piece." />
+  <meta property="twitter:title" content="Who Is AI Really Coming For in Europe? - yellow3 lab" />
+  <meta property="twitter:description" content="40 occupation groups, 202M EU workers, scored by AI exposure. An interactive data intelligence piece." />
 </head>
 <body>
 
-<div id="tt">
-  <div class="tt-n" id="tt-n"></div>
-  <div class="tt-s" id="tt-s"></div>
-  <div class="tt-i" id="tt-i"></div>
-</div>
+  <div id="tt">
+    <div class="tt-n" id="tt-n"></div>
+    <div class="tt-s" id="tt-s"></div>
+    <div class="tt-i" id="tt-i"></div>
+  </div>
 
-<!-- HEADER -->
-<div class="hdr">
-  <a class="hdr-brand" href="https://yellow3.io"><img src="/logo.png" alt="yellow3" style="height:24px;" /></a>
-  <div class="hdr-title">AI Exposure of the <em>EU</em> Job Market</div>
-  <div class="hdr-meta">
-    40 occupation groups &middot; 202M workers &middot; colour = AI exposure<br>
-    Data: <a href="https://ec.europa.eu/eurostat/web/lfs" target="_blank">Eurostat EU-LFS 2024</a> &middot;
-    Scored via <a href="https://www.ilo.org/global/research/global-reports/weso/WCMS_890761/lang--en/index.htm" target="_blank">ILO / Gmyrek 2023</a> &middot;
-    <a href="https://yellow3.io/insights" target="_blank">yellow3.io/insights</a>
-  </div>
-</div>
+  <nav>
+    <a href="/" class="nav-logo"><img src="/logo.png" alt="yellow3" style="height:24px;" /></a>
+    <div class="nav-links">
+      <a href="/#about">About</a>
+      <a href="/insights/" class="active">Insights</a>
+      <a href="/masterclass">Masterclass</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <a href="/insights/" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M5 12l7 7M5 12l7-7"/></svg>
+      All insights
+    </a>
+    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');this.closest('nav').querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </nav>
 
-<!-- STAT ROW -->
-<div class="stat-row">
-  <div class="stat">
-    <div class="stat-label">Total EU workers</div>
-    <div class="stat-val">202M</div>
-    <div class="stat-sub">EU-27, 2023</div>
+  <div class="article-hero reveal">
+    <div class="article-issue">Data Intelligence - March 2026</div>
+    <h1>Who Is AI Really Coming For in Europe?</h1>
+    <div class="article-meta">
+      <div class="article-meta-item"><span class="article-meta-label">Author</span><span class="article-meta-value">Thomas Chr. Melskens</span></div>
+      <div class="article-meta-item"><span class="article-meta-label">Published</span><span class="article-meta-value">March 2026</span></div>
+      <div class="article-meta-item"><span class="article-meta-label">Read time</span><span class="article-meta-value">14 minutes</span></div>
+      <div class="article-meta-item"><span class="article-meta-label">Data</span><span class="article-meta-value">Eurostat, ILO, Claude Haiku</span></div>
+    </div>
   </div>
-  <div class="stat">
-    <div class="stat-label">Weighted avg. exposure</div>
-    <div class="stat-val" id="s-avg">—</div>
-    <div class="stat-sub">job-weighted, 0&ndash;10 scale</div>
-  </div>
-  <div class="stat">
-    <div class="stat-label">High-exposure workers</div>
-    <div class="stat-val" id="s-high">—</div>
-    <div class="stat-sub">score 7+ occupations</div>
-  </div>
-  <div class="stat">
-    <div class="stat-label">Wages exposed</div>
-    <div class="stat-val" id="s-wages">—</div>
-    <div class="stat-sub">annual, jobs scoring 7+</div>
-  </div>
-  <div class="stat">
-    <div class="stat-label">Countries tracked</div>
-    <div class="stat-val">27</div>
-    <div class="stat-sub">EU member states</div>
-  </div>
-</div>
 
-<!-- BODY -->
-<div class="body">
+  <!-- ── INTERACTIVE VISUALIZATION ── -->
+  <div class="viz-section">
+    <div class="viz-inner">
+      <div class="viz-header">
+        <div class="viz-title">AI Exposure of the <em>EU</em> Job Market</div>
+        <div class="viz-meta">
+          40 occupation groups &middot; 202M workers &middot; colour = AI exposure<br>
+          Data: <a href="https://ec.europa.eu/eurostat/web/lfs" target="_blank" style="color:var(--yellow);text-decoration:none;">Eurostat EU-LFS 2023</a> &middot;
+          Scored via <a href="https://www.ilo.org/global/research/global-reports/weso/WCMS_890761/lang--en/index.htm" target="_blank" style="color:var(--yellow);text-decoration:none;">ILO / Gmyrek 2023</a>
+        </div>
+      </div>
 
-  <!-- LEFT: treemap + scatter -->
-  <div class="left">
-    <div class="tabs">
-      <button class="tab active" onclick="switchTab('treemap',this)">Treemap</button>
-      <button class="tab" onclick="switchTab('scatter',this)">Exposure vs Outlook</button>
-      <div class="legend">
-        <div class="leg-item"><div class="leg-dot" style="background:#b83228"></div>Very high (8+)</div>
-        <div class="leg-item"><div class="leg-dot" style="background:#c96a1a"></div>High (6.5&ndash;8)</div>
-        <div class="leg-item"><div class="leg-dot" style="background:#b89a10"></div>Medium (5&ndash;6.5)</div>
-        <div class="leg-item"><div class="leg-dot" style="background:#5a8a2a"></div>Low (3.5&ndash;5)</div>
-        <div class="leg-item"><div class="leg-dot" style="background:#2a7a4a"></div>Minimal (&lt;3.5)</div>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-label">Total EU workers</div>
+          <div class="stat-val">202M</div>
+          <div class="stat-sub">EU-27, 2023</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Weighted avg. exposure</div>
+          <div class="stat-val" id="s-avg">-</div>
+          <div class="stat-sub">job-weighted, 0-10 scale</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">High-exposure workers</div>
+          <div class="stat-val" id="s-high">-</div>
+          <div class="stat-sub">score 7+ occupations</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Wages exposed</div>
+          <div class="stat-val" id="s-wages">-</div>
+          <div class="stat-sub">annual, jobs scoring 7+</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Countries tracked</div>
+          <div class="stat-val">27</div>
+          <div class="stat-sub">EU member states</div>
+        </div>
+      </div>
+
+      <div class="viz-body">
+        <div class="viz-left">
+          <div class="tabs">
+            <button class="tab active" onclick="switchTab('treemap',this)">Treemap</button>
+            <button class="tab" onclick="switchTab('scatter',this)">Exposure vs Outlook</button>
+            <div class="legend">
+              <div class="leg-item"><div class="leg-dot" style="background:#b83228"></div>Very high (8+)</div>
+              <div class="leg-item"><div class="leg-dot" style="background:#c96a1a"></div>High (6.5-8)</div>
+              <div class="leg-item"><div class="leg-dot" style="background:#b89a10"></div>Medium (5-6.5)</div>
+              <div class="leg-item"><div class="leg-dot" style="background:#5a8a2a"></div>Low (3.5-5)</div>
+              <div class="leg-item"><div class="leg-dot" style="background:#2a7a4a"></div>Minimal (&lt;3.5)</div>
+            </div>
+          </div>
+          <div id="treemap-wrap"><div id="treemap"><div id="loading">Loading data...</div></div></div>
+          <div id="scatter-wrap"><canvas id="scatter-canvas"></canvas></div>
+        </div>
+
+        <div class="viz-sidebar">
+          <div class="sb-section">
+            <div class="sb-title">
+              Jobs by exposure score
+              <button class="clear-btn" onclick="clearFilter()">Clear</button>
+            </div>
+            <div id="exp-bars"></div>
+            <div style="font-size:10px;color:#c8c4bc;margin-top:6px">Click a bar to filter &middot; weighted by employment</div>
+          </div>
+          <div class="sb-section">
+            <div class="sb-title">Breakdown by group</div>
+            <div id="bd-bars"></div>
+          </div>
+          <div class="sb-section">
+            <div class="sb-title">Exposure by education</div>
+            <div id="edu-bars"></div>
+          </div>
+          <div class="sb-section">
+            <div class="sb-title">Exposure by pay tier</div>
+            <div id="pay-bars"></div>
+          </div>
+          <div class="sb-section">
+            <div class="sb-title">Wages exposed</div>
+            <div class="wages-box">
+              <div class="wages-num" id="wages-num">-</div>
+              <div class="wages-label">annual wages in high-exposure jobs (score 7+)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="viz-source">
+        Sources: Eurostat EU Labour Force Survey 2023 (lfsa_egai2d) &middot;
+        Gmyrek, Berg &amp; Bescond - ILO Working Paper 2023 &middot;
+        Eloundou et al., Science 2024 &middot;
+        Eurostat Structure of Earnings Survey 2022 &middot;
+        yellow3 lab analysis.
+        Exposure scores reflect task-based AI automatability at ISCO-08 2-digit level, 0-10 scale.
+        Indicative model - not a forecast of job losses.
       </div>
     </div>
-    <div id="treemap-wrap"><div id="treemap"><div id="loading">Loading data...</div></div></div>
-    <div id="scatter-wrap"><canvas id="scatter-canvas"></canvas></div>
   </div>
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
+  <!-- ── ARTICLE BODY ── -->
+  <div class="article-layout">
+    <div class="article-body reveal">
 
-    <div class="sb-section">
-      <div class="sb-title">
-        Jobs by exposure score
-        <button class="clear-btn" onclick="clearFilter()">Clear</button>
+      <p>Europe has a habit of watching American storms from a comfortable distance, assuming the ocean provides more than geography. When Dario Amodei - CEO of Anthropic, the company behind Claude - told Axios in May 2025 that AI could eliminate half of all entry-level white-collar jobs and push unemployment to between 10 and 20 percent within five years, many European policymakers filed it under "American hyperbole." Ten months later, the macro data is still calm. The restructuring is not.</p>
+
+      <p>This piece accompanies yellow3 lab's interactive data tool mapping AI exposure across 193 million EU workers. The numbers are not predictions. They are a mirror.</p>
+
+      <hr>
+
+      <h2>The Warning Nobody Wanted to Hear</h2>
+
+      <p>Amodei was unusually blunt. "We, as the producers of this technology, have a duty and an obligation to be honest about what is coming," he told Axios. "Most of them are unaware that this is about to happen." The "them" he referred to was lawmakers, CEOs, and workers alike.</p>
+
+      <p>What followed was a familiar cycle. At Davos in January 2026, Nvidia's Jensen Huang pushed back, arguing productivity gains lead to more hiring, not less. Sam Altman wrote optimistically about a coming "Intelligence Age." Fortune reported that most C-suite leaders at Davos did not share Amodei's timeline. Critics pointed out that Amodei previously predicted 90 percent of code would be AI-written by end of 2025 - a forecast that proved true inside Anthropic but not across most companies - suggesting he may have a distorted sense of diffusion speed.</p>
+
+      <p>The critics have a point. But so does Amodei.</p>
+
+      <p>The question is not whether he is precisely right on the percentages. The question is whether the direction of travel is unmistakable. And in Europe, as of March 2026, the data suggests it is.</p>
+
+      <h2>The European Middle Class Is in the Crosshairs</h2>
+
+      <p>The conventional story about AI and jobs runs like this: automation takes low-skill, manual roles first, and skilled professionals are insulated by complexity, judgement, and creativity. That story was accurate for the first wave of automation - robotic arms on assembly lines, checkout machines in supermarkets.</p>
+
+      <p><strong>Generative AI breaks the pattern.</strong></p>
+
+      <p>The most exposed jobs in the ILO's updated global index include data entry clerks, typists, accounting and bookkeeping clerks, and administrative secretaries. These are not low-skill, poorly-paid roles at the margins of the European economy. They are the backbone of it. They are the jobs that absorbed a generation of educated workers who studied business administration, law, and finance. They sit at the center of ISCO occupation groups 4 and 3 - clerical support and business associate professionals - which together account for roughly 35 million EU workers.</p>
+
+      <p>Over the past five years, general office clerks and software developers have been in the top three occupations which have increased in absolute numbers in the eurozone. Europe has been hiring into the blast zone.</p>
+
+      <p>The IMF's analysis, cited by ING economists, puts the figure starkly: <strong>50.2 million Europeans, or 32 percent of the working population, face the risk of being replaced by AI in their current roles.</strong></p>
+
+      <h2>A Continent Divided</h2>
+
+      <p>Europe is not one labour market. It is 27, and the AI transition will hit them in very different ways and at very different speeds.</p>
+
+      <p>Northern European countries have a higher share of jobs with high exposure and complementary to AI. In the Netherlands, it is 43 percent, in Belgium and France 39 percent, and in Germany 35 percent. These are economies built on the high-value service sectors - finance, consulting, legal, professional services - that sit squarely in the path of large language models.</p>
+
+      <p>The south looks different. Spain, Italy, Greece, and Portugal have larger shares of employment in hospitality, tourism, construction, and agriculture - sectors with lower AI exposure scores and, crucially, strong recent job growth. Southern Europe has seen stronger economic growth over the past two years due to a post-Covid boom in tourism services and less industry dependence than in the north.</p>
+
+      <blockquote><p>The irony is sharp. The wealthier, more educated, more digitally advanced north is more exposed.</p></blockquote>
+
+      <p>Northern European countries like the Netherlands, Belgium, and France have a higher proportion of AI-compatible jobs; southern countries like Italy and Spain have a lower proportion, limiting AI's influence there.</p>
+
+      <p>This creates a structural paradox that Brussels has not yet grappled with. The EU's digital transition strategy has pushed member states toward higher-value, more cognitive, more digital employment. That strategy has worked. And it has loaded the labour market with exactly the kind of work that large language models are best at.</p>
+
+      <h2>The Adoption Gap Is Closing Fast</h2>
+
+      <p>For several years, the counterargument to AI displacement ran through adoption speed. Yes, the technology could theoretically do the work. But would companies actually implement it fast enough to matter?</p>
+
+      <p>That argument is losing ground.</p>
+
+      <p>McKinsey documented that the share of firms using AI in at least one business function rose from 20 percent in 2017 to 78 percent in 2024, driven largely by the explosion in generative AI tools. Adoption of generative AI alone surged from 33 percent to 71 percent between 2023 and 2024.</p>
+
+      <p>In Europe, 20 percent of EU enterprises with 10 or more employees were using AI technologies by end of 2025, up 6.5 percentage points from 13.5 percent in 2024. The growth rate accelerated rather than plateaued.</p>
+
+      <p>By 2025, about 71 percent of European firms were reconsidering job responsibilities due to AI implementation, and over a quarter were reducing hiring or cutting roles.</p>
+
+      <p>The ECB's most recent survey of European firms, published in March 2026, found that companies making significant use of AI are currently more likely to hire than fire - but the same survey flagged that firms planning future AI investment are restructuring roles rather than simply adding headcount. As things stand, investment in and the intensive use of AI are not yet replacing jobs at the aggregate level. But firms that plan to invest in AI are planning to take on more people than firms with no such plans - while simultaneously changing what those people will do.</p>
+
+      <p>The macro data is still calm. EU unemployment stood at 5.8 percent at the start of 2026, down from 6.0 percent a year earlier. But as the Centre for Future Generations noted, macroeconomic indicators lag firm-level changes, especially during early technological transitions. The pressure is visible at the hiring end long before it shows in unemployment statistics.</p>
+
+      <h2>The Exposure Is Not Evenly Distributed</h2>
+
+      <p>The exposure data - scored by the ILO's Gmyrek methodology applied to ISCO-08 task descriptions - reveals a pattern that should disturb anyone who believes education and credentials are a reliable shield.</p>
+
+      <p>The highest-exposure occupations are not at the bottom of the skills ladder. They are in the middle and upper-middle. General office clerks score above 9 out of 10. Accounting and bookkeeping clerks score above 9. Business and administrative professionals - the people who went to university, earned degrees in business and economics, and built careers in corporate services - score above 8.</p>
+
+      <p>By contrast, building trade workers score below 3. Personal care workers score below 3. Agricultural labourers score below 2.</p>
+
+      <p><strong>The AI transition inverts the traditional relationship between education and job security.</strong> The more cognitively intensive the work product, and the more it can be completed from a screen without physical presence, the more exposed the role.</p>
+
+      <p>Nobel laureate Daron Acemoglu and co-authors found that while AI adoption initially boosted AI-related hiring, it soon led to reduced hiring and shifting skill requirements within firms, providing early evidence that the substitution effect may begin to outweigh the income effect in AI-exposed sectors.</p>
+
+      <p>This is not evenly distributed by gender either. A recent UN report warns that women may be three times more likely to lose their jobs to AI, due to their disproportionate representation in low-level office roles. Clerical and administrative occupations, where women are substantially overrepresented across the EU, carry the highest exposure scores in the dataset.</p>
+
+      <h2>What the Policy Response Looks Like Right Now</h2>
+
+      <p>It is inadequate.</p>
+
+      <p>The EU AI Act, which came into force in 2024, addresses risk categories and prohibited uses. The AI Continent Action Plan promotes adoption and skills development. But neither addresses the core challenge of job displacement.</p>
+
+      <p>The European Globalisation Adjustment Fund for Displaced Workers - the primary EU-level instrument for supporting workers affected by structural economic shifts - was granted an annual budget of just <strong>35 million euros</strong> for 2021 to 2027. To put that number in context: it represents roughly 17 cents per EU worker per year.</p>
+
+      <p>Researchers at the European Policy Centre have called for a European AI Social Compact - a dedicated framework within the next Multiannual Financial Framework (2028 to 2034) combining income support, reskilling, and regional investment for workers most exposed to displacement. The debate on that framework is only beginning. The technology is not waiting.</p>
+
+      <h2>The Honest Reading of the Data</h2>
+
+      <p>The interactive tool accompanying this article scores 42 EU occupation groups using the same methodology Andrei Karpathy applied to the US Bureau of Labor Statistics dataset - task descriptions fed to an LLM with a structured rubric, employment figures from Eurostat, and wages from the EU Structure of Earnings Survey.</p>
+
+      <p>A few findings that the data makes hard to dispute:</p>
+
+      <p>The weighted average AI exposure across 193 million EU workers sits above 6 on a 10-point scale. That is not a fringe phenomenon. It is the centre of gravity of the European labour market.</p>
+
+      <p>The occupations with the highest employment growth over the past decade - business associates, ICT professionals, administrative professionals - are among the highest-exposure groups. Europe has been building precisely the workforce that generative AI is designed to augment or replace.</p>
+
+      <p>The countries that adopted AI technology earliest and most aggressively - Denmark at 42 percent enterprise adoption, Finland at 38 percent, Sweden at 35 percent - also have the highest share of AI-exposed employment. First-mover advantage in technology adoption may come with first-mover exposure in labour disruption.</p>
+
+      <p>And yet: evidence from the euro area for the period 2011 to 2019 shows that occupations more exposed to AI actually saw an increase in their employment shares. Exposure and displacement are not the same thing. The technology's tendency has been, so far, to make workers more productive rather than immediately redundant. The question is whether generative AI, with its capacity to act as a full-task autonomous agent rather than a productivity tool, changes that relationship.</p>
+
+      <p>Amodei thinks it does. Most CEOs at Davos think the transition will be slower. The ECB's surveys suggest the firm-level restructuring is already underway. The Cedefop estimate - that about 14 percent of EU jobs face a genuine risk of displacement by computer algorithms - may prove conservative if agent-based AI reaches the deployment scale that infrastructure investment suggests is coming.</p>
+
+      <h2>What This Means</h2>
+
+      <p>The question for European workers and policymakers is not whether AI will reshape the labour market. It is whether the reshaping will be managed or chaotic, and whether the productivity gains will be distributed or concentrated.</p>
+
+      <p>Europe has tools the US does not: stronger labour market institutions, more robust social protection systems, a regulatory tradition that takes worker rights seriously. The AI Act demonstrates willingness to regulate at speed when political will exists.</p>
+
+      <p>But the EGF's 35 million euro annual budget is not a serious response to a structural shift affecting tens of millions of workers. Reskilling programmes that focus narrowly on AI skills miss the point - the workers most at risk are not going to become machine learning engineers. They need pathways into the roles that AI genuinely cannot do: physical care, skilled trades, human-facing services, creative work that requires embodied judgment.</p>
+
+      <p>The interactive data tool on this page does not predict who will lose their job. It maps where the pressure is building. The occupation groups lit up in red are not doomed. They are exposed. What happens next depends on choices - by employers, by policymakers, and by workers themselves - that are still, for now, being made.</p>
+
+      <blockquote><p>The train, as Amodei puts it, is moving. The question is who is steering it.</p></blockquote>
+
+      <hr>
+
+      <p><em>Explore the interactive map above. Every occupation group is clickable. The underlying dataset - scored from ISCO-08 task descriptions using Claude, merged with real Eurostat employment and wage data - will be published as open data.</em></p>
+
+      <hr>
+
+      <h3>Sources</h3>
+      <div class="source-list">
+        <p>Gmyrek, Berg &amp; Bescond - ILO Working Paper, Generative AI and Jobs: A Global Analysis, 2023 (updated 2025)</p>
+        <p>Eloundou, Manning, Mishkin, Rock - GPTs are GPTs: Labor market impact potential of LLMs, Science, 2024</p>
+        <p>Eurostat EU Labour Force Survey 2024 (lfsa_egai2d)</p>
+        <p>Eurostat ICT Enterprise Survey 2025</p>
+        <p>ING Think - The Eurozone Labour Market Is Becoming More Susceptible to AI, April 2025</p>
+        <p>ECB Consumer Expectations Survey, May 2024</p>
+        <p>ECB Blog - Artificial Intelligence: Friend or Foe for Hiring in Europe Today? March 2026</p>
+        <p>European Policy Centre - AI's Impact on Europe's Job Market: A Call for a Social Compact, 2025</p>
+        <p>Centre for Future Generations - Preparing for AI Labour Shocks, 2025</p>
+        <p>Cedefop - Automation of Work and Skills</p>
+        <p>Dario Amodei via Axios, May 2025</p>
+        <p>McKinsey - The Future of Work in Europe</p>
       </div>
-      <div id="exp-bars"></div>
-      <div style="font-size:10px;color:var(--faint);margin-top:6px">Click a bar to filter &middot; weighted by employment</div>
+
     </div>
 
-    <div class="sb-section">
-      <div class="sb-title">Breakdown by group</div>
-      <div id="bd-bars"></div>
-    </div>
-
-    <div class="sb-section">
-      <div class="sb-title">Exposure by education</div>
-      <div id="edu-bars"></div>
-    </div>
-
-    <div class="sb-section">
-      <div class="sb-title">Exposure by pay tier</div>
-      <div id="pay-bars"></div>
-    </div>
-
-    <div class="sb-section">
-      <div class="sb-title">Wages exposed</div>
-      <div class="wages-box">
-        <div class="wages-num" id="wages-num">—</div>
-        <div class="wages-label">annual wages in high-exposure jobs (score 7+)</div>
+    <div class="article-sidebar reveal">
+      <div class="sidebar-section">
+        <div class="sidebar-label">By the numbers</div>
+        <div class="sidebar-stat">
+          <div class="sidebar-stat-num">50.2M</div>
+          <div class="sidebar-stat-label">Europeans face the risk of being replaced by AI in their current roles (IMF/ING)</div>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Key finding</div>
+        <p>The AI transition inverts the traditional relationship between education and job security. The more cognitive the work, the more exposed the role. Clerical and business professionals score highest - not the jobs typically associated with automation risk.</p>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">The paradox</div>
+        <p>The wealthier, more educated, more digitally advanced north of Europe is more exposed to AI disruption than the south. The EU's own digital transition strategy has loaded the labour market with exactly the kind of work that large language models are best at.</p>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">About yellow3 lab</div>
+        <p>We design and develop AI-powered platforms for industries where complexity has become the barrier to progress.</p>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">More articles</div>
+        <div class="sidebar-related">
+          <a href="/insights/europe-ai-slumber" class="sidebar-related-item">
+            <div class="sidebar-related-issue">Issue 02</div>
+            <div class="sidebar-related-title">Europe's AI Slumber</div>
+          </a>
+          <a href="/insights/the-shopify-moment-for-business-software-is-here" class="sidebar-related-item">
+            <div class="sidebar-related-issue">Issue 06</div>
+            <div class="sidebar-related-title">The Shopify Moment for Business Software Is Here</div>
+          </a>
+        </div>
       </div>
     </div>
-
   </div>
-</div>
 
-<div class="source">
-  yellow3 lab &nbsp;&middot;&nbsp;
-  Sources: Eurostat EU Labour Force Survey 2024 (lfsa_egai2d) &middot;
-  Gmyrek, Berg &amp; Bescond &mdash; ILO Working Paper 2023 &middot;
-  Eloundou et al., Science 2024 &middot;
-  Eurostat Structure of Earnings Survey 2022 &middot;
-  yellow3 lab analysis.
-  Exposure scores reflect task-based AI automatability at ISCO-08 2-digit level, 0&ndash;10 scale.
-  Indicative model &mdash; not a forecast of job losses.
-  &copy; 2025 yellow3 lab ApS
-</div>
+  <!-- MORE ARTICLES -->
+  <div class="more">
+    <div class="more-inner">
+      <div class="more-label">Continue reading</div>
+      <div class="more-grid">
+        <a href="/insights/europe-ai-slumber" class="more-card reveal">
+          <div class="more-issue">Issue 02</div>
+          <h3>Europe's AI Slumber</h3>
+          <p>The US controls 74% of global AI supercomputer capacity. Europe holds 4.8%. A European founder asks: are we regulating ourselves into irrelevance?</p>
+          <span class="more-read">Read article</span>
+        </a>
+        <a href="/insights/mckinsey-has-25000-employees-you-will-never-meet" class="more-card reveal">
+          <div class="more-issue">Issue 10</div>
+          <h3>McKinsey Has 25,000 Employees You Will Never Meet</h3>
+          <p>McKinsey's CEO now counts AI agents as employees. 25,000 of them. The world's most prestigious consulting firm just told you exactly where business is heading.</p>
+          <span class="more-read">Read article</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
-<script>
-// Data loaded from data.json
+  <footer>
+    <a href="/" class="footer-logo"><img src="/logo.png" alt="yellow3" style="height:24px;filter:invert(1);opacity:0.4;" /></a>
+    <div class="footer-links">
+      <a href="/#about">About</a>
+      <a href="/insights/">Insights</a>
+      <a href="/masterclass">Masterclass</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <span class="footer-copy">2026 yellow3 lab, Copenhagen</span>
+    <div class="footer-links">
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/cookies">Cookies</a>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <script>
 var OCCS=[];
 
-const GRP_CLR={
+var GRP_CLR={
   "Managers":"#6a4e9a","Professionals":"#2e6aad","Technicians":"#20806e",
   "Clerical":"#b02820","Services":"#c06010","Agriculture":"#4a7a18",
   "Craft":"#6a5818","Operators":"#7a3e10","Elementary":"#5a5a5a"
@@ -249,29 +602,29 @@ function sc(s){
   return'#2a7a4a';
 }
 
-let activeFilter=null;
-let vis=[];
+var activeFilter=null;
+var vis=[];
 
 function computeStats(o){
-  const tot=o.reduce((s,x)=>s+x.workers,0);
-  const avg=o.reduce((s,x)=>s+x.score*x.workers,0)/tot;
-  const hW=o.filter(x=>x.score>=7).reduce((s,x)=>s+x.workers,0);
-  const wg=o.filter(x=>x.score>=7).reduce((s,x)=>s+x.workers*1e6*x.avgWage,0);
+  var tot=o.reduce(function(s,x){return s+x.workers;},0);
+  var avg=o.reduce(function(s,x){return s+x.score*x.workers;},0)/tot;
+  var hW=o.filter(function(x){return x.score>=7;}).reduce(function(s,x){return s+x.workers;},0);
+  var wg=o.filter(function(x){return x.score>=7;}).reduce(function(s,x){return s+x.workers*1e6*x.avgWage;},0);
   document.getElementById('s-avg').textContent=avg.toFixed(2);
   document.getElementById('s-high').textContent=hW.toFixed(0)+'M';
-  document.getElementById('s-wages').textContent='€'+Math.round(wg/1e12*10)/10+'T';
-  document.getElementById('wages-num').textContent='€'+Math.round(wg/1e12*10)/10+'T';
+  document.getElementById('s-wages').textContent='\u20ac'+Math.round(wg/1e12*10)/10+'T';
+  document.getElementById('wages-num').textContent='\u20ac'+Math.round(wg/1e12*10)/10+'T';
 }
 
 function renderTreemap(occs){
-  const el=document.getElementById('treemap');
-  const W=el.offsetWidth||800,H=el.offsetHeight||460;
+  var el=document.getElementById('treemap');
+  var W=el.offsetWidth||800,H=el.offsetHeight||460;
   el.innerHTML='';
-  const sorted=[...occs].sort((a,b)=>b.workers-a.workers);
+  var sorted=[].concat(occs).sort(function(a,b){return b.workers-a.workers;});
 
   function place(item,x,y,w,h){
     if(w<3||h<3)return;
-    const d=document.createElement('div');
+    var d=document.createElement('div');
     d.className='tm-cell';
     d.style.cssText='left:'+x+'px;top:'+y+'px;width:'+(w-2)+'px;height:'+(h-2)+'px;background:'+sc(item.score);
     if(w>72&&h>46){
@@ -296,7 +649,7 @@ function renderTreemap(occs){
   function layout(items,x,y,w,h){
     if(!items.length)return;
     if(items.length===1){place(items[0],x,y,w,h);return;}
-    const tot=items.reduce(function(s,o){return s+o.workers;},0);
+    var tot=items.reduce(function(s,o){return s+o.workers;},0);
     var acc=0,sp=0;
     for(var i=0;i<items.length;i++){acc+=items[i].workers;if(acc>=tot/2){sp=i+1;break;}}
     var A=items.slice(0,sp),B=items.slice(sp);
@@ -359,7 +712,7 @@ function clearFilter(){
 }
 
 function apply(){
-  vis=activeFilter===null?[...OCCS]:OCCS.filter(function(o){return Math.floor(o.score)===activeFilter;});
+  vis=activeFilter===null?[].concat(OCCS):OCCS.filter(function(o){return Math.floor(o.score)===activeFilter;});
   renderTreemap(vis);
   renderExpBars(vis);
   renderBdBars(vis,'bd-bars',function(o){return o.group;},function(k){return GRP_CLR[k]||'#888';});
@@ -409,23 +762,34 @@ function switchTab(t,el){
   if(t==='treemap')renderTreemap(vis);
 }
 
-// Load data from data.json
 fetch('eu-ai-exposure-data.json')
   .then(function(r){ return r.json(); })
   .then(function(d){
     OCCS = d.occupations;
-    vis = [...OCCS];
+    vis = [].concat(OCCS);
     apply();
   })
   .catch(function(err){
-    console.error('Failed to load data.json:', err);
-    document.getElementById('loading').textContent = 'Failed to load data. Check console.';
+    console.error('Failed to load data:', err);
+    document.getElementById('loading').textContent = 'Failed to load data.';
   });
 
 window.addEventListener('resize',function(){
   if(activeTab==='treemap')renderTreemap(vis);
   else renderScatter(vis);
 });
-</script>
+
+// Reveal animation
+var reveals = document.querySelectorAll('.reveal');
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry, i) {
+    if (entry.isIntersecting) {
+      setTimeout(function(){ entry.target.classList.add('visible'); }, i * 60);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+reveals.forEach(function(el){ observer.observe(el); });
+  </script>
 </body>
 </html>
