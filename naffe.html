@@ -36,8 +36,12 @@
 
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(8px); }
     .nav-logo { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px; color: var(--dark); text-decoration: none; }
-    .nav-back { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
-    .nav-back:hover { color: var(--dark); }
+    .nav-links { display: flex; gap: 40px; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--dark); }
+    .nav-links a.active { color: var(--dark); }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 20px; height: 1.5px; background: var(--dark); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
 
     /* HERO */
     .page-hero { padding: 180px 48px 96px; border-bottom: 1px solid var(--border); max-width: 1200px; margin: 0 auto; }
@@ -100,6 +104,12 @@
 
     @media (max-width: 900px) {
       nav { padding: 20px 24px; }
+      .nav-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--white); border-bottom: 1px solid var(--border); padding: 24px; gap: 20px; }
+      .nav-links.open { display: flex; }
+      .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+      .nav-toggle.open span:nth-child(2) { opacity: 0; }
+      .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
       .page-hero, .content-section, .video-section, .pullquote, .cta-section { padding-left: 24px; padding-right: 24px; }
       .page-hero { padding-top: 120px; }
       .footer-dark { flex-direction: column; gap: 24px; text-align: center; }
@@ -109,8 +119,14 @@
 <body>
 
   <nav>
-    <a href="/" class="nav-logo">yellow3 lab</a>
-    <a href="/" class="nav-back">&larr; Back</a>
+    <a href="/" class="nav-logo"><img src="/logo.png" alt="yellow3" style="height:24px;" /></a>
+    <div class="nav-links">
+      <a href="/#about">About</a>
+      <a href="/insights/">Insights</a>
+      <a href="/masterclass">Masterclass</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');this.closest('nav').querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
   </nav>
 
   <!-- HERO -->
@@ -266,7 +282,7 @@
 
   <!-- FOOTER -->
   <footer class="footer-dark">
-    <a href="/" class="footer-logo">yellow3 lab</a>
+    <a href="/" class="footer-logo"><img src="/logo.png" alt="yellow3" style="height:24px;filter:invert(1);opacity:0.4;" /></a>
     <div class="footer-links">
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
