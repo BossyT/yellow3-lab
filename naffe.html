@@ -39,66 +39,64 @@
     .nav-links { display: flex; gap: 40px; }
     .nav-links a { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--dark); }
-    .nav-links a.active { color: var(--dark); }
+    .nav-back { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--dark); }
     .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
     .nav-toggle span { display: block; width: 20px; height: 1.5px; background: var(--dark); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
 
-    /* HERO */
-    .page-hero { padding: 180px 48px 96px; border-bottom: 1px solid var(--border); max-width: 1200px; margin: 0 auto; }
-    .page-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 32px; }
-    .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(48px, 6vw, 80px); font-weight: 400; line-height: 1.08; letter-spacing: -0.02em; color: var(--black); margin-bottom: 48px; }
-    .page-hero-intro { font-size: 19px; color: var(--body); max-width: 680px; line-height: 1.8; }
-    .page-hero-intro p { margin-bottom: 24px; }
+    /* ARTICLE HERO */
+    .article-hero { padding: 160px 48px 80px; border-bottom: 1px solid var(--border); max-width: 1200px; margin: 0 auto; }
+    .article-issue { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 32px; }
+    .article-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(42px, 5.5vw, 72px); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--black); max-width: 800px; margin-bottom: 48px; }
 
-    /* CONTENT SECTIONS */
-    .content-section { padding: 112px 48px; border-bottom: 1px solid var(--border); }
-    .content-inner { max-width: 720px; margin: 0 auto; }
-    .content-inner h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.5vw, 42px); font-weight: 400; line-height: 1.2; color: var(--black); margin-bottom: 40px; }
-    .content-inner h2 em { font-style: italic; color: var(--mid); }
-    .content-inner p { font-size: 17px; color: var(--body); margin-bottom: 24px; line-height: 1.8; }
-    .content-inner p:last-child { margin-bottom: 0; }
+    /* ARTICLE LAYOUT */
+    .article-layout { display: grid; grid-template-columns: 1fr 320px; gap: 0; max-width: 1200px; margin: 0 auto; padding: 0 48px; border-bottom: 1px solid var(--border); }
+    .article-body { padding: 72px 80px 72px 0; border-right: 1px solid var(--border); }
+    .article-body p { font-size: 18px; color: var(--body); line-height: 1.8; margin-bottom: 32px; }
+    .article-body h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; color: var(--black); margin: 56px 0 24px; line-height: 1.3; }
+    .article-body h3 { font-size: 16px; font-weight: 500; color: var(--dark); margin: 40px 0 16px; letter-spacing: 0.02em; }
+    .article-body blockquote { border-left: 2px solid var(--border); padding: 4px 0 4px 32px; margin: 48px 0; }
+    .article-body blockquote p { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; font-weight: 400; color: var(--black); line-height: 1.5; margin: 0; }
 
-    /* EXAMPLES LIST */
-    .example-list { margin: 40px 0; display: flex; flex-direction: column; gap: 0; }
+    /* EXAMPLE LIST */
     .example-item { border-top: 1px solid var(--border); padding: 28px 0; }
-    .example-item:last-child { border-bottom: 1px solid var(--border); }
+    .example-item:last-child { border-bottom: 1px solid var(--border); margin-bottom: 32px; }
     .example-item strong { font-weight: 500; color: var(--black); }
-    .example-item p { font-size: 16px; color: var(--body); line-height: 1.75; margin-bottom: 0; }
+    .example-item p { margin-bottom: 0; }
 
-    /* PROMPTS */
-    .prompt-list { margin: 40px 0; display: flex; flex-direction: column; gap: 0; }
-    .prompt-item { border-top: 1px solid var(--border); padding: 24px 0 24px 24px; font-size: 16px; color: var(--body); line-height: 1.7; font-style: italic; position: relative; }
+    /* PROMPT LIST */
+    .prompt-item { border-top: 1px solid var(--border); padding: 24px 0 24px 24px; font-style: italic; position: relative; }
     .prompt-item::before { content: ''; position: absolute; left: 0; top: 28px; width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
-    .prompt-item:last-child { border-bottom: 1px solid var(--border); }
+    .prompt-item:last-child { border-bottom: 1px solid var(--border); margin-bottom: 32px; }
+    .prompt-item p { margin-bottom: 0; }
 
     /* VIDEO */
-    .video-section { padding: 112px 48px; border-bottom: 1px solid var(--border); background: var(--off-white); }
-    .video-inner { max-width: 800px; margin: 0 auto; text-align: center; }
-    .video-inner video { width: 100%; border: 1px solid var(--border); }
-    .video-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 32px; }
-
-    /* PULLQUOTE */
-    .pullquote { padding: 96px 48px; border-bottom: 1px solid var(--border); background: var(--off-white); }
-    .pullquote-inner { max-width: 800px; margin: 0 auto; }
-    .pullquote blockquote { font-family: 'Playfair Display', serif; font-size: clamp(24px, 3vw, 34px); font-weight: 400; font-style: italic; line-height: 1.5; color: var(--black); }
+    .article-video { margin: 48px 0; }
+    .article-video video { width: 100%; border: 1px solid var(--border); }
 
     /* CTA */
-    .cta-section { padding: 112px 48px; border-bottom: 1px solid var(--border); }
-    .cta-inner { max-width: 720px; margin: 0 auto; }
-    .cta-inner h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.5vw, 42px); font-weight: 400; line-height: 1.2; color: var(--black); margin-bottom: 40px; }
-    .cta-inner p { font-size: 17px; color: var(--body); margin-bottom: 32px; line-height: 1.8; }
-    .cta-btn { display: inline-block; padding: 16px 44px; border: 1px solid var(--dark); color: var(--dark); font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, color 0.2s; }
-    .cta-btn:hover { background: var(--dark); color: var(--white); }
+    .article-cta { display: inline-block; padding: 14px 36px; border: 1px solid var(--dark); color: var(--dark); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, color 0.2s; margin-top: 16px; }
+    .article-cta:hover { background: var(--dark); color: var(--white); }
 
-    /* FOOTER */
-    .footer-dark { background: var(--black); padding: 48px; display: flex; justify-content: space-between; align-items: center; }
-    .footer-logo { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px; color: rgba(255,255,255,0.4); text-decoration: none; }
+    /* SIDEBAR */
+    .article-sidebar { padding: 72px 0 72px 56px; }
+    .sidebar-section { margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid var(--border); }
+    .sidebar-section:last-child { border-bottom: none; }
+    .sidebar-label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+    .sidebar-section p { font-size: 14px; color: var(--body); line-height: 1.65; }
+    .sidebar-related { display: flex; flex-direction: column; gap: 0; }
+    .sidebar-related-item { border-top: 1px solid var(--border); padding: 16px 0; text-decoration: none; display: block; transition: padding-left 0.2s; }
+    .sidebar-related-item:hover { padding-left: 8px; }
+    .sidebar-related-issue { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .sidebar-related-title { font-size: 14px; color: var(--dark); line-height: 1.4; }
+
+    footer { background: var(--black); padding: 48px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { text-decoration: none; }
     .footer-links { display: flex; gap: 32px; }
     .footer-links a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.22); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: rgba(255,255,255,0.6); }
     .footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
 
-    /* REVEAL */
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
@@ -110,9 +108,11 @@
       .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
       .nav-toggle.open span:nth-child(2) { opacity: 0; }
       .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
-      .page-hero, .content-section, .video-section, .pullquote, .cta-section { padding-left: 24px; padding-right: 24px; }
-      .page-hero { padding-top: 120px; }
-      .footer-dark { flex-direction: column; gap: 24px; text-align: center; }
+      .article-hero { padding: 120px 24px 56px; }
+      .article-layout { grid-template-columns: 1fr; padding: 0 24px; }
+      .article-body { padding: 56px 0; border-right: none; border-bottom: 1px solid var(--border); }
+      .article-sidebar { padding: 48px 0; }
+      footer { flex-direction: column; gap: 24px; text-align: center; }
     }
   </style>
 </head>
@@ -126,175 +126,213 @@
       <a href="/masterclass">Masterclass</a>
       <a href="/#contact">Contact</a>
     </div>
+    <a href="/" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M5 12l7 7M5 12l7-7"/></svg>
+      Home
+    </a>
     <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');this.closest('nav').querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
   </nav>
 
-  <!-- HERO -->
-  <div class="page-hero">
-    <div class="page-label reveal">A yellow3 lab platform</div>
-    <h1 class="reveal">naffe.ai</h1>
-    <div class="page-hero-intro reveal">
+  <div class="article-hero reveal">
+    <div class="article-issue">A yellow3 lab platform</div>
+    <h1>naffe.ai</h1>
+  </div>
+
+  <div class="article-layout">
+    <div class="article-body reveal">
+
       <p>Until now, if you needed software - a tool to manage your clients, a system to track your team's work, a platform your customers could log in to - you had two realistic options.</p>
+
       <p>You hired a developer and spent months getting something built. Or you found an off-the-shelf product and adapted your way of working to fit what it could do.</p>
+
       <p>Both options are expensive in different ways. One costs money. The other costs compromise.</p>
+
       <p>naffe.ai is a third option.</p>
-    </div>
-  </div>
 
-  <!-- WHAT IT IS -->
-  <div class="content-section">
-    <div class="content-inner reveal">
-      <h2>What it <em>actually</em> is</h2>
+      <h2>What it actually is</h2>
+
       <p>naffe.ai is a platform where you describe the software you need - in plain English, the way you would explain it to a colleague - and it builds it.</p>
+
       <p>Not a template. Not a website. Working software, with a real database behind it, real logic running inside it, and a real web address you can share with your team or your customers.</p>
+
       <p>The kind of thing that previously took a development team weeks to build, you can have running in minutes.</p>
-    </div>
-  </div>
 
-  <!-- VIDEO -->
-  <div class="video-section">
-    <div class="video-inner reveal">
-      <div class="video-label">See it in action</div>
-      <video autoplay loop muted playsinline>
-        <source src="/naffe-build-simulation.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
+      <div class="article-video">
+        <video autoplay loop muted playsinline>
+          <source src="/naffe-build-simulation.mp4" type="video/mp4">
+        </video>
+      </div>
 
-  <!-- CONCRETE EXAMPLE -->
-  <div class="content-section">
-    <div class="content-inner reveal">
-      <h2>A concrete <em>example</em></h2>
+      <h2>A concrete example</h2>
+
       <p>Say you run a small consulting firm. You want a system where clients can log in, see the status of their project, upload documents, and send you messages - without everything ending up in email threads.</p>
+
       <p>Before naffe.ai, you would have briefed an agency, spent weeks on specifications, waited months for a build, and paid tens of thousands of euros for something that works mostly the way you imagined it.</p>
+
       <p>With naffe.ai, you describe that in a few sentences. It builds the client portal. You test it, adjust it through conversation, and publish it.</p>
+
       <p>That is the difference.</p>
-    </div>
-  </div>
 
-  <!-- WHAT YOU CAN BUILD -->
-  <div class="content-section">
-    <div class="content-inner reveal">
-      <h2>What you can <em>build</em></h2>
+      <h2>What you can build</h2>
+
       <p>naffe.ai is not limited to one type of software. Some examples of what people build with it:</p>
-      <div class="example-list">
-        <div class="example-item">
-          <p><strong>Internal dashboards</strong> that show the data your team actually needs - sales numbers, project status, operational metrics - without paying for a business intelligence platform you have to configure yourself.</p>
-        </div>
-        <div class="example-item">
-          <p><strong>Client-facing portals</strong> where your customers or partners have their own login, can see what is relevant to them, and can interact with your business without calling or emailing.</p>
-        </div>
-        <div class="example-item">
-          <p><strong>Booking and intake systems</strong> that replace the back-and-forth of scheduling, capture the information you need upfront, and send confirmations automatically.</p>
-        </div>
-        <div class="example-item">
-          <p><strong>Tracking tools</strong> for things your business currently manages in spreadsheets - candidates, leads, projects, inventory, orders - built the way your process actually works, not the way a generic tool assumes it works.</p>
-        </div>
-        <div class="example-item">
-          <p><strong>AI-powered applications</strong> where the software itself makes decisions, flags things for your attention, and acts on information without you having to monitor it.</p>
-        </div>
+
+      <div class="example-item">
+        <p><strong>Internal dashboards</strong> that show the data your team actually needs - sales numbers, project status, operational metrics - without paying for a business intelligence platform you have to configure yourself.</p>
       </div>
-    </div>
-  </div>
+      <div class="example-item">
+        <p><strong>Client-facing portals</strong> where your customers or partners have their own login, can see what is relevant to them, and can interact with your business without calling or emailing.</p>
+      </div>
+      <div class="example-item">
+        <p><strong>Booking and intake systems</strong> that replace the back-and-forth of scheduling, capture the information you need upfront, and send confirmations automatically.</p>
+      </div>
+      <div class="example-item">
+        <p><strong>Tracking tools</strong> for things your business currently manages in spreadsheets - candidates, leads, projects, inventory, orders - built the way your process actually works, not the way a generic tool assumes it works.</p>
+      </div>
+      <div class="example-item">
+        <p><strong>AI-powered applications</strong> where the software itself makes decisions, flags things for your attention, and acts on information without you having to monitor it.</p>
+      </div>
 
-  <!-- THE SHIFT -->
-  <div class="pullquote">
-    <div class="pullquote-inner reveal">
-      <blockquote>For decades, software has been a tool. You learn it. You operate it. You press the buttons in the right order, fill in the right fields, navigate the right menus. Nobody questioned the premise: that humans would always be the ones doing the operating. That premise is ending.</blockquote>
-    </div>
-  </div>
+      <blockquote><p>For decades, software has been a tool. You learn it. You operate it. You press the buttons in the right order, fill in the right fields, navigate the right menus. Nobody questioned the premise: that humans would always be the ones doing the operating. That premise is ending.</p></blockquote>
 
-  <!-- AUTONOMOUS SOFTWARE -->
-  <div class="content-section">
-    <div class="content-inner reveal">
-      <h2>What autonomous software <em>actually</em> means</h2>
+      <h2>What autonomous software actually means</h2>
+
       <p>Autonomous software does not wait for instructions. It understands what outcome is needed, makes decisions about how to get there, and acts.</p>
+
       <p>Not a button that automates one specific task. Not a macro that runs the same steps in sequence. Software that reads a situation, decides what to do, and does it - the way a capable person would, but without the person.</p>
+
       <p>A sales system that identifies which leads to prioritise this week, writes the outreach, sends it, logs the response, and updates the pipeline. Without anyone opening a CRM.</p>
+
       <p>A financial tool that monitors your accounts, flags an anomaly at 2am, cross-references it against your transaction history, and sends you a one-line summary when you wake up. Without anyone running a report.</p>
+
       <p>An operations dashboard that notices a supplier is running late, checks which orders are affected, drafts a customer communication, and waits for your approval before sending it. All before you have had your first coffee.</p>
+
       <p>This is not a vision of what software might do one day. This is what software can do now.</p>
-    </div>
-  </div>
 
-  <!-- WHY THIS MATTERS -->
-  <div class="content-section">
-    <div class="content-inner reveal">
-      <h2>Why this matters more than most people <em>realise</em></h2>
+      <h2>Why this matters more than most people realise</h2>
+
       <p>The shift from operated software to autonomous software is not an upgrade. It is a category change.</p>
+
       <p>For most of the history of business software, the constraint was always the same: a human had to be in the loop at every step. Software could store information. Software could calculate. Software could display. But it could not think, and it could not act without being told to.</p>
+
       <p>That constraint shaped everything. How companies hired. How teams were structured. How workflows were designed. How much time got spent on administration versus the work that actually mattered.</p>
+
       <p>Remove the constraint, and none of those structures need to exist in the same form anymore.</p>
+
       <p>A five-person company with autonomous software running its operations can do what a twenty-person company could do before. Not because anyone worked harder - because the software is doing the work that previously required people to sit in front of screens pressing buttons.</p>
-    </div>
-  </div>
 
-  <!-- WHY WE BUILT IT -->
-  <div class="content-section" style="background: var(--off-white);">
-    <div class="content-inner reveal">
-      <h2>Why we built <em>naffe.ai</em></h2>
+      <h2>Why we built naffe.ai</h2>
+
       <p>At yellow3 lab, we do not build tools. We build software that acts.</p>
+
       <p>naffe.ai is not a platform where you configure automations or set up workflows. It is a platform where the software you build has intelligence built into it from the start - able to monitor, decide, and act on your behalf.</p>
+
       <p>We believe the businesses that understand this shift earliest will have an advantage that compounds. Not just because their software will do more - but because they will have built the habit of asking a different question.</p>
+
       <p>Not "which buttons does my team need to press?" but "what outcomes do I need, and what can the software handle on its own?"</p>
+
       <p>That question is the beginning of a very different kind of business.</p>
-    </div>
-  </div>
 
-  <!-- HOW IT WORKS -->
-  <div class="content-section">
-    <div class="content-inner reveal">
-      <h2>How it works <em>in practice</em></h2>
+      <h2>How it works in practice</h2>
+
       <p>You open naffe.ai and describe what you want to build. Wingman - the AI that runs inside the platform - asks clarifying questions if it needs to, then builds the first version.</p>
+
       <p>You can see it running immediately. If something is not right, you tell Wingman what to change. You work in conversation, not in code.</p>
+
       <p>When you are ready, you publish it. It runs on real infrastructure. If your software needs a database, it has one. If it needs user logins, it has them. If it needs to send emails or connect to other systems, it can.</p>
+
       <p>You never touch a file, a line of code, or a configuration setting.</p>
-    </div>
-  </div>
 
-  <!-- ENTERPRISE STANDARDS -->
-  <div class="content-section">
-    <div class="content-inner reveal">
-      <h2>Built to enterprise <em>standards</em></h2>
+      <h2>Built to enterprise standards</h2>
+
       <p>naffe.ai runs on production infrastructure with security built in from the ground up - not added on top.</p>
+
       <p>Every application gets its own isolated database with row-level security. User authentication is handled automatically. All data is encrypted in transit and at rest. Access controls are built into every layer of the stack.</p>
+
       <p>The software you build on naffe.ai meets the same security standards your IT department would require from any enterprise vendor. You do not have to configure it, request it, or pay extra for it. It is how naffe.ai works by default.</p>
-    </div>
-  </div>
 
-  <!-- TRY IT -->
-  <div class="cta-section">
-    <div class="cta-inner reveal">
-      <h2>Try it - what would <em>you</em> build?</h2>
+      <h2>Try it - what would you build?</h2>
+
       <p>These are real starting points:</p>
-      <div class="prompt-list">
-        <div class="prompt-item">"Build me a CRM for a small sales team. We need to track leads, add notes after calls, and set follow-up reminders."</div>
-        <div class="prompt-item">"Create a client portal where customers can log in, see their project status, and upload files to us."</div>
-        <div class="prompt-item">"I run a recruitment firm. Build a tool to track candidates, which roles they are being considered for, and where they are in the interview process."</div>
-        <div class="prompt-item">"Build an internal dashboard showing our monthly revenue, active clients, and any invoices overdue by more than 14 days."</div>
-        <div class="prompt-item">"Create a booking system for my practice. Clients choose a time, answer a short intake form, and receive a confirmation."</div>
+
+      <div class="prompt-item">
+        <p>"Build me a CRM for a small sales team. We need to track leads, add notes after calls, and set follow-up reminders."</p>
       </div>
+      <div class="prompt-item">
+        <p>"Create a client portal where customers can log in, see their project status, and upload files to us."</p>
+      </div>
+      <div class="prompt-item">
+        <p>"I run a recruitment firm. Build a tool to track candidates, which roles they are being considered for, and where they are in the interview process."</p>
+      </div>
+      <div class="prompt-item">
+        <p>"Build an internal dashboard showing our monthly revenue, active clients, and any invoices overdue by more than 14 days."</p>
+      </div>
+      <div class="prompt-item">
+        <p>"Create a booking system for my practice. Clients choose a time, answer a short intake form, and receive a confirmation."</p>
+      </div>
+
       <p>naffe.ai is live. It is the first platform from yellow3 lab, and it is in active development - which means it is already working, and getting better every week.</p>
+
       <p>If you have spent years knowing exactly what software your business needs, and never had a way to build it - this is for you.</p>
-      <a href="https://naffe.ai" class="cta-btn" target="_blank">Build with naffe.ai</a>
+
+      <a href="https://naffe.ai" class="article-cta" target="_blank">Build with naffe.ai</a>
+
+    </div>
+
+    <div class="article-sidebar reveal">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Platform</div>
+        <p>naffe.ai is the first platform from yellow3 lab. Describe what you need in plain English. Get production-ready software - built, deployed, and working.</p>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Key capabilities</div>
+        <p>Full-stack apps from a single prompt. AI editing through natural conversation. Live integrations with Stripe, Gmail, Calendar, and more. One-click publish. 20 pre-built AI agents.</p>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">About yellow3 lab</div>
+        <p>We design and develop AI-powered platforms for industries where complexity has become the barrier to progress.</p>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Related reading</div>
+        <div class="sidebar-related">
+          <a href="/insights/autonomous-software" class="sidebar-related-item">
+            <div class="sidebar-related-issue">Issue 01</div>
+            <div class="sidebar-related-title">Your Software Should Work While You Sleep</div>
+          </a>
+          <a href="/insights/the-shopify-moment-for-business-software-is-here" class="sidebar-related-item">
+            <div class="sidebar-related-issue">Issue 09</div>
+            <div class="sidebar-related-title">The Shopify Moment for Business Software Is Here</div>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="footer-dark">
+  <footer>
     <a href="/" class="footer-logo"><img src="/logo.png" alt="yellow3" style="height:24px;filter:invert(1);opacity:0.4;" /></a>
+    <div class="footer-links">
+      <a href="/#about">About</a>
+      <a href="/insights/">Insights</a>
+      <a href="/masterclass">Masterclass</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <span class="footer-copy">2026 yellow3 lab, Copenhagen</span>
     <div class="footer-links">
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
       <a href="/cookies">Cookies</a>
     </div>
-    <span class="footer-copy">yellow3 lab - Copenhagen</span>
   </footer>
 
   <script>
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          observer.unobserve(entry.target);
+        }
+      });
     }, { threshold: 0.15 });
     reveals.forEach(el => observer.observe(el));
   </script>
