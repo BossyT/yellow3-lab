@@ -1,0 +1,13 @@
+<svg width="200" height="40" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Spark Icon -->
+  <line x1="20" y1="4" x2="20" y2="12" stroke="#000000" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="20" y1="28" x2="20" y2="36" stroke="#000000" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="4" y1="20" x2="12" y2="20" stroke="#000000" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="28" y1="20" x2="36" y2="20" stroke="#000000" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="8.69" y1="8.69" x2="14.34" y2="14.34" stroke="#000000" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="25.66" y1="25.66" x2="31.31" y2="31.31" stroke="#000000" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="8.69" y1="31.31" x2="14.34" y2="25.66" stroke="#000000" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="25.66" y1="14.34" x2="31.31" y2="8.69" stroke="#000000" stroke-width="2.5" stroke-linecap="round" />
+  <!-- Wordmark -->
+  <text x="46" y="27" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="20" font-weight="600" fill="#000000">naffe.ai</text>
+</svg>
