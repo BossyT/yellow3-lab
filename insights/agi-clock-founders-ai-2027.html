@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3JXMM2VG5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-K3JXMM2VG5');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The AGI Clock Is Ticking. What Should Founders Actually Do About It? &#8211; yellow3 lab</title>
     <meta name="description" content="The AI 2027 report mapped a path to AGI with unsettling precision. Whether the timeline is 2027 or 2032, the strategic question for founders is the same - and the window to act is already closing.">
     <meta property="og:title" content="The AGI Clock Is Ticking. What Should Founders Actually Do About It? &#8211; yellow3 lab">
     <meta property="og:description" content="The AI 2027 report mapped a path to AGI with unsettling precision. Whether the timeline is 2027 or 2032, the strategic question for founders is the same - and the window to act is already closing.">
-    <meta property="og:image" content="https://yellow3.io/insights/og-agi-clock-founders-ai-2027.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://yellow3.io/insights/agi-clock-founders-ai-2027">
     <meta property="article:published_time" content="2026-04-14">
+    <meta property="article:modified_time" content="2026-04-14">
     <meta property="article:author" content="yellow3 lab">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="The AGI Clock Is Ticking. What Should Founders Actually Do About It? &#8211; yellow3 lab">
-    <meta name="twitter:description" content="The AI 2027 report mapped a path to AGI with unsettling precision. Whether the timeline is 2027 or 2032, the strategic question for founders is the same - and the window to act is already closing.">
-    <meta name="twitter:image" content="https://yellow3.io/insights/og-agi-clock-founders-ai-2027.png">
     <link rel="canonical" href="https://yellow3.io/insights/agi-clock-founders-ai-2027">
 
     <script type="application/ld+json">
@@ -137,436 +139,137 @@
 
     <article class="article-body">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The AGI Clock Is Ticking. What Should Founders Actually Do About It? — yellow3 Insights Issue 20</title>
-<meta name="description" content="The AI 2027 report mapped a path to AGI with unsettling precision. Whether the timeline is 2027 or 2032, the strategic question for founders is the same - and the window to act is already closing.">
-<style>
-  body {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    line-height: 1.75;
-    color: #1a1a1a;
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem 4rem;
-    background: #fff;
-  }
-  .eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 2rem;
-    font-size: 12px;
-    color: #888780;
-    letter-spacing: 0.05em;
-  }
-  .eyebrow-sep { width: 1px; height: 12px; background: #D3D1C7; }
-  .tag {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #0C447C;
-    background: #E6F1FB;
-    padding: 3px 10px;
-    border-radius: 20px;
-  }
-  h1 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(28px, 5vw, 42px);
-    font-weight: 400;
-    line-height: 1.18;
-    color: #1a1a1a;
-    margin: 0 0 1.25rem;
-  }
-  .meta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 12px;
-    color: #888780;
-    margin-bottom: 2rem;
-  }
-  .lede {
-    border-left: 3px solid #378ADD;
-    padding: 0.75rem 0 0.75rem 1.25rem;
-    margin: 0 0 2rem;
-  }
-  .lede p {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-style: italic;
-    font-size: 19px;
-    line-height: 1.55;
-    color: #1a1a1a;
-    margin: 0;
-  }
-  hr.divider {
-    border: none;
-    border-top: 0.5px solid #D3D1C7;
-    margin: 2rem 0;
-  }
-  h2 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 23px;
-    font-weight: 500;
-    color: #1a1a1a;
-    margin: 2.25rem 0 0.75rem;
-  }
-  p { margin: 0 0 1.25rem; }
-  blockquote {
-    border-left: 3px solid #1D9E75;
-    padding: 0.75rem 0 0.75rem 1.25rem;
-    margin: 1.75rem 0;
-    color: #1a1a1a;
-    font-size: 16px;
-    line-height: 1.7;
-  }
- 
-  /* Timeline table */
-  .timeline {
-    background: #F1EFE8;
-    border-radius: 12px;
-    border: 0.5px solid #D3D1C7;
-    padding: 1.25rem 1.5rem;
-    margin: 1.75rem 0;
-  }
-  .timeline-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #888780;
-    margin: 0 0 1rem;
-  }
-  .tl-row {
-    display: grid;
-    grid-template-columns: 90px 1fr;
-    gap: 12px;
-    align-items: baseline;
-    padding: 7px 0;
-    border-top: 0.5px solid #D3D1C7;
-  }
-  .tl-row:first-of-type { border-top: none; }
-  .tl-year { font-size: 12px; font-weight: 500; color: #185FA5; }
-  .tl-event { font-size: 14px; color: #1a1a1a; line-height: 1.5; }
- 
-  /* Chart */
-  .chart-wrap {
-    background: #fff;
-    border: 0.5px solid #D3D1C7;
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin: 2rem 0;
-  }
-  .chart-title {
-    font-size: 13px;
-    font-weight: 500;
-    color: #1a1a1a;
-    margin: 0 0 0.25rem;
-  }
-  .chart-sub {
-    font-size: 12px;
-    color: #888780;
-    margin: 0 0 1.25rem;
-  }
-  .legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-bottom: 1rem;
-    font-size: 12px;
-    color: #5F5E5A;
-  }
-  .legend-item { display: flex; align-items: center; gap: 5px; }
-  .legend-line { width: 18px; height: 2.5px; display: inline-block; }
-  .legend-dash { width: 18px; height: 0; border-top: 2.5px dashed #888780; display: inline-block; }
-  .legend-swatch { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
-  .chart-canvas-wrap { position: relative; width: 100%; height: 320px; }
- 
-  /* Byline */
-  .byline {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding-top: 1.5rem;
-    border-top: 0.5px solid #D3D1C7;
-    margin-top: 2.5rem;
-  }
-  .avatar {
-    width: 38px; height: 38px; border-radius: 50%;
-    background: #E6F1FB;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; font-weight: 500; color: #185FA5;
-    flex-shrink: 0;
-  }
-  .byline-name { font-size: 13px; font-weight: 500; color: #1a1a1a; }
-  .byline-sub { font-size: 12px; color: #888780; }
- 
-  @media (max-width: 480px) {
-    .tl-row { grid-template-columns: 72px 1fr; }
-    .meta { flex-wrap: wrap; gap: 6px; }
-  }
-</style>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-</head>
-<body>
- 
-<div class="eyebrow">
-  <span style="font-weight:500;letter-spacing:0.08em;">yellow3</span>
-  <div class="eyebrow-sep"></div>
-  <span>Issue 20</span>
-  <span class="tag">AI Strategy</span>
-</div>
- 
-<h1>The AGI Clock Is Ticking. What Should Founders Actually Do About It?</h1>
- 
-<div class="meta">
-  <span>Thomas Chr. Melskens</span>
-  <div class="eyebrow-sep"></div>
-  <span>April 2026</span>
-  <div class="eyebrow-sep"></div>
-  <span>5 min read</span>
-</div>
- 
-<div class="lede">
-  <p>"The question is no longer whether artificial general intelligence will arrive. It is whether your business will be ready when it does."</p>
-</div>
- 
-<hr class="divider">
- 
 <p>In April 2025, a research group called the AI Futures Project published a document that quietly became one of the most read forecasts in tech history. Over one million people consumed it in the first few weeks - including, reportedly, the US Vice President. The report is called AI 2027, and if you run a business and have not read it, you probably should.</p>
- 
+
 <p>Written by former OpenAI researcher Daniel Kokotajlo alongside Eli Lifland, Thomas Larsen, Romeo Dean, and the writer Scott Alexander, AI 2027 is not a vague gesture at a distant future. It is a month-by-month scenario forecast mapping how AI could progress from today's capable but limited systems to something that surpasses the best human researchers at virtually every task. The key word is "could." But the credibility behind it is not easily dismissed.</p>
- 
+
 <h2>What the report actually says</h2>
- 
+
 <p>The scenario traces a trajectory across three years. In 2025, AI agents begin handling meaningful autonomous tasks - research, code, customer interactions. By early 2026, the leading AI labs have systems capable of running complex multi-step workflows with minimal supervision. In early 2027, coding becomes fully automatable, and by late 2027, an "intelligence explosion" begins - AI systems improving themselves faster than any human team could manage.</p>
- 
-<div class="timeline">
-  <p class="timeline-label">AI 2027 - key milestones</p>
-  <div class="tl-row"><span class="tl-year">2025</span><span class="tl-event">AI agents enter mainstream use; autonomous task completion becomes commercially viable</span></div>
-  <div class="tl-row"><span class="tl-year">Early 2026</span><span class="tl-event">Superhuman coding agents emerge; AI begins accelerating its own development</span></div>
-  <div class="tl-row"><span class="tl-year">Early 2027</span><span class="tl-event">Full coding automation; AI researchers outpace human counterparts on most tasks</span></div>
-  <div class="tl-row"><span class="tl-year">Late 2027</span><span class="tl-event">Intelligence explosion begins; two divergent outcomes become plausible</span></div>
-  <div class="tl-row"><span class="tl-year">Update: 2030</span><span class="tl-event">Kokotajlo revised his median AGI date to "around 2030, lots of uncertainty" in November 2025</span></div>
-</div>
- 
-<!-- CAPABILITY TRAJECTORY CHART -->
-<div class="chart-wrap">
-  <p class="chart-title">AI capability trajectory — original vs revised forecast</p>
-  <p class="chart-sub">Illustrative model based on AI 2027 report milestones and METR task-horizon data</p>
-  <div class="legend">
-    <span class="legend-item"><span class="legend-line" style="background:#378ADD;"></span> Original forecast (Apr 2025)</span>
-    <span class="legend-item"><span class="legend-dash"></span> Revised forecast (Nov 2025)</span>
-    <span class="legend-item"><span class="legend-swatch" style="background:#E6F1FB;border:0.5px solid #B5D4F4;"></span> Uncertainty range</span>
+
+<div style="background:#F1EFE8;border-radius:12px;border:0.5px solid #D3D1C7;padding:1.25rem 1.5rem;margin:1.75rem 0;">
+  <p style="font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#888780;margin:0 0 1rem;">AI 2027 - key milestones</p>
+  <div style="display:grid;grid-template-columns:90px 1fr;gap:12px;align-items:baseline;padding:7px 0;">
+    <span style="font-size:12px;font-weight:500;color:#185FA5;">2025</span>
+    <span style="font-size:14px;color:#1a1a1a;line-height:1.5;">AI agents enter mainstream use; autonomous task completion becomes commercially viable</span>
   </div>
-  <div class="chart-canvas-wrap">
-    <canvas id="aiChart" role="img" aria-label="Line chart of AI capability from 2024 to 2032. Original forecast reaches superintelligence by late 2027; revised forecast shifts this to 2030. Key milestones are annotated.">AI capability trajectory: starts at narrow AI in 2024, rises through AI agents in 2025, superhuman coder in early 2027, intelligence explosion late 2027 on original; revised forecast shifts peak to 2030.</canvas>
+  <div style="display:grid;grid-template-columns:90px 1fr;gap:12px;align-items:baseline;padding:7px 0;border-top:0.5px solid #D3D1C7;">
+    <span style="font-size:12px;font-weight:500;color:#185FA5;">Early 2026</span>
+    <span style="font-size:14px;color:#1a1a1a;line-height:1.5;">Superhuman coding agents emerge; AI begins accelerating its own development</span>
+  </div>
+  <div style="display:grid;grid-template-columns:90px 1fr;gap:12px;align-items:baseline;padding:7px 0;border-top:0.5px solid #D3D1C7;">
+    <span style="font-size:12px;font-weight:500;color:#185FA5;">Early 2027</span>
+    <span style="font-size:14px;color:#1a1a1a;line-height:1.5;">Full coding automation; AI researchers outpace human counterparts on most tasks</span>
+  </div>
+  <div style="display:grid;grid-template-columns:90px 1fr;gap:12px;align-items:baseline;padding:7px 0;border-top:0.5px solid #D3D1C7;">
+    <span style="font-size:12px;font-weight:500;color:#185FA5;">Late 2027</span>
+    <span style="font-size:14px;color:#1a1a1a;line-height:1.5;">Intelligence explosion begins; two divergent outcomes become plausible</span>
+  </div>
+  <div style="display:grid;grid-template-columns:90px 1fr;gap:12px;align-items:baseline;padding:7px 0;border-top:0.5px solid #D3D1C7;">
+    <span style="font-size:12px;font-weight:500;color:#185FA5;">Update: 2030</span>
+    <span style="font-size:14px;color:#1a1a1a;line-height:1.5;">Kokotajlo revised his median AGI date to "around 2030, lots of uncertainty" in November 2025</span>
   </div>
 </div>
- 
+
+<div style="background:#fff;border:0.5px solid #D3D1C7;border-radius:12px;padding:1.5rem;margin:2rem 0;">
+  <p style="font-size:13px;font-weight:500;color:#1a1a1a;margin:0 0 0.25rem;">AI capability trajectory - original vs revised forecast</p>
+  <p style="font-size:12px;color:#888780;margin:0 0 1rem;">Illustrative model based on AI 2027 report milestones and METR task-horizon data</p>
+  <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:1rem;font-size:12px;color:#5F5E5A;">
+    <span style="display:flex;align-items:center;gap:5px;"><span style="width:18px;height:2.5px;background:#378ADD;display:inline-block;"></span> Original forecast (Apr 2025)</span>
+    <span style="display:flex;align-items:center;gap:5px;"><span style="width:18px;height:0;border-top:2.5px dashed #888780;display:inline-block;"></span> Revised forecast (Nov 2025)</span>
+    <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;background:#E6F1FB;border:0.5px solid #B5D4F4;display:inline-block;border-radius:2px;"></span> Uncertainty range</span>
+  </div>
+  <div style="position:relative;width:100%;height:320px;">
+    <canvas id="aiChart" role="img" aria-label="Line chart of AI capability from 2024 to 2032. Original forecast reaches superintelligence by late 2027; revised forecast shifts this to 2030.">AI capability trajectory: starts at narrow AI in 2024, rises through AI agents 2025, superhuman coder early 2027, intelligence explosion late 2027 on original forecast; revised forecast shifts peak to 2030.</canvas>
+  </div>
+</div>
+
 <p>The report presents two endings. One where AI development goes badly - an alignment failure, a race between superpowers that nobody wins cleanly. And one that lands somewhere between cautious optimism and genuine human flourishing. The authors are honest that the good ending requires things to go unusually well.</p>
- 
+
 <h2>Why this matters for founders right now</h2>
- 
+
 <p>Here is the trap most entrepreneurs fall into when they encounter forecasts like this: they either dismiss them as science fiction, or they freeze waiting for more certainty. Both responses are mistakes.</p>
- 
+
 <p>The business case for paying attention is not primarily about whether AGI arrives in 2027 or 2032. It is about what is already true today, and the rate at which it is compounding. The METR data cited throughout AI 2027 shows that the length of complex tasks AI can handle reliably has been doubling roughly every four to six months since 2024. That is not a prediction. That is a measurement.</p>
- 
+
 <blockquote>The strategic question is not "when does AGI arrive." It is "what happens to your competitive position in the next 18 months as AI systems take over more of what your team currently does?" That window is short enough to matter for decisions you are making this quarter.</blockquote>
- 
+
 <p>For founders, the practical implication is this: any part of your business that runs on knowledge work, software development, content, research, or analysis is about to get structurally cheaper for whoever deploys AI most effectively. That is an opportunity if you move early. It is a threat if your competitors do and you do not.</p>
- 
+
 <h2>The timeline revision is not reassurance</h2>
- 
+
 <p>In November 2025, Kokotajlo updated his forecast. Progress had moved somewhat slower than the original scenario depicted. His revised median is now "around 2030, lots of uncertainty though." Some read this as good news - more time to prepare. That is the wrong interpretation.</p>
- 
+
 <p>The capabilities available in today's models are already sufficient to fundamentally reshape how work gets done. Waiting for AGI as a signal to act means watching competitors deploy current generation tools while you deliberate. The revision extended the timeline by a few years. It did not change the direction of travel.</p>
- 
+
 <h2>What founders should actually do</h2>
- 
+
 <p>The honest answer is not a checklist. It is a posture. Start treating AI as infrastructure, not a feature. That means deploying it in your core operations - not as a productivity curiosity but as a structural component of how your product gets built, how your customers get served, and how your team gets leverage.</p>
- 
+
 <p>It means building your business on the assumption that the cost of software will approach zero, that intelligence will be abundant and cheap, and that the moat for every company is shifting from what you know to how well you orchestrate what AI can do on your behalf.</p>
- 
+
 <p>AI 2027 is worth reading not because every prediction will prove correct, but because it forces the kind of structured thinking about the near future that most business plans avoid entirely. The forecasters are not asking you to believe them. They are asking you to take the scenario seriously enough to prepare for it.</p>
- 
+
 <p>That seems like the minimum reasonable response.</p>
- 
-<div class="byline">
-  <div class="avatar">TM</div>
-  <div>
-    <div class="byline-name">Thomas Chr. Melskens</div>
-    <div class="byline-sub">Founder &amp; CEO, yellow3 lab — building naffe.ai</div>
-  </div>
-</div>
- 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 (function() {
   var labels = ['Q1 2024','Q3 2024','Q1 2025','Q3 2025','Q1 2026','Q3 2026','Q1 2027','Q3 2027','Q1 2028','Q1 2029','Q1 2030','Q1 2031','Q1 2032'];
-  var original = [2, 4, 8, 14, 22, 34, 55, 90, null, null, null, null, null];
-  var revised  = [2, 4, 8, 14, 22, 30, 40, 52, 62, 74, 90, null, null];
-  var upperBand = [null, null, null, null, null, null, 68, 100, null, null, 100, null, null];
-  var lowerBand = [null, null, null, null, null, null, 44, 82, null, null, 82, null, null];
- 
+  var original = [2,4,8,14,22,34,55,90,null,null,null,null,null];
+  var revised  = [2,4,8,14,22,30,40,52,62,74,90,null,null];
+  var upperBand = [null,null,null,null,null,null,68,100,null,null,100,null,null];
+  var lowerBand = [null,null,null,null,null,null,44,82,null,null,82,null,null];
   var milestones = [
-    { x: 'Q1 2025', y: 8,  label: 'AI agents mainstream' },
-    { x: 'Q1 2026', y: 22, label: 'Autonomous workflows' },
-    { x: 'Q1 2027', y: 55, label: 'Superhuman coder' },
-    { x: 'Q3 2027', y: 90, label: 'Intelligence explosion\n(original)' },
-    { x: 'Q1 2030', y: 90, label: 'Intelligence explosion\n(revised)' },
+    {x:'Q1 2025',y:8,label:'AI agents mainstream'},
+    {x:'Q1 2026',y:22,label:'Autonomous workflows'},
+    {x:'Q1 2027',y:55,label:'Superhuman coder'},
+    {x:'Q3 2027',y:90,label:'Intelligence explosion (original)'},
+    {x:'Q1 2030',y:90,label:'Intelligence explosion (revised)'},
   ];
- 
-  new Chart(document.getElementById('aiChart'), {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [
-        {
-          label: 'Uncertainty upper',
-          data: upperBand,
-          borderWidth: 0,
-          pointRadius: 0,
-          fill: '+1',
-          backgroundColor: 'rgba(53,138,221,0.10)',
-          tension: 0.4,
-          spanGaps: false,
-        },
-        {
-          label: 'Uncertainty lower',
-          data: lowerBand,
-          borderWidth: 0,
-          pointRadius: 0,
-          fill: false,
-          tension: 0.4,
-          spanGaps: false,
-        },
-        {
-          label: 'Original forecast',
-          data: original,
-          borderColor: '#378ADD',
-          borderWidth: 2.5,
-          pointRadius: 0,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: '#378ADD',
-          fill: false,
-          tension: 0.4,
-          spanGaps: false,
-        },
-        {
-          label: 'Revised forecast',
-          data: revised,
-          borderColor: '#888780',
-          borderWidth: 2,
-          borderDash: [6, 4],
-          pointRadius: 0,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: '#888780',
-          fill: false,
-          tension: 0.4,
-          spanGaps: false,
-        }
+  new Chart(document.getElementById('aiChart'),{
+    type:'line',
+    data:{
+      labels:labels,
+      datasets:[
+        {label:'Uncertainty upper',data:upperBand,borderWidth:0,pointRadius:0,fill:'+1',backgroundColor:'rgba(53,138,221,0.10)',tension:0.4,spanGaps:false},
+        {label:'Uncertainty lower',data:lowerBand,borderWidth:0,pointRadius:0,fill:false,tension:0.4,spanGaps:false},
+        {label:'Original forecast',data:original,borderColor:'#378ADD',borderWidth:2.5,pointRadius:0,pointHoverRadius:5,fill:false,tension:0.4,spanGaps:false},
+        {label:'Revised forecast',data:revised,borderColor:'#888780',borderWidth:2,borderDash:[6,4],pointRadius:0,pointHoverRadius:5,fill:false,tension:0.4,spanGaps:false}
       ]
     },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          backgroundColor: '#fff',
-          borderColor: '#D3D1C7',
-          borderWidth: 1,
-          titleColor: '#1a1a1a',
-          bodyColor: '#5F5E5A',
-          titleFont: { size: 12, weight: '500' },
-          bodyFont: { size: 12 },
-          padding: 10,
-          callbacks: {
-            label: function(ctx) {
-              if (ctx.dataset.label.includes('Uncertainty')) return null;
-              var v = ctx.parsed.y;
-              if (v === null) return null;
-              return ctx.dataset.label + ': level ' + Math.round(v);
-            }
-          }
-        }
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{
+        legend:{display:false},
+        tooltip:{backgroundColor:'#fff',borderColor:'#D3D1C7',borderWidth:1,titleColor:'#1a1a1a',bodyColor:'#5F5E5A',titleFont:{size:12,weight:'500'},bodyFont:{size:12},padding:10,
+          callbacks:{label:function(ctx){if(ctx.dataset.label.includes('Uncertainty'))return null;var v=ctx.parsed.y;if(v===null)return null;return ctx.dataset.label+': level '+Math.round(v);}}}
       },
-      scales: {
-        x: {
-          grid: { color: 'rgba(180,178,169,0.2)', drawBorder: false },
-          ticks: {
-            font: { size: 11 },
-            color: '#888780',
-            maxRotation: 35,
-            autoSkip: false,
-            callback: function(val, i) {
-              var show = ['Q1 2024','Q1 2025','Q1 2026','Q1 2027','Q3 2027','Q1 2030'];
-              return show.includes(labels[i]) ? labels[i] : '';
-            }
-          },
-          border: { display: false }
-        },
-        y: {
-          min: 0,
-          max: 105,
-          grid: { color: 'rgba(180,178,169,0.2)', drawBorder: false },
-          ticks: {
-            font: { size: 11 },
-            color: '#888780',
-            stepSize: 25,
-            callback: function(v) {
-              var map = { 0: 'Narrow AI', 25: 'Expert tools', 50: 'AGI threshold', 75: 'Superhuman', 100: 'Superintelligence' };
-              return map[v] || '';
-            }
-          },
-          border: { display: false }
-        }
+      scales:{
+        x:{grid:{color:'rgba(180,178,169,0.2)',drawBorder:false},ticks:{font:{size:11},color:'#888780',maxRotation:35,autoSkip:false,callback:function(val,i){var show=['Q1 2024','Q1 2025','Q1 2026','Q1 2027','Q3 2027','Q1 2030'];return show.includes(labels[i])?labels[i]:'';}},border:{display:false}},
+        y:{min:0,max:105,grid:{color:'rgba(180,178,169,0.2)',drawBorder:false},ticks:{font:{size:11},color:'#888780',stepSize:25,callback:function(v){var map={0:'Narrow AI',25:'Expert tools',50:'AGI threshold',75:'Superhuman',100:'Superintelligence'};return map[v]||'';}},border:{display:false}}
       }
     },
-    plugins: [{
-      afterDraw: function(chart) {
-        var ctx = chart.ctx;
-        var xScale = chart.scales.x;
-        var yScale = chart.scales.y;
-        ctx.save();
-        milestones.forEach(function(m) {
-          var xi = labels.indexOf(m.x);
-          if (xi === -1) return;
-          var px = xScale.getPixelForValue(xi);
-          var py = yScale.getPixelForValue(m.y);
-          ctx.beginPath();
-          ctx.arc(px, py, 5, 0, Math.PI * 2);
-          ctx.fillStyle = m.x === 'Q1 2030' ? '#888780' : '#378ADD';
-          ctx.fill();
-          ctx.strokeStyle = '#fff';
-          ctx.lineWidth = 1.5;
-          ctx.stroke();
-          ctx.font = '500 11px DM Sans, sans-serif';
-          ctx.fillStyle = '#5F5E5A';
-          ctx.textAlign = m.y > 70 ? 'right' : 'left';
-          var offX = m.y > 70 ? -10 : 10;
-          var lines = m.label.split('\n');
-          lines.forEach(function(line, li) {
-            ctx.fillText(line, px + offX, py + (m.y > 40 ? -10 : 14) + (li * 14));
-          });
-        });
-        ctx.restore();
-      }
-    }]
+    plugins:[{afterDraw:function(chart){
+      var ctx=chart.ctx,xScale=chart.scales.x,yScale=chart.scales.y;
+      ctx.save();
+      milestones.forEach(function(m){
+        var xi=labels.indexOf(m.x);if(xi===-1)return;
+        var px=xScale.getPixelForValue(xi),py=yScale.getPixelForValue(m.y);
+        ctx.beginPath();ctx.arc(px,py,5,0,Math.PI*2);
+        ctx.fillStyle=m.x==='Q1 2030'?'#888780':'#378ADD';ctx.fill();
+        ctx.strokeStyle='#fff';ctx.lineWidth=1.5;ctx.stroke();
+        ctx.font='500 11px sans-serif';ctx.fillStyle='#5F5E5A';
+        ctx.textAlign=m.y>70?'right':'left';
+        var offX=m.y>70?-10:10;
+        ctx.fillText(m.label,px+offX,py+(m.y>40?-10:14));
+      });
+      ctx.restore();
+    }}]
   });
 })();
 </script>
- 
-</body>
-</html>
- 
 
     </article>
 
