@@ -1146,7 +1146,7 @@ function getFeaturedSlugFromIndex(indexContent) {
 }
 
 // Parse article cards from /insights/index.html and return the latest `count`, newest-first.
-// The admin appends new cards to the grid, so the last cards are the newest.
+// The admin prepends new cards, so the first cards in file order are the newest.
 function parseLatestArticleCards(indexContent, count) {
     const regex = /<a href="\/insights\/([^"]+)" class="article-card[^"]*">\s*<div class="article-issue">([\s\S]*?)<\/div>\s*<h3>([\s\S]*?)<\/h3>\s*<p>([\s\S]*?)<\/p>\s*<span class="article-read">[^<]*<\/span>\s*<\/a>/g;
     const all = [];
@@ -1154,7 +1154,7 @@ function parseLatestArticleCards(indexContent, count) {
     while ((m = regex.exec(indexContent)) !== null) {
         all.push({ slug: m[1], issue: m[2].trim(), title: m[3].trim(), desc: m[4].trim() });
     }
-    return all.slice(-count).reverse();
+    return all.slice(0, count);
 }
 
 function findHeroExt(slug, insightsListing) {
@@ -1595,10 +1595,11 @@ ${body}
           <p>${safeExcerpt}</p>
           <span class="article-read">Read</span>
         </a>`;
-                const gridEnd = indexContent.lastIndexOf('</div>', indexContent.indexOf('<footer'));
-                const innerEnd = indexContent.lastIndexOf('</div>', gridEnd - 1);
-                const articlesGridEnd = indexContent.lastIndexOf('</div>', innerEnd - 1);
-                const withCard = indexContent.slice(0, articlesGridEnd) + cardHtml + '\n      ' + indexContent.slice(articlesGridEnd);
+                // Prepend new card to the top of the articles-grid (newest first).
+                const gridOpenTag = '<div class="articles-grid">';
+                const gridOpenIdx = indexContent.indexOf(gridOpenTag);
+                const insertAt = gridOpenIdx + gridOpenTag.length;
+                const withCard = indexContent.slice(0, insertAt) + '\n        ' + cardHtml.trimStart() + indexContent.slice(insertAt);
                 // New articles automatically become the featured one
                 const featuredHtml = buildFeaturedBlockHtml(slug, issueLabel, title, safeExcerpt, heroPending.ext, heroAlt);
                 const updatedIndex = replaceFeaturedBlock(withCard, featuredHtml);
