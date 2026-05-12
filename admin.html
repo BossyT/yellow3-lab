@@ -573,6 +573,20 @@
                         <textarea id="articleLede" rows="3" placeholder="The bold opening statement..."></textarea>
                     </div>
                     <div class="form-group">
+                        <label>Hero image <span class="hero-required-mark" style="color:var(--red);">*</span></label>
+                        <input type="file" id="articleHeroFile" accept="image/jpeg,image/png,image/webp" onchange="onHeroFileChange(this)">
+                        <div class="hint">jpg, png, or webp. Max 5 MB. Shown at the top of the article and used as the social sharing image.</div>
+                        <div id="heroPreview" style="display:none;margin-top:12px;">
+                            <img id="heroPreviewImg" src="" alt="" style="max-width:240px;max-height:160px;border:1px solid var(--light-border);border-radius:4px;display:block;">
+                            <div id="heroPreviewLabel" style="font-size:11px;color:var(--warm-grey);margin-top:6px;"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Hero alt text <span class="hero-required-mark" style="color:var(--red);">*</span></label>
+                        <input type="text" id="articleHeroAlt" placeholder="Describe the image for screen readers and SEO">
+                        <div class="hint">Used as the alt attribute and as og:image:alt for social sharing.</div>
+                    </div>
+                    <div class="form-group">
                         <label>Article body (HTML)</label>
                         <textarea id="articleBody" rows="12" style="font-family:var(--mono);font-size:13px;" placeholder="Write in plain text or HTML. Plain text is auto-formatted:
 
@@ -972,6 +986,145 @@ function fileToBase64(file) {
     });
 }
 
+// HERO IMAGE
+const HERO_MAX_BYTES = 5 * 1024 * 1024;
+const HERO_MIME_TO_EXT = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' };
+let heroPending = null;   // { base64, ext } when user picked a new file
+let heroExisting = null;  // { ext, alt } when editing a new-style article
+
+function escAttr(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function unescAttr(s) {
+    return String(s).replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+}
+
+function validateHeroFile(file) {
+    if (!HERO_MIME_TO_EXT[file.type]) return 'Hero image must be jpg, png, or webp.';
+    if (file.size > HERO_MAX_BYTES) return 'Hero image must be 5 MB or smaller.';
+    return null;
+}
+
+async function onHeroFileChange(input) {
+    const file = input.files && input.files[0];
+    if (!file) { clearHeroPending(); return; }
+    const err = validateHeroFile(file);
+    if (err) {
+        toast(err, 'error');
+        input.value = '';
+        clearHeroPending();
+        return;
+    }
+    try {
+        const base64 = await fileToBase64(file);
+        heroPending = { base64: base64, ext: HERO_MIME_TO_EXT[file.type] };
+        showHeroPreview(URL.createObjectURL(file), 'New image - will be uploaded on save');
+    } catch (e) {
+        toast('Failed to read image: ' + e.message, 'error');
+        input.value = '';
+    }
+}
+
+function clearHeroPending() {
+    heroPending = null;
+    if (heroExisting && editingArticle) {
+        showHeroPreview('https://yellow3.io/insights/hero-' + editingArticle.slug + '.' + heroExisting.ext, 'Current image');
+    } else {
+        hideHeroPreview();
+    }
+}
+
+function showHeroPreview(src, label) {
+    const img = document.getElementById('heroPreviewImg');
+    img.src = src;
+    img.alt = 'Hero preview';
+    document.getElementById('heroPreviewLabel').textContent = label || '';
+    document.getElementById('heroPreview').style.display = 'block';
+}
+
+function hideHeroPreview() {
+    document.getElementById('heroPreview').style.display = 'none';
+    document.getElementById('heroPreviewImg').src = '';
+    document.getElementById('heroPreviewLabel').textContent = '';
+}
+
+function resetHeroForm() {
+    heroPending = null;
+    heroExisting = null;
+    const input = document.getElementById('articleHeroFile');
+    if (input) input.value = '';
+    document.getElementById('articleHeroAlt').value = '';
+    hideHeroPreview();
+    updateHeroRequiredMarkers();
+}
+
+function updateHeroRequiredMarkers() {
+    // Hero is required for new articles and for editing articles that already have a hero.
+    // For legacy articles (no existing hero), it stays optional.
+    const required = !editingArticle || heroExisting !== null;
+    document.querySelectorAll('.hero-required-mark').forEach(function(m) {
+        m.style.display = required ? '' : 'none';
+    });
+}
+
+function extractHeroFromHtml(html) {
+    const m = html.match(/<figure class="article-hero">\s*<img\s+[^>]*src="\/insights\/hero-[^"]*\.([a-z0-9]+)"\s+[^>]*alt="([^"]*)"/i);
+    if (!m) return null;
+    return { ext: m[1].toLowerCase(), alt: unescAttr(m[2]) };
+}
+
+async function ghDelete(path, message) {
+    const data = await ghFetch(path);
+    if (!data || !data.sha) return false;
+    const res = await fetch('https://api.github.com/repos/' + REPO + '/contents/' + path, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': 'Bearer ' + TOKEN,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ message: message, sha: data.sha, branch: BRANCH })
+    });
+    return res.ok;
+}
+
+// Returns { ext, alt } if the saved article should have a hero, else null.
+// Uploads heroPending (and deletes old file if extension changed) as a side effect.
+async function resolveHeroForSave(slug) {
+    const altText = document.getElementById('articleHeroAlt').value.trim();
+    if (heroPending) {
+        const newPath = 'insights/hero-' + slug + '.' + heroPending.ext;
+        if (heroExisting && heroExisting.ext !== heroPending.ext) {
+            const oldPath = 'insights/hero-' + slug + '.' + heroExisting.ext;
+            try { await ghDelete(oldPath, 'Replace hero image for ' + slug); } catch (e) { console.error('Delete old hero failed:', e); }
+        }
+        let sha = null;
+        const existing = await ghFetch(newPath);
+        if (existing && existing.sha) sha = existing.sha;
+        await ghPutBinary(newPath, heroPending.base64, 'Upload hero image for ' + slug, sha);
+        return { ext: heroPending.ext, alt: altText };
+    }
+    if (heroExisting) {
+        return { ext: heroExisting.ext, alt: altText };
+    }
+    return null;
+}
+
+function heroFigureHtml(slug, hero) {
+    if (!hero) return '';
+    return '\n\n    <figure class="article-hero"><img src="/insights/hero-' + slug + '.' + hero.ext + '" alt="' + escAttr(hero.alt) + '" loading="eager" fetchpriority="high"></figure>';
+}
+
+function heroOgMetaHtml(slug, hero) {
+    if (!hero) return '';
+    const url = 'https://yellow3.io/insights/hero-' + slug + '.' + hero.ext;
+    return '<meta property="og:image" content="' + url + '">\n' +
+           '    <meta property="og:image:alt" content="' + escAttr(hero.alt) + '">\n' +
+           '    <meta name="twitter:image" content="' + url + '">\n' +
+           '    <meta name="twitter:card" content="summary_large_image">';
+}
+
 // AUTO-FORMAT: convert plain text to HTML if no tags present
 function formatBody(text) {
     // If body already has HTML block tags, return as-is
@@ -1137,9 +1290,12 @@ async function createArticle() {
     const readTime = document.getElementById('articleReadTime').value.trim();
     const desc = document.getElementById('articleDesc').value.trim();
     const lede = document.getElementById('articleLede').value.trim();
+    const heroAlt = document.getElementById('articleHeroAlt').value.trim();
     const body = formatBody(document.getElementById('articleBody').value);
 
     if (!title || !slug) { toast('Title and slug are required.', 'error'); return; }
+    if (!heroPending) { toast('Hero image is required for new articles.', 'error'); return; }
+    if (!heroAlt) { toast('Hero alt text is required.', 'error'); return; }
     const issueLabel = issue ? 'Issue ' + issue.replace(/^0+/, '').padStart(2, '0') : '';
 
     const now = new Date();
@@ -1156,9 +1312,8 @@ async function createArticle() {
     <meta name="description" content="${desc.replace(/"/g, '&quot;')}">
     <meta property="og:title" content="${safeTitle} &#8211; yellow3 lab">
     <meta property="og:description" content="${desc.replace(/"/g, '&quot;')}">
-    <meta property="og:image" content="https://yellow3.io/insights/og-${slug}.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image" content="https://yellow3.io/insights/hero-${slug}.${heroPending.ext}">
+    <meta property="og:image:alt" content="${escAttr(heroAlt)}">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://yellow3.io/insights/${slug}">
     <meta property="article:published_time" content="${dateStr}">
@@ -1166,7 +1321,7 @@ async function createArticle() {
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="${safeTitle} &#8211; yellow3 lab">
     <meta name="twitter:description" content="${desc.replace(/"/g, '&quot;')}">
-    <meta name="twitter:image" content="https://yellow3.io/insights/og-${slug}.png">
+    <meta name="twitter:image" content="https://yellow3.io/insights/hero-${slug}.${heroPending.ext}">
     <link rel="canonical" href="https://yellow3.io/insights/${slug}">
 
     <script type="application/ld+json">
@@ -1233,6 +1388,9 @@ async function createArticle() {
         .article-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; line-height: 1.15; letter-spacing: -0.02em; color: var(--black); margin-bottom: 28px; }
         .article-header .lede { font-size: 20px; color: var(--text); line-height: 1.65; border-left: 3px solid var(--yellow); padding-left: 20px; }
 
+        .article-hero { max-width: 680px; margin: 0 auto; padding: 0 64px; }
+        .article-hero img { width: 100%; height: auto; display: block; border-radius: 4px; }
+
         .article-body { max-width: 680px; margin: 0 auto; padding: 48px 64px 100px; }
         .article-body p { margin-bottom: 24px; }
         .article-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; color: var(--black); margin: 56px 0 24px; }
@@ -1255,6 +1413,7 @@ async function createArticle() {
             nav { padding: 0 24px; }
             .article-header { padding: 120px 24px 40px; }
             .article-header h1 { font-size: 32px; }
+            .article-hero { padding: 0 24px; }
             .article-body { padding: 32px 24px 80px; }
             .article-body h2 { font-size: 28px; }
             .author-box { padding: 32px 24px; }
@@ -1284,6 +1443,8 @@ async function createArticle() {
         <p class="lede">${lede}</p>
     </header>
 
+    <figure class="article-hero"><img src="/insights/hero-${slug}.${heroPending.ext}" alt="${escAttr(heroAlt)}" loading="eager" fetchpriority="high"></figure>
+
     <article class="article-body">
 
 ${body}
@@ -1306,20 +1467,19 @@ ${body}
 </body>
 </html>`;
 
-    setStatus('loading', 'Creating article...');
+    setStatus('loading', 'Uploading hero image...');
 
     try {
-        await ghPut(`insights/${slug}.html`, html, `Add article: ${title}`);
+        // Upload hero first so the article HTML never references a missing file.
+        // Fetch existing sha in case a prior failed attempt left a stale file.
+        const heroPath = `insights/hero-${slug}.${heroPending.ext}`;
+        let heroSha = null;
+        const existingHero = await ghFetch(heroPath);
+        if (existingHero && existingHero.sha) heroSha = existingHero.sha;
+        await ghPutBinary(heroPath, heroPending.base64, `Add hero image for: ${title}`, heroSha);
 
-        // Auto-generate OG image (1200x630)
-        setStatus('loading', 'Generating OG image...');
-        try {
-            const ogBase64 = await generateOgImage(title, tag);
-            await ghPutBinary(`insights/og-${slug}.png`, ogBase64, `Add OG image for: ${title}`);
-        } catch (ogErr) {
-            console.error('OG image generation failed:', ogErr);
-            toast('Article created but OG image failed - add manually.', 'error');
-        }
+        setStatus('loading', 'Creating article...');
+        await ghPut(`insights/${slug}.html`, html, `Add article: ${title}`);
 
         // Update insights/index.html with new article card
         setStatus('loading', 'Updating insights index...');
@@ -1449,6 +1609,15 @@ async function loadArticleForEdit(path) {
 
     editingArticle = { path: path, sha: data.sha, slug: slug };
 
+    // Hero image: detect existing hero figure in HTML
+    resetHeroForm();
+    heroExisting = extractHeroFromHtml(html);
+    if (heroExisting) {
+        document.getElementById('articleHeroAlt').value = heroExisting.alt;
+        showHeroPreview('https://yellow3.io/insights/hero-' + slug + '.' + heroExisting.ext, 'Current image');
+    }
+    updateHeroRequiredMarkers();
+
     document.getElementById('articleFormTitle').textContent = 'Edit article';
     document.getElementById('articleSubmitBtn').textContent = 'Save & deploy';
     document.getElementById('articleDeleteBtn').style.display = 'inline-block';
@@ -1472,6 +1641,7 @@ function showNewArticle() {
     document.getElementById('articleFormTitle').textContent = 'New article';
     document.getElementById('articleSubmitBtn').textContent = 'Create & deploy';
     document.getElementById('articleDeleteBtn').style.display = 'none';
+    resetHeroForm();
     showView('newArticleView');
 }
 
@@ -1491,9 +1661,18 @@ async function updateArticle() {
     const readTime = document.getElementById('articleReadTime').value.trim();
     const desc = document.getElementById('articleDesc').value.trim();
     const lede = document.getElementById('articleLede').value.trim();
+    const heroAlt = document.getElementById('articleHeroAlt').value.trim();
     const body = formatBody(document.getElementById('articleBody').value);
 
     if (!title) { toast('Title is required.', 'error'); return; }
+    // For new-style articles (existing hero) the hero stays required.
+    // Legacy articles (no existing hero) can be saved without one.
+    if (heroExisting || heroPending) {
+        if (!heroAlt) { toast('Hero alt text is required.', 'error'); return; }
+        if (heroExisting && !heroPending) {
+            // keep existing image, just maybe update alt
+        }
+    }
     const issueLabel = issue ? 'Issue ' + issue.replace(/^0+/, '').padStart(2, '0') : '';
 
     const now = new Date();
@@ -1515,7 +1694,19 @@ async function updateArticle() {
         editingArticle.sha = currentData.sha;
     }
 
-    const html = '<!DOCTYPE html>\n<html lang="en">\n<head>\n    <!-- Google Analytics -->\n    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3JXMM2VG5"><\/script>\n    <script>\n      window.dataLayer = window.dataLayer || [];\n      function gtag(){dataLayer.push(arguments);}\n      gtag(\'js\', new Date());\n      gtag(\'config\', \'G-K3JXMM2VG5\');\n    <\/script>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>' + safeTitle + ' &#8211; yellow3 lab</title>\n    <meta name="description" content="' + desc.replace(/"/g, '&quot;') + '">\n    <meta property="og:title" content="' + safeTitle + ' &#8211; yellow3 lab">\n    <meta property="og:description" content="' + desc.replace(/"/g, '&quot;') + '">\n    <meta property="og:type" content="article">\n    <meta property="og:url" content="https://yellow3.io/insights/' + slug + '">\n    <meta property="article:published_time" content="' + publishedDate + '">\n    <meta property="article:modified_time" content="' + dateStr + '">\n    <meta property="article:author" content="yellow3 lab">\n    <link rel="canonical" href="https://yellow3.io/insights/' + slug + '">\n\n    <script type="application/ld+json">\n    {\n        "@context": "https://schema.org",\n        "@type": "Article",\n        "headline": "' + title.replace(/"/g, '\\"') + '",\n        "datePublished": "' + publishedDate + '",\n        "dateModified": "' + dateStr + '",\n        "author": {\n            "@type": "Person",\n            "name": "Thomas Christian Melskens",\n            "jobTitle": "Founder & CEO",\n            "worksFor": {\n                "@type": "Organization",\n                "name": "yellow3 lab",\n                "url": "https://yellow3.io"\n            }\n        },\n        "publisher": {\n            "@type": "Organization",\n            "name": "yellow3 lab",\n            "url": "https://yellow3.io"\n        },\n        "description": "' + desc.replace(/"/g, '\\"') + '",\n        "mainEntityOfPage": {\n            "@type": "WebPage",\n            "@id": "https://yellow3.io/insights/' + slug + '"\n        }\n    }\n    <\/script>\n\n    <link rel="preconnect" href="https://fonts.googleapis.com">\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">\n    <style>\n        :root {\n            --black: #111;\n            --white: #fff;\n            --off-white: #f8f7f4;\n            --warm-grey: #999;\n            --text: #444;\n            --light-border: #e8e6e1;\n            --yellow: #d4b83c;\n            --yellow-soft: rgba(212, 184, 60, 0.08);\n        }\n\n        * { margin: 0; padding: 0; box-sizing: border-box; }\n        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }\n        body { font-family: \'Manrope\', sans-serif; background: var(--white); color: var(--text); font-size: 17px; line-height: 1.8; font-weight: 300; }\n        ::selection { background: var(--yellow); color: var(--black); }\n        a { color: inherit; }\n\n        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 64px; height: 72px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(0,0,0,0.04); }\n        .logo { text-decoration: none; }\n        .logo img { height: 22px; width: auto; }\n        .nav-links { display: flex; gap: 32px; align-items: center; }\n        .nav-link { font-size: 14px; font-weight: 400; color: var(--warm-grey); letter-spacing: 0.02em; text-decoration: none; transition: color 0.2s; }\n        .nav-link:hover { color: var(--black); }\n\n        .article-header { padding: 160px 64px 64px; max-width: 780px; margin: 0 auto; }\n        .article-header .meta { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-grey); margin-bottom: 24px; display: flex; gap: 16px; align-items: center; }\n        .article-header .meta .tag { background: var(--off-white); padding: 4px 10px; border-radius: 3px; font-size: 11px; }\n        .article-header h1 { font-family: \'Cormorant Garamond\', serif; font-size: 48px; font-weight: 300; line-height: 1.15; letter-spacing: -0.02em; color: var(--black); margin-bottom: 28px; }\n        .article-header .lede { font-size: 20px; color: var(--text); line-height: 1.65; border-left: 3px solid var(--yellow); padding-left: 20px; }\n\n        .article-body { max-width: 680px; margin: 0 auto; padding: 48px 64px 100px; }\n        .article-body p { margin-bottom: 24px; }\n        .article-body h2 { font-family: \'Cormorant Garamond\', serif; font-size: 34px; font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; color: var(--black); margin: 56px 0 24px; }\n        .article-body strong { font-weight: 500; color: var(--black); }\n        .article-body blockquote { margin: 40px 0; padding: 24px 28px; border-left: 3px solid var(--yellow); background: var(--yellow-soft); font-family: \'Cormorant Garamond\', serif; font-size: 22px; font-style: italic; line-height: 1.5; color: var(--black); }\n\n        .author-box { max-width: 680px; margin: 0 auto; padding: 48px 64px; border-top: 1px solid var(--light-border); }\n        .author-box p { font-size: 15px; color: var(--warm-grey); line-height: 1.7; }\n        .author-box a { color: var(--yellow); text-decoration: underline; }\n\n        .article-nav { max-width: 680px; margin: 0 auto; padding: 0 64px 80px; display: flex; justify-content: space-between; align-items: center; }\n        .back-link { font-size: 14px; font-weight: 400; color: var(--warm-grey); text-decoration: none; transition: color 0.2s; }\n        .back-link:hover { color: var(--black); }\n\n        footer { padding: 48px 64px; border-top: 1px solid var(--light-border); display: flex; justify-content: space-between; align-items: center; }\n        footer p { font-size: 13px; color: var(--warm-grey); }\n        footer .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); display: inline-block; }\n\n        @media (max-width: 768px) {\n            nav { padding: 0 24px; }\n            .article-header { padding: 120px 24px 40px; }\n            .article-header h1 { font-size: 32px; }\n            .article-body { padding: 32px 24px 80px; }\n            .article-body h2 { font-size: 28px; }\n            .author-box { padding: 32px 24px; }\n            .article-nav { padding: 0 24px 60px; }\n            footer { padding: 32px 24px; flex-direction: column; gap: 12px; }\n        }\n    </style>\n</head>\n<body>\n\n    <nav>\n        <a href="/" class="logo"><img src="/logo.png" alt="yellow3"></a>\n        <div class="nav-links">\n            <a href="/insights" class="nav-link">Insights</a>\n            <a href="/#contact" class="nav-link">Contact</a>\n        </div>\n    </nav>\n\n    <header class="article-header">\n        <div class="meta">\n            ' + (issueLabel ? '<span>' + issueLabel + '</span>\n            ' : '') + '<span>' + monthYear + '</span>\n            <span class="tag">' + tag + '</span>\n            <span>' + readTime + '</span>\n        </div>\n        <h1>' + title + '</h1>\n        <p class="lede">' + lede + '</p>\n    </header>\n\n    <article class="article-body">\n\n' + body + '\n\n    </article>\n\n    <div class="author-box">\n        <p><strong style="color: var(--black);">yellow3 lab</strong> is an AI research lab in Copenhagen. We research and develop autonomous AI platforms. <a href="/">Learn more &rarr;</a></p>\n    </div>\n\n    <div class="article-nav">\n        <a href="/insights" class="back-link">&larr; All insights</a>\n    </div>\n\n    <footer>\n        <p>&copy; ' + now.getFullYear() + ' yellow3 lab. Copenhagen.</p>\n        <p><span class="dot"></span></p>\n    </footer>\n\n</body>\n</html>';
+    if (heroPending) setStatus('loading', 'Uploading hero image...');
+    let hero;
+    try {
+        hero = await resolveHeroForSave(slug);
+    } catch (e) {
+        toast('Hero image upload failed: ' + e.message, 'error');
+        setStatus('error', 'Update failed');
+        return;
+    }
+    const heroOg = heroOgMetaHtml(slug, hero);
+    const heroFigure = heroFigureHtml(slug, hero);
+
+    const html = '<!DOCTYPE html>\n<html lang="en">\n<head>\n    <!-- Google Analytics -->\n    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3JXMM2VG5"><\/script>\n    <script>\n      window.dataLayer = window.dataLayer || [];\n      function gtag(){dataLayer.push(arguments);}\n      gtag(\'js\', new Date());\n      gtag(\'config\', \'G-K3JXMM2VG5\');\n    <\/script>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>' + safeTitle + ' &#8211; yellow3 lab</title>\n    <meta name="description" content="' + desc.replace(/"/g, '&quot;') + '">\n    <meta property="og:title" content="' + safeTitle + ' &#8211; yellow3 lab">\n    <meta property="og:description" content="' + desc.replace(/"/g, '&quot;') + '">\n    <meta property="og:type" content="article">\n    <meta property="og:url" content="https://yellow3.io/insights/' + slug + '">\n    ' + (heroOg ? heroOg + '\n    ' : '') + '<meta property="article:published_time" content="' + publishedDate + '">\n    <meta property="article:modified_time" content="' + dateStr + '">\n    <meta property="article:author" content="yellow3 lab">\n    <link rel="canonical" href="https://yellow3.io/insights/' + slug + '">\n\n    <script type="application/ld+json">\n    {\n        "@context": "https://schema.org",\n        "@type": "Article",\n        "headline": "' + title.replace(/"/g, '\\"') + '",\n        "datePublished": "' + publishedDate + '",\n        "dateModified": "' + dateStr + '",\n        "author": {\n            "@type": "Person",\n            "name": "Thomas Christian Melskens",\n            "jobTitle": "Founder & CEO",\n            "worksFor": {\n                "@type": "Organization",\n                "name": "yellow3 lab",\n                "url": "https://yellow3.io"\n            }\n        },\n        "publisher": {\n            "@type": "Organization",\n            "name": "yellow3 lab",\n            "url": "https://yellow3.io"\n        },\n        "description": "' + desc.replace(/"/g, '\\"') + '",\n        "mainEntityOfPage": {\n            "@type": "WebPage",\n            "@id": "https://yellow3.io/insights/' + slug + '"\n        }\n    }\n    <\/script>\n\n    <link rel="preconnect" href="https://fonts.googleapis.com">\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">\n    <style>\n        :root {\n            --black: #111;\n            --white: #fff;\n            --off-white: #f8f7f4;\n            --warm-grey: #999;\n            --text: #444;\n            --light-border: #e8e6e1;\n            --yellow: #d4b83c;\n            --yellow-soft: rgba(212, 184, 60, 0.08);\n        }\n\n        * { margin: 0; padding: 0; box-sizing: border-box; }\n        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }\n        body { font-family: \'Manrope\', sans-serif; background: var(--white); color: var(--text); font-size: 17px; line-height: 1.8; font-weight: 300; }\n        ::selection { background: var(--yellow); color: var(--black); }\n        a { color: inherit; }\n\n        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 64px; height: 72px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(0,0,0,0.04); }\n        .logo { text-decoration: none; }\n        .logo img { height: 22px; width: auto; }\n        .nav-links { display: flex; gap: 32px; align-items: center; }\n        .nav-link { font-size: 14px; font-weight: 400; color: var(--warm-grey); letter-spacing: 0.02em; text-decoration: none; transition: color 0.2s; }\n        .nav-link:hover { color: var(--black); }\n\n        .article-header { padding: 160px 64px 64px; max-width: 780px; margin: 0 auto; }\n        .article-header .meta { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-grey); margin-bottom: 24px; display: flex; gap: 16px; align-items: center; }\n        .article-header .meta .tag { background: var(--off-white); padding: 4px 10px; border-radius: 3px; font-size: 11px; }\n        .article-header h1 { font-family: \'Cormorant Garamond\', serif; font-size: 48px; font-weight: 300; line-height: 1.15; letter-spacing: -0.02em; color: var(--black); margin-bottom: 28px; }\n        .article-header .lede { font-size: 20px; color: var(--text); line-height: 1.65; border-left: 3px solid var(--yellow); padding-left: 20px; }\n\n        .article-hero { max-width: 680px; margin: 0 auto; padding: 0 64px; }\n        .article-hero img { width: 100%; height: auto; display: block; border-radius: 4px; }\n\n        .article-body { max-width: 680px; margin: 0 auto; padding: 48px 64px 100px; }\n        .article-body p { margin-bottom: 24px; }\n        .article-body h2 { font-family: \'Cormorant Garamond\', serif; font-size: 34px; font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; color: var(--black); margin: 56px 0 24px; }\n        .article-body strong { font-weight: 500; color: var(--black); }\n        .article-body blockquote { margin: 40px 0; padding: 24px 28px; border-left: 3px solid var(--yellow); background: var(--yellow-soft); font-family: \'Cormorant Garamond\', serif; font-size: 22px; font-style: italic; line-height: 1.5; color: var(--black); }\n\n        .author-box { max-width: 680px; margin: 0 auto; padding: 48px 64px; border-top: 1px solid var(--light-border); }\n        .author-box p { font-size: 15px; color: var(--warm-grey); line-height: 1.7; }\n        .author-box a { color: var(--yellow); text-decoration: underline; }\n\n        .article-nav { max-width: 680px; margin: 0 auto; padding: 0 64px 80px; display: flex; justify-content: space-between; align-items: center; }\n        .back-link { font-size: 14px; font-weight: 400; color: var(--warm-grey); text-decoration: none; transition: color 0.2s; }\n        .back-link:hover { color: var(--black); }\n\n        footer { padding: 48px 64px; border-top: 1px solid var(--light-border); display: flex; justify-content: space-between; align-items: center; }\n        footer p { font-size: 13px; color: var(--warm-grey); }\n        footer .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); display: inline-block; }\n\n        @media (max-width: 768px) {\n            nav { padding: 0 24px; }\n            .article-header { padding: 120px 24px 40px; }\n            .article-header h1 { font-size: 32px; }\n            .article-hero { padding: 0 24px; }\n            .article-body { padding: 32px 24px 80px; }\n            .article-body h2 { font-size: 28px; }\n            .author-box { padding: 32px 24px; }\n            .article-nav { padding: 0 24px 60px; }\n            footer { padding: 32px 24px; flex-direction: column; gap: 12px; }\n        }\n    </style>\n</head>\n<body>\n\n    <nav>\n        <a href="/" class="logo"><img src="/logo.png" alt="yellow3"></a>\n        <div class="nav-links">\n            <a href="/insights" class="nav-link">Insights</a>\n            <a href="/#contact" class="nav-link">Contact</a>\n        </div>\n    </nav>\n\n    <header class="article-header">\n        <div class="meta">\n            ' + (issueLabel ? '<span>' + issueLabel + '</span>\n            ' : '') + '<span>' + monthYear + '</span>\n            <span class="tag">' + tag + '</span>\n            <span>' + readTime + '</span>\n        </div>\n        <h1>' + title + '</h1>\n        <p class="lede">' + lede + '</p>\n    </header>' + heroFigure + '\n\n    <article class="article-body">\n\n' + body + '\n\n    </article>\n\n    <div class="author-box">\n        <p><strong style="color: var(--black);">yellow3 lab</strong> is an AI research lab in Copenhagen. We research and develop autonomous AI platforms. <a href="/">Learn more &rarr;</a></p>\n    </div>\n\n    <div class="article-nav">\n        <a href="/insights" class="back-link">&larr; All insights</a>\n    </div>\n\n    <footer>\n        <p>&copy; ' + now.getFullYear() + ' yellow3 lab. Copenhagen.</p>\n        <p><span class="dot"></span></p>\n    </footer>\n\n</body>\n</html>';
 
     setStatus('loading', 'Saving article...');
 
@@ -1540,6 +1731,15 @@ async function updateArticle() {
             }
         } catch (indexErr) {
             console.error('Failed to update insights index:', indexErr);
+        }
+
+        // After a successful save, the just-uploaded file becomes the "existing" hero.
+        if (hero) {
+            heroExisting = { ext: hero.ext, alt: hero.alt };
+            heroPending = null;
+            document.getElementById('articleHeroFile').value = '';
+            showHeroPreview('https://yellow3.io/insights/hero-' + slug + '.' + hero.ext, 'Current image');
+            updateHeroRequiredMarkers();
         }
 
         toast('Article updated! Live in ~30 seconds.', 'success');
