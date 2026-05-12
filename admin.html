@@ -1116,6 +1116,35 @@ function heroFigureHtml(slug, hero) {
     return '\n\n    <figure class="article-hero"><img src="/insights/hero-' + slug + '.' + hero.ext + '" alt="' + escAttr(hero.alt) + '" loading="eager" fetchpriority="high"></figure>';
 }
 
+function buildFeaturedBlockHtml(slug, issueLabel, title, safeExcerpt, heroExt, heroAlt) {
+    const issueText = issueLabel ? (issueLabel + ' - Latest') : 'Latest';
+    return '  <!-- FEATURED ARTICLE -->\n' +
+           '  <div class="featured">\n' +
+           '    <div class="featured-inner">\n' +
+           '      <a href="/insights/' + slug + '" class="featured-link reveal">\n' +
+           '        <div class="featured-left">\n' +
+           '          <div class="featured-issue">' + issueText + '</div>\n' +
+           '          <h2>' + title + '</h2>\n' +
+           '          <p>' + safeExcerpt + '</p>\n' +
+           '          <span class="featured-read">Read article</span>\n' +
+           '        </div>\n' +
+           '        <div class="featured-right">\n' +
+           '          <img src="/insights/hero-' + slug + '.' + heroExt + '" alt="' + escAttr(heroAlt) + '" class="featured-hero-img">\n' +
+           '        </div>\n' +
+           '      </a>\n' +
+           '    </div>\n' +
+           '  </div>\n\n';
+}
+
+function replaceFeaturedBlock(indexContent, newBlockHtml) {
+    return indexContent.replace(/  <!-- FEATURED ARTICLE -->[\s\S]*?(?=  <!-- ALL ARTICLES -->)/, newBlockHtml);
+}
+
+function getFeaturedSlugFromIndex(indexContent) {
+    const m = indexContent.match(/<!-- FEATURED ARTICLE -->[\s\S]*?<a href="\/insights\/([^"]+)" class="featured-link/);
+    return m ? m[1] : null;
+}
+
 function heroOgMetaHtml(slug, hero) {
     if (!hero) return '';
     const url = 'https://yellow3.io/insights/hero-' + slug + '.' + hero.ext;
@@ -1499,8 +1528,11 @@ ${body}
                 const gridEnd = indexContent.lastIndexOf('</div>', indexContent.indexOf('<footer'));
                 const innerEnd = indexContent.lastIndexOf('</div>', gridEnd - 1);
                 const articlesGridEnd = indexContent.lastIndexOf('</div>', innerEnd - 1);
-                const updatedIndex = indexContent.slice(0, articlesGridEnd) + cardHtml + '\n      ' + indexContent.slice(articlesGridEnd);
-                await ghPut('insights/index.html', updatedIndex, `Add ${title} to insights index`, indexData.sha);
+                const withCard = indexContent.slice(0, articlesGridEnd) + cardHtml + '\n      ' + indexContent.slice(articlesGridEnd);
+                // New articles automatically become the featured one
+                const featuredHtml = buildFeaturedBlockHtml(slug, issueLabel, title, safeExcerpt, heroPending.ext, heroAlt);
+                const updatedIndex = replaceFeaturedBlock(withCard, featuredHtml);
+                await ghPut('insights/index.html', updatedIndex, `Add ${title} to insights index and feature it`, indexData.sha);
             }
         } catch (indexErr) {
             console.error('Failed to update insights index:', indexErr);
@@ -1722,10 +1754,20 @@ async function updateArticle() {
                 var indexContent = decodeURIComponent(escape(atob(indexData.content.replace(/\n/g, ''))));
                 var safeExcerpt = desc.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
                 // Find existing card and replace it
-                var cardRegex = new RegExp('<a href="/insights/' + slug.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '"[\\s\\S]*?</a>');
+                var cardRegex = new RegExp('<a href="/insights/' + slug.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '" class="article-card[\\s\\S]*?</a>');
                 var newCard = '<a href="/insights/' + slug + '" class="article-card reveal">\n          <div class="article-issue">' + (issueLabel || monthYear) + '</div>\n          <h3>' + title + '</h3>\n          <p>' + safeExcerpt + '</p>\n          <span class="article-read">Read</span>\n        </a>';
+                var needsWrite = false;
                 if (cardRegex.test(indexContent)) {
                     indexContent = indexContent.replace(cardRegex, newCard);
+                    needsWrite = true;
+                }
+                // If this article is the currently-featured one, keep the featured block in sync.
+                if (hero && getFeaturedSlugFromIndex(indexContent) === slug) {
+                    const featuredHtml = buildFeaturedBlockHtml(slug, issueLabel, title, safeExcerpt, hero.ext, hero.alt);
+                    indexContent = replaceFeaturedBlock(indexContent, featuredHtml);
+                    needsWrite = true;
+                }
+                if (needsWrite) {
                     await ghPut('insights/index.html', indexContent, 'Update ' + title + ' in insights index', indexData.sha);
                 }
             }
