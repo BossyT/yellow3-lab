@@ -1145,6 +1145,76 @@ function getFeaturedSlugFromIndex(indexContent) {
     return m ? m[1] : null;
 }
 
+// Parse article cards from /insights/index.html and return the latest `count`, newest-first.
+// The admin appends new cards to the grid, so the last cards are the newest.
+function parseLatestArticleCards(indexContent, count) {
+    const regex = /<a href="\/insights\/([^"]+)" class="article-card[^"]*">\s*<div class="article-issue">([\s\S]*?)<\/div>\s*<h3>([\s\S]*?)<\/h3>\s*<p>([\s\S]*?)<\/p>\s*<span class="article-read">[^<]*<\/span>\s*<\/a>/g;
+    const all = [];
+    let m;
+    while ((m = regex.exec(indexContent)) !== null) {
+        all.push({ slug: m[1], issue: m[2].trim(), title: m[3].trim(), desc: m[4].trim() });
+    }
+    return all.slice(-count).reverse();
+}
+
+function findHeroExt(slug, insightsListing) {
+    if (!insightsListing) return null;
+    const prefix = 'hero-' + slug + '.';
+    const f = insightsListing.find(function(x) { return x.name && x.name.indexOf(prefix) === 0; });
+    if (!f) return null;
+    const m = f.name.match(/\.([^.]+)$/);
+    return m ? m[1].toLowerCase() : null;
+}
+
+function buildHomepageInsightCards(items, insightsListing, overrideHero) {
+    return items.map(function(it) {
+        let ext;
+        if (overrideHero && overrideHero.slug === it.slug) {
+            ext = overrideHero.ext;
+        } else {
+            ext = findHeroExt(it.slug, insightsListing);
+        }
+        const heroImg = ext
+            ? '          <img src="/insights/hero-' + it.slug + '.' + ext + '" alt="" class="insight-hero">\n'
+            : '';
+        return '        <a href="/insights/' + it.slug + '" class="insight-card reveal">\n' +
+               heroImg +
+               '          <div class="insight-issue">' + it.issue + '</div>\n' +
+               '          <h3>' + it.title + '</h3>\n' +
+               '          <p>' + it.desc + '</p>\n' +
+               '          <span class="insight-read">Read article</span>\n' +
+               '        </a>';
+    }).join('\n');
+}
+
+function replaceHomepageInsightsGrid(homepageContent, newCardsHtml) {
+    return homepageContent.replace(
+        /<div class="insights-grid">[\s\S]*?<\/div>(\s*<\/div>\s*<\/section>\s*<!-- CONTACT -->)/,
+        '<div class="insights-grid">\n' + newCardsHtml + '\n      </div>$1'
+    );
+}
+
+// Updates the homepage's insights teaser to match the latest 3 articles.
+// indexContent = the just-updated insights/index.html content (so latest is included).
+// overrideHero = { slug, ext } for the brand-new article (whose hero might not yet be in the folder listing cache).
+async function syncHomepageInsightsTeaser(indexContent, overrideHero) {
+    try {
+        const homepageData = await ghFetch('index.html');
+        if (!homepageData) return;
+        const homepageContent = decodeURIComponent(escape(atob(homepageData.content.replace(/\n/g, ''))));
+        const insightsListing = await ghFetch('insights');
+        const latest3 = parseLatestArticleCards(indexContent, 3);
+        if (!latest3.length) return;
+        const newCards = buildHomepageInsightCards(latest3, insightsListing, overrideHero);
+        const newHomepage = replaceHomepageInsightsGrid(homepageContent, newCards);
+        if (newHomepage !== homepageContent) {
+            await ghPut('index.html', newHomepage, 'Update homepage insights teaser', homepageData.sha);
+        }
+    } catch (e) {
+        console.error('Failed to update homepage insights teaser:', e);
+    }
+}
+
 function heroOgMetaHtml(slug, hero) {
     if (!hero) return '';
     const url = 'https://yellow3.io/insights/hero-' + slug + '.' + hero.ext;
@@ -1533,6 +1603,10 @@ ${body}
                 const featuredHtml = buildFeaturedBlockHtml(slug, issueLabel, title, safeExcerpt, heroPending.ext, heroAlt);
                 const updatedIndex = replaceFeaturedBlock(withCard, featuredHtml);
                 await ghPut('insights/index.html', updatedIndex, `Add ${title} to insights index and feature it`, indexData.sha);
+
+                // Also refresh the homepage 3-card teaser to match the latest 3 articles.
+                setStatus('loading', 'Updating homepage...');
+                await syncHomepageInsightsTeaser(updatedIndex, { slug: slug, ext: heroPending.ext });
             }
         } catch (indexErr) {
             console.error('Failed to update insights index:', indexErr);
@@ -1769,6 +1843,13 @@ async function updateArticle() {
                 }
                 if (needsWrite) {
                     await ghPut('insights/index.html', indexContent, 'Update ' + title + ' in insights index', indexData.sha);
+                }
+                // If the edited article is in the homepage teaser (latest 3), resync it.
+                const latest3Slugs = parseLatestArticleCards(indexContent, 3).map(function(c) { return c.slug; });
+                if (latest3Slugs.indexOf(slug) !== -1) {
+                    setStatus('loading', 'Updating homepage...');
+                    const override = hero ? { slug: slug, ext: hero.ext } : null;
+                    await syncHomepageInsightsTeaser(indexContent, override);
                 }
             }
         } catch (indexErr) {
