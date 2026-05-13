@@ -1251,6 +1251,54 @@ async function updateLlmsTxtForArticle(slug, title, desc, action, publishedDateI
     }
 }
 
+async function updateFeedForArticle(slug, title, desc, hero, action, publishedDateIso) {
+    try {
+        const data = await ghFetch('feed.xml');
+        if (!data) return;
+        let content = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+        const url = 'https://yellow3.io/insights/' + slug;
+        const slugEsc = url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const itemRegex = new RegExp('    <item>[\\s\\S]*?<link>' + slugEsc + '<\\/link>[\\s\\S]*?<\\/item>\\n?');
+        content = content.replace(itemRegex, '');
+        if (action !== 'remove') {
+            let pubDate;
+            if (publishedDateIso) {
+                const d = new Date(publishedDateIso + 'T00:00:00Z');
+                pubDate = isNaN(d) ? new Date().toUTCString() : d.toUTCString();
+            } else {
+                pubDate = new Date().toUTCString();
+            }
+            const xmlEsc = function(s) {
+                return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+            };
+            let item = '    <item>\n';
+            item += '      <title>' + xmlEsc(title) + '</title>\n';
+            item += '      <link>' + xmlEsc(url) + '</link>\n';
+            item += '      <guid isPermaLink="true">' + xmlEsc(url) + '</guid>\n';
+            item += '      <pubDate>' + pubDate + '</pubDate>\n';
+            item += '      <description>' + xmlEsc(desc) + '</description>\n';
+            if (hero && hero.ext) {
+                const heroUrl = 'https://yellow3.io/insights/hero-' + slug + '.' + hero.ext;
+                item += '      <media:content url="' + xmlEsc(heroUrl) + '" medium="image" />\n';
+                if (hero.alt) {
+                    item += '      <media:description>' + xmlEsc(hero.alt) + '</media:description>\n';
+                }
+            }
+            item += '    </item>\n';
+            // Prepend as the first <item> if any exist; otherwise insert before </channel>.
+            if (/    <item>/.test(content)) {
+                content = content.replace(/    <item>/, item + '    <item>');
+            } else {
+                content = content.replace('  </channel>', item + '  </channel>');
+            }
+        }
+        content = content.replace(/<lastBuildDate>[^<]*<\/lastBuildDate>/, '<lastBuildDate>' + new Date().toUTCString() + '</lastBuildDate>');
+        await ghPut('feed.xml', content, 'Update feed.xml for ' + slug, data.sha);
+    } catch (e) {
+        console.error('Failed to update feed.xml:', e);
+    }
+}
+
 // Updates the homepage's insights teaser to match the latest 3 articles.
 // indexContent = the just-updated insights/index.html content (so latest is included).
 // overrideHero = { slug, ext } for the brand-new article (whose hero might not yet be in the folder listing cache).
@@ -1270,6 +1318,23 @@ async function syncHomepageInsightsTeaser(indexContent, overrideHero) {
     } catch (e) {
         console.error('Failed to update homepage insights teaser:', e);
     }
+}
+
+const ARTICLE_SHARE_CSS = '\n        .article-share { max-width: 680px; margin: 32px auto 0; padding: 0 64px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }\n        .article-share-label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #999; }\n        .article-share-btn { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; border: 1px solid #e8e6e1; background: transparent; color: #888; cursor: pointer; transition: color 0.15s, border-color 0.15s; padding: 0; text-decoration: none; }\n        .article-share-btn:hover { color: #111; border-color: #111; }\n        .article-share-btn.copied { color: #27ae60; border-color: #27ae60; }\n        .article-share-feedback { font-size: 11px; color: #27ae60; opacity: 0; transition: opacity 0.15s; }\n        .article-share-feedback.visible { opacity: 1; }\n        @media (max-width: 768px) { .article-share { padding: 0 24px; } }';
+
+const ARTICLE_SHARE_SCRIPT = '<script>(function(){document.querySelectorAll(".article-share-btn").forEach(function(btn){btn.addEventListener("click",function(e){var method=btn.getAttribute("data-share-method");var url=btn.getAttribute("data-share-url")||btn.href;if(method==="copy"){e.preventDefault();var copyUrl=btn.getAttribute("data-share-url");if(navigator.clipboard){navigator.clipboard.writeText(copyUrl).then(function(){btn.classList.add("copied");var feedback=btn.parentElement.querySelector(".article-share-feedback");if(feedback){feedback.textContent="Copied";feedback.classList.add("visible");}setTimeout(function(){btn.classList.remove("copied");if(feedback){feedback.classList.remove("visible");}},1500);}).catch(function(){});}}if(typeof window.gtag==="function"){window.gtag("event","article_share",{method:method,article_url:url});}});});})();<\/script>';
+
+function articleShareRowHtml(slug, title) {
+    const url = 'https://yellow3.io/insights/' + slug;
+    const encUrl = encodeURIComponent(url);
+    const encTitle = encodeURIComponent(String(title || ''));
+    return '<div class="article-share">\n' +
+        '        <span class="article-share-label">Share</span>\n' +
+        '        <a href="https://www.linkedin.com/sharing/share-offsite/?url=' + encUrl + '" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" class="article-share-btn" data-share-method="linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>\n' +
+        '        <a href="https://twitter.com/intent/tweet?url=' + encUrl + '&text=' + encTitle + '" target="_blank" rel="noopener noreferrer" aria-label="Share on X" class="article-share-btn" data-share-method="twitter"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>\n' +
+        '        <button type="button" class="article-share-btn" data-share-method="copy" data-share-url="' + url + '" aria-label="Copy link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button>\n' +
+        '        <span class="article-share-feedback" aria-live="polite"></span>\n' +
+        '      </div>';
 }
 
 function articleBreadcrumbJsonLd(slug, title) {
@@ -1600,7 +1665,7 @@ async function createArticle() {
             .author-box { padding: 32px 24px; }
             .article-nav { padding: 0 24px 60px; }
             footer { padding: 32px 24px; flex-direction: column; gap: 12px; }
-        }
+        }${ARTICLE_SHARE_CSS}
     </style>
 </head>
 <body>
@@ -1624,6 +1689,8 @@ async function createArticle() {
         <p class="lede">${lede}</p>
     </header>
 
+    ${articleShareRowHtml(slug, title)}
+
     <figure class="article-hero"><img src="/insights/hero-${slug}.${heroPending.ext}" alt="${escAttr(heroAlt)}" loading="eager" fetchpriority="high"></figure>
 
     <article class="article-body">
@@ -1645,6 +1712,7 @@ ${body}
         <p><span class="dot"></span></p>
     </footer>
 
+    ${ARTICLE_SHARE_SCRIPT}
 </body>
 </html>`;
 
@@ -1700,6 +1768,7 @@ ${body}
         setStatus('loading', 'Updating SEO files...');
         await updateSitemapForArticle(slug, 'add');
         await updateLlmsTxtForArticle(slug, title, desc, 'add');
+        await updateFeedForArticle(slug, title, desc, { ext: heroPending.ext, alt: heroAlt }, 'add');
 
         toast('Article created and deployed!', 'success');
         setStatus('connected', `Connected to ${REPO}`);
@@ -1922,7 +1991,7 @@ async function updateArticle() {
     const heroOg = heroOgMetaHtml(slug, hero);
     const heroFigure = heroFigureHtml(slug, hero);
 
-    const html = '<!DOCTYPE html>\n<html lang="en">\n<head>\n    <!-- Google Analytics -->\n    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3JXMM2VG5"><\/script>\n    <script>\n      window.dataLayer = window.dataLayer || [];\n      function gtag(){dataLayer.push(arguments);}\n      gtag(\'js\', new Date());\n      gtag(\'config\', \'G-K3JXMM2VG5\');\n    <\/script>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>' + safeTitle + ' &#8211; yellow3 lab</title>\n    <meta name="description" content="' + desc.replace(/"/g, '&quot;') + '">\n    <meta property="og:title" content="' + safeTitle + ' &#8211; yellow3 lab">\n    <meta property="og:description" content="' + desc.replace(/"/g, '&quot;') + '">\n    <meta property="og:type" content="article">\n    <meta property="og:url" content="https://yellow3.io/insights/' + slug + '">\n    ' + (heroOg ? heroOg + '\n    ' : '') + '<meta property="article:published_time" content="' + publishedDate + '">\n    <meta property="article:modified_time" content="' + dateStr + '">\n    <meta property="article:author" content="yellow3 lab">\n    <link rel="canonical" href="https://yellow3.io/insights/' + slug + '">\n\n    <script type="application/ld+json">\n    {\n        "@context": "https://schema.org",\n        "@type": "Article",\n        "headline": "' + title.replace(/"/g, '\\"') + '",\n        "datePublished": "' + publishedDate + '",\n        "dateModified": "' + dateStr + '",\n        "author": {\n            "@type": "Person",\n            "name": "Thomas Christian Melskens",\n            "jobTitle": "Founder & CEO",\n            "worksFor": {\n                "@type": "Organization",\n                "name": "yellow3 lab",\n                "url": "https://yellow3.io"\n            }\n        },\n        "publisher": {\n            "@type": "Organization",\n            "name": "yellow3 lab",\n            "url": "https://yellow3.io"\n        },\n        "description": "' + desc.replace(/"/g, '\\"') + '",\n        "mainEntityOfPage": {\n            "@type": "WebPage",\n            "@id": "https://yellow3.io/insights/' + slug + '"\n        }\n    }\n    <\/script>\n\n    ' + articleBreadcrumbJsonLd(slug, title) + '\n\n    <link rel="preconnect" href="https://fonts.googleapis.com">\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">\n    <style>\n        :root {\n            --black: #111;\n            --white: #fff;\n            --off-white: #f8f7f4;\n            --warm-grey: #999;\n            --text: #444;\n            --light-border: #e8e6e1;\n            --yellow: #d4b83c;\n            --yellow-soft: rgba(212, 184, 60, 0.08);\n        }\n\n        * { margin: 0; padding: 0; box-sizing: border-box; }\n        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }\n        body { font-family: \'Manrope\', sans-serif; background: var(--white); color: var(--text); font-size: 17px; line-height: 1.8; font-weight: 300; }\n        ::selection { background: var(--yellow); color: var(--black); }\n        a { color: inherit; }\n\n        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 64px; height: 72px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(0,0,0,0.04); }\n        .logo { text-decoration: none; }\n        .logo img { height: 22px; width: auto; }\n        .nav-links { display: flex; gap: 32px; align-items: center; }\n        .nav-link { font-size: 14px; font-weight: 400; color: var(--warm-grey); letter-spacing: 0.02em; text-decoration: none; transition: color 0.2s; }\n        .nav-link:hover { color: var(--black); }\n\n        .article-header { padding: 160px 64px 64px; max-width: 780px; margin: 0 auto; }\n        .article-header .meta { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-grey); margin-bottom: 24px; display: flex; gap: 16px; align-items: center; }\n        .article-header .meta .tag { background: var(--off-white); padding: 4px 10px; border-radius: 3px; font-size: 11px; }\n        .article-header h1 { font-family: \'Cormorant Garamond\', serif; font-size: 48px; font-weight: 300; line-height: 1.15; letter-spacing: -0.02em; color: var(--black); margin-bottom: 28px; }\n        .article-header .lede { font-size: 20px; color: var(--text); line-height: 1.65; border-left: 3px solid var(--yellow); padding-left: 20px; }\n\n        .article-hero { max-width: 680px; margin: 0 auto; padding: 0 64px; }\n        .article-hero img { width: 100%; height: auto; display: block; border-radius: 4px; }\n\n        .article-body { max-width: 680px; margin: 0 auto; padding: 48px 64px 100px; }\n        .article-body p { margin-bottom: 24px; }\n        .article-body h2 { font-family: \'Cormorant Garamond\', serif; font-size: 34px; font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; color: var(--black); margin: 56px 0 24px; }\n        .article-body strong { font-weight: 500; color: var(--black); }\n        .article-body blockquote { margin: 40px 0; padding: 24px 28px; border-left: 3px solid var(--yellow); background: var(--yellow-soft); font-family: \'Cormorant Garamond\', serif; font-size: 22px; font-style: italic; line-height: 1.5; color: var(--black); }\n\n        .author-box { max-width: 680px; margin: 0 auto; padding: 48px 64px; border-top: 1px solid var(--light-border); }\n        .author-box p { font-size: 15px; color: var(--warm-grey); line-height: 1.7; }\n        .author-box a { color: var(--yellow); text-decoration: underline; }\n\n        .article-nav { max-width: 680px; margin: 0 auto; padding: 0 64px 80px; display: flex; justify-content: space-between; align-items: center; }\n        .back-link { font-size: 14px; font-weight: 400; color: var(--warm-grey); text-decoration: none; transition: color 0.2s; }\n        .back-link:hover { color: var(--black); }\n\n        footer { padding: 48px 64px; border-top: 1px solid var(--light-border); display: flex; justify-content: space-between; align-items: center; }\n        footer p { font-size: 13px; color: var(--warm-grey); }\n        footer .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); display: inline-block; }\n\n        @media (max-width: 768px) {\n            nav { padding: 0 24px; }\n            .article-header { padding: 120px 24px 40px; }\n            .article-header h1 { font-size: 32px; }\n            .article-hero { padding: 0 24px; }\n            .article-body { padding: 32px 24px 80px; }\n            .article-body h2 { font-size: 28px; }\n            .author-box { padding: 32px 24px; }\n            .article-nav { padding: 0 24px 60px; }\n            footer { padding: 32px 24px; flex-direction: column; gap: 12px; }\n        }\n    </style>\n</head>\n<body>\n\n    <nav>\n        <a href="/" class="logo"><img src="/logo.png" alt="yellow3"></a>\n        <div class="nav-links">\n            <a href="/insights" class="nav-link">Insights</a>\n            <a href="/#contact" class="nav-link">Contact</a>\n        </div>\n    </nav>\n\n    <header class="article-header">\n        <div class="meta">\n            ' + (issueLabel ? '<span>' + issueLabel + '</span>\n            ' : '') + '<span>' + monthYear + '</span>\n            <span class="tag">' + tag + '</span>\n            <span>' + readTime + '</span>\n        </div>\n        <h1>' + title + '</h1>\n        <p class="lede">' + lede + '</p>\n    </header>' + heroFigure + '\n\n    <article class="article-body">\n\n' + body + '\n\n    </article>\n\n    <div class="author-box">\n        <p><strong style="color: var(--black);">yellow3 lab</strong> is an AI research lab in Copenhagen. We research and develop autonomous AI platforms. <a href="/">Learn more &rarr;</a></p>\n    </div>\n\n    <div class="article-nav">\n        <a href="/insights" class="back-link">&larr; All insights</a>\n    </div>\n\n    <footer>\n        <p>&copy; ' + now.getFullYear() + ' yellow3 lab. Copenhagen.</p>\n        <p><span class="dot"></span></p>\n    </footer>\n\n</body>\n</html>';
+    const html = '<!DOCTYPE html>\n<html lang="en">\n<head>\n    <!-- Google Analytics -->\n    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3JXMM2VG5"><\/script>\n    <script>\n      window.dataLayer = window.dataLayer || [];\n      function gtag(){dataLayer.push(arguments);}\n      gtag(\'js\', new Date());\n      gtag(\'config\', \'G-K3JXMM2VG5\');\n    <\/script>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>' + safeTitle + ' &#8211; yellow3 lab</title>\n    <meta name="description" content="' + desc.replace(/"/g, '&quot;') + '">\n    <meta property="og:title" content="' + safeTitle + ' &#8211; yellow3 lab">\n    <meta property="og:description" content="' + desc.replace(/"/g, '&quot;') + '">\n    <meta property="og:type" content="article">\n    <meta property="og:url" content="https://yellow3.io/insights/' + slug + '">\n    ' + (heroOg ? heroOg + '\n    ' : '') + '<meta property="article:published_time" content="' + publishedDate + '">\n    <meta property="article:modified_time" content="' + dateStr + '">\n    <meta property="article:author" content="yellow3 lab">\n    <link rel="canonical" href="https://yellow3.io/insights/' + slug + '">\n\n    <script type="application/ld+json">\n    {\n        "@context": "https://schema.org",\n        "@type": "Article",\n        "headline": "' + title.replace(/"/g, '\\"') + '",\n        "datePublished": "' + publishedDate + '",\n        "dateModified": "' + dateStr + '",\n        "author": {\n            "@type": "Person",\n            "name": "Thomas Christian Melskens",\n            "jobTitle": "Founder & CEO",\n            "worksFor": {\n                "@type": "Organization",\n                "name": "yellow3 lab",\n                "url": "https://yellow3.io"\n            }\n        },\n        "publisher": {\n            "@type": "Organization",\n            "name": "yellow3 lab",\n            "url": "https://yellow3.io"\n        },\n        "description": "' + desc.replace(/"/g, '\\"') + '",\n        "mainEntityOfPage": {\n            "@type": "WebPage",\n            "@id": "https://yellow3.io/insights/' + slug + '"\n        }\n    }\n    <\/script>\n\n    ' + articleBreadcrumbJsonLd(slug, title) + '\n\n    <link rel="preconnect" href="https://fonts.googleapis.com">\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">\n    <style>\n        :root {\n            --black: #111;\n            --white: #fff;\n            --off-white: #f8f7f4;\n            --warm-grey: #999;\n            --text: #444;\n            --light-border: #e8e6e1;\n            --yellow: #d4b83c;\n            --yellow-soft: rgba(212, 184, 60, 0.08);\n        }\n\n        * { margin: 0; padding: 0; box-sizing: border-box; }\n        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }\n        body { font-family: \'Manrope\', sans-serif; background: var(--white); color: var(--text); font-size: 17px; line-height: 1.8; font-weight: 300; }\n        ::selection { background: var(--yellow); color: var(--black); }\n        a { color: inherit; }\n\n        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 64px; height: 72px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(0,0,0,0.04); }\n        .logo { text-decoration: none; }\n        .logo img { height: 22px; width: auto; }\n        .nav-links { display: flex; gap: 32px; align-items: center; }\n        .nav-link { font-size: 14px; font-weight: 400; color: var(--warm-grey); letter-spacing: 0.02em; text-decoration: none; transition: color 0.2s; }\n        .nav-link:hover { color: var(--black); }\n\n        .article-header { padding: 160px 64px 64px; max-width: 780px; margin: 0 auto; }\n        .article-header .meta { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-grey); margin-bottom: 24px; display: flex; gap: 16px; align-items: center; }\n        .article-header .meta .tag { background: var(--off-white); padding: 4px 10px; border-radius: 3px; font-size: 11px; }\n        .article-header h1 { font-family: \'Cormorant Garamond\', serif; font-size: 48px; font-weight: 300; line-height: 1.15; letter-spacing: -0.02em; color: var(--black); margin-bottom: 28px; }\n        .article-header .lede { font-size: 20px; color: var(--text); line-height: 1.65; border-left: 3px solid var(--yellow); padding-left: 20px; }\n\n        .article-hero { max-width: 680px; margin: 0 auto; padding: 0 64px; }\n        .article-hero img { width: 100%; height: auto; display: block; border-radius: 4px; }\n\n        .article-body { max-width: 680px; margin: 0 auto; padding: 48px 64px 100px; }\n        .article-body p { margin-bottom: 24px; }\n        .article-body h2 { font-family: \'Cormorant Garamond\', serif; font-size: 34px; font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; color: var(--black); margin: 56px 0 24px; }\n        .article-body strong { font-weight: 500; color: var(--black); }\n        .article-body blockquote { margin: 40px 0; padding: 24px 28px; border-left: 3px solid var(--yellow); background: var(--yellow-soft); font-family: \'Cormorant Garamond\', serif; font-size: 22px; font-style: italic; line-height: 1.5; color: var(--black); }\n\n        .author-box { max-width: 680px; margin: 0 auto; padding: 48px 64px; border-top: 1px solid var(--light-border); }\n        .author-box p { font-size: 15px; color: var(--warm-grey); line-height: 1.7; }\n        .author-box a { color: var(--yellow); text-decoration: underline; }\n\n        .article-nav { max-width: 680px; margin: 0 auto; padding: 0 64px 80px; display: flex; justify-content: space-between; align-items: center; }\n        .back-link { font-size: 14px; font-weight: 400; color: var(--warm-grey); text-decoration: none; transition: color 0.2s; }\n        .back-link:hover { color: var(--black); }\n\n        footer { padding: 48px 64px; border-top: 1px solid var(--light-border); display: flex; justify-content: space-between; align-items: center; }\n        footer p { font-size: 13px; color: var(--warm-grey); }\n        footer .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); display: inline-block; }\n\n        @media (max-width: 768px) {\n            nav { padding: 0 24px; }\n            .article-header { padding: 120px 24px 40px; }\n            .article-header h1 { font-size: 32px; }\n            .article-hero { padding: 0 24px; }\n            .article-body { padding: 32px 24px 80px; }\n            .article-body h2 { font-size: 28px; }\n            .author-box { padding: 32px 24px; }\n            .article-nav { padding: 0 24px 60px; }\n            footer { padding: 32px 24px; flex-direction: column; gap: 12px; }\n        }' + ARTICLE_SHARE_CSS + '\n    </style>\n</head>\n<body>\n\n    <nav>\n        <a href="/" class="logo"><img src="/logo.png" alt="yellow3"></a>\n        <div class="nav-links">\n            <a href="/insights" class="nav-link">Insights</a>\n            <a href="/#contact" class="nav-link">Contact</a>\n        </div>\n    </nav>\n\n    <header class="article-header">\n        <div class="meta">\n            ' + (issueLabel ? '<span>' + issueLabel + '</span>\n            ' : '') + '<span>' + monthYear + '</span>\n            <span class="tag">' + tag + '</span>\n            <span>' + readTime + '</span>\n        </div>\n        <h1>' + title + '</h1>\n        <p class="lede">' + lede + '</p>\n    </header>\n\n    ' + articleShareRowHtml(slug, title) + '\n' + heroFigure + '\n\n    <article class="article-body">\n\n' + body + '\n\n    </article>\n\n    <div class="author-box">\n        <p><strong style="color: var(--black);">yellow3 lab</strong> is an AI research lab in Copenhagen. We research and develop autonomous AI platforms. <a href="/">Learn more &rarr;</a></p>\n    </div>\n\n    <div class="article-nav">\n        <a href="/insights" class="back-link">&larr; All insights</a>\n    </div>\n\n    <footer>\n        <p>&copy; ' + now.getFullYear() + ' yellow3 lab. Copenhagen.</p>\n        <p><span class="dot"></span></p>\n    </footer>\n\n    ' + ARTICLE_SHARE_SCRIPT + '\n</body>\n</html>';
 
     setStatus('loading', 'Saving article...');
 
@@ -1966,6 +2035,7 @@ async function updateArticle() {
                 setStatus('loading', 'Updating SEO files...');
                 await updateSitemapForArticle(slug, 'update');
                 await updateLlmsTxtForArticle(slug, title, desc, 'update', publishedDate);
+                await updateFeedForArticle(slug, title, desc, hero, 'update', publishedDate);
             }
         } catch (indexErr) {
             console.error('Failed to update insights index:', indexErr);
@@ -2017,6 +2087,7 @@ async function unpublishArticle() {
         // Remove from sitemap and llms.txt
         await updateSitemapForArticle(editingArticle.slug, 'remove');
         await updateLlmsTxtForArticle(editingArticle.slug, '', '', 'remove');
+        await updateFeedForArticle(editingArticle.slug, '', '', null, 'remove');
 
         editingArticle = null;
         toast('Article unpublished. Live in ~30 seconds.', 'success');

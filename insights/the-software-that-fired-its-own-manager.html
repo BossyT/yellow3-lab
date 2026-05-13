@@ -115,6 +115,16 @@
             .article-nav { padding: 0 24px 60px; }
             footer { padding: 32px 24px; flex-direction: column; gap: 12px; }
         }
+    
+        .article-share { max-width: 680px; margin: 32px auto 0; padding: 0 64px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .article-share-label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #999; }
+        .article-share-btn { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; border: 1px solid #e8e6e1; background: transparent; color: #888; cursor: pointer; transition: color 0.15s, border-color 0.15s; padding: 0; text-decoration: none; }
+        .article-share-btn:hover { color: #111; border-color: #111; }
+        .article-share-btn.copied { color: #27ae60; border-color: #27ae60; }
+        .article-share-feedback { font-size: 11px; color: #27ae60; opacity: 0; transition: opacity 0.15s; }
+        .article-share-feedback.visible { opacity: 1; }
+        @media (max-width: 768px) { .article-share { padding: 0 24px; } }
+
     </style>
 </head>
 <body>
@@ -136,6 +146,15 @@
         <h1>The Software That Fired Its Own Manager</h1>
         <p class="lede">Nobody announced the end of middle management. There was no memo. No all-hands. Just a quiet, compounding realisation spreading through organisations that a significant portion of what their managers do every day - coordinating, reporting, routing decisions, chasing status - is now something software can do faster, cheaper, and without a calendar invite.</p>
     </header>
+
+    <div class="article-share">
+        <span class="article-share-label">Share</span>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fyellow3.io%2Finsights%2Fthe-software-that-fired-its-own-manager" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" class="article-share-btn" data-share-method="linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fyellow3.io%2Finsights%2Fthe-software-that-fired-its-own-manager&text=The%20Software%20That%20Fired%20Its%20Own%20Manager" target="_blank" rel="noopener noreferrer" aria-label="Share on X" class="article-share-btn" data-share-method="twitter"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <button type="button" class="article-share-btn" data-share-method="copy" data-share-url="https://yellow3.io/insights/the-software-that-fired-its-own-manager" aria-label="Copy link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button>
+        <span class="article-share-feedback" aria-live="polite"></span>
+      </div>
+
 
     <article class="article-body">
 
@@ -212,5 +231,30 @@
         <p><span class="dot"></span></p>
     </footer>
 
+  <script>
+(function(){
+  document.querySelectorAll(".article-share-btn").forEach(function(btn){
+    btn.addEventListener("click",function(e){
+      var method=btn.getAttribute("data-share-method");
+      var url=btn.getAttribute("data-share-url")||btn.href;
+      if(method==="copy"){
+        e.preventDefault();
+        var copyUrl=btn.getAttribute("data-share-url");
+        if(navigator.clipboard){
+          navigator.clipboard.writeText(copyUrl).then(function(){
+            btn.classList.add("copied");
+            var feedback=btn.parentElement.querySelector(".article-share-feedback");
+            if(feedback){feedback.textContent="Copied";feedback.classList.add("visible");}
+            setTimeout(function(){btn.classList.remove("copied");if(feedback){feedback.classList.remove("visible");}},1500);
+          }).catch(function(){});
+        }
+      }
+      if(typeof window.gtag==="function"){
+        window.gtag("event","article_share",{method:method,article_url:url});
+      }
+    });
+  });
+})();
+</script>
 </body>
 </html>
