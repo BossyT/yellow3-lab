@@ -19,6 +19,10 @@ The best technology is the technology you forget is there. Technology promised t
 
 ## Published Research & Insights
 
+### The Gun Just Fired for European Founders. EU Inc. Is Here. (March 2026)
+URL: https://yellow3.io/insights/the-gun-just-fired-for-european-founders-eu-inc-is-here
+Summary: EU Inc. lets any European founder incorporate across 27 countries in 48 hours for under €100. The starting gun just fired. Here is what it means and what comes next.
+
 ### The Shopify Moment for Business Software Is Here (March 2026)
 URL: https://yellow3.io/insights/the-shopify-moment-for-business-software-is-here
 Summary: Before Shopify, building an online store required a developer and months of patience. The same shift is happening right now with business software - and the consequences for SMB growth are enormous.
@@ -50,10 +54,6 @@ Summary: The AI 2027 report mapped a path to AGI with unsettling precision. Whet
 ### The AI Continent Action Plan: A Founder's Guide to What Actually Matters (April 2026)
 URL: https://yellow3.io/insights/the-ai-continent-action-plan
 Summary: The EU just built the most ambitious AI infrastructure plan in European history. Here is what business leaders, founders, and enterprises need to know - and how to use it. A yellow3 lab analysis.
-
-### The Gun Just Fired for European Founders. EU Inc. Is Here. (March 2026)
-URL: https://yellow3.io/insights/the-gun-just-fired-for-european-founders-eu-inc-is-here
-Summary: EU Inc. lets any European founder incorporate across 27 countries in 48 hours for under €100. The starting gun just fired. Here is what it means and what comes next.
 
 ### Who Is AI Really Coming For in Europe? (March 2026)
 URL: https://yellow3.io/insights/eu-ai-exposure
