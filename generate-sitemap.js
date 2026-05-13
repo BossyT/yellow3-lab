@@ -31,7 +31,7 @@ function getLastMod(file) {
 
 function getPriority(urlPath) {
   if (urlPath === '/') return '1.0';
-  if (urlPath === '/insights/' || urlPath === '/masterclass') return '0.9';
+  if (urlPath === '/insights/' || urlPath === '/advisory') return '0.9';
   if (urlPath.startsWith('/insights/')) return '0.8';
   return '0.5';
 }

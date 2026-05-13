@@ -1,5 +1,8 @@
 {
   "cleanUrls": true,
   "buildCommand": "node generate-sitemap.js",
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "redirects": [
+    { "source": "/masterclass", "destination": "/advisory", "permanent": true }
+  ]
 }
