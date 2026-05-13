@@ -6,30 +6,16 @@
     <link>https://yellow3.io/insights/</link>
     <description>Perspectives on AI and what it makes possible. Writing from yellow3 lab on autonomous software, the future of digital products, and what European businesses need to understand about AI right now.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 13 May 2026 13:18:43 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 13 May 2026 13:28:33 GMT</lastBuildDate>
     <atom:link href="https://yellow3.io/feed.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>The Software That Fired Its Own Manager</title>
-      <link>https://yellow3.io/insights/the-software-that-fired-its-own-manager</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/the-software-that-fired-its-own-manager</guid>
-      <pubDate>Tue, 10 Mar 2026 00:00:00 GMT</pubDate>
-      <description>Autonomous agents don&apos;t ask for permission. They ask for goals. The uncomfortable truth about what happens to the layer between strategy and execution when software can handle both.</description>
-      <media:content url="https://yellow3.io/insights/hero-the-software-that-fired-its-own-manager.png" medium="image" />
-      <media:description>Autonomous agents transform a traditional middle-management hierarchy into a streamlined AI-driven organisation, with a human leader overseeing workflows, insights, task routing, and escalations.</media:description>
-    </item>
-    <item>
-      <title>The DPP Report Executives Actually Need</title>
-      <link>https://yellow3.io/insights/dpp-global-executive-report-2026</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/dpp-global-executive-report-2026</guid>
-      <pubDate>Fri, 06 Mar 2026 00:00:00 GMT</pubDate>
-      <description>A 17-page executive briefing on Digital Product Passports. Verified deadlines, sector-by-sector obligations, data washing risks, and a practical action framework.</description>
-    </item>
     <item>
       <title>The Shopify Moment for Business Software Is Here</title>
       <link>https://yellow3.io/insights/the-shopify-moment-for-business-software-is-here</link>
       <guid isPermaLink="true">https://yellow3.io/insights/the-shopify-moment-for-business-software-is-here</guid>
       <pubDate>Fri, 06 Mar 2026 00:00:00 GMT</pubDate>
       <description>Before Shopify, building an online store required a developer and months of patience. The same shift is happening right now with business software - and the consequences for SMB growth are enormous.</description>
+      <media:content url="https://yellow3.io/insights/hero-the-shopify-moment-for-business-software-is-here.png" medium="image" />
+      <media:description>A founder moves from a dark, cluttered workspace filled with disconnected spreadsheets, manual processes, old CRM tools, invoices, and workarounds into a bright modern office with a custom software dashboard showing growth, automation, sales, customers, inventory, and operations. The image visualizes how SMBs using custom-fit software can grow 2.8x faster by replacing fragmented generic tools with integrated systems built around their business.</media:description>
     </item>
     <item>
       <title>I Analyzed What 50 AI Platforms Actually Cost to Build</title>
