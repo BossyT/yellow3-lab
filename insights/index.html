@@ -56,7 +56,11 @@
     /* ALL ARTICLES */
     .articles { padding: 80px 48px 112px; }
     .articles-inner { max-width: 1200px; margin: 0 auto; }
-    .articles-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 56px; }
+    .articles-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+    .articles-label-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 56px; gap: 24px; flex-wrap: wrap; }
+    .rss-link { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 4px; transition: color 0.2s, border-color 0.2s; }
+    .rss-link:hover { color: var(--dark); border-color: var(--dark); }
+    .rss-link svg { color: #f26522; flex-shrink: 0; }
     .articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
     .article-card { background: var(--white); padding: 40px; text-decoration: none; display: block; transition: background 0.2s; }
     .article-card:hover { background: var(--off-white); }
@@ -175,7 +179,13 @@
   <!-- ALL ARTICLES -->
   <div class="articles">
     <div class="articles-inner">
-      <div class="articles-label">All articles</div>
+      <div class="articles-label-row">
+        <div class="articles-label">All articles</div>
+        <a href="/feed.xml" class="rss-link" aria-label="Subscribe via RSS">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z"/></svg>
+          <span>Subscribe via RSS</span>
+        </a>
+      </div>
       <div class="articles-grid">
         <a href="/insights/the-gatekeepers-are-not-protecting-art-they-are-protecting-the-gate" class="article-card reveal">
           <div class="article-issue">Issue 22</div>
