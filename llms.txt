@@ -19,6 +19,10 @@ The best technology is the technology you forget is there. Technology promised t
 
 ## Published Research & Insights
 
+### The Shopify Moment for Business Software Is Here (March 2026)
+URL: https://yellow3.io/insights/the-shopify-moment-for-business-software-is-here
+Summary: Before Shopify, building an online store required a developer and months of patience. The same shift is happening right now with business software - and the consequences for SMB growth are enormous.
+
 ### The Software That Fired Its Own Manager (March 2026)
 URL: https://yellow3.io/insights/the-software-that-fired-its-own-manager
 Summary: Autonomous agents don't ask for permission. They ask for goals. The uncomfortable truth about what happens to the layer between strategy and execution when software can handle both.
@@ -90,10 +94,6 @@ Summary: Everyone is asking what AI will take from us. Nobody is asking what it 
 ### The DPP Report Executives Actually Need (March 2026)
 URL: https://yellow3.io/insights/dpp-global-executive-report-2026
 Summary: A 17-page executive briefing on Digital Product Passports. Verified deadlines, sector-by-sector obligations, data washing risks, and a practical action framework.
-
-### The Shopify Moment for Business Software Is Here (March 2026)
-URL: https://yellow3.io/insights/the-shopify-moment-for-business-software-is-here
-Summary: Before Shopify, building an online store required a developer and months of patience. The same shift is happening right now with business software - and the consequences for SMB growth are enormous.
 
 ### I Analyzed What 50 AI Platforms Actually Cost to Build (February 2026)
 URL: https://yellow3.io/insights/ai-platform-costs-2026
