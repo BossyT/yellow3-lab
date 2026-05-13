@@ -1812,10 +1812,29 @@ async function loadArticleForEdit(path) {
     setStatus('connected', 'Connected to ' + REPO);
 }
 
-function showNewArticle() {
+// Reads insights/index.html and returns max issue number found in article cards.
+async function getMaxIssueNumber() {
+    try {
+        const indexData = await ghFetch('insights/index.html');
+        if (!indexData) return 0;
+        const content = decodeURIComponent(escape(atob(indexData.content.replace(/\n/g, ''))));
+        const re = /<div class="article-issue">Issue\s+(\d+)<\/div>/g;
+        let max = 0;
+        let m;
+        while ((m = re.exec(content)) !== null) {
+            const n = parseInt(m[1], 10);
+            if (n > max) max = n;
+        }
+        return max;
+    } catch (e) {
+        console.error('getMaxIssueNumber failed:', e);
+        return 0;
+    }
+}
+
+async function showNewArticle() {
     editingArticle = null;
-    var articleCount = files.filter(function(f) { return f.path.startsWith('insights/') && f.path.endsWith('.html') && f.path !== 'insights/index.html'; }).length;
-    document.getElementById('articleIssue').value = String(articleCount + 1).padStart(2, '0');
+    document.getElementById('articleIssue').value = '...';
     document.getElementById('articleTitle').value = '';
     document.getElementById('articleSlug').value = '';
     document.getElementById('articleSlug').disabled = false;
@@ -1829,6 +1848,9 @@ function showNewArticle() {
     document.getElementById('articleDeleteBtn').style.display = 'none';
     resetHeroForm();
     showView('newArticleView');
+    // Compute next issue from actual Issue NN tags on the live insights page.
+    const maxIssue = await getMaxIssueNumber();
+    document.getElementById('articleIssue').value = String(maxIssue + 1).padStart(2, '0');
 }
 
 function submitArticle() {
