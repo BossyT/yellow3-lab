@@ -1194,6 +1194,63 @@ function replaceHomepageInsightsGrid(homepageContent, newCardsHtml) {
     );
 }
 
+// SITEMAP + LLMS.TXT updaters
+async function updateSitemapForArticle(slug, action) {
+    try {
+        const data = await ghFetch('sitemap.xml');
+        if (!data) return;
+        const content = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+        const url = 'https://yellow3.io/insights/' + slug;
+        const today = new Date().toISOString().slice(0, 10);
+        const urlBlock = '    <url>\n        <loc>' + url + '</loc>\n        <lastmod>' + today + '</lastmod>\n        <changefreq>monthly</changefreq>\n        <priority>0.8</priority>\n    </url>';
+        const slugEsc = url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const existingRegex = new RegExp('    <url>\\s*<loc>' + slugEsc + '<\\/loc>[\\s\\S]*?<\\/url>\\n?');
+        let newContent;
+        if (action === 'remove') {
+            newContent = content.replace(existingRegex, '');
+        } else if (existingRegex.test(content)) {
+            newContent = content.replace(existingRegex, urlBlock + '\n');
+        } else {
+            newContent = content.replace('</urlset>', urlBlock + '\n</urlset>');
+        }
+        if (newContent !== content) {
+            await ghPut('sitemap.xml', newContent, 'Update sitemap for ' + slug, data.sha);
+        }
+    } catch (e) {
+        console.error('Failed to update sitemap:', e);
+    }
+}
+
+async function updateLlmsTxtForArticle(slug, title, desc, action, publishedDateIso) {
+    try {
+        const data = await ghFetch('llms.txt');
+        if (!data) return;
+        let content = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+        const url = 'https://yellow3.io/insights/' + slug;
+        const slugEsc = url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        // Match the article entry: ### Title line + URL line + Summary line + trailing blank.
+        const entryRegex = new RegExp('### [^\\n]+\\nURL: ' + slugEsc + '\\n(?:Summary: [^\\n]*\\n)?\\n?');
+        // Strip any existing entry for this slug.
+        content = content.replace(entryRegex, '');
+        if (action !== 'remove') {
+            let dateSource = publishedDateIso ? new Date(publishedDateIso + 'T00:00:00') : new Date();
+            if (isNaN(dateSource)) dateSource = new Date();
+            const monthYear = dateSource.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+            const newEntry = '### ' + title + ' (' + monthYear + ')\n' +
+                             'URL: ' + url + '\n' +
+                             'Summary: ' + desc + '\n\n';
+            const sectionMarker = '## Published Research & Insights\n\n';
+            const idx = content.indexOf(sectionMarker);
+            if (idx >= 0) {
+                content = content.slice(0, idx + sectionMarker.length) + newEntry + content.slice(idx + sectionMarker.length);
+            }
+        }
+        await ghPut('llms.txt', content, 'Update llms.txt for ' + slug, data.sha);
+    } catch (e) {
+        console.error('Failed to update llms.txt:', e);
+    }
+}
+
 // Updates the homepage's insights teaser to match the latest 3 articles.
 // indexContent = the just-updated insights/index.html content (so latest is included).
 // overrideHero = { slug, ext } for the brand-new article (whose hero might not yet be in the folder listing cache).
@@ -1614,6 +1671,11 @@ ${body}
             toast('Article created but index update failed - update manually.', 'error');
         }
 
+        // SEO + AEO: sitemap and llms.txt
+        setStatus('loading', 'Updating SEO files...');
+        await updateSitemapForArticle(slug, 'add');
+        await updateLlmsTxtForArticle(slug, title, desc, 'add');
+
         toast('Article created and deployed!', 'success');
         setStatus('connected', `Connected to ${REPO}`);
         await refreshFiles();
@@ -1852,6 +1914,11 @@ async function updateArticle() {
                     const override = hero ? { slug: slug, ext: hero.ext } : null;
                     await syncHomepageInsightsTeaser(indexContent, override);
                 }
+
+                // SEO + AEO: refresh sitemap lastmod and llms.txt entry, preserving original publish date.
+                setStatus('loading', 'Updating SEO files...');
+                await updateSitemapForArticle(slug, 'update');
+                await updateLlmsTxtForArticle(slug, title, desc, 'update', publishedDate);
             }
         } catch (indexErr) {
             console.error('Failed to update insights index:', indexErr);
@@ -1894,11 +1961,15 @@ async function unpublishArticle() {
             var indexData = await ghFetch('insights/index.html');
             if (indexData) {
                 var indexContent = decodeURIComponent(escape(atob(indexData.content.replace(/\n/g, ''))));
-                var cardRegex = new RegExp('\\s*<a href="/insights/' + editingArticle.slug.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '"[\\s\\S]*?</a>', 'g');
+                var cardRegex = new RegExp('\\s*<a href="/insights/' + editingArticle.slug.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '" class="article-card[\\s\\S]*?</a>', 'g');
                 indexContent = indexContent.replace(cardRegex, '');
                 await ghPut('insights/index.html', indexContent, 'Remove ' + editingArticle.slug + ' from insights index', indexData.sha);
             }
         } catch (e) { console.error('Index update failed:', e); }
+
+        // Remove from sitemap and llms.txt
+        await updateSitemapForArticle(editingArticle.slug, 'remove');
+        await updateLlmsTxtForArticle(editingArticle.slug, '', '', 'remove');
 
         editingArticle = null;
         toast('Article unpublished. Live in ~30 seconds.', 'success');
