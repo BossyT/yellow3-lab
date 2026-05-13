@@ -12,7 +12,7 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>naffe.ai - Software that builds itself — yellow3 lab</title>
+  <title>naffe.ai - Software that builds itself - yellow3 lab</title>
   <meta name="description" content="Describe what you need in plain English. naffe.ai builds production-ready software - apps, dashboards, portals, tools - deployed and working in minutes." />
   <link rel="canonical" href="https://yellow3.io/naffe" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -169,7 +169,7 @@
       <p>The kind of thing that previously took a development team weeks to build, you can have running in minutes.</p>
 
       <div class="article-video">
-        <video autoplay loop muted playsinline>
+        <video id="naffe-video" autoplay loop muted playsinline>
           <source src="/naffe-build-simulation.mp4" type="video/mp4">
         </video>
       </div>
@@ -346,6 +346,33 @@
       });
     }, { threshold: 0.15 });
     reveals.forEach(el => observer.observe(el));
+  </script>
+  <script>
+    // Naffe video tracking - fire each event at most once per pageview
+    (function() {
+      var v = document.getElementById('naffe-video');
+      if (!v) return;
+      var startedFired = false;
+      var completedFired = false;
+      function fire(name) {
+        if (typeof window.gtag !== 'function') return;
+        window.gtag('event', name, {
+          video_title: 'naffe_build_simulation',
+          video_url: v.currentSrc || '/naffe-build-simulation.mp4',
+          page_location: 'naffe'
+        });
+      }
+      v.addEventListener('play', function() {
+        if (startedFired) return;
+        startedFired = true;
+        fire('video_start');
+      });
+      v.addEventListener('ended', function() {
+        if (completedFired) return;
+        completedFired = true;
+        fire('video_complete');
+      });
+    })();
   </script>
 
 </body>

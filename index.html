@@ -308,7 +308,7 @@
         </div>
         <div class="platform-right reveal">
           <div class="platform-right-label">See it in action</div>
-          <video autoplay loop muted playsinline style="width:100%; border: 1px solid var(--border); margin-bottom: 32px;">
+          <video id="naffe-video" autoplay loop muted playsinline style="width:100%; border: 1px solid var(--border); margin-bottom: 32px;">
             <source src="/naffe-build-simulation.mp4" type="video/mp4">
           </video>
           <a href="/naffe" class="platform-cta">See how naffe.ai works</a>
@@ -384,7 +384,7 @@
             <label>Message</label>
             <textarea rows="5" placeholder="Tell us what you're working on..."></textarea>
           </div>
-          <button class="form-submit">Send message</button>
+          <button class="form-submit" onclick="if(typeof window.gtag==='function'){window.gtag('event','contact_form_submit',{form_location:'homepage',form_destination:'contact'});}">Send message</button>
         </div>
       </div>
     </div>
@@ -417,6 +417,33 @@
       });
     }, { threshold: 0.08 });
     reveals.forEach(el => observer.observe(el));
+  </script>
+  <script>
+    // Naffe video tracking - fire each event at most once per pageview
+    (function() {
+      var v = document.getElementById('naffe-video');
+      if (!v) return;
+      var startedFired = false;
+      var completedFired = false;
+      function fire(name) {
+        if (typeof window.gtag !== 'function') return;
+        window.gtag('event', name, {
+          video_title: 'naffe_build_simulation',
+          video_url: v.currentSrc || '/naffe-build-simulation.mp4',
+          page_location: 'homepage'
+        });
+      }
+      v.addEventListener('play', function() {
+        if (startedFired) return;
+        startedFired = true;
+        fire('video_start');
+      });
+      v.addEventListener('ended', function() {
+        if (completedFired) return;
+        completedFired = true;
+        fire('video_complete');
+      });
+    })();
   </script>
 </body>
 </html>
