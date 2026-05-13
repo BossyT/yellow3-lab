@@ -95,10 +95,6 @@ Summary: A 17-page executive briefing on Digital Product Passports. Verified dea
 URL: https://yellow3.io/insights/the-shopify-moment-for-business-software-is-here
 Summary: Before Shopify, building an online store required a developer and months of patience. The same shift is happening right now with business software - and the consequences for SMB growth are enormous.
 
-### Your Software Should Work While You Sleep (March 2026)
-URL: https://yellow3.io/insights/autonomous-ai-software
-Summary: Why autonomous AI software will save the average small business $20,000-$40,000 per year, generate $156,000 in extra revenue, and why 94% of companies aren't there yet.
-
 ### I Analyzed What 50 AI Platforms Actually Cost to Build (February 2026)
 URL: https://yellow3.io/insights/ai-platform-costs-2026
 Summary: A 788x price gap between AI models. $250/mo vs $2.3M/mo to build. A Copenhagen founder breaks down the real economics of AI platforms in 2026.
