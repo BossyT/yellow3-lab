@@ -6,128 +6,16 @@
     <link>https://yellow3.io/insights/</link>
     <description>Perspectives on AI and what it makes possible. Writing from yellow3 lab on autonomous software, the future of digital products, and what European businesses need to understand about AI right now.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 13 May 2026 11:21:30 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 13 May 2026 13:18:43 GMT</lastBuildDate>
     <atom:link href="https://yellow3.io/feed.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>The gatekeepers are not protecting art. They are protecting the gate.</title>
-      <link>https://yellow3.io/insights/the-gatekeepers-are-not-protecting-art-they-are-protecting-the-gate</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/the-gatekeepers-are-not-protecting-art-they-are-protecting-the-gate</guid>
-      <pubDate>Tue, 12 May 2026 00:00:00 GMT</pubDate>
-      <description>Cannes, the Grammys, the Oscars and SAG-AFTRA drew the same line on AI inside a single award cycle. The reasoning is about creativity. The structure underneath is about who gets to decide what counts.</description>
-      <media:content url="https://yellow3.io/insights/hero-the-gatekeepers-are-not-protecting-art-they-are-protecting-the-gate.png" medium="image" />
-      <media:description>A split scene at a film festival gate. On the left, stern institutional figures in black stand behind closed iron gates inscribed with the words &quot;The gatekeepers are not protecting art. They are protecting the gate,&quot; with brass plaques naming Cannes, the Grammys, the Oscars, SAG-AFTRA and Bandcamp. On the right, a diverse young crowd streams through the open gate carrying cameras, laptops and tablets, beneath a marquee reading &quot;Stories belong to everyone&quot; and a banner for the World AI Film Festival.</media:description>
-    </item>
-    <item>
-      <title>The autopilots will not build themselves</title>
-      <link>https://yellow3.io/insights/the-autopilots-will-not-build-themselves</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/the-autopilots-will-not-build-themselves</guid>
-      <pubDate>Mon, 11 May 2026 00:00:00 GMT</pubDate>
-      <description>Sequoia named the trillion-dollar prize: the next great company will sell the work, not the tool. But Bek&apos;s framework skips the harder question - who actually builds the autopilots, and how. The layer underneath the autopilot economy is where the real position is.</description>
-    </item>
-    <item>
-      <title>The Pioneers Are Not the Winners</title>
-      <link>https://yellow3.io/insights/the-pioneers-are-not-the-winners</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/the-pioneers-are-not-the-winners</guid>
-      <pubDate>Tue, 28 Apr 2026 00:00:00 GMT</pubDate>
-      <description>Netscape created the browser. Google captured search. Today&apos;s AI pioneers are repeating the same pattern. A note for executives and boards on the difference between creating a category and capturing one.</description>
-    </item>
-    <item>
-      <title>MCP + A2A: The two protocols quietly becoming the operating system for AI agents</title>
-      <link>https://yellow3.io/insights/mcp-a2a-agent-operating-system</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/mcp-a2a-agent-operating-system</guid>
-      <pubDate>Thu, 16 Apr 2026 00:00:00 GMT</pubDate>
-      <description>MCP and A2A are now the open protocol layer for agentic AI, both governed by the Linux Foundation. Here is what they do, why they matter, and what European business leaders should do about them in 2026.</description>
-    </item>
-    <item>
-      <title>The AGI Clock Is Ticking. What Should Founders Actually Do About It?</title>
-      <link>https://yellow3.io/insights/agi-clock-founders-ai-2027</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/agi-clock-founders-ai-2027</guid>
-      <pubDate>Tue, 14 Apr 2026 00:00:00 GMT</pubDate>
-      <description>The AI 2027 report mapped a path to AGI with unsettling precision. Whether the timeline is 2027 or 2032, the strategic question for founders is the same - and the window to act is already closing.</description>
-    </item>
-    <item>
-      <title>The AI Continent Action Plan: A Founder&apos;s Guide to What Actually Matters</title>
-      <link>https://yellow3.io/insights/the-ai-continent-action-plan</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/the-ai-continent-action-plan</guid>
-      <pubDate>Thu, 09 Apr 2026 00:00:00 GMT</pubDate>
-      <description>The EU just built the most ambitious AI infrastructure plan in European history. Here is what business leaders, founders, and enterprises need to know - and how to use it. A yellow3 lab analysis.</description>
-    </item>
-    <item>
-      <title>The Gun Just Fired for European Founders. EU Inc. Is Here.</title>
-      <link>https://yellow3.io/insights/the-gun-just-fired-for-european-founders-eu-inc-is-here</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/the-gun-just-fired-for-european-founders-eu-inc-is-here</guid>
-      <pubDate>Wed, 18 Mar 2026 00:00:00 GMT</pubDate>
-      <description>EU Inc. lets any European founder incorporate across 27 countries in 48 hours for under €100. The starting gun just fired. Here is what it means and what comes next.</description>
-    </item>
-    <item>
-      <title>Who Is AI Really Coming For in Europe?</title>
-      <link>https://yellow3.io/insights/eu-ai-exposure</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/eu-ai-exposure</guid>
-      <pubDate>Mon, 16 Mar 2026 00:00:00 GMT</pubDate>
-      <description>202 million EU workers across 40 occupation groups, scored for AI exposure. Clerical and business professionals face the highest risk. Interactive treemap built on real Eurostat employment data and ISCO-08 task analysis by yellow3 lab.</description>
-    </item>
-    <item>
-      <title>Europe&apos;s 26 Million SMBs Have an AI Problem</title>
-      <link>https://yellow3.io/insights/europes-26-million-smbs-have-an-ai-problem</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/europes-26-million-smbs-have-an-ai-problem</guid>
-      <pubDate>Sat, 14 Mar 2026 00:00:00 GMT</pubDate>
-      <description>DESCRIPTION: Only one in five European businesses uses AI. Nearly half are experimenting but almost none are operationalizing it. An analysis of 26.1 million SMBs, the adoption gap, and what the next 24 months will bring - based on Eurostat, OECD, Gartner, and European Commission data.</description>
-    </item>
-    <item>
-      <title>The Billion-Dollar Bet Against Language</title>
-      <link>https://yellow3.io/insights/the-billion-dollar-bet-against-language</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/the-billion-dollar-bet-against-language</guid>
-      <pubDate>Fri, 13 Mar 2026 00:00:00 GMT</pubDate>
-      <description>Yann LeCun just raised $1.03 billion to prove that large language models are a dead end. AMI Labs, world models, and what happens when a Turing Award winner bets against the entire industry.</description>
-    </item>
-    <item>
-      <title>The Click That Launched a Thousand Exploits</title>
-      <link>https://yellow3.io/insights/the-click-that-launched-a-thousand-exploits</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/the-click-that-launched-a-thousand-exploits</guid>
-      <pubDate>Thu, 12 Mar 2026 00:00:00 GMT</pubDate>
-      <description>The first autonomous AI cyberattack targeted 30 organizations with 80-90% of operations executed without human intervention. What GTG-1002 reveals about the future of agentic systems - and why builders need guardrails now.</description>
-    </item>
-    <item>
-      <title>The Architecture Problem</title>
-      <link>https://yellow3.io/insights/the-architecture-problem</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/the-architecture-problem</guid>
-      <pubDate>Wed, 11 Mar 2026 00:00:00 GMT</pubDate>
-      <description>Every major AI agent platform is built on the same flawed assumption: that the LLM should be in charge. It shouldn&apos;t. Here is why the dominant architecture of the AI agent wave is heading for a reckoning - and what comes next.</description>
-    </item>
-    <item>
-      <title>China&apos;s Quantum OS Is Out. The West Hasn&apos;t Noticed Yet.</title>
-      <link>https://yellow3.io/insights/china-quantum-os</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/china-quantum-os</guid>
-      <pubDate>Tue, 10 Mar 2026 00:00:00 GMT</pubDate>
-      <description>China just released the world&apos;s first open-source quantum computer operating system. It&apos;s free, it runs on any hardware, and nobody in the West is talking about it. They should be.</description>
-    </item>
-    <item>
-      <title>McKinsey Has 25,000 Employees You Will Never Meet</title>
-      <link>https://yellow3.io/insights/mckinsey-has-25000-employees-you-will-never-meet</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/mckinsey-has-25000-employees-you-will-never-meet</guid>
-      <pubDate>Tue, 10 Mar 2026 00:00:00 GMT</pubDate>
-      <description>McKinsey&apos;s CEO now counts AI agents as employees. 25,000 of them. The world&apos;s most prestigious consulting firm just told you exactly where business is heading - and most leaders missed it.</description>
-    </item>
-    <item>
-      <title>The New Scale</title>
-      <link>https://yellow3.io/insights/one-person-empire</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/one-person-empire</guid>
-      <pubDate>Tue, 10 Mar 2026 00:00:00 GMT</pubDate>
-      <description>The most dangerous competitor in your market probably works alone. No office. No team. No funding round. Just AI, leverage, and a founder who decided that small is no longer a limitation.</description>
-    </item>
-    <item>
-      <title>The Best Time to Be Human Is About to Begin</title>
-      <link>https://yellow3.io/insights/the-best-time-to-be-human-is-about-to-begin</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/the-best-time-to-be-human-is-about-to-begin</guid>
-      <pubDate>Tue, 10 Mar 2026 00:00:00 GMT</pubDate>
-      <description>Everyone is asking what AI will take from us. Nobody is asking what it is about to give us. The answer might be the most optimistic story of our generation.</description>
-    </item>
     <item>
       <title>The Software That Fired Its Own Manager</title>
       <link>https://yellow3.io/insights/the-software-that-fired-its-own-manager</link>
       <guid isPermaLink="true">https://yellow3.io/insights/the-software-that-fired-its-own-manager</guid>
       <pubDate>Tue, 10 Mar 2026 00:00:00 GMT</pubDate>
       <description>Autonomous agents don&apos;t ask for permission. They ask for goals. The uncomfortable truth about what happens to the layer between strategy and execution when software can handle both.</description>
+      <media:content url="https://yellow3.io/insights/hero-the-software-that-fired-its-own-manager.png" medium="image" />
+      <media:description>Autonomous agents transform a traditional middle-management hierarchy into a streamlined AI-driven organisation, with a human leader overseeing workflows, insights, task routing, and escalations.</media:description>
     </item>
     <item>
       <title>The DPP Report Executives Actually Need</title>
