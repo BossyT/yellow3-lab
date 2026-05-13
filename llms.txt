@@ -19,6 +19,10 @@ The best technology is the technology you forget is there. Technology promised t
 
 ## Published Research & Insights
 
+### The Software That Fired Its Own Manager (March 2026)
+URL: https://yellow3.io/insights/the-software-that-fired-its-own-manager
+Summary: Autonomous agents don't ask for permission. They ask for goals. The uncomfortable truth about what happens to the layer between strategy and execution when software can handle both.
+
 ### The gatekeepers are not protecting art. They are protecting the gate. (May 2026)
 URL: https://yellow3.io/insights/the-gatekeepers-are-not-protecting-art-they-are-protecting-the-gate
 Summary: Cannes, the Grammys, the Oscars and SAG-AFTRA drew the same line on AI inside a single award cycle. The reasoning is about creativity. The structure underneath is about who gets to decide what counts.
@@ -82,10 +86,6 @@ Summary: The most dangerous competitor in your market probably works alone. No o
 ### The Best Time to Be Human Is About to Begin (March 2026)
 URL: https://yellow3.io/insights/the-best-time-to-be-human-is-about-to-begin
 Summary: Everyone is asking what AI will take from us. Nobody is asking what it is about to give us. The answer might be the most optimistic story of our generation.
-
-### The Software That Fired Its Own Manager (March 2026)
-URL: https://yellow3.io/insights/the-software-that-fired-its-own-manager
-Summary: Autonomous agents don't ask for permission. They ask for goals. The uncomfortable truth about what happens to the layer between strategy and execution when software can handle both.
 
 ### The DPP Report Executives Actually Need (March 2026)
 URL: https://yellow3.io/insights/dpp-global-executive-report-2026
