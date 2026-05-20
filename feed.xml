@@ -6,8 +6,17 @@
     <link>https://yellow3.io/insights/</link>
     <description>Perspectives on AI and what it makes possible. Writing from yellow3 lab on autonomous software, the future of digital products, and what European businesses need to understand about AI right now.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 13 May 2026 13:49:49 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 20 May 2026 07:01:35 GMT</lastBuildDate>
     <atom:link href="https://yellow3.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Five Times the Future Arrived</title>
+      <link>https://yellow3.io/insights/five-times-the-future-arrived</link>
+      <guid isPermaLink="true">https://yellow3.io/insights/five-times-the-future-arrived</guid>
+      <pubDate>Wed, 20 May 2026 07:01:35 GMT</pubDate>
+      <description>Mechanised weaving, electrification, personal computing, the internet, container shipping. Five technology transitions, one pattern. What history actually tells us about the question everyone is asking about AI and jobs.</description>
+      <media:content url="https://yellow3.io/insights/hero-five-times-the-future-arrived.png" medium="image" />
+      <media:description>Editorial illustration showing five stages of industrial transition arranged as a horizontal timeline: a mechanised loom from 1811, an electrified factory floor from 1900, a shipping container being loaded in 1956, a personal computer from 1987, and a network server rack from 1995.</media:description>
+    </item>
     <item>
       <title>The Gun Just Fired for European Founders. EU Inc. Is Here.</title>
       <link>https://yellow3.io/insights/the-gun-just-fired-for-european-founders-eu-inc-is-here</link>
