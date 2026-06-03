@@ -1,0 +1,47 @@
+name: Research - daily data pull
+
+# Pulls the OpenRouter rankings once a day, stores the snapshot, recomputes the
+# Model adoption instrument, and commits the result. The commit triggers a
+# Vercel redeploy. The OpenRouter key is read only from the repository secret
+# OPENROUTER_API_KEY and is never written to the repo.
+
+on:
+  schedule:
+    - cron: "30 6 * * *"   # 06:30 UTC daily (~07:30-08:30 Copenhagen)
+  workflow_dispatch: {}      # allows the first/manual run from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: research-daily
+  cancel-in-progress: false
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build Model adoption instrument
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: python3 research/build.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  "yellow3 research bot"
+          git config user.email "research-bot@users.noreply.github.com"
+          git add research/snapshots research/model-adoption-data.json research/editions.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Research: daily model-adoption pull ($(date -u +%Y-%m-%d))"
+            git push
+          fi

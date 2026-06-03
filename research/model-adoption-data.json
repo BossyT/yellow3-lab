@@ -1,0 +1,376 @@
+{
+  "instrument": "model-adoption",
+  "title": "Model adoption",
+  "thesis": "Where AI adoption actually sits, by region of origin, measured in real routed traffic, and how fast the lead changes.",
+  "status": "live",
+  "as_of": "2026-06-02",
+  "as_of_pretty": "2 June 2026",
+  "generated_utc": "2026-06-03T07:18:41Z",
+  "refreshed_cet": "3 Jun 2026, 09:18 CET",
+  "source": {
+    "name": "OpenRouter",
+    "url": "https://openrouter.ai/rankings",
+    "line": "Source: OpenRouter (openrouter.ai/rankings), as of 2 June 2026."
+  },
+  "window": {
+    "current": [
+      "2026-05-27",
+      "2026-06-02"
+    ],
+    "prior": [
+      "2026-05-20",
+      "2026-05-26"
+    ],
+    "days_history": 30
+  },
+  "regions": [
+    "Asia",
+    "Europe",
+    "US",
+    "Other"
+  ],
+  "region_colors": {
+    "Asia": "#c0613a",
+    "Europe": "#c9a227",
+    "US": "#3b6ea5",
+    "Other": "#a8a6a1"
+  },
+  "payoff": "Asia leads with 46% of routed tokens this week (+3.2 points), while Europe sits at 0.47%.",
+  "share": [
+    {
+      "region": "Asia",
+      "pct": 45.98,
+      "delta_pp": 3.21
+    },
+    {
+      "region": "Europe",
+      "pct": 0.47,
+      "delta_pp": -0.07
+    },
+    {
+      "region": "US",
+      "pct": 39.75,
+      "delta_pp": -3.45
+    },
+    {
+      "region": "Other",
+      "pct": 13.8,
+      "delta_pp": 0.31
+    }
+  ],
+  "leaderboard": [
+    {
+      "rank": 1,
+      "prev_rank": 2,
+      "move": "up",
+      "new": false,
+      "model": "tencent/hy3-preview-20260421",
+      "name": "Tencent Hy3 Preview",
+      "developer": "Tencent",
+      "region": "Asia",
+      "pct": 8.76
+    },
+    {
+      "rank": 2,
+      "prev_rank": 1,
+      "move": "down",
+      "new": false,
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "name": "DeepSeek V4 Flash",
+      "developer": "DeepSeek",
+      "region": "Asia",
+      "pct": 8.48
+    },
+    {
+      "rank": 3,
+      "prev_rank": 42,
+      "move": "up",
+      "new": false,
+      "model": "xiaomi/mimo-v2.5-20260422",
+      "name": "Xiaomi Mimo V2.5",
+      "developer": "Xiaomi",
+      "region": "Asia",
+      "pct": 6.06
+    },
+    {
+      "rank": 4,
+      "prev_rank": 4,
+      "move": "flat",
+      "new": false,
+      "model": "anthropic/claude-4.6-sonnet-20260217",
+      "name": "Anthropic Claude 4.6 Sonnet",
+      "developer": "Anthropic",
+      "region": "US",
+      "pct": 5.76
+    },
+    {
+      "rank": 5,
+      "prev_rank": 5,
+      "move": "flat",
+      "new": false,
+      "model": "openrouter/owl-alpha",
+      "name": "OpenRouter Owl Alpha",
+      "developer": "OpenRouter",
+      "region": "Other",
+      "pct": 5.72
+    },
+    {
+      "rank": 6,
+      "prev_rank": 3,
+      "move": "down",
+      "new": false,
+      "model": "anthropic/claude-4.7-opus-20260416",
+      "name": "Anthropic Claude 4.7 Opus",
+      "developer": "Anthropic",
+      "region": "US",
+      "pct": 5.22
+    },
+    {
+      "rank": 7,
+      "prev_rank": 14,
+      "move": "up",
+      "new": false,
+      "model": "xiaomi/mimo-v2.5-pro-20260422",
+      "name": "Xiaomi Mimo V2.5 Pro",
+      "developer": "Xiaomi",
+      "region": "Asia",
+      "pct": 4.22
+    },
+    {
+      "rank": 8,
+      "prev_rank": 6,
+      "move": "down",
+      "new": false,
+      "model": "deepseek/deepseek-v4-pro-20260423",
+      "name": "DeepSeek V4 Pro",
+      "developer": "DeepSeek",
+      "region": "Asia",
+      "pct": 3.97
+    },
+    {
+      "rank": 9,
+      "prev_rank": 8,
+      "move": "down",
+      "new": false,
+      "model": "deepseek/deepseek-v3.2-20251201",
+      "name": "DeepSeek V3.2",
+      "developer": "DeepSeek",
+      "region": "Asia",
+      "pct": 3.4
+    },
+    {
+      "rank": 10,
+      "prev_rank": 7,
+      "move": "down",
+      "new": false,
+      "model": "google/gemini-3-flash-preview-20251217",
+      "name": "Google Gemini 3 Flash Preview",
+      "developer": "Google",
+      "region": "US",
+      "pct": 3.0
+    },
+    {
+      "rank": 11,
+      "prev_rank": 10,
+      "move": "down",
+      "new": false,
+      "model": "nvidia/nemotron-3-super-120b-a12b-20230311:free",
+      "name": "NVIDIA Nemotron 3 Super 120b A12b (free)",
+      "developer": "NVIDIA",
+      "region": "US",
+      "pct": 2.03
+    },
+    {
+      "rank": 12,
+      "prev_rank": 12,
+      "move": "flat",
+      "new": false,
+      "model": "google/gemini-2.5-flash",
+      "name": "Google Gemini 2.5 Flash",
+      "developer": "Google",
+      "region": "US",
+      "pct": 1.8
+    },
+    {
+      "rank": 13,
+      "prev_rank": 9,
+      "move": "down",
+      "new": false,
+      "model": "google/gemini-2.5-flash-lite",
+      "name": "Google Gemini 2.5 Flash Lite",
+      "developer": "Google",
+      "region": "US",
+      "pct": 1.8
+    },
+    {
+      "rank": 14,
+      "prev_rank": 25,
+      "move": "up",
+      "new": false,
+      "model": "poolside/laguna-m.1-20260312:free",
+      "name": "Poolside Laguna M.1 (free)",
+      "developer": "Poolside",
+      "region": "US",
+      "pct": 1.76
+    },
+    {
+      "rank": 15,
+      "prev_rank": null,
+      "move": "new",
+      "new": true,
+      "model": "anthropic/claude-4.8-opus-20260528",
+      "name": "Anthropic Claude 4.8 Opus",
+      "developer": "Anthropic",
+      "region": "US",
+      "pct": 1.72
+    },
+    {
+      "rank": 16,
+      "prev_rank": 17,
+      "move": "up",
+      "new": false,
+      "model": "anthropic/claude-4.6-opus-20260205",
+      "name": "Anthropic Claude 4.6 Opus",
+      "developer": "Anthropic",
+      "region": "US",
+      "pct": 1.64
+    },
+    {
+      "rank": 17,
+      "prev_rank": 18,
+      "move": "up",
+      "new": false,
+      "model": "google/gemini-3.5-flash-20260519",
+      "name": "Google Gemini 3.5 Flash",
+      "developer": "Google",
+      "region": "US",
+      "pct": 1.62
+    },
+    {
+      "rank": 18,
+      "prev_rank": 16,
+      "move": "down",
+      "new": false,
+      "model": "openai/gpt-4o-mini",
+      "name": "OpenAI GPT 4o Mini",
+      "developer": "OpenAI",
+      "region": "US",
+      "pct": 1.57
+    },
+    {
+      "rank": 19,
+      "prev_rank": 13,
+      "move": "down",
+      "new": false,
+      "model": "minimax/minimax-m2.7-20260318",
+      "name": "MiniMax M2.7",
+      "developer": "MiniMax",
+      "region": "Asia",
+      "pct": 1.55
+    },
+    {
+      "rank": 20,
+      "prev_rank": 11,
+      "move": "down",
+      "new": false,
+      "model": "moonshotai/kimi-k2.6-20260420",
+      "name": "Moonshot Kimi K2.6",
+      "developer": "Moonshot",
+      "region": "Asia",
+      "pct": 1.54
+    }
+  ],
+  "records": [
+    {
+      "key": "europe_high_water",
+      "label": "Europe's high-water share",
+      "value": "0.75%",
+      "detail": "set 22 May 2026",
+      "europe": true
+    },
+    {
+      "key": "longest_reign",
+      "label": "Longest reign at number one",
+      "value": "6 days",
+      "detail": "Tencent Hy3 Preview"
+    },
+    {
+      "key": "current_streak",
+      "label": "Current number one",
+      "value": "DeepSeek V4 Flash",
+      "detail": "3 days running"
+    },
+    {
+      "key": "biggest_mover",
+      "label": "Biggest weekly mover",
+      "value": "#45 \u2192 #5",
+      "detail": "Xiaomi Mimo V2.5"
+    },
+    {
+      "key": "steepest_fall",
+      "label": "Steepest fall",
+      "value": "#34 \u2192 #48",
+      "detail": "OpenAI GPT 5 Mini"
+    },
+    {
+      "key": "new_entrants",
+      "label": "New entrants this week",
+      "value": "6",
+      "detail": "MiniMax M3 and others"
+    }
+  ],
+  "edition": {
+    "number": 1,
+    "date": "2026-06-03",
+    "status": "final",
+    "byline": "Thomas Chr. Melskens",
+    "title": "Asia now routes nearly half of everything",
+    "dek": "Europe authors the science. It runs almost none of the tokens.",
+    "body": [
+      "This is the first edition of model adoption, and it opens on a number that should concentrate European minds. Across the last seven days of routed traffic on openrouter, models built in Asia carried 46 percent of all tokens, ahead of the United States on 40 percent. Models built in Europe carried 0.47 percent. Not four percent, not fourteen - under half of one.",
+      "The gap is not about capability and it is not about research. Europe authors a great deal of the science the whole field runs on. What it does not yet have is a developer whose models get reached for at scale. Mistral is the only European house in the routed top tier this week, and it sat below every Chinese lab you have heard of and several you have not.",
+      "The second story is speed. The top of the table is a lease, not a deed. tencent's hunyuan 3 preview took the number one routed slot off deepseek's v4 flash this week. xiaomi's mimo v2.5, ranked 42nd seven days ago, is now third. anthropic shipped claude 4.8 opus and it walked straight into the top fifteen. Hold a position here for a fortnight and you have done something rare.",
+      "So the watch point this instrument returns to every Wednesday is the distance between where models are written and where they are run. Right now that distance is enormous, and this week it widened in Asia's favour. The figures below reflect openrouter routing specifically - developer behaviour, cost-sensitive, and not the whole market - but it is the cleanest weekly read we have on what gets reached for, and reached for first."
+    ],
+    "call": {
+      "this_week": "Asia stays ahead of the US in routed share next Wednesday, and Europe stays below one percent.",
+      "resolves_on": "2026-06-10",
+      "grade": null,
+      "grade_note": null
+    },
+    "links": {
+      "insight": {
+        "href": "/insights/europe-ai-slumber",
+        "label": "Europe's AI Slumber"
+      }
+    }
+  },
+  "on_the_record": {
+    "this_week": {
+      "text": "Asia stays ahead of the US in routed share next Wednesday, and Europe stays below one percent.",
+      "resolves_on": "2026-06-10"
+    },
+    "prior": {
+      "number": null,
+      "text": null,
+      "grade": null,
+      "note": "First edition - no prior call to grade yet."
+    }
+  },
+  "editions_index": [
+    {
+      "number": 1,
+      "date": "2026-06-03",
+      "title": "Asia now routes nearly half of everything",
+      "status": "final"
+    }
+  ],
+  "methodology": "Region reflects where each model's developer is headquartered, not where the model is hosted. Open-weight models are attributed to their original developer. Models we cannot place cleanly in Asia, Europe or the US - including OpenRouter's own aggregated 'other' row and undisclosed labs - are counted as Other. The full mapping is versioned at research/model-origins.json (version 2026-06-03). Figures reflect OpenRouter routing traffic specifically. That traffic is developer-skewed and cost-sensitive and excludes most direct enterprise API usage, so this is developer routing behaviour, not the whole market. Token totals are OpenRouter's combined prompt and completion totals, the same basis as the public rankings chart, aggregated over a trailing seven days; week-over-week compares against the seven days before that.",
+  "unmapped": [],
+  "links": {
+    "insight": {
+      "href": "/insights/europe-ai-slumber",
+      "label": "Europe's AI Slumber"
+    }
+  }
+}

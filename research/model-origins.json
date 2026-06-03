@@ -1,0 +1,53 @@
+{
+  "version": "2026-06-03",
+  "maintainer": "yellow3 lab",
+  "principle": "Region reflects where the model developer is headquartered. Open-weight models are attributed to their original developer, not the host that serves them. 'Other' is the honest catch-all for everything that does not sit cleanly in Asia, Europe or the US (Canada, Israel, the UAE, undisclosed labs, and OpenRouter's own aggregated 'other' row).",
+  "regions": ["Asia", "Europe", "US", "Other"],
+  "regions_by_developer": {
+    "openai": "US",
+    "anthropic": "US",
+    "google": "US",
+    "meta-llama": "US",
+    "x-ai": "US",
+    "nvidia": "US",
+    "perplexity": "US",
+    "arcee-ai": "US",
+    "poolside": "US",
+    "mistralai": "Europe",
+    "deepseek": "Asia",
+    "qwen": "Asia",
+    "z-ai": "Asia",
+    "moonshotai": "Asia",
+    "minimax": "Asia",
+    "tencent": "Asia",
+    "xiaomi": "Asia",
+    "stepfun": "Asia",
+    "inclusionai": "Asia"
+  },
+  "model_overrides": {
+    "other": "Other",
+    "openrouter/owl-alpha": "Other"
+  },
+  "developer_notes": {
+    "openai": "OpenAI - San Francisco, US.",
+    "anthropic": "Anthropic - San Francisco, US.",
+    "google": "Google DeepMind - US/UK; attributed to US as corporate HQ.",
+    "meta-llama": "Meta - Menlo Park, US (Llama open weights).",
+    "x-ai": "xAI - US.",
+    "nvidia": "NVIDIA - Santa Clara, US (Nemotron open weights).",
+    "perplexity": "Perplexity - San Francisco, US.",
+    "arcee-ai": "Arcee AI - US.",
+    "poolside": "Poolside - headquartered in San Francisco, US (founding team part-European; HQ used for classification). Flagged as a borderline call worth re-checking.",
+    "mistralai": "Mistral AI - Paris, France. The only European-headquartered developer currently in the routed top tier.",
+    "deepseek": "DeepSeek - Hangzhou, China.",
+    "qwen": "Qwen / Alibaba - Hangzhou, China.",
+    "z-ai": "Z.ai / Zhipu AI - Beijing, China.",
+    "moonshotai": "Moonshot AI - Beijing, China.",
+    "minimax": "MiniMax - Shanghai, China.",
+    "tencent": "Tencent (Hunyuan) - Shenzhen, China.",
+    "xiaomi": "Xiaomi (MiMo) - Beijing, China.",
+    "stepfun": "StepFun - Shanghai, China.",
+    "inclusionai": "inclusionAI / Ant Group - Hangzhou, China.",
+    "openrouter/owl-alpha": "A cloaked/stealth model served by OpenRouter for an undisclosed lab. Origin is not public, so it is classified 'Other' rather than guessed. Re-classify if the developer is revealed."
+  }
+}

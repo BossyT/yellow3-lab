@@ -31,13 +31,14 @@ function getLastMod(file) {
 
 function getPriority(urlPath) {
   if (urlPath === '/') return '1.0';
-  if (urlPath === '/insights/' || urlPath === '/advisory') return '0.9';
-  if (urlPath.startsWith('/insights/')) return '0.8';
+  if (urlPath === '/insights/' || urlPath === '/advisory' || urlPath === '/research') return '0.9';
+  if (urlPath.startsWith('/insights/') || urlPath.startsWith('/research/')) return '0.8';
   return '0.5';
 }
 
 function getFrequency(urlPath) {
   if (urlPath === '/insights/' || urlPath === '/insights') return 'weekly';
+  if (urlPath === '/research' || urlPath.startsWith('/research/')) return 'weekly';
   return 'monthly';
 }
 

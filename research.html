@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3JXMM2VG5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-K3JXMM2VG5');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research - yellow3 lab</title>
+  <meta name="description" content="Live data instruments from yellow3 lab. Each instrument answers one thesis about AI through numbers that update weekly. An AI Research Studio, on the record." />
+  <link rel="canonical" href="https://yellow3.io/research" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --white:#ffffff; --off-white:#f7f6f3; --border:#e8e6e1; --muted:#aaa9a5; --mid:#888784; --body:#444340; --dark:#1a1917; --black:#0f0f0e; --live:#2f7d4f; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--dark); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(8px); }
+    .nav-logo { font-weight: 500; font-size: 15px; color: var(--dark); text-decoration: none; }
+    .nav-links { display: flex; gap: 40px; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--dark); }
+
+    .hero { padding: 160px 48px 80px; border-bottom: 1px solid var(--border); }
+    .hero-inner { max-width: 1200px; margin: 0 auto; }
+    .hero-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 40px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(48px, 7vw, 92px); font-weight: 400; line-height: 1.05; letter-spacing: -0.02em; color: var(--black); margin-bottom: 32px; }
+    .hero h1 em { font-style: italic; color: var(--mid); }
+    .hero-sub { font-size: 17px; color: var(--body); max-width: 560px; border-left: 1px solid var(--border); padding-left: 28px; }
+
+    .panel { padding: 80px 48px 112px; }
+    .panel-inner { max-width: 1200px; margin: 0 auto; }
+    .panel-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 48px; }
+    .instruments { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .inst { background: var(--white); padding: 44px 40px; display: flex; flex-direction: column; min-height: 360px; text-decoration: none; transition: background 0.2s; }
+    a.inst:hover { background: var(--off-white); }
+    .inst-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+    .st { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
+    .st.live { color: var(--live); }
+    .st.live .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 0 rgba(47,125,79,0.5); animation: pulse 2.4s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(47,125,79,0.45); } 70% { box-shadow: 0 0 0 7px rgba(47,125,79,0); } 100% { box-shadow: 0 0 0 0 rgba(47,125,79,0); } }
+    .st.coming { color: var(--muted); }
+    .edno { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .inst h3 { font-family: 'Playfair Display', serif; font-size: 27px; font-weight: 400; line-height: 1.2; color: var(--black); margin-bottom: 16px; }
+    .inst .thesis { font-size: 14px; color: var(--mid); line-height: 1.65; margin-bottom: 24px; }
+    .read-block { margin-top: auto; }
+    .read-k { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .read-v { font-family: 'Playfair Display', serif; font-size: 18px; line-height: 1.4; color: var(--black); }
+    .open-link { margin-top: 24px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dark); border-bottom: 1px solid var(--border); padding-bottom: 3px; display: inline-block; }
+    .inst.coming-card { background: var(--off-white); }
+    .phase2 { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 3px 11px; }
+    .coming-note { margin-top: auto; font-size: 13px; color: var(--mid); }
+
+    footer { background: var(--black); padding: 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+    .footer-logo img { height: 24px; filter: invert(1); opacity: 0.4; }
+    .footer-links { display: flex; gap: 32px; }
+    .footer-links a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.22); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.6); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .hero, .panel { padding-left: 24px; padding-right: 24px; }
+      .instruments { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+    }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 20px; height: 1.5px; background: var(--dark); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
+    @media (max-width: 900px) {
+      .nav-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); border-bottom: 1px solid var(--border); flex-direction: column; padding: 24px; gap: 20px; }
+      .nav-links.open { display: flex; }
+      .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+      .nav-toggle.open span:nth-child(2) { opacity: 0; }
+      .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+    }
+  </style>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="yellow3 lab" />
+  <meta property="og:title" content="Research - yellow3 lab" />
+  <meta property="og:description" content="Live data instruments. Each answers one thesis about AI through numbers that update weekly." />
+  <meta property="og:url" content="https://yellow3.io/research" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yellow3.io/" },
+      { "@type": "ListItem", "position": 2, "name": "Research", "item": "https://yellow3.io/research" }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo"><img src="/logo.png" alt="yellow3" style="height:24px;" /></a>
+    <div class="nav-links">
+      <a href="/#about">About</a>
+      <a href="/naffe">Platform</a>
+      <a href="/insights/">Insights</a>
+      <a href="/research" class="active">Research</a>
+      <a href="/advisory">Advisory</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');this.closest('nav').querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-label">Research</div>
+      <h1>Live instruments,<br>not <em>opinions.</em></h1>
+      <p class="hero-sub">yellow3 is an AI research studio. Research is where that work goes on the record. Each instrument answers one thesis through numbers that update weekly - and grades its own calls in public.</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-inner">
+      <div class="panel-label">The instruments</div>
+      <div class="instruments">
+
+        <!-- LIVE: Model adoption -->
+        <a class="inst" href="/research/model-adoption">
+          <div class="inst-top">
+            <span class="st live"><span class="dot"></span> Live</span>
+            <span class="edno" id="ma-edno">Edition 01</span>
+          </div>
+          <h3>Model adoption</h3>
+          <p class="thesis">Where AI adoption actually sits, by region of origin, measured in real routed traffic, and how fast the lead changes.</p>
+          <div class="read-block">
+            <div class="read-k">This week's read</div>
+            <div class="read-v" id="ma-read">Loading this week's read…</div>
+            <span class="open-link">Open instrument</span>
+          </div>
+        </a>
+
+        <!-- COMING: EU AI Act enforcement -->
+        <div class="inst coming-card">
+          <div class="inst-top">
+            <span class="st coming">Coming</span>
+            <span class="phase2">Phase 2</span>
+          </div>
+          <h3>EU AI Act enforcement</h3>
+          <p class="thesis">Whether Europe's landmark AI law is being enforced in practice - tracking the gap between the text on the page and action on the ground.</p>
+          <div class="coming-note">In build. Slots into the same instrument skeleton as Model adoption.</div>
+        </div>
+
+        <!-- COMING: Passport readiness -->
+        <div class="inst coming-card">
+          <div class="inst-top">
+            <span class="st coming">Coming</span>
+            <span class="phase2">Phase 2</span>
+          </div>
+          <h3>Passport readiness</h3>
+          <p class="thesis">How prepared industry actually is for the Digital Product Passport, measured against the regulation's advancing deadlines.</p>
+          <div class="coming-note">In build. Slots into the same instrument skeleton as Model adoption.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <a href="/" class="footer-logo"><img src="/logo.png" alt="yellow3" /></a>
+    <div class="footer-links">
+      <a href="/#about">About</a>
+      <a href="/naffe">Platform</a>
+      <a href="/insights/">Insights</a>
+      <a href="/research" class="active">Research</a>
+      <a href="/advisory">Advisory</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <span class="footer-copy">2026 yellow3 lab, Copenhagen</span>
+    <div class="footer-links">
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/cookies">Cookies</a>
+    </div>
+  </footer>
+
+  <script>
+    // Pull this week's headline read + edition number from the live instrument data,
+    // so a ten-second visit shows the current state without opening the instrument.
+    fetch('/research/model-adoption-data.json', { cache: 'no-store' })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        if (!d) return;
+        var read = document.getElementById('ma-read');
+        if (d.edition && d.edition.dek) read.textContent = d.edition.dek;
+        else if (d.payoff) read.textContent = d.payoff;
+        if (d.edition && d.edition.number){
+          document.getElementById('ma-edno').textContent = 'Edition ' + ('0' + d.edition.number).slice(-2);
+        }
+      })
+      .catch(function(){ document.getElementById('ma-read').textContent = 'Where adoption sits, by region of origin - updated weekly.'; });
+  </script>
+</body>
+</html>

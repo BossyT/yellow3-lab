@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3JXMM2VG5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-K3JXMM2VG5');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model adoption - yellow3 Research</title>
+  <meta name="description" content="Where AI adoption actually sits, by region of origin, measured in real routed traffic, and how fast the lead changes. A live yellow3 research instrument, updated weekly from OpenRouter routing data." />
+  <link rel="canonical" href="https://yellow3.io/research/model-adoption" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white:#ffffff; --off-white:#f7f6f3; --border:#e8e6e1; --muted:#aaa9a5;
+      --mid:#888784; --body:#444340; --dark:#1a1917; --black:#0f0f0e;
+      --up:#2f7d4f; --down:#b3402e; --flat:#aaa9a5;
+      --live:#2f7d4f;
+      --r-asia:#c0613a; --r-europe:#c9a227; --r-us:#3b6ea5; --r-other:#a8a6a1;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--dark); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+    /* NAV (shared) */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(8px); }
+    .nav-logo { font-weight: 500; font-size: 15px; color: var(--dark); text-decoration: none; }
+    .nav-links { display: flex; gap: 40px; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--dark); }
+
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 48px; }
+
+    /* ---- INSTRUMENT SKELETON (reusable across instruments) ---- */
+
+    /* Header */
+    .inst-head { padding: 150px 0 56px; border-bottom: 1px solid var(--border); }
+    .breadcrumb { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; }
+    .breadcrumb a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--dark); }
+    .inst-status { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-bottom: 28px; }
+    .badge-live { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--live); border: 1px solid var(--border); border-radius: 999px; padding: 6px 14px; }
+    .badge-live .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 0 rgba(47,125,79,0.5); animation: pulse 2.4s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(47,125,79,0.45); } 70% { box-shadow: 0 0 0 7px rgba(47,125,79,0); } 100% { box-shadow: 0 0 0 0 rgba(47,125,79,0); } }
+    .refresh { font-size: 12px; color: var(--mid); letter-spacing: 0.02em; }
+    .inst-head h1 { font-family: 'Playfair Display', serif; font-size: clamp(40px, 6vw, 72px); font-weight: 400; line-height: 1.05; letter-spacing: -0.02em; color: var(--black); margin-bottom: 24px; }
+    .inst-thesis { font-size: 18px; color: var(--body); max-width: 620px; border-left: 1px solid var(--border); padding-left: 24px; }
+
+    /* Payoff line */
+    .payoff { padding: 44px 0; border-bottom: 1px solid var(--border); background: var(--off-white); }
+    .payoff .label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+    .payoff p { font-family: 'Playfair Display', serif; font-size: clamp(22px, 3vw, 32px); font-weight: 400; line-height: 1.35; color: var(--black); }
+
+    /* On the record */
+    .section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+    .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 36px; }
+    .record-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .record-cell { background: var(--white); padding: 36px; }
+    .record-cell .k { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+    .record-cell .call { font-family: 'Playfair Display', serif; font-size: 21px; line-height: 1.4; color: var(--black); }
+    .record-cell .meta { margin-top: 18px; font-size: 13px; color: var(--mid); }
+    .grade { display: inline-block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--border); margin-bottom: 16px; }
+    .grade.correct { color: var(--up); border-color: rgba(47,125,79,0.4); }
+    .grade.wrong { color: var(--down); border-color: rgba(179,64,46,0.4); }
+    .grade.pending { color: var(--mid); }
+
+    /* Live data view */
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+    .filter { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); background: none; border: 1px solid var(--border); padding: 9px 18px; cursor: pointer; transition: all 0.2s; font-family: inherit; border-radius: 999px; }
+    .filter:hover { color: var(--dark); border-color: var(--mid); }
+    .filter.active { color: var(--white); background: var(--dark); border-color: var(--dark); }
+
+    .view-sub { font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+    .share-bar { display: flex; width: 100%; height: 56px; border: 1px solid var(--border); overflow: hidden; }
+    .share-seg { display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; font-weight: 400; transition: opacity 0.25s; min-width: 0; }
+    .share-seg span { padding: 0 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .share-legend { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 22px; }
+    .legend-item { display: flex; align-items: baseline; gap: 10px; font-size: 14px; transition: opacity 0.25s; }
+    .legend-item .sw { width: 11px; height: 11px; border-radius: 2px; transform: translateY(1px); }
+    .legend-item .lr { color: var(--dark); }
+    .legend-item .lp { color: var(--dark); font-weight: 400; }
+    .legend-item .ld { font-size: 12px; }
+    .delta-up { color: var(--up); } .delta-down { color: var(--down); } .delta-flat { color: var(--flat); }
+
+    .leaderboard { margin-top: 56px; }
+    .lb-row { display: grid; grid-template-columns: 30px 1fr 70px 26px; gap: 16px; align-items: center; padding: 14px 0; border-top: 1px solid var(--border); }
+    .lb-row:last-child { border-bottom: 1px solid var(--border); }
+    .lb-rank { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .lb-main { min-width: 0; }
+    .lb-name-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+    .lb-name { font-size: 15px; color: var(--dark); }
+    .lb-region { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); border: 1px solid var(--border); border-radius: 999px; padding: 2px 9px; }
+    .lb-new { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--up); }
+    .lb-track { height: 8px; background: var(--off-white); border-radius: 999px; overflow: hidden; }
+    .lb-fill { height: 100%; border-radius: 999px; transition: width 0.4s; }
+    .lb-pct { font-size: 14px; color: var(--dark); text-align: right; font-variant-numeric: tabular-nums; }
+    .lb-move { text-align: center; font-size: 13px; }
+    .lb-move.up { color: var(--up); } .lb-move.down { color: var(--down); } .lb-move.flat { color: var(--flat); }
+
+    /* Record book */
+    .records-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .rec-card { background: var(--white); padding: 32px; }
+    .rec-card.europe { background: #fdfaf0; }
+    .rec-k { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+    .rec-v { font-family: 'Playfair Display', serif; font-size: 26px; line-height: 1.2; color: var(--black); margin-bottom: 10px; }
+    .rec-d { font-size: 13px; color: var(--mid); }
+    .rec-card.europe .rec-k { color: #b08a1f; }
+
+    /* Weekly edition */
+    .edition { padding: 88px 0; border-bottom: 1px solid var(--border); }
+    .edition-inner { max-width: 680px; margin: 0 auto; }
+    .edition-eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; }
+    .edition h2 { font-family: 'Playfair Display', serif; font-size: clamp(30px, 4vw, 42px); font-weight: 400; line-height: 1.18; color: var(--black); margin-bottom: 16px; }
+    .edition .dek { font-family: 'Playfair Display', serif; font-style: italic; font-size: 20px; color: var(--mid); margin-bottom: 32px; }
+    .edition-body p { font-family: 'Playfair Display', serif; font-size: 19px; line-height: 1.7; color: var(--body); margin-bottom: 24px; }
+    .edition-byline { margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 13px; letter-spacing: 0.04em; color: var(--mid); }
+    .edition-draft { display:inline-block; margin-left: 10px; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--down); border: 1px solid rgba(179,64,46,0.4); border-radius: 999px; padding: 2px 8px; }
+    .crosslink { margin-top: 28px; font-size: 14px; color: var(--mid); }
+    .crosslink a { color: var(--dark); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: border-color 0.2s; }
+    .crosslink a:hover { border-color: var(--dark); }
+
+    /* Trust layer */
+    .trust { padding: 64px 0 88px; }
+    .trust-grid { display: grid; grid-template-columns: 160px 1fr; gap: 40px; align-items: start; }
+    .trust h3 { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
+    .trust p { font-size: 14px; color: var(--body); line-height: 1.75; margin-bottom: 18px; }
+    .source-line { margin-top: 28px; padding: 16px 20px; background: var(--off-white); border: 1px solid var(--border); font-size: 13px; color: var(--body); }
+    .source-line a { color: var(--dark); }
+    .flag-note { margin-top: 18px; font-size: 12px; color: var(--down); }
+
+    /* Footer (shared) */
+    footer { background: var(--black); padding: 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+    .footer-logo img { height: 24px; filter: invert(1); opacity: 0.4; }
+    .footer-links { display: flex; gap: 32px; }
+    .footer-links a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.22); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.6); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    #err { display:none; padding: 40px 0; color: var(--down); font-size: 15px; }
+
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .wrap { padding: 0 24px; }
+      .inst-head { padding-top: 120px; }
+      .record-pair, .records-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: 1fr; gap: 16px; }
+      footer { flex-direction: column; text-align: center; }
+    }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 20px; height: 1.5px; background: var(--dark); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
+    @media (max-width: 900px) {
+      .nav-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); border-bottom: 1px solid var(--border); flex-direction: column; padding: 24px; gap: 20px; }
+      .nav-links.open { display: flex; }
+      .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+      .nav-toggle.open span:nth-child(2) { opacity: 0; }
+      .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+    }
+  </style>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="yellow3 lab" />
+  <meta property="og:title" content="Model adoption - yellow3 Research" />
+  <meta property="og:description" content="Where AI adoption actually sits, by region of origin, measured in real routed traffic. A live yellow3 research instrument." />
+  <meta property="og:url" content="https://yellow3.io/research/model-adoption" />
+  <meta property="twitter:card" content="summary_large_image" />
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo"><img src="/logo.png" alt="yellow3" style="height:24px;" /></a>
+    <div class="nav-links">
+      <a href="/#about">About</a>
+      <a href="/naffe">Platform</a>
+      <a href="/insights/">Insights</a>
+      <a href="/research" class="active">Research</a>
+      <a href="/advisory">Advisory</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');this.closest('nav').querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- ===== INSTRUMENT HEADER ===== -->
+  <header class="inst-head">
+    <div class="wrap">
+      <div class="breadcrumb"><a href="/research">Research</a> &nbsp;/&nbsp; <span id="bc-title">Model adoption</span></div>
+      <div class="inst-status">
+        <span class="badge-live" id="badge"><span class="dot"></span> Live</span>
+        <span class="refresh" id="refresh">Loading latest refresh…</span>
+      </div>
+      <h1 id="title">Model adoption</h1>
+      <p class="inst-thesis" id="thesis"></p>
+    </div>
+  </header>
+
+  <!-- ===== WHAT CHANGED THIS WEEK ===== -->
+  <div class="payoff">
+    <div class="wrap">
+      <div class="label">What changed this week</div>
+      <p id="payoff"></p>
+    </div>
+  </div>
+
+  <div id="err" class="wrap">The instrument data could not be loaded. Please try again shortly.</div>
+
+  <!-- ===== YELLOW3 ON THE RECORD ===== -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-label">yellow3 on the record</div>
+      <div class="record-pair">
+        <div class="record-cell">
+          <div class="k">This week's call</div>
+          <div class="call" id="call-this"></div>
+          <div class="meta" id="call-this-meta"></div>
+        </div>
+        <div class="record-cell">
+          <div class="k">Last week's call, graded</div>
+          <div id="call-prior-grade"></div>
+          <div class="call" id="call-prior"></div>
+          <div class="meta" id="call-prior-meta"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LIVE DATA VIEW (instrument-specific) ===== -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-label">The live view - routed traffic by region of origin</div>
+      <div class="filters" id="filters"></div>
+
+      <div class="view-sub">Regional share of routed tokens, this week</div>
+      <div class="share-bar" id="share-bar"></div>
+      <div class="share-legend" id="share-legend"></div>
+
+      <div class="leaderboard">
+        <div class="view-sub" id="lb-sub">Most-routed models</div>
+        <div id="leaderboard"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RECORD BOOK ===== -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-label">Record book</div>
+      <div class="records-grid" id="records"></div>
+    </div>
+  </section>
+
+  <!-- ===== WEEKLY EDITION ===== -->
+  <section class="edition">
+    <div class="wrap">
+      <div class="edition-inner">
+        <div class="edition-eyebrow" id="ed-eyebrow"></div>
+        <h2 id="ed-title"></h2>
+        <div class="dek" id="ed-dek"></div>
+        <div class="edition-body" id="ed-body"></div>
+        <div class="crosslink" id="ed-crosslink"></div>
+        <div class="edition-byline" id="ed-byline"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRUST LAYER ===== -->
+  <section class="trust">
+    <div class="wrap">
+      <div class="trust-grid">
+        <h3>Methodology &amp; sources</h3>
+        <div>
+          <p id="methodology"></p>
+          <div class="source-line" id="source-line"></div>
+          <div class="flag-note" id="flag-note"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <a href="/" class="footer-logo"><img src="/logo.png" alt="yellow3" /></a>
+    <div class="footer-links">
+      <a href="/#about">About</a>
+      <a href="/naffe">Platform</a>
+      <a href="/insights/">Insights</a>
+      <a href="/research">Research</a>
+      <a href="/advisory">Advisory</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <span class="footer-copy">2026 yellow3 lab, Copenhagen</span>
+    <div class="footer-links">
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/cookies">Cookies</a>
+    </div>
+  </footer>
+
+  <script>
+    var REGION_VAR = { Asia: 'var(--r-asia)', Europe: 'var(--r-europe)', US: 'var(--r-us)', Other: 'var(--r-other)' };
+    var DATA = null, FILTER = 'World';
+
+    function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+    function deltaClass(d){ return d > 0.04 ? 'delta-up' : d < -0.04 ? 'delta-down' : 'delta-flat'; }
+    function deltaTxt(d){ var s = d > 0 ? '+' : ''; return s + d.toFixed(2) + ' pp'; }
+
+    function renderHeader(d){
+      document.getElementById('title').textContent = d.title;
+      document.getElementById('bc-title').textContent = d.title;
+      document.getElementById('thesis').textContent = d.thesis;
+      document.getElementById('payoff').textContent = d.payoff;
+      document.getElementById('refresh').textContent = 'Refreshed ' + d.refreshed_cet + ' · data as of ' + d.as_of_pretty;
+      if (d.status !== 'live') { document.getElementById('badge').style.color = 'var(--mid)'; }
+    }
+
+    function renderOnRecord(d){
+      var t = d.on_the_record.this_week;
+      document.getElementById('call-this').textContent = '“' + t.text + '”';
+      document.getElementById('call-this-meta').textContent = t.resolves_on ? ('Resolves ' + t.resolves_on) : '';
+      var p = d.on_the_record.prior;
+      var gradeEl = document.getElementById('call-prior-grade');
+      var callEl = document.getElementById('call-prior');
+      var metaEl = document.getElementById('call-prior-meta');
+      if (!p || !p.text){
+        gradeEl.innerHTML = '<span class="grade pending">No prior call</span>';
+        callEl.textContent = (p && p.note) ? p.note : 'First edition - no prior call to grade yet.';
+        callEl.style.fontStyle = 'italic'; callEl.style.color = 'var(--mid)';
+        metaEl.textContent = '';
+      } else {
+        var g = (p.grade || 'pending').toLowerCase();
+        var label = g === 'correct' ? 'Graded correct' : g === 'wrong' ? 'Graded wrong' : 'Awaiting result';
+        gradeEl.innerHTML = '<span class="grade ' + g + '">' + label + '</span>';
+        callEl.textContent = '“' + p.text + '”';
+        metaEl.textContent = (p.note || '') + (p.number ? ('  ·  Edition ' + ('0'+p.number).slice(-2)) : '');
+      }
+    }
+
+    function renderFilters(d){
+      var f = document.getElementById('filters');
+      var opts = ['World'].concat(d.regions);
+      f.innerHTML = opts.map(function(o){
+        return '<button class="filter' + (o===FILTER?' active':'') + '" data-f="' + esc(o) + '">' + esc(o) + '</button>';
+      }).join('');
+      Array.prototype.forEach.call(f.querySelectorAll('.filter'), function(b){
+        b.addEventListener('click', function(){ FILTER = b.getAttribute('data-f'); renderFilters(d); renderShare(d); renderLeaderboard(d); });
+      });
+    }
+
+    function renderShare(d){
+      var bar = document.getElementById('share-bar');
+      var legend = document.getElementById('share-legend');
+      bar.innerHTML = ''; legend.innerHTML = '';
+      d.share.forEach(function(s){
+        var dim = (FILTER !== 'World' && FILTER !== s.region);
+        var seg = document.createElement('div');
+        seg.className = 'share-seg';
+        seg.style.width = s.pct + '%';
+        seg.style.background = REGION_VAR[s.region] || 'var(--r-other)';
+        seg.style.opacity = dim ? 0.22 : 1;
+        seg.innerHTML = s.pct >= 6 ? '<span>' + s.pct.toFixed(0) + '%</span>' : '';
+        seg.title = s.region + ' ' + s.pct.toFixed(2) + '%';
+        bar.appendChild(seg);
+
+        var li = document.createElement('div');
+        li.className = 'legend-item';
+        li.style.opacity = dim ? 0.35 : 1;
+        li.innerHTML = '<span class="sw" style="background:' + (REGION_VAR[s.region]||'var(--r-other)') + '"></span>' +
+          '<span class="lr">' + esc(s.region) + '</span>' +
+          '<span class="lp">' + s.pct.toFixed(2) + '%</span>' +
+          '<span class="ld ' + deltaClass(s.delta_pp) + '">' + deltaTxt(s.delta_pp) + '</span>';
+        legend.appendChild(li);
+      });
+    }
+
+    function moveGlyph(m){
+      if (m === 'up') return '▲';
+      if (m === 'down') return '▼';
+      if (m === 'new') return '';
+      return '–';
+    }
+
+    function renderLeaderboard(d){
+      var box = document.getElementById('leaderboard');
+      var rows = d.leaderboard.filter(function(r){ return FILTER === 'World' || r.region === FILTER; });
+      var maxPct = Math.max.apply(null, rows.map(function(r){ return r.pct; }).concat([1]));
+      document.getElementById('lb-sub').textContent = FILTER === 'World'
+        ? 'Most-routed models' : 'Most-routed models built in ' + FILTER;
+      if (!rows.length){ box.innerHTML = '<p style="padding:20px 0;color:var(--mid)">No models from this region in the routed top tier this week.</p>'; return; }
+      box.innerHTML = rows.map(function(r){
+        var move = r.new ? '<span class="lb-new">new</span>' : '';
+        var glyph = moveGlyph(r.move);
+        return '<div class="lb-row">' +
+          '<div class="lb-rank">' + r.rank + '</div>' +
+          '<div class="lb-main">' +
+            '<div class="lb-name-row"><span class="lb-name">' + esc(r.name) + '</span>' +
+            '<span class="lb-region">' + esc(r.region) + '</span>' + move + '</div>' +
+            '<div class="lb-track"><div class="lb-fill" style="width:' + (100*r.pct/maxPct) + '%;background:' + (REGION_VAR[r.region]||'var(--r-other)') + '"></div></div>' +
+          '</div>' +
+          '<div class="lb-pct">' + r.pct.toFixed(2) + '%</div>' +
+          '<div class="lb-move ' + r.move + '">' + glyph + '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    function renderRecords(d){
+      var g = document.getElementById('records');
+      g.innerHTML = d.records.map(function(r){
+        return '<div class="rec-card' + (r.europe ? ' europe' : '') + '">' +
+          '<div class="rec-k">' + esc(r.label) + '</div>' +
+          '<div class="rec-v">' + esc(r.value) + '</div>' +
+          '<div class="rec-d">' + esc(r.detail) + '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    function renderEdition(d){
+      var e = d.edition;
+      var num = ('0' + e.number).slice(-2);
+      var dateTxt = new Date(e.date + 'T00:00:00').toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+      document.getElementById('ed-eyebrow').innerHTML = 'Edition ' + num + ' · ' + dateTxt +
+        (e.status !== 'final' ? '<span class="edition-draft">draft</span>' : '');
+      document.getElementById('ed-title').textContent = e.title;
+      document.getElementById('ed-dek').textContent = e.dek || '';
+      document.getElementById('ed-body').innerHTML = (e.body || []).map(function(p){ return '<p>' + esc(p) + '</p>'; }).join('');
+      document.getElementById('ed-byline').textContent = 'By ' + (e.byline || 'Thomas Chr. Melskens');
+      var cl = document.getElementById('ed-crosslink');
+      if (d.links && d.links.insight){
+        cl.innerHTML = 'The argument in full: <a href="' + esc(d.links.insight.href) + '">' + esc(d.links.insight.label) + '</a>';
+      } else { cl.style.display = 'none'; }
+    }
+
+    function renderTrust(d){
+      document.getElementById('methodology').textContent = d.methodology;
+      document.getElementById('source-line').innerHTML = esc(d.source.line) +
+        ' &nbsp;<a href="' + esc(d.source.url) + '" target="_blank" rel="noopener">View source</a>';
+      var fn = document.getElementById('flag-note');
+      if (d.unmapped && d.unmapped.length){
+        fn.textContent = d.unmapped.length + ' model developer(s) are awaiting region classification and are counted as Other for now: ' +
+          d.unmapped.map(function(u){ return u.developer; }).join(', ') + '.';
+      } else { fn.style.display = 'none'; }
+    }
+
+    fetch('model-adoption-data.json', { cache: 'no-store' })
+      .then(function(r){ if(!r.ok) throw new Error('http'); return r.json(); })
+      .then(function(d){
+        DATA = d;
+        renderHeader(d); renderOnRecord(d); renderFilters(d);
+        renderShare(d); renderLeaderboard(d); renderRecords(d);
+        renderEdition(d); renderTrust(d);
+      })
+      .catch(function(){ document.getElementById('err').style.display = 'block'; });
+
+    var obs = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.06 });
+    document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+  </script>
+</body>
+</html>
