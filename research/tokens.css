@@ -1,0 +1,26 @@
+/* yellow3 Research - frozen design tokens.
+   The shared visual system for Research instruments: warm paper ground, white
+   raised cards, soft elevation, gold eyebrow, status colours, serif headlines
+   and serif numerals. Linked by every instrument page so the tool reads as one.
+   Do not apply to naffe or naffe-built products. */
+:root{
+  --bg:#F8F6F1;        /* warm paper ground */
+  --bg-frame:#ECE8DF;  /* deeper paper, page frame */
+  --tp:#111827;        /* primary text */
+  --ts:#5F6368;        /* secondary text */
+  --bd:#DDD8CE;        /* hairline border */
+  --card:#FFFFFF;      /* raised card */
+  --tint:#F2F0EA;      /* tinted panel */
+  --green:#2E9D78;     /* status: live / designated / in force */
+  --amber:#D89A16;     /* status: partial / moved */
+  --none:#F2F0EA;      /* status: not yet */
+  --neutral-ink:#8A8578;
+  --gold:#9C7C2C;      /* eyebrow */
+  --radius:16px;
+  --radius-tile:11px;
+  --elevation:0 1px 2px rgba(40,30,10,.05), 0 8px 28px rgba(40,30,10,.05);
+  --elevation-card:0 1px 2px rgba(40,30,10,.04);
+  --font-serif:Georgia,"Times New Roman",serif;
+  --font-sans:system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --font-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}

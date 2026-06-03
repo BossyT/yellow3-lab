@@ -157,16 +157,20 @@
           </div>
         </a>
 
-        <!-- COMING: EU AI Act enforcement -->
-        <div class="inst coming-card">
+        <!-- LIVE: EU AI Act enforcement -->
+        <a class="inst" href="/research/eu-ai-act">
           <div class="inst-top">
-            <span class="st coming">Coming</span>
-            <span class="phase2">Phase 2</span>
+            <span class="st live"><span class="dot"></span> Live</span>
+            <span class="edno" id="eu-edno">Edition 01</span>
           </div>
           <h3>EU AI Act enforcement</h3>
-          <p class="thesis">Whether Europe's landmark AI law is being enforced in practice - tracking the gap between the text on the page and action on the ground.</p>
-          <div class="coming-note">In build. Slots into the same instrument skeleton as Model adoption.</div>
-        </div>
+          <p class="thesis">What is actually enforced versus what was announced - how far Europe has stood up the law it wrote, and what has happened to anyone who broke it.</p>
+          <div class="read-block">
+            <div class="read-k">This week's read</div>
+            <div class="read-v" id="eu-read">Loading this week's read…</div>
+            <span class="open-link">Open instrument</span>
+          </div>
+        </a>
 
         <!-- COMING: Passport readiness -->
         <div class="inst coming-card">
@@ -216,6 +220,17 @@
         }
       })
       .catch(function(){ document.getElementById('ma-read').textContent = 'Where adoption sits, by region of origin - updated weekly.'; });
+
+    fetch('/research/eu-ai-act.json', { cache: 'no-store' })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        if (!d) return;
+        if (d.what_changed) document.getElementById('eu-read').textContent = d.what_changed;
+        if (d.edition && d.edition.number){
+          document.getElementById('eu-edno').textContent = 'Edition ' + ('0' + d.edition.number).slice(-2);
+        }
+      })
+      .catch(function(){ document.getElementById('eu-read').textContent = 'What is enforced versus what was announced - updated weekly.'; });
   </script>
 </body>
 </html>

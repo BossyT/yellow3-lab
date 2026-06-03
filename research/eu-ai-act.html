@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3JXMM2VG5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-K3JXMM2VG5');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EU AI Act enforcement - yellow3 Research</title>
+  <meta name="description" content="What is actually enforced versus what was announced. Tracking how far Europe has stood up the AI Act it wrote, and what has happened to anyone who broke it. A live yellow3 research instrument, updated weekly." />
+  <link rel="canonical" href="https://yellow3.io/research/eu-ai-act" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/research/tokens.css" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="yellow3 lab" />
+  <meta property="og:title" content="EU AI Act enforcement - yellow3 Research" />
+  <meta property="og:description" content="What is actually enforced versus what was announced. A live yellow3 research instrument, updated weekly." />
+  <meta property="og:url" content="https://yellow3.io/research/eu-ai-act" />
+  <meta property="twitter:card" content="summary_large_image" />
+
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg-frame);color:var(--tp);font-family:var(--font-sans);-webkit-font-smoothing:antialiased;line-height:1.5}
+
+    /* site nav (shared chrome) */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;background:rgba(248,246,241,.94);border-bottom:1px solid var(--bd);backdrop-filter:blur(8px)}
+    .nav-logo img{height:24px;display:block}
+    .nav-links{display:flex;gap:30px}
+    .nav-links a{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ts);text-decoration:none;transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--tp)}
+    .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px}
+    .nav-toggle span{display:block;width:20px;height:1.5px;background:var(--tp);margin:5px 0;transition:transform .3s,opacity .3s}
+
+    /* page frame */
+    .y3page{max-width:880px;margin:104px auto 56px;background:var(--bg);border:1px solid var(--bd);border-radius:20px;overflow:hidden;box-shadow:var(--elevation)}
+    .pbody{padding:30px 26px}
+
+    .bc{font-size:12px;color:var(--ts);margin-bottom:14px}
+    .bc a{color:var(--ts);text-decoration:none}
+    .bc a:hover{color:var(--tp)}
+    h1{font-family:var(--font-serif);font-size:clamp(26px,4.5vw,32px);font-weight:500;margin:0;letter-spacing:-.01em}
+    .titlerow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+    .badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:#fff;background:var(--green);padding:3px 10px;border-radius:999px}
+    .badge .dot{width:6px;height:6px;border-radius:50%;background:#fff;display:inline-block}
+    .refresh{font-size:11px;color:var(--ts);font-family:var(--font-mono);margin:10px 0 12px}
+    .thesis{font-size:14px;color:var(--ts);line-height:1.6;max-width:62ch;margin:0 0 22px}
+
+    .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600}
+    .rule{width:54px;height:2px;background:var(--gold);opacity:.5;margin:8px 0 16px}
+    .card{background:var(--card);border:1px solid var(--bd);border-radius:var(--radius);box-shadow:var(--elevation-card);padding:18px}
+    .section{margin-bottom:16px}
+    .lbl{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ts);margin-bottom:7px}
+    .changed{font-size:18px;font-weight:500;line-height:1.4}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .serifnum{font-family:var(--font-serif);font-size:38px;font-weight:500;line-height:1;letter-spacing:-.02em}
+    .h3{font-family:var(--font-serif);font-size:24px;font-weight:500;line-height:1.1;margin:0 0 6px}
+
+    /* map */
+    .mapwrap{display:flex;gap:26px;flex-wrap:wrap}
+    .mapleft{flex:1 1 300px;min-width:280px}
+    .mapright{flex:1 1 230px;min-width:230px}
+    .maparea{position:relative;padding:8px 0}
+    /* FALLBACK basemap: soft dot-cloud. TODO replace with true Europe dot-silhouette SVG (see note). */
+    .base{position:absolute;inset:-6px 0;background-image:radial-gradient(circle,#CDC6B5 1.1px,transparent 1.6px);background-size:13px 13px;opacity:.6;-webkit-mask:radial-gradient(115% 95% at 48% 50%,#000 38%,transparent 78%);mask:radial-gradient(115% 95% at 48% 50%,#000 38%,transparent 78%);pointer-events:none}
+    #grid{position:relative;display:grid;grid-template-columns:repeat(6,46px);gap:9px}
+    .ct{height:46px;border-radius:var(--radius-tile);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 1px 2px rgba(40,30,10,.08),0 3px 8px rgba(40,30,10,.06);transition:transform .12s}
+    .ct:hover{transform:translateY(-2px)}
+    .ct.d{background:var(--green);color:#fff}
+    .ct.p{background:var(--amber);color:#3A2705}
+    .ct.n{background:var(--none);color:var(--tp);box-shadow:inset 0 0 0 1px var(--bd)}
+    .legcard{background:var(--card);border:1px solid var(--bd);border-radius:13px;padding:13px 15px;display:flex;align-items:center;gap:12px;margin-bottom:10px}
+    .sw{width:26px;height:26px;border-radius:7px;flex:none}
+    .legcard .ll{flex:1;font-size:15px}
+    .legcard .nn{font-family:var(--font-serif);font-size:26px;font-weight:500;line-height:1}
+
+    .pill{font-size:11px;padding:3px 10px;border-radius:999px;font-weight:600;white-space:nowrap}
+    .row{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--bd)}
+    .row:first-of-type{border-top:none}
+    .row .rl{flex:1;font-size:14px}
+    .row .rl .sub{color:var(--ts);font-size:12px}
+    .records{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:12px}
+    .edition p{font-family:var(--font-serif);font-size:15.5px;line-height:1.65;margin:0 0 10px}
+    .byline{font-size:12px;color:var(--ts);margin-top:8px}
+    .methnote{font-size:12px;color:var(--ts);line-height:1.55;margin:0 0 8px}
+    .srcline{font-size:11px;color:var(--ts);font-family:var(--font-mono)}
+    .flag{font-size:11px;color:var(--amber);margin-top:8px}
+
+    /* unified footer (shared) */
+    .site-footer{background:#0f0f0e;border-top:1px solid #2a2a2a;padding:60px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:26px}
+    .site-footer__logo img{height:24px;filter:invert(1);opacity:.45;display:block}
+    .site-footer__nav{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 30px;max-width:640px}
+    .site-footer__nav a{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
+    .site-footer__nav a:hover,.site-footer__nav a.active{color:#fff}
+    .site-footer__legal{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 22px}
+    .site-footer__legal a{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.28);text-decoration:none;transition:color .2s}
+    .site-footer__legal a:hover{color:rgba(255,255,255,.6)}
+    .site-footer__copy{font-size:12px;color:rgba(255,255,255,.3)}
+
+    #err{display:none;padding:40px 26px;color:#b3402e}
+
+    @media (max-width:760px){
+      nav{padding:16px 20px}
+      .nav-toggle{display:block}
+      .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--bd);flex-direction:column;padding:22px;gap:18px}
+      .nav-links.open{display:flex}
+      .y3page{margin:90px 14px 40px;border-radius:16px}
+      .pbody{padding:24px 18px}
+      .grid2{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo"><img src="/logo.png" alt="yellow3" /></a>
+    <div class="nav-links">
+      <a href="/#about">About</a>
+      <a href="/naffe">Platform</a>
+      <a href="/insights/">Insights</a>
+      <a href="/research" class="active">Research</a>
+      <a href="/advisory">Advisory</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');this.closest('nav').querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="y3page">
+    <div class="pbody">
+      <div class="bc"><a href="/research">Research</a> &rsaquo; EU AI Act enforcement</div>
+
+      <div class="titlerow">
+        <h1 id="title">EU AI Act enforcement</h1>
+        <span class="badge" id="badge"><span class="dot"></span> Live</span>
+      </div>
+      <div class="refresh" id="refresh"></div>
+      <p class="thesis" id="thesis"></p>
+
+      <div id="err">The instrument data could not be loaded. Please try again shortly.</div>
+
+      <!-- What changed this week -->
+      <div class="section card">
+        <div class="lbl">What changed this week</div>
+        <div class="changed" id="changed"></div>
+      </div>
+
+      <!-- yellow3 on the record -->
+      <div class="section grid2">
+        <div class="card"><div class="lbl">This week yellow3 expects</div><div style="font-size:14px;line-height:1.5" id="call-this"></div></div>
+        <div class="card"><div class="lbl">Last week's call, graded</div><div style="font-size:14px;line-height:1.5" id="call-prior"></div></div>
+      </div>
+
+      <!-- Designation map -->
+      <div class="section" style="padding:6px 2px 2px">
+        <div class="eyebrow" id="map-eyebrow"></div>
+        <div class="rule"></div>
+        <div class="mapwrap">
+          <div class="mapleft">
+            <div class="h3" id="map-title"></div>
+            <div style="font-size:13px;color:var(--ts);line-height:1.5;margin-bottom:14px;max-width:34ch" id="map-subtitle"></div>
+            <div class="maparea">
+              <div class="base"><!-- FALLBACK basemap - replace with true Europe dot-silhouette SVG --></div>
+              <div id="grid"></div>
+            </div>
+          </div>
+          <div class="mapright">
+            <div class="eyebrow" style="margin-bottom:14px">Status overview</div>
+            <div id="legend"></div>
+            <div class="legcard" id="help" style="margin-top:16px">
+              <span style="width:24px;height:24px;border-radius:50%;border:1.5px solid var(--gold);color:var(--gold);display:flex;align-items:center;justify-content:center;flex:none;font-style:italic;font-family:var(--font-serif);font-size:14px">i</span>
+              <span style="font-size:13px;color:var(--ts);line-height:1.45" id="help-text"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gap clock -->
+      <div class="section grid2">
+        <div class="card"><div class="serifnum" id="gc-days"></div><div style="font-size:13px;color:var(--ts);margin-top:4px" id="gc-days-label"></div><div style="font-size:11px;color:var(--ts);opacity:.8;margin-top:3px" id="gc-days-cap"></div></div>
+        <div class="card"><div class="serifnum" id="gc-fines"></div><div style="font-size:13px;color:var(--ts);margin-top:4px" id="gc-fines-label"></div><div style="font-size:11px;color:var(--ts);opacity:.8;margin-top:3px" id="gc-fines-cap"></div></div>
+      </div>
+
+      <!-- Obligation board -->
+      <div class="section card">
+        <div class="lbl" style="margin-bottom:2px">What is in force, what was moved</div>
+        <div id="obligations"></div>
+      </div>
+
+      <!-- Record book -->
+      <div class="section">
+        <div class="lbl" style="margin-bottom:10px">Record book</div>
+        <div class="records" id="records"></div>
+      </div>
+
+      <!-- Weekly edition -->
+      <div class="section card edition">
+        <div class="lbl" id="ed-label"></div>
+        <div id="ed-body"></div>
+        <div class="byline" id="ed-byline"></div>
+      </div>
+
+      <!-- Methodology -->
+      <div class="section card" style="background:var(--tint);border-color:#E4DFD3">
+        <div class="lbl">Methodology</div>
+        <p class="methnote" id="meth-note"></p>
+        <div class="srcline" id="meth-src"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <a href="/" class="site-footer__logo"><img src="/logo.png" alt="yellow3" /></a>
+    <div class="site-footer__nav">
+      <a href="/#about">About</a>
+      <a href="/naffe">Platform</a>
+      <a href="/insights/">Insights</a>
+      <a href="/research">Research</a>
+      <a href="/advisory">Advisory</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <div class="site-footer__legal">
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/cookies">Cookies</a>
+    </div>
+    <span class="site-footer__copy">2026 yellow3 lab, Copenhagen</span>
+  </footer>
+
+  <script>
+    // Country layout (positions + names) come from the approved reference = LAYOUT here.
+    // Status/colour/counts/copy come from eu-ai-act.json = DATA. Split kept clean.
+    var LAYOUT = {
+      FI:[6,1,'Finland'], SE:[5,2,'Sweden'], EE:[6,2,'Estonia'],
+      IE:[2,3,'Ireland'], DK:[5,3,'Denmark'], LV:[6,3,'Latvia'],
+      NL:[3,4,'Netherlands'], DE:[4,4,'Germany'], PL:[5,4,'Poland'], LT:[6,4,'Lithuania'],
+      BE:[2,5,'Belgium'], LU:[3,5,'Luxembourg'], CZ:[4,5,'Czechia'], SK:[5,5,'Slovakia'],
+      FR:[2,6,'France'], AT:[4,6,'Austria'], HU:[5,6,'Hungary'], RO:[6,6,'Romania'],
+      PT:[1,7,'Portugal'], ES:[2,7,'Spain'], IT:[3,7,'Italy'], SI:[4,7,'Slovenia'], HR:[5,7,'Croatia'], BG:[6,7,'Bulgaria'],
+      MT:[3,8,'Malta'], GR:[5,8,'Greece'], CY:[6,8,'Cyprus']
+    };
+    var STATUS_CLASS = { designated:'d', partial_pending:'p', not_yet_designated:'n' };
+    var TAP_SWATCH   = { designated:'#2E9D78', partial_pending:'#D89A16', not_yet_designated:'#C9C2B2' };
+
+    function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+
+    function render(d){
+      var i = d.instrument;
+      document.getElementById('title').textContent = i.title;
+      document.getElementById('thesis').textContent = i.thesis;
+      document.getElementById('refresh').textContent = i.refresh_note;
+      if (i.status !== 'live') document.getElementById('badge').style.background = 'var(--neutral-ink)';
+      document.getElementById('changed').textContent = d.what_changed;
+
+      // on the record
+      document.getElementById('call-this').textContent = d.forward_call.this_week_expects;
+      var prior = document.getElementById('call-prior');
+      if (!d.forward_call.prior_call){
+        prior.textContent = 'First edition - no prior call yet.';
+        prior.style.color = 'var(--ts)';
+      } else {
+        var g = (d.forward_call.prior_call_grade || '').toLowerCase();
+        var tag = g === 'correct' ? ' ✓ graded correct' : g === 'wrong' ? ' ✗ graded wrong' : '';
+        prior.innerHTML = '“' + esc(d.forward_call.prior_call) + '”' +
+          '<span style="color:' + (g==='correct'?'var(--green)':g==='wrong'?'#b3402e':'var(--ts)') + '">' + tag + '</span>';
+      }
+
+      // map
+      document.getElementById('map-eyebrow').textContent = d.map.eyebrow;
+      document.getElementById('map-title').innerHTML = esc(d.map.title).replace(/ ([^ ]+ [^ ]+)$/, '<br>$1');
+      document.getElementById('map-subtitle').textContent = d.map.subtitle;
+      document.getElementById('help-text').textContent = d.map.helperText;
+
+      var labelByStatus = {};
+      d.map.legend.forEach(function(l){ labelByStatus[l.status] = l.label; });
+
+      var grid = document.getElementById('grid');
+      grid.innerHTML = '';
+      d.map.countries.forEach(function(c){
+        var pos = LAYOUT[c.code]; if (!pos) return;
+        var el = document.createElement('div');
+        el.className = 'ct ' + (STATUS_CLASS[c.status] || 'n');
+        el.style.gridColumn = pos[0]; el.style.gridRow = pos[1];
+        el.textContent = c.code;
+        el.setAttribute('data-name', pos[2]);
+        el.setAttribute('data-st', labelByStatus[c.status] || c.status);
+        el.setAttribute('data-c', TAP_SWATCH[c.status] || '#C9C2B2');
+        el.addEventListener('click', function(){
+          var help = document.getElementById('help');
+          help.innerHTML = '<span class="sw" style="background:' + el.getAttribute('data-c') + ';box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)"></span>' +
+            '<span style="font-size:13px;line-height:1.4"><span style="color:var(--tp);font-weight:600">' + esc(el.getAttribute('data-name')) + '</span><br>' +
+            '<span style="color:var(--ts)">' + esc(el.getAttribute('data-st')) + '</span></span>';
+        });
+        grid.appendChild(el);
+      });
+
+      // legend / status overview
+      var legend = document.getElementById('legend');
+      legend.innerHTML = d.map.legend.map(function(l){
+        var swStyle = l.status === 'not_yet_designated'
+          ? 'background:#F2F0EA;box-shadow:inset 0 0 0 1px #DDD8CE'
+          : 'background:' + l.color;
+        var numColor = l.status === 'designated' ? '#2E9D78' : l.status === 'partial_pending' ? '#D89A16' : '#8A8578';
+        return '<div class="legcard"><span class="sw" style="' + swStyle + '"></span><span class="ll">' + esc(l.label) + '</span>' +
+          '<span class="nn" style="color:' + numColor + '">' + l.count + '</span></div>';
+      }).join('');
+
+      // gap clock
+      var anchor = new Date(d.gap_clock.anchor_date + 'T00:00:00Z');
+      var today = new Date();
+      var days = Math.floor((Date.UTC(today.getFullYear(),today.getMonth(),today.getDate()) - anchor.getTime()) / 86400000);
+      document.getElementById('gc-days').textContent = days.toLocaleString('en-GB');
+      document.getElementById('gc-days-label').textContent = d.gap_clock.anchor_label;
+      document.getElementById('gc-days-cap').textContent = d.gap_clock.anchor_caption;
+      document.getElementById('gc-fines').textContent = d.gap_clock.fines_issued;
+      document.getElementById('gc-fines-label').textContent = d.gap_clock.fines_label;
+      document.getElementById('gc-fines-cap').textContent = d.gap_clock.fines_caption;
+
+      // obligations
+      document.getElementById('obligations').innerHTML = d.obligations.map(function(o){
+        var sub = o.note ? ' <span class="sub">· ' + esc(o.note) + '</span>' : '';
+        var pill = o.status === 'in_force'
+          ? '<span class="pill" style="background:#E3F3EC;color:#1C7A5A">In force · ' + esc(o.effective) + '</span>'
+          : '<span class="pill" style="background:#FBEFD3;color:#9C6B0C">Moved → ' + esc(o.effective) + '</span>';
+        return '<div class="row"><span class="rl">' + esc(o.label) + sub + '</span>' + pill + '</div>';
+      }).join('');
+
+      // record book
+      document.getElementById('records').innerHTML = d.record_book.map(function(r){
+        return '<div class="card"><div style="font-size:12px;color:var(--ts);margin-bottom:6px">' + esc(r.label) + '</div>' +
+          '<div class="serifnum" style="font-size:26px">' + esc(r.value) + '</div>' +
+          '<div style="font-size:11px;color:var(--ts);margin-top:3px">' + esc(r.caption) + '</div></div>';
+      }).join('');
+
+      // edition
+      document.getElementById('ed-label').textContent = d.edition.date_label;
+      document.getElementById('ed-body').innerHTML = d.edition.body.map(function(p,idx){
+        return '<p style="color:' + (idx === 0 ? 'var(--tp)' : 'var(--ts)') + '">' + esc(p) + '</p>';
+      }).join('');
+      document.getElementById('ed-byline').textContent = d.edition.byline;
+
+      // methodology
+      document.getElementById('meth-note').textContent = d.methodology.note;
+      document.getElementById('meth-src').textContent = d.methodology.source_line;
+    }
+
+    fetch('eu-ai-act.json', { cache:'no-store' })
+      .then(function(r){ if(!r.ok) throw new Error('http'); return r.json(); })
+      .then(render)
+      .catch(function(){ document.getElementById('err').style.display = 'block'; });
+  </script>
+</body>
+</html>

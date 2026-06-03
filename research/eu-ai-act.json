@@ -1,0 +1,103 @@
+{
+  "instrument": {
+    "slug": "eu-ai-act",
+    "title": "EU AI Act enforcement",
+    "status": "live",
+    "thesis": "What is actually enforced versus what was announced. Tracking how far Europe has stood up the law it wrote, and what has happened to anyone who broke it.",
+    "refresh_note": "Updated weekly \u00b7 last refresh 3 Jun 2026, 06:00 CET",
+    "as_of": "2026-06-03",
+    "cadence": "Wednesday"
+  },
+
+  "what_changed": "The EU agreed to push two more sets of high-risk obligations to 2027 and 2028, before either took effect. Fines issued stayed at zero.",
+
+  "forward_call": {
+    "this_week_expects": "The Omnibus to be published in the Official Journal before the August deadline.",
+    "prior_call": null,
+    "prior_call_grade": null,
+    "_note": "prior_call and prior_call_grade are null for Edition 01. From Edition 02, prior_call carries last week's expectation and prior_call_grade is 'correct' or 'wrong'."
+  },
+
+  "map": {
+    "eyebrow": "Designation status across Europe",
+    "title": "Who has actually named their enforcers",
+    "subtitle": "National competent authorities, designation status. Deadline was 2 August 2025.",
+    "helperText": "Tap a country for its designation status.",
+    "legend": [
+      { "status": "designated",         "label": "Designated",          "count": 3,  "color": "#2E9D78" },
+      { "status": "partial_pending",     "label": "Partial / pending",   "count": 10, "color": "#D89A16" },
+      { "status": "not_yet_designated",  "label": "Not yet designated",  "count": 14, "color": "#F2F0EA" }
+    ],
+    "countries": [
+      { "code": "IE", "status": "designated" },
+      { "code": "DK", "status": "designated" },
+      { "code": "FI", "status": "designated" },
+      { "code": "PT", "status": "partial_pending" },
+      { "code": "ES", "status": "partial_pending" },
+      { "code": "FR", "status": "partial_pending" },
+      { "code": "BE", "status": "partial_pending" },
+      { "code": "LU", "status": "partial_pending" },
+      { "code": "NL", "status": "partial_pending" },
+      { "code": "DE", "status": "partial_pending" },
+      { "code": "PL", "status": "partial_pending" },
+      { "code": "SE", "status": "partial_pending" },
+      { "code": "AT", "status": "partial_pending" },
+      { "code": "IT", "status": "not_yet_designated" },
+      { "code": "MT", "status": "not_yet_designated" },
+      { "code": "SI", "status": "not_yet_designated" },
+      { "code": "HR", "status": "not_yet_designated" },
+      { "code": "BG", "status": "not_yet_designated" },
+      { "code": "CZ", "status": "not_yet_designated" },
+      { "code": "SK", "status": "not_yet_designated" },
+      { "code": "HU", "status": "not_yet_designated" },
+      { "code": "RO", "status": "not_yet_designated" },
+      { "code": "EE", "status": "not_yet_designated" },
+      { "code": "LV", "status": "not_yet_designated" },
+      { "code": "LT", "status": "not_yet_designated" },
+      { "code": "GR", "status": "not_yet_designated" },
+      { "code": "CY", "status": "not_yet_designated" }
+    ]
+  },
+
+  "gap_clock": {
+    "anchor_date": "2025-02-02",
+    "anchor_label": "days prohibited practices have been in force",
+    "anchor_caption": "since 2 February 2025",
+    "fines_issued": 0,
+    "fines_label": "fines issued under the Act",
+    "fines_caption": "across all 27 member states",
+    "_note": "days-in-force is computed at render from anchor_date to today, so it ticks without edits. fines_issued is maintained by hand."
+  },
+
+  "obligations": [
+    { "label": "Prohibited practices",        "note": "Art 5",            "status": "in_force", "effective": "Feb 2025" },
+    { "label": "General-purpose AI rules",     "note": null,               "status": "in_force", "effective": "Aug 2025" },
+    { "label": "Transparency / watermarking",  "note": "Art 50",           "status": "moved",    "effective": "Dec 2026" },
+    { "label": "High-risk, Annex III",         "note": "use-based",        "status": "moved",    "effective": "Dec 2027" },
+    { "label": "High-risk, Annex I",           "note": "product-embedded", "status": "moved",    "effective": "Aug 2028" }
+  ],
+
+  "record_book": [
+    { "label": "Fines issued",      "value": "0",       "caption": "since Feb 2025" },
+    { "label": "Fully designated",  "value": "3/27",    "caption": "deadline was Aug 2025" },
+    { "label": "Deadlines moved",   "value": "3",       "caption": "before taking effect" },
+    { "label": "First GPAI action", "value": "Pending", "caption": "by the AI Office" }
+  ],
+
+  "edition": {
+    "number": 1,
+    "date": "2026-06-03",
+    "date_label": "Edition 01 \u00b7 3 June 2026",
+    "byline": "Thomas Chr. Melskens",
+    "body": [
+      "The European Union wrote the world's first comprehensive law for artificial intelligence, and it has spent the months since easing its own grip on it. Under the Digital Omnibus agreed in early May, the obligations for high-risk systems are set to slide from this August to December 2027, and for AI built into regulated products to 2028. They will have been postponed before a single one took effect, and the amendment that postpones them is itself not yet final.",
+      "What is already binding has been binding for a while. Prohibited practices have been enforceable across all twenty-seven member states since February 2025, the rules for general-purpose models since last August. And yet no fine has been issued anywhere under the Act, and only a handful of member states have formally named the authorities meant to enforce it, nearly a year past the deadline to do so.",
+      "This is the gap yellow3 tracks here each week: the distance between a law that exists and the machinery to apply it, which does not. Europe has proven it can legislate AI faster than anyone. Whether it can enforce what it wrote is the more interesting question, and the one the next two years will answer. The first thing to watch is narrow and soon: whether the Omnibus reaches the Official Journal before August, making the delay it promises real."
+    ]
+  },
+
+  "methodology": {
+    "note": "Designation status is yellow3's reading of the European Commission's consolidated list of notified authorities, cross-checked against the IAPP regulatory directory and the Future of Life Institute implementation timeline, as of the stated date. In-force dates reflect the AI Act as amended by the Digital Omnibus where provisionally agreed, and may shift until formal publication in the Official Journal. This tracks legal status and public enforcement actions, not compliance behaviour inside companies.",
+    "source_line": "Sources: European Commission AI Act Service Desk; artificialintelligenceact.eu (Future of Life Institute). As of 3 Jun 2026"
+  }
+}
