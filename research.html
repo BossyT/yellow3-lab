@@ -85,6 +85,16 @@
       .nav-toggle.open span:nth-child(2) { opacity: 0; }
       .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
     }
+    /* Unified, centered site footer */
+    .site-footer{background:#0f0f0e;border-top:1px solid #2a2a2a;padding:60px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:26px}
+    .site-footer__logo img{height:24px;filter:invert(1);opacity:.45;display:block}
+    .site-footer__nav{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 30px;max-width:640px}
+    .site-footer__nav a{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
+    .site-footer__nav a:hover,.site-footer__nav a.active{color:#fff}
+    .site-footer__legal{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 22px}
+    .site-footer__legal a{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.28);text-decoration:none;transition:color .2s}
+    .site-footer__legal a:hover{color:rgba(255,255,255,.6)}
+    .site-footer__copy{font-size:12px;color:rgba(255,255,255,.3)}
   </style>
 
   <meta property="og:type" content="website" />
@@ -173,22 +183,22 @@
     </div>
   </div>
 
-  <footer>
-    <a href="/" class="footer-logo"><img src="/logo.png" alt="yellow3" /></a>
-    <div class="footer-links">
+  <footer class="site-footer">
+    <a href="/" class="site-footer__logo"><img src="/logo.png" alt="yellow3" /></a>
+    <nav class="site-footer__nav">
       <a href="/#about">About</a>
       <a href="/naffe">Platform</a>
       <a href="/insights/">Insights</a>
-      <a href="/research" class="active">Research</a>
+      <a href="/research">Research</a>
       <a href="/advisory">Advisory</a>
       <a href="/#contact">Contact</a>
-    </div>
-    <span class="footer-copy">2026 yellow3 lab, Copenhagen</span>
-    <div class="footer-links">
+    </nav>
+    <div class="site-footer__legal">
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
       <a href="/cookies">Cookies</a>
     </div>
+    <span class="site-footer__copy">2026 yellow3 lab, Copenhagen</span>
   </footer>
 
   <script>
