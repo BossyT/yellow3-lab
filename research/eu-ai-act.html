@@ -17,6 +17,9 @@
   <link rel="canonical" href="https://yellow3.io/research/eu-ai-act" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/research/tokens.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="yellow3 lab" />
@@ -31,13 +34,13 @@
     body{background:var(--bg-frame);color:var(--tp);font-family:var(--font-sans);-webkit-font-smoothing:antialiased;line-height:1.5}
 
     /* site nav (shared chrome) */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;background:rgba(248,246,241,.94);border-bottom:1px solid var(--bd);backdrop-filter:blur(8px)}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.96);border-bottom:1px solid #e8e6e1;backdrop-filter:blur(8px)}
     .nav-logo img{height:24px;display:block}
-    .nav-links{display:flex;gap:30px}
-    .nav-links a{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ts);text-decoration:none;transition:color .2s}
-    .nav-links a:hover,.nav-links a.active{color:var(--tp)}
+    .nav-links{display:flex;gap:40px}
+    .nav-links a{font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#888784;text-decoration:none;transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:#1a1917}
     .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px}
-    .nav-toggle span{display:block;width:20px;height:1.5px;background:var(--tp);margin:5px 0;transition:transform .3s,opacity .3s}
+    .nav-toggle span{display:block;width:20px;height:1.5px;background:#1a1917;margin:5px 0;transition:transform .3s,opacity .3s}
 
     /* page frame */
     .y3page{max-width:880px;margin:104px auto 56px;background:var(--bg);border:1px solid var(--bd);border-radius:20px;overflow:hidden;box-shadow:var(--elevation)}
@@ -109,7 +112,7 @@
     @media (max-width:760px){
       nav{padding:16px 20px}
       .nav-toggle{display:block}
-      .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--bd);flex-direction:column;padding:22px;gap:18px}
+      .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid #e8e6e1;flex-direction:column;padding:22px;gap:18px}
       .nav-links.open{display:flex}
       .y3page{margin:90px 14px 40px;border-radius:16px}
       .pbody{padding:24px 18px}

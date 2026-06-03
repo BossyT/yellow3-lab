@@ -19,20 +19,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/research/tokens.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --white:#ffffff; --off-white:#f7f6f3; --border:#e8e6e1; --muted:#aaa9a5;
+      --white:#ffffff; --off-white:#F2F0EA; --border:#DDD8CE; --muted:#8A8578;
       --mid:#888784; --body:#444340; --dark:#1a1917; --black:#0f0f0e;
       --up:#2f7d4f; --down:#b3402e; --flat:#aaa9a5;
       --live:#2f7d4f;
       --r-asia:#c0613a; --r-europe:#c9a227; --r-us:#3b6ea5; --r-other:#a8a6a1;
     }
     html { scroll-behavior: smooth; }
-    body { background: var(--white); color: var(--dark); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; }
+    body { background: var(--bg); color: var(--dark); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; }
 
     /* NAV (shared) */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(8px); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.96); border-bottom: 1px solid #e8e6e1; backdrop-filter: blur(8px); }
     .nav-logo { font-weight: 500; font-size: 15px; color: var(--dark); text-decoration: none; }
     .nav-links { display: flex; gap: 40px; }
     .nav-links a { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
@@ -57,14 +58,15 @@
 
     /* Payoff line */
     .payoff { padding: 44px 0; border-bottom: 1px solid var(--border); background: var(--off-white); }
-    .payoff .label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+    .payoff .label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 16px; }
     .payoff p { font-family: 'Playfair Display', serif; font-size: clamp(22px, 3vw, 32px); font-weight: 400; line-height: 1.35; color: var(--black); }
 
     /* On the record */
-    .section { padding: 80px 0; border-bottom: 1px solid var(--border); }
-    .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 36px; }
-    .record-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
-    .record-cell { background: var(--white); padding: 36px; }
+    .section { padding: 72px 0; border-bottom: 1px solid var(--border); }
+    .section-label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 34px; padding-bottom: 12px; position: relative; }
+    .section-label::after { content: ''; position: absolute; left: 0; bottom: 0; width: 54px; height: 2px; background: var(--gold); opacity: 0.5; }
+    .record-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .record-cell { background: var(--card); padding: 30px; border: 1px solid var(--bd); border-radius: var(--radius); box-shadow: var(--elevation); }
     .record-cell .k { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
     .record-cell .call { font-family: 'Playfair Display', serif; font-size: 21px; line-height: 1.4; color: var(--black); }
     .record-cell .meta { margin-top: 18px; font-size: 13px; color: var(--mid); }
@@ -87,7 +89,7 @@
     .legend-item { display: flex; align-items: baseline; gap: 10px; font-size: 14px; transition: opacity 0.25s; }
     .legend-item .sw { width: 11px; height: 11px; border-radius: 2px; transform: translateY(1px); }
     .legend-item .lr { color: var(--dark); }
-    .legend-item .lp { color: var(--dark); font-weight: 400; }
+    .legend-item .lp { color: var(--dark); font-weight: 400; font-family: 'Playfair Display', serif; font-size: 16px; }
     .legend-item .ld { font-size: 12px; }
     .delta-up { color: var(--up); } .delta-down { color: var(--down); } .delta-flat { color: var(--flat); }
 
@@ -102,16 +104,16 @@
     .lb-new { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--up); }
     .lb-track { height: 8px; background: var(--off-white); border-radius: 999px; overflow: hidden; }
     .lb-fill { height: 100%; border-radius: 999px; transition: width 0.4s; }
-    .lb-pct { font-size: 14px; color: var(--dark); text-align: right; font-variant-numeric: tabular-nums; }
+    .lb-pct { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--dark); text-align: right; font-variant-numeric: tabular-nums; }
     .lb-move { text-align: center; font-size: 13px; }
     .lb-move.up { color: var(--up); } .lb-move.down { color: var(--down); } .lb-move.flat { color: var(--flat); }
 
     /* Record book */
-    .records-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-    .rec-card { background: var(--white); padding: 32px; }
-    .rec-card.europe { background: #fdfaf0; }
+    .records-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .rec-card { background: var(--card); padding: 28px; border: 1px solid var(--bd); border-radius: var(--radius); box-shadow: var(--elevation); }
+    .rec-card.europe { background: #FDFAEF; }
     .rec-k { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
-    .rec-v { font-family: 'Playfair Display', serif; font-size: 26px; line-height: 1.2; color: var(--black); margin-bottom: 10px; }
+    .rec-v { font-family: 'Playfair Display', serif; font-size: 28px; line-height: 1.2; color: var(--black); margin-bottom: 10px; }
     .rec-d { font-size: 13px; color: var(--mid); }
     .rec-card.europe .rec-k { color: #b08a1f; }
 
