@@ -76,8 +76,8 @@
     .mapleft{flex:1 1 300px;min-width:280px}
     .mapright{flex:1 1 230px;min-width:230px}
     .maparea{position:relative;padding:8px 0}
-    /* FALLBACK basemap: soft dot-cloud. TODO replace with true Europe dot-silhouette SVG (see note). */
-    .base{position:absolute;inset:-6px 0;background-image:radial-gradient(circle,#CDC6B5 1.1px,transparent 1.6px);background-size:13px 13px;opacity:.6;-webkit-mask:radial-gradient(115% 95% at 48% 50%,#000 38%,transparent 78%);mask:radial-gradient(115% 95% at 48% 50%,#000 38%,transparent 78%);pointer-events:none}
+    /* True Europe dot-silhouette basemap (research/europe-dots.svg). */
+    .base{position:absolute;left:-78px;top:-24px;width:480px;height:480px;background:url('/research/europe-dots.svg') no-repeat center/contain;opacity:.5;pointer-events:none}
     #grid{position:relative;display:grid;grid-template-columns:repeat(6,46px);gap:9px}
     .ct{height:46px;border-radius:var(--radius-tile);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 1px 2px rgba(40,30,10,.08),0 3px 8px rgba(40,30,10,.06);transition:transform .12s}
     .ct:hover{transform:translateY(-2px)}
