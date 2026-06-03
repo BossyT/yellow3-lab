@@ -5,8 +5,8 @@
   "status": "live",
   "as_of": "2026-06-02",
   "as_of_pretty": "2 June 2026",
-  "generated_utc": "2026-06-03T08:17:06Z",
-  "refreshed_cet": "3 Jun 2026, 10:17 CET",
+  "generated_utc": "2026-06-03T08:20:43Z",
+  "refreshed_cet": "3 Jun 2026, 10:20 CET",
   "source": {
     "name": "OpenRouter",
     "url": "https://openrouter.ai/rankings",
@@ -328,7 +328,7 @@
     "dek": "Europe authors the science. It runs almost none of the tokens.",
     "body": [
       "This is the first edition of model adoption, and it opens on a number that should concentrate European minds. Across the last seven days of routed traffic on openrouter, models built in Asia carried 46 percent of all tokens, ahead of the United States on 40 percent. Models built in Europe carried 0.47 percent. Not four percent, not fourteen - under half of one.",
-      "The gap is not about capability and it is not about research. Europe authors a great deal of the science the whole field runs on. What it does not yet have is a developer whose models get reached for at scale. Mistral is the only European house in the routed top tier this week, and it sat below every Chinese lab you have heard of and several you have not.",
+      "The gap is not about capability and it is not about research. Europe authors a great deal of the science the whole field runs on. What it does not yet have is a developer whose models get reached for at scale. Mistral is the only European developer that routes here at all, and this week it sat outside the leaderboard entirely - below every Chinese lab you have heard of and several you have not.",
       "The second story is speed. The top of the table is a lease, not a deed. tencent's hunyuan 3 preview took the number one routed slot off deepseek's v4 flash this week. xiaomi's mimo v2.5, ranked 42nd seven days ago, is now third. anthropic shipped claude 4.8 opus and it walked straight into the top fifteen. Hold a position here for a fortnight and you have done something rare.",
       "So the watch point this instrument returns to every Wednesday is the distance between where models are written and where they are run. Right now that distance is enormous, and this week it widened in Asia's favour. The figures below reflect openrouter routing specifically - developer behaviour, cost-sensitive, and not the whole market - but it is the cleanest weekly read we have on what gets reached for, and reached for first."
     ],
