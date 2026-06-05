@@ -3,25 +3,25 @@
   "title": "Model adoption",
   "thesis": "Where AI adoption actually sits, by region of origin, measured in real routed traffic, and how fast the lead changes.",
   "status": "live",
-  "as_of": "2026-06-03",
-  "as_of_pretty": "3 June 2026",
-  "generated_utc": "2026-06-04T08:04:26Z",
-  "refreshed_cet": "4 Jun 2026, 10:04 CET",
+  "as_of": "2026-06-04",
+  "as_of_pretty": "4 June 2026",
+  "generated_utc": "2026-06-05T07:55:06Z",
+  "refreshed_cet": "5 Jun 2026, 09:55 CET",
   "source": {
     "name": "OpenRouter",
     "url": "https://openrouter.ai/rankings",
-    "line": "Source: OpenRouter (openrouter.ai/rankings), as of 3 June 2026."
+    "line": "Source: OpenRouter (openrouter.ai/rankings), as of 4 June 2026."
   },
   "window": {
     "current": [
-      "2026-05-28",
-      "2026-06-03"
+      "2026-05-29",
+      "2026-06-04"
     ],
     "prior": [
-      "2026-05-21",
-      "2026-05-27"
+      "2026-05-22",
+      "2026-05-28"
     ],
-    "days_history": 31
+    "days_history": 32
   },
   "regions": [
     "Asia",
@@ -35,12 +35,12 @@
     "US": "#3b6ea5",
     "Other": "#a8a6a1"
   },
-  "payoff": "Asia leads with 47% of routed tokens this week (+4.5 points), while Europe sits at 0.46%.",
+  "payoff": "Asia leads with 48% of routed tokens this week (+4.4 points), while Europe sits at 0.46%.",
   "share": [
     {
       "region": "Asia",
-      "pct": 47.15,
-      "delta_pp": 4.54
+      "pct": 47.65,
+      "delta_pp": 4.4
     },
     {
       "region": "Europe",
@@ -49,13 +49,13 @@
     },
     {
       "region": "US",
-      "pct": 38.62,
-      "delta_pp": -4.82
+      "pct": 38.06,
+      "delta_pp": -4.59
     },
     {
       "region": "Other",
-      "pct": 13.77,
-      "delta_pp": 0.36
+      "pct": 13.83,
+      "delta_pp": 0.28
     }
   ],
   "leaderboard": [
@@ -68,7 +68,7 @@
       "name": "DeepSeek V4 Flash",
       "developer": "DeepSeek",
       "region": "Asia",
-      "pct": 8.46
+      "pct": 8.65
     },
     {
       "rank": 2,
@@ -79,18 +79,18 @@
       "name": "Tencent Hy3 Preview",
       "developer": "Tencent",
       "region": "Asia",
-      "pct": 8.43
+      "pct": 8.06
     },
     {
       "rank": 3,
-      "prev_rank": 35,
+      "prev_rank": 19,
       "move": "up",
       "new": false,
       "model": "xiaomi/mimo-v2.5-20260422",
       "name": "Xiaomi Mimo V2.5",
       "developer": "Xiaomi",
       "region": "Asia",
-      "pct": 6.85
+      "pct": 6.91
     },
     {
       "rank": 4,
@@ -101,7 +101,7 @@
       "name": "OpenRouter Owl Alpha",
       "developer": "OpenRouter",
       "region": "Other",
-      "pct": 5.82
+      "pct": 5.93
     },
     {
       "rank": 5,
@@ -112,7 +112,7 @@
       "name": "Anthropic Claude 4.6 Sonnet",
       "developer": "Anthropic",
       "region": "US",
-      "pct": 5.44
+      "pct": 5.27
     },
     {
       "rank": 6,
@@ -123,7 +123,7 @@
       "name": "Anthropic Claude 4.7 Opus",
       "developer": "Anthropic",
       "region": "US",
-      "pct": 4.56
+      "pct": 4.21
     },
     {
       "rank": 7,
@@ -134,43 +134,10 @@
       "name": "DeepSeek V4 Pro",
       "developer": "DeepSeek",
       "region": "Asia",
-      "pct": 3.94
+      "pct": 4.01
     },
     {
       "rank": 8,
-      "prev_rank": 10,
-      "move": "up",
-      "new": false,
-      "model": "xiaomi/mimo-v2.5-pro-20260422",
-      "name": "Xiaomi Mimo V2.5 Pro",
-      "developer": "Xiaomi",
-      "region": "Asia",
-      "pct": 3.77
-    },
-    {
-      "rank": 9,
-      "prev_rank": 8,
-      "move": "down",
-      "new": false,
-      "model": "deepseek/deepseek-v3.2-20251201",
-      "name": "DeepSeek V3.2",
-      "developer": "DeepSeek",
-      "region": "Asia",
-      "pct": 3.32
-    },
-    {
-      "rank": 10,
-      "prev_rank": 7,
-      "move": "down",
-      "new": false,
-      "model": "google/gemini-3-flash-preview-20251217",
-      "name": "Google Gemini 3 Flash Preview",
-      "developer": "Google",
-      "region": "US",
-      "pct": 2.95
-    },
-    {
-      "rank": 11,
       "prev_rank": null,
       "move": "new",
       "new": true,
@@ -178,40 +145,73 @@
       "name": "MiniMax M3",
       "developer": "MiniMax",
       "region": "Asia",
-      "pct": 2.31
+      "pct": 3.63
+    },
+    {
+      "rank": 9,
+      "prev_rank": 9,
+      "move": "flat",
+      "new": false,
+      "model": "xiaomi/mimo-v2.5-pro-20260422",
+      "name": "Xiaomi Mimo V2.5 Pro",
+      "developer": "Xiaomi",
+      "region": "Asia",
+      "pct": 3.35
+    },
+    {
+      "rank": 10,
+      "prev_rank": 8,
+      "move": "down",
+      "new": false,
+      "model": "deepseek/deepseek-v3.2-20251201",
+      "name": "DeepSeek V3.2",
+      "developer": "DeepSeek",
+      "region": "Asia",
+      "pct": 3.31
+    },
+    {
+      "rank": 11,
+      "prev_rank": 7,
+      "move": "down",
+      "new": false,
+      "model": "google/gemini-3-flash-preview-20251217",
+      "name": "Google Gemini 3 Flash Preview",
+      "developer": "Google",
+      "region": "US",
+      "pct": 2.97
     },
     {
       "rank": 12,
-      "prev_rank": null,
-      "move": "new",
-      "new": true,
+      "prev_rank": 62,
+      "move": "up",
+      "new": false,
       "model": "anthropic/claude-4.8-opus-20260528",
       "name": "Anthropic Claude 4.8 Opus",
       "developer": "Anthropic",
       "region": "US",
-      "pct": 2.26
+      "pct": 2.79
     },
     {
       "rank": 13,
-      "prev_rank": 9,
+      "prev_rank": 10,
       "move": "down",
       "new": false,
       "model": "nvidia/nemotron-3-super-120b-a12b-20230311:free",
       "name": "NVIDIA Nemotron 3 Super 120b A12b (free)",
       "developer": "NVIDIA",
       "region": "US",
-      "pct": 1.98
+      "pct": 1.91
     },
     {
       "rank": 14,
-      "prev_rank": 14,
-      "move": "flat",
+      "prev_rank": 13,
+      "move": "down",
       "new": false,
       "model": "google/gemini-2.5-flash",
       "name": "Google Gemini 2.5 Flash",
       "developer": "Google",
       "region": "US",
-      "pct": 1.81
+      "pct": 1.82
     },
     {
       "rank": 15,
@@ -222,7 +222,7 @@
       "name": "Google Gemini 2.5 Flash Lite",
       "developer": "Google",
       "region": "US",
-      "pct": 1.78
+      "pct": 1.77
     },
     {
       "rank": 16,
@@ -233,29 +233,29 @@
       "name": "Poolside Laguna M.1 (free)",
       "developer": "Poolside",
       "region": "US",
-      "pct": 1.69
+      "pct": 1.64
     },
     {
       "rank": 17,
+      "prev_rank": null,
+      "move": "new",
+      "new": true,
+      "model": "stepfun/step-3.7-flash-20260528",
+      "name": "StepFun Step 3.7 Flash",
+      "developer": "StepFun",
+      "region": "Asia",
+      "pct": 1.56
+    },
+    {
+      "rank": 18,
       "prev_rank": 18,
-      "move": "up",
+      "move": "flat",
       "new": false,
       "model": "anthropic/claude-4.6-opus-20260205",
       "name": "Anthropic Claude 4.6 Opus",
       "developer": "Anthropic",
       "region": "US",
-      "pct": 1.59
-    },
-    {
-      "rank": 18,
-      "prev_rank": 16,
-      "move": "down",
-      "new": false,
-      "model": "openai/gpt-4o-mini",
-      "name": "OpenAI GPT 4o Mini",
-      "developer": "OpenAI",
-      "region": "US",
-      "pct": 1.59
+      "pct": 1.54
     },
     {
       "rank": 19,
@@ -266,18 +266,18 @@
       "name": "Google Gemini 3.5 Flash",
       "developer": "Google",
       "region": "US",
-      "pct": 1.54
+      "pct": 1.48
     },
     {
       "rank": 20,
-      "prev_rank": 13,
+      "prev_rank": 16,
       "move": "down",
       "new": false,
-      "model": "minimax/minimax-m2.7-20260318",
-      "name": "MiniMax M2.7",
-      "developer": "MiniMax",
-      "region": "Asia",
-      "pct": 1.38
+      "model": "openai/gpt-4o-mini",
+      "name": "OpenAI GPT 4o Mini",
+      "developer": "OpenAI",
+      "region": "US",
+      "pct": 1.46
     }
   ],
   "records": [
@@ -297,25 +297,25 @@
     {
       "key": "current_streak",
       "label": "Current number one",
-      "value": "MiniMax M3",
+      "value": "DeepSeek V4 Flash",
       "detail": "1 day running"
     },
     {
       "key": "biggest_mover",
       "label": "Biggest weekly mover",
-      "value": "#21 \u2192 #4",
-      "detail": "Xiaomi Mimo V2.5"
+      "value": "#49 \u2192 #9",
+      "detail": "Anthropic Claude 4.8 Opus"
     },
     {
       "key": "steepest_fall",
       "label": "Steepest fall",
-      "value": "#10 \u2192 #28",
-      "detail": "Moonshot Kimi K2.6"
+      "value": "#27 \u2192 #46",
+      "detail": "OpenAI GPT 5 Mini"
     },
     {
       "key": "new_entrants",
       "label": "New entrants this week",
-      "value": "6",
+      "value": "5",
       "detail": "MiniMax M3 and others"
     }
   ],
