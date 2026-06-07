@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const DOMAIN = 'https://yellow3.io';
+const DOMAIN = 'https://www.yellow3.io';
 const EXCLUDE = ['admin.html', 'google4b600ad4155228a3.html'];
 const EXCLUDE_DIRS = ['Autonomous ai software', 'node_modules', '.git', '.vercel'];
 
@@ -79,3 +79,33 @@ ${urls.map(u => `    <url>
 
 fs.writeFileSync(path.join(root, 'sitemap.xml'), xml);
 console.log(`Sitemap generated with ${urls.length} URLs`);
+
+// --- Normalize host in static files (canonical/og/schema URLs) ---
+// The live site is served at www.yellow3.io (yellow3.io 301-redirects to it),
+// so all absolute self-references must use the www host. Runs at build time,
+// which also fixes future articles automatically.
+function getTextFiles(dir, base = '') {
+  const out = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (EXCLUDE_DIRS.includes(entry.name)) continue;
+    const rel = path.join(base, entry.name);
+    if (entry.isDirectory()) {
+      out.push(...getTextFiles(path.join(dir, entry.name), rel));
+    } else if (/\.(html|xml|txt|xsl)$/.test(entry.name)) {
+      out.push(rel);
+    }
+  }
+  return out;
+}
+
+let normalized = 0;
+for (const rel of getTextFiles(root)) {
+  const file = path.join(root, rel);
+  const content = fs.readFileSync(file, 'utf8');
+  const updated = content.replace(/https:\/\/yellow3\.io/g, 'https://www.yellow3.io');
+  if (updated !== content) {
+    fs.writeFileSync(file, updated);
+    normalized++;
+  }
+}
+console.log(`Normalized host in ${normalized} files`);
