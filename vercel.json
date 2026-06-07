@@ -3,6 +3,7 @@
   "buildCommand": "node generate-sitemap.js",
   "outputDirectory": ".",
   "redirects": [
-    { "source": "/masterclass", "destination": "/advisory", "permanent": true }
+    { "source": "/masterclass", "destination": "/advisory", "permanent": true },
+    { "source": "/insights/europes-ai-slumber", "destination": "/insights/europe-ai-slumber", "permanent": true }
   ]
 }
