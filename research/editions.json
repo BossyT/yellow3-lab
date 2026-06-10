@@ -27,6 +27,23 @@
           "label": "Europe's AI Slumber"
         }
       }
+    },
+    {
+      "number": 2,
+      "date": "2026-06-10",
+      "status": "draft",
+      "byline": "Thomas Chr. Melskens",
+      "title": "Draft - to be finalised",
+      "dek": "",
+      "body": [
+        "Draft edition generated from this week's data. Replace with the finalised read before it goes out."
+      ],
+      "call": {
+        "this_week": "",
+        "resolves_on": "",
+        "grade": null,
+        "grade_note": null
+      }
     }
   ]
 }
