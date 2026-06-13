@@ -19,6 +19,10 @@ The best technology is the technology you forget is there. Technology promised t
 
 ## Published Research & Insights
 
+### Who Holds the Off-Switch? (June 2026)
+URL: https://yellow3.io/insights/who-holds-the-off-switch
+Summary: A US government letter switched off two frontier AI models for the entire planet in one afternoon. The real question for Europe was never whether government should have a say. It is who holds the switch, and what we do when it is not us.
+
 ### Five Times the Future Arrived (May 2026)
 URL: https://yellow3.io/insights/five-times-the-future-arrived
 Summary: Mechanised weaving, electrification, personal computing, the internet, container shipping. Five technology transitions, one pattern. What history actually tells us about the question everyone is asking about AI and jobs.
