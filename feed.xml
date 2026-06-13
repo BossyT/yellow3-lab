@@ -6,8 +6,17 @@
     <link>https://yellow3.io/insights/</link>
     <description>Perspectives on AI and what it makes possible. Writing from yellow3 lab on autonomous software, the future of digital products, and what European businesses need to understand about AI right now.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 20 May 2026 07:01:35 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 13 Jun 2026 14:50:28 GMT</lastBuildDate>
     <atom:link href="https://yellow3.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Who Holds the Off-Switch?</title>
+      <link>https://yellow3.io/insights/who-holds-the-off-switch</link>
+      <guid isPermaLink="true">https://yellow3.io/insights/who-holds-the-off-switch</guid>
+      <pubDate>Sat, 13 Jun 2026 14:50:28 GMT</pubDate>
+      <description>A US government letter switched off two frontier AI models for the entire planet in one afternoon. The real question for Europe was never whether government should have a say. It is who holds the switch, and what we do when it is not us.</description>
+      <media:content url="https://yellow3.io/insights/hero-who-holds-the-off-switch.png" medium="image" />
+      <media:description>A gloved hand flips a red industrial switch connected by glowing data cables to a digital map of Europe, symbolising Europe’s dependence on foreign-controlled AI infrastructure.</media:description>
+    </item>
     <item>
       <title>Five Times the Future Arrived</title>
       <link>https://yellow3.io/insights/five-times-the-future-arrived</link>
