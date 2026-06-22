@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="/research/tokens.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="yellow3 lab" />
@@ -35,109 +35,141 @@
 
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --paper:#ffffff; --ink:#0e0e0e; --body:#4b4b4b; --muted:#8a8a8a; --line:#e7e6e2; --yellow:#ffe000; --panel:#f7f6f3;
+      /* token overrides for tokens.css */
+      --bg:#ffffff; --bg-frame:#f7f6f3; --tp:#0e0e0e; --ts:#4b4b4b; --bd:#e7e6e2; --card:#ffffff; --tint:#f7f6f3; --none:#eceae4;
+      --gold:#8a8a8a; --green:#2E9D78; --amber:#D89A16; --neutral-ink:#8a8a8a; --radius:14px; --radius-tile:11px;
+      --elevation:0 1px 2px rgba(20,20,20,.04), 0 8px 24px rgba(20,20,20,.05); --elevation-card:0 1px 2px rgba(20,20,20,.04);
+      --font-serif:'DM Sans', system-ui, sans-serif; --font-sans:'DM Sans', system-ui, sans-serif; --font-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    }
     html{scroll-behavior:smooth}
-    body{background:var(--bg-frame);color:var(--tp);font-family:var(--font-sans);-webkit-font-smoothing:antialiased;line-height:1.5}
+    body{background:var(--panel);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+    img{display:block;max-width:100%}
 
-    /* site nav (shared chrome) */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.96);border-bottom:1px solid #e8e6e1;backdrop-filter:blur(8px)}
-    .nav-logo img{height:24px;display:block}
-    .nav-links{display:flex;gap:40px}
-    .nav-links a{font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#888784;text-decoration:none;transition:color .2s}
-    .nav-links a:hover,.nav-links a.active{color:#1a1917}
-    .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px}
-    .nav-toggle span{display:block;width:20px;height:1.5px;background:#1a1917;margin:5px 0;transition:transform .3s,opacity .3s}
+    /* NAV */
+    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+    .brand { display: flex; align-items: baseline; gap: 7px; text-decoration: none; }
+    .brand img { height: 21px; align-self: center; }
+    .brand .lab { font-weight: 600; font-size: 15px; color: var(--ink); letter-spacing: -0.01em; }
+    .nav-mid { display: flex; gap: 32px; }
+    .nav-mid a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #3a3a3a; text-decoration: none; font-weight: 500; padding-bottom: 3px; transition: color 0.2s; }
+    .nav-mid a:hover { color: var(--ink); }
+    .nav-mid a.active { border-bottom: 2px solid var(--ink); color: var(--ink); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: #fff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 20px; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: #000; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
 
     /* page frame */
-    .y3page{max-width:880px;margin:104px auto 56px;background:var(--bg);border:1px solid var(--bd);border-radius:20px;overflow:hidden;box-shadow:var(--elevation)}
-    .pbody{padding:30px 26px}
+    .y3page{max-width:880px;margin:104px auto 56px;background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--elevation)}
+    .pbody{padding:34px 30px}
 
-    .bc{font-size:12px;color:var(--ts);margin-bottom:14px}
-    .bc a{color:var(--ts);text-decoration:none}
-    .bc a:hover{color:var(--tp)}
-    h1{font-family:var(--font-serif);font-size:clamp(26px,4.5vw,32px);font-weight:500;margin:0;letter-spacing:-.01em}
-    .titlerow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
-    .badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:#fff;background:var(--green);padding:3px 10px;border-radius:999px}
+    .bc{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:16px}
+    .bc a{color:var(--muted);text-decoration:none}
+    .bc a:hover{color:var(--ink)}
+    h1{font-size:clamp(28px,5vw,40px);font-weight:800;margin:0;letter-spacing:-.025em;line-height:1.05;color:var(--ink)}
+    .titlerow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+    .badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--green);padding:4px 11px;border-radius:999px}
     .badge .dot{width:6px;height:6px;border-radius:50%;background:#fff;display:inline-block}
-    .refresh{font-size:11px;color:var(--ts);font-family:var(--font-mono);margin:10px 0 12px}
-    .thesis{font-size:14px;color:var(--ts);line-height:1.6;max-width:62ch;margin:0 0 22px}
+    .refresh{font-size:11px;color:var(--muted);font-family:var(--font-mono);margin:10px 0 12px}
+    .thesis{font-size:15px;color:var(--body);line-height:1.6;max-width:62ch;margin:0 0 24px;border-left:3px solid var(--yellow);padding-left:18px}
 
-    .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600}
-    .rule{width:54px;height:2px;background:var(--gold);opacity:.5;margin:8px 0 16px}
-    .card{background:var(--card);border:1px solid var(--bd);border-radius:var(--radius);box-shadow:var(--elevation-card);padding:18px}
+    .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+    .rule{width:48px;height:2px;background:var(--yellow);margin:8px 0 16px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--elevation-card);padding:20px}
     .section{margin-bottom:16px}
-    .lbl{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ts);margin-bottom:7px}
-    .changed{font-size:18px;font-weight:500;line-height:1.4}
+    .lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:8px}
+    .changed{font-size:18px;font-weight:700;line-height:1.35;color:var(--ink);letter-spacing:-.01em}
     .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    .serifnum{font-family:var(--font-serif);font-size:38px;font-weight:500;line-height:1;letter-spacing:-.02em}
-    .h3{font-family:var(--font-serif);font-size:24px;font-weight:500;line-height:1.1;margin:0 0 6px}
+    .serifnum{font-size:38px;font-weight:800;line-height:1;letter-spacing:-.03em;color:var(--ink)}
+    .h3{font-size:24px;font-weight:800;line-height:1.1;margin:0 0 6px;letter-spacing:-.02em;color:var(--ink)}
 
     /* map */
     .mapwrap{display:flex;gap:26px;flex-wrap:wrap}
     .mapleft{flex:1 1 300px;min-width:280px}
     .mapright{flex:1 1 230px;min-width:230px}
     .maparea{position:relative;padding:8px 0}
-    /* True Europe dot-silhouette basemap (research/europe-dots.svg). */
-    .base{position:absolute;left:-78px;top:-24px;width:480px;height:480px;background:url('/research/europe-dots.svg') no-repeat center/contain;opacity:.5;pointer-events:none}
+    .base{position:absolute;left:-78px;top:-24px;width:480px;height:480px;background:url('/research/europe-dots.svg') no-repeat center/contain;opacity:.45;pointer-events:none}
     #grid{position:relative;display:grid;grid-template-columns:repeat(6,46px);gap:9px}
-    .ct{height:46px;border-radius:var(--radius-tile);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 1px 2px rgba(40,30,10,.08),0 3px 8px rgba(40,30,10,.06);transition:transform .12s}
+    .ct{height:46px;border-radius:var(--radius-tile);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 1px 2px rgba(20,20,20,.08),0 3px 8px rgba(20,20,20,.05);transition:transform .12s}
     .ct:hover{transform:translateY(-2px)}
     .ct.d{background:var(--green);color:#fff}
     .ct.p{background:var(--amber);color:#3A2705}
-    .ct.n{background:var(--none);color:var(--tp);box-shadow:inset 0 0 0 1px var(--bd)}
-    .legcard{background:var(--card);border:1px solid var(--bd);border-radius:13px;padding:13px 15px;display:flex;align-items:center;gap:12px;margin-bottom:10px}
+    .ct.n{background:var(--none);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+    .legcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;align-items:center;gap:12px;margin-bottom:10px}
     .sw{width:26px;height:26px;border-radius:7px;flex:none}
-    .legcard .ll{flex:1;font-size:15px}
-    .legcard .nn{font-family:var(--font-serif);font-size:26px;font-weight:500;line-height:1}
+    .legcard .ll{flex:1;font-size:15px;color:var(--ink)}
+    .legcard .nn{font-size:26px;font-weight:800;line-height:1;letter-spacing:-.02em}
 
     .pill{font-size:11px;padding:3px 10px;border-radius:999px;font-weight:600;white-space:nowrap}
-    .row{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--bd)}
+    .row{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--line)}
     .row:first-of-type{border-top:none}
-    .row .rl{flex:1;font-size:14px}
-    .row .rl .sub{color:var(--ts);font-size:12px}
+    .row .rl{flex:1;font-size:14px;color:var(--ink)}
+    .row .rl .sub{color:var(--muted);font-size:12px}
     .records{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:12px}
-    .edition p{font-family:var(--font-serif);font-size:15.5px;line-height:1.65;margin:0 0 10px}
-    .byline{font-size:12px;color:var(--ts);margin-top:8px}
-    .methnote{font-size:12px;color:var(--ts);line-height:1.55;margin:0 0 8px}
-    .srcline{font-size:11px;color:var(--ts);font-family:var(--font-mono)}
+    .edition p{font-size:16px;line-height:1.7;margin:0 0 12px;color:var(--body)}
+    .byline{font-size:12px;color:var(--muted);margin-top:8px}
+    .methnote{font-size:12px;color:var(--body);line-height:1.55;margin:0 0 8px}
+    .srcline{font-size:11px;color:var(--muted);font-family:var(--font-mono)}
     .flag{font-size:11px;color:var(--amber);margin-top:8px}
 
-    /* unified footer (shared) */
-    .site-footer{background:#0f0f0e;border-top:1px solid #2a2a2a;padding:60px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:26px}
-    .site-footer__logo img{height:24px;filter:invert(1);opacity:.45;display:block}
-    .site-footer__nav{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 30px;max-width:640px}
-    .site-footer__nav a{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
-    .site-footer__nav a:hover,.site-footer__nav a.active{color:#fff}
-    .site-footer__legal{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 22px}
-    .site-footer__legal a{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.28);text-decoration:none;transition:color .2s}
-    .site-footer__legal a:hover{color:rgba(255,255,255,.6)}
-    .site-footer__copy{font-size:12px;color:rgba(255,255,255,.3)}
+    /* FOOTER */
+    .inner { max-width: 1240px; margin: 0 auto; }
+    .site-footer { background: #0e0e0e; color: #fff; padding: 72px 48px 36px; }
+    .foot-top { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr) 1.2fr; gap: 40px; padding-bottom: 56px; border-bottom: 1px solid #262626; }
+    .foot-brand img { height: 22px; filter: invert(1); margin-bottom: 18px; }
+    .foot-brand .fb-lab { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); font-weight: 600; margin-bottom: 10px; }
+    .foot-brand p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.5; max-width: 220px; }
+    .foot-col h4 { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 18px; }
+    .foot-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.72); text-decoration: none; margin-bottom: 11px; transition: color 0.2s; }
+    .foot-col a:hover { color: #fff; }
+    .foot-contact h4 { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 18px; }
+    .foot-contact a.mail { font-size: 14px; color: #fff; text-decoration: none; display: block; margin-bottom: 10px; }
+    .foot-contact .loc { font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 18px; }
+    .foot-social { display: flex; gap: 14px; }
+    .foot-social a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .foot-social a:hover { color: #fff; }
+    .foot-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; flex-wrap: wrap; gap: 16px; }
+    .foot-bottom .copy { font-size: 12px; color: rgba(255,255,255,0.4); }
+    .foot-legal { display: flex; gap: 24px; }
+    .foot-legal a { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+    .foot-legal a:hover { color: #fff; }
 
     #err{display:none;padding:40px 26px;color:#b3402e}
 
-    @media (max-width:760px){
-      nav{padding:16px 20px}
-      .nav-toggle{display:block}
-      .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid #e8e6e1;flex-direction:column;padding:22px;gap:18px}
-      .nav-links.open{display:flex}
+    @media (max-width:880px){
+      .site-nav{padding:14px 24px}
+      .nav-mid { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--line); flex-direction: column; gap: 0; padding: 12px 24px 20px; }
+      .nav-mid.open { display: flex; }
+      .nav-mid a { padding: 12px 0; }
+      .nav-cta { display: none; }
+      .nav-toggle { display: block; }
+      .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+      .nav-toggle.open span:nth-child(2) { opacity: 0; }
+      .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
       .y3page{margin:90px 14px 40px;border-radius:16px}
-      .pbody{padding:24px 18px}
+      .pbody{padding:26px 20px}
       .grid2{grid-template-columns:1fr}
+      .foot-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .site-footer { padding: 56px 24px 32px; }
     }
+    @media (max-width: 560px) { .foot-top { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="/" class="nav-logo"><img src="/logo.png" alt="yellow3" /></a>
-    <div class="nav-links">
-      <a href="/#about">About</a>
-      <a href="/naffe">Platform</a>
-      <a href="/insights/">Thinking</a>
+  <nav class="site-nav">
+    <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /><span class="lab">lab</span></a>
+    <div class="nav-mid" id="navMid">
+      <a href="/naffe">Work</a>
       <a href="/research" class="active">Research</a>
-      <a href="/advisory">Advisory</a>
+      <a href="/insights/">Thinking</a>
+      <a href="/#about">About</a>
       <a href="/#contact">Contact</a>
     </div>
-    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');this.closest('nav').querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
+    <a href="mailto:hello@yellow3.io" class="nav-cta">Get in touch <span>&#8594;</span></a>
+    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
   </nav>
 
   <div class="y3page">
@@ -224,22 +256,51 @@
   </div>
 
   <footer class="site-footer">
-    <a href="/" class="site-footer__logo"><img src="/logo.png" alt="yellow3" /></a>
-    <div class="site-footer__nav">
-      <a href="/#about">About</a>
-      <a href="/naffe">Platform</a>
-      <a href="/insights/">Thinking</a>
-      <a href="/research">Research</a>
-      <a href="/advisory">Advisory</a>
-      <a href="/#contact">Contact</a>
-    </div>
-    <div class="site-footer__legal">
-      <a href="/privacy">Privacy</a>
-      <a href="/terms">Terms</a>
-      <a href="/cookies">Cookies</a>
-    </div>
-    <span class="site-footer__copy">2026 yellow3 lab, Copenhagen</span>
-  </footer>
+        <div class="inner">
+            <div class="foot-top">
+                <div class="foot-brand">
+                    <img src="/logo.png" alt="yellow3" />
+                    <div class="fb-lab">Copenhagen AI Lab</div>
+                    <p>Building outcome infrastructure for the AI era.</p>
+                </div>
+                <div class="foot-col">
+                    <h4>Work</h4>
+                    <a href="/naffe">naffe.ai</a>
+                    <a href="/research/eu-ai-act">Digital Product Passports</a>
+                    <a href="/advisory">Advisory</a>
+                </div>
+                <div class="foot-col">
+                    <h4>Research</h4>
+                    <a href="/research">Research areas</a>
+                    <a href="/research/model-adoption">Model adoption</a>
+                    <a href="/research/eu-ai-act">EU AI Act</a>
+                </div>
+                <div class="foot-col">
+                    <h4>Company</h4>
+                    <a href="/#about">About</a>
+                    <a href="/insights/">Thinking</a>
+                    <a href="mailto:hello@yellow3.io">Contact</a>
+                </div>
+                <div class="foot-contact">
+                    <h4>Get in touch</h4>
+                    <a href="mailto:hello@yellow3.io" class="mail">hello@yellow3.io</a>
+                    <div class="loc">Copenhagen, Denmark</div>
+                    <div class="foot-social">
+                        <a href="https://www.linkedin.com/company/yellow3" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                        <a href="https://x.com/yellow3" target="_blank" rel="noopener" aria-label="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <span class="copy">&copy; 2026 yellow3 lab ApS. All rights reserved.</span>
+                <div class="foot-legal">
+                    <a href="/privacy">Privacy</a>
+                    <a href="/terms">Terms</a>
+                    <a href="/cookies">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
   <script>
     // Country layout (positions + names) come from the approved reference = LAYOUT here.
