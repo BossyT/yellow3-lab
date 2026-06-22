@@ -6,8 +6,17 @@
     <link>https://yellow3.io/insights/</link>
     <description>Perspectives on AI and what it makes possible. Writing from yellow3 lab on autonomous software, the future of digital products, and what European businesses need to understand about AI right now.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 13 Jun 2026 14:50:28 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jun 2026 10:27:05 GMT</lastBuildDate>
     <atom:link href="https://yellow3.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Abundance Problem</title>
+      <link>https://www.yellow3.io/insights/the-abundance-problem</link>
+      <guid isPermaLink="true">https://www.yellow3.io/insights/the-abundance-problem</guid>
+      <pubDate>Mon, 22 Jun 2026 10:27:05 GMT</pubDate>
+      <description>There has never been more choice in AI models, most of them open. The real risk has shifted to committing to the wrong one. What management should weigh.</description>
+      <media:content url="https://www.yellow3.io/insights/hero-the-abundance-problem.png" medium="image" />
+      <media:description>A business leader stands at a crossroads between an overwhelming wall of AI model choices and a clearer strategic path, illustrating why management needs governance, flexibility, sovereignty, cost discipline, and continuous evaluation in an age of model abundance.</media:description>
+    </item>
     <item>
       <title>Who Holds the Off-Switch?</title>
       <link>https://yellow3.io/insights/who-holds-the-off-switch</link>
