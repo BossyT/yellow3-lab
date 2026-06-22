@@ -1308,9 +1308,9 @@ async function syncHomepageInsightsTeaser(indexContent, overrideHero) {
         if (!homepageData) return;
         const homepageContent = decodeURIComponent(escape(atob(homepageData.content.replace(/\n/g, ''))));
         const insightsListing = await ghFetch('insights');
-        const latest3 = parseLatestArticleCards(indexContent, 3);
-        if (!latest3.length) return;
-        const newCards = buildHomepageInsightCards(latest3, insightsListing, overrideHero);
+        const latest5 = parseLatestArticleCards(indexContent, 5);
+        if (!latest5.length) return;
+        const newCards = buildHomepageInsightCards(latest5, insightsListing, overrideHero);
         const newHomepage = replaceHomepageInsightsGrid(homepageContent, newCards);
         if (newHomepage !== homepageContent) {
             await ghPut('index.html', newHomepage, 'Update homepage insights teaser', homepageData.sha);
@@ -2111,9 +2111,9 @@ async function updateArticle() {
                 if (needsWrite) {
                     await ghPut('insights/index.html', indexContent, 'Update ' + title + ' in insights index', indexData.sha);
                 }
-                // If the edited article is in the homepage teaser (latest 3), resync it.
-                const latest3Slugs = parseLatestArticleCards(indexContent, 3).map(function(c) { return c.slug; });
-                if (latest3Slugs.indexOf(slug) !== -1) {
+                // If the edited article is in the homepage teaser (latest 5), resync it.
+                const latest5Slugs = parseLatestArticleCards(indexContent, 5).map(function(c) { return c.slug; });
+                if (latest5Slugs.indexOf(slug) !== -1) {
                     setStatus('loading', 'Updating homepage...');
                     const override = hero ? { slug: slug, ext: hero.ext } : null;
                     await syncHomepageInsightsTeaser(indexContent, override);
