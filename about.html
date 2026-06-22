@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3JXMM2VG5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-K3JXMM2VG5');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - yellow3 lab</title>
+  <meta name="description" content="yellow3 lab is an AI research studio in Copenhagen. We research, design, and build AI systems that turn human direction into real-world outcomes." />
+  <link rel="canonical" href="https://yellow3.io/about" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --paper:#ffffff; --ink:#0e0e0e; --body:#4b4b4b; --muted:#8a8a8a; --line:#e7e6e2; --yellow:#ffe000; --panel:#f7f6f3; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', system-ui, sans-serif; font-weight: 400; line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    .inner { max-width: 1240px; margin: 0 auto; }
+    .hl { background: var(--yellow); color: var(--ink); padding: 0.02em 0.1em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+
+    /* NAV */
+    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+    .brand { display: flex; align-items: baseline; gap: 7px; text-decoration: none; }
+    .brand img { height: 21px; align-self: center; }
+    .brand .lab { font-weight: 600; font-size: 15px; color: var(--ink); letter-spacing: -0.01em; }
+    .nav-mid { display: flex; gap: 32px; }
+    .nav-mid a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #3a3a3a; text-decoration: none; font-weight: 500; padding-bottom: 3px; transition: color 0.2s; }
+    .nav-mid a:hover { color: var(--ink); }
+    .nav-mid a.active { border-bottom: 2px solid var(--ink); color: var(--ink); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: #fff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 20px; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: #000; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
+
+    /* HERO */
+    .hero { padding: 150px 48px 72px; border-bottom: 1px solid var(--line); }
+    .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: center; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 26px; }
+    .hero h1 { font-size: clamp(40px, 5.2vw, 70px); font-weight: 800; line-height: 1.04; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 24px; }
+    .hero-sub { font-size: 18px; color: var(--body); max-width: 560px; line-height: 1.55; }
+    .hero-aside { border-left: 1px solid var(--line); padding-left: 36px; }
+    .hero-aside .stat { margin-bottom: 26px; }
+    .hero-aside .stat:last-child { margin-bottom: 0; }
+    .hero-aside .sn { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); line-height: 1; margin-bottom: 8px; }
+    .hero-aside .sl { font-size: 13px; color: var(--muted); }
+
+    /* BELIEF */
+    .belief { padding: 84px 48px; border-bottom: 1px solid var(--line); background: var(--panel); }
+    .belief-grid { display: grid; grid-template-columns: 44px 1.3fr 1fr; gap: 56px; align-items: start; }
+    .belief-rail { position: relative; height: 100%; }
+    .belief-rail span { position: absolute; top: 6px; left: 0; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+    .belief-rail::before { content: ""; position: absolute; left: 22px; top: 0; bottom: 0; width: 1px; background: var(--line); }
+    .belief h2 { font-size: clamp(28px, 3.4vw, 46px); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); }
+    .belief-text { font-size: 17px; color: var(--body); line-height: 1.65; padding-top: 8px; }
+
+    /* SECTION */
+    section.block { padding: 96px 48px; border-bottom: 1px solid var(--line); }
+    .block-head { margin-bottom: 24px; }
+    .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+    .lead { font-size: clamp(22px, 2.6vw, 30px); font-weight: 700; line-height: 1.3; letter-spacing: -0.02em; color: var(--ink); max-width: 820px; margin-bottom: 56px; }
+    .do-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+    .do-grid > .cell { padding: 36px 28px 32px; border-right: 1px solid var(--line); }
+    .do-grid > .cell:first-child { padding-left: 0; }
+    .do-grid > .cell:last-child { border-right: none; padding-right: 0; }
+    .cell .num { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 22px; }
+    .cell h3 { font-size: 20px; font-weight: 800; line-height: 1.2; color: var(--ink); margin-bottom: 14px; letter-spacing: -0.01em; }
+    .cell p { font-size: 15px; color: var(--body); line-height: 1.65; margin-bottom: 20px; }
+    .cell a.more { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); font-weight: 700; text-decoration: none; }
+    .cell a.more::after { content: " \2192"; }
+
+    /* FOUNDER */
+    .founder { padding: 96px 48px; border-bottom: 1px solid var(--line); }
+    .founder-grid { display: grid; grid-template-columns: 360px 1fr; gap: 72px; align-items: start; }
+    .founder-photo img { width: 100%; aspect-ratio: 1/1; object-fit: cover; object-position: center top; filter: grayscale(1); }
+    .founder-name { font-size: 32px; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: var(--ink); margin: 26px 0 6px; }
+    .founder-role { font-size: 13px; color: var(--muted); letter-spacing: 0.04em; }
+    .founder-bio p { font-size: 18px; color: var(--body); line-height: 1.7; margin-bottom: 22px; }
+    .founder-tags { display: flex; flex-direction: column; gap: 0; margin-top: 32px; }
+    .founder-tag { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; border-top: 1px solid var(--line); padding: 12px 0; }
+
+    /* FACTS */
+    .facts { padding: 72px 48px; border-bottom: 1px solid var(--line); }
+    .facts-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .fact { background: var(--paper); padding: 30px 28px; }
+    .fact .k { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 12px; }
+    .fact .v { font-size: 17px; font-weight: 600; color: var(--ink); line-height: 1.35; }
+
+    /* CTA */
+    .cta { background: var(--yellow); padding: 72px 48px; }
+    .cta-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; }
+    .cta-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(0,0,0,0.55); font-weight: 700; margin-bottom: 22px; }
+    .cta h2 { font-size: clamp(26px, 3vw, 42px); font-weight: 800; line-height: 1.12; letter-spacing: -0.02em; color: var(--ink); }
+    .cta-right { border-left: 1px solid rgba(0,0,0,0.18); padding-left: 48px; }
+    .cta-right p { font-size: 18px; color: var(--ink); margin-bottom: 26px; line-height: 1.4; }
+    .btn { display: inline-flex; align-items: center; gap: 12px; padding: 15px 26px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--ink); transition: background 0.2s, color 0.2s; background: var(--ink); color: #fff; }
+    .btn:hover { background: #000; }
+
+    /* FOOTER */
+    .site-footer { background: #0e0e0e; color: #fff; padding: 72px 48px 36px; }
+    .foot-top { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr) 1.2fr; gap: 40px; padding-bottom: 56px; border-bottom: 1px solid #262626; }
+    .foot-brand img { height: 22px; filter: invert(1); margin-bottom: 18px; }
+    .foot-brand .fb-lab { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); font-weight: 600; margin-bottom: 10px; }
+    .foot-brand p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.5; max-width: 220px; }
+    .foot-col h4 { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 18px; }
+    .foot-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.72); text-decoration: none; margin-bottom: 11px; transition: color 0.2s; }
+    .foot-col a:hover { color: #fff; }
+    .foot-contact h4 { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 18px; }
+    .foot-contact a.mail { font-size: 14px; color: #fff; text-decoration: none; display: block; margin-bottom: 10px; }
+    .foot-contact .loc { font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 18px; }
+    .foot-social { display: flex; gap: 14px; }
+    .foot-social a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .foot-social a:hover { color: #fff; }
+    .foot-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; flex-wrap: wrap; gap: 16px; }
+    .foot-bottom .copy { font-size: 12px; color: rgba(255,255,255,0.4); }
+    .foot-legal { display: flex; gap: 24px; }
+    .foot-legal a { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+    .foot-legal a:hover { color: #fff; }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1000px) {
+      .do-grid { grid-template-columns: 1fr; }
+      .do-grid > .cell { border-right: none; border-bottom: 1px solid var(--line); padding-left: 0; padding-right: 0; }
+      .facts-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 880px) {
+      .site-nav { padding: 14px 24px; }
+      .nav-mid { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--line); flex-direction: column; gap: 0; padding: 12px 24px 20px; }
+      .nav-mid.open { display: flex; }
+      .nav-mid a { padding: 12px 0; }
+      .nav-cta { display: none; }
+      .nav-toggle { display: block; }
+      .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+      .nav-toggle.open span:nth-child(2) { opacity: 0; }
+      .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+      .hero, .belief, section.block, .founder, .facts, .cta { padding-left: 24px; padding-right: 24px; }
+      .hero { padding-top: 120px; }
+      .hero-grid, .belief-grid, .founder-grid, .cta-grid { grid-template-columns: 1fr; gap: 40px; }
+      .belief-rail { display: none; }
+      .hero-aside { border-left: none; padding-left: 0; border-top: 1px solid var(--line); padding-top: 28px; display: flex; gap: 40px; }
+      .cta-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(0,0,0,0.18); padding-top: 32px; }
+      .foot-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .site-footer { padding: 56px 24px 32px; }
+    }
+    @media (max-width: 560px) { .facts-grid, .foot-top { grid-template-columns: 1fr; } .hero-aside { flex-direction: column; gap: 24px; } }
+  </style>
+
+  <!-- OG / Social sharing -->
+  <meta property="og:image" content="/og/og-homepage.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="yellow3 lab" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:image" content="/og/og-homepage.png" />
+  <meta property="og:title" content="About - yellow3 lab" />
+  <meta property="og:description" content="An AI research studio in Copenhagen building the infrastructure for outcomes." />
+  <meta property="og:url" content="https://yellow3.io/about" />
+  <meta property="twitter:title" content="About - yellow3 lab" />
+  <meta property="twitter:description" content="An AI research studio in Copenhagen building the infrastructure for outcomes." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About - yellow3 lab",
+    "url": "https://yellow3.io/about",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "yellow3 lab",
+      "legalName": "yellow3 ApS",
+      "url": "https://yellow3.io",
+      "foundingDate": "2024",
+      "founder": { "@type": "Person", "name": "Thomas Christian Melskens", "jobTitle": "Founder & CEO" },
+      "address": { "@type": "PostalAddress", "addressLocality": "Copenhagen", "addressCountry": "DK" }
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /><span class="lab">lab</span></a>
+    <div class="nav-mid" id="navMid">
+      <a href="/naffe">Work</a>
+      <a href="/research">Research</a>
+      <a href="/insights/">Thinking</a>
+      <a href="/advisory">Advisory</a>
+      <a href="/about" class="active">About</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <a href="mailto:hello@yellow3.io" class="nav-cta">Get in touch <span>&#8594;</span></a>
+    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="inner hero-grid">
+      <div class="reveal">
+        <div class="hero-eyebrow">About</div>
+        <h1>An AI research studio building the infrastructure for <span class="hl">outcomes.</span></h1>
+        <p class="hero-sub">yellow3 lab researches, designs, and builds AI systems that turn human direction into real-world results - for founders, companies, and markets where complexity blocks progress.</p>
+      </div>
+      <div class="hero-aside reveal">
+        <div class="stat"><div class="sn">2024</div><div class="sl">Founded in Copenhagen</div></div>
+        <div class="stat"><div class="sn">Outcome-first</div><div class="sl">Our operating principle</div></div>
+        <div class="stat"><div class="sn">On the record</div><div class="sl">Research that grades itself</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BELIEF -->
+  <section class="belief">
+    <div class="inner belief-grid">
+      <div class="belief-rail"><span>Our belief</span></div>
+      <h2 class="reveal">The future is not prompt-based. It is <span class="hl">outcome-based.</span></h2>
+      <p class="belief-text reveal">People should not operate tools forever. They should define what matters, make the judgment calls, and let intelligent systems execute. We build toward that future - and put our research on the record while we do.</p>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section class="block">
+    <div class="inner">
+      <div class="block-head"><div class="section-label">What we do</div></div>
+      <p class="lead reveal">We work in three modes - we build the systems, we research where AI actually stands, and we advise the leaders making the decisions. Each one feeds the others.</p>
+      <div class="do-grid">
+        <div class="cell reveal">
+          <div class="num">01 — Build</div>
+          <h3>Platforms &amp; products</h3>
+          <p>naffe.ai, our flagship platform, turns plain-English direction into production-ready, AI-native software. Alongside it: agentic business systems, Digital Product Passport infrastructure, and AI-native marketplaces.</p>
+          <a href="/naffe" class="more">Explore naffe.ai</a>
+        </div>
+        <div class="cell reveal">
+          <div class="num">02 — Research</div>
+          <h3>Live instruments</h3>
+          <p>Data instruments that each answer one thesis about AI through numbers that update weekly - and grade their own calls in public. Adoption by region, EU AI Act enforcement, and more to come.</p>
+          <a href="/research" class="more">See the research</a>
+        </div>
+        <div class="cell reveal">
+          <div class="num">03 — Advise</div>
+          <h3>Executive advisory</h3>
+          <p>A confidential partner for top management and boards on the AI decisions that matter - grounded in real examples from systems we actually ship, not vendor decks or analyst reports.</p>
+          <a href="/advisory" class="more">Book a session</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER -->
+  <section class="founder">
+    <div class="inner founder-grid">
+      <div class="reveal">
+        <div class="founder-photo"><img src="/thomas.jpg" alt="Thomas Christian Melskens" /></div>
+        <div class="founder-name">Thomas Christian Melskens</div>
+        <div class="founder-role">Founder &amp; CEO</div>
+        <div class="founder-tags">
+          <div class="founder-tag">Copenhagen, Denmark</div>
+          <div class="founder-tag">CIRPASS-2 Consortium Member</div>
+          <div class="founder-tag">European AI Policy Contributor</div>
+        </div>
+      </div>
+      <div class="founder-bio reveal">
+        <div class="section-label" style="margin-bottom:24px">The founder</div>
+        <p>Thomas has spent three decades building and leading companies, from early-stage startups to board-level strategy across multiple industries. He understands the cost of a wrong decision, and the discipline required to make the right one under pressure.</p>
+        <p>Today he builds AI platforms. Not as a consultant who studied the technology, but as a founder who ships real systems, pushes them to their limits, and improves them every day. He operates where business leadership and AI development meet, which gives him a perspective most people never get.</p>
+        <p>When he explains what AI can and cannot do, it does not come from analyst reports. It comes from building the systems himself.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACTS -->
+  <section class="facts">
+    <div class="inner facts-grid reveal">
+      <div class="fact"><div class="k">Founded</div><div class="v">2024</div></div>
+      <div class="fact"><div class="k">Based in</div><div class="v">Copenhagen, Denmark</div></div>
+      <div class="fact"><div class="k">Entity</div><div class="v">yellow3 ApS</div></div>
+      <div class="fact"><div class="k">Focus</div><div class="v">Outcome infrastructure for the AI era</div></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contact">
+    <div class="inner cta-grid">
+      <div class="reveal">
+        <div class="cta-label">Work with yellow3</div>
+        <h2>Want to build, understand where AI really stands, or put a hard question to someone who ships?</h2>
+      </div>
+      <div class="cta-right reveal">
+        <p>Let's build what's next - together.</p>
+        <a href="mailto:hello@yellow3.io" class="btn" onclick="if(typeof window.gtag==='function'){window.gtag('event','contact_click',{location:'about_cta'});}">Start a conversation <span>&#8594;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="inner">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <img src="/logo.png" alt="yellow3" />
+          <div class="fb-lab">Copenhagen AI Lab</div>
+          <p>Building outcome infrastructure for the AI era.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Work</h4>
+          <a href="/naffe">naffe.ai</a>
+          <a href="/research/eu-ai-act">Digital Product Passports</a>
+          <a href="/advisory">Advisory</a>
+        </div>
+        <div class="foot-col">
+          <h4>Research</h4>
+          <a href="/research">Research areas</a>
+          <a href="/research/model-adoption">Model adoption</a>
+          <a href="/research/eu-ai-act">EU AI Act</a>
+        </div>
+        <div class="foot-col">
+          <h4>Company</h4>
+          <a href="/about">About</a>
+          <a href="/insights/">Thinking</a>
+          <a href="mailto:hello@yellow3.io">Contact</a>
+        </div>
+        <div class="foot-contact">
+          <h4>Get in touch</h4>
+          <a href="mailto:hello@yellow3.io" class="mail">hello@yellow3.io</a>
+          <div class="loc">Copenhagen, Denmark</div>
+          <div class="foot-social">
+            <a href="https://www.linkedin.com/company/yellow3" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="https://x.com/yellow3" target="_blank" rel="noopener" aria-label="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span class="copy">&copy; 2026 yellow3 lab ApS. All rights reserved.</span>
+        <div class="foot-legal">
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <a href="/cookies">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 50);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
