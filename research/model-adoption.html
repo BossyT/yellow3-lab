@@ -245,7 +245,7 @@
   <div id="err" class="wrap">The instrument data could not be loaded. Please try again shortly.</div>
 
   <!-- ===== YELLOW3 ON THE RECORD ===== -->
-  <section class="section">
+  <section class="section" id="sec-record">
     <div class="wrap">
       <div class="section-label">yellow3 on the record</div>
       <div class="record-pair">
@@ -290,7 +290,7 @@
   </section>
 
   <!-- ===== WEEKLY EDITION ===== -->
-  <section class="edition">
+  <section class="edition" id="sec-edition">
     <div class="wrap">
       <div class="edition-inner">
         <div class="edition-eyebrow" id="ed-eyebrow"></div>
@@ -382,7 +382,10 @@
     }
 
     function renderOnRecord(d){
-      var t = d.on_the_record.this_week;
+      var rec = document.getElementById('sec-record');
+      var t = (d.on_the_record && d.on_the_record.this_week) || {};
+      if (rec && !t.text) { rec.style.display = 'none'; return; }
+      if (rec) rec.style.display = '';
       document.getElementById('call-this').textContent = '“' + t.text + '”';
       document.getElementById('call-this-meta').textContent = t.resolves_on ? ('Resolves ' + t.resolves_on) : '';
       var p = d.on_the_record.prior;
@@ -482,7 +485,10 @@
     }
 
     function renderEdition(d){
+      var sec = document.getElementById('sec-edition');
       var e = d.edition;
+      if (sec && (!e || e.status !== 'final')) { sec.style.display = 'none'; return; }
+      if (sec) sec.style.display = '';
       var num = ('0' + e.number).slice(-2);
       var dateTxt = new Date(e.date + 'T00:00:00').toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
       document.getElementById('ed-eyebrow').innerHTML = 'Edition ' + num + ' · ' + dateTxt +
