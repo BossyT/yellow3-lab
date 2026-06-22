@@ -9,11 +9,11 @@
           gtag('js', new Date());
           gtag('config', 'G-K3JXMM2VG5');
     </script>
-  
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Executive AI Advisory - yellow3 lab</title>
-  <meta name="description" content="The conversation no one inside your organisation will have with you. A private executive session on AI strategy with yellow3 lab in Copenhagen." />
+  <title>Work with yellow3 - Briefings & Advisory - yellow3 lab</title>
+  <meta name="description" content="Two ways to put yellow3 lab's research to work: Executive Briefings for leaders who need clarity, and Strategic Advisory for organisations navigating change. Independent, practitioner-led, from Copenhagen." />
   <link rel="canonical" href="https://yellow3.io/advisory" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,12 +26,12 @@
     body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', system-ui, sans-serif; font-weight: 400; line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
     img { display: block; max-width: 100%; }
     .inner { max-width: 1240px; margin: 0 auto; }
+    .hl { background: var(--yellow); color: var(--ink); padding: 0.02em 0.1em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 
     /* NAV */
     .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
     .brand { display: flex; align-items: baseline; gap: 7px; text-decoration: none; }
     .brand img { height: 21px; align-self: center; }
-    .brand .lab { font-weight: 600; font-size: 15px; color: var(--ink); letter-spacing: -0.01em; }
     .nav-mid { display: flex; gap: 32px; }
     .nav-mid a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #3a3a3a; text-decoration: none; font-weight: 500; padding-bottom: 3px; transition: color 0.2s; }
     .nav-mid a:hover { color: var(--ink); }
@@ -42,95 +42,87 @@
     .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
 
     /* HERO */
-    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 150px 48px 88px; border-bottom: 1px solid var(--line); }
-    .hero-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 32px; }
-    .hero h1 { font-size: clamp(44px, 7vw, 100px); font-weight: 800; line-height: 1.02; letter-spacing: -0.03em; max-width: 1000px; margin-bottom: 44px; color: var(--ink); }
-    .hero h1 em, h2 em, .cta-section h2 em { font-style: normal; background: var(--yellow); color: var(--ink); padding: 0.02em 0.1em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
-    .hero-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; }
-    .hero-sub { font-size: 17px; color: var(--body); max-width: 520px; line-height: 1.65; border-left: 3px solid var(--yellow); padding-left: 24px; }
+    .hero { padding: 150px 48px 72px; border-bottom: 1px solid var(--line); }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 28px; }
+    .hero h1 { font-size: clamp(38px, 5.4vw, 72px); font-weight: 800; line-height: 1.04; letter-spacing: -0.03em; color: var(--ink); max-width: 980px; margin-bottom: 30px; }
+    .hero-sub { font-size: 18px; color: var(--body); max-width: 640px; line-height: 1.6; border-left: 3px solid var(--yellow); padding-left: 24px; }
+    .hero-nohype { margin-top: 30px; display: flex; gap: 10px 26px; flex-wrap: wrap; }
+    .hero-nohype span { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+    .hero-nohype span::before { content: "— "; color: var(--ink); }
 
-    /* SECTION BASE */
-    section { padding: 104px 48px; border-bottom: 1px solid var(--line); }
-    .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 48px; }
+    /* PILLARS */
+    .pillars { padding: 96px 48px; border-bottom: 1px solid var(--line); }
+    .pillars-head { margin-bottom: 48px; }
+    .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+    .pillar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .pillar { background: var(--paper); padding: 48px 44px; display: flex; flex-direction: column; }
+    .pillar .mode { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); font-weight: 700; margin-bottom: 18px; }
+    .pillar .mode::after { content: ""; display: block; width: 32px; height: 3px; background: var(--yellow); margin-top: 12px; }
+    .pillar h2 { font-size: clamp(26px, 3vw, 36px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; color: var(--ink); margin-bottom: 14px; }
+    .pillar .who { font-size: 17px; color: var(--ink); font-weight: 600; margin-bottom: 16px; }
+    .pillar p { font-size: 15px; color: var(--body); line-height: 1.65; margin-bottom: 24px; }
+    .pillar .aud { font-size: 13px; color: var(--muted); line-height: 1.6; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--line); }
+    .pillar .tag { display: inline-block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 22px; }
 
-    /* PROBLEM */
-    .problem-inner { max-width: 1240px; margin: 0 auto; }
-    .problem-inner h2 { font-size: clamp(30px, 4vw, 50px); font-weight: 800; line-height: 1.1; max-width: 720px; margin-bottom: 56px; color: var(--ink); letter-spacing: -0.02em; }
-    .problem-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-    .problem-text p { color: var(--body); margin-bottom: 22px; font-size: 17px; line-height: 1.65; }
-    .problem-text p strong { color: var(--ink); font-weight: 700; }
-    .problem-pull blockquote { font-size: clamp(22px, 2.2vw, 30px); font-weight: 700; font-style: normal; line-height: 1.3; color: var(--ink); border-top: 1px solid var(--line); padding-top: 36px; letter-spacing: -0.01em; }
+    /* OFFERINGS / RATE CARD */
+    .rates { padding: 96px 48px; border-bottom: 1px solid var(--line); background: var(--panel); }
+    .rates-head { margin-bottom: 40px; }
+    .rate-list { border-top: 1px solid var(--line); }
+    .rate-row { display: grid; grid-template-columns: 1.1fr 1.6fr auto; gap: 28px; align-items: center; padding: 26px 0; border-bottom: 1px solid var(--line); }
+    .rate-name { font-size: 19px; font-weight: 800; letter-spacing: -0.01em; color: var(--ink); }
+    .rate-name .fmt { display: block; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-top: 6px; }
+    .rate-desc { font-size: 15px; color: var(--body); line-height: 1.55; }
+    .rate-price { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); text-align: right; white-space: nowrap; }
+    .rate-price .per { display: block; font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.04em; }
 
-    /* EXPERIENCE */
-    .exp-bg { background: var(--panel); }
-    .exp-inner { max-width: 1240px; margin: 0 auto; }
-    .exp-inner h2 { font-size: clamp(30px, 4vw, 50px); font-weight: 800; line-height: 1.1; max-width: 500px; margin-bottom: 60px; color: var(--ink); letter-spacing: -0.02em; }
-    .exp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); }
-    .exp-item { background: var(--panel); padding: 44px 36px; }
-    .exp-num { font-size: 11px; letter-spacing: 0.16em; color: var(--muted); margin-bottom: 24px; text-transform: uppercase; font-weight: 600; }
-    .exp-item h3 { font-size: 20px; font-weight: 700; margin-bottom: 14px; color: var(--ink); line-height: 1.25; }
-    .exp-item p { font-size: 15px; color: var(--body); line-height: 1.65; }
+    /* RESEARCH PARTNERSHIP (featured, dark) */
+    .partner { background: #0e0e0e; color: #fff; padding: 96px 48px; }
+    .partner-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 72px; align-items: center; }
+    .partner-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); font-weight: 700; margin-bottom: 24px; }
+    .partner h2 { font-size: clamp(30px, 4vw, 48px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 24px; }
+    .partner .quote { font-size: 19px; font-weight: 600; color: #fff; line-height: 1.4; margin-bottom: 18px; }
+    .partner p { font-size: 15px; color: rgba(255,255,255,0.62); line-height: 1.6; max-width: 440px; }
+    .partner-card { background: #161616; border: 1px solid #2a2a2a; border-radius: 8px; padding: 34px 32px; }
+    .partner-card .pp { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .partner-card .pp span { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.5); }
+    .partner-card .pk { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; margin: 26px 0 16px; }
+    .partner-card ul { list-style: none; }
+    .partner-card li { font-size: 15px; color: rgba(255,255,255,0.85); padding: 11px 0 11px 22px; border-top: 1px solid #262626; position: relative; }
+    .partner-card li::before { content: ""; position: absolute; left: 0; top: 18px; width: 7px; height: 7px; background: var(--yellow); }
+    .partner-card a { display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; background: var(--yellow); color: var(--ink); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 24px; text-decoration: none; transition: background 0.2s; }
+    .partner-card a:hover { background: #ffd400; }
 
-    /* SUBMIT / HOW */
-    .submit-inner { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: start; }
-    .submit-inner h2 { font-size: clamp(30px, 4vw, 50px); font-weight: 800; line-height: 1.1; margin-bottom: 30px; color: var(--ink); letter-spacing: -0.02em; }
-    .submit-inner p { font-size: 17px; color: var(--body); margin-bottom: 18px; line-height: 1.65; }
-    .submit-inner p strong { color: var(--ink); font-weight: 700; }
-    .submit-note { margin-top: 36px; padding: 26px 30px; border: 1px solid var(--line); background: var(--panel); font-size: 14px; color: var(--body); line-height: 1.6; }
-    .how-steps { display: flex; flex-direction: column; }
-    .how-step { border-top: 1px solid var(--line); padding: 28px 0; display: grid; grid-template-columns: 64px 1fr; gap: 24px; align-items: start; }
-    .how-step:last-child { border-bottom: 1px solid var(--line); }
-    .how-step-num { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); padding-top: 4px; font-weight: 600; }
-    .how-step-content h3 { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
-    .how-step-content p { font-size: 14px; color: var(--body); line-height: 1.6; }
+    /* INSTITUTION / FUNNEL */
+    .loop { padding: 96px 48px; border-bottom: 1px solid var(--line); }
+    .loop-head { margin-bottom: 12px; }
+    .loop h2 { font-size: clamp(26px, 3vw, 38px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.12; color: var(--ink); max-width: 720px; margin-bottom: 48px; }
+    .loop-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line); }
+    .loop-step { padding: 32px 26px 30px; border-right: 1px solid var(--line); position: relative; }
+    .loop-step:last-child { border-right: none; }
+    .loop-step .ln { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 16px; }
+    .loop-step h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 10px; }
+    .loop-step h3 .arr { color: var(--yellow); }
+    .loop-step p { font-size: 14px; color: var(--body); line-height: 1.55; }
+    .loop-foot { margin-top: 28px; font-size: 16px; color: var(--ink); font-weight: 600; }
 
-    /* WHO */
-    .who-bg { background: var(--panel); }
-    .who-inner { max-width: 1240px; margin: 0 auto; }
-    .who-inner h2 { font-size: clamp(30px, 4vw, 50px); font-weight: 800; line-height: 1.1; max-width: 680px; margin-bottom: 24px; color: var(--ink); letter-spacing: -0.02em; }
-    .who-sub { font-size: 17px; color: var(--body); max-width: 560px; margin-bottom: 56px; }
-    .who-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); }
-    .who-item { background: var(--panel); padding: 26px 28px; font-size: 15px; color: var(--body); transition: background 0.2s; }
-    .who-item:hover { background: #fff; }
+    /* ABOUT */
+    .about { padding: 96px 48px; border-bottom: 1px solid var(--line); background: var(--panel); }
+    .about-grid { display: grid; grid-template-columns: 280px 1fr; gap: 72px; align-items: start; }
+    .about h2 { font-size: clamp(26px, 3vw, 38px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; color: var(--ink); }
+    .about-body p { font-size: 18px; color: var(--body); line-height: 1.7; margin-bottom: 20px; }
+    .about-body p.emph { color: var(--ink); font-weight: 700; }
+    .about-body .signed { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+    .about-body .signed strong { color: var(--ink); font-weight: 700; }
 
-    /* HOST */
-    .host-inner { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 320px 1fr; gap: 96px; align-items: start; }
-    .host-name { font-size: 28px; font-weight: 800; line-height: 1.1; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.02em; }
-    .host-role { font-size: 13px; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 36px; }
-    .host-tags { display: flex; flex-direction: column; gap: 10px; }
-    .host-tag { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; font-weight: 600; }
-    .host-bio p { font-size: 17px; color: var(--body); margin-bottom: 22px; line-height: 1.7; }
-
-    /* PRICING */
-    .pricing-bg { background: var(--panel); }
-    .pricing-inner { max-width: 1240px; margin: 0 auto; }
-    .pricing-inner h2 { font-size: clamp(30px, 4vw, 50px); font-weight: 800; line-height: 1.1; max-width: 560px; margin-bottom: 14px; color: var(--ink); letter-spacing: -0.02em; }
-    .pricing-sub { font-size: 17px; color: var(--body); max-width: 480px; margin-bottom: 56px; }
-    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); }
-    .pricing-item { background: var(--panel); padding: 44px 36px; position: relative; }
-    .pricing-item.featured { background: #fff; }
-    .pricing-tag { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 26px; font-weight: 600; }
-    .pricing-duration { font-size: 42px; font-weight: 800; color: var(--ink); margin-bottom: 4px; line-height: 1; letter-spacing: -0.02em; }
-    .pricing-duration span { font-size: 18px; font-weight: 400; color: var(--muted); }
-    .pricing-price { font-size: 28px; font-weight: 700; color: var(--ink); margin: 22px 0 8px; }
-    .pricing-divider { height: 1px; background: var(--line); margin-bottom: 28px; }
-    .pricing-note { font-size: 14px; color: var(--body); line-height: 1.65; }
-    .pricing-note p { margin-bottom: 8px; }
-    .pricing-note p:last-child { margin-bottom: 0; }
-    .pricing-note strong { color: var(--ink); font-weight: 700; }
-    .pricing-cta { display: inline-block; margin-top: 30px; padding: 13px 30px; background: var(--ink); color: #fff; border: 1px solid var(--ink); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
-    .pricing-cta:hover { background: #000; }
-    .pricing-item.featured .pricing-cta { background: var(--yellow); color: var(--ink); border-color: var(--yellow); }
-    .pricing-item.featured .pricing-cta:hover { background: #ffd400; }
-    .pricing-saving { position: absolute; top: 20px; right: 20px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); background: var(--yellow); padding: 4px 10px; font-weight: 600; }
-
-    /* CTA SECTION */
-    .cta-section { background: #0e0e0e; color: #fff; text-align: center; padding: 150px 48px; border-bottom: none; }
-    .cta-section h2 { font-size: clamp(40px, 6vw, 80px); font-weight: 800; line-height: 1.04; max-width: 760px; margin: 0 auto 30px; color: #fff; letter-spacing: -0.03em; }
-    .cta-price { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 44px; }
-    .cta-btn { display: inline-block; padding: 18px 56px; background: var(--yellow); color: var(--ink); border: 1px solid var(--yellow); font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
-    .cta-btn:hover { background: #ffd400; }
-    .cta-availability { margin-top: 26px; font-size: 13px; color: rgba(255,255,255,0.35); letter-spacing: 0.04em; }
+    /* CTA */
+    .cta { background: var(--yellow); padding: 80px 48px; }
+    .cta-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; }
+    .cta-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(0,0,0,0.55); font-weight: 700; margin-bottom: 22px; }
+    .cta h2 { font-size: clamp(28px, 3.2vw, 46px); font-weight: 800; line-height: 1.08; letter-spacing: -0.025em; color: var(--ink); }
+    .cta-right { border-left: 1px solid rgba(0,0,0,0.18); padding-left: 48px; }
+    .cta-right p { font-size: 18px; color: var(--ink); margin-bottom: 26px; line-height: 1.45; }
+    .btn { display: inline-flex; align-items: center; gap: 12px; padding: 16px 28px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--ink); transition: background 0.2s; background: var(--ink); color: #fff; }
+    .btn:hover { background: #000; }
 
     /* FOOTER */
     .site-footer { background: #0e0e0e; color: #fff; padding: 72px 48px 36px; }
@@ -158,7 +150,9 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 1000px) {
-      .exp-grid, .who-grid, .pricing-grid { grid-template-columns: 1fr; }
+      .pillar-grid, .loop-flow { grid-template-columns: 1fr; }
+      .loop-step { border-right: none; border-bottom: 1px solid var(--line); }
+      .loop-step:last-child { border-bottom: none; }
     }
     @media (max-width: 880px) {
       .site-nav { padding: 14px 24px; }
@@ -170,10 +164,12 @@
       .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
       .nav-toggle.open span:nth-child(2) { opacity: 0; }
       .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
-      section, .hero, .cta-section { padding-left: 24px; padding-right: 24px; }
+      .hero, .pillars, .rates, .partner, .loop, .about, .cta { padding-left: 24px; padding-right: 24px; }
       .hero { padding-top: 120px; }
-      .problem-cols, .submit-inner, .host-inner { grid-template-columns: 1fr; gap: 48px; }
-      .hero-bottom { flex-direction: column; align-items: flex-start; }
+      .partner-grid, .about-grid, .cta-grid { grid-template-columns: 1fr; gap: 40px; }
+      .rate-row { grid-template-columns: 1fr auto; gap: 6px 16px; }
+      .rate-desc { grid-column: 1 / -1; }
+      .cta-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(0,0,0,0.18); padding-top: 32px; }
       .foot-top { grid-template-columns: 1fr 1fr; gap: 32px; }
       .site-footer { padding: 56px 24px 32px; }
     }
@@ -188,46 +184,26 @@
   <meta property="og:site_name" content="yellow3 lab" />
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:image" content="/og/og-homepage.png" />
-  <meta property="og:title" content="Executive AI Advisory - yellow3 lab" />
-  <meta property="og:description" content="A confidential partner for top management and boards. Independent advisory on AI, grounded in real examples from inside your business." />
+  <meta property="og:title" content="Work with yellow3 - Briefings & Advisory" />
+  <meta property="og:description" content="Two ways to put yellow3 lab's research to work: Executive Briefings and Strategic Advisory." />
   <meta property="og:url" content="https://yellow3.io/advisory" />
-  <meta property="twitter:title" content="Executive AI Advisory - yellow3 lab" />
-  <meta property="twitter:description" content="A confidential partner for top management and boards. Independent advisory on AI, grounded in real examples from inside your business." />
+  <meta property="twitter:title" content="Work with yellow3 - Briefings & Advisory" />
+  <meta property="twitter:description" content="Two ways to put yellow3 lab's research to work: Executive Briefings and Strategic Advisory." />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Executive AI Advisory",
-    "description": "A confidential partner for top management and boards. Independent advisory and teaching on AI, grounded in real examples from inside your business.",
-    "provider": {
-      "@type": "Organization",
-      "name": "yellow3 lab",
-      "url": "https://yellow3.io"
-    },
+    "name": "yellow3 lab - Executive Briefings & Strategic Advisory",
+    "serviceType": "AI strategy briefings and advisory",
+    "provider": { "@type": "Organization", "name": "yellow3 lab", "url": "https://yellow3.io" },
+    "areaServed": "Global",
     "offers": [
-      {
-        "@type": "Offer",
-        "name": "Single session - 1 hour",
-        "price": "3500",
-        "priceCurrency": "EUR"
-      },
-      {
-        "@type": "Offer",
-        "name": "Extended session - 2 hours",
-        "price": "6000",
-        "priceCurrency": "EUR"
-      },
-      {
-        "@type": "Offer",
-        "name": "Strategy session - 3 hours",
-        "price": "8500",
-        "priceCurrency": "EUR"
-      }
-    ],
-    "locationCreated": {
-      "@type": "Place",
-      "name": "Copenhagen, Denmark"
-    }
+      { "@type": "Offer", "name": "Executive Briefing", "price": "1500", "priceCurrency": "EUR" },
+      { "@type": "Offer", "name": "Board Briefing", "price": "3000", "priceCurrency": "EUR" },
+      { "@type": "Offer", "name": "Leadership Workshop", "price": "4500", "priceCurrency": "EUR" },
+      { "@type": "Offer", "name": "Strategic Advisory", "price": "2500", "priceCurrency": "EUR", "description": "From EUR 2,500 per month" },
+      { "@type": "Offer", "name": "Research Partnership", "price": "12000", "priceCurrency": "EUR", "description": "From EUR 12,000 per year" }
+    ]
   }
   </script>
 </head>
@@ -243,305 +219,224 @@
       <a href="/about">About</a>
       <a href="/#contact">Contact</a>
     </div>
-    <a href="#book" class="nav-cta">Book a session <span>&#8594;</span></a>
+    <a href="mailto:hello@yellow3.io" class="nav-cta">Start a conversation <span>&#8594;</span></a>
     <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
   </nav>
 
+  <!-- HERO -->
   <div class="hero">
-    <div class="hero-label">Executive AI Advisory</div>
-    <h1 class="reveal">The conversation<br>no one inside your<br>organisation will<br><em>have with you.</em></h1>
-    <div class="hero-bottom">
-      <p class="hero-sub reveal">A confidential partner for top management and boards. I advise, teach, and work closely with your organisation - filtering noise, grounded in real examples from inside your business. Not everything is autonomous yet. A lot will be in the short term, and the decisions you make this year are the ones that matter.</p>
+    <div class="inner reveal">
+      <div class="hero-eyebrow">Work with yellow3</div>
+      <h1>Understanding AI is no longer optional. Understanding it <span class="hl">correctly</span> is.</h1>
+      <p class="hero-sub">Most leadership teams are deciding from vendor decks, headlines, and second-hand opinion. yellow3 lab works from the other side - building, operating, and testing AI systems every day. Two ways to put that to work.</p>
+      <div class="hero-nohype">
+        <span>No hype</span>
+        <span>No vendor agenda</span>
+        <span>No recycled conference slides</span>
+      </div>
     </div>
   </div>
 
-  <section>
-    <div class="problem-inner">
-      <div class="section-label">The reality</div>
-      <h2 class="reveal">Every executive has an AI opinion.<br>Very few have a defensible one.</h2>
-      <div class="problem-cols">
-        <div class="problem-text reveal">
-          <p>Vendors want your budget. Analysts want your attention. Your internal team wants to avoid being wrong. So the conversation becomes noise. Buzzwords. Pilot projects. Slide decks full of promises.</p>
-          <p>But almost nobody is willing to say the uncomfortable part out loud: what AI can actually do for a business today. And what it absolutely cannot.</p>
-          <p>Right now, the gap between AI reality and boardroom perception is widening every quarter. Some organisations are closing that gap - redesigning operations, compressing cost structures, and building capabilities competitors cannot easily copy. Others are approving multi-million budgets for technology they do not truly understand.</p>
-          <p>That difference will decide who leads the next decade.</p>
-          <p>This session changes that.</p>
+  <!-- TWO PILLARS -->
+  <section class="pillars">
+    <div class="inner">
+      <div class="pillars-head"><div class="section-label">Two ways in</div></div>
+      <div class="pillar-grid">
+        <div class="pillar reveal">
+          <div class="mode">Understand</div>
+          <span class="tag">Intellectual capital</span>
+          <h2>Executive Briefings</h2>
+          <div class="who">For leaders who need clarity before they make decisions.</div>
+          <p>90 minutes to half-day sessions on where AI really stands, autonomous software, Human-Direction AI, Outcome Architecture, Compute Sovereignty, and the future of AI-native organisations. Tailored to your organisation and your questions.</p>
+          <div class="aud">For CEOs, founders, boards, investors, and leadership teams.</div>
         </div>
-        <div class="problem-pull reveal">
-          <blockquote>"The most dangerous position in business right now is informed enough to be confident, but not informed enough to be right."</blockquote>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="problem-inner">
-      <div class="section-label">What this session delivers</div>
-      <h2 class="reveal">No hype. No vendor agenda.<br>No theoretical futures.</h2>
-      <div class="problem-text reveal" style="max-width:680px;">
-        <p>Just a clear, executive-level understanding of:</p>
-        <p><strong>What AI is already capable of inside real companies</strong></p>
-        <p><strong>Where AI creates measurable competitive advantage</strong></p>
-        <p><strong>Where it still fails, and why</strong></p>
-        <p><strong>How leaders should make AI decisions without guessing</strong></p>
-        <p>If you are responsible for strategy, budgets, or the future direction of your organisation, this is a conversation you cannot afford to sit out.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="exp-bg">
-    <div class="exp-inner">
-      <div class="section-label">What you will experience</div>
-      <h2 class="reveal">One hour.<br>Three shifts.</h2>
-      <div class="exp-grid">
-        <div class="exp-item reveal">
-          <div class="exp-num">01</div>
-          <h3>See AI build software live</h3>
-          <p>A single sentence becomes working software in real time, in front of you. Not a demo environment. Not pre-recorded. You will see exactly where the technology stands today - and what it means for your organisation.</p>
-        </div>
-        <div class="exp-item reveal">
-          <div class="exp-num">02</div>
-          <h3>Know what is real and what is noise</h3>
-          <p>Cut through the hype. Understand what AI can genuinely do today, where the real competitive leverage is in your industry, and which bets are worth making - and which are not.</p>
-        </div>
-        <div class="exp-item reveal">
-          <div class="exp-num">03</div>
-          <h3>Leave with your roadmap</h3>
-          <p>Not a framework. A clear, prioritised set of decisions built around your business, your team, and your current situation. Something you can bring back to your leadership team on Monday.</p>
+        <div class="pillar reveal">
+          <div class="mode">Build</div>
+          <span class="tag">Practical engagement</span>
+          <h2>Strategic Advisory</h2>
+          <div class="who">For organisations actively navigating change.</div>
+          <p>Hands-on support: strategy and roadmaps, product direction, vendor evaluation, Digital Product Passport strategy, and AI implementation planning. We work alongside your team, not from the outside.</p>
+          <div class="aud">For companies pursuing AI initiatives, organisations facing regulatory change, and firms building products.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <section>
-    <div class="submit-inner">
+  <!-- OFFERINGS -->
+  <section class="rates">
+    <div class="inner">
+      <div class="rates-head"><div class="section-label">The offerings</div></div>
+      <div class="rate-list">
+        <div class="rate-row reveal">
+          <div class="rate-name">Executive Briefing<span class="fmt">90 minutes</span></div>
+          <div class="rate-desc">A focused session for founders, executives, board members, and investors - tailored to your questions.</div>
+          <div class="rate-price">&euro;1,500</div>
+        </div>
+        <div class="rate-row reveal">
+          <div class="rate-name">Board Briefing<span class="fmt">2 hours</span></div>
+          <div class="rate-desc">For boards, investors, and ownership groups: market reality versus narrative, investment priorities, technology risk, readiness.</div>
+          <div class="rate-price">&euro;3,000</div>
+        </div>
+        <div class="rate-row reveal">
+          <div class="rate-name">Leadership Workshop<span class="fmt">Half day</span></div>
+          <div class="rate-desc">A shared understanding across the leadership team: research, discussion, demonstrations, and prioritisation.</div>
+          <div class="rate-price">&euro;4,500</div>
+        </div>
+        <div class="rate-row reveal">
+          <div class="rate-name">Strategic Advisory<span class="fmt">Ongoing engagement</span></div>
+          <div class="rate-desc">Hands-on support on strategy, product direction, vendor evaluation, DPP strategy, and AI implementation.</div>
+          <div class="rate-price">&euro;2,500<span class="per">per month</span></div>
+        </div>
+        <div class="rate-row reveal">
+          <div class="rate-name">Research Partnership<span class="fmt">Annual relationship</span></div>
+          <div class="rate-desc">Ongoing access to yellow3's thinking - briefings, research previews, and direct dialogue. See below.</div>
+          <div class="rate-price">&euro;12,000<span class="per">per year</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH PARTNERSHIP -->
+  <section class="partner">
+    <div class="inner partner-grid">
       <div class="reveal">
-        <div class="section-label">Come prepared</div>
-        <h2>Bring a <em>real</em> problem.</h2>
-        <p>This is not a keynote. It is not a workshop with fifty people in the room.</p>
-        <p>This is a private, one-to-one session for top management or the business owner.</p>
-        <p>Before the session, you will be invited to submit a short description of a real challenge from your organisation. Something your team has been circling for months.</p>
-        <p>It might be a process that is slow, manual, or expensive. A decision that requires better data. A product or service idea that never gets resourced. A workflow that consumes time across multiple departments.</p>
-        <p>The kind of problem that everyone knows exists, but no one has had the time, clarity, or tools to properly solve.</p>
-        <p>During the session, we work on your problem. Directly. Together we break down the challenge, examine where AI can realistically help, and design a practical solution path. In many cases we will prototype the approach live, so you can see exactly how modern AI systems can be applied inside your business.</p>
-        <p>No generic frameworks. No theoretical discussions.</p>
-        <p>Just a clear view of what is possible, what is not, and what it would take to implement it.</p>
-        <p>You leave with more than inspiration. You leave with a concrete solution direction, a clearer understanding of where AI can create real leverage in your organisation, and a practical next step you can act on immediately.</p>
-        <div class="submit-note">Your submission should be simple. Up to 400 words. Describe the challenge, provide a bit of context, and explain what a good outcome looks like. That is all we need.<br><br>The goal is simple. Turn one real business problem into a real AI opportunity.</div>
+        <div class="partner-label">Research Partnership</div>
+        <h2>Nobody can buy Thomas. But they can buy access to yellow3's thinking.</h2>
+        <p class="quote">An ongoing relationship for organisations navigating significant AI-related change.</p>
+        <p>Recurring access to the research, the frameworks, and the dialogue - without turning yellow3 into a consultancy. Every part of the relationship reinforces the others.</p>
       </div>
+      <div class="partner-card reveal">
+        <div class="pp">From &euro;12,000<span> / year</span></div>
+        <div class="pk">Includes</div>
+        <ul>
+          <li>Quarterly executive briefings</li>
+          <li>Direct access for questions and discussion</li>
+          <li>Research previews and new frameworks</li>
+          <li>Priority access to sessions</li>
+          <li>Workshop discount</li>
+        </ul>
+        <a href="mailto:hello@yellow3.io?subject=Research%20Partnership">Become a partner <span>&#8594;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE INSTITUTION / LOOP -->
+  <section class="loop">
+    <div class="inner">
+      <div class="loop-head"><div class="section-label">Why this works</div></div>
+      <h2>One institution, not a consultancy. Every part reinforces the others.</h2>
+      <div class="loop-flow">
+        <div class="loop-step reveal">
+          <div class="ln">01</div>
+          <h3>Research <span class="arr">&#8594;</span></h3>
+          <p>Generates the insight - from live instruments and field work.</p>
+        </div>
+        <div class="loop-step reveal">
+          <div class="ln">02</div>
+          <h3>Briefings <span class="arr">&#8594;</span></h3>
+          <p>Distribute the insight to the leaders making decisions.</p>
+        </div>
+        <div class="loop-step reveal">
+          <div class="ln">03</div>
+          <h3>Advisory <span class="arr">&#8594;</span></h3>
+          <p>Applies the insight inside organisations, hands-on.</p>
+        </div>
+        <div class="loop-step reveal">
+          <div class="ln">04</div>
+          <h3>Companies</h3>
+          <p>Validate the insight against real users and markets - which feeds the research again.</p>
+        </div>
+      </div>
+      <div class="loop-foot">Research informs practice. Practice informs research.</div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="inner about-grid">
+      <h2 class="reveal">About yellow3 lab</h2>
+      <div class="about-body reveal">
+        <p>yellow3 lab is an independent research and venture lab based in Copenhagen. We research how humans work with increasingly autonomous systems, and how that relationship is reshaping software, organisations, markets, and society.</p>
+        <p>Alongside our research, we actively build AI-native products and companies. Research informs practice. Practice informs research.</p>
+        <p class="emph">This lets us discuss AI not as observers, but as practitioners - operating at the intersection of business leadership and real-world implementation.</p>
+        <div class="signed">Briefings and advisory are led by <strong>Thomas Chr. Melskens</strong>, founder of yellow3 lab. <a href="/about" style="color:var(--ink);text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:2px;text-underline-offset:3px;">More about yellow3 &#8594;</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contact">
+    <div class="inner cta-grid">
       <div class="reveal">
-        <div class="section-label">How it works</div>
-        <div class="how-steps">
-          <div class="how-step">
-            <div class="how-step-num">01</div>
-            <div class="how-step-content"><h3>Reserve your session</h3><p>One payment. No subscriptions, no upsells. Sessions are limited to one per week.</p></div>
-          </div>
-          <div class="how-step">
-            <div class="how-step-num">02</div>
-            <div class="how-step-content"><h3>15-minute brief</h3><p>We learn your industry, your current AI landscape, and the questions that matter most - before we touch your time.</p></div>
-          </div>
-          <div class="how-step">
-            <div class="how-step-num">03</div>
-            <div class="how-step-content"><h3>60 minutes, live</h3><p>Private. Your problem worked on in real time. Real answers - not the ones your vendors give you.</p></div>
-          </div>
-          <div class="how-step">
-            <div class="how-step-num">04</div>
-            <div class="how-step-content"><h3>Written roadmap</h3><p>Your personalised AI strategy, key takeaways, and the three moves you should make next. Delivered within 48 hours.</p></div>
-          </div>
-        </div>
+        <div class="cta-label">Start a conversation</div>
+        <h2>Evaluating AI investments, preparing your team, or testing an idea against reality?</h2>
+      </div>
+      <div class="cta-right reveal">
+        <p>Whether you want to understand where AI really stands or put a hard question to someone who ships - let's talk.</p>
+        <a href="mailto:hello@yellow3.io" class="btn" onclick="if(typeof window.gtag==='function'){window.gtag('event','contact_click',{location:'advisory_cta'});}">Start a conversation <span>&#8594;</span></a>
       </div>
     </div>
   </section>
 
-  <section class="who-bg">
-    <div class="who-inner">
-      <div class="section-label">Who this is for</div>
-      <h2 class="reveal">For the leaders who need to<br>understand AI - not just sign off on it.</h2>
-      <div class="problem-text reveal" style="max-width:680px;margin-bottom:64px;">
-        <p>This session is not designed for teams learning the basics. It is designed for the person responsible for the decisions.</p>
-        <p>The executive who is expected to approve budgets, shape strategy, and explain to the board what AI means for the organisation.</p>
-        <p>Most leaders today are surrounded by opinions about AI. Vendor presentations. Analyst reports. Internal excitement. Internal skepticism.</p>
-        <p>Very little of it is neutral.</p>
-        <p>This session provides a private, direct, and unfiltered view of where AI actually stands today, and what that means for the decisions you need to make this year.</p>
-      </div>
-      <p class="who-sub reveal">It is particularly relevant for:</p>
-      <div class="who-grid">
-        <div class="who-item reveal">CEOs evaluating how much to bet on AI - and when</div>
-        <div class="who-item reveal">CFOs questioning the ROI behind every AI budget request</div>
-        <div class="who-item reveal">COOs identifying which processes AI can genuinely transform</div>
-        <div class="who-item reveal">CHROs navigating what AI means for talent and organisation design</div>
-        <div class="who-item reveal">Board members who need real literacy, not a vendor briefing</div>
-        <div class="who-item reveal">Founders deciding if their next product should be AI-first</div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="host-inner">
-      <div class="reveal">
-        <img src="/thomas.jpg" alt="Thomas Christian Melskens" style="width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center top;margin-bottom:32px;" />
-        <div class="section-label">Your host</div>
-        <div class="host-name">Thomas Chr.<br>Melskens</div>
-        <div class="host-role">Founder, yellow3 lab</div>
-        <div class="host-tags">
-          <div class="host-tag">Copenhagen, Denmark</div>
-          <div class="host-tag">CIRPASS-2 Consortium Member</div>
-          <div class="host-tag">European AI Policy Contributor</div>
-        </div>
-      </div>
-      <div class="host-bio reveal">
-        <p>Thomas Chr. Melskens is a founder, operator, and researcher focused on how artificial intelligence is changing the relationship between humans, software, and organizations.</p>
-        <p>Over the past three decades, he has built companies, advised leadership teams, and worked across multiple industries. That experience shaped a simple observation: most business problems are not technology problems. They are decision-making problems, coordination problems, and execution problems.</p>
-        <p>As founder of yellow3 lab, Thomas researches what happens when people move from operating software to directing systems. Alongside the lab's research, he actively builds and operates AI-native products - so ideas are tested against real users, real markets, and real operational constraints rather than remaining theoretical exercises.</p>
-        <p>When he explains what AI can and cannot do, it does not come from analyst reports. It comes from building the systems himself.</p>
-        <p style="color:var(--ink);font-weight:700">Not how to build better tools. But how to build better systems.</p>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="pricing-bg">
-    <div class="pricing-inner">
-      <div class="section-label">What you receive</div>
-      <h2 class="reveal">Everything included.</h2>
-      <p class="pricing-sub reveal">By session length.</p>
-      <div class="pricing-grid">
-        <div class="pricing-item reveal">
-          <div class="pricing-tag">Single session</div>
-          <div class="pricing-duration">1 <span>hour</span></div>
-          <div class="pricing-price">&euro;3,500</div>
-          <div class="pricing-divider"></div>
-          <div class="pricing-note">
-            <p>Intake form - 5 questions, 10 minutes</p>
-            <p>15-minute pre-call to align on priorities</p>
-            <p>60-minute one-on-one private session</p>
-            <p>Live AI demonstration relevant to your industry</p>
-            <p>Full session recording</p>
-            <p>Written AI readiness assessment</p>
-            <p>Personalised AI roadmap</p>
-            <p>Three prioritised next moves</p>
-            <p>30 days email follow-up access</p>
-          </div>
-          <a href="https://buy.stripe.com/8x228l2a68mXa5MaiHcMM00" class="pricing-cta">Request session</a>
-        </div>
-        <div class="pricing-item featured reveal">
-          <div class="pricing-saving">Most popular</div>
-          <div class="pricing-tag">Extended session</div>
-          <div class="pricing-duration">2 <span>hours</span></div>
-          <div class="pricing-price">&euro;6,000</div>
-          <div class="pricing-divider"></div>
-          <div class="pricing-note">
-            <p>Everything in the 1 hour session</p>
-            <p>Your submitted business problem worked on live</p>
-            <p>Space to go deeper on two challenges</p>
-            <p>Full session recording</p>
-            <p>Written summary of live demonstration</p>
-            <p>Extended AI roadmap with department-level recommendations</p>
-            <p>30 days email follow-up access</p>
-            <p><strong>+ Working application included</strong></p>
-          </div>
-          <a href="https://buy.stripe.com/bJebIVg0Wbz93HobmLcMM01" class="pricing-cta">Request session</a>
-        </div>
-        <div class="pricing-item reveal">
-          <div class="pricing-tag">Strategy session</div>
-          <div class="pricing-duration">3 <span>hours</span></div>
-          <div class="pricing-price">&euro;8,500</div>
-          <div class="pricing-divider"></div>
-          <div class="pricing-note">
-            <p>Everything in the 2 hour session</p>
-            <p>Half-day format with extended exploration</p>
-            <p>Up to three business challenges addressed</p>
-            <p>Leadership team may attend</p>
-            <p>Full session recording</p>
-            <p>Board-ready AI strategy document</p>
-            <p>60 days email follow-up access</p>
-            <p><strong>+ Working application included</strong></p>
-          </div>
-          <a href="https://buy.stripe.com/eVq4gt8yu0Uvgua1MbcMM02" class="pricing-cta">Request session</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="submit-inner">
-      <div class="reveal">
-        <div class="section-label">After the session</div>
-        <h2>Continuing as a <em>confidential partner</em>.</h2>
-        <p>The session gives you an honest view of where AI fits in your organisation. For many leaders, that is enough.</p>
-        <p>For others, the work continues.</p>
-        <p>If the session delivers what it should, we can move into a retainer arrangement. Your organisation gets ongoing access to a confidential, independent voice for the AI decisions that matter. Available for board preparation, vendor evaluation, strategic reviews, or the quiet questions that need a straight answer.</p>
-        <p>The format is shaped to the organisation. We discuss what makes sense in the session itself.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="cta-section" id="book">
-    <h2 class="reveal">One hour.<br><em>One shift</em> in how<br>you see AI.</h2>
-    <p class="cta-price">From &euro;3,500 - one payment - no subscriptions</p>
-    <a href="https://buy.stripe.com/8x228l2a68mXa5MaiHcMM00" class="cta-btn">Request your session</a>
-    <p class="cta-availability">One session available per week. No exceptions.</p>
-  </section>
-
+  <!-- FOOTER -->
   <footer class="site-footer">
-        <div class="inner">
-            <div class="foot-top">
-                <div class="foot-brand">
-                    <img src="/logo.png" alt="yellow3" />
-                    <div class="fb-lab">Copenhagen AI Lab</div>
-                    <p>Building outcome infrastructure for the AI era.</p>
-                </div>
-                <div class="foot-col">
-                    <h4>Work</h4>
-                    <a href="/naffe">naffe.ai</a>
-                    <a href="/research/eu-ai-act">Digital Product Passports</a>
-                    <a href="/advisory">Advisory</a>
-                </div>
-                <div class="foot-col">
-                    <h4>Research</h4>
-                    <a href="/research">Research areas</a>
-                    <a href="/research/model-adoption">Model adoption</a>
-                    <a href="/research/eu-ai-act">EU AI Act</a>
-                </div>
-                <div class="foot-col">
-                    <h4>Company</h4>
-                    <a href="/about">About</a>
-                    <a href="/insights/">Thinking</a>
-                    <a href="mailto:hello@yellow3.io">Contact</a>
-                </div>
-                <div class="foot-contact">
-                    <h4>Get in touch</h4>
-                    <a href="mailto:hello@yellow3.io" class="mail">hello@yellow3.io</a>
-                    <div class="loc">Copenhagen, Denmark</div>
-                    <div class="foot-social">
-                        <a href="https://www.linkedin.com/company/yellow3" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-                        <a href="https://x.com/yellow3" target="_blank" rel="noopener" aria-label="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-                    </div>
-                </div>
-            </div>
-            <div class="foot-bottom">
-                <span class="copy">&copy; 2026 yellow3 lab ApS. All rights reserved.</span>
-                <div class="foot-legal">
-                    <a href="/privacy">Privacy</a>
-                    <a href="/terms">Terms</a>
-                    <a href="/cookies">Cookies</a>
-                </div>
-            </div>
+    <div class="inner">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <img src="/logo.png" alt="yellow3" />
+          <div class="fb-lab">Copenhagen AI Lab</div>
+          <p>Building outcome infrastructure for the AI era.</p>
         </div>
-    </footer>
+        <div class="foot-col">
+          <h4>Work</h4>
+          <a href="/naffe">naffe.ai</a>
+          <a href="/research/eu-ai-act">Digital Product Passports</a>
+          <a href="/advisory">Advisory</a>
+        </div>
+        <div class="foot-col">
+          <h4>Research</h4>
+          <a href="/research">Research areas</a>
+          <a href="/research/model-adoption">Model adoption</a>
+          <a href="/research/eu-ai-act">EU AI Act</a>
+        </div>
+        <div class="foot-col">
+          <h4>Company</h4>
+          <a href="/about">About</a>
+          <a href="/insights/">Thinking</a>
+          <a href="mailto:hello@yellow3.io">Contact</a>
+        </div>
+        <div class="foot-contact">
+          <h4>Get in touch</h4>
+          <a href="mailto:hello@yellow3.io" class="mail">hello@yellow3.io</a>
+          <div class="loc">Copenhagen, Denmark</div>
+          <div class="foot-social">
+            <a href="https://www.linkedin.com/company/yellow3" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="https://x.com/yellow3" target="_blank" rel="noopener" aria-label="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span class="copy">&copy; 2026 yellow3 lab ApS. All rights reserved.</span>
+        <div class="foot-legal">
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <a href="/cookies">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script>
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          setTimeout(() => entry.target.classList.add('visible'), i * 50);
           observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.08 });
     reveals.forEach(el => observer.observe(el));
   </script>
-
 </body>
 </html>
