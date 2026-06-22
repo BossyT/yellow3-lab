@@ -18,103 +18,108 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --white:#ffffff; --off-white:#f7f6f3; --border:#e8e6e1; --muted:#aaa9a5; --mid:#888784; --body:#444340; --dark:#1a1917; --black:#0f0f0e; }
-    html { scroll-behavior: smooth; }
-    body { background: var(--white); color: var(--dark); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; }
+        :root { --paper:#ffffff; --ink:#0e0e0e; --body:#3f3f3f; --muted:#8a8a8a; --line:#e7e6e2; --yellow:#ffe000; --panel:#f7f6f3; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+        body { font-family:'DM Sans', system-ui, sans-serif; background:var(--paper); color:var(--body); font-size:18px; line-height:1.75; font-weight:400; }
+        ::selection { background:var(--yellow); color:var(--ink); }
+        img { display:block; max-width:100%; }
+        a { color:inherit; }
+        .inner { max-width:1240px; margin:0 auto; }
 
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(8px); }
-    .nav-logo { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px; color: var(--dark); text-decoration: none; }
-    .nav-links { display: flex; gap: 40px; }
-    .nav-links a { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--dark); }
-    .nav-back { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
-    .nav-back:hover { color: var(--dark); }
+        /* NAV */
+        .site-nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:16px 48px; background:rgba(255,255,255,0.95); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+        .brand { display:flex; align-items:baseline; gap:7px; text-decoration:none; }
+        .brand img { height:21px; align-self:center; }
+        .brand .lab { font-weight:600; font-size:15px; color:var(--ink); letter-spacing:-0.01em; }
+        .nav-mid { display:flex; gap:32px; }
+        .nav-mid a { font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:#3a3a3a; text-decoration:none; font-weight:500; padding-bottom:3px; transition:color 0.2s; }
+        .nav-mid a:hover { color:var(--ink); }
+        .nav-mid a.active { border-bottom:2px solid var(--ink); color:var(--ink); }
+        .nav-cta { display:inline-flex; align-items:center; gap:10px; background:var(--ink); color:#fff; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:12px 20px; text-decoration:none; transition:background 0.2s; }
+        .nav-cta:hover { background:#000; }
+        .nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:6px; }
+        .nav-toggle span { display:block; width:22px; height:2px; background:var(--ink); margin:5px 0; transition:transform 0.3s, opacity 0.3s; }
 
-    .article-hero { padding: 160px 48px 80px; border-bottom: 1px solid var(--border); max-width: 1200px; margin: 0 auto; }
-    .article-issue { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 32px; }
-    .article-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(42px, 5.5vw, 72px); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--black); max-width: 800px; margin-bottom: 48px; }
-    .article-meta { display: flex; gap: 48px; padding-top: 32px; border-top: 1px solid var(--border); }
-    .article-meta-item { display: flex; flex-direction: column; gap: 4px; }
-    .article-meta-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-    .article-meta-value { font-size: 14px; color: var(--body); }
+        /* HEADER */
+        .article-header { padding:150px 24px 36px; max-width:800px; margin:0 auto; }
+        .article-header .meta { font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:26px; display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+        .article-header .meta .tag { background:var(--yellow); color:var(--ink); padding:4px 10px; font-size:10px; letter-spacing:0.1em; }
+        .article-header h1 { font-size:clamp(34px, 5vw, 58px); font-weight:800; line-height:1.06; letter-spacing:-0.025em; color:var(--ink); margin-bottom:26px; }
+        .article-header .lede { font-size:20px; color:var(--body); line-height:1.6; border-left:3px solid var(--yellow); padding-left:22px; font-weight:400; }
 
-    .article-layout { display: grid; grid-template-columns: 1fr 320px; gap: 0; max-width: 1200px; margin: 0 auto; padding: 0 48px; border-bottom: 1px solid var(--border); }
-    .article-body { padding: 72px 80px 72px 0; border-right: 1px solid var(--border); }
-    .article-body p { font-size: 18px; color: var(--body); line-height: 1.8; margin-bottom: 32px; }
-    .article-body h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; color: var(--black); margin: 56px 0 24px; line-height: 1.3; }
-    .article-body h3 { font-size: 16px; font-weight: 500; color: var(--dark); margin: 40px 0 16px; letter-spacing: 0.02em; }
-    .article-body blockquote { border-left: 2px solid var(--border); padding: 4px 0 4px 32px; margin: 48px 0; }
-    .article-body blockquote p { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; font-weight: 400; color: var(--black); line-height: 1.5; margin: 0; }
+        /* SHARE */
+        .article-share { max-width:800px; margin:0 auto 8px; padding:0 24px; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+        .article-share-label { font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+        .article-share-btn { display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; border:1px solid var(--line); background:transparent; color:#888; cursor:pointer; transition:color 0.15s, border-color 0.15s; padding:0; text-decoration:none; }
+        .article-share-btn:hover { color:var(--ink); border-color:var(--ink); }
+        .article-share-btn.copied { color:#27ae60; border-color:#27ae60; }
+        .article-share-feedback { font-size:11px; color:#27ae60; opacity:0; transition:opacity 0.15s; }
+        .article-share-feedback.visible { opacity:1; }
 
-    .article-sidebar { padding: 72px 0 72px 56px; }
-    .sidebar-section { margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid var(--border); }
-    .sidebar-section:last-child { border-bottom: none; }
-    .sidebar-label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
-    .sidebar-section p { font-size: 14px; color: var(--body); line-height: 1.65; }
-    .sidebar-stat-num { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 400; color: var(--black); line-height: 1; margin-bottom: 8px; margin-top: 16px; }
-    .sidebar-stat-label { font-size: 13px; color: var(--muted); }
-    .sidebar-related { display: flex; flex-direction: column; gap: 0; }
-    .sidebar-related-item { border-top: 1px solid var(--border); padding: 16px 0; text-decoration: none; display: block; transition: padding-left 0.2s; }
-    .sidebar-related-item:hover { padding-left: 8px; }
-    .sidebar-related-issue { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-    .sidebar-related-title { font-size: 14px; color: var(--dark); line-height: 1.4; }
+        /* HERO IMG */
+        .article-hero { max-width:920px; margin:24px auto 0; padding:0 24px; }
+        .article-hero img { width:100%; height:auto; display:block; }
 
-    .more { padding: 80px 48px 112px; background: var(--off-white); }
-    .more-inner { max-width: 1200px; margin: 0 auto; }
-    .more-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 56px; }
-    .more-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
-    .more-card { background: var(--off-white); padding: 40px; text-decoration: none; display: block; transition: background 0.2s; }
-    .more-card:hover { background: var(--white); }
-    .more-issue { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
-    .more-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 400; line-height: 1.3; color: var(--black); margin-bottom: 16px; }
-    .more-card p { font-size: 15px; color: var(--body); line-height: 1.7; margin-bottom: 28px; }
-    .more-read { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dark); border-bottom: 1px solid var(--border); padding-bottom: 3px; display: inline-block; }
+        /* BODY */
+        .article-body { max-width:720px; margin:0 auto; padding:44px 24px 88px; }
+        .article-body p { margin-bottom:26px; font-size:18px; line-height:1.8; color:var(--body); }
+        .article-body h2 { font-size:clamp(26px, 3vw, 36px); font-weight:800; letter-spacing:-0.02em; line-height:1.15; color:var(--ink); margin:54px 0 22px; }
+        .article-body h3 { font-size:20px; font-weight:700; color:var(--ink); margin:38px 0 16px; }
+        .article-body strong { font-weight:700; color:var(--ink); }
+        .article-body a { color:var(--ink); text-decoration:underline; text-decoration-color:var(--yellow); text-underline-offset:3px; text-decoration-thickness:2px; }
+        .article-body blockquote { margin:36px 0; padding:20px 26px; border-left:3px solid var(--yellow); background:#fffbe6; font-size:21px; font-weight:600; line-height:1.4; color:var(--ink); font-style:normal; }
+        .article-body ul, .article-body ol { margin:0 0 26px 22px; }
+        .article-body li { margin-bottom:10px; }
 
-    footer { background: var(--black); padding: 48px; display: flex; justify-content: space-between; align-items: center; }
-    .footer-logo { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px; color: rgba(255,255,255,0.4); text-decoration: none; }
-    .footer-links { display: flex; gap: 32px; }
-    .footer-links a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.22); text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: rgba(255,255,255,0.6); }
-    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+        /* AUTHOR */
+        .author-box { max-width:720px; margin:0 auto; padding:40px 24px; border-top:1px solid var(--line); }
+        .author-box p { font-size:15px; color:var(--muted); line-height:1.7; }
+        .author-box a { color:var(--ink); text-decoration:underline; text-decoration-color:var(--yellow); }
 
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+        /* ARTICLE NAV */
+        .article-nav { max-width:720px; margin:0 auto; padding:0 24px 80px; display:flex; justify-content:space-between; align-items:center; }
+        .back-link { font-size:13px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:#3a3a3a; text-decoration:none; }
+        .back-link:hover { color:var(--ink); }
 
-    @media (max-width: 900px) {
-      nav { padding: 20px 24px; }
-      .article-hero { padding: 120px 24px 56px; }
-      .article-layout { grid-template-columns: 1fr; padding: 0 24px; }
-      .article-body { padding: 56px 0; border-right: none; border-bottom: 1px solid var(--border); }
-      .article-sidebar { padding: 48px 0; }
-      .more { padding: 64px 24px; }
-      .more-grid { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 24px; text-align: center; }
-    }
+        /* FOOTER */
+        .site-footer { background:#0e0e0e; color:#fff; padding:72px 48px 36px; }
+        .foot-top { display:grid; grid-template-columns:1.4fr repeat(3, 1fr) 1.2fr; gap:40px; padding-bottom:56px; border-bottom:1px solid #262626; }
+        .foot-brand img { height:22px; filter:invert(1); margin-bottom:18px; }
+        .foot-brand .fb-lab { font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.5); font-weight:600; margin-bottom:10px; }
+        .foot-brand p { font-size:14px; color:rgba(255,255,255,0.55); line-height:1.5; max-width:220px; }
+        .foot-col h4 { font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:600; margin-bottom:18px; }
+        .foot-col a { display:block; font-size:14px; color:rgba(255,255,255,0.72); text-decoration:none; margin-bottom:11px; transition:color 0.2s; }
+        .foot-col a:hover { color:#fff; }
+        .foot-contact h4 { font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:600; margin-bottom:18px; }
+        .foot-contact a.mail { font-size:14px; color:#fff; text-decoration:none; display:block; margin-bottom:10px; }
+        .foot-contact .loc { font-size:14px; color:rgba(255,255,255,0.55); margin-bottom:18px; }
+        .foot-social { display:flex; gap:14px; }
+        .foot-social a { color:rgba(255,255,255,0.6); transition:color 0.2s; }
+        .foot-social a:hover { color:#fff; }
+        .foot-bottom { display:flex; align-items:center; justify-content:space-between; padding-top:28px; flex-wrap:wrap; gap:16px; }
+        .foot-bottom .copy { font-size:12px; color:rgba(255,255,255,0.4); }
+        .foot-legal { display:flex; gap:24px; }
+        .foot-legal a { font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:rgba(255,255,255,0.4); text-decoration:none; transition:color 0.2s; }
+        .foot-legal a:hover { color:#fff; }
 
-    /* MOBILE MENU */
-    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
-    .nav-toggle span { display: block; width: 20px; height: 1.5px; background: var(--dark); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
-    @media (max-width: 900px) {
-      .nav-toggle { display: block; }
-      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); border-bottom: 1px solid var(--border); flex-direction: column; padding: 24px; gap: 20px; }
-      .nav-links.open { display: flex; }
-      .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
-      .nav-toggle.open span:nth-child(2) { opacity: 0; }
-      .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
-    }
-  
-        .article-share { max-width: 680px; margin: 24px auto 56px; padding: 0 64px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-        .article-share-label { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #999; }
-        .article-share-btn { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; border: 1px solid #e8e6e1; background: transparent; color: #888; cursor: pointer; transition: color 0.15s, border-color 0.15s; padding: 0; text-decoration: none; }
-        .article-share-btn:hover { color: #111; border-color: #111; }
-        .article-share-btn.copied { color: #27ae60; border-color: #27ae60; }
-        .article-share-feedback { font-size: 11px; color: #27ae60; opacity: 0; transition: opacity 0.15s; }
-        .article-share-feedback.visible { opacity: 1; }
-        @media (max-width: 768px) { .article-share { padding: 0 24px; } }
-
+        @media (max-width:880px) {
+            .site-nav { padding:14px 24px; }
+            .nav-mid { display:none; position:absolute; top:100%; left:0; right:0; background:#fff; border-bottom:1px solid var(--line); flex-direction:column; gap:0; padding:12px 24px 20px; }
+            .nav-mid.open { display:flex; }
+            .nav-mid a { padding:12px 0; }
+            .nav-cta { display:none; }
+            .nav-toggle { display:block; }
+            .nav-toggle.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+            .nav-toggle.open span:nth-child(2) { opacity:0; }
+            .nav-toggle.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+            .article-header { padding:120px 24px 32px; }
+            .foot-top { grid-template-columns:1fr 1fr; gap:32px; }
+            .site-footer { padding:56px 24px 32px; }
+        }
+        @media (max-width:560px) { .foot-top { grid-template-columns:1fr; } }
     </style>
 
   <!-- OG / Social sharing -->
@@ -133,30 +138,29 @@
 </head>
 <body>
 
-  <nav>
-    <a href="/" class="nav-logo"><img src="/logo.png" alt="yellow3" style="height:24px;" /></a>
-    <div class="nav-links">
-      <a href="/#about">About</a>
-      <a href="/insights/" class="active">Insights</a>
-      <a href="/advisory">Advisory</a>
-      <a href="/#contact">Contact</a>
-    </div>
-    <a href="/insights/" class="nav-back">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M5 12l7 7M5 12l7-7"/></svg>
-      All insights
-    </a>
-    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');this.closest('nav').querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
-  </nav>
+    <nav class="site-nav">
+        <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /><span class="lab">lab</span></a>
+        <div class="nav-mid" id="navMid">
+            <a href="/naffe">Work</a>
+            <a href="/research">Research</a>
+            <a href="/insights/" class="active">Thinking</a>
+            <a href="/#about">About</a>
+            <a href="/#contact">Contact</a>
+        </div>
+        <a href="/feed.xml" class="nav-cta">Subscribe <span>&#8594;</span></a>
+        <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
+    </nav>
 
-  <div class="article-hero reveal">
-    <div class="article-issue">Issue 03 - Autonomous Software</div>
-    <h1>The Rise of<br>Autonomous Software</h1>
-    <div class="article-meta">
-      <div class="article-meta-item"><span class="article-meta-label">Author</span><span class="article-meta-value">Thomas Chr. Melskens</span></div>
-      <div class="article-meta-item"><span class="article-meta-label">Published</span><span class="article-meta-value">March 2026</span></div>
-      <div class="article-meta-item"><span class="article-meta-label">Read time</span><span class="article-meta-value">7 minutes</span></div>
-      <div class="article-meta-item"><span class="article-meta-label">Topic</span><span class="article-meta-value">Autonomous Software</span></div>
-    </div>
+    <header class="article-header">
+        <div class="meta">
+            <span>Issue 03</span>
+            <span>March 2026</span>
+            <span class="tag">Autonomous Software</span>
+            <span>7 minutes</span>
+        </div>
+        <h1>The Rise of Autonomous Software</h1>
+        <p class="lede">Software has always been passive. You open it, it waits. You click, it responds. You close it, it stops. For fifty years, every piece of software ever built has shared this fundamental characteristic: it does nothing unless a human tells it to.</p>
+    </header>
 
     <div class="article-share">
         <span class="article-share-label">Share</span>
@@ -166,14 +170,9 @@
         <span class="article-share-feedback" aria-live="polite"></span>
       </div>
 
-  </div>
+    <article class="article-body">
 
-  <div class="article-layout">
-    <div class="article-body reveal">
-
-      <p>Software has always been passive. You open it, it waits. You click, it responds. You close it, it stops. For fifty years, every piece of software ever built has shared this fundamental characteristic: it does nothing unless a human tells it to.</p>
-
-      <p>That is changing. Not at the margins - at the core. The next generation of software does not wait for instructions. It holds intent, monitors conditions, and acts. The implications for how businesses are built, staffed, and competed are more significant than anything that has happened in enterprise technology since the internet.</p>
+<p>That is changing. Not at the margins - at the core. The next generation of software does not wait for instructions. It holds intent, monitors conditions, and acts. The implications for how businesses are built, staffed, and competed are more significant than anything that has happened in enterprise technology since the internet.</p>
 
       <h2>What the autonomous layer actually is</h2>
 
@@ -223,110 +222,63 @@
 
       <p>That description is the foundation of an autonomous system. And the act of writing it - precisely, completely, without ambiguity - is more valuable than any technology investment you will make this year.</p>
 
+    </article>
+
+    <div class="author-box">
+        <p><strong style="color: var(--ink);">yellow3 lab</strong> is an AI research lab in Copenhagen. We research and develop autonomous AI platforms. <a href="/">Learn more &rarr;</a></p>
     </div>
 
-    <div class="article-sidebar reveal">
-      <div class="sidebar-section">
-        <div class="sidebar-label">By the numbers</div>
-        <div class="sidebar-stat-num">3</div>
-        <div class="sidebar-stat-label">layers define autonomous software: perception, reasoning, action</div>
-      </div>
-      <div class="sidebar-section">
-        <div class="sidebar-label">Key idea</div>
-        <p>Autonomous software does not remove the need for human judgment. It removes the need for humans to initiate every step of every process - freeing judgment for decisions that genuinely require it.</p>
-      </div>
-      <div class="sidebar-section">
-        <div class="sidebar-label">The moat</div>
-        <p>The competitive advantage of autonomous software compounds over time. Two years of operational data makes the system significantly smarter than one that starts today. The window is open - but not indefinitely.</p>
-      </div>
-      <div class="sidebar-section">
-        <div class="sidebar-label">More articles</div>
-        <div class="sidebar-related">
-          <a href="/insights/autonomous-software" class="sidebar-related-item">
-            <div class="sidebar-related-issue">Issue 01</div>
-            <div class="sidebar-related-title">Your Software Should Work While You Sleep</div>
-          </a>
-          <a href="/insights/europes-ai-slumber" class="sidebar-related-item">
-            <div class="sidebar-related-issue">Issue 02</div>
-            <div class="sidebar-related-title">Europe's AI Slumber</div>
-          </a>
+    <div class="article-nav">
+        <a href="/insights/" class="back-link">&larr; All thinking</a>
+    </div>
+
+    <footer class="site-footer">
+        <div class="inner">
+            <div class="foot-top">
+                <div class="foot-brand">
+                    <img src="/logo.png" alt="yellow3" />
+                    <div class="fb-lab">Copenhagen AI Lab</div>
+                    <p>Building outcome infrastructure for the AI era.</p>
+                </div>
+                <div class="foot-col">
+                    <h4>Work</h4>
+                    <a href="/naffe">naffe.ai</a>
+                    <a href="/research/eu-ai-act">Digital Product Passports</a>
+                    <a href="/advisory">Advisory</a>
+                </div>
+                <div class="foot-col">
+                    <h4>Research</h4>
+                    <a href="/research">Research areas</a>
+                    <a href="/research/model-adoption">Model adoption</a>
+                    <a href="/research/eu-ai-act">EU AI Act</a>
+                </div>
+                <div class="foot-col">
+                    <h4>Company</h4>
+                    <a href="/#about">About</a>
+                    <a href="/insights/">Thinking</a>
+                    <a href="mailto:hello@yellow3.io">Contact</a>
+                </div>
+                <div class="foot-contact">
+                    <h4>Get in touch</h4>
+                    <a href="mailto:hello@yellow3.io" class="mail">hello@yellow3.io</a>
+                    <div class="loc">Copenhagen, Denmark</div>
+                    <div class="foot-social">
+                        <a href="https://www.linkedin.com/company/yellow3" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                        <a href="https://x.com/yellow3" target="_blank" rel="noopener" aria-label="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <span class="copy">&copy; 2026 yellow3 lab ApS. All rights reserved.</span>
+                <div class="foot-legal">
+                    <a href="/privacy">Privacy</a>
+                    <a href="/terms">Terms</a>
+                    <a href="/cookies">Cookies</a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
+    </footer>
 
-  <div class="more">
-    <div class="more-inner">
-      <div class="more-label">Continue reading</div>
-      <div class="more-grid">
-        <a href="/insights/autonomous-software" class="more-card reveal">
-          <div class="more-issue">Issue 01</div>
-          <h3>Your Software Should Work While You Sleep</h3>
-          <p>The shift from tools that assist to software that acts. What autonomous systems mean for how businesses operate.</p>
-          <span class="more-read">Read article</span>
-        </a>
-        <a href="/insights/europes-ai-slumber" class="more-card reveal">
-          <div class="more-issue">Issue 02</div>
-          <h3>Europe's AI Slumber</h3>
-          <p>Why Europe is falling behind in the AI race - and what it will take to close the gap before it becomes permanent.</p>
-          <span class="more-read">Read article</span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    <a href="/" class="footer-logo"><img src="/logo.png" alt="yellow3" style="height:24px;filter:invert(1);opacity:0.4;" /></a>
-    <div class="footer-links">
-      <a href="/#about">About</a>
-      <a href="/insights/">Insights</a>
-      <a href="/advisory">Advisory</a>
-      <a href="/#contact">Contact</a>
-    </div>
-    <span class="footer-copy">2026 yellow3 lab, Copenhagen</span>
-    <div class="footer-links">
-      <a href="/privacy">Privacy</a>
-      <a href="/terms">Terms</a>
-      <a href="/cookies">Cookies</a>
-    </div>
-  </footer>
-
-  <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 60);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08 });
-    reveals.forEach(el => observer.observe(el));
-  </script>
-  <script>
-(function(){
-  document.querySelectorAll(".article-share-btn").forEach(function(btn){
-    btn.addEventListener("click",function(e){
-      var method=btn.getAttribute("data-share-method");
-      var url=btn.getAttribute("data-share-url")||btn.href;
-      if(method==="copy"){
-        e.preventDefault();
-        var copyUrl=btn.getAttribute("data-share-url");
-        if(navigator.clipboard){
-          navigator.clipboard.writeText(copyUrl).then(function(){
-            btn.classList.add("copied");
-            var feedback=btn.parentElement.querySelector(".article-share-feedback");
-            if(feedback){feedback.textContent="Copied";feedback.classList.add("visible");}
-            setTimeout(function(){btn.classList.remove("copied");if(feedback){feedback.classList.remove("visible");}},1500);
-          }).catch(function(){});
-        }
-      }
-      if(typeof window.gtag==="function"){
-        window.gtag("event","article_share",{method:method,article_url:url});
-      }
-    });
-  });
-})();
-</script>
+    <script>(function(){document.querySelectorAll(".article-share-btn").forEach(function(btn){btn.addEventListener("click",function(e){var method=btn.getAttribute("data-share-method");var url=btn.getAttribute("data-share-url")||btn.href;if(method==="copy"){e.preventDefault();var copyUrl=btn.getAttribute("data-share-url");if(navigator.clipboard){navigator.clipboard.writeText(copyUrl).then(function(){btn.classList.add("copied");var feedback=btn.parentElement.querySelector(".article-share-feedback");if(feedback){feedback.textContent="Copied";feedback.classList.add("visible");}setTimeout(function(){btn.classList.remove("copied");if(feedback){feedback.classList.remove("visible");}},1500);}).catch(function(){});}}if(typeof window.gtag==="function"){window.gtag("event","article_share",{method:method,article_url:url});}});});})();</script>
 </body>
 </html>
