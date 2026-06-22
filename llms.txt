@@ -19,6 +19,10 @@ The best technology is the technology you forget is there. Technology promised t
 
 ## Published Research & Insights
 
+### The Abundance Problem (June 2026)
+URL: https://www.yellow3.io/insights/the-abundance-problem
+Summary: There has never been more choice in AI models, most of them open. The real risk has shifted to committing to the wrong one. What management should weigh.
+
 ### Who Holds the Off-Switch? (June 2026)
 URL: https://yellow3.io/insights/who-holds-the-off-switch
 Summary: A US government letter switched off two frontier AI models for the entire planet in one afternoon. The real question for Europe was never whether government should have a say. It is who holds the switch, and what we do when it is not us.
