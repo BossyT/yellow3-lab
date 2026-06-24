@@ -6,8 +6,17 @@
     <link>https://yellow3.io/insights/</link>
     <description>Perspectives on AI and what it makes possible. Writing from yellow3 lab on autonomous software, the future of digital products, and what European businesses need to understand about AI right now.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 22 Jun 2026 10:27:05 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 24 Jun 2026 12:43:39 GMT</lastBuildDate>
     <atom:link href="https://yellow3.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Cost of Being Right</title>
+      <link>https://www.yellow3.io/insights/the-cost-of-being-right</link>
+      <guid isPermaLink="true">https://www.yellow3.io/insights/the-cost-of-being-right</guid>
+      <pubDate>Wed, 24 Jun 2026 12:43:39 GMT</pubDate>
+      <description>An AI law firm just won its first UK trial for about £400 in fees. The deeper story is the cost of enforcing a contract in Europe, and why LegalHQ starts before the dispute.</description>
+      <media:content url="https://www.yellow3.io/insights/hero-the-cost-of-being-right.png" medium="image" />
+      <media:description>Magazine-style editorial image showing a legal desk with unpaid invoices, dispute papers, scales of justice, and a case summary showing £7,000 recovered for £400 in fees, illustrating why LegalHQ helps prevent contract disputes before they become costly.</media:description>
+    </item>
     <item>
       <title>The Abundance Problem</title>
       <link>https://www.yellow3.io/insights/the-abundance-problem</link>
