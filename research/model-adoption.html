@@ -157,6 +157,8 @@
     .trust p { font-size: 14px; color: var(--body); line-height: 1.75; margin-bottom: 18px; }
     .source-line { margin-top: 28px; padding: 16px 20px; background: var(--panel); border: 1px solid var(--line); font-size: 13px; color: var(--body); }
     .source-line a { color: var(--ink); }
+    .trust .pledge { font-size: 15px; font-weight: 700; color: var(--ink); line-height: 1.5; letter-spacing: -0.01em; border-left: 3px solid var(--yellow); padding-left: 16px; margin-bottom: 22px; }
+    .trust .method-link { display: inline-block; margin-bottom: 18px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--yellow); padding-bottom: 3px; }
     .flag-note { margin-top: 18px; font-size: 12px; color: var(--down); }
 
     /* Footer */
@@ -335,7 +337,9 @@
       <div class="trust-grid">
         <h3>Methodology &amp; sources</h3>
         <div>
+          <p class="pledge">We take positions only where the evidence supports them - and grade them in public.</p>
           <p id="methodology"></p>
+          <p><a class="method-link" href="/research/framework">How we build research - the method &#8594;</a></p>
           <div class="source-line" id="source-line"></div>
           <div class="flag-note" id="flag-note"></div>
         </div>
