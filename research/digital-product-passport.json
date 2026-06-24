@@ -9,7 +9,7 @@
   "scores": {
     "regulator_delivery": 0,
     "regulator_delivery_note": "Of everything the EU committed to deliver by now, how much landed - and on time. Computed over milestones that are due only; at launch the one item past its date (the service-provider act) slipped, so the score sits at 0.",
-    "industry_readiness": 59,
+    "industry_readiness": 61,
     "industry_confidence": "provisional"
   },
   "call_record": { "hits": 0, "misses": 0 },
@@ -31,8 +31,8 @@
   ],
   "signals": [
     { "id": "s1", "track": "B", "name": "Active DPP pilots across value chains", "value": 13, "unit": "pilots", "ceiling": 30, "weight": 1, "confidence": "provisional", "source": "CIRPASS-2", "source_url": "", "note": "13 pilots: textiles, EEE, construction, tyres.", "as_of": "2026-06-24" },
-    { "id": "s2", "track": "B", "name": "Public DPP solutions / vendors live", "value": null, "unit": "vendors", "ceiling": 50, "weight": 1, "confidence": "provisional", "source": "CIRPASS public initiatives report", "source_url": "", "note": "Signal pending - excluded from the score until sourced.", "as_of": "2026-06-24" },
-    { "id": "s3", "track": "B", "name": "GS1 Digital Link adoption proxy", "value": null, "unit": "index", "ceiling": 100, "weight": 1, "confidence": "provisional", "source": "GS1", "source_url": "", "note": "Signal pending - excluded from the score until sourced.", "as_of": "2026-06-24" },
+    { "id": "s2", "track": "B", "name": "Public DPP solutions / vendors live", "value": 15, "unit": "vendors", "ceiling": 40, "weight": 1, "confidence": "provisional", "source": "Market mapping / CIRPASS-2 Community of Practice", "source_url": "https://cirpass2.eu/", "note": "~15 established public DPP solution vendors (Circularise, Kezzler, Scantrust, Spherity, OPTEL, Protokol and peers); the CIRPASS-2 Community of Practice now lists 111 participants.", "as_of": "2026-06-24" },
+    { "id": "s3", "track": "B", "name": "GS1 Digital Link adoption proxy", "value": 88, "unit": "index", "ceiling": 100, "weight": 1, "confidence": "provisional", "source": "GS1 (Sunrise 2027)", "source_url": "https://www.gs1us.org/industries-and-insights/by-topic/sunrise-2027", "note": "GS1 Sunrise 2027 - the 2D / Digital Link migration most DPP carriers ride on - is in pilot across 48 countries representing 88% of world GDP.", "as_of": "2026-06-24" },
     { "id": "s4", "track": "B", "name": "Implementable standards (published as EN)", "value": 6, "unit": "of 8", "ceiling": 8, "weight": 1, "confidence": "provisional", "source": "CEN-CENELEC JTC 24", "source_url": "", "note": "Of the 8 JTC 24 areas, how many are stable enough to build against today.", "as_of": "2026-06-24" }
   ],
   "calls": [

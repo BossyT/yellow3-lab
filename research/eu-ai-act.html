@@ -80,6 +80,16 @@
     .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--elevation-card);padding:20px}
     .section{margin-bottom:16px}
     .lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:8px}
+    /* 30-second on-ramp */
+    .primer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0 16px}
+    .pr{background:var(--tint);border:1px solid var(--bd);border-radius:10px;padding:16px 16px 18px}
+    .pr .prn{font-size:14px;font-weight:800;color:var(--tp);margin-bottom:9px;display:flex;align-items:center;gap:8px;letter-spacing:-.01em}
+    .pr .prn::before{content:"";width:8px;height:8px;background:var(--yellow);flex:none}
+    .pr p{font-size:13px;color:var(--ts);line-height:1.55}
+    .pr p strong{color:var(--tp);font-weight:700}
+    .primer-bridge{font-size:15px;font-weight:600;color:var(--tp);line-height:1.5;letter-spacing:-.01em}
+    .primer-bridge strong{font-weight:800}
+    @media(max-width:680px){.primer-grid{grid-template-columns:1fr}}
     .changed{font-size:18px;font-weight:700;line-height:1.35;color:var(--ink);letter-spacing:-.01em}
     .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     .serifnum{font-size:38px;font-weight:800;line-height:1;letter-spacing:-.03em;color:var(--ink)}
@@ -185,6 +195,17 @@
       <p class="thesis" id="thesis"></p>
 
       <div id="err">The instrument data could not be loaded. Please try again shortly.</div>
+
+      <!-- The EU AI Act in 30 seconds -->
+      <div class="section card">
+        <div class="lbl">The EU AI Act in 30 seconds</div>
+        <div class="primer-grid">
+          <div class="pr"><div class="prn">What it is</div><p>The world's first comprehensive law for artificial intelligence. It sorts AI systems by risk - banned, high-risk, limited - and sets hard obligations for each tier.</p></div>
+          <div class="pr"><div class="prn">Why it matters</div><p>It binds anyone who builds or deploys AI touching the EU, the duties phase in on fixed dates, and fines reach 7% of global turnover. <strong>It is law, not guidance.</strong></p></div>
+          <div class="pr"><div class="prn">So what</div><p>If your organisation uses or sells AI in Europe, this is a compliance clock on the board's agenda - and the real question is whether the EU can enforce what it wrote.</p></div>
+        </div>
+        <p class="primer-bridge">This instrument tracks how far the EU has actually stood the law up - designations, deadlines, fines - versus what it announced. <strong>Updated weekly.</strong></p>
+      </div>
 
       <!-- What changed this week -->
       <div class="section card">

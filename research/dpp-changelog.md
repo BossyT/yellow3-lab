@@ -1,0 +1,6 @@
+# DPP instrument - sweep changelog
+
+Append-only. Newest at the bottom. One line per weekly sweep (see
+`research/dpp-sweep.md`). History is the credibility - never rewrite past entries.
+
+- **2026-06-24** (week_of 2026-06-22) - Edition 01 launched. Seed verified with CIRPASS-2 input: m4 service-provider act slipped; m2 split into m2a (6/8 EN published) and m2b (0/8 OJ-harmonised); m1 registry at risk. Track B signals s2 (vendors) and s3 (GS1 Digital Link / Sunrise 2027) sourced and added. Score_A 0, Score_B 61, record 0-0.
