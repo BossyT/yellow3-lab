@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3JXMM2VG5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-K3JXMM2VG5');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Product Passport (DPP) - yellow3 Research</title>
+  <meta name="description" content="Is the EU Digital Product Passport becoming real on schedule - on the regulator's side, and on industry's side? A live yellow3 research instrument tracking DPP delivery against the deadlines the regulation set, with calls graded in public." />
+  <link rel="canonical" href="https://yellow3.io/research/digital-product-passport" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --paper:#ffffff; --ink:#0e0e0e; --body:#4b4b4b; --muted:#8a8a8a; --mid:#8a8a8a; --line:#e7e6e2; --yellow:#ffe000; --panel:#f7f6f3;
+      --green:#2E9D78; --amber:#D89A16; --red:#b3402e; --live:#2E9D78;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', system-ui, sans-serif; font-weight: 400; line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+    img { display:block; max-width:100%; }
+    a { color: inherit; }
+
+    /* NAV */
+    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+    .brand { display: flex; align-items: baseline; gap: 7px; text-decoration: none; }
+    .brand img { height: 21px; align-self: center; }
+    .nav-mid { display: flex; gap: 32px; }
+    .nav-mid a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #3a3a3a; text-decoration: none; font-weight: 500; padding-bottom: 3px; transition: color 0.2s; }
+    .nav-mid a:hover { color: var(--ink); }
+    .nav-mid a.active { border-bottom: 2px solid var(--ink); color: var(--ink); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: #fff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 20px; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: #000; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
+
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 48px; }
+
+    /* HEADER */
+    .inst-head { padding: 150px 0 48px; border-bottom: 1px solid var(--line); }
+    .breadcrumb { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 26px; }
+    .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--ink); }
+    .inst-status { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-bottom: 26px; }
+    .badge-live { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--live); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-weight: 600; }
+    .badge-live .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 0 rgba(46,157,120,0.5); animation: pulse 2.4s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(46,157,120,0.45); } 70% { box-shadow: 0 0 0 7px rgba(46,157,120,0); } 100% { box-shadow: 0 0 0 0 rgba(46,157,120,0); } }
+    .refresh { font-size: 12px; color: var(--mid); }
+    .inst-head h1 { font-size: clamp(38px, 5.4vw, 66px); font-weight: 800; line-height: 1.03; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 20px; }
+    .inst-thesis { font-size: 18px; color: var(--body); max-width: 640px; border-left: 3px solid var(--yellow); padding-left: 24px; }
+
+    /* SCOREBOARD */
+    .board { padding: 44px 0; border-bottom: 1px solid var(--line); }
+    .board-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .sc { background: var(--paper); padding: 30px 32px; }
+    .sc .sk { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+    .sc .sv { font-size: 56px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--ink); }
+    .sc .sv .u { font-size: 22px; font-weight: 700; color: var(--muted); }
+    .sc .sd { font-size: 13px; color: var(--mid); margin-top: 10px; line-height: 1.45; }
+    .prov { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); border: 1px solid rgba(216,154,22,0.4); border-radius: 999px; padding: 2px 8px; font-weight: 700; }
+    .sc.record .sv { color: var(--ink); }
+
+    /* THIS WEEK */
+    .payoff { padding: 48px 0; border-bottom: 1px solid var(--line); background: var(--panel); }
+    .payoff .label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 16px; }
+    .payoff h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 800; line-height: 1.18; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 18px; max-width: 880px; }
+    .payoff p { font-size: 16px; color: var(--body); line-height: 1.7; max-width: 760px; }
+
+    /* SECTIONS */
+    .section { padding: 64px 0; border-bottom: 1px solid var(--line); }
+    .section-label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 8px; position: relative; }
+    .section-h { font-size: clamp(22px, 2.6vw, 30px); font-weight: 800; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 6px; }
+    .section-note { font-size: 14px; color: var(--mid); line-height: 1.55; margin-bottom: 32px; max-width: 700px; }
+
+    /* MILESTONES */
+    .mgroup-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 30px 0 6px; }
+    .ms { display: grid; grid-template-columns: 120px 1fr auto; gap: 24px; align-items: start; padding: 22px 0; border-top: 1px solid var(--line); }
+    .ms:last-child { border-bottom: 1px solid var(--line); }
+    .ms .when { font-size: 13px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
+    .ms .when .reg { display: block; font-size: 11px; font-weight: 500; color: var(--muted); margin-top: 4px; letter-spacing: 0.02em; }
+    .ms .lbl { font-size: 17px; font-weight: 700; color: var(--ink); line-height: 1.25; letter-spacing: -0.01em; }
+    .ms .note { font-size: 13px; color: var(--mid); line-height: 1.5; margin-top: 7px; max-width: 560px; }
+    .ms .note a { color: var(--ink); border-bottom: 1px solid var(--line); text-decoration: none; }
+    .ms .right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+    .chip { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700; padding: 5px 12px; border-radius: 999px; white-space: nowrap; }
+    .chip .d { width: 7px; height: 7px; border-radius: 50%; }
+    .chip.green { color: var(--green); background: rgba(46,157,120,0.1); } .chip.green .d { background: var(--green); }
+    .chip.amber { color: #9a6b0c; background: rgba(216,154,22,0.14); } .chip.amber .d { background: var(--amber); }
+    .chip.red { color: var(--red); background: rgba(179,64,46,0.1); } .chip.red .d { background: var(--red); }
+    .chip.neutral { color: var(--muted); background: var(--panel); border: 1px solid var(--line); } .chip.neutral .d { background: var(--muted); }
+    .count { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); }
+    .count .cm { font-size: 14px; color: var(--muted); font-weight: 700; }
+
+    /* SIGNALS */
+    .sig { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; padding: 18px 0; border-top: 1px solid var(--line); }
+    .sig:last-child { border-bottom: 1px solid var(--line); }
+    .sig .sn { font-size: 16px; font-weight: 700; color: var(--ink); }
+    .sig .ss { font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .sig .sval { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); text-align: right; white-space: nowrap; }
+    .sig .sval .su { font-size: 13px; color: var(--muted); font-weight: 600; }
+    .sig.pending .sval { color: var(--muted); }
+
+    /* CALLS */
+    .call { padding: 22px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 150px; gap: 24px; align-items: start; }
+    .call:last-child { border-bottom: 1px solid var(--line); }
+    .call .cstate { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+    .call .cstmt { font-size: 17px; font-weight: 600; color: var(--ink); line-height: 1.4; }
+    .call .cmeta { font-size: 12px; color: var(--mid); margin-top: 8px; }
+    .call .cnote { font-size: 13px; color: var(--body); margin-top: 8px; font-style: italic; }
+    .verdict { font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border-radius: 6px; }
+    .verdict.hit { color: var(--green); background: rgba(46,157,120,0.12); }
+    .verdict.miss { color: var(--red); background: rgba(179,64,46,0.1); }
+    .calls-sub { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 34px 0 4px; }
+
+    /* TRUST */
+    .trust { padding: 56px 0 80px; }
+    .trust-grid { display: grid; grid-template-columns: 170px 1fr; gap: 40px; align-items: start; }
+    .trust h3 { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+    .trust p { font-size: 14px; color: var(--body); line-height: 1.75; margin-bottom: 18px; }
+    .trust .method-link { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--yellow); padding-bottom: 3px; }
+    .source-line { margin-top: 24px; padding: 16px 20px; background: var(--panel); border: 1px solid var(--line); font-size: 13px; color: var(--body); }
+    .source-line a { color: var(--ink); }
+    #err { display:none; padding: 60px 0; color: var(--red); font-size: 15px; }
+
+    /* FOOTER */
+    .inner { max-width: 1240px; margin: 0 auto; }
+    .site-footer { background: #0e0e0e; color: #fff; padding: 72px 48px 36px; }
+    .foot-top { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr) 1.2fr; gap: 40px; padding-bottom: 56px; border-bottom: 1px solid #262626; }
+    .foot-brand img { height: 22px; filter: invert(1); margin-bottom: 18px; }
+    .foot-brand .fb-lab { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); font-weight: 600; margin-bottom: 10px; }
+    .foot-brand p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.5; max-width: 220px; }
+    .foot-col h4 { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 18px; }
+    .foot-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.72); text-decoration: none; margin-bottom: 11px; transition: color 0.2s; }
+    .foot-col a:hover { color: #fff; }
+    .foot-contact h4 { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 18px; }
+    .foot-contact a.mail { font-size: 14px; color: #fff; text-decoration: none; display: block; margin-bottom: 10px; }
+    .foot-contact .loc { font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 18px; }
+    .foot-social { display: flex; gap: 14px; }
+    .foot-social a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .foot-social a:hover { color: #fff; }
+    .foot-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; flex-wrap: wrap; gap: 16px; }
+    .foot-bottom .copy { font-size: 12px; color: rgba(255,255,255,0.4); }
+    .foot-legal { display: flex; gap: 24px; }
+    .foot-legal a { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+    .foot-legal a:hover { color: #fff; }
+
+    @media (max-width: 880px) {
+      .site-nav { padding: 14px 24px; }
+      .nav-mid { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--line); flex-direction: column; gap: 0; padding: 12px 24px 20px; }
+      .nav-mid.open { display: flex; }
+      .nav-mid a { padding: 12px 0; }
+      .nav-cta { display: none; }
+      .nav-toggle { display: block; }
+      .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+      .nav-toggle.open span:nth-child(2) { opacity: 0; }
+      .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+      .wrap { padding: 0 24px; }
+      .inst-head { padding-top: 120px; }
+      .board-grid { grid-template-columns: 1fr; }
+      .ms { grid-template-columns: 1fr; gap: 10px; }
+      .ms .right { align-items: flex-start; }
+      .call { grid-template-columns: 1fr; }
+      .call .cstate { align-items: flex-start; }
+      .trust-grid { grid-template-columns: 1fr; gap: 16px; }
+      .foot-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .site-footer { padding: 56px 24px 32px; }
+    }
+    @media (max-width: 560px) { .foot-top { grid-template-columns: 1fr; } }
+  </style>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="yellow3 lab" />
+  <meta property="og:title" content="Digital Product Passport (DPP) - yellow3 Research" />
+  <meta property="og:description" content="Is the EU Digital Product Passport becoming real on schedule? A live instrument tracking DPP delivery against the deadlines the regulation set, calls graded in public." />
+  <meta property="og:url" content="https://yellow3.io/research/digital-product-passport" />
+  <meta property="og:image" content="https://yellow3.io/og/og-digital-product-passport-v2.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:image" content="https://yellow3.io/og/og-digital-product-passport-v2.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yellow3.io/" },
+      { "@type": "ListItem", "position": 2, "name": "Research", "item": "https://yellow3.io/research" },
+      { "@type": "ListItem", "position": 3, "name": "Digital Product Passport", "item": "https://yellow3.io/research/digital-product-passport" }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
+    <div class="nav-mid" id="navMid">
+      <a href="/naffe">Work</a>
+      <a href="/research" class="active">Research</a>
+      <a href="/insights/">Thinking</a>
+      <a href="/advisory">Advisory</a>
+      <a href="/about">About</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <a href="/advisory" class="nav-cta">Work with us <span>&#8594;</span></a>
+    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="inst-head">
+    <div class="wrap">
+      <div class="breadcrumb"><a href="/research">Research</a> &nbsp;/&nbsp; <span id="bc">Digital Product Passport</span></div>
+      <div class="inst-status">
+        <span class="badge-live"><span class="dot"></span> <span id="badge-text">Live - Edition 01</span></span>
+        <span class="refresh" id="refresh">Loading…</span>
+      </div>
+      <h1 id="title">Digital Product Passport (DPP)</h1>
+      <p class="inst-thesis" id="thesis"></p>
+    </div>
+  </header>
+
+  <!-- SCOREBOARD -->
+  <div class="board">
+    <div class="wrap">
+      <div class="board-grid">
+        <div class="sc">
+          <div class="sk">Regulator delivery</div>
+          <div class="sv" id="score-a">–</div>
+          <div class="sd" id="score-a-note"></div>
+        </div>
+        <div class="sc">
+          <div class="sk">Industry readiness <span class="prov" id="score-b-prov">Provisional</span></div>
+          <div class="sv" id="score-b">–</div>
+          <div class="sd">A provisional proxy until the proprietary onboarding signal replaces the basket.</div>
+        </div>
+        <div class="sc record">
+          <div class="sk">Calls graded</div>
+          <div class="sv" id="call-record">0&ndash;0</div>
+          <div class="sd">Falsifiable, dated, graded HIT or MISS in public.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="err" class="wrap">The instrument data could not be loaded. Please try again shortly.</div>
+
+  <!-- THIS WEEK -->
+  <div class="payoff">
+    <div class="wrap">
+      <div class="label">What changed this week</div>
+      <h2 id="tw-headline"></h2>
+      <p id="tw-body"></p>
+    </div>
+  </div>
+
+  <!-- TRACK A -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-label">Track A</div>
+      <div class="section-h">Regulator delivery</div>
+      <div class="section-note">Is the EU shipping the DPP system it promised, on the dates it promised? Scored over milestones that are due only - a track record, not a forecast.</div>
+      <div id="ms-clock"></div>
+      <div class="mgroup-label" id="horizon-label" style="display:none">On the horizon</div>
+      <div id="ms-horizon"></div>
+    </div>
+  </section>
+
+  <!-- TRACK B -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-label">Track B</div>
+      <div class="section-h">Industry readiness <span class="prov">Provisional</span></div>
+      <div class="section-note">A proxy basket of public signals, every figure provisional until proprietary onboarding data replaces it. Do not read it with the same confidence as Track A.</div>
+      <div id="signals"></div>
+    </div>
+  </section>
+
+  <!-- CALLS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-label">Calls</div>
+      <div class="section-h">On the record, graded in public</div>
+      <div class="section-note">Each call is a falsifiable statement with a resolution date. After the date it keeps a permanent HIT or MISS on the page.</div>
+      <div class="calls-sub">Open calls</div>
+      <div id="calls-open"></div>
+      <div class="calls-sub" id="graded-sub" style="display:none">Graded calls</div>
+      <div id="calls-graded"></div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="trust">
+    <div class="wrap">
+      <div class="trust-grid">
+        <h3>Method &amp; sources</h3>
+        <div>
+          <p id="methodology"></p>
+          <p><a class="method-link" href="/research/framework">How we build research - the method &#8594;</a></p>
+          <div class="source-line" id="source-line"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="inner">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <img src="/logo.png" alt="yellow3" />
+          <div class="fb-lab">Copenhagen AI Lab</div>
+          <p>Building outcome infrastructure for the AI era.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Work</h4>
+          <a href="/naffe">naffe.ai</a>
+          <a href="/research/digital-product-passport">Digital Product Passports</a>
+          <a href="/advisory">Advisory</a>
+        </div>
+        <div class="foot-col">
+          <h4>Research</h4>
+          <a href="/research">Research areas</a>
+          <a href="/research/framework">The method</a>
+          <a href="/research/model-adoption">Model adoption</a>
+        </div>
+        <div class="foot-col">
+          <h4>Company</h4>
+          <a href="/about">About</a>
+          <a href="/insights/">Thinking</a>
+          <a href="/advisory">Contact</a>
+        </div>
+        <div class="foot-contact">
+          <h4>Get in touch</h4>
+          <a href="#" onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;;return false;" class="mail">Email us</a>
+          <div class="loc">Copenhagen, Denmark</div>
+          <div class="foot-social">
+            <a href="https://www.linkedin.com/company/yellow3" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="https://x.com/yellow3" target="_blank" rel="noopener" aria-label="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span class="copy">&copy; 2026 yellow3 lab ApS. All rights reserved.</span>
+        <div class="foot-legal">
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <a href="/cookies">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    var CHIP = {
+      delivered_on_time: ['green','On time'], delivered_late: ['amber','Delivered late'],
+      slipped: ['amber','Slipped'], missed: ['red','Missed'],
+      in_progress: ['amber','In progress'], upcoming: ['neutral','Upcoming']
+    };
+    var LEAN = { on_track: ['green','On track'], at_risk: ['amber','At risk'], will_miss: ['red','Will miss'] };
+    function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+    function chip(status){ var c = CHIP[status] || ['neutral', status]; return '<span class="chip '+c[0]+'"><span class="d"></span>'+esc(c[1])+'</span>'; }
+
+    function milestoneHTML(m){
+      var right;
+      if (m.count != null && m.count_max){
+        right = '<span class="count">'+m.count+'<span class="cm">/'+m.count_max+'</span></span>' + chip(m.status);
+      } else {
+        right = chip(m.status);
+      }
+      var note = m.note ? '<div class="note">'+esc(m.note)+(m.evidence_url ? ' <a href="'+esc(m.evidence_url)+'" target="_blank" rel="noopener">evidence &#8599;</a>' : '')+'</div>' : '';
+      return '<div class="ms">'+
+        '<div class="when">'+esc(m.target_label||m.target_date)+'<span class="reg">'+esc(m.regulation_ref||'')+'</span></div>'+
+        '<div><div class="lbl">'+esc(m.label)+'</div>'+note+'</div>'+
+        '<div class="right">'+right+'</div></div>';
+    }
+
+    function render(d){
+      document.getElementById('title').textContent = d.name || 'Digital Product Passport (DPP)';
+      document.getElementById('bc').textContent = 'Digital Product Passport';
+      document.getElementById('thesis').textContent = d.thesis;
+      var weekTxt = '';
+      try { weekTxt = new Date(d.week_of+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}); } catch(e){ weekTxt = d.week_of; }
+      document.getElementById('refresh').textContent = 'Week of ' + weekTxt + ' · updated weekly';
+      document.getElementById('badge-text').textContent = 'Live - Edition ' + ('0'+(d.edition||1)).slice(-2);
+
+      // scores
+      document.getElementById('score-a').innerHTML = d.scores.regulator_delivery + '<span class="u">/100</span>';
+      document.getElementById('score-a-note').textContent = d.scores.regulator_delivery_note || '';
+      document.getElementById('score-b').innerHTML = d.scores.industry_readiness + '<span class="u">/100</span>';
+      if (d.scores.industry_confidence !== 'provisional'){ document.getElementById('score-b-prov').style.display = 'none'; }
+      var cr = d.call_record || {hits:0,misses:0};
+      document.getElementById('call-record').innerHTML = cr.hits + '&ndash;' + cr.misses;
+
+      // this week
+      document.getElementById('tw-headline').textContent = d.this_week_read.headline;
+      document.getElementById('tw-body').textContent = d.this_week_read.body;
+
+      // milestones - split: target year <= 2026 (on the clock) vs >= 2027 (horizon)
+      var clock = [], horizon = [];
+      (d.milestones||[]).forEach(function(m){
+        var yr = parseInt((m.target_date||'2999').slice(0,4), 10);
+        (yr <= 2026 ? clock : horizon).push(m);
+      });
+      var byDate = function(a,b){ return (a.target_date||'').localeCompare(b.target_date||''); };
+      clock.sort(byDate); horizon.sort(byDate);
+      document.getElementById('ms-clock').innerHTML = clock.map(milestoneHTML).join('');
+      if (horizon.length){
+        document.getElementById('horizon-label').style.display = 'block';
+        document.getElementById('ms-horizon').innerHTML = horizon.map(milestoneHTML).join('');
+      }
+
+      // signals
+      document.getElementById('signals').innerHTML = (d.signals||[]).map(function(s){
+        var pending = (s.value == null);
+        var val = pending ? '&mdash;' : (s.value + ' <span class="su">' + esc(s.unit||'') + '</span>');
+        return '<div class="sig'+(pending?' pending':'')+'">'+
+          '<div><div class="sn">'+esc(s.name)+'</div><div class="ss">'+esc(s.source||'')+(s.note?' · '+esc(s.note):'')+'</div></div>'+
+          '<div class="sval">'+val+'</div></div>';
+      }).join('');
+
+      // calls
+      var calls = (d.calls||[]).slice();
+      var open = calls.filter(function(c){ return !c.resolved; }).sort(function(a,b){ return (a.resolution_date||'').localeCompare(b.resolution_date||''); });
+      var graded = calls.filter(function(c){ return c.resolved; }).sort(function(a,b){ return (b.resolution_date||'').localeCompare(a.resolution_date||''); });
+      function resTxt(c){ try { return new Date(c.resolution_date+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}); } catch(e){ return c.resolution_date; } }
+      document.getElementById('calls-open').innerHTML = open.map(function(c){
+        var l = LEAN[c.lean] || ['neutral', c.lean];
+        return '<div class="call"><div><div class="cstmt">'+esc(c.statement)+'</div><div class="cmeta">Resolves '+resTxt(c)+'</div></div>'+
+          '<div class="cstate">'+chip(c.lean)+'</div></div>';
+      }).join('');
+      if (graded.length){
+        document.getElementById('graded-sub').style.display = 'block';
+        document.getElementById('calls-graded').innerHTML = graded.map(function(c){
+          var v = (c.outcome==='hit') ? '<span class="verdict hit">HIT</span>' : '<span class="verdict miss">MISS</span>';
+          return '<div class="call"><div><div class="cstmt">'+esc(c.statement)+'</div>'+
+            (c.grading_note?'<div class="cnote">'+esc(c.grading_note)+'</div>':'')+
+            '<div class="cmeta">Resolved '+resTxt(c)+'</div></div><div class="cstate">'+v+'</div></div>';
+        }).join('');
+      }
+
+      // method + source
+      document.getElementById('methodology').textContent = d.methodology || '';
+      if (d.source){
+        document.getElementById('source-line').innerHTML = esc(d.source.line) + (d.source.url ? ' &nbsp;<a href="'+esc(d.source.url)+'" target="_blank" rel="noopener">View regulation</a>' : '');
+      }
+    }
+
+    fetch('digital-product-passport.json', { cache: 'no-store' })
+      .then(function(r){ if(!r.ok) throw new Error('http'); return r.json(); })
+      .then(render)
+      .catch(function(){ document.getElementById('err').style.display = 'block'; });
+  </script>
+</body>
+</html>

@@ -8,6 +8,14 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-K3JXMM2VG5');
+    fetch('/research/digital-product-passport.json', { cache: 'no-store' })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        if (!d) return;
+        if (d.this_week_read && d.this_week_read.headline) document.getElementById('dpp-read').textContent = d.this_week_read.headline;
+        if (d.edition) document.getElementById('dpp-edno').textContent = 'Edition ' + ('0'+d.edition).slice(-2);
+      })
+      .catch(function(){ document.getElementById('dpp-read').textContent = 'Is the EU DPP becoming real on schedule - updated weekly.'; });
   </script>
 
   <meta charset="UTF-8" />
@@ -200,16 +208,20 @@
           </div>
         </a>
 
-        <!-- COMING: Passport readiness -->
-        <div class="inst coming-card">
+        <!-- LIVE: Digital Product Passport -->
+        <a class="inst" href="/research/digital-product-passport">
           <div class="inst-top">
-            <span class="st coming">Coming</span>
-            <span class="phase2">In build</span>
+            <span class="st live"><span class="dot"></span> Live</span>
+            <span class="edno" id="dpp-edno">Edition 01</span>
           </div>
-          <h3>Passport readiness</h3>
-          <p class="thesis">How prepared industry actually is for the Digital Product Passport, measured against the regulation's advancing deadlines.</p>
-          <div class="coming-note">In build. Slots into the same instrument skeleton as Model adoption.</div>
-        </div>
+          <h3>Digital Product Passport</h3>
+          <p class="thesis">Is the EU Digital Product Passport becoming real on schedule - on the regulator's side, and on industry's side?</p>
+          <div class="read-block">
+            <div class="read-k">This week's read</div>
+            <div class="read-v" id="dpp-read">Loading this week's read…</div>
+            <span class="open-link">Open instrument</span>
+          </div>
+        </a>
 
       </div>
     </div>
@@ -226,7 +238,7 @@
         <div class="foot-col">
           <h4>Work</h4>
           <a href="/naffe">naffe.ai</a>
-          <a href="/research/eu-ai-act">Digital Product Passports</a>
+          <a href="/research/digital-product-passport">Digital Product Passports</a>
           <a href="/advisory">Advisory</a>
         </div>
         <div class="foot-col">
