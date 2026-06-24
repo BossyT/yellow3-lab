@@ -82,6 +82,7 @@
     .board h2 { font-size: clamp(30px, 4vw, 48px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 24px; }
     .board p.lead { font-size: 18px; color: rgba(255,255,255,0.7); line-height: 1.55; max-width: 440px; margin-bottom: 16px; }
     .board p.note { font-size: 14px; color: rgba(255,255,255,0.45); }
+    .bp-img { width: 100%; height: auto; display: block; border-radius: 8px; box-shadow: 0 24px 60px rgba(0,0,0,0.45); }
     /* the mock document */
     .bp-card { background: #fff; color: var(--ink); border-radius: 6px; padding: 34px 34px 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
     .bp-top { display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; margin-bottom: 22px; border-bottom: 1px solid var(--line); }
@@ -308,38 +309,7 @@
         <p class="lead">The Board Page distils the entire report into a single briefing - situation, stakes, risk, opportunity, and the recommended move.</p>
         <p class="note">A board member should be able to read it in under three minutes. Example below.</p>
       </div>
-      <div class="bp-card reveal">
-        <div class="bp-top">
-          <span class="bt">Board Page</span>
-          <span class="be">Illustrative example</span>
-        </div>
-        <div class="bp-row">
-          <div class="k">Situation</div>
-          <div class="v">The Digital Product Passport moves from policy to obligation across the first product categories, with phased deadlines now fixed in law.</div>
-        </div>
-        <div class="bp-row">
-          <div class="k">Why it matters</div>
-          <div class="v">Compliance is no longer distant or optional, and the product-data layer it requires takes 12-18 months to build properly.</div>
-        </div>
-        <div class="bp-levels">
-          <div>
-            <div class="k" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a8a8a;font-weight:700;margin-bottom:8px;">Risk level</div>
-            <span class="bp-pill pill-high"><span class="dot"></span> High</span>
-          </div>
-          <div>
-            <div class="k" style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a8a8a;font-weight:700;margin-bottom:8px;">Opportunity level</div>
-            <span class="bp-pill pill-opp"><span class="dot"></span> High</span>
-          </div>
-        </div>
-        <div class="bp-row">
-          <div class="k">Recommended action</div>
-          <div class="v">Stand up the product-data foundation now and treat the passport as infrastructure, not a compliance checkbox.</div>
-        </div>
-        <div class="bp-foot">
-          <span class="rd">Review: <strong>Q4 2026</strong></span>
-          <span class="read">&#8226; under 3 min read</span>
-        </div>
-      </div>
+      <img src="/img/board-page-example.jpg" alt="Example yellow3 Board Page - the Digital Product Passport moving from policy to obligation; risk high, opportunity high, recommended action, review Q4 2026." class="bp-img reveal" />
     </div>
   </section>
 
