@@ -19,6 +19,10 @@ The best technology is the technology you forget is there. Technology promised t
 
 ## Published Research & Insights
 
+### The Cost of Being Right (June 2026)
+URL: https://www.yellow3.io/insights/the-cost-of-being-right
+Summary: An AI law firm just won its first UK trial for about £400 in fees. The deeper story is the cost of enforcing a contract in Europe, and why LegalHQ starts before the dispute.
+
 ### The Abundance Problem (June 2026)
 URL: https://www.yellow3.io/insights/the-abundance-problem
 Summary: There has never been more choice in AI models, most of them open. The real risk has shifted to committing to the wrong one. What management should weigh.
