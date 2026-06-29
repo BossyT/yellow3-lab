@@ -78,10 +78,6 @@
     .prompt-item:last-child { border-bottom: 1px solid var(--line); margin-bottom: 32px; }
     .prompt-item p { margin-bottom: 0; font-size: 17px; color: var(--ink); font-weight: 500; }
 
-    /* VIDEO */
-    .article-video { margin: 44px 0; }
-    .article-video video { width: 100%; border: 1px solid var(--line); display:block; }
-
     /* CTA */
     .article-cta { display: inline-flex; align-items: center; gap: 10px; padding: 16px 30px; background: var(--yellow); color: var(--ink); border: 1px solid var(--yellow); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; margin-top: 16px; }
     .article-cta:hover { background: #ffd400; }
@@ -310,12 +306,6 @@
 
       <p>If you can describe the outcome, naffe.ai can start building the software around it.</p>
 
-      <div class="article-video">
-        <video id="naffe-video" autoplay loop muted playsinline>
-          <source src="/naffe-build-simulation.mp4" type="video/mp4">
-        </video>
-      </div>
-
       <a href="https://naffe.ai" class="article-cta" target="_blank" rel="noopener">Explore naffe.ai <span>&#8594;</span></a>
 
     </div>
@@ -412,33 +402,5 @@
     }, { threshold: 0.15 });
     reveals.forEach(el => observer.observe(el));
   </script>
-  <script>
-    // Naffe video tracking - fire each event at most once per pageview
-    (function() {
-      var v = document.getElementById('naffe-video');
-      if (!v) return;
-      var startedFired = false;
-      var completedFired = false;
-      function fire(name) {
-        if (typeof window.gtag !== 'function') return;
-        window.gtag('event', name, {
-          video_title: 'naffe_build_simulation',
-          video_url: v.currentSrc || '/naffe-build-simulation.mp4',
-          page_location: 'naffe'
-        });
-      }
-      v.addEventListener('play', function() {
-        if (startedFired) return;
-        startedFired = true;
-        fire('video_start');
-      });
-      v.addEventListener('ended', function() {
-        if (completedFired) return;
-        completedFired = true;
-        fire('video_complete');
-      });
-    })();
-  </script>
-
 </body>
 </html>
