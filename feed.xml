@@ -6,8 +6,17 @@
     <link>https://yellow3.io/insights/</link>
     <description>Perspectives on AI and what it makes possible. Writing from yellow3 lab on autonomous software, the future of digital products, and what European businesses need to understand about AI right now.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 24 Jun 2026 12:43:39 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 07 Jul 2026 08:28:05 GMT</lastBuildDate>
     <atom:link href="https://yellow3.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Owl Behind the Wall</title>
+      <link>https://www.yellow3.io/insights/the-owl-behind-the-wall</link>
+      <guid isPermaLink="true">https://www.yellow3.io/insights/the-owl-behind-the-wall</guid>
+      <pubDate>Tue, 07 Jul 2026 08:28:05 GMT</pubDate>
+      <description>Meituan trained a 1.6 trillion parameter model entirely on Chinese chips while the West locked down its own frontier models. LongCat-2.0 is the strongest evidence yet that export controls are answering the wrong question.</description>
+      <media:content url="https://www.yellow3.io/insights/hero-the-owl-behind-the-wall.png" medium="image" />
+      <media:description>A towering owl dominates the frame, staring directly at the viewer with an unblinking, confrontational gaze. Its amber eyes are alive with dense reflections of glowing server racks, streaming data, charts, and digital telemetry, suggesting an intelligence processing information at an unimaginable scale. Cold red light carves across one half of its face while the other disappears into deep shadow, revealing every feather in razor-sharp detail. Behind the owl, a massive concrete wall has cracked open, releasing a brilliant burst of light that hints at something vast emerging from behind it. Dust and debris hang motionless in the air, reinforcing the sense of a decisive moment. The composition feels like the cover of a major international news magazine, iconic, cinematic, and impossible to ignore.</media:description>
+    </item>
     <item>
       <title>The Cost of Being Right</title>
       <link>https://www.yellow3.io/insights/the-cost-of-being-right</link>
