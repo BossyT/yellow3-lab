@@ -19,6 +19,10 @@ The best technology is the technology you forget is there. Technology promised t
 
 ## Published Research & Insights
 
+### The Owl Behind the Wall (July 2026)
+URL: https://www.yellow3.io/insights/the-owl-behind-the-wall
+Summary: Meituan trained a 1.6 trillion parameter model entirely on Chinese chips while the West locked down its own frontier models. LongCat-2.0 is the strongest evidence yet that export controls are answering the wrong question.
+
 ### The Cost of Being Right (June 2026)
 URL: https://www.yellow3.io/insights/the-cost-of-being-right
 Summary: An AI law firm just won its first UK trial for about £400 in fees. The deeper story is the cost of enforcing a contract in Europe, and why LegalHQ starts before the dispute.
