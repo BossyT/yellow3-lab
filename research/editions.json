@@ -95,6 +95,23 @@
         "grade": null,
         "grade_note": null
       }
+    },
+    {
+      "number": 6,
+      "date": "2026-07-08",
+      "status": "draft",
+      "byline": "Thomas Chr. Melskens",
+      "title": "Draft - to be finalised",
+      "dek": "",
+      "body": [
+        "Draft edition generated from this week's data. Replace with the finalised read before it goes out."
+      ],
+      "call": {
+        "this_week": "",
+        "resolves_on": "",
+        "grade": null,
+        "grade_note": null
+      }
     }
   ]
 }
