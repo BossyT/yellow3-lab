@@ -23,6 +23,7 @@ import os
 import sys
 import json
 import glob
+import time
 import argparse
 import datetime as dt
 import urllib.request
@@ -62,8 +63,28 @@ def fetch_dataset():
         DATASET_URL,
         headers={"Authorization": "Bearer " + key, "Accept": "application/json"},
     )
-    with urllib.request.urlopen(req, timeout=60) as r:
-        payload = json.load(r)
+    attempts = 3
+    payload = None
+    for attempt in range(1, attempts + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                payload = json.load(r)
+            break
+        except urllib.error.HTTPError as e:
+            # 429/5xx are transient; anything else (e.g. 401 auth) will not self-heal.
+            if e.code not in (429, 500, 502, 503, 504) or attempt == attempts:
+                sys.exit(f"OpenRouter request failed: HTTP {e.code} {e.reason}")
+            wait = 5 * attempt
+            print(f"OpenRouter HTTP {e.code}; retrying in {wait}s "
+                  f"({attempt}/{attempts - 1})...", file=sys.stderr)
+            time.sleep(wait)
+        except (urllib.error.URLError, TimeoutError, ConnectionError) as e:
+            if attempt == attempts:
+                sys.exit(f"OpenRouter request failed after {attempts} attempts: {e}")
+            wait = 5 * attempt
+            print(f"OpenRouter fetch error ({e}); retrying in {wait}s "
+                  f"({attempt}/{attempts - 1})...", file=sys.stderr)
+            time.sleep(wait)
     rows = payload.get("data", payload if isinstance(payload, list) else [])
     if not rows:
         sys.exit("OpenRouter returned no rows.")
