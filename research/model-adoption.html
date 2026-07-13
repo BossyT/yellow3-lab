@@ -309,19 +309,6 @@
     </div>
   </header>
 
-  <!-- ===== 30-SECOND ON-RAMP ===== -->
-  <section class="primer">
-    <div class="wrap">
-      <div class="primer-eyebrow">Model adoption in 30 seconds</div>
-      <div class="primer-grid">
-        <div class="pr"><div class="prn">What it is</div><p>A live read on where AI demand actually flows - by where the model was built (Asia, the US, Europe) - measured in real routed usage, not announcements or benchmarks.</p></div>
-        <div class="pr"><div class="prn">Why it matters</div><p>It is the clearest public signal of who is winning the AI race, and exactly how far behind Europe sits. <strong>The lead moves week to week</strong>, and most leaders are reading last year's map.</p></div>
-        <div class="pr"><div class="prn">So what</div><p>If you are deciding what to build on, who to depend on, or how exposed you are to one region's models, this is the map - not the press release.</p></div>
-      </div>
-      <p class="primer-bridge">This instrument tracks regional share of routed AI traffic and grades its own weekly call in public. <strong>Updated weekly.</strong></p>
-    </div>
-  </section>
-
   <!-- ===== WHAT CHANGED THIS WEEK ===== -->
   <div class="payoff">
     <div class="wrap">
@@ -331,26 +318,6 @@
   </div>
 
   <div id="err" class="wrap">The instrument data could not be loaded. Please try again shortly.</div>
-
-  <!-- ===== YELLOW3 ON THE RECORD ===== -->
-  <section class="section" id="sec-record">
-    <div class="wrap">
-      <div class="section-label">yellow3 on the record</div>
-      <div class="record-pair">
-        <div class="record-cell">
-          <div class="k">This week's call</div>
-          <div class="call" id="call-this"></div>
-          <div class="meta" id="call-this-meta"></div>
-        </div>
-        <div class="record-cell">
-          <div class="k">Last week's call, graded</div>
-          <div id="call-prior-grade"></div>
-          <div class="call" id="call-prior"></div>
-          <div class="meta" id="call-prior-meta"></div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ===== LIVE DATA VIEW (instrument-specific) ===== -->
   <section class="section">
@@ -391,6 +358,39 @@
     <div class="wrap">
       <div class="section-label">Record book</div>
       <div class="records-grid" id="records"></div>
+    </div>
+  </section>
+
+  <!-- ===== 30-SECOND ON-RAMP (context, below the data) ===== -->
+  <section class="primer">
+    <div class="wrap">
+      <div class="primer-eyebrow">Model adoption in 30 seconds</div>
+      <div class="primer-grid">
+        <div class="pr"><div class="prn">What it is</div><p>A live read on where AI demand actually flows - by where the model was built (Asia, the US, Europe) - measured in real routed usage, not announcements or benchmarks.</p></div>
+        <div class="pr"><div class="prn">Why it matters</div><p>It is the clearest public signal of who is winning the AI race, and exactly how far behind Europe sits. <strong>The lead moves week to week</strong>, and most leaders are reading last year's map.</p></div>
+        <div class="pr"><div class="prn">So what</div><p>If you are deciding what to build on, who to depend on, or how exposed you are to one region's models, this is the map - not the press release.</p></div>
+      </div>
+      <p class="primer-bridge">This instrument tracks regional share of routed AI traffic and grades its own weekly call in public. <strong>Updated weekly.</strong></p>
+    </div>
+  </section>
+
+  <!-- ===== YELLOW3 ON THE RECORD ===== -->
+  <section class="section" id="sec-record">
+    <div class="wrap">
+      <div class="section-label">yellow3 on the record</div>
+      <div class="record-pair">
+        <div class="record-cell">
+          <div class="k">This week's call</div>
+          <div class="call" id="call-this"></div>
+          <div class="meta" id="call-this-meta"></div>
+        </div>
+        <div class="record-cell">
+          <div class="k">Last week's call, graded</div>
+          <div id="call-prior-grade"></div>
+          <div class="call" id="call-prior"></div>
+          <div class="meta" id="call-prior-meta"></div>
+        </div>
+      </div>
     </div>
   </section>
 
