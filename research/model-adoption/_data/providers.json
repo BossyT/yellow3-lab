@@ -1,0 +1,242 @@
+{
+  "anthropic": {
+    "slug": "anthropic",
+    "name": "Anthropic",
+    "region": "US",
+    "country": "United States",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "arcee-ai": {
+    "slug": "arcee-ai",
+    "name": "Arcee",
+    "region": "US",
+    "country": "United States",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "baai": {
+    "slug": "baai",
+    "name": "BAAI",
+    "region": "Other",
+    "country": "China",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "bytedance-seed": {
+    "slug": "bytedance-seed",
+    "name": "ByteDance",
+    "region": "Other",
+    "country": "China",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "cohere": {
+    "slug": "cohere",
+    "name": "Cohere",
+    "region": "Other",
+    "country": "Canada",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "deepseek": {
+    "slug": "deepseek",
+    "name": "DeepSeek",
+    "region": "Asia",
+    "country": "China",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "google": {
+    "slug": "google",
+    "name": "Google",
+    "region": "US",
+    "country": "United States",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "inclusionai": {
+    "slug": "inclusionai",
+    "name": "inclusionAI",
+    "region": "Asia",
+    "country": "China",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "meta-llama": {
+    "slug": "meta-llama",
+    "name": "Meta",
+    "region": "US",
+    "country": "United States",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "minimax": {
+    "slug": "minimax",
+    "name": "MiniMax",
+    "region": "Asia",
+    "country": "China",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "mistralai": {
+    "slug": "mistralai",
+    "name": "Mistral",
+    "region": "Europe",
+    "country": "France",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "moonshotai": {
+    "slug": "moonshotai",
+    "name": "Moonshot",
+    "region": "Asia",
+    "country": "China",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "nex-agi": {
+    "slug": "nex-agi",
+    "name": "NEX-AGI",
+    "region": "Other",
+    "country": "",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "nvidia": {
+    "slug": "nvidia",
+    "name": "NVIDIA",
+    "region": "US",
+    "country": "United States",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "openai": {
+    "slug": "openai",
+    "name": "OpenAI",
+    "region": "US",
+    "country": "United States",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "openrouter": {
+    "slug": "openrouter",
+    "name": "OpenRouter",
+    "region": "Other",
+    "country": "",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "perplexity": {
+    "slug": "perplexity",
+    "name": "Perplexity",
+    "region": "US",
+    "country": "United States",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "poolside": {
+    "slug": "poolside",
+    "name": "Poolside",
+    "region": "US",
+    "country": "United States",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "qwen": {
+    "slug": "qwen",
+    "name": "Qwen",
+    "region": "Asia",
+    "country": "China",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "stepfun": {
+    "slug": "stepfun",
+    "name": "StepFun",
+    "region": "Asia",
+    "country": "China",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "tencent": {
+    "slug": "tencent",
+    "name": "Tencent",
+    "region": "Asia",
+    "country": "China",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "x-ai": {
+    "slug": "x-ai",
+    "name": "xAI",
+    "region": "US",
+    "country": "United States",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "xiaomi": {
+    "slug": "xiaomi",
+    "name": "Xiaomi",
+    "region": "Asia",
+    "country": "China",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "z-ai": {
+    "slug": "z-ai",
+    "name": "Z.ai",
+    "region": "Asia",
+    "country": "China",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  }
+}

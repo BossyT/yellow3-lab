@@ -39,7 +39,7 @@ jobs:
         run: |
           git config user.name  "yellow3 research bot"
           git config user.email "research-bot@users.noreply.github.com"
-          git add research/snapshots research/model-adoption-data.json research/editions.json
+          git add research/snapshots research/model-adoption-data.json research/editions.json research/model-adoption
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else

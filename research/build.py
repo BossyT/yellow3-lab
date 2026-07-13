@@ -20,6 +20,7 @@ block, but reuses the snapshot store, region layer and edition machinery.
 """
 
 import os
+import re
 import sys
 import json
 import glob
@@ -34,6 +35,12 @@ SNAP_DIR = os.path.join(HERE, "snapshots")
 ORIGINS = os.path.join(HERE, "model-origins.json")
 EDITIONS = os.path.join(HERE, "editions.json")
 OUT = os.path.join(HERE, "model-adoption-data.json")
+PAGES_DIR = os.path.join(HERE, "model-adoption")          # generated per-model pages
+DATA_DIR = os.path.join(PAGES_DIR, "_data")               # derived + curated data
+MODELS_JSON = os.path.join(DATA_DIR, "models.json")       # derived, regenerated
+PROVIDERS_JSON = os.path.join(DATA_DIR, "providers.json")  # curated (logos/urls), merged
+META_JSON = os.path.join(DATA_DIR, "model-meta.json")     # curated facts, merged
+PAGES_JSON = os.path.join(DATA_DIR, "pages.json")         # append-only page set
 
 DATASET_URL = "https://openrouter.ai/api/v1/datasets/rankings-daily"
 THESIS = ("Where AI adoption actually sits, by region of origin, measured in "
@@ -50,6 +57,21 @@ DEV_DISPLAY = {
     "z-ai": "Z.ai", "moonshotai": "Moonshot", "minimax": "MiniMax",
     "tencent": "Tencent", "xiaomi": "Xiaomi", "stepfun": "StepFun",
     "inclusionai": "inclusionAI", "openrouter": "OpenRouter",
+    "cohere": "Cohere", "baai": "BAAI", "bytedance-seed": "ByteDance",
+    "nex-agi": "NEX-AGI",
+}
+
+# Developer slug -> headquarters country (structured, from model-origins.json
+# developer_notes). Region still comes from the origins layer; this is only for
+# the model-page "origin" line. Empty when the HQ is not publicly known.
+COUNTRY_BY_DEV = {
+    "openai": "United States", "anthropic": "United States", "google": "United States",
+    "meta-llama": "United States", "x-ai": "United States", "nvidia": "United States",
+    "perplexity": "United States", "arcee-ai": "United States", "poolside": "United States",
+    "mistralai": "France", "deepseek": "China", "qwen": "China", "z-ai": "China",
+    "moonshotai": "China", "minimax": "China", "tencent": "China", "xiaomi": "China",
+    "stepfun": "China", "inclusionai": "China", "cohere": "Canada", "baai": "China",
+    "bytedance-seed": "China",
 }
 
 
@@ -146,30 +168,48 @@ def classify(slug, dev_map, overrides, unmapped):
     return "Other"
 
 
-def pretty_name(slug):
-    if slug == "other":
-        return "Other models (aggregated)"
+def date_frag(t):
+    # a token that looks like a date fragment: YYYYMMDD, YYMMDD, a 20xx year,
+    # MMDD or a 2-digit day/month. Used to strip date suffixes from slugs.
+    return t.isdigit() and (len(t) in (6, 8)
+                            or (len(t) == 4 and (t.startswith("20") or True))
+                            or len(t) == 2)
+
+
+def _model_parts(slug):
+    """Shared slug parsing: (dev, cleaned_parts, is_free). Drops the date suffix
+    and a leading token that just repeats the developer name."""
     dev = slug.split("/")[0] if "/" in slug else ""
     rest = slug.split("/", 1)[1] if "/" in slug else slug
     free = rest.endswith(":free")
     rest = rest[:-5] if free else rest
     parts = rest.split("-")
-    # drop trailing date fragments (YYYYMMDD, YYMMDD, a 20xx year, MMDD or a
-    # 2-digit day/month), stopping at the first token that is not date-shaped
-    def date_frag(t):
-        return t.isdigit() and (len(t) in (6, 8)
-                                or (len(t) == 4 and (t.startswith("20") or True))
-                                or len(t) == 2)
     while len(parts) > 1 and date_frag(parts[-1]):
         parts.pop()
-    # drop a leading model token that just repeats the developer name
     if parts and parts[0].lower() == dev.lower():
         parts = parts[1:]
+    return dev, [p for p in parts if p], free
+
+
+def pretty_name(slug):
+    if slug == "other":
+        return "Other models (aggregated)"
+    dev, parts, free = _model_parts(slug)
     label = " ".join(p.upper() if p in ("gpt", "glm", "vl", "oss", "moe", "ai")
-                      else p.capitalize() for p in parts if p)
+                      else p.capitalize() for p in parts)
     head = DEV_DISPLAY.get(dev, dev.capitalize() if dev else "")
     name = (head + " " + label).strip()
     return name + (" (free)" if free else "")
+
+
+def model_slug(slug):
+    """Stable URL slug for a model permaslug, frozen even if the display name
+    changes. e.g. xiaomi/mimo-v2.5-20260422 -> xiaomi-mimo-v2-5;
+    openai/gpt-oss-120b:free -> openai-gpt-oss-120b-free."""
+    dev, parts, free = _model_parts(slug)
+    base = "-".join([dev] + parts) if dev else "-".join(parts)
+    s = re.sub(r"[^a-z0-9]+", "-", base.lower()).strip("-")
+    return s + "-free" if free else s
 
 
 # -------------------------------------------------------------- weekly view --
@@ -294,6 +334,232 @@ def build_records(history, dev_map, overrides, unmapped):
     return records
 
 
+# ------------------------------------------------------- per-model history --
+
+def week_endings(dates):
+    """Weekly points stepping back 7 days from the latest date; only full 7-day
+    windows that fit inside stored history, oldest first. The newest ending is
+    the latest date, so its window matches the live leaderboard window exactly."""
+    if not dates:
+        return []
+    first = dt.date.fromisoformat(dates[0])
+    cur = dt.date.fromisoformat(dates[-1])
+    out = []
+    while cur - dt.timedelta(days=6) >= first:
+        start = cur - dt.timedelta(days=6)
+        window = [(start + dt.timedelta(days=i)).isoformat() for i in range(7)]
+        out.append((cur.isoformat(), window))
+        cur -= dt.timedelta(days=7)
+    out.reverse()
+    return out
+
+
+def _window_tokens(history, window):
+    """Sum tokens per model over a window. Returns (per-model excl. 'other',
+    total incl. 'other'). Total matches the instrument's share denominator."""
+    mod, total = {}, 0
+    for d in window:
+        for slug, tok in history.get(d, {}).items():
+            total += tok
+            if slug != "other":
+                mod[slug] = mod.get(slug, 0) + tok
+    return mod, (total or 1)
+
+
+def _trailing_streak(flags):
+    """Count of trailing True values in a per-week presence/threshold list."""
+    n = 0
+    for f in reversed(flags):
+        if f:
+            n += 1
+        else:
+            break
+    return n
+
+
+def build_model_series(history, ctx):
+    """For every model ever seen: a weekly time series plus derived facts and
+    milestones. All derived from the immutable snapshots, so past weeks are
+    stable across rebuilds (history is never overwritten)."""
+    dev_map, overrides, unmapped = ctx
+    endings = week_endings(sorted(history))
+
+    first_seen = {}
+    for d in sorted(history):
+        for slug in history[d]:
+            if slug != "other":
+                first_seen.setdefault(slug, d)
+
+    # per-week ranks / region ranks / shares
+    weekly = []
+    for end, window in endings:
+        mod, total = _window_tokens(history, window)
+        order = sorted(mod.items(), key=lambda x: -x[1])
+        rank = {m: i + 1 for i, (m, _) in enumerate(order)}
+        by_region = {}
+        for m, _ in order:
+            by_region.setdefault(classify(m, dev_map, overrides, unmapped), []).append(m)
+        region_rank = {m: i + 1 for ms in by_region.values() for i, m in enumerate(ms)}
+        weekly.append({"end": end, "rank": rank, "region_rank": region_rank,
+                       "share": {m: round(100 * t / total, 3) for m, t in mod.items()}})
+
+    all_slugs = sorted({m for wk in weekly for m in wk["rank"]})
+    out = {}
+    for slug in all_slugs:
+        series, prev, present_prev, ever = [], None, False, False
+        ranked_flags, top10_flags, top3_flags = [], [], []
+        for wk in weekly:
+            r = wk["rank"].get(slug)
+            present = r is not None
+            ranked_flags.append(present)
+            top10_flags.append(present and r <= 10)
+            top3_flags.append(present and r <= 3)
+            if not present:
+                present_prev = False
+                continue
+            share = wk["share"][slug]
+            status = "NEW" if not ever else ("RE-ENTRY" if not present_prev else "ranked")
+            ever = True
+            entry = {
+                "week_ending": wk["end"],
+                "global_rank": r,
+                "region_rank": wk["region_rank"].get(slug),
+                "routed_share": share,
+                "share_change_pp": round(share - prev["routed_share"], 3) if (prev and present_prev) else None,
+                "rank_change": (prev["global_rank"] - r) if (prev and present_prev) else None,
+                "status": status,
+            }
+            series.append(entry)
+            prev, present_prev = entry, True
+        if not series:
+            continue
+
+        ranks = [s["global_rank"] for s in series]
+        shares = [s["routed_share"] for s in series]
+        peak_rank = min(ranks)
+        peak_share = max(shares)
+        latest = series[-1]
+        currently_ranked = ranked_flags[-1]
+
+        # milestones (first crossing, oldest -> newest)
+        ms = [{"type": "first_tracked", "title": "First tracked",
+               "date": first_seen.get(slug, series[0]["week_ending"]), "value": None}]
+
+        def first_at(pred):
+            for s in series:
+                if pred(s["global_rank"]):
+                    return s["week_ending"]
+            return None
+        for n, label in ((20, "Entered top 20"), (10, "Entered top 10"),
+                         (3, "Entered top 3"), (1, "Reached number one")):
+            w = first_at(lambda rk, n=n: rk <= n)
+            if w:
+                ms.append({"type": f"entered_top_{n}", "title": label, "date": w, "value": None})
+        ms.append({"type": "peak_share", "title": "Peak routed share",
+                   "date": series[shares.index(peak_share)]["week_ending"],
+                   "value": f"{peak_share:.2f}%"})
+        rises = [s for s in series if s["rank_change"]]
+        if rises:
+            best = max(rises, key=lambda s: s["rank_change"])
+            worst = min(rises, key=lambda s: s["rank_change"])
+            if best["rank_change"] > 0:
+                ms.append({"type": "biggest_rise", "title": "Biggest weekly rise",
+                           "date": best["week_ending"], "value": f"+{best['rank_change']} places"})
+            if worst["rank_change"] < 0:
+                ms.append({"type": "biggest_fall", "title": "Biggest weekly fall",
+                           "date": worst["week_ending"], "value": f"{worst['rank_change']} places"})
+        ms.sort(key=lambda m: (m["date"], m["type"] != "first_tracked"))
+
+        out[slug] = {
+            "permaslug": slug,
+            "slug": model_slug(slug),
+            "name": pretty_name(slug),
+            "developer": slug.split("/")[0] if "/" in slug else slug,
+            "provider_name": DEV_DISPLAY.get(slug.split("/")[0], (slug.split("/")[0] or slug).capitalize()),
+            "region": classify(slug, dev_map, overrides, unmapped),
+            "country": COUNTRY_BY_DEV.get(slug.split("/")[0], ""),
+            "first_tracked": first_seen.get(slug),
+            "currently_ranked": currently_ranked,
+            "current": {
+                "week_ending": latest["week_ending"],
+                "global_rank": latest["global_rank"],
+                "region_rank": latest["region_rank"],
+                "routed_share": latest["routed_share"],
+                "rank_change": latest["rank_change"],
+            },
+            "peak_rank": peak_rank,
+            "peak_share": peak_share,
+            "weeks_ranked": _trailing_streak(ranked_flags),
+            "weeks_top10": _trailing_streak(top10_flags),
+            "weeks_top3": _trailing_streak(top3_flags),
+            "series": series,
+            "milestones": ms,
+        }
+    return out
+
+
+def _load_json(path, default):
+    try:
+        return json.load(open(path))
+    except (FileNotFoundError, ValueError):
+        return default
+
+
+# curated per-model descriptive fields (sourced later; null = not yet verified)
+META_FIELDS = ["release_date", "model_family", "description", "model_type",
+               "modalities", "context_window", "license", "open_weight",
+               "api_available", "official_url", "technical_report_url",
+               "repository_url", "last_verified_at"]
+
+
+def emit_model_data(models, leaderboard):
+    """Write the derived per-model data plus merge-preserving curated registries.
+    Returns the set of slugs that should have a page (top-30 now, union with any
+    page created before, so a page persists once a model has ranked)."""
+    os.makedirs(DATA_DIR, exist_ok=True)
+
+    # a model qualifies for a page if it is (or has been) in the ranking; exclude
+    # non-chat entries like embeddings.
+    def eligible(permaslug):
+        return "embedding" not in permaslug
+    current_top = [row["slug"] for row in leaderboard if eligible(row["model"])]
+    prior_pages = _load_json(PAGES_JSON, [])
+    page_slugs = sorted(set(prior_pages) | set(current_top))
+
+    # models.json: everything derived, keyed by url slug (only eligible models)
+    by_slug = {m["slug"]: m for m in models.values() if eligible(m["permaslug"])}
+    json.dump({"generated_from": "snapshots", "models": by_slug},
+              open(MODELS_JSON, "w"), indent=2)
+
+    # providers.json: merge-preserving (keep curated logo/url across rebuilds)
+    providers = _load_json(PROVIDERS_JSON, {})
+    for m in by_slug.values():
+        dev = m["developer"]
+        p = providers.get(dev, {})
+        p.setdefault("slug", dev)
+        p["name"] = m["provider_name"]         # derived, safe to refresh
+        p["region"] = m["region"]
+        p["country"] = m["country"]
+        p.setdefault("official_url", None)      # curated
+        p.setdefault("logo_path", None)
+        p.setdefault("logo_source_url", None)
+        p.setdefault("logo_verified_at", None)
+        providers[dev] = p
+    json.dump(providers, open(PROVIDERS_JSON, "w"), indent=2)
+
+    # model-meta.json: merge-preserving curated descriptive fields per page slug
+    meta = _load_json(META_JSON, {})
+    for slug in page_slugs:
+        entry = meta.get(slug, {})
+        for f in META_FIELDS:
+            entry.setdefault(f, None)
+        meta[slug] = entry
+    json.dump(meta, open(META_JSON, "w"), indent=2)
+
+    json.dump(page_slugs, open(PAGES_JSON, "w"), indent=2)
+    return page_slugs
+
+
 # ---------------------------------------------------------------- editions --
 
 def most_recent_wednesday(today):
@@ -389,13 +655,24 @@ def main():
             move = "flat"
         leaderboard.append({
             "rank": cr, "prev_rank": pr, "move": move, "new": pr is None,
-            "model": slug, "name": pretty_name(slug),
+            "model": slug, "name": pretty_name(slug), "slug": model_slug(slug),
             "developer": DEV_DISPLAY.get(slug.split("/")[0], slug.split("/")[0]),
             "region": classify(slug, dev_map, overrides, unmapped),
             "pct": round(100 * tok / ctot, 2),
         })
 
     records = build_records(history, dev_map, overrides, unmapped)
+
+    # count of ranked (top-30) models per region, for the regional-share block + map
+    region_counts = {rg: 0 for rg in REGION_ORDER}
+    for row in leaderboard:
+        region_counts[row["region"]] = region_counts.get(row["region"], 0) + 1
+    for s in share:
+        s["models"] = region_counts.get(s["region"], 0)
+
+    # per-model histories + registries (data foundation for the model pages)
+    models = build_model_series(history, AGG_CTX)
+    page_slugs = emit_model_data(models, leaderboard)
 
     lead = max(share, key=lambda s: s["pct"])
     eu = next(s for s in share if s["region"] == "Europe")
@@ -480,6 +757,15 @@ def main():
 
     with open(OUT, "w") as f:
         json.dump(data, f, indent=2)
+
+    # generate the static Model Explorer pages from the derived data. Non-fatal:
+    # a rendering error must not lose the day's data pull (pages persist from the
+    # last good run and regenerate next time).
+    try:
+        import gen_model_pages
+        gen_model_pages.generate()
+    except Exception as e:  # noqa: BLE001
+        print(f"WARNING: model page generation failed: {e}", file=sys.stderr)
 
     print(f"snapshots written: {written}  history days: {len(dates)}  as_of: {as_of}")
     print(f"current week: {cur_days[0]} -> {cur_days[-1]}")
