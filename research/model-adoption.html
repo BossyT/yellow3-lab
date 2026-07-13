@@ -120,14 +120,18 @@
     .mapbox { padding: 22px 24px; display: flex; flex-direction: column; }
     .map-h { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: var(--ink); }
     .map-sub { font-size: 12px; color: var(--muted); margin: 4px 0 12px; }
-    #worldmap { flex: 1; min-height: 0; }
-    #worldmap svg { width: 100%; height: auto; display: block; }
-    .mk-dot { fill: #dad7d0; }
+    #worldmap { flex: 1; min-height: 0; display: flex; align-items: center; }
+    #worldmap svg.wmap { width: 100%; height: auto; display: block; }
+    .wm-c { fill: #e7e4dd; stroke: #ffffff; stroke-width: 0.4; transition: fill 0.2s; }
     .mk-marker { cursor: pointer; }
-    .mk-marker circle { transition: opacity 0.2s; }
-    .mk-marker:hover circle.mk-hit { opacity: 0.85; }
-    .mk-label { font-size: 11px; font-weight: 700; fill: var(--ink); text-anchor: middle; }
-    .mk-sub { font-size: 10px; fill: var(--mid); text-anchor: middle; }
+    .mk-marker circle.mk-hit { transition: opacity 0.2s; }
+    .mk-marker:hover circle.mk-hit, .mk-marker:focus-visible circle.mk-hit { opacity: 1; }
+    .mk-marker:focus-visible { outline: none; }
+    .mk-count { font-size: 15px; font-weight: 800; fill: #ffffff; text-anchor: middle; dominant-baseline: central; }
+    .mk-label { font-size: 12px; font-weight: 700; fill: var(--ink); text-anchor: middle; }
+    .mk-sub { font-size: 11px; font-weight: 600; fill: var(--mid); text-anchor: middle; }
+    .map-credit { font-size: 10px; color: #b9b6ae; margin-top: 8px; }
+    .map-credit a { color: #b9b6ae; }
 
     /* Regional share blocks (colored) */
     .sharebox { display: flex; flex-direction: column; }
@@ -360,6 +364,7 @@
           <div class="map-sub">Model origin, not user location</div>
           <div id="worldmap"></div>
           <p class="sr" id="map-alt"></p>
+          <p class="map-credit">Base map: <a href="https://github.com/flekschas/simple-world-map" target="_blank" rel="noopener noreferrer">simple-world-map</a>, CC BY-SA 3.0.</p>
         </div>
         <div class="sharebox">
           <div class="sb-head">Share of routed tokens</div>
@@ -507,8 +512,10 @@
     }
 
     var BASE = '/research/model-adoption';
-    var MAP_POS = { US:[225,150], Europe:[500,118], Asia:[735,168] };  // Other omitted: not one location
-    var CONTINENTS = [[210,155,112,82],[300,338,52,90],[500,120,50,44],[535,278,66,96],[735,165,142,92],[835,350,52,38]];
+    var WM_URL = BASE + '/world-map.svg';
+    // marker anchors + tint countries in the world-map.svg coordinate space
+    var MAP_ANCHOR = { US:[205,407], Europe:[458,353], Asia:[650,400] };
+    var MAP_TINT = { us:'US', cn:'Asia', fr:'Europe' };
 
     function regionFromUrl(){
       var p = (new URLSearchParams(location.search)).get('region');
@@ -556,37 +563,55 @@
         '<select id="period"><option>Weekly</option></select></span>';
     }
 
-    function inEllipse(x,y,e){ var dx=(x-e[0])/e[2], dy=(y-e[1])/e[3]; return dx*dx+dy*dy <= 1; }
-
+    var WM_CACHE = null;
     function renderMap(d){
-      var dots = '';
-      for(var y=30; y<=430; y+=15){
-        for(var x=40; x<=970; x+=15){
-          for(var i=0;i<CONTINENTS.length;i++){ if(inEllipse(x,y,CONTINENTS[i])){ dots += '<circle class="mk-dot" cx="'+x+'" cy="'+y+'" r="1.7"/>'; break; } }
-        }
-      }
       var byRegion = {}; d.share.forEach(function(s){ byRegion[s.region] = s; });
-      var markers = '', altParts = [];
-      d.share.forEach(function(s){
-        altParts.push(s.region + ' ' + s.models + ' model' + (s.models===1?'':'s') + ' (' + s.pct.toFixed(2) + '% of routed tokens)');
-        var pos = MAP_POS[s.region]; if(!pos) return;
-        var r = Math.max(6, Math.min(40, 6 + s.models*1.9));
-        var dim = (FILTER !== 'World' && FILTER !== s.region);
-        markers += '<g class="mk-marker" tabindex="0" role="button" aria-label="Filter to ' + esc(s.region) + ', ' + s.models + ' models, ' + s.pct.toFixed(2) + '% share" data-r="' + esc(s.region) + '" style="opacity:' + (dim?0.35:1) + '">' +
-          '<circle class="mk-hit" cx="'+pos[0]+'" cy="'+pos[1]+'" r="'+r+'" fill="'+ (REGION_VAR[s.region]||'var(--r-other)') +'" fill-opacity="0.9"/>' +
-          '<text class="mk-label" x="'+pos[0]+'" y="'+(pos[1]-r-8)+'">'+esc(s.region.toUpperCase())+'</text>' +
-          '<text class="mk-sub" x="'+pos[0]+'" y="'+(pos[1]-r-8+13)+'">'+s.models+' models &middot; '+s.pct.toFixed(2)+'%</text>' +
-        '</g>';
-      });
-      document.getElementById('worldmap').innerHTML =
-        '<svg viewBox="0 0 1000 460" preserveAspectRatio="xMidYMid meet" role="img" aria-label="World map of model origin. '+esc(altParts.join('; '))+'.">' +
-        '<g>'+dots+'</g>' + markers + '</svg>';
+      var altParts = d.share.map(function(s){ return s.region + ' ' + s.models + ' model' + (s.models===1?'':'s') + ' (' + s.pct.toFixed(2) + '% of routed tokens)'; });
       document.getElementById('map-alt').textContent = 'Model origin of the ranked models: ' + altParts.join('; ') + '. Europe and Other models sit below the top 30 this week.';
-      Array.prototype.forEach.call(document.querySelectorAll('#worldmap .mk-marker'), function(g){
-        function go(){ setFilter(g.getAttribute('data-r')); }
-        g.addEventListener('click', go);
-        g.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
-      });
+      var box = document.getElementById('worldmap');
+      function paint(txt){
+        box.innerHTML = txt;
+        var svg = box.querySelector('svg');
+        if(!svg) return;
+        svg.removeAttribute('width'); svg.removeAttribute('height');
+        svg.setAttribute('preserveAspectRatio','xMidYMid meet');
+        svg.setAttribute('class','wmap');
+        svg.setAttribute('role','img');
+        svg.setAttribute('aria-label','World map of model origin. ' + altParts.join('; ') + '.');
+        Array.prototype.forEach.call(svg.querySelectorAll('path'), function(p){
+          p.setAttribute('class', ((p.getAttribute('class')||'') + ' wm-c').trim());
+        });
+        // tint the actual origin countries in their region colour
+        Object.keys(MAP_TINT).forEach(function(cc){
+          var el = svg.querySelector('#'+cc); if(!el) return;
+          var reg = MAP_TINT[cc]; var dim = (FILTER!=='World' && FILTER!==reg);
+          el.style.fill = REGION_VAR[reg]; el.style.fillOpacity = dim ? 0.28 : 0.62;
+        });
+        // labelled origin markers
+        var NS = 'http://www.w3.org/2000/svg';
+        Object.keys(MAP_ANCHOR).forEach(function(region){
+          var s = byRegion[region]; if(!s) return;
+          var pos = MAP_ANCHOR[region];
+          var r = Math.max(9, Math.min(30, 9 + s.models*1.25));
+          var dim = (FILTER!=='World' && FILTER!==region);
+          var g = document.createElementNS(NS,'g');
+          g.setAttribute('class','mk-marker'); g.setAttribute('tabindex','0'); g.setAttribute('role','button');
+          g.setAttribute('aria-label','Filter to ' + region + ', ' + s.models + ' models, ' + s.pct.toFixed(2) + '% share');
+          g.setAttribute('data-r', region); g.style.opacity = dim ? 0.4 : 1;
+          g.innerHTML =
+            '<circle class="mk-hit" cx="'+pos[0]+'" cy="'+pos[1]+'" r="'+r+'" fill="'+(REGION_VAR[region]||'var(--r-other)')+'" fill-opacity="0.94" stroke="#fff" stroke-width="1.5"/>' +
+            (s.models>0 ? '<text class="mk-count" x="'+pos[0]+'" y="'+pos[1]+'">'+s.models+'</text>' : '') +
+            '<text class="mk-label" x="'+pos[0]+'" y="'+(pos[1]+r+15)+'">'+region.toUpperCase()+'</text>' +
+            '<text class="mk-sub" x="'+pos[0]+'" y="'+(pos[1]+r+29)+'">'+s.pct.toFixed(2)+'% of tokens</text>';
+          function go(){ setFilter(region); }
+          g.addEventListener('click', go);
+          g.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
+          svg.appendChild(g);
+        });
+      }
+      if(WM_CACHE){ paint(WM_CACHE); return; }
+      fetch(WM_URL).then(function(r){ return r.text(); }).then(function(txt){ WM_CACHE = txt; paint(txt); })
+        .catch(function(){ box.innerHTML = '<p style="color:var(--mid);font-size:13px;padding:20px 0">'+esc(altParts.join('; '))+'</p>'; });
     }
 
     function deltaPill(dpp){
