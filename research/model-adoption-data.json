@@ -5,8 +5,8 @@
   "status": "live",
   "as_of": "2026-07-12",
   "as_of_pretty": "12 July 2026",
-  "generated_utc": "2026-07-13T13:38:34Z",
-  "refreshed_cet": "13 Jul 2026, 15:38 CET",
+  "generated_utc": "2026-07-13T13:59:16Z",
+  "refreshed_cet": "13 Jul 2026, 15:59 CET",
   "source": {
     "name": "OpenRouter",
     "url": "https://openrouter.ai/rankings",
@@ -278,6 +278,116 @@
       "developer": "OpenAI",
       "region": "US",
       "pct": 0.96
+    },
+    {
+      "rank": 21,
+      "prev_rank": 4,
+      "move": "down",
+      "new": false,
+      "model": "tencent/hy3-preview-20260421",
+      "name": "Tencent Hy3 Preview",
+      "developer": "Tencent",
+      "region": "Asia",
+      "pct": 0.78
+    },
+    {
+      "rank": 22,
+      "prev_rank": 29,
+      "move": "up",
+      "new": false,
+      "model": "moonshotai/kimi-k2.6-20260420",
+      "name": "Moonshot Kimi K2.6",
+      "developer": "Moonshot",
+      "region": "Asia",
+      "pct": 0.74
+    },
+    {
+      "rank": 23,
+      "prev_rank": 22,
+      "move": "down",
+      "new": false,
+      "model": "deepseek/deepseek-v3.2-20251201",
+      "name": "DeepSeek V3.2",
+      "developer": "DeepSeek",
+      "region": "Asia",
+      "pct": 0.72
+    },
+    {
+      "rank": 24,
+      "prev_rank": 37,
+      "move": "up",
+      "new": false,
+      "model": "anthropic/claude-5-fable-20260609",
+      "name": "Anthropic Claude 5 Fable",
+      "developer": "Anthropic",
+      "region": "US",
+      "pct": 0.71
+    },
+    {
+      "rank": 25,
+      "prev_rank": 24,
+      "move": "down",
+      "new": false,
+      "model": "nvidia/nemotron-3-super-120b-a12b-20230311:free",
+      "name": "NVIDIA Nemotron 3 Super 120b A12b (free)",
+      "developer": "NVIDIA",
+      "region": "US",
+      "pct": 0.69
+    },
+    {
+      "rank": 26,
+      "prev_rank": 28,
+      "move": "up",
+      "new": false,
+      "model": "google/gemma-4-26b-a4b-it-20260403",
+      "name": "Google Gemma 4 26b A4b It",
+      "developer": "Google",
+      "region": "US",
+      "pct": 0.66
+    },
+    {
+      "rank": 27,
+      "prev_rank": 27,
+      "move": "flat",
+      "new": false,
+      "model": "google/gemma-4-31b-it-20260402",
+      "name": "Google Gemma 4 31b It",
+      "developer": "Google",
+      "region": "US",
+      "pct": 0.61
+    },
+    {
+      "rank": 28,
+      "prev_rank": 25,
+      "move": "down",
+      "new": false,
+      "model": "openai/gpt-4o-mini",
+      "name": "OpenAI GPT 4o Mini",
+      "developer": "OpenAI",
+      "region": "US",
+      "pct": 0.58
+    },
+    {
+      "rank": 29,
+      "prev_rank": 36,
+      "move": "up",
+      "new": false,
+      "model": "z-ai/glm-5-20260211",
+      "name": "Z.ai GLM 5",
+      "developer": "Z.ai",
+      "region": "Asia",
+      "pct": 0.57
+    },
+    {
+      "rank": 30,
+      "prev_rank": 21,
+      "move": "down",
+      "new": false,
+      "model": "google/gemini-3.5-flash-20260519",
+      "name": "Google Gemini 3.5 Flash",
+      "developer": "Google",
+      "region": "US",
+      "pct": 0.57
     }
   ],
   "records": [

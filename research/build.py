@@ -376,7 +376,7 @@ def main():
     crk, citems = ranked(cmod)
     prk, _ = ranked(pmod)
     leaderboard = []
-    for slug, tok in citems[:20]:
+    for slug, tok in citems[:30]:
         cr = crk[slug]
         pr = prk.get(slug)
         if pr is None:
