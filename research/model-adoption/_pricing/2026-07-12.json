@@ -107,8 +107,8 @@
       "cache_read": 5e-07
     },
     "openai-gpt-oss-120b": {
-      "in": 0.0,
-      "out": 0.0,
+      "in": 3e-08,
+      "out": 1.5e-07,
       "cache_read": null
     },
     "poolside-laguna-m-1-free": {

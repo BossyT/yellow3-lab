@@ -1494,8 +1494,8 @@
       ]
     },
     "openai-gpt-oss-120b": {
-      "in": 0.0,
-      "out": 0.0,
+      "in": 3e-08,
+      "out": 1.5e-07,
       "cache_read": null,
       "cache_write": null,
       "context": 131072,
@@ -1506,23 +1506,23 @@
       "audio_in": false,
       "video_in": false,
       "tools": true,
-      "structured": false,
+      "structured": true,
       "reasoning": true,
       "open_weight": true,
-      "free_tier": true,
+      "free_tier": false,
       "knowledge_cutoff": "2024-06-30",
-      "or_id": "openai/gpt-oss-120b:free",
-      "or_url": "https://openrouter.ai/openai/gpt-oss-120b:free",
+      "or_id": "openai/gpt-oss-120b",
+      "or_url": "https://openrouter.ai/openai/gpt-oss-120b",
       "uptime": null,
-      "workload_cost": 0.0,
+      "workload_cost": 4.5,
       "price_position": "Low cost",
       "adoption_trend": "flat",
       "position_label": "Value play",
       "price_history": [
         {
           "date": "2026-07-12",
-          "in": 0.0,
-          "out": 0.0,
+          "in": 3e-08,
+          "out": 1.5e-07,
           "change_pct": null
         }
       ],
@@ -1530,8 +1530,8 @@
         {
           "slug": "openai-gpt-oss-120b",
           "name": "OpenAI GPT OSS 120b",
-          "in": 0.0,
-          "out": 0.0,
+          "in": 3e-08,
+          "out": 1.5e-07,
           "cache_read": null,
           "you": true
         },
