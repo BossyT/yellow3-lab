@@ -360,7 +360,7 @@
 
       <div class="mapshare">
         <div class="mapbox">
-          <div class="map-h">Where the top 30 models were built</div>
+          <div class="map-h">Where the top 20 models were built</div>
           <div class="map-sub">Model origin, not user location</div>
           <div id="worldmap"></div>
           <p class="sr" id="map-alt"></p>
@@ -567,7 +567,7 @@
     function renderMap(d){
       var byRegion = {}; d.share.forEach(function(s){ byRegion[s.region] = s; });
       var altParts = d.share.map(function(s){ return s.region + ' ' + s.models + ' model' + (s.models===1?'':'s') + ' (' + s.pct.toFixed(2) + '% of routed tokens)'; });
-      document.getElementById('map-alt').textContent = 'Model origin of the ranked models: ' + altParts.join('; ') + '. Europe and Other models sit below the top 30 this week.';
+      document.getElementById('map-alt').textContent = 'Model origin, counted over the top 20 routed models: ' + altParts.join('; ') + '.';
       var box = document.getElementById('worldmap');
       function paint(txt){
         box.innerHTML = txt;
@@ -626,20 +626,20 @@
         var dim = (FILTER !== 'World' && FILTER !== s.region);
         return '<div class="sb-row' + (dim?' dim':'') + '" style="background:' + (REGION_VAR[s.region]||'var(--r-other)') + '">' +
           '<div><div class="sb-region">' + esc(s.region) + '</div><div class="sb-pct">' + s.pct.toFixed(2) + '%</div>' +
-          '<div class="sb-models">' + s.models + ' model' + (s.models===1?'':'s') + ' in top 30</div></div>' +
+          '<div class="sb-models">' + s.models + ' model' + (s.models===1?'':'s') + ' in top 20</div></div>' +
           deltaPill(s.delta_pp) + '</div>';
       }).join('');
     }
 
     function renderWeekline(d){
       var by = {}; d.share.forEach(function(s){ by[s.region]=s; });
-      function part(reg, verb){ var s=by[reg]; if(!s) return ''; var cls=s.delta_pp>0.04?'up':s.delta_pp<-0.04?'down':''; return '<b>'+reg+'</b> '+verb+' <span class="'+cls+'">'+deltaTxt(s.delta_pp)+'</span>'; }
-      var lead = d.share.slice().sort(function(a,b){return b.pct-a.pct;})[0];
+      function span(dpp){ var c=dpp>0.04?'up':dpp<-0.04?'down':''; return '<span class="'+c+'">'+deltaTxt(dpp)+'</span>'; }
+      var lead = d.share.slice().sort(function(a,b){ return b.pct-a.pct; })[0];
       var us = by['US'], eu = by['Europe'];
       var bits = [];
-      if(lead){ bits.push('<b>'+lead.region+'</b> leads at <b>'+lead.pct.toFixed(2)+'%</b> ('+(lead.delta_pp>=0?'+':'')+lead.delta_pp.toFixed(2)+' pp)'); }
-      if(us && us.region!==lead.region){ bits.push('US '+ (us.delta_pp>=0?'up ':'down ') + '<span class="'+(us.delta_pp>0.04?'up':us.delta_pp<-0.04?'down':'')+'">'+deltaTxt(us.delta_pp)+'</span>'); }
-      if(eu){ bits.push('Europe '+ (eu.pct<1?'remains below 1%':'at '+eu.pct.toFixed(2)+'%')); }
+      if(lead){ bits.push('<b>'+lead.region+'</b> ' + (lead.delta_pp>0.04?'extends its lead ':lead.delta_pp<-0.04?'lead narrows ':'holds ') + span(lead.delta_pp)); }
+      if(us && us.region!==lead.region){ bits.push('US share ' + (us.delta_pp>=0?'rises ':'falls ') + span(us.delta_pp)); }
+      if(eu){ bits.push('Europe ' + (eu.pct<1?'remains below 1%':'at '+eu.pct.toFixed(2)+'%')); }
       document.getElementById('weekline').innerHTML = '<b>This week</b> &middot; ' + bits.join(' &middot; ') + '.';
     }
 

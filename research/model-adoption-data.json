@@ -5,8 +5,8 @@
   "status": "live",
   "as_of": "2026-07-12",
   "as_of_pretty": "12 July 2026",
-  "generated_utc": "2026-07-13T15:35:17Z",
-  "refreshed_cet": "13 Jul 2026, 17:35 CET",
+  "generated_utc": "2026-07-13T15:53:24Z",
+  "refreshed_cet": "13 Jul 2026, 17:53 CET",
   "source": {
     "name": "OpenRouter",
     "url": "https://openrouter.ai/rankings",
@@ -41,7 +41,7 @@
       "region": "Asia",
       "pct": 60.6,
       "delta_pp": 4.88,
-      "models": 12
+      "models": 8
     },
     {
       "region": "Europe",
@@ -53,7 +53,7 @@
       "region": "US",
       "pct": 32.67,
       "delta_pp": -2.71,
-      "models": 18
+      "models": 12
     },
     {
       "region": "Other",
