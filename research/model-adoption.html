@@ -188,6 +188,7 @@
     .rec-v { font-size: 26px; font-weight: 800; line-height: 1.15; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.02em; }
     .rec-d { font-size: 13px; color: var(--mid); }
     .rec-card.europe .rec-k { color: #9a7d12; }
+    .press-note { margin-top: 26px; font-size: 12px; color: var(--muted); }
 
     /* Weekly edition */
     .edition { padding: 88px 0; border-bottom: 1px solid var(--line); }
@@ -309,14 +310,6 @@
     </div>
   </header>
 
-  <!-- ===== WHAT CHANGED THIS WEEK ===== -->
-  <div class="payoff">
-    <div class="wrap">
-      <div class="label">What changed this week</div>
-      <p id="payoff"></p>
-    </div>
-  </div>
-
   <div id="err" class="wrap">The instrument data could not be loaded. Please try again shortly.</div>
 
   <!-- ===== LIVE DATA VIEW (instrument-specific) ===== -->
@@ -358,6 +351,7 @@
     <div class="wrap">
       <div class="section-label">Record book</div>
       <div class="records-grid" id="records"></div>
+      <p class="press-note">Media and press may use the data and graphics with clear attribution to yellow3.io.</p>
     </div>
   </section>
 
@@ -483,7 +477,6 @@
       document.getElementById('title').textContent = d.title;
       document.getElementById('bc-title').textContent = d.title;
       document.getElementById('thesis').textContent = d.thesis;
-      document.getElementById('payoff').textContent = d.payoff;
       document.getElementById('refresh').textContent = 'Refreshed ' + d.refreshed_cet + ' · data as of ' + d.as_of_pretty;
       if (d.status !== 'live') { document.getElementById('badge').style.color = 'var(--mid)'; }
     }

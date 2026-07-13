@@ -1,12 +1,12 @@
 {
   "instrument": "model-adoption",
   "title": "Model adoption",
-  "thesis": "Where AI adoption actually sits, by region of origin, measured in real routed traffic, and how fast the lead changes.",
+  "thesis": "See which AI models the world is actually using, where they were built, and how the balance is changing. The live chart updates as new routed traffic is recorded, so rankings and regional shares can shift at any time. Return regularly to follow the movement.",
   "status": "live",
   "as_of": "2026-07-12",
   "as_of_pretty": "12 July 2026",
-  "generated_utc": "2026-07-13T16:44:29Z",
-  "refreshed_cet": "13 Jul 2026, 18:44 CET",
+  "generated_utc": "2026-07-13T16:58:51Z",
+  "refreshed_cet": "13 Jul 2026, 18:58 CET",
   "source": {
     "name": "OpenRouter",
     "url": "https://openrouter.ai/rankings",

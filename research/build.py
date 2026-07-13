@@ -43,8 +43,10 @@ META_JSON = os.path.join(DATA_DIR, "model-meta.json")     # curated facts, merge
 PAGES_JSON = os.path.join(DATA_DIR, "pages.json")         # append-only page set
 
 DATASET_URL = "https://openrouter.ai/api/v1/datasets/rankings-daily"
-THESIS = ("Where AI adoption actually sits, by region of origin, measured in "
-          "real routed traffic, and how fast the lead changes.")
+THESIS = ("See which AI models the world is actually using, where they were "
+          "built, and how the balance is changing. The live chart updates as new "
+          "routed traffic is recorded, so rankings and regional shares can shift "
+          "at any time. Return regularly to follow the movement.")
 REGION_ORDER = ["Asia", "Europe", "US", "Other"]
 REGION_COLORS = {"Asia": "#c0613a", "Europe": "#c9a227", "US": "#3b6ea5", "Other": "#a8a6a1"}
 
