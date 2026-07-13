@@ -9,11 +9,11 @@
     "cadence": "Wednesday"
   },
 
-  "what_changed": "The EU agreed to push two more sets of high-risk obligations to 2027 and 2028, before either took effect. Fines issued stayed at zero.",
+  "what_changed": "The Digital Omnibus became final: the Parliament adopted it on 16 June, the Council on 29 June, locking in the slide of high-risk obligations to 2027 and 2028. Only Official Journal publication remains. Fines issued stayed at zero.",
 
   "forward_call": {
-    "this_week_expects": "The Omnibus to be published in the Official Journal before the August deadline.",
-    "prior_call": null,
+    "this_week_expects": "The Omnibus to be published in the Official Journal before 2 August, making the delay binding.",
+    "prior_call": "The Omnibus to be published in the Official Journal before the August deadline.",
     "prior_call_grade": null,
     "_note": "prior_call and prior_call_grade are null for Edition 01. From Edition 02, prior_call carries last week's expectation and prior_call_grade is 'correct' or 'wrong'."
   },
@@ -85,14 +85,14 @@
   ],
 
   "edition": {
-    "number": 1,
-    "date": "2026-06-03",
-    "date_label": "Edition 01 \u00b7 3 June 2026",
+    "number": 2,
+    "date": "2026-07-13",
+    "date_label": "Edition 02 \u00b7 13 July 2026",
     "byline": "Thomas Chr. Melskens",
     "body": [
-      "The European Union wrote the world's first comprehensive law for artificial intelligence, and it has spent the months since easing its own grip on it. Under the Digital Omnibus agreed in early May, the obligations for high-risk systems are set to slide from this August to December 2027, and for AI built into regulated products to 2028. They will have been postponed before a single one took effect, and the amendment that postpones them is itself not yet final.",
-      "What is already binding has been binding for a while. Prohibited practices have been enforceable across all twenty-seven member states since February 2025, the rules for general-purpose models since last August. And yet no fine has been issued anywhere under the Act, and only a handful of member states have formally named the authorities meant to enforce it, nearly a year past the deadline to do so.",
-      "This is the gap yellow3 tracks here each week: the distance between a law that exists and the machinery to apply it, which does not. Europe has proven it can legislate AI faster than anyone. Whether it can enforce what it wrote is the more interesting question, and the one the next two years will answer. The first thing to watch is narrow and soon: whether the Omnibus reaches the Official Journal before August, making the delay it promises real."
+      "The postponement is now real. On 29 June the Council gave its final green light to the Digital Omnibus, after the Parliament adopted the text on 16 June, so the delay this instrument flagged as \"not yet final\" in June is now law in all but its last formality. The high-risk obligations for stand-alone Annex III systems move from 2 August 2026 to 2 December 2027, and for AI built into regulated products to 2 August 2028. They will have been postponed before a single one took effect. All that remains is publication in the Official Journal, which must happen by 30 July for the new dates to hold before the old ones would have bitten on 2 August.",
+      "What is already binding remains binding, and remains unenforced. Prohibited practices have been in force across all twenty-seven member states since February 2025, the rules for general-purpose models since last August, and still no fine has been issued anywhere under the Act. A handful of member states have yet to formally name the authorities meant to enforce it, well past the deadline to do so. The law keeps expanding on paper while the machinery to apply it stays thin.",
+      "So the gap widens from both ends: Europe postpones the obligations it has not had to enforce, and staffs slowly the ones already live. The next thing to watch is narrow and dated: whether the Omnibus actually reaches the Official Journal before 2 August, converting a political agreement into a binding delay. If it slips, the original August deadline snaps back into force. That is the one date that still matters this summer."
     ]
   },
 
