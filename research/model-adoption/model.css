@@ -1,7 +1,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--paper:#fff;--ink:#0e0e0e;--body:#4b4b4b;--muted:#8a8a8a;--line:#e7e6e2;--yellow:#ffe000;--panel:#f7f6f3;
 --up:#2E9D78;--down:#b3402e;--flat:#9a9a95;
---r-asia:#5b2b4d;--r-us:#223a5e;--r-europe:#c1972b;--r-other:#565a60}
+--r-asia:#4d146c;--r-us:#003268;--r-europe:#ffba02;--r-other:#828383}
 html{scroll-behavior:smooth}
 body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;font-weight:400;line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
 img{display:block;max-width:100%}a{color:inherit}

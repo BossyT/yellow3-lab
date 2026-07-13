@@ -29,7 +29,7 @@ BASE = "/research/model-adoption"
 GA_ID = "G-K3JXMM2VG5"
 
 # New model-research origin palette (aubergine / navy / ochre / graphite).
-REGION_HEX = {"Asia": "#5b2b4d", "US": "#223a5e", "Europe": "#c1972b", "Other": "#565a60"}
+REGION_HEX = {"Asia": "#4d146c", "US": "#003268", "Europe": "#ffba02", "Other": "#828383"}
 UP, DOWN, FLAT = "#2E9D78", "#b3402e", "#9a9a95"
 
 
@@ -508,7 +508,7 @@ def render_page(m, provider, meta, models_by_slug, page_slugs, site):
 CSS = """*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--paper:#fff;--ink:#0e0e0e;--body:#4b4b4b;--muted:#8a8a8a;--line:#e7e6e2;--yellow:#ffe000;--panel:#f7f6f3;
 --up:#2E9D78;--down:#b3402e;--flat:#9a9a95;
---r-asia:#5b2b4d;--r-us:#223a5e;--r-europe:#c1972b;--r-other:#565a60}
+--r-asia:#4d146c;--r-us:#003268;--r-europe:#ffba02;--r-other:#828383}
 html{scroll-behavior:smooth}
 body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;font-weight:400;line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
 img{display:block;max-width:100%}a{color:inherit}

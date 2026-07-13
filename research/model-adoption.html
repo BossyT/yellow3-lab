@@ -26,7 +26,7 @@
       --paper:#ffffff; --ink:#0e0e0e; --body:#4b4b4b; --muted:#8a8a8a; --mid:#8a8a8a; --line:#e7e6e2; --yellow:#ffe000; --panel:#f7f6f3;
       --white:#ffffff; --off-white:#f7f6f3; --border:#e7e6e2; --dark:#0e0e0e; --black:#0e0e0e;
       --up:#2E9D78; --down:#b3402e; --flat:#aaa9a5; --live:#2E9D78;
-      --r-asia:#5b2b4d; --r-europe:#c1972b; --r-us:#223a5e; --r-other:#565a60;
+      --r-asia:#4d146c; --r-europe:#ffba02; --r-us:#003268; --r-other:#828383;
       /* overrides for tokens.css */
       --bg:#ffffff; --bg-frame:#f7f6f3; --tp:#0e0e0e; --ts:#4b4b4b; --bd:#e7e6e2; --card:#ffffff; --tint:#f7f6f3; --gold:#8a8a8a; --green:#2E9D78; --amber:#D89A16; --neutral-ink:#8a8a8a; --radius:14px; --elevation:0 1px 2px rgba(20,20,20,.04), 0 8px 24px rgba(20,20,20,.05);
     }
@@ -122,14 +122,13 @@
     .map-sub { font-size: 12px; color: var(--muted); margin: 4px 0 12px; }
     #worldmap { flex: 1; min-height: 0; display: flex; align-items: center; }
     #worldmap svg.wmap { width: 100%; height: auto; display: block; }
-    .wm-c { fill: #e7e4dd; stroke: #ffffff; stroke-width: 0.4; transition: fill 0.2s; }
     .mk-marker { cursor: pointer; }
     .mk-marker circle.mk-hit { transition: opacity 0.2s; }
-    .mk-marker:hover circle.mk-hit, .mk-marker:focus-visible circle.mk-hit { opacity: 1; }
+    .mk-marker:hover circle.mk-hit, .mk-marker:focus-visible circle.mk-hit { opacity: 0.88; }
     .mk-marker:focus-visible { outline: none; }
-    .mk-count { font-size: 15px; font-weight: 800; fill: #ffffff; text-anchor: middle; dominant-baseline: central; }
-    .mk-label { font-size: 12px; font-weight: 700; fill: var(--ink); text-anchor: middle; }
-    .mk-sub { font-size: 11px; font-weight: 600; fill: var(--mid); text-anchor: middle; }
+    .mk-lab .mk-region { font-size: 12px; font-weight: 800; fill: var(--ink); letter-spacing: 0.05em; }
+    .mk-lab .mk-models { font-size: 10px; font-weight: 700; fill: var(--mid); letter-spacing: 0.06em; }
+    .mk-lab .mk-pctlab { font-size: 11px; font-weight: 700; fill: var(--ink); }
     .map-credit { font-size: 10px; color: #b9b6ae; margin-top: 8px; }
     .map-credit a { color: #b9b6ae; }
 
@@ -142,8 +141,11 @@
     .sb-region { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; opacity: 0.92; }
     .sb-pct { font-size: 26px; font-weight: 800; line-height: 1; letter-spacing: -0.01em; }
     .sb-models { font-size: 11px; opacity: 0.8; margin-top: 3px; }
-    .sb-delta { font-size: 12px; font-weight: 700; padding: 4px 9px; border-radius: 999px; background: rgba(255,255,255,0.16); white-space: nowrap; }
-    .sb-delta.sb-up { background: rgba(46,157,120,0.9); } .sb-delta.sb-down { background: rgba(179,64,46,0.9); } .sb-delta.sb-flat { background: rgba(255,255,255,0.18); }
+    .sb-delta { font-size: 15px; font-weight: 700; white-space: nowrap; }
+    .sb-delta.sb-up { color: #46d091; } .sb-delta.sb-down { color: #ff7a63; } .sb-delta.sb-flat { color: rgba(255,255,255,0.7); }
+    .sb-row.sb-light { color: #4a3a00; }
+    .sb-row.sb-light .sb-region { color: #7a5c00; }
+    .sb-row.sb-light .sb-delta.sb-up { color: #1c7d50; } .sb-row.sb-light .sb-delta.sb-down { color: #b3402e; } .sb-row.sb-light .sb-delta.sb-flat { color: rgba(0,0,0,0.5); }
 
     /* Weekly summary line */
     .weekline { margin: 26px 0 8px; padding: 14px 18px; background: var(--panel); border-left: 3px solid var(--yellow); font-size: 14px; color: var(--body); }
@@ -182,7 +184,7 @@
     .rec-card { background: var(--card); padding: 26px; border: 1px solid var(--line); }
     .rec-card.europe { background: #fffbe6; border-color: #f0e6a8; }
     .rec-k { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 6px; }
-    .rec-status { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--up); font-weight: 700; margin-bottom: 14px; }
+    .rec-status { font-size: 11px; color: var(--mid); font-weight: 500; margin-bottom: 16px; }
     .rec-v { font-size: 26px; font-weight: 800; line-height: 1.15; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.02em; }
     .rec-d { font-size: 13px; color: var(--mid); }
     .rec-card.europe .rec-k { color: #9a7d12; }
@@ -513,9 +515,12 @@
 
     var BASE = '/research/model-adoption';
     var WM_URL = BASE + '/world-map.svg';
-    // marker anchors + tint countries in the world-map.svg coordinate space
-    var MAP_ANCHOR = { US:[205,407], Europe:[458,353], Asia:[650,400] };
-    var MAP_TINT = { us:'US', cn:'Asia', fr:'Europe' };
+    // marker: {c:[circle x,y], lab:[label anchor x,y]} in the world-map.svg viewBox
+    var MK = {
+      US:     { c:[205,405], lab:[120,522] },
+      Asia:   { c:[650,398], lab:[706,522] },
+      Europe: { c:[458,352], lab:[452,282] }
+    };
 
     function regionFromUrl(){
       var p = (new URLSearchParams(location.search)).get('region');
@@ -573,36 +578,38 @@
         box.innerHTML = txt;
         var svg = box.querySelector('svg');
         if(!svg) return;
+        var NS = 'http://www.w3.org/2000/svg';
         svg.removeAttribute('width'); svg.removeAttribute('height');
         svg.setAttribute('preserveAspectRatio','xMidYMid meet');
         svg.setAttribute('class','wmap');
         svg.setAttribute('role','img');
         svg.setAttribute('aria-label','World map of model origin. ' + altParts.join('; ') + '.');
+        // dotted landmass: fill every country with a grey dot pattern
+        var defs = document.createElementNS(NS,'defs');
+        defs.innerHTML = '<pattern id="wm-dots" width="6.4" height="6.4" patternUnits="userSpaceOnUse"><circle cx="1.6" cy="1.6" r="1.25" fill="#d2cfc7"/></pattern>';
+        svg.insertBefore(defs, svg.firstChild);
         Array.prototype.forEach.call(svg.querySelectorAll('path'), function(p){
-          p.setAttribute('class', ((p.getAttribute('class')||'') + ' wm-c').trim());
+          p.setAttribute('fill','url(#wm-dots)'); p.setAttribute('stroke','none');
         });
-        // tint the actual origin countries in their region colour
-        Object.keys(MAP_TINT).forEach(function(cc){
-          var el = svg.querySelector('#'+cc); if(!el) return;
-          var reg = MAP_TINT[cc]; var dim = (FILTER!=='World' && FILTER!==reg);
-          el.style.fill = REGION_VAR[reg]; el.style.fillOpacity = dim ? 0.28 : 0.62;
-        });
-        // labelled origin markers
-        var NS = 'http://www.w3.org/2000/svg';
-        Object.keys(MAP_ANCHOR).forEach(function(region){
+        // origin markers: leader line + solid circle (size = model count) + external label
+        ['US','Asia','Europe'].forEach(function(region){
           var s = byRegion[region]; if(!s) return;
-          var pos = MAP_ANCHOR[region];
-          var r = Math.max(9, Math.min(30, 9 + s.models*1.25));
+          var m = MK[region]; var color = REGION_VAR[region];
+          var r = Math.max(7, Math.min(30, 7 + s.models*1.7));
           var dim = (FILTER!=='World' && FILTER!==region);
+          var lx = m.lab[0], ly = m.lab[1], above = (region==='Europe');
+          var lineY2 = above ? ly + 4 : ly - 30;
           var g = document.createElementNS(NS,'g');
           g.setAttribute('class','mk-marker'); g.setAttribute('tabindex','0'); g.setAttribute('role','button');
           g.setAttribute('aria-label','Filter to ' + region + ', ' + s.models + ' models, ' + s.pct.toFixed(2) + '% share');
           g.setAttribute('data-r', region); g.style.opacity = dim ? 0.4 : 1;
+          var lines = '<tspan class="mk-region" x="'+lx+'" y="'+ly+'">'+region.toUpperCase()+'</tspan>';
+          if(s.models>0){ lines += '<tspan class="mk-models" x="'+lx+'" dy="15">'+s.models+' MODELS</tspan>'; }
+          lines += '<tspan class="mk-pctlab" x="'+lx+'" dy="15">'+(s.pct<1?'<1%':s.pct.toFixed(2)+'%')+'</tspan>';
           g.innerHTML =
-            '<circle class="mk-hit" cx="'+pos[0]+'" cy="'+pos[1]+'" r="'+r+'" fill="'+(REGION_VAR[region]||'var(--r-other)')+'" fill-opacity="0.94" stroke="#fff" stroke-width="1.5"/>' +
-            (s.models>0 ? '<text class="mk-count" x="'+pos[0]+'" y="'+pos[1]+'">'+s.models+'</text>' : '') +
-            '<text class="mk-label" x="'+pos[0]+'" y="'+(pos[1]+r+15)+'">'+region.toUpperCase()+'</text>' +
-            '<text class="mk-sub" x="'+pos[0]+'" y="'+(pos[1]+r+29)+'">'+s.pct.toFixed(2)+'% of tokens</text>';
+            '<line x1="'+m.c[0]+'" y1="'+m.c[1]+'" x2="'+lx+'" y2="'+lineY2+'" stroke="'+color+'" stroke-width="1" opacity="0.5"/>' +
+            '<circle class="mk-hit" cx="'+m.c[0]+'" cy="'+m.c[1]+'" r="'+r+'" fill="'+color+'" stroke="#fff" stroke-width="1.5"/>' +
+            '<text class="mk-lab" text-anchor="middle">'+lines+'</text>';
           function go(){ setFilter(region); }
           g.addEventListener('click', go);
           g.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
@@ -624,7 +631,8 @@
       var rows = d.share.slice().sort(function(a,b){ return b.pct - a.pct; });
       document.getElementById('sb-rows').innerHTML = rows.map(function(s){
         var dim = (FILTER !== 'World' && FILTER !== s.region);
-        return '<div class="sb-row' + (dim?' dim':'') + '" style="background:' + (REGION_VAR[s.region]||'var(--r-other)') + '">' +
+        var light = (s.region === 'Europe');  // vivid yellow block -> dark text
+        return '<div class="sb-row' + (dim?' dim':'') + (light?' sb-light':'') + '" style="background:' + (REGION_VAR[s.region]||'var(--r-other)') + '">' +
           '<div><div class="sb-region">' + esc(s.region) + '</div><div class="sb-pct">' + s.pct.toFixed(2) + '%</div>' +
           '<div class="sb-models">' + s.models + ' model' + (s.models===1?'':'s') + ' in top 20</div></div>' +
           deltaPill(s.delta_pp) + '</div>';
@@ -682,11 +690,14 @@
       }).join('');
     }
 
+    var REC_STATUS = { europe_high_water:'High-water mark', longest_reign:'All-time record', current_streak:'Current holder', biggest_mover:'Biggest this week', steepest_fall:'Steepest this week', new_entrants:'This week' };
     function renderRecords(d){
       var g = document.getElementById('records');
       g.innerHTML = d.records.map(function(r){
+        var st = REC_STATUS[r.key] || '';
         return '<div class="rec-card' + (r.europe ? ' europe' : '') + '">' +
           '<div class="rec-k">' + esc(r.label) + '</div>' +
+          (st ? '<div class="rec-status">' + esc(st) + '</div>' : '') +
           '<div class="rec-v">' + esc(r.value) + '</div>' +
           '<div class="rec-d">' + esc(r.detail) + '</div>' +
         '</div>';
