@@ -654,12 +654,20 @@ def main():
     preg, pmod = agg(history, prior_days)
     ctot = sum(creg.values()) or 1
     ptot = sum(preg.values()) or 1
+    # regional share four weeks ago (the 7-day window ending ~28 days back), for
+    # an accurate month-over-month delta in the report. Falls back to the oldest
+    # available window if history is shorter than four weeks.
+    month_days = dates[-28:-21] if len(dates) >= 28 else dates[:7]
+    mreg, _ = agg(history, month_days)
+    mtot = sum(mreg.values()) or 1
 
     share = []
     for rg in REGION_ORDER:
         cs = 100 * creg[rg] / ctot
         ps = 100 * preg[rg] / ptot
-        share.append({"region": rg, "pct": round(cs, 2), "delta_pp": round(cs - ps, 2)})
+        ms = 100 * mreg[rg] / mtot
+        share.append({"region": rg, "pct": round(cs, 2), "delta_pp": round(cs - ps, 2),
+                      "delta_pp_4w": round(cs - ms, 2)})
 
     crk, citems = ranked(cmod)
     prk, _ = ranked(pmod)
@@ -849,6 +857,13 @@ def main():
         gen_model_pages.generate()
     except Exception as e:  # noqa: BLE001
         print(f"WARNING: model page generation failed: {e}", file=sys.stderr)
+
+    # the monthly intelligence report (data-backed sections auto-written)
+    try:
+        import gen_report
+        gen_report.generate()
+    except Exception as e:  # noqa: BLE001
+        print(f"WARNING: report generation failed: {e}", file=sys.stderr)
 
     print(f"snapshots written: {written}  history days: {len(dates)}  as_of: {as_of}")
     print(f"current week: {cur_days[0]} -> {cur_days[-1]}")
