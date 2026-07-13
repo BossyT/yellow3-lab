@@ -5,9 +5,9 @@
     "region": "US",
     "country": "United States",
     "official_url": null,
-    "logo_path": "/research/model-adoption/logos/anthropic.svg",
-    "logo_source_url": "https://github.com/lobehub/lobe-icons",
-    "logo_verified_at": "2026-07-13"
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   },
   "arcee-ai": {
     "slug": "arcee-ai",
@@ -45,9 +45,9 @@
     "region": "Other",
     "country": "Canada",
     "official_url": null,
-    "logo_path": "/research/model-adoption/logos/cohere.svg",
-    "logo_source_url": "https://github.com/lobehub/lobe-icons",
-    "logo_verified_at": "2026-07-13"
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   },
   "deepseek": {
     "slug": "deepseek",
@@ -55,9 +55,9 @@
     "region": "Asia",
     "country": "China",
     "official_url": null,
-    "logo_path": "/research/model-adoption/logos/deepseek.svg",
-    "logo_source_url": "https://github.com/lobehub/lobe-icons",
-    "logo_verified_at": "2026-07-13"
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   },
   "google": {
     "slug": "google",
@@ -65,9 +65,9 @@
     "region": "US",
     "country": "United States",
     "official_url": null,
-    "logo_path": "/research/model-adoption/logos/google.svg",
-    "logo_source_url": "https://github.com/lobehub/lobe-icons",
-    "logo_verified_at": "2026-07-13"
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   },
   "inclusionai": {
     "slug": "inclusionai",
@@ -85,9 +85,9 @@
     "region": "US",
     "country": "United States",
     "official_url": null,
-    "logo_path": "/research/model-adoption/logos/meta-llama.svg",
-    "logo_source_url": "https://github.com/lobehub/lobe-icons",
-    "logo_verified_at": "2026-07-13"
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   },
   "minimax": {
     "slug": "minimax",
@@ -95,9 +95,9 @@
     "region": "Asia",
     "country": "China",
     "official_url": null,
-    "logo_path": "/research/model-adoption/logos/minimax.svg",
-    "logo_source_url": "https://github.com/lobehub/lobe-icons",
-    "logo_verified_at": "2026-07-13"
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   },
   "mistralai": {
     "slug": "mistralai",
@@ -105,9 +105,9 @@
     "region": "Europe",
     "country": "France",
     "official_url": null,
-    "logo_path": "/research/model-adoption/logos/mistralai.svg",
-    "logo_source_url": "https://github.com/lobehub/lobe-icons",
-    "logo_verified_at": "2026-07-13"
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   },
   "moonshotai": {
     "slug": "moonshotai",
@@ -115,9 +115,9 @@
     "region": "Asia",
     "country": "China",
     "official_url": null,
-    "logo_path": "/research/model-adoption/logos/moonshotai.svg",
-    "logo_source_url": "https://github.com/lobehub/lobe-icons",
-    "logo_verified_at": "2026-07-13"
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   },
   "nex-agi": {
     "slug": "nex-agi",
@@ -135,9 +135,9 @@
     "region": "US",
     "country": "United States",
     "official_url": null,
-    "logo_path": "/research/model-adoption/logos/nvidia.svg",
-    "logo_source_url": "https://github.com/lobehub/lobe-icons",
-    "logo_verified_at": "2026-07-13"
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   },
   "openai": {
     "slug": "openai",
@@ -145,9 +145,9 @@
     "region": "US",
     "country": "United States",
     "official_url": null,
-    "logo_path": "/research/model-adoption/logos/openai.svg",
-    "logo_source_url": "https://github.com/lobehub/lobe-icons",
-    "logo_verified_at": "2026-07-13"
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   },
   "openrouter": {
     "slug": "openrouter",
@@ -165,9 +165,9 @@
     "region": "US",
     "country": "United States",
     "official_url": null,
-    "logo_path": "/research/model-adoption/logos/perplexity.svg",
-    "logo_source_url": "https://github.com/lobehub/lobe-icons",
-    "logo_verified_at": "2026-07-13"
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   },
   "poolside": {
     "slug": "poolside",
@@ -185,9 +185,9 @@
     "region": "Asia",
     "country": "China",
     "official_url": null,
-    "logo_path": "/research/model-adoption/logos/qwen.svg",
-    "logo_source_url": "https://github.com/lobehub/lobe-icons",
-    "logo_verified_at": "2026-07-13"
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   },
   "stepfun": {
     "slug": "stepfun",
@@ -195,9 +195,9 @@
     "region": "Asia",
     "country": "China",
     "official_url": null,
-    "logo_path": "/research/model-adoption/logos/stepfun.svg",
-    "logo_source_url": "https://github.com/lobehub/lobe-icons",
-    "logo_verified_at": "2026-07-13"
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   },
   "tencent": {
     "slug": "tencent",
@@ -205,9 +205,9 @@
     "region": "Asia",
     "country": "China",
     "official_url": null,
-    "logo_path": "/research/model-adoption/logos/tencent.svg",
-    "logo_source_url": "https://github.com/lobehub/lobe-icons",
-    "logo_verified_at": "2026-07-13"
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   },
   "x-ai": {
     "slug": "x-ai",
@@ -215,9 +215,9 @@
     "region": "US",
     "country": "United States",
     "official_url": null,
-    "logo_path": "/research/model-adoption/logos/x-ai.svg",
-    "logo_source_url": "https://github.com/lobehub/lobe-icons",
-    "logo_verified_at": "2026-07-13"
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   },
   "xiaomi": {
     "slug": "xiaomi",
@@ -225,9 +225,9 @@
     "region": "Asia",
     "country": "China",
     "official_url": null,
-    "logo_path": "/research/model-adoption/logos/xiaomi.svg",
-    "logo_source_url": "https://github.com/simple-icons/simple-icons",
-    "logo_verified_at": "2026-07-13"
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   },
   "z-ai": {
     "slug": "z-ai",
@@ -235,8 +235,8 @@
     "region": "Asia",
     "country": "China",
     "official_url": null,
-    "logo_path": "/research/model-adoption/logos/z-ai.svg",
-    "logo_source_url": "https://github.com/lobehub/lobe-icons",
-    "logo_verified_at": "2026-07-13"
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   }
 }
