@@ -584,9 +584,12 @@
         svg.setAttribute('class','wmap');
         svg.setAttribute('role','img');
         svg.setAttribute('aria-label','World map of model origin. ' + altParts.join('; ') + '.');
-        // dotted landmass: fill every country with a grey dot pattern
+        // landmass: solid light-grey base + subtle darker dot texture, so the
+        // continents read clearly (dense, like the reference) rather than faint.
         var defs = document.createElementNS(NS,'defs');
-        defs.innerHTML = '<pattern id="wm-dots" width="6.4" height="6.4" patternUnits="userSpaceOnUse"><circle cx="1.6" cy="1.6" r="1.25" fill="#d2cfc7"/></pattern>';
+        defs.innerHTML = '<pattern id="wm-dots" width="5" height="5" patternUnits="userSpaceOnUse">' +
+          '<rect width="5" height="5" fill="#e6e3db"/>' +
+          '<circle cx="1.5" cy="1.5" r="1.15" fill="#c3bfb2"/></pattern>';
         svg.insertBefore(defs, svg.firstChild);
         Array.prototype.forEach.call(svg.querySelectorAll('path'), function(p){
           p.setAttribute('fill','url(#wm-dots)'); p.setAttribute('stroke','none');
