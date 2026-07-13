@@ -56,10 +56,10 @@
           <div>
             <div class="mx-provider">Model provider</div>
             <h1>NVIDIA Nemotron 3 Super 120b A12b (free)</h1>
-            <div class="mx-meta">Built by NVIDIA &middot; US &middot; United States &middot; First tracked 4 May 2026</div>
+            <div class="mx-meta">Built by NVIDIA &middot; US &middot; United States &middot; First tracked 4 May 2026 &middot; Pricing verified 12 Jul 2026</div>
           </div>
         </div>
-        <span class="official official-none">Official model page not yet on record</span>
+        <div class="mx-head-links"><span class="official official-none">Official model page not yet on record</span><a class="official official-pricing" href="https://openrouter.ai/nvidia/nemotron-3-super-120b-a12b:free" target="_blank" rel="noopener noreferrer">Official pricing <span>&#8599;</span></a></div>
       </header>
 
       <section class="status-strip" aria-label="Current status">
@@ -68,11 +68,51 @@
         <div class="ss"><span class="ss-v"><span class="mv mv-down" style="color:#b3402e">&#9660; 1<span class="sr">places down</span></span></span><span class="ss-l">This week</span></div>
         <div class="ss"><span class="ss-v">10 weeks ranked</span><span class="ss-l">Streak</span></div>
         <div class="ss"><span class="ss-v">#11</span><span class="ss-l">Peak rank</span></div>
+        <div class="ss"><span class="ss-v ss-price">Low cost</span><span class="ss-l">Price position</span></div>
       </section>
 
       <section class="mx-sec">
-        <div class="sec-label">Adoption over time</div>
-        <p class="sec-sub">Routed-token share, week by week. The figures are in the rank history table below.</p>
+        <div class="sec-label">Model economics</div>
+        <div class="etiles"><div class="etile"><div class="et-l">Input</div><div class="et-v">$0.00</div><div class="et-s">/ 1M tokens</div></div><div class="etile"><div class="et-l">Output</div><div class="et-v">$0.00</div><div class="et-s">/ 1M tokens</div></div><div class="etile"><div class="et-l">Cached input</div><div class="et-v"><span class="et-na">Not published</span></div><div class="et-s">/ 1M tokens</div></div><div class="etile"><div class="et-l">Free tier</div><div class="et-v"><span class="et-yes">Available</span></div><div class="et-s">on OpenRouter</div></div><div class="etile"><div class="et-l">Context window</div><div class="et-v">1M</div><div class="et-s">tokens</div></div><div class="etile"><div class="et-l">Weights</div><div class="et-v">Open weights</div><div class="et-s">license basis</div></div></div>
+        <p class="src-note">Live per-token pricing via OpenRouter, verified 12 Jul 2026. Batch and long-context tiers are not published in the feed, so they are omitted rather than estimated.</p>
+      </section>
+
+      <section class="mx-sec">
+        <div class="sec-label">What would it cost you?</div>
+        <div class="calc" id="calc">
+  <div class="calc-panel">
+    <div class="wl-tabs" role="tablist" aria-label="Workload preset">
+      <button class="wl-tab" data-wl="customer-support">Customer support</button>
+      <button class="wl-tab" data-wl="document-analysis">Document analysis</button>
+      <button class="wl-tab active" data-wl="coding-agent">Coding agent</button>
+    </div>
+    <div class="calc-fields">
+      <label class="cf">Monthly tasks<input type="number" id="c-tasks" min="0" step="100"></label>
+      <label class="cf">Input tokens / task<input type="number" id="c-inp" min="0" step="1000"></label>
+      <label class="cf">Output tokens / task<input type="number" id="c-outp" min="0" step="1000"></label>
+      <label class="cf cf-slider">Cached input <b><span id="c-cached-v">70</span>%</b>
+        <input type="range" id="c-cached" min="0" max="100" step="5" value="70"></label>
+    </div>
+  </div>
+  <div class="calc-out">
+    <div class="co-l">Estimated monthly cost</div>
+    <div class="co-total" id="c-total">$0</div>
+    <div class="co-row"><span>Input (uncached)</span><span id="c-unc">$0</span></div>
+    <div class="co-row"><span>Cached input</span><span id="c-cac">$0</span></div>
+    <div class="co-row"><span>Output</span><span id="c-out">$0</span></div>
+    <div class="co-per" id="c-per">$0 per completed task</div>
+  </div>
+</div>
+<p class="calc-note">An estimate from published per-token pricing and your assumptions. Actual costs vary by provider and usage tier.</p>
+      </section>
+
+      <section class="mx-sec">
+        <div class="sec-label">Compare the same workload</div>
+        <div class="compare" id="compare"><div class="cmp-row" data-slug="nvidia-nemotron-3-super-120b-a12b-free"><span class="cmp-name cmp-you">NVIDIA Nemotron 3 Super 120b A12b (free) (You)</span><span class="cmp-bar"><span class="cmp-fill cmp-fill-you"></span></span><span class="cmp-val">$0</span></div><div class="cmp-row" data-slug="deepseek-v4-flash"><span class="cmp-name">DeepSeek V4 Flash</span><span class="cmp-bar"><span class="cmp-fill"></span></span><span class="cmp-val">$0</span></div><div class="cmp-row" data-slug="google-gemini-2-5-flash"><span class="cmp-name">Google Gemini 2.5 Flash</span><span class="cmp-bar"><span class="cmp-fill"></span></span><span class="cmp-val">$0</span></div><div class="cmp-row" data-slug="anthropic-claude-sonnet-5"><span class="cmp-name">Anthropic Claude Sonnet 5</span><span class="cmp-bar"><span class="cmp-fill"></span></span><span class="cmp-val">$0</span></div></div><p class="calc-note">Same workload as the calculator above, at each model's current price. Monthly USD.</p>
+      </section>
+      <section class="mx-sec">
+        <div class="sec-label">Price and adoption</div>
+        <p class="sec-sub">Routed-token share over time. A price line joins it as real changes are recorded.</p>
         <div class="chart-wrap">
   <svg viewBox="0 0 720 300" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Weekly routed share over time. The underlying figures are in the rank history table below.">
     <g class="grids"><line x1="46" y1="260.0" x2="700" y2="260.0" class="grid" /><text x="38" y="264.0" class="yl">0%</text><line x1="46" y1="181.3" x2="700" y2="181.3" class="grid" /><text x="38" y="185.3" class="yl">1%</text><line x1="46" y1="102.7" x2="700" y2="102.7" class="grid" /><text x="38" y="106.7" class="yl">2%</text><line x1="46" y1="24.0" x2="700" y2="24.0" class="grid" /><text x="38" y="28.0" class="yl">3%</text></g>
@@ -83,12 +123,24 @@
   </svg>
   <div class="chart-span">All 10 tracked weeks &middot; 10 May to 12 Jul. Longer periods open as the record grows.</div>
 </div>
+        <div class="pos-box"><div class="pos-h">Price-to-adoption position</div><div class="pos-label">Value play</div><p class="pos-sub">Low cost &middot; adoption falling. Observed relationship, not proof of causation.</p></div>
+      </section>
+
+      <section class="mx-sec two-col">
+        <div>
+          <div class="sec-label">Speed &amp; reliability</div>
+          <div class="status-strip speed-strip"><div class="ss"><span class="ss-v">99.70%</span><span class="ss-l">Availability (30d)</span></div><div class="ss"><span class="ss-v">0.30%</span><span class="ss-l">Error / downtime</span></div></div><p class="src-note">Median provider uptime across OpenRouter endpoints, last 30 days. Latency and throughput are not published by the source and are not estimated here.</p>
+        </div>
+        <div>
+          <div class="sec-label">Capabilities</div>
+          <table class="cap-table"><tbody><tr><td>Context window</td><td>1M</td></tr><tr><td>Reasoning</td><td><span class="cap-yes">&#10003;</span> Supported</td></tr><tr><td>Tool calling</td><td><span class="cap-yes">&#10003;</span> Supported</td></tr><tr><td>Structured output</td><td><span class="cap-yes">&#10003;</span> Supported</td></tr><tr><td>Image input</td><td><span class="cap-no">&mdash;</span> Not supported</td></tr><tr><td>Audio input</td><td><span class="cap-no">&mdash;</span> Not supported</td></tr><tr><td>Video input</td><td><span class="cap-no">&mdash;</span> Not supported</td></tr><tr><td>Open weights</td><td><span class="cap-yes">&#10003;</span> Yes</td></tr><tr><td>API availability</td><td><span class="cap-yes">&#10003;</span> Yes</td></tr><tr><td>Commercial license</td><td>Verify terms with the provider</td></tr></tbody></table>
+        </div>
       </section>
 
       <section class="mx-sec two-col">
         <div>
           <div class="sec-label">At a glance</div>
-          <dl class="glance"><div class="glance-head">Observed by yellow3</div><div class="glance-row"><dt>Current rank</dt><dd>#25</dd></div><div class="glance-row"><dt>Peak rank</dt><dd>#11</dd></div><div class="glance-row"><dt>Routed share</dt><dd>0.69%</dd></div><div class="glance-row"><dt>Peak share</dt><dd>2.29%</dd></div><div class="glance-row"><dt>Weeks ranked</dt><dd>10</dd></div><div class="glance-row"><dt>First tracked</dt><dd>4 May 2026</dd></div><div class="glance-row"><dt>Region of origin</dt><dd>US &middot; United States</dd></div><div class="glance-head">Model facts</div><div class="glance-row"><dt>Provider</dt><dd>NVIDIA</dd></div><div class="glance-row"><dt>Model family</dt><dd class="undisclosed">Not publicly disclosed</dd></div><div class="glance-row"><dt>Release date</dt><dd class="undisclosed">Not publicly disclosed</dd></div><div class="glance-row"><dt>Type</dt><dd class="undisclosed">Not publicly disclosed</dd></div><div class="glance-row"><dt>Modalities</dt><dd class="undisclosed">Not publicly disclosed</dd></div><div class="glance-row"><dt>Context window</dt><dd class="undisclosed">Not publicly disclosed</dd></div><div class="glance-row"><dt>Weights</dt><dd class="undisclosed">Not publicly disclosed</dd></div><div class="glance-row"><dt>License</dt><dd class="undisclosed">Not publicly disclosed</dd></div></dl>
+          <dl class="glance"><div class="glance-head">Observed by yellow3</div><div class="glance-row"><dt>Current rank</dt><dd>#25</dd></div><div class="glance-row"><dt>Peak rank</dt><dd>#11</dd></div><div class="glance-row"><dt>Routed share</dt><dd>0.69%</dd></div><div class="glance-row"><dt>Peak share</dt><dd>2.29%</dd></div><div class="glance-row"><dt>Weeks ranked</dt><dd>10</dd></div><div class="glance-row"><dt>First tracked</dt><dd>4 May 2026</dd></div><div class="glance-row"><dt>Region of origin</dt><dd>US &middot; United States</dd></div><div class="glance-head">Model facts</div><div class="glance-row"><dt>Provider</dt><dd>NVIDIA</dd></div><div class="glance-row"><dt>Model family</dt><dd class="undisclosed">Not publicly disclosed</dd></div><div class="glance-row"><dt>Release date</dt><dd class="undisclosed">Not publicly disclosed</dd></div><div class="glance-row"><dt>Type</dt><dd>Text</dd></div><div class="glance-row"><dt>Modalities</dt><dd>text</dd></div><div class="glance-row"><dt>Context window</dt><dd>1M tokens</dd></div><div class="glance-row"><dt>Weights</dt><dd>Open weight</dd></div><div class="glance-row"><dt>License</dt><dd class="undisclosed">Not publicly disclosed</dd></div></dl>
         </div>
         <div>
           <div class="sec-label">Why it is moving</div>
@@ -115,6 +167,10 @@
         </div>
       </section>
 
+      <section class="mx-sec">
+        <div class="sec-label">Price history</div>
+        <div class="table-scroll"><table class="rank-history"><thead><tr><th>Date</th><th>Input / 1M</th><th>Output / 1M</th><th>Change</th><th>Source</th></tr></thead><tbody><tr><td>12 Jul 2026</td><td class="num">$0.00</td><td class="num">$0.00</td><td><span class="ph-flat">&mdash;</span></td><td>OpenRouter listed price</td></tr></tbody></table></div><p class="src-note">Price history begins when yellow3 started tracking this model and accrues one point per change from here. Only real, observed price changes are recorded.</p>
+      </section>
       <section class="mx-sec">
         <div class="sec-label">Milestones</div>
         <ul class="milestones"><li class="ms"><span class="ms-date">4 May 2026</span><span class="ms-title">First tracked</span><span class="ms-src">Derived from yellow3 routed-traffic data</span></li><li class="ms"><span class="ms-date">10 May 2026</span><span class="ms-title">Entered top 20</span><span class="ms-src">Derived from yellow3 routed-traffic data</span></li><li class="ms"><span class="ms-date">17 May 2026</span><span class="ms-title">Peak routed share <span class="ms-val">2.29%</span></span><span class="ms-src">Derived from yellow3 routed-traffic data</span></li><li class="ms"><span class="ms-date">17 May 2026</span><span class="ms-title">Biggest weekly rise <span class="ms-val">+3 places</span></span><span class="ms-src">Derived from yellow3 routed-traffic data</span></li><li class="ms"><span class="ms-date">14 Jun 2026</span><span class="ms-title">Biggest weekly fall <span class="ms-val">-10 places</span></span><span class="ms-src">Derived from yellow3 routed-traffic data</span></li></ul>
@@ -177,5 +233,7 @@
       </div>
     </div>
   </footer>
+<script>window.__ECON={"you": {"in": 0.0, "out": 0.0, "cache_read": null}, "compare": [{"slug": "nvidia-nemotron-3-super-120b-a12b-free", "name": "NVIDIA Nemotron 3 Super 120b A12b (free)", "in": 0.0, "out": 0.0, "cache_read": null, "you": true}, {"slug": "deepseek-v4-flash", "name": "DeepSeek V4 Flash", "in": 9e-08, "out": 1.8e-07, "cache_read": 1.8e-08, "you": false}, {"slug": "google-gemini-2-5-flash", "name": "Google Gemini 2.5 Flash", "in": 3e-07, "out": 2.5e-06, "cache_read": 3e-08, "you": false}, {"slug": "anthropic-claude-sonnet-5", "name": "Anthropic Claude Sonnet 5", "in": 2e-06, "out": 1e-05, "cache_read": 2e-07, "you": false}], "workloads": {"coding-agent": {"label": "Coding agent", "tasks": 1000, "inp": 100000, "outp": 10000, "cached": 0.7}, "customer-support": {"label": "Customer support", "tasks": 50000, "inp": 2000, "outp": 500, "cached": 0.3}, "document-analysis": {"label": "Document analysis", "tasks": 5000, "inp": 50000, "outp": 2000, "cached": 0.2}}};</script>
+  <script src="/research/model-adoption/model.js" defer></script>
 </body>
 </html>

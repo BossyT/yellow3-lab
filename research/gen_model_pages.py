@@ -412,7 +412,150 @@ def head(m, provider, meta, updated_iso):
 
 # ------------------------------------------------------------------ page --
 
-def render_page(m, provider, meta, models_by_slug, page_slugs, site):
+# ------------------------------------------------------------- economics --
+
+def fmt_m(v):
+    """A per-token price formatted as $ per 1M tokens."""
+    if v is None:
+        return None
+    pm = v * 1e6
+    if pm == 0:
+        return "$0.00"
+    if pm < 0.1:
+        return f"${pm:.3f}"
+    return f"${pm:.2f}"
+
+
+def econ_tiles(e):
+    def tile(label, value, sub="/ 1M tokens"):
+        return (f'<div class="etile"><div class="et-l">{esc(label)}</div>'
+                f'<div class="et-v">{value}</div><div class="et-s">{esc(sub)}</div></div>')
+    ctx = e.get("context")
+    ctx_txt = f'{round(ctx/1000)}K' if ctx and ctx < 1_000_000 else (f'{ctx/1_000_000:.1f}M'.replace('.0M', 'M') if ctx else '&mdash;')
+    weights = "Open weights" if e.get("open_weight") else "Proprietary"
+    return "".join([
+        tile("Input", fmt_m(e["in"]) or "&mdash;"),
+        tile("Output", fmt_m(e["out"]) or "&mdash;"),
+        tile("Cached input", fmt_m(e["cache_read"]) or '<span class="et-na">Not published</span>'),
+        tile("Free tier", '<span class="et-yes">Available</span>' if e.get("free_tier") else '<span class="et-na">&mdash;</span>', "on OpenRouter"),
+        tile("Context window", ctx_txt, "tokens"),
+        tile("Weights", weights, "license basis"),
+    ])
+
+
+def calculator_html(e):
+    return '''<div class="calc" id="calc">
+  <div class="calc-panel">
+    <div class="wl-tabs" role="tablist" aria-label="Workload preset">
+      <button class="wl-tab" data-wl="customer-support">Customer support</button>
+      <button class="wl-tab" data-wl="document-analysis">Document analysis</button>
+      <button class="wl-tab active" data-wl="coding-agent">Coding agent</button>
+    </div>
+    <div class="calc-fields">
+      <label class="cf">Monthly tasks<input type="number" id="c-tasks" min="0" step="100"></label>
+      <label class="cf">Input tokens / task<input type="number" id="c-inp" min="0" step="1000"></label>
+      <label class="cf">Output tokens / task<input type="number" id="c-outp" min="0" step="1000"></label>
+      <label class="cf cf-slider">Cached input <b><span id="c-cached-v">70</span>%</b>
+        <input type="range" id="c-cached" min="0" max="100" step="5" value="70"></label>
+    </div>
+  </div>
+  <div class="calc-out">
+    <div class="co-l">Estimated monthly cost</div>
+    <div class="co-total" id="c-total">$0</div>
+    <div class="co-row"><span>Input (uncached)</span><span id="c-unc">$0</span></div>
+    <div class="co-row"><span>Cached input</span><span id="c-cac">$0</span></div>
+    <div class="co-row"><span>Output</span><span id="c-out">$0</span></div>
+    <div class="co-per" id="c-per">$0 per completed task</div>
+  </div>
+</div>
+<p class="calc-note">An estimate from published per-token pricing and your assumptions. Actual costs vary by provider and usage tier.</p>'''
+
+
+def compare_html(e):
+    rows = "".join(
+        f'<div class="cmp-row" data-slug="{esc(c["slug"])}"><span class="cmp-name{" cmp-you" if c.get("you") else ""}">{esc(c["name"])}{" (You)" if c.get("you") else ""}</span>'
+        f'<span class="cmp-bar"><span class="cmp-fill{" cmp-fill-you" if c.get("you") else ""}"></span></span>'
+        f'<span class="cmp-val">$0</span></div>'
+        for c in (e.get("compare") or []))
+    return f'<div class="compare" id="compare">{rows}</div><p class="calc-note">Same workload as the calculator above, at each model\'s current price. Monthly USD.</p>'
+
+
+def speed_html(e):
+    up = e.get("uptime")
+    if up is None:
+        return ('<p class="sec-sub">Availability monitoring is derived from OpenRouter provider uptime; '
+                'it refreshes with the daily build. Latency and throughput are not exposed by the data source, '
+                'so we do not report them rather than estimate.</p>')
+    err = round(100 - up, 3)
+    return (f'<div class="status-strip speed-strip">'
+            f'<div class="ss"><span class="ss-v">{up:.2f}%</span><span class="ss-l">Availability (30d)</span></div>'
+            f'<div class="ss"><span class="ss-v">{err:.2f}%</span><span class="ss-l">Error / downtime</span></div>'
+            f'</div>'
+            f'<p class="src-note">Median provider uptime across OpenRouter endpoints, last 30 days. '
+            f'Latency and throughput are not published by the source and are not estimated here.</p>')
+
+
+def cap_row(label, ok, note=None):
+    if ok is True:
+        mark, txt = '<span class="cap-yes">&#10003;</span>', note or "Supported"
+    elif ok is False:
+        mark, txt = '<span class="cap-no">&mdash;</span>', note or "Not supported"
+    else:
+        mark, txt = '', note or "Not publicly disclosed"
+    return f'<tr><td>{esc(label)}</td><td>{mark} {txt}</td></tr>'
+
+
+def capabilities_html(e):
+    ctx = e.get("context")
+    ctx_txt = f'{round(ctx/1000)}K' if ctx and ctx < 1_000_000 else (f'{ctx/1_000_000:.1f}M'.replace('.0M', 'M') if ctx else 'Not disclosed')
+    rows = [
+        f'<tr><td>Context window</td><td>{ctx_txt}</td></tr>',
+        cap_row("Reasoning", e.get("reasoning")),
+        cap_row("Tool calling", e.get("tools")),
+        cap_row("Structured output", e.get("structured")),
+        cap_row("Image input", e.get("image_in")),
+        cap_row("Audio input", e.get("audio_in")),
+        cap_row("Video input", e.get("video_in")),
+        cap_row("Open weights", e.get("open_weight"), "Yes" if e.get("open_weight") else "Proprietary"),
+        '<tr><td>API availability</td><td><span class="cap-yes">&#10003;</span> Yes</td></tr>',
+        '<tr><td>Commercial license</td><td>Verify terms with the provider</td></tr>',
+    ]
+    return f'<table class="cap-table"><tbody>{"".join(rows)}</tbody></table>'
+
+
+def price_history_html(e):
+    hist = e.get("price_history") or []
+    body = ""
+    for r in hist:
+        chg = r.get("change_pct")
+        if chg is None:
+            chg_html = '<span class="ph-flat">&mdash;</span>'
+        elif chg < 0:
+            chg_html = f'<span class="ph-down">&#9660; {abs(chg):.0f}%</span>'
+        else:
+            chg_html = f'<span class="ph-up">&#9650; {chg:.0f}%</span>'
+        body += (f'<tr><td>{esc(D(r["date"]))}</td><td class="num">{fmt_m(r["in"])}</td>'
+                 f'<td class="num">{fmt_m(r["out"])}</td><td>{chg_html}</td>'
+                 f'<td>OpenRouter listed price</td></tr>')
+    note = ""
+    if len(hist) <= 1:
+        note = ('<p class="src-note">Price history begins when yellow3 started tracking this model and '
+                'accrues one point per change from here. Only real, observed price changes are recorded.</p>')
+    return (f'<div class="table-scroll"><table class="rank-history"><thead><tr>'
+            f'<th>Date</th><th>Input / 1M</th><th>Output / 1M</th><th>Change</th><th>Source</th>'
+            f'</tr></thead><tbody>{body}</tbody></table></div>{note}')
+
+
+def econ_script(e):
+    payload = {
+        "you": {"in": e["in"], "out": e["out"], "cache_read": e["cache_read"]},
+        "compare": e.get("compare") or [],
+        "workloads": e.get("_workloads") or {},
+    }
+    return f'<script>window.__ECON={json.dumps(payload)};</script>'
+
+
+def render_page(m, provider, meta, models_by_slug, page_slugs, site, econ=None):
     updated = site["as_of"]
     cur = m["current"]
     name = esc(m["name"])
@@ -420,6 +563,57 @@ def render_page(m, provider, meta, models_by_slug, page_slugs, site):
     official = meta.get("official_url") or provider.get("official_url")
     official_link = (f'<a class="official" href="{esc(official)}" target="_blank" rel="noopener noreferrer">Official model page <span>&#8599;</span></a>'
                      if official else '<span class="official official-none">Official model page not yet on record</span>')
+
+    e = econ or None
+    ss_price = econ_js = sec_econ = sec_speed_caps = sec_price_hist = ""
+    pos_box = pricing_link = pricing_meta = ""
+    if e:
+        if e.get("or_url"):
+            pricing_link = (f'<a class="official official-pricing" href="{esc(e["or_url"])}" '
+                            f'target="_blank" rel="noopener noreferrer">Official pricing <span>&#8599;</span></a>')
+            pricing_meta = f' &middot; Pricing verified {esc(D(updated))}'
+        if e.get("price_position"):
+            ss_price = (f'<div class="ss"><span class="ss-v ss-price">{esc(e["price_position"])}</span>'
+                        f'<span class="ss-l">Price position</span></div>')
+        sec_econ = f'''
+      <section class="mx-sec">
+        <div class="sec-label">Model economics</div>
+        <div class="etiles">{econ_tiles(e)}</div>
+        <p class="src-note">Live per-token pricing via OpenRouter, verified {esc(D(updated))}. Batch and long-context tiers are not published in the feed, so they are omitted rather than estimated.</p>
+      </section>
+
+      <section class="mx-sec">
+        <div class="sec-label">What would it cost you?</div>
+        {calculator_html(e)}
+      </section>
+
+      <section class="mx-sec">
+        <div class="sec-label">Compare the same workload</div>
+        {compare_html(e)}
+      </section>'''
+        sec_speed_caps = f'''
+      <section class="mx-sec two-col">
+        <div>
+          <div class="sec-label">Speed &amp; reliability</div>
+          {speed_html(e)}
+        </div>
+        <div>
+          <div class="sec-label">Capabilities</div>
+          {capabilities_html(e)}
+        </div>
+      </section>'''
+        sec_price_hist = f'''
+      <section class="mx-sec">
+        <div class="sec-label">Price history</div>
+        {price_history_html(e)}
+      </section>'''
+        if e.get("position_label"):
+            pos_box = (f'<div class="pos-box"><div class="pos-h">Price-to-adoption position</div>'
+                       f'<div class="pos-label">{esc(e["position_label"])}</div>'
+                       f'<p class="pos-sub">{esc(e.get("price_position") or "")} &middot; adoption {esc(e.get("adoption_trend") or "flat")}. '
+                       f'Observed relationship, not proof of causation.</p></div>')
+        e["_workloads"] = site.get("workloads", {})
+        econ_js = econ_script(e)
 
     parts = [head(m, provider, meta, updated), NAV]
     parts.append(f'''  <main class="mx">
@@ -436,10 +630,10 @@ def render_page(m, provider, meta, models_by_slug, page_slugs, site):
           <div>
             <div class="mx-provider">Model provider</div>
             <h1>{name}</h1>
-            <div class="mx-meta">Built by {esc(m["provider_name"])} &middot; {origin} &middot; First tracked {esc(D(m["first_tracked"]))}</div>
+            <div class="mx-meta">Built by {esc(m["provider_name"])} &middot; {origin} &middot; First tracked {esc(D(m["first_tracked"]))}{pricing_meta}</div>
           </div>
         </div>
-        {official_link}
+        <div class="mx-head-links">{official_link}{pricing_link}</div>
       </header>
 
       <section class="status-strip" aria-label="Current status">
@@ -448,13 +642,16 @@ def render_page(m, provider, meta, models_by_slug, page_slugs, site):
         <div class="ss"><span class="ss-v">{movement_cell(cur["rank_change"])}</span><span class="ss-l">This week</span></div>
         <div class="ss"><span class="ss-v">{streak_text(m)}</span><span class="ss-l">Streak</span></div>
         <div class="ss"><span class="ss-v">#{m["peak_rank"]}</span><span class="ss-l">Peak rank</span></div>
+        {ss_price}
       </section>
-
+{sec_econ}
       <section class="mx-sec">
-        <div class="sec-label">Adoption over time</div>
-        <p class="sec-sub">Routed-token share, week by week. The figures are in the rank history table below.</p>
+        <div class="sec-label">Price and adoption</div>
+        <p class="sec-sub">Routed-token share over time. A price line joins it as real changes are recorded.</p>
         {adoption_chart(m["series"])}
+        {pos_box}
       </section>
+{sec_speed_caps}
 
       <section class="mx-sec two-col">
         <div>
@@ -476,7 +673,7 @@ def render_page(m, provider, meta, models_by_slug, page_slugs, site):
           </table>
         </div>
       </section>
-
+{sec_price_hist}
       <section class="mx-sec">
         <div class="sec-label">Milestones</div>
         <ul class="milestones">{milestones_list(m)}</ul>
@@ -498,6 +695,8 @@ def render_page(m, provider, meta, models_by_slug, page_slugs, site):
     </div>
   </main>
 {FOOTER}
+{econ_js}
+  <script src="{BASE}/model.js" defer></script>
 </body>
 </html>''')
     return "\n".join(parts)
@@ -627,7 +826,102 @@ img{display:block;max-width:100%}a{color:inherit}
 .mx-head{align-items:flex-start}.official{white-space:normal}
 .foot-top{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.status-strip{grid-template-columns:1fr}.foot-top{grid-template-columns:1fr}}
+/* economics */
+.status-strip{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.ss-price{color:var(--r-asia)}
+.mx-head-links{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.official-pricing{white-space:nowrap}
+.etiles{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.etile{background:#fff;padding:20px 18px}
+.et-l{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px}
+.et-v{font-size:24px;font-weight:800;letter-spacing:-.01em;line-height:1.05}
+.et-s{font-size:11px;color:var(--muted);margin-top:6px}
+.et-yes{color:var(--up)}.et-na{color:#b8b6ae;font-weight:400}
+/* calculator */
+.calc{display:grid;grid-template-columns:1.3fr 1fr;gap:0;border:1px solid var(--line)}
+.calc-panel{padding:22px 24px;border-right:1px solid var(--line)}
+.wl-tabs{display:flex;gap:6px;margin-bottom:22px;flex-wrap:wrap}
+.wl-tab{font:inherit;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:8px 12px;border:1px solid var(--line);background:#fff;cursor:pointer;color:var(--body)}
+.wl-tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.calc-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cf{display:flex;flex-direction:column;gap:6px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.cf input[type=number]{font:inherit;font-size:16px;font-weight:600;color:var(--ink);text-transform:none;letter-spacing:0;padding:9px 11px;border:1px solid var(--line);border-radius:6px;width:100%}
+.cf-slider{grid-column:1/-1}.cf-slider b{color:var(--ink)}
+.cf input[type=range]{width:100%;accent-color:var(--r-asia)}
+.calc-out{padding:24px 26px;background:var(--panel);display:flex;flex-direction:column}
+.co-l{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.co-total{font-size:46px;font-weight:800;color:var(--r-asia);letter-spacing:-.02em;line-height:1;margin:8px 0 18px}
+.co-row{display:flex;justify-content:space-between;font-size:14px;color:var(--body);padding:7px 0;border-top:1px solid var(--line)}
+.co-per{margin-top:14px;font-size:15px;font-weight:700;color:var(--r-asia)}
+.calc-note{font-size:12px;color:var(--muted);margin-top:12px}
+/* compare */
+.compare{display:flex;flex-direction:column;gap:2px}
+.cmp-row{display:grid;grid-template-columns:200px 1fr 84px;gap:14px;align-items:center;padding:9px 0}
+.cmp-name{font-size:14px;color:var(--body)}.cmp-you{font-weight:800;color:var(--r-asia)}
+.cmp-bar{height:14px;background:var(--panel)}
+.cmp-fill{display:block;height:100%;background:#3a3a3a;transition:width .3s}.cmp-fill-you{background:var(--r-asia)}
+.cmp-val{text-align:right;font-weight:700;font-size:14px}
+/* position box */
+.pos-box{margin-top:26px;border:1px solid var(--line);padding:22px 24px;max-width:520px}
+.pos-h{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.pos-label{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:6px 0 8px;text-transform:uppercase;color:var(--ink)}
+.pos-sub{font-size:13px;color:var(--muted);line-height:1.5}
+/* speed / capabilities */
+.speed-strip{grid-template-columns:1fr 1fr;margin:0 0 6px}
+.cap-table{width:100%;border-collapse:collapse;font-size:14px}
+.cap-table td{padding:10px 12px;border-bottom:1px solid #f0efea}
+.cap-table td:last-child{text-align:right;font-weight:600}
+.cap-yes{color:var(--up);font-weight:800}.cap-no{color:#b8b6ae}
+.ph-up{color:var(--up);font-weight:700}.ph-down{color:var(--up);font-weight:700}.ph-flat{color:var(--muted)}
+@media(max-width:860px){.etiles{grid-template-columns:repeat(3,1fr)}.calc{grid-template-columns:1fr}.calc-panel{border-right:none;border-bottom:1px solid var(--line)}.cmp-row{grid-template-columns:120px 1fr 70px;gap:10px}}
+@media(max-width:520px){.etiles{grid-template-columns:repeat(2,1fr)}.calc-fields{grid-template-columns:1fr}.speed-strip{grid-template-columns:1fr}}
 """
+
+
+MODEL_JS = """(function(){
+  var E=window.__ECON, calc=document.getElementById('calc');
+  if(!E||!calc) return;
+  var $=function(id){return document.getElementById(id);};
+  var tasks=$('c-tasks'),inp=$('c-inp'),outp=$('c-outp'),cached=$('c-cached'),cv=$('c-cached-v');
+  function cost(p,w){
+    if(!p||p.in==null||p.out==null) return null;
+    var itok=w.tasks*w.inp, otok=w.tasks*w.outp;
+    var crp=(p.cache_read!=null?p.cache_read:p.in);
+    var unc=itok*(1-w.cached)*p.in, cac=itok*w.cached*crp, out=otok*p.out;
+    return {total:unc+cac+out,unc:unc,cac:cac,out:out};
+  }
+  function money(v){ if(v==null) return '\\u2014'; return '$'+(v>=100?v.toFixed(0):v.toFixed(2)); }
+  function readW(){ return {tasks:+tasks.value||0,inp:+inp.value||0,outp:+outp.value||0,cached:(+cached.value||0)/100}; }
+  function render(){
+    var w=readW(); if(cv) cv.textContent=cached.value;
+    var r=cost(E.you,w);
+    if(r){
+      $('c-total').textContent=money(r.total);
+      $('c-unc').textContent=money(r.unc); $('c-cac').textContent=money(r.cac); $('c-out').textContent=money(r.out);
+      var per=w.tasks>0?r.total/w.tasks:0;
+      $('c-per').textContent=(per<1?'$'+per.toFixed(3):money(per))+' per completed task';
+    }
+    var rows=document.querySelectorAll('#compare .cmp-row'), costs=[];
+    (E.compare||[]).forEach(function(c){ var cc=cost(c,w); costs.push(cc?cc.total:null); });
+    var valid=costs.filter(function(x){return x!=null;}); var mx=valid.length?Math.max.apply(null,valid):1;
+    Array.prototype.forEach.call(rows,function(row,i){
+      var t=costs[i], f=row.querySelector('.cmp-fill'), v=row.querySelector('.cmp-val');
+      if(f) f.style.width=(t!=null?100*t/mx:0)+'%'; if(v) v.textContent=money(t);
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.wl-tab'),function(tab){
+    tab.addEventListener('click',function(){
+      var w=(E.workloads||{})[tab.getAttribute('data-wl')];
+      if(w){ tasks.value=w.tasks; inp.value=w.inp; outp.value=w.outp; cached.value=Math.round(w.cached*100); }
+      document.querySelectorAll('.wl-tab').forEach(function(t){t.classList.remove('active');});
+      tab.classList.add('active'); render();
+    });
+  });
+  [tasks,inp,outp,cached].forEach(function(el){ if(el) el.addEventListener('input',render); });
+  var def=(E.workloads||{})['coding-agent'];
+  if(def){ tasks.value=def.tasks; inp.value=def.inp; outp.value=def.outp; cached.value=Math.round(def.cached*100); }
+  render();
+})();"""
 
 # --------------------------------------------------------------- generate --
 
@@ -637,10 +931,18 @@ def generate():
     providers = json.load(open(os.path.join(DATA_DIR, "providers.json")))
     meta_all = json.load(open(os.path.join(DATA_DIR, "model-meta.json")))
     page_slugs = json.load(open(os.path.join(DATA_DIR, "pages.json")))
-    site = {"as_of": main["as_of"], "as_of_pretty": main["as_of_pretty"]}
+    econ_doc = {}
+    try:
+        econ_doc = json.load(open(os.path.join(DATA_DIR, "economics.json")))
+    except (FileNotFoundError, ValueError):
+        pass
+    econ_models = econ_doc.get("models", {})
+    site = {"as_of": main["as_of"], "as_of_pretty": main["as_of_pretty"],
+            "workloads": econ_doc.get("workloads", {})}
 
     os.makedirs(PAGES_DIR, exist_ok=True)
     open(os.path.join(PAGES_DIR, "model.css"), "w").write(CSS)
+    open(os.path.join(PAGES_DIR, "model.js"), "w").write(MODEL_JS)
 
     written = 0
     for slug in page_slugs:
@@ -649,7 +951,7 @@ def generate():
             continue
         provider = providers.get(m["developer"], {"name": m["provider_name"], "region": m["region"], "country": m["country"]})
         meta = meta_all.get(slug, {})
-        htmlout = render_page(m, provider, meta, models, page_slugs, site)
+        htmlout = render_page(m, provider, meta, models, page_slugs, site, econ_models.get(slug))
         open(os.path.join(PAGES_DIR, f"{slug}.html"), "w").write(htmlout)
         written += 1
     print(f"model pages written: {written} -> {PAGES_DIR}")

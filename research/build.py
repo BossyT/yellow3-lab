@@ -41,6 +41,25 @@ MODELS_JSON = os.path.join(DATA_DIR, "models.json")       # derived, regenerated
 PROVIDERS_JSON = os.path.join(DATA_DIR, "providers.json")  # curated (logos/urls), merged
 META_JSON = os.path.join(DATA_DIR, "model-meta.json")     # curated facts, merged
 PAGES_JSON = os.path.join(DATA_DIR, "pages.json")         # append-only page set
+ECON_JSON = os.path.join(DATA_DIR, "economics.json")      # pricing + capabilities
+
+
+def position_to_adoption(pos, trend):
+    """Combine cost tier x adoption trend into a plain-language position label."""
+    low, prem = pos == "Low cost", pos == "Premium"
+    if low and trend == "rising":
+        return "High-growth challenger"
+    if low:
+        return "Value play"
+    if prem and trend == "rising":
+        return "Premium leader"
+    if prem and trend == "falling":
+        return "Under pressure"
+    if trend == "rising":
+        return "Momentum builder"
+    if trend == "falling":
+        return "Losing ground"
+    return "Holding position"
 
 DATASET_URL = "https://openrouter.ai/api/v1/datasets/rankings-daily"
 THESIS = ("See which AI models the world is actually using, where they were "
@@ -614,6 +633,7 @@ def main():
     global AGG_CTX
     ap = argparse.ArgumentParser()
     ap.add_argument("--input", help="local JSON instead of hitting the API")
+    ap.add_argument("--fast", action="store_true", help="skip per-model uptime fetch (local iteration)")
     args = ap.parse_args()
 
     now = dt.datetime.now(dt.timezone.utc)
@@ -676,6 +696,66 @@ def main():
     # per-model histories + registries (data foundation for the model pages)
     models = build_model_series(history, AGG_CTX)
     page_slugs = emit_model_data(models, leaderboard)
+
+    # ---- economics layer: real OpenRouter pricing + capabilities + uptime ----
+    try:
+        import bisect
+        import pricing as pr
+        by_slug_models = {m["slug"]: m for m in models.values()}
+        page_models = {s: by_slug_models[s] for s in page_slugs if s in by_slug_models}
+        econ = pr.build_pricing(page_models, with_uptime=not args.fast)
+        pr.store_snapshot(econ, as_of)
+        phist = pr.load_history()
+
+        wl = pr.WORKLOADS["coding-agent"]
+        costs = {s: pr.workload_cost(e, wl) for s, e in econ.items()}
+        priced = sorted(c for c in costs.values() if c is not None)
+
+        def position(c):
+            if c is None or len(priced) < 2:
+                return None
+            r = bisect.bisect_left(priced, c) / (len(priced) - 1)
+            return "Low cost" if r <= 0.34 else ("Premium" if r >= 0.67 else "Mid cost")
+
+        anchor_order = ["deepseek-v4-flash", "google-gemini-2-5-flash",
+                        "anthropic-claude-sonnet-5", "openai-gpt-5-5", "xiaomi-mimo-v2-5"]
+        anchors = [a for a in anchor_order if a in econ]
+        for s, e in econ.items():
+            cur = by_slug_models.get(s, {}).get("current", {})
+            rc = cur.get("rank_change") or 0
+            trend = "rising" if rc > 0 else ("falling" if rc < 0 else "flat")
+            e["workload_cost"] = costs.get(s)
+            e["price_position"] = position(costs.get(s))
+            e["adoption_trend"] = trend
+            e["position_label"] = position_to_adoption(e["price_position"], trend)
+            e["price_history"] = pr.price_changes(s, phist)
+            comp = [s] + [a for a in anchors if a != s]
+            e["compare"] = [
+                {"slug": cs, "name": by_slug_models[cs]["name"], "in": econ[cs]["in"],
+                 "out": econ[cs]["out"], "cache_read": econ[cs]["cache_read"], "you": cs == s}
+                for cs in comp[:4] if cs in econ and econ[cs].get("in") is not None]
+        # backfill real descriptive facts from the feed onto model-meta (fills
+        # the "Not publicly disclosed" gaps; never overwrites a curated value)
+        meta_all = _load_json(META_JSON, {})
+        for s, e in econ.items():
+            mm = meta_all.setdefault(s, {})
+            ctx = e.get("context")
+            if ctx and not mm.get("context_window"):
+                mm["context_window"] = (f"{round(ctx/1000)}K tokens" if ctx < 1_000_000
+                                        else f"{ctx/1_000_000:.1f}M tokens".replace(".0M", "M"))
+            if e.get("modalities") and not mm.get("modalities"):
+                mm["modalities"] = ", ".join(e["modalities"])
+            if mm.get("open_weight") is None and e.get("open_weight") is not None:
+                mm["open_weight"] = bool(e["open_weight"])
+            if not mm.get("model_type"):
+                mm["model_type"] = "Multimodal (text + image)" if e.get("image_in") else "Text"
+        json.dump(meta_all, open(META_JSON, "w"), indent=2)
+
+        json.dump({"as_of": as_of, "workloads": pr.WORKLOADS, "models": econ},
+                  open(ECON_JSON, "w"), indent=2)
+        print(f"economics: priced {len(econ)} models, {len(phist)} pricing snapshot day(s)")
+    except Exception as exc:  # noqa: BLE001 - never break the data pull
+        print(f"WARNING: economics layer failed: {exc}", file=sys.stderr)
 
     lead = max(share, key=lambda s: s["pct"])
     eu = next(s for s in share if s["region"] == "Europe")

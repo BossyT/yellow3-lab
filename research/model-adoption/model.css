@@ -120,3 +120,52 @@ img{display:block;max-width:100%}a{color:inherit}
 .mx-head{align-items:flex-start}.official{white-space:normal}
 .foot-top{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.status-strip{grid-template-columns:1fr}.foot-top{grid-template-columns:1fr}}
+/* economics */
+.status-strip{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.ss-price{color:var(--r-asia)}
+.mx-head-links{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.official-pricing{white-space:nowrap}
+.etiles{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.etile{background:#fff;padding:20px 18px}
+.et-l{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px}
+.et-v{font-size:24px;font-weight:800;letter-spacing:-.01em;line-height:1.05}
+.et-s{font-size:11px;color:var(--muted);margin-top:6px}
+.et-yes{color:var(--up)}.et-na{color:#b8b6ae;font-weight:400}
+/* calculator */
+.calc{display:grid;grid-template-columns:1.3fr 1fr;gap:0;border:1px solid var(--line)}
+.calc-panel{padding:22px 24px;border-right:1px solid var(--line)}
+.wl-tabs{display:flex;gap:6px;margin-bottom:22px;flex-wrap:wrap}
+.wl-tab{font:inherit;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:8px 12px;border:1px solid var(--line);background:#fff;cursor:pointer;color:var(--body)}
+.wl-tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.calc-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cf{display:flex;flex-direction:column;gap:6px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.cf input[type=number]{font:inherit;font-size:16px;font-weight:600;color:var(--ink);text-transform:none;letter-spacing:0;padding:9px 11px;border:1px solid var(--line);border-radius:6px;width:100%}
+.cf-slider{grid-column:1/-1}.cf-slider b{color:var(--ink)}
+.cf input[type=range]{width:100%;accent-color:var(--r-asia)}
+.calc-out{padding:24px 26px;background:var(--panel);display:flex;flex-direction:column}
+.co-l{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.co-total{font-size:46px;font-weight:800;color:var(--r-asia);letter-spacing:-.02em;line-height:1;margin:8px 0 18px}
+.co-row{display:flex;justify-content:space-between;font-size:14px;color:var(--body);padding:7px 0;border-top:1px solid var(--line)}
+.co-per{margin-top:14px;font-size:15px;font-weight:700;color:var(--r-asia)}
+.calc-note{font-size:12px;color:var(--muted);margin-top:12px}
+/* compare */
+.compare{display:flex;flex-direction:column;gap:2px}
+.cmp-row{display:grid;grid-template-columns:200px 1fr 84px;gap:14px;align-items:center;padding:9px 0}
+.cmp-name{font-size:14px;color:var(--body)}.cmp-you{font-weight:800;color:var(--r-asia)}
+.cmp-bar{height:14px;background:var(--panel)}
+.cmp-fill{display:block;height:100%;background:#3a3a3a;transition:width .3s}.cmp-fill-you{background:var(--r-asia)}
+.cmp-val{text-align:right;font-weight:700;font-size:14px}
+/* position box */
+.pos-box{margin-top:26px;border:1px solid var(--line);padding:22px 24px;max-width:520px}
+.pos-h{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.pos-label{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:6px 0 8px;text-transform:uppercase;color:var(--ink)}
+.pos-sub{font-size:13px;color:var(--muted);line-height:1.5}
+/* speed / capabilities */
+.speed-strip{grid-template-columns:1fr 1fr;margin:0 0 6px}
+.cap-table{width:100%;border-collapse:collapse;font-size:14px}
+.cap-table td{padding:10px 12px;border-bottom:1px solid #f0efea}
+.cap-table td:last-child{text-align:right;font-weight:600}
+.cap-yes{color:var(--up);font-weight:800}.cap-no{color:#b8b6ae}
+.ph-up{color:var(--up);font-weight:700}.ph-down{color:var(--up);font-weight:700}.ph-flat{color:var(--muted)}
+@media(max-width:860px){.etiles{grid-template-columns:repeat(3,1fr)}.calc{grid-template-columns:1fr}.calc-panel{border-right:none;border-bottom:1px solid var(--line)}.cmp-row{grid-template-columns:120px 1fr 70px;gap:10px}}
+@media(max-width:520px){.etiles{grid-template-columns:repeat(2,1fr)}.calc-fields{grid-template-columns:1fr}.speed-strip{grid-template-columns:1fr}}
