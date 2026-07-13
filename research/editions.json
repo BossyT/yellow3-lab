@@ -18,8 +18,8 @@
       "call": {
         "this_week": "Asia stays ahead of the US in routed share next Wednesday, and Europe stays below one percent.",
         "resolves_on": "2026-06-10",
-        "grade": null,
-        "grade_note": null
+        "grade": "correct",
+        "grade_note": "Both held. On 10 June Asia stayed comfortably ahead of the US in routed share, and Europe stayed below one percent. It has only widened since."
       },
       "links": {
         "insight": {
@@ -99,16 +99,18 @@
     {
       "number": 6,
       "date": "2026-07-08",
-      "status": "draft",
+      "status": "final",
       "byline": "Thomas Chr. Melskens",
-      "title": "Draft - to be finalised",
-      "dek": "",
+      "title": "Asia routes three tokens in five. The frontier moved east and stayed.",
+      "dek": "Five weeks ago this instrument opened on Asia at 46 percent of routed tokens. It is now 61 percent, and the six most-routed models are all built in China.",
       "body": [
-        "Draft edition generated from this week's data. Replace with the finalised read before it goes out."
+        "When model adoption launched in June, Asia carried 46 percent of the tokens routed through OpenRouter, and that already looked high. Five weeks on it is 60.6 percent, up almost five points in the last seven days alone, while the United States has slipped to 32.7 percent. The line did not wobble and revert. It bent once and kept bending.",
+        "The concentration is sharper than the regional split suggests. The six most-routed models this week, Tencent's hy3, Xiaomi's MiMo, two DeepSeek v4 variants, MiniMax M3 and Z-ai's GLM 5.2, are all Chinese-built, and most are open-weight. The first American model on the board, Anthropic's Claude 4.7 Opus, sits seventh at 4.3 percent. Europe remains a rounding error at half a percent, and drifted down again this week.",
+        "One caveat holds the whole read together: this is OpenRouter routing traffic, which is developer-skewed and cost-sensitive and excludes most direct enterprise API usage. It measures where builders reach first when they are paying by the token, not the whole market. But that is precisely the leading edge. For a European team choosing a default model on price and performance today, the honest answer is increasingly an Asian-built, open-weight one, and the trendline says that answer is hardening, not softening."
       ],
       "call": {
-        "this_week": "",
-        "resolves_on": "",
+        "this_week": "Asia holds above 55 percent of routed tokens next Wednesday, and the top five models remain Chinese-built.",
+        "resolves_on": "2026-07-15",
         "grade": null,
         "grade_note": null
       }

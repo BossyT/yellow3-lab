@@ -319,8 +319,19 @@ def sync_editions(today):
         json.dump(doc, open(EDITIONS, "w"), indent=2)
         json.load(open(EDITIONS))  # validate round-trip
     eds = sorted(eds, key=lambda e: e["number"])
-    current = eds[-1]
-    prior = eds[-2] if len(eds) >= 2 else None
+    # Publish the latest FINALISED edition, not the auto-appended draft stub, so
+    # an un-finalised week never blanks the read. Fall back to the latest edition
+    # only if nothing is final yet (a brand-new instrument).
+    finals = [e for e in eds if e.get("status") == "final"]
+    if finals:
+        current = finals[-1]
+        # Prior = the most recent earlier final edition that actually carries a
+        # call to grade, skipping empty draft stubs from skipped weeks.
+        prior = next((e for e in reversed(finals[:-1])
+                      if (e.get("call", {}).get("this_week") or "").strip()), None)
+    else:
+        current = eds[-1]
+        prior = None
     index = [{"number": e["number"], "date": e["date"], "title": e["title"],
               "status": e["status"]} for e in reversed(eds)]
     return current, prior, index
