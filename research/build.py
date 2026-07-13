@@ -865,6 +865,12 @@ def main():
     except Exception as e:  # noqa: BLE001
         print(f"WARNING: report generation failed: {e}", file=sys.stderr)
 
+    try:
+        import gen_pro
+        gen_pro.generate()
+    except Exception as e:  # noqa: BLE001
+        print(f"WARNING: pro dashboard generation failed: {e}", file=sys.stderr)
+
     print(f"snapshots written: {written}  history days: {len(dates)}  as_of: {as_of}")
     print(f"current week: {cur_days[0]} -> {cur_days[-1]}")
     print("share: " + ", ".join(f"{s['region']} {s['pct']}% ({s['delta_pp']:+})" for s in share))
