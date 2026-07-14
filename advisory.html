@@ -72,8 +72,11 @@
     .rate-name { font-size: 19px; font-weight: 800; letter-spacing: -0.01em; color: var(--ink); }
     .rate-name .fmt { display: block; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-top: 6px; }
     .rate-desc { font-size: 15px; color: var(--body); line-height: 1.55; }
-    .rate-price { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); text-align: right; white-space: nowrap; }
+    .rate-price { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); display: flex; flex-direction: column; align-items: flex-end; white-space: nowrap; }
     .rate-price .per { display: block; font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.04em; }
+    .rate-buy { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; background: var(--ink); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 11px 18px; text-decoration: none; transition: background 0.2s; }
+    .rate-buy:hover { background: #000; }
+    .rate-buy span { color: var(--yellow); }
 
     /* RESEARCH PARTNERSHIP (featured, dark) */
     .partner { background: #0e0e0e; color: #fff; padding: 96px 48px; }
@@ -270,17 +273,17 @@
         <div class="rate-row reveal">
           <div class="rate-name">Executive Briefing<span class="fmt">90 minutes</span></div>
           <div class="rate-desc">A focused session for founders, executives, board members, and investors - tailored to your questions.</div>
-          <div class="rate-price">&euro;1,500</div>
+          <div class="rate-price">&euro;1,500<a class="rate-buy" href="https://buy.stripe.com/bJe3cx0rM1OcdiWanWawo02">Buy now <span>&#8594;</span></a></div>
         </div>
         <div class="rate-row reveal">
           <div class="rate-name">Board Briefing<span class="fmt">2 hours</span></div>
           <div class="rate-desc">For boards, investors, and ownership groups: market reality versus narrative, investment priorities, technology risk, readiness.</div>
-          <div class="rate-price">&euro;3,000</div>
+          <div class="rate-price">&euro;3,000<a class="rate-buy" href="https://buy.stripe.com/28E28t1vQfF21Ae67Gawo03">Buy now <span>&#8594;</span></a></div>
         </div>
         <div class="rate-row reveal">
           <div class="rate-name">Leadership Workshop<span class="fmt">Half day</span></div>
           <div class="rate-desc">A shared understanding across the leadership team: research, discussion, demonstrations, and prioritisation.</div>
-          <div class="rate-price">&euro;4,500</div>
+          <div class="rate-price">&euro;4,500<a class="rate-buy" href="https://buy.stripe.com/8x2cN75M6eAYgv88fOawo04">Buy now <span>&#8594;</span></a></div>
         </div>
         <div class="rate-row reveal">
           <div class="rate-name">Strategic Advisory<span class="fmt">Ongoing engagement</span></div>
