@@ -75,7 +75,8 @@
     .price .per { font-size: 15px; color: var(--muted); font-weight: 600; }
     .subline { font-size: 13px; color: var(--body); margin-top: 12px; min-height: 34px; line-height: 1.5; }
     .tagline { font-size: 14px; color: var(--ink); font-weight: 600; margin-top: 10px; }
-    .save { display: inline-block; margin-top: 12px; font-size: 12px; font-weight: 700; letter-spacing: 0.01em; color: #6b5300; background: #fff6cc; border: 1px solid #ffe88a; padding: 5px 12px; border-radius: 999px; }
+    .save { margin-top: 12px; font-size: 13px; font-weight: 600; color: var(--body); white-space: nowrap; }
+    .save .hl { color: var(--ink); font-weight: 800; background: linear-gradient(transparent 60%, rgba(255,224,0,0.55) 60%); padding: 0 2px; }
     .feat { list-style: none; margin: 22px 0 26px; border-top: 1px solid var(--line); padding-top: 20px; flex: 1; }
     .feat li { position: relative; padding: 8px 0 8px 26px; font-size: 14px; color: var(--body); line-height: 1.4; }
     .feat li::before { content: ""; position: absolute; left: 2px; top: 13px; width: 11px; height: 6px; border-left: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(-45deg); }
@@ -216,7 +217,7 @@
         <div class="tier">Professional</div>
         <div class="price"><span class="amt" id="pro-amt" data-m="&euro;79" data-a="&euro;66">&euro;66</span><span class="per">/ month</span></div>
         <div class="subline" id="pro-sub" data-m="Billed &euro;79 monthly. Cancel anytime." data-a="&euro;790 billed annually,&#10;or &euro;79 monthly.">&euro;790 billed annually,<br>or &euro;79 monthly.</div>
-        <div class="save" id="pro-save">Save &euro;158 a year &middot; two months free</div>
+        <div class="save" id="pro-save">Save <span class="hl">&euro;158</span> a year</div>
         <div class="tagline">Understand what is driving it.</div>
         <ul class="feat">
           <li class="hd">Everything in Free</li>
@@ -237,7 +238,7 @@
         <div class="tier">Team</div>
         <div class="price"><span class="amt" id="team-amt" data-m="&euro;249" data-a="&euro;208">&euro;208</span><span class="per">/ month</span></div>
         <div class="subline" id="team-sub" data-m="Billed &euro;249 monthly. Five user seats." data-a="&euro;2,490 billed annually,&#10;or &euro;249 monthly.">&euro;2,490 billed annually,<br>or &euro;249 monthly.</div>
-        <div class="save" id="team-save">Save &euro;498 a year &middot; two months free</div>
+        <div class="save" id="team-save">Save <span class="hl">&euro;498</span> a year</div>
         <div class="tagline">Keep your team aligned.</div>
         <ul class="feat">
           <li class="hd">Everything in Professional</li>
