@@ -42,21 +42,21 @@
       "pct": 61.21,
       "delta_pp": 5.0,
       "delta_pp_4w": 6.45,
-      "models": 8
+      "models": 11
     },
     {
       "region": "Europe",
       "pct": 0.49,
       "delta_pp": -0.06,
       "delta_pp_4w": 0.01,
-      "models": 0
+      "models": 1
     },
     {
       "region": "US",
       "pct": 32.22,
       "delta_pp": -3.79,
       "delta_pp_4w": 0.17,
-      "models": 12
+      "models": 18
     },
     {
       "region": "Other",

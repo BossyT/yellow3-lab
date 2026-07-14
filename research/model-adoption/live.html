@@ -325,7 +325,7 @@
 
       <div class="mapshare">
         <div class="mapbox">
-          <div class="map-h">Where the top 20 models were built</div>
+          <div class="map-h">Where the top 30 models were built</div>
           <div class="map-sub">Model origin, not user location</div>
           <div id="worldmap"></div>
           <p class="sr" id="map-alt"></p>
@@ -569,7 +569,7 @@
     function renderMap(d){
       var byRegion = {}; d.share.forEach(function(s){ byRegion[s.region] = s; });
       var altParts = d.share.map(function(s){ return s.region + ' ' + s.models + ' model' + (s.models===1?'':'s') + ' (' + s.pct.toFixed(2) + '% of routed tokens)'; });
-      document.getElementById('map-alt').textContent = 'Model origin, counted over the top 20 routed models: ' + altParts.join('; ') + '.';
+      document.getElementById('map-alt').textContent = 'Model origin, counted over the top 30 routed models: ' + altParts.join('; ') + '.';
       var box = document.getElementById('worldmap');
       function paint(txt){
         box.innerHTML = txt;
@@ -604,7 +604,7 @@
           g.setAttribute('aria-label','Filter to ' + region + ', ' + s.models + ' models, ' + s.pct.toFixed(2) + '% share');
           g.setAttribute('data-r', region); g.style.opacity = dim ? 0.4 : 1;
           var lines = '<tspan class="mk-region" x="'+lx+'" y="'+ly+'">'+region.toUpperCase()+'</tspan>';
-          if(s.models>0){ lines += '<tspan class="mk-models" x="'+lx+'" dy="15">'+s.models+' MODELS</tspan>'; }
+          if(s.models>0){ lines += '<tspan class="mk-models" x="'+lx+'" dy="15">'+s.models+' MODEL'+(s.models===1?'':'S')+'</tspan>'; }
           lines += '<tspan class="mk-pctlab" x="'+lx+'" dy="15">'+(s.pct<1?'<1%':s.pct.toFixed(2)+'%')+'</tspan>';
           g.innerHTML =
             '<line x1="'+m.c[0]+'" y1="'+m.c[1]+'" x2="'+lx+'" y2="'+lineY2+'" stroke="'+color+'" stroke-width="1" opacity="0.5"/>' +
@@ -634,7 +634,7 @@
         var light = (s.region === 'Europe');  // vivid yellow block -> dark text
         return '<div class="sb-row' + (dim?' dim':'') + (light?' sb-light':'') + '" style="background:' + (REGION_VAR[s.region]||'var(--r-other)') + '">' +
           '<div><div class="sb-region">' + esc(s.region) + '</div><div class="sb-pct">' + s.pct.toFixed(2) + '%</div>' +
-          '<div class="sb-models">' + s.models + ' model' + (s.models===1?'':'s') + ' in top 20</div></div>' +
+          '<div class="sb-models">' + s.models + ' model' + (s.models===1?'':'s') + ' in top 30</div></div>' +
           deltaPill(s.delta_pp) + '</div>';
       }).join('');
     }

@@ -693,10 +693,10 @@ def main():
 
     records = build_records(history, dev_map, overrides, unmapped)
 
-    # count of top-20 models per region, for the map + regional-share block
-    # (the ranking table lists the top 30; the origin map summarises the top 20)
+    # count of top-30 models per region, for the map + regional-share block
+    # (the origin map + regional-share summarise the same top 30 as the ranking)
     region_counts = {rg: 0 for rg in REGION_ORDER}
-    for row in leaderboard[:20]:
+    for row in leaderboard[:30]:
         region_counts[row["region"]] = region_counts.get(row["region"], 0) + 1
     for s in share:
         s["models"] = region_counts.get(s["region"], 0)
