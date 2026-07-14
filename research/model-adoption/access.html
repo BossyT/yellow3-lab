@@ -55,6 +55,13 @@
     .altlink { display: block; margin-top: 18px; font-size: 14px; color: var(--ink); }
     .altlink a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--yellow); text-decoration-thickness: 2px; text-underline-offset: 3px; }
 
+    .teambox { border: 1px solid var(--ink); border-left: 4px solid var(--yellow); padding: 26px 30px; margin-bottom: 40px; }
+    .teambox .tb-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 8px; }
+    .teambox h3 { font-size: 20px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 8px; }
+    .teambox p { font-size: 14px; color: var(--body); margin-bottom: 16px; }
+    .tb-cta { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--yellow); padding-bottom: 3px; cursor: pointer; }
+    .tb-cta:hover { color: #000; }
+
     .steps { list-style: none; margin: 0 0 44px; border-top: 1px solid var(--line); }
     .steps li { display: flex; gap: 18px; align-items: flex-start; padding: 22px 0; border-bottom: 1px solid var(--line); }
     .steps .n { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--yellow); color: var(--ink); font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; }
@@ -98,6 +105,13 @@
       <span class="altlink">or <a href="/research/model-adoption/reports">read the latest report online &#8594;</a></span>
     </section>
 
+    <section class="teambox" id="teambox" style="display:none">
+      <div class="tb-label">Team plan &middot; five seats</div>
+      <h3>Add your team</h3>
+      <p>Your plan includes up to five seats. Email us your colleagues' names and addresses and we'll set them up with access to the reports and briefings.</p>
+      <a class="tb-cta" href="#" onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;+&#39;?subject=Team%20seats%20-%20Model%20Intelligence&#39;;return false;">Add teammates &#8594;</a>
+    </section>
+
     <ol class="steps">
       <li><span class="n">1</span><span class="tx"><b>Your invoice is on its way</b><span>Stripe has emailed your receipt and VAT invoice to the address you used at checkout.</span></span></li>
       <li><span class="n">2</span><span class="tx"><b>New reports land here every month</b><span>Each edition is published to this page and emailed to subscribers. Bookmark this page for quick access.</span></span></li>
@@ -123,8 +137,12 @@
       var tier = (q.get('tier') || '').toLowerCase();
       var name = tier === 'team' ? 'Team' : tier === 'professional' ? 'Professional' : '';
       if(name){
-        document.getElementById('welcome').textContent = "You're in — welcome to " + name + ".";
+        document.getElementById('welcome').textContent = "You're in, welcome to " + name + ".";
         document.getElementById('subline').textContent = "Your yellow3 Model Intelligence " + name + " subscription is active. Your report is ready below.";
+      }
+      if(tier === 'team'){
+        var tb = document.getElementById('teambox');
+        if(tb){ tb.style.display = 'block'; }
       }
     })();
   </script>
