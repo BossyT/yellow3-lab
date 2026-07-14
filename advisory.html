@@ -76,6 +76,9 @@
     .rate-price .per { display: block; font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.04em; }
     .rate-buy { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; background: var(--ink); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 11px 18px; text-decoration: none; transition: background 0.2s; }
     .rate-buy:hover { background: #000; }
+    .rate-enq { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; background: #fff; color: var(--ink); border: 1px solid var(--ink); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 17px; text-decoration: none; transition: all 0.2s; }
+    .rate-enq:hover { background: var(--ink); color: #fff; }
+    .rate-enq span { color: var(--yellow); }
     .rate-buy span { color: var(--yellow); }
 
     /* RESEARCH PARTNERSHIP (featured, dark) */
@@ -288,19 +291,19 @@
         <div class="rate-row reveal">
           <div class="rate-name">Strategic Advisory<span class="fmt">Ongoing engagement</span></div>
           <div class="rate-desc">Hands-on support on strategy, product direction, vendor evaluation, DPP strategy, and AI implementation.</div>
-          <div class="rate-price">&euro;2,500<span class="per">per month</span></div>
+          <div class="rate-price">&euro;2,500<span class="per">per month</span><a class="rate-enq" href="#" onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;+&#39;?subject=Strategic%20Advisory&#39;;return false;">Enquire <span>&#8594;</span></a></div>
         </div>
         <div class="rate-row reveal">
           <div class="rate-name">Research Partnership<span class="fmt">Annual relationship</span></div>
           <div class="rate-desc">Ongoing access to yellow3's thinking - briefings, research previews, and direct dialogue. See below.</div>
-          <div class="rate-price">&euro;12,000<span class="per">per year</span></div>
+          <div class="rate-price">&euro;12,000<span class="per">per year</span><a class="rate-enq" href="#partner">Become a partner <span>&#8594;</span></a></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- RESEARCH PARTNERSHIP -->
-  <section class="partner">
+  <section class="partner" id="partner">
     <div class="inner partner-grid">
       <div class="reveal">
         <div class="partner-label">Research Partnership</div>
