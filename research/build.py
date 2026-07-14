@@ -865,11 +865,10 @@ def main():
     except Exception as e:  # noqa: BLE001
         print(f"WARNING: report generation failed: {e}", file=sys.stderr)
 
-    try:
-        import gen_pro
-        gen_pro.generate()
-    except Exception as e:  # noqa: BLE001
-        print(f"WARNING: pro dashboard generation failed: {e}", file=sys.stderr)
+    # Retired 2026-07-14: the /pro "coming soon" gate is superseded by the
+    # Model Intelligence pricing gateway at /research/model-adoption. The old
+    # /research/model-adoption/pro URL now 301-redirects there (vercel.json).
+    # gen_pro is no longer generated to avoid regenerating a dead page.
 
     print(f"snapshots written: {written}  history days: {len(dates)}  as_of: {as_of}")
     print(f"current week: {cur_days[0]} -> {cur_days[-1]}")

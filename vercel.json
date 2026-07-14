@@ -4,6 +4,7 @@
   "outputDirectory": ".",
   "redirects": [
     { "source": "/masterclass", "destination": "/advisory", "permanent": true },
-    { "source": "/insights/europes-ai-slumber", "destination": "/insights/europe-ai-slumber", "permanent": true }
+    { "source": "/insights/europes-ai-slumber", "destination": "/insights/europe-ai-slumber", "permanent": true },
+    { "source": "/research/model-adoption/pro", "destination": "/research/model-adoption", "permanent": true }
   ]
 }
