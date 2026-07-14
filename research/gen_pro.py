@@ -170,13 +170,8 @@ def render(main, econ, models):
     <div class="gate-eyebrow">yellow3 Model Intelligence</div>
     <h1>Professional</h1>
     <div class="gate-badge"><span class="dot"></span> Coming soon</div>
-    <p class="gate-sub">The live intelligence layer for AI model adoption, economics and rankings -
-    subscriber briefing, watchlists, alerts, historical data, CSV exports and the monthly report.
+    <p class="gate-sub">A live intelligence layer for AI model adoption, economics and rankings.
     Launching shortly.</p>
-    <div class="gate-feats"><span>Full monthly report</span><span>Live alerts</span><span>Model watchlists</span><span>Historical data</span><span>CSV exports</span><span>Cost comparisons</span></div>
-    <div class="gate-price"><b>&euro;{PRO_LAUNCH}/month</b> founding-member price, locked for the first subscribers <span>(then &euro;{PRO_MONTH}/mo or &euro;{PRO_YEAR}/yr)</span></div>
-    <a class="gate-cta" id="early-access" href="#">Get early access <span>&#8594;</span></a>
-    <div class="gate-note">Team &euro;249/mo &middot; Enterprise from &euro;10,000/yr &middot; Verified media free with attribution to yellow3.io</div>
   </header>
 
   <div class="preview">
@@ -259,20 +254,15 @@ def render(main, econ, models):
         </div>
       </div>
 
-      <section class="pricing" id="pricing">
+      <section class="pricing">
         <div class="pr-h">Professional includes</div>
         <div class="pr-feats">Full monthly report &middot; Live alerts &middot; Model watchlists &middot; Historical data
         &middot; CSV exports &middot; Cost comparisons &middot; Monthly briefing</div>
-        <div class="pr-price"><b>&euro;{PRO_LAUNCH}/month</b> early-member price, locked for the first subscribers
-        <span>(then &euro;{PRO_MONTH}/mo or &euro;{PRO_YEAR}/yr)</span></div>
-        <div class="pr-note">Team &euro;249/mo (5 seats) &middot; Enterprise from &euro;10,000/yr (API, commercial
-        licensing, custom datasets, analyst briefings) &middot; Verified media: free with attribution to yellow3.io</div>
       </section>
     </main>
   </div>
     </div>
   </div>
-  <script>var ea=document.getElementById('early-access');if(ea)ea.addEventListener('click',function(e){{e.preventDefault();window.location.href='mailto:'+'hello'+String.fromCharCode(64)+'yellow3.io'+'?subject=Professional%20early%20access';}});</script>
 {FOOTER}
 </body>
 </html>'''
