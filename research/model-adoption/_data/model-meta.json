@@ -478,5 +478,20 @@
     "technical_report_url": null,
     "repository_url": null,
     "last_verified_at": null
+  },
+  "x-ai-grok-4-5": {
+    "release_date": null,
+    "model_family": null,
+    "description": null,
+    "model_type": "Multimodal (text + image)",
+    "modalities": "text, image, file",
+    "context_window": "500K tokens",
+    "license": null,
+    "open_weight": false,
+    "api_available": null,
+    "official_url": null,
+    "technical_report_url": null,
+    "repository_url": null,
+    "last_verified_at": null
   }
 }
