@@ -414,6 +414,7 @@ def render_report(period, g):
         the top tier, Europe Watch, and the signals to monitor.</p>
         <div class="cover-meta">{g["n_tracked"]} models tracked &middot; live routed traffic &middot;
         published {esc(D(g["as_of"]))}</div>
+        <div class="cover-dl"><a href="{RBASE}/downloads/{period}.pdf" download>Download this edition (PDF) &#8595;</a></div>
       </header>
 
       <nav class="toc" aria-label="Contents">{toc_html}</nav>
@@ -441,9 +442,11 @@ def render_report(period, g):
 
 def render_archive(reports):
     items = "".join(
-        f'<a class="arch-item" href="{RBASE}/{p}"><span class="arch-m">{esc(m)}</span>'
+        f'<div class="arch-item"><span class="arch-m">{esc(m)}</span>'
         f'<span class="arch-t">The Model Adoption Report</span>'
-        f'<span class="arch-d">Published {esc(D(a))}</span></a>'
+        f'<span class="arch-d">Published {esc(D(a))}</span>'
+        f'<div class="arch-acts"><a href="{RBASE}/{p}">Read online &#8594;</a>'
+        f'<a href="{RBASE}/downloads/{p}.pdf" download>Download PDF &#8595;</a></div></div>'
         for p, m, a in reports)
     return f'''<!DOCTYPE html>
 <html lang="en">
@@ -530,10 +533,15 @@ a{color:inherit}img{display:block;max-width:100%}.num{text-align:right;font-vari
 .table-scroll{overflow-x:auto}
 .rfoot{padding:32px 0;font-size:12px;color:var(--muted)}
 .arch{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:20px}
-.arch-item{background:#fff;padding:22px 24px;text-decoration:none;display:flex;flex-direction:column;gap:4px}
-.arch-item:hover{background:var(--panel)}
+.arch-item{background:#fff;padding:22px 24px;display:flex;flex-direction:column;gap:4px}
 .arch-m{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--asia);font-weight:700}
 .arch-t{font-family:'Newsreader',serif;font-size:22px;font-weight:600}.arch-d{font-size:13px;color:var(--muted)}
+.arch-acts{display:flex;gap:20px;margin-top:12px}
+.arch-acts a{font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--yellow);padding-bottom:2px}
+.arch-acts a:hover{color:#000}
+.cover-dl{margin-top:22px}
+.cover-dl a{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--ink);text-decoration:none;padding:13px 24px}
+.cover-dl a:hover{background:#000}
 .site-footer{background:#0e0e0e;color:#fff;padding:60px 48px 32px;margin-top:20px}.site-footer .inner{max-width:1240px;margin:0 auto}
 .foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr;gap:32px;padding-bottom:36px;border-bottom:1px solid #262626}
 .foot-brand img{height:20px;filter:invert(1);margin-bottom:12px}.fb-lab{font-size:13px;font-weight:600;margin-bottom:8px}.foot-brand p{font-size:13px;color:#8a8a8a}
