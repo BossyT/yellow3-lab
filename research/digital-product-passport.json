@@ -4,21 +4,21 @@
   "edition": 1,
   "status": "live",
   "week_of": "2026-07-13",
-  "last_checked": "2026-07-13",
+  "last_checked": "2026-07-19",
   "thesis": "Is the EU Digital Product Passport becoming real on schedule - on the regulator's side, and on industry's side?",
   "scores": {
     "regulator_delivery": 0,
-    "regulator_delivery_note": "Of everything the EU committed to deliver by now, how much landed - and on time. Computed over milestones that are due only; at launch the one item past its date (the service-provider act) slipped, so the score sits at 0.",
+    "regulator_delivery_note": "Of everything the EU committed to deliver by now, how much landed - and on time. Computed over milestones that are due only; both items past their date so far (the service-provider act and the DPP registry set-up) slipped, so the score sits at 0.",
     "industry_readiness": 61,
     "industry_confidence": "provisional"
   },
   "call_record": {
     "hits": 0,
-    "misses": 1
+    "misses": 2
   },
   "this_week_read": {
-    "headline": "First call graded: the EU missed its own service-provider deadline. The registry's 19 July test is next.",
-    "body": "The instrument's first call is now on the record, and it lands as a miss for the regulator: the delegated act setting requirements for DPP service providers was not adopted by its 30 June 2026 deadline and remains a draft. yellow3 leaned will_miss, and called it. The next test is six days out. Under ESPR Article 13 the EU Central DPP Registry must be set up and accepting registrations by 19 July 2026, but the implementing rules that make it operational only closed consultation on 27 May and are still in technical preparation - watch whether that deadline is met on paper or in practice. Nothing is cited in the Official Journal yet, so the presumption of conformity stays pending: you can build against the six published EN standards, but you cannot make compliance claims on them."
+    "headline": "Second call graded, second miss: the registry's set-up deadline landed without the rules to accept registrations.",
+    "body": "The EU Central DPP Registry's 19 July 2026 legal deadline (ESPR Art. 13) has passed. The Commission has not announced a formal delay to the set-up date itself, but the implementing regulation that actually governs registration - the process, required data fields and verification mechanics - remains unadopted; its public consultation closed 27 May 2026 and a final version is not expected before autumn 2026. Independent trackers report the production registration interface is not yet public. yellow3 leaned at_risk and calls this a miss: a registry that cannot yet process a registration is not operational and accepting registrations in the sense the call asked about. That is the instrument's second resolved call, and its second miss - regulator delivery stays at 0. Elsewhere, CEN-CENELEC's last two DPP standards (prEN 18239, prEN 18246) closed their formal vote on 16 July 2026 but are not yet published as EN; six of eight remain live, none yet cited in the Official Journal."
   },
   "milestones": [
     {
@@ -28,12 +28,12 @@
       "target_date": "2026-07-19",
       "target_label": "19 Jul 2026",
       "weight": 3,
-      "status": "upcoming",
+      "status": "slipped",
       "delivered_date": null,
       "regulation_ref": "ESPR Art. 13",
-      "evidence_url": "https://traceable.digital/resources/blog/eu-central-dpp-registry-what-we-know-about-the-july-2026-launch/",
-      "note": "Set-up deadline is hard; the implementing regulation that makes it operational closed consultation 27 May 2026.",
-      "last_checked": "2026-06-24"
+      "evidence_url": "https://single-market-economy.ec.europa.eu/dpp-registry_en",
+      "note": "19 Jul 2026 set-up deadline reached, but the implementing regulation governing the registration process, data fields and verification mechanics is still unadopted (consultation closed 27 May 2026, adoption not expected until autumn 2026); the production registration interface is not public. Treated as slipped pending a confirmed operational launch.",
+      "last_checked": "2026-07-19"
     },
     {
       "id": "m2a",
@@ -47,8 +47,8 @@
       "count_max": 8,
       "regulation_ref": "CEN-CENELEC JTC 24",
       "evidence_url": "https://www.regenstudio.world/blog/dpp-system-standards/",
-      "note": "EN 18216-18223 published 27 May 2026; FprEN 18239 and one further standard under approval, expected September.",
-      "last_checked": "2026-06-24"
+      "note": "EN 18216, 18219-18223 published 25 June 2026; the last two, prEN 18239 and prEN 18246 (security/confidentiality and data authentication), were under formal vote until 16 July 2026 and are not yet published as EN.",
+      "last_checked": "2026-07-19"
     },
     {
       "id": "m2b",
@@ -213,10 +213,10 @@
       "statement": "The EU DPP Registry will be operational and accepting registrations by its legal deadline of 19 July 2026.",
       "resolution_date": "2026-07-19",
       "lean": "at_risk",
-      "resolved": false,
-      "outcome": null,
-      "grading_note": "",
-      "evidence_url": ""
+      "resolved": true,
+      "outcome": "miss",
+      "grading_note": "The 19 July 2026 Article 13 set-up deadline passed without the registry genuinely accepting registrations: the implementing regulation defining the registration process, required data fields and verification mechanics is still unadopted (consultation closed 27 May 2026, adoption expected autumn 2026), and independent trackers confirm the production registration interface is not yet public.",
+      "evidence_url": "https://single-market-economy.ec.europa.eu/dpp-registry_en"
     },
     {
       "id": "c2",
@@ -276,7 +276,7 @@
   ],
   "methodology": "Track A scores the EU's own delivery against the dates the regulation set, over milestones that are due only, weighted (registry and the service-provider act count most). delivered_on_time = 1.0, delivered_late = 0.5, slipped/missed = 0, upcoming is excluded until its date passes. Track B is a provisional proxy of industry readiness and is tagged as such until the proprietary onboarding signal replaces the basket. Calls are falsifiable, dated, and graded HIT or MISS in public, with a running win-rate.",
   "source": {
-    "line": "Sources: Regulation (EU) 2024/1781 (ESPR); European Commission DPP FAQ v1.0 (DG GROW); CEN-CENELEC JTC 24; EUR-Lex. Verified 24 June 2026.",
+    "line": "Sources: Regulation (EU) 2024/1781 (ESPR); European Commission DPP FAQ v1.0 (DG GROW); European Commission DPP Registry page; CEN-CENELEC JTC 24; EUR-Lex. Verified 19 July 2026.",
     "url": "https://eur-lex.europa.eu/eli/reg/2024/1781/oj"
   }
 }
