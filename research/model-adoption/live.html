@@ -108,6 +108,11 @@
     .live-pro { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: #fff; background: var(--ink); padding: 9px 15px; border-radius: 8px; margin-left: 12px; display: inline-flex; align-items: center; gap: 6px; }
     .live-pro span { font-weight: 400; }
     .live-pro:hover { background: #000; }
+.live-actions { margin-left: auto; display: inline-flex; align-items: center; gap: 18px; }
+.live-actions .live-pro { margin-left: 0; }
+.live-brief { font-size: 12px; font-weight: 700; letter-spacing: 0.02em; text-decoration: none; color: var(--ink); border-bottom: 2px solid var(--yellow); padding-bottom: 2px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.live-brief span { font-weight: 400; }
+.live-brief:hover { color: #000; }
     .live-period select { font-family: inherit; font-size: 12px; font-weight: 600; color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; background: #fff; cursor: pointer; }
 
     /* Region filters */
@@ -562,7 +567,10 @@
         '<span class="live-meta">' + nextRefresh() + '</span>' +
         '<span class="live-period"><label class="sr" for="period">Period</label>' +
         '<select id="period"><option>Weekly</option></select></span>' +
-        '<a class="live-pro" href="/research/model-adoption">See plans <span>&#8594;</span></a>';
+        '<span class="live-actions">' +
+          '<a class="live-brief" href="/research/model-adoption/briefing">This month\'s briefing <span>&#8594;</span></a>' +
+          '<a class="live-pro" href="/research/model-adoption">See plans <span>&#8594;</span></a>' +
+        '</span>';
     }
 
     var WM_CACHE = null;

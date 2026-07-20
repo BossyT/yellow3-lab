@@ -604,7 +604,8 @@ def render_archive(reports):
     <header class="cover"><div class="cover-eyebrow">yellow3 Model Intelligence</div>
       <h1>The Model Adoption Report</h1>
       <p class="cover-sub">A monthly intelligence report on where AI demand actually flows - by region of
-      origin, by model, and by the economics beneath. New edition every month.</p></header>
+      origin, by model, and by the economics beneath. New edition every month.</p>
+      <p class="arch-brief"><a href="{BASE}/briefing">New here? Read this month's free briefing &#8594;</a></p></header>
     <div class="arch">{items}</div>
   </div></main>
 {FOOTER}
@@ -683,6 +684,9 @@ a{color:inherit}img{display:block;max-width:100%}.num{text-align:right;font-vari
 .foot-col a,.foot-contact a{display:block;font-size:14px;color:#d4d4d4;text-decoration:none;margin-bottom:10px}.loc{font-size:14px;color:#8a8a8a}
 .foot-bottom{display:flex;justify-content:space-between;padding-top:24px;font-size:12px;color:#8a8a8a;flex-wrap:wrap;gap:12px}.foot-legal a{color:#8a8a8a;text-decoration:none;margin-left:18px}
 .brief-tag{display:inline-block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--asia);font-weight:700;border:1px solid var(--line);border-radius:999px;padding:4px 12px;margin-bottom:14px}
+.arch-brief{margin-top:16px}
+.arch-brief a{font-size:13px;font-weight:700;letter-spacing:.02em;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--yellow);padding-bottom:2px}
+.arch-brief a:hover{color:#000}
 .inside{list-style:none;margin:8px 0 4px}
 .inside li{padding:11px 0 11px 26px;border-bottom:1px solid #f0efea;font-size:15px;color:var(--body);position:relative}
 .inside li::before{content:"";position:absolute;left:0;top:17px;width:9px;height:9px;background:var(--yellow)}
