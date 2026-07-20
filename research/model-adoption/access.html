@@ -20,7 +20,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/research/tokens.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -70,6 +69,11 @@
 
     .support { text-align: center; font-size: 14px; color: var(--muted); margin-bottom: 90px; }
     .support a { color: var(--ink); cursor: pointer; }
+    .checking { min-height: 60vh; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--muted); padding-top: 90px; }
+    .whoami { margin-top: 22px; font-size: 13px; color: var(--muted); }
+    .whoami b { color: var(--ink); font-weight: 600; }
+    .whoami a { color: var(--muted); text-decoration: underline; cursor: pointer; margin-left: 12px; }
+    .whoami a:hover { color: var(--ink); }
 
     .site-footer { background: #0e0e0e; color: #fff; padding: 48px 24px; text-align: center; }
     .site-footer a { color: rgba(255,255,255,0.7); text-decoration: none; margin: 0 12px; font-size: 13px; }
@@ -87,29 +91,41 @@
     </div>
   </nav>
 
-  <main class="wrap">
+  <div id="checking" class="checking">Checking your access&hellip;</div>
+
+  <main class="wrap" id="main" hidden>
     <header class="head">
       <span class="badge-live"><span class="dot"></span> Subscription active</span>
       <h1 id="welcome">You're in.</h1>
       <p id="subline">Thank you for subscribing to yellow3 Model Intelligence. Your report is ready below.</p>
+      <div class="whoami" id="whoami"></div>
     </header>
 
     <section class="card">
-      <div class="eyebrow">Your report library</div>
+      <div class="eyebrow">The latest report</div>
       <h2>The Model Adoption Report</h2>
-      <div class="meta">A new edition every month, and every past edition kept. Read online or download any as PDF.</div>
-      <a class="dl" href="/research/model-adoption/reports">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h10M4 10h10M4 15h6M18 4v10m0 0l-3-3m3 3l3-3"/></svg>
-        Open the report library
+      <div class="meta">Updated monthly. Weekly values retained, never overwritten.</div>
+      <a class="dl" href="/api/report">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+        Open the report (PDF)
       </a>
-      <span class="altlink">The latest edition is at the top.</span>
+      <span class="altlink">Delivered privately to your session. Not a public link.</span>
+    </section>
+
+    <section class="teambox" id="billingbox" style="border-left-color:var(--ink)">
+      <div class="tb-label">Billing</div>
+      <h3>Invoices &amp; subscription</h3>
+      <p>Download any VAT invoice, update your card, or cancel your subscription any time. Cancellation takes effect at the end of the period you have paid for.</p>
+      <!-- PORTAL_URL: replace the href with your Stripe Customer Portal login link
+           (Stripe Dashboard -> Settings -> Billing -> Customer portal -> login link). -->
+      <a class="tb-cta" href="https://billing.stripe.com/p/login/REPLACE_WITH_YOUR_STRIPE_PORTAL_LINK">Manage subscription &amp; invoices &#8594;</a>
     </section>
 
     <section class="teambox" id="teambox" style="display:none">
-      <div class="tb-label">Team plan &middot; five seats</div>
-      <h3>Add your team</h3>
-      <p>Your plan includes up to five seats. Email us your colleagues' names and addresses and we'll set them up with access to the reports and briefings.</p>
-      <a class="tb-cta" href="#" onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;+&#39;?subject=Team%20seats%20-%20Model%20Intelligence&#39;;return false;">Add teammates &#8594;</a>
+      <div class="tb-label">Team plan</div>
+      <h3>Your whole team is covered</h3>
+      <p id="tb-body">Anyone with your company email domain can sign in and get instant access. No setup, no waiting.</p>
+      <a class="tb-cta" href="/research/model-adoption/login">Open the sign-in page &#8594;</a>
     </section>
 
     <ol class="steps">
@@ -118,7 +134,7 @@
       <li><span class="n">3</span><span class="tx"><b>Keep watching the market live</b><span>Your <a href="/research/model-adoption/live" style="color:var(--ink)">live Model Adoption chart</a> updates every week between reports.</span></span></li>
     </ol>
 
-    <p class="support">Questions, a second seat, or need to manage your subscription? <a onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;+&#39;?subject=Model%20Intelligence%20subscription&#39;;return false;">Email us</a> and we'll sort it.</p>
+    <p class="support">Manage your subscription and invoices in the billing panel above. Anything else? <a onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;+&#39;?subject=Model%20Intelligence%20subscription&#39;;return false;">Email us</a> and we'll sort it.</p>
   </main>
 
   <footer class="site-footer">
@@ -133,17 +149,32 @@
 
   <script>
     (function(){
-      var q = new URLSearchParams(window.location.search);
-      var tier = (q.get('tier') || '').toLowerCase();
-      var name = tier === 'team' ? 'Team' : tier === 'professional' ? 'Professional' : '';
-      if(name){
-        document.getElementById('welcome').textContent = "You're in, welcome to " + name + ".";
-        document.getElementById('subline').textContent = "Your yellow3 Model Intelligence " + name + " subscription is active. Your report is ready below.";
+      function toLogin(){
+        var paid = new URLSearchParams(location.search).has('session_id');
+        location.replace('/research/model-adoption/login' + (paid ? '?welcome=1' : ''));
       }
-      if(tier === 'team'){
-        var tb = document.getElementById('teambox');
-        if(tb){ tb.style.display = 'block'; }
-      }
+      fetch('/api/me', { credentials: 'same-origin', cache: 'no-store' })
+        .then(function(r){ return r.json(); })
+        .then(function(me){
+          if(!me || !me.authed){ toLogin(); return; }
+          var name = me.tier === 'team' ? 'Team' : me.tier === 'professional' ? 'Professional' : '';
+          if(name){
+            document.getElementById('welcome').textContent = "You're in, welcome to " + name + ".";
+            document.getElementById('subline').textContent = "Your yellow3 Model Intelligence " + name + " subscription is active. Your report is ready below.";
+          }
+          var who = document.getElementById('whoami');
+          who.textContent = 'Signed in as ';
+          var b = document.createElement('b'); b.textContent = me.email || ''; who.appendChild(b);
+          var out = document.createElement('a'); out.textContent = 'Sign out'; out.setAttribute('href', '/api/auth/logout'); who.appendChild(out);
+          if(me.tier === 'team'){
+            var dom = (me.email || '').split('@')[1];
+            if(dom){ document.getElementById('tb-body').textContent = 'Anyone with an @' + dom + ' email can sign in and get instant access. No setup, no waiting.'; }
+            document.getElementById('teambox').style.display = 'block';
+          }
+          document.getElementById('checking').style.display = 'none';
+          document.getElementById('main').hidden = false;
+        })
+        .catch(toLogin);
     })();
   </script>
 
