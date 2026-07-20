@@ -440,6 +440,140 @@ def render_report(period, g):
     return "\n".join(parts)
 
 
+def render_briefing(period, g):
+    """The free Monthly Briefing - the public teaser and Free-tier artifact.
+    Gives the headline read and a taste of the market; the full report goes deeper."""
+    title = f"The Model Adoption Briefing &mdash; {esc(g['month'])}"
+    url = f"{HOST}{BASE}/briefing"
+    desc = (f"yellow3's free monthly Model Adoption Briefing for {esc(g['month'])}: the headline market "
+            f"read, regional share shifts and the month's biggest movers. The full report goes deeper.")
+    ld = {
+        "@context": "https://schema.org", "@type": "Report",
+        "name": f"The Model Adoption Briefing - {g['month']}", "datePublished": g["as_of"],
+        "url": url, "publisher": {"@type": "Organization", "name": "yellow3 lab", "url": HOST},
+        "about": "AI model adoption, routing share and economics",
+    }
+
+    order = sorted(g["reg_now"], key=lambda k: -g["reg_now"][k])
+    reg_rows = ""
+    for reg in order:
+        d = g["reg_delta"].get(reg, 0)
+        cls = "up" if d > 0.04 else ("down" if d < -0.04 else "flat")
+        arr = "&#9650;" if d > 0.04 else ("&#9660;" if d < -0.04 else "&ndash;")
+        reg_rows += (f'<tr><td>{esc(reg)}</td><td class="num">{g["reg_now"][reg]:.2f}%</td>'
+                     f'<td class="num rc-{cls}">{arr} {d:+.2f} pp</td></tr>')
+    gain = "".join(
+        f'<li><b>{esc(r["name"])}</b> <span class="mono">#{r["rank"]}</span> '
+        f'<span class="rc-up">+{r["month_move"]} places</span></li>'
+        for r in g["gainers"][:3]) or "<li>Muted movement this month.</li>"
+
+    # one honest cost line, spread computed over the cheapest PAID model so a
+    # free ($0) model at the bottom does not produce a meaningless multiple.
+    killer = ""
+    lo = min([r for r in g["rows"] if r["cost"] and r["cost"] > 0],
+             key=lambda r: r["cost"], default=None)
+    hi = g["priciest"][0] if g["priciest"] else None
+    if lo and hi and hi["cost"] > lo["cost"]:
+        spread = hi["cost"] / lo["cost"]
+        killer = observed(
+            f'The same standard coding-agent workload runs from ${lo["cost"]:,.2f}/month on '
+            f'the cheapest paid model ({esc(lo["name"])}) to ${hi["cost"]:,.0f} on {esc(hi["name"])} '
+            f'- a {spread:.0f}x spread for comparable work. The full report breaks down the economics '
+            f'model by model.')
+
+    inside = [
+        "The complete top-25 ranking, with the data-derived reason behind every move",
+        "Provider intelligence: best mover, new models and cheapest endpoint, per developer",
+        "Economics: best value, most expensive, and the full cost spread for the same workload",
+        "Enterprise Watch: availability, open weights and longest context",
+        "Europe Watch: routed share plus EU AI Act and Digital Product Passport signals",
+        "Emerging models and the month's forward signals",
+        "The downloadable PDF edition and the full report archive",
+    ]
+    inside_html = "".join(f"<li>{esc(x)}</li>" for x in inside)
+
+    cta = (
+        '<div class="cta-band">'
+        f'<div class="cta-h">Read the full {esc(g["month"])} report</div>'
+        '<p>The full Model Adoption Report goes deeper: the complete top-25 with the reason behind every '
+        'move, provider-by-provider intelligence, the economics of running each model, Enterprise and '
+        'Europe Watch, emerging challengers, and the month\'s forward signals.</p>'
+        f'<div class="cta-row"><a class="cta-buy" href="{BASE}">See plans &#8594;</a>'
+        f'<a class="cta-alt" href="{BASE}/access">Already a subscriber? Access your report</a></div>'
+        '</div>')
+
+    def sec(i, n, t, body):
+        return (f'<section class="rsec" id="{i}"><div class="rsec-h"><span class="rsec-n">{n:02d}</span>'
+                f'<h2>{esc(t)}</h2></div>{body}</section>')
+
+    market = (
+        f'<div class="two">'
+        f'<div><h3>Regional share of routed tokens</h3>'
+        f'<table class="rtab"><thead><tr><th>Region</th><th>Share</th><th>4-week change</th></tr></thead>'
+        f'<tbody>{reg_rows}</tbody></table>'
+        f'<p class="fine">Region reflects where each model\'s developer is headquartered.</p></div>'
+        f'<div><h3>The month\'s biggest climbers</h3><ul class="mv">{gain}</ul>'
+        f'<p class="fine">Top three of the full top-25 movement table in the report.</p></div>'
+        f'</div>' + killer)
+
+    parts = [f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','{GA_ID}');</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} | yellow3</title>
+  <meta name="description" content="{desc}" />
+  <link rel="canonical" href="{url}" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{RBASE}/report.css" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="{title} | yellow3" />
+  <meta property="og:description" content="{desc}" />
+  <meta property="og:url" content="{url}" />
+  <meta property="og:image" content="{HOST}/og/og-model-adoption-v2.png" />
+  <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
+</head>
+<body>''', NAV, f'''
+  <main class="rpt">
+    <div class="rwrap">
+      <nav class="crumb"><a href="/research">Research</a> <span>/</span>
+        <a href="{BASE}">Model adoption</a> <span>/</span>
+        <span aria-current="page">Briefing</span></nav>
+
+      <header class="cover">
+        <span class="brief-tag">Free monthly briefing</span>
+        <h1>The Model Adoption Briefing</h1>
+        <div class="cover-month">{esc(g["month"])}</div>
+        <p class="cover-sub">The free monthly read on where AI demand actually flows. Five conclusions and
+        the market snapshot - the full report goes deeper.</p>
+        <div class="cover-meta">{g["n_tracked"]} models tracked &middot; live routed traffic &middot;
+        published {esc(D(g["as_of"]))}</div>
+      </header>
+
+      {sec(1, 1, "Executive summary", exec_summary(g))}
+      {sec(2, 2, "Market snapshot", market)}
+
+      <section class="rsec" id="full">
+        <div class="rsec-h"><span class="rsec-n">03</span><h2>Inside the full report</h2></div>
+        <ul class="inside">{inside_html}</ul>
+        {cta}
+      </section>
+
+      <div class="rfoot">Media and press may use the data and graphics with clear attribution to yellow3.io.
+      The full report, historical data, CSV exports and the archive are Professional features.</div>
+    </div>
+  </main>
+{FOOTER}
+</body>
+</html>''']
+    return "\n".join(parts)
+
+
 def render_archive(reports):
     items = "".join(
         f'<div class="arch-item"><span class="arch-m">{esc(m)}</span>'
@@ -548,6 +682,17 @@ a{color:inherit}img{display:block;max-width:100%}.num{text-align:right;font-vari
 .foot-col h4,.foot-contact h4{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a8a8a;margin-bottom:16px}
 .foot-col a,.foot-contact a{display:block;font-size:14px;color:#d4d4d4;text-decoration:none;margin-bottom:10px}.loc{font-size:14px;color:#8a8a8a}
 .foot-bottom{display:flex;justify-content:space-between;padding-top:24px;font-size:12px;color:#8a8a8a;flex-wrap:wrap;gap:12px}.foot-legal a{color:#8a8a8a;text-decoration:none;margin-left:18px}
+.brief-tag{display:inline-block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--asia);font-weight:700;border:1px solid var(--line);border-radius:999px;padding:4px 12px;margin-bottom:14px}
+.inside{list-style:none;margin:8px 0 4px}
+.inside li{padding:11px 0 11px 26px;border-bottom:1px solid #f0efea;font-size:15px;color:var(--body);position:relative}
+.inside li::before{content:"";position:absolute;left:0;top:17px;width:9px;height:9px;background:var(--yellow)}
+.cta-band{background:var(--ink);color:#fff;padding:32px 34px 34px;margin:28px 0 4px}
+.cta-h{font-family:'Newsreader',serif;font-size:28px;font-weight:600;margin-bottom:12px}
+.cta-band p{color:#c9c9c9;font-size:15px;max-width:640px;margin-bottom:22px}
+.cta-row{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.cta-buy{display:inline-block;background:var(--yellow);color:#0e0e0e;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:14px 24px;text-decoration:none}
+.cta-buy:hover{background:#ffe734}
+.cta-alt{font-size:13px;color:#c9c9c9;text-decoration:none;border-bottom:1px solid #555;padding-bottom:2px}.cta-alt:hover{color:#fff}
 @media(max-width:820px){.rwrap{padding:0 24px}.site-nav{padding:14px 24px}.nav-mid,.nav-cta{display:none}.nav-toggle{display:block}
 .two{grid-template-columns:1fr;gap:24px}.foot-top{grid-template-columns:1fr 1fr}}
 """
@@ -571,6 +716,7 @@ def generate():
     os.makedirs(REPORTS_DIR, exist_ok=True)
     open(os.path.join(REPORTS_DIR, "report.css"), "w").write(REPORT_CSS)
     open(os.path.join(REPORTS_DIR, f"{period}.html"), "w").write(render_report(period, g))
+    open(os.path.join(PAGES_DIR, "briefing.html"), "w").write(render_briefing(period, g))
 
     # archive index over every generated report file
     reports = []
