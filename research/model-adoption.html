@@ -72,7 +72,8 @@
     .price { display: flex; align-items: baseline; gap: 6px; }
     .price .from { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 700; align-self: center; margin-right: 2px; }
     .price .amt { font-size: 44px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--ink); }
-    .price .per { font-size: 15px; color: var(--muted); font-weight: 600; }
+    .price .per { font-size: 15px; color: var(--muted); font-weight: 600; display: inline-block; text-align: left; }
+.price .per .ba { display: block; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; color: var(--muted); margin-top: 3px; white-space: nowrap; }
     .subline { font-size: 13px; color: var(--body); margin-top: 12px; min-height: 34px; line-height: 1.5; }
     .tagline { font-size: 14px; color: var(--ink); font-weight: 600; margin-top: 10px; }
     .save { margin-top: 12px; font-size: 13px; font-weight: 600; color: var(--body); white-space: nowrap; }
@@ -215,8 +216,8 @@
       <div class="plan pop">
         <div class="pop-flag">Most popular</div>
         <div class="tier">Professional</div>
-        <div class="price"><span class="amt" id="pro-amt" data-m="&euro;79" data-a="&euro;66">&euro;66</span><span class="per">/ month</span></div>
-        <div class="subline" id="pro-sub" data-m="Billed &euro;79 monthly. Cancel anytime." data-a="&euro;790 billed annually,&#10;or &euro;79 monthly.">&euro;790 billed annually,<br>or &euro;79 monthly.</div>
+        <div class="price"><span class="amt" id="pro-amt" data-m="&euro;79" data-a="&euro;66">&euro;66</span><span class="per" id="pro-per" data-m="/ month" data-a="/ mo<span class='ba'>billed annually</span>">/ mo<span class="ba">billed annually</span></span></div>
+        <div class="subline" id="pro-sub" data-m="Billed &euro;79 monthly. Cancel anytime." data-a="&euro;790 billed annually,&#10;or &euro;79 month-to-month.">&euro;790 billed annually,<br>or &euro;79 month-to-month.</div>
         <div class="save" id="pro-save">Save <span class="hl">&euro;158</span> a year</div>
         <div class="tagline">Understand what is driving it.</div>
         <ul class="feat">
@@ -236,8 +237,8 @@
       <!-- TEAM -->
       <div class="plan">
         <div class="tier">Team</div>
-        <div class="price"><span class="amt" id="team-amt" data-m="&euro;249" data-a="&euro;208">&euro;208</span><span class="per">/ month</span></div>
-        <div class="subline" id="team-sub" data-m="Billed &euro;249 monthly. Five user seats." data-a="&euro;2,490 billed annually,&#10;or &euro;249 monthly.">&euro;2,490 billed annually,<br>or &euro;249 monthly.</div>
+        <div class="price"><span class="amt" id="team-amt" data-m="&euro;249" data-a="&euro;208">&euro;208</span><span class="per" id="team-per" data-m="/ month" data-a="/ mo<span class='ba'>billed annually</span>">/ mo<span class="ba">billed annually</span></span></div>
+        <div class="subline" id="team-sub" data-m="Billed &euro;249 monthly. Five user seats." data-a="&euro;2,490 billed annually,&#10;or &euro;249 month-to-month.">&euro;2,490 billed annually,<br>or &euro;249 month-to-month.</div>
         <div class="save" id="team-save">Save <span class="hl">&euro;498</span> a year</div>
         <div class="tagline">Keep your team aligned.</div>
         <ul class="feat">
@@ -332,7 +333,7 @@
     (function(){
       var mBtn = document.getElementById('tg-monthly');
       var aBtn = document.getElementById('tg-annual');
-      var ids = ['pro-amt','pro-sub','pro-cta','team-amt','team-sub','team-cta'];
+      var ids = ['pro-amt','pro-per','pro-sub','pro-cta','team-amt','team-per','team-sub','team-cta'];
       function apply(mode){
         ids.forEach(function(id){
           var el = document.getElementById(id);
@@ -340,7 +341,7 @@
           var val = el.getAttribute('data-' + (mode === 'monthly' ? 'm' : 'a'));
           if(val == null) return;
           if(el.tagName === 'A'){ el.setAttribute('href', val); }
-          else if(id.indexOf('sub') > -1){ el.innerHTML = val.replace(/\n/g, '<br>'); }
+          else if(id.indexOf('sub') > -1 || id.indexOf('per') > -1){ el.innerHTML = val.replace(/\n/g, '<br>'); }
           else { el.textContent = val; }
         });
         ['pro-save','team-save'].forEach(function(id){
