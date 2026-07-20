@@ -3,22 +3,29 @@
   "name": "Digital Product Passport (DPP)",
   "edition": 1,
   "status": "live",
-  "week_of": "2026-07-13",
-  "last_checked": "2026-07-19",
+  "week_of": "2026-07-20",
+  "last_checked": "2026-07-20",
   "thesis": "Is the EU Digital Product Passport becoming real on schedule - on the regulator's side, and on industry's side?",
   "scores": {
-    "regulator_delivery": 0,
-    "regulator_delivery_note": "Of everything the EU committed to deliver by now, how much landed - and on time. Computed over milestones that are due only; both items past their date so far (the service-provider act and the DPP registry set-up) slipped, so the score sits at 0.",
+    "regulator_delivery": 30,
+    "regulator_delivery_note": "Of everything the EU committed to deliver by now, how much landed - and on time. Computed over milestones that are due, weighted. The registry (weight 3) delivered one day late and scores half credit; the service-provider act (weight 2) is missed and scores zero. That is 1.5 of 5 weighted points, or 30 of 100.",
     "industry_readiness": 61,
     "industry_confidence": "provisional"
   },
   "call_record": {
     "hits": 0,
-    "misses": 2
+    "late": 1,
+    "misses": 1
   },
+  "corrections": [
+    {
+      "date": "2026-07-20",
+      "text": "We previously graded the registry call as a miss, claiming the implementing regulation was unadopted. Wrong. It was adopted 16 July and published 17 July, before our post. Cause: reliance on a pre-adoption tracker treated as current. Remedy, effective now: no call changes state without an Official Journal or EUR-Lex citation, and no miss is called without a same-day EUR-Lex query. Tally corrected to two resolved, one delivered late, one missed."
+    }
+  ],
   "this_week_read": {
-    "headline": "Second call graded, second miss: the registry's set-up deadline landed without the rules to accept registrations.",
-    "body": "The EU Central DPP Registry's 19 July 2026 legal deadline (ESPR Art. 13) has passed. The Commission has not announced a formal delay to the set-up date itself, but the implementing regulation that actually governs registration - the process, required data fields and verification mechanics - remains unadopted; its public consultation closed 27 May 2026 and a final version is not expected before autumn 2026. Independent trackers report the production registration interface is not yet public. yellow3 leaned at_risk and calls this a miss: a registry that cannot yet process a registration is not operational and accepting registrations in the sense the call asked about. That is the instrument's second resolved call, and its second miss - regulator delivery stays at 0. Elsewhere, CEN-CENELEC's last two DPP standards (prEN 18239, prEN 18246) closed their formal vote on 16 July 2026 but are not yet published as EN; six of eight remain live, none yet cited in the Official Journal."
+    "headline": "The DPP Registry went live one day past its legal deadline. We had called it a miss; that was wrong, and we have corrected the record.",
+    "body": "The EU Central DPP Registry is real. Implementing Regulation (EU) 2026/1778 was adopted on 16 July 2026 and published in the Official Journal on 17 July 2026, entering into force on 6 August 2026; the registry, its testing environment and user guidelines went live on 20 July 2026, one day after the 19 July legal deadline, with registration mechanics phasing in by sector. Under this instrument's method a delivery one day late scores half credit, not zero, so regulator delivery moves from 0 to 30. Our 19 July post graded the registry a miss on the premise that the implementing rules were still unadopted. They were not: they had been adopted on 16 July, before we posted. We have logged the correction and its cause on the record and tightened the rule - no call changes state without an Official Journal or EUR-Lex citation. Separately, the service-provider delegated act remains missed: its 30 June 2026 deadline passed with no adoption, and the Commission's indicative timeline now points to Q2 2027."
   },
   "milestones": [
     {
@@ -28,12 +35,12 @@
       "target_date": "2026-07-19",
       "target_label": "19 Jul 2026",
       "weight": 3,
-      "status": "slipped",
-      "delivered_date": null,
+      "status": "delivered_late",
+      "delivered_date": "2026-07-20",
       "regulation_ref": "ESPR Art. 13",
-      "evidence_url": "https://single-market-economy.ec.europa.eu/dpp-registry_en",
-      "note": "19 Jul 2026 set-up deadline reached, but the implementing regulation governing the registration process, data fields and verification mechanics is still unadopted (consultation closed 27 May 2026, adoption not expected until autumn 2026); the production registration interface is not public. Treated as slipped pending a confirmed operational launch.",
-      "last_checked": "2026-07-19"
+      "evidence_url": "http://data.europa.eu/eli/reg_impl/2026/1778/oj",
+      "note": "Delivered one day late. Implementing Regulation (EU) 2026/1778 was adopted 16 July 2026 and published in the Official Journal 17 July 2026 (in force 6 August 2026); the registry, its testing environment and user guidelines went live 20 July 2026, one day after the 19 July legal deadline. Registration mechanics phase in by sector.",
+      "last_checked": "2026-07-20"
     },
     {
       "id": "m2a",
@@ -80,15 +87,15 @@
       "id": "m4",
       "track": "A",
       "label": "DPP service-provider delegated act adopted",
-      "target_date": "2025-12-31",
-      "target_label": "expected 2025",
+      "target_date": "2026-06-30",
+      "target_label": "30 Jun 2026",
       "weight": 2,
-      "status": "slipped",
+      "status": "missed",
       "delivered_date": null,
       "regulation_ref": "ESPR Art. 14",
       "evidence_url": "",
-      "note": "Still a draft delegated act (requirements for DPP service providers plus a conformity-assessment scheme); not adopted.",
-      "last_checked": "2026-06-24"
+      "note": "Deadline 30 June 2026 passed with the delegated act (requirements for DPP service providers plus a conformity-assessment scheme) not adopted. The Commission's indicative timeline now points to Q2 2027.",
+      "last_checked": "2026-07-20"
     },
     {
       "id": "m5",
@@ -214,9 +221,9 @@
       "resolution_date": "2026-07-19",
       "lean": "at_risk",
       "resolved": true,
-      "outcome": "miss",
-      "grading_note": "The 19 July 2026 Article 13 set-up deadline passed without the registry genuinely accepting registrations: the implementing regulation defining the registration process, required data fields and verification mechanics is still unadopted (consultation closed 27 May 2026, adoption expected autumn 2026), and independent trackers confirm the production registration interface is not yet public.",
-      "evidence_url": "https://single-market-economy.ec.europa.eu/dpp-registry_en"
+      "outcome": "late",
+      "grading_note": "Delivered, one day late. Implementing Regulation (EU) 2026/1778 was adopted 16 July 2026, published in the Official Journal 17 July 2026, and enters into force 6 August 2026. The registry, its testing environment and user guidelines went live 20 July 2026, one day after the 19 July legal deadline; registration mechanics phase in by sector. We first graded this a miss on 19 July on the premise that the implementing regulation was unadopted; it had in fact been adopted on 16 July. Corrected 20 July 2026.",
+      "evidence_url": "http://data.europa.eu/eli/reg_impl/2026/1778/oj"
     },
     {
       "id": "c2",
@@ -226,7 +233,7 @@
       "lean": "will_miss",
       "resolved": true,
       "outcome": "miss",
-      "grading_note": "The 30 June 2026 deadline passed with the delegated act on DPP service providers still a draft, not adopted. The related DPP-registry implementing regulation only closed public consultation on 27 May 2026 (Ares(2026)4424976), and the Commission's DPP rules remain in technical preparation.",
+      "grading_note": "The 30 June 2026 deadline passed with the delegated act on DPP service providers still a draft, not adopted. The Commission's indicative timeline now points to Q2 2027.",
       "evidence_url": "https://ec.europa.eu/info/law/better-regulation/have-your-say/initiatives/16052-Digital-Product-Passport-Registry_en"
     },
     {
@@ -274,9 +281,9 @@
       "evidence_url": ""
     }
   ],
-  "methodology": "Track A scores the EU's own delivery against the dates the regulation set, over milestones that are due only, weighted (registry and the service-provider act count most). delivered_on_time = 1.0, delivered_late = 0.5, slipped/missed = 0, upcoming is excluded until its date passes. Track B is a provisional proxy of industry readiness and is tagged as such until the proprietary onboarding signal replaces the basket. Calls are falsifiable, dated, and graded HIT or MISS in public, with a running win-rate.",
+  "methodology": "Track A scores the EU's own delivery against the dates the regulation set, over milestones that are due only, weighted (registry and the service-provider act count most). delivered_on_time = 1.0, delivered_late = 0.5, slipped/missed = 0, upcoming is excluded until its date passes. Track B is a provisional proxy of industry readiness and is tagged as such until the proprietary onboarding signal replaces the basket. Calls are falsifiable, dated, and graded HIT, DELIVERED LATE or MISS in public, with a running record. Corrections are dated, permanent and shown on the record; no call changes state without an Official Journal or EUR-Lex citation.",
   "source": {
-    "line": "Sources: Regulation (EU) 2024/1781 (ESPR); European Commission DPP FAQ v1.0 (DG GROW); European Commission DPP Registry page; CEN-CENELEC JTC 24; EUR-Lex. Verified 19 July 2026.",
+    "line": "Sources: Regulation (EU) 2024/1781 (ESPR); Implementing Regulation (EU) 2026/1778 (DPP Registry); European Commission DPP FAQ v1.0 (DG GROW); CEN-CENELEC JTC 24; EUR-Lex. Verified 20 July 2026.",
     "url": "https://eur-lex.europa.eu/eli/reg/2024/1781/oj"
   }
 }

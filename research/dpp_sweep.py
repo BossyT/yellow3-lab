@@ -6,7 +6,7 @@ What this does (the deterministic, no-judgement part):
   - recomputes Score_A (regulator delivery) and Score_B (industry readiness)
     from the data, so the displayed scores can never drift from the milestones
     and signals beneath them;
-  - recomputes call_record (hits-misses) from the graded calls;
+  - recomputes call_record (hits-late-misses) from the graded calls;
   - flags calls whose resolution_date has passed but are still ungraded;
   - flags milestones whose target_date has passed but are still upcoming /
     in_progress (i.e. they need a status decision: delivered / slipped);
@@ -68,8 +68,13 @@ def score_b(signals):
 
 def call_record(calls):
     hits = sum(1 for c in calls if c.get("resolved") and c.get("outcome") == "hit")
+    late = sum(1 for c in calls if c.get("resolved") and c.get("outcome") == "late")
     misses = sum(1 for c in calls if c.get("resolved") and c.get("outcome") == "miss")
-    return {"hits": hits, "misses": misses}
+    return {"hits": hits, "late": late, "misses": misses}
+
+
+def rec_str(rec):
+    return f"{rec.get('hits', 0)}-{rec.get('late', 0)}-{rec.get('misses', 0)}"
 
 
 def kvpairs(items):
@@ -85,7 +90,7 @@ def kvpairs(items):
 def main():
     p = argparse.ArgumentParser(description="DPP instrument weekly sweep helper")
     p.add_argument("--date", help="as-of date YYYY-MM-DD (default: today)")
-    p.add_argument("--grade", action="append", help="ID=hit|miss (repeatable)")
+    p.add_argument("--grade", action="append", help="ID=hit|late|miss (repeatable)")
     p.add_argument("--note", action="append", help="ID=grading note text (repeatable)")
     p.add_argument("--evidence", action="append", help="ID=url (repeatable)")
     p.add_argument("--status", action="append", help="milestoneID=new_status (repeatable)")
@@ -116,8 +121,8 @@ def main():
     for cid, outcome in grades.items():
         if cid not in by_call:
             sys.exit("unknown call: " + cid)
-        if outcome not in ("hit", "miss"):
-            sys.exit("outcome must be hit|miss, got: " + outcome)
+        if outcome not in ("hit", "late", "miss"):
+            sys.exit("outcome must be hit|late|miss, got: " + outcome)
         c = by_call[cid]
         c["resolved"] = True
         c["outcome"] = outcome
@@ -147,7 +152,7 @@ def main():
     if B != d["scores"]["industry_readiness"]:
         changes.append(f"Score_B {d['scores']['industry_readiness']} -> {B}")
     if rec != d["call_record"]:
-        changes.append(f"call_record {d['call_record']['hits']}-{d['call_record']['misses']} -> {rec['hits']}-{rec['misses']}")
+        changes.append(f"call_record {rec_str(d['call_record'])} -> {rec_str(rec)}")
     d["scores"]["regulator_delivery"] = A
     d["scores"]["industry_readiness"] = B
     d["call_record"] = rec
@@ -165,7 +170,7 @@ def main():
     print(f"DPP sweep - as of {asof.isoformat()}  (week_of {d['week_of']})")
     print(f"  Score_A (regulator) : {A}")
     print(f"  Score_B (industry)  : {B}")
-    print(f"  Call record         : {rec['hits']}-{rec['misses']}")
+    print(f"  Call record (H-L-M) : {rec_str(rec)}")
     print(f"  Calls DUE FOR GRADING (resolution date passed, still open): {due_calls or 'none'}")
     print(f"  Milestones PAST DATE but still open (decide status)       : {due_ms or 'none'}")
     if changes:
@@ -179,7 +184,7 @@ def main():
     open(JSON_PATH, "a").write("\n")
     entry = f"- **{asof.isoformat()}** (week_of {d['week_of']}) - " + (
         "; ".join(changes) if changes else "sweep: no material change") + \
-        f". Score_A {A}, Score_B {B}, record {rec['hits']}-{rec['misses']}.\n"
+        f". Score_A {A}, Score_B {B}, record {rec_str(rec)} (hit-late-miss).\n"
     if not os.path.exists(LOG_PATH):
         open(LOG_PATH, "w").write("# DPP instrument - sweep changelog\n\nAppend-only. Newest at the bottom.\n\n")
     open(LOG_PATH, "a").write(entry)

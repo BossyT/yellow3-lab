@@ -133,8 +133,26 @@
     .call .cnote { font-size: 13px; color: var(--body); margin-top: 8px; font-style: italic; }
     .verdict { font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border-radius: 6px; }
     .verdict.hit { color: var(--green); background: rgba(46,157,120,0.12); }
+    .verdict.late { color: #9a6b0c; background: rgba(216,154,22,0.14); }
     .verdict.miss { color: var(--red); background: rgba(179,64,46,0.1); }
     .calls-sub { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 34px 0 4px; }
+
+    /* CALLS-GRADED RECORD (scoreboard tile) */
+    .crec { display: flex; gap: 22px; align-items: flex-start; }
+    .crec .cr { display: flex; flex-direction: column; }
+    .crec .cr b { font-size: 40px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--ink); }
+    .crec .cr span { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-top: 9px; }
+    .crec .cr.late b { color: #9a6b0c; }
+    .crec .cr.miss b { color: var(--red); }
+
+    /* CORRECTIONS (dated, top of record) */
+    .corrections { padding: 30px 0; border-bottom: 1px solid var(--line); background: #fffdf3; }
+    .corr-head { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #9a6b0c; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .corr-head::before { content: ""; width: 9px; height: 9px; background: var(--amber); flex: none; }
+    .corr-item { border-left: 3px solid var(--amber); padding-left: 18px; margin-bottom: 16px; max-width: 860px; }
+    .corr-item:last-child { margin-bottom: 0; }
+    .corr-date { font-size: 12px; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
+    .corr-text { font-size: 15px; color: var(--body); line-height: 1.6; }
 
     /* TRUST */
     .trust { padding: 56px 0 80px; }
@@ -283,9 +301,17 @@
         <div class="sc record">
           <div class="sk">Calls graded</div>
           <div class="sv" id="call-record">0&ndash;0</div>
-          <div class="sd">Falsifiable, dated, graded HIT or MISS in public.</div>
+          <div class="sd">Falsifiable, dated, graded in public.</div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- CORRECTIONS (dated, top of record) -->
+  <div class="corrections" id="corrections" style="display:none">
+    <div class="wrap">
+      <div class="corr-head">Corrections</div>
+      <div id="corr-list"></div>
     </div>
   </div>
 
@@ -327,7 +353,7 @@
     <div class="wrap">
       <div class="section-label">Calls</div>
       <div class="section-h">On the record, graded in public</div>
-      <div class="section-note">Each call is a falsifiable statement with a resolution date. After the date it keeps a permanent HIT or MISS on the page.</div>
+      <div class="section-note">Each call is a falsifiable statement with a resolution date. After the date it keeps a permanent, dated verdict on the page.</div>
       <div class="calls-sub">Open calls</div>
       <div id="calls-open"></div>
       <div class="calls-sub" id="graded-sub" style="display:none">Graded calls</div>
@@ -437,7 +463,22 @@
       document.getElementById('score-b').innerHTML = d.scores.industry_readiness + '<span class="u">/100</span>';
       if (d.scores.industry_confidence !== 'provisional'){ document.getElementById('score-b-prov').style.display = 'none'; }
       var cr = d.call_record || {hits:0,misses:0};
-      document.getElementById('call-record').innerHTML = cr.hits + '&ndash;' + cr.misses;
+      var recParts = [['hit','Hit', cr.hits||0]];
+      if (cr.late != null) recParts.push(['late','Late', cr.late]);
+      recParts.push(['miss','Miss', cr.misses||0]);
+      document.getElementById('call-record').innerHTML = '<div class="crec">' + recParts.map(function(p){
+        return '<div class="cr '+p[0]+'"><b>'+p[2]+'</b><span>'+esc(p[1])+'</span></div>';
+      }).join('') + '</div>';
+
+      // corrections (dated, top of record)
+      var corr = (d.corrections || []).slice().sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
+      if (corr.length){
+        document.getElementById('corrections').style.display = 'block';
+        document.getElementById('corr-list').innerHTML = corr.map(function(c){
+          var dt = c.date; try { dt = new Date(c.date+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}); } catch(e){}
+          return '<div class="corr-item"><div class="corr-date">'+esc(dt)+'</div><div class="corr-text">'+esc(c.text)+'</div></div>';
+        }).join('');
+      }
 
       // this week
       document.getElementById('tw-headline').textContent = d.this_week_read.headline;
@@ -474,12 +515,14 @@
       document.getElementById('calls-open').innerHTML = open.map(function(c){
         var l = LEAN[c.lean] || ['neutral', c.lean];
         return '<div class="call"><div><div class="cstmt">'+esc(c.statement)+'</div><div class="cmeta">Resolves '+resTxt(c)+'</div></div>'+
-          '<div class="cstate">'+chip(c.lean)+'</div></div>';
+          '<div class="cstate"><span class="chip '+l[0]+'"><span class="d"></span>'+esc(l[1])+'</span></div></div>';
       }).join('');
       if (graded.length){
         document.getElementById('graded-sub').style.display = 'block';
+        var VMAP = { hit: ['hit','HIT'], late: ['late','Delivered late'], miss: ['miss','MISS'] };
         document.getElementById('calls-graded').innerHTML = graded.map(function(c){
-          var v = (c.outcome==='hit') ? '<span class="verdict hit">HIT</span>' : '<span class="verdict miss">MISS</span>';
+          var vm = VMAP[c.outcome] || ['miss','MISS'];
+          var v = '<span class="verdict '+vm[0]+'">'+vm[1]+'</span>';
           return '<div class="call"><div><div class="cstmt">'+esc(c.statement)+'</div>'+
             (c.grading_note?'<div class="cnote">'+esc(c.grading_note)+'</div>':'')+
             '<div class="cmeta">Resolved '+resTxt(c)+'</div></div><div class="cstate">'+v+'</div></div>';
