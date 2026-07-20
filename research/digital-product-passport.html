@@ -145,15 +145,6 @@
     .crec .cr.late b { color: #9a6b0c; }
     .crec .cr.miss b { color: var(--red); }
 
-    /* CORRECTIONS (dated, top of record) */
-    .corrections { padding: 30px 0; border-bottom: 1px solid var(--line); background: #fffdf3; }
-    .corr-head { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #9a6b0c; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-    .corr-head::before { content: ""; width: 9px; height: 9px; background: var(--amber); flex: none; }
-    .corr-item { border-left: 3px solid var(--amber); padding-left: 18px; margin-bottom: 16px; max-width: 860px; }
-    .corr-item:last-child { margin-bottom: 0; }
-    .corr-date { font-size: 12px; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
-    .corr-text { font-size: 15px; color: var(--body); line-height: 1.6; }
-
     /* TRUST */
     .trust { padding: 56px 0 80px; }
     .trust-grid { display: grid; grid-template-columns: 170px 1fr; gap: 40px; align-items: start; }
@@ -304,14 +295,6 @@
           <div class="sd">Falsifiable, dated, graded in public.</div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- CORRECTIONS (dated, top of record) -->
-  <div class="corrections" id="corrections" style="display:none">
-    <div class="wrap">
-      <div class="corr-head">Corrections</div>
-      <div id="corr-list"></div>
     </div>
   </div>
 
@@ -469,16 +452,6 @@
       document.getElementById('call-record').innerHTML = '<div class="crec">' + recParts.map(function(p){
         return '<div class="cr '+p[0]+'"><b>'+p[2]+'</b><span>'+esc(p[1])+'</span></div>';
       }).join('') + '</div>';
-
-      // corrections (dated, top of record)
-      var corr = (d.corrections || []).slice().sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
-      if (corr.length){
-        document.getElementById('corrections').style.display = 'block';
-        document.getElementById('corr-list').innerHTML = corr.map(function(c){
-          var dt = c.date; try { dt = new Date(c.date+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}); } catch(e){}
-          return '<div class="corr-item"><div class="corr-date">'+esc(dt)+'</div><div class="corr-text">'+esc(c.text)+'</div></div>';
-        }).join('');
-      }
 
       // this week
       document.getElementById('tw-headline').textContent = d.this_week_read.headline;

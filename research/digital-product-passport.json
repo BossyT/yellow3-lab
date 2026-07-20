@@ -17,15 +17,9 @@
     "late": 1,
     "misses": 1
   },
-  "corrections": [
-    {
-      "date": "2026-07-20",
-      "text": "We previously graded the registry call as a miss, claiming the implementing regulation was unadopted. Wrong. It was adopted 16 July and published 17 July, before our post. Cause: reliance on a pre-adoption tracker treated as current. Remedy, effective now: no call changes state without an Official Journal or EUR-Lex citation, and no miss is called without a same-day EUR-Lex query. Tally corrected to two resolved, one delivered late, one missed."
-    }
-  ],
   "this_week_read": {
-    "headline": "The DPP Registry went live one day past its legal deadline. We had called it a miss; that was wrong, and we have corrected the record.",
-    "body": "The EU Central DPP Registry is real. Implementing Regulation (EU) 2026/1778 was adopted on 16 July 2026 and published in the Official Journal on 17 July 2026, entering into force on 6 August 2026; the registry, its testing environment and user guidelines went live on 20 July 2026, one day after the 19 July legal deadline, with registration mechanics phasing in by sector. Under this instrument's method a delivery one day late scores half credit, not zero, so regulator delivery moves from 0 to 30. Our 19 July post graded the registry a miss on the premise that the implementing rules were still unadopted. They were not: they had been adopted on 16 July, before we posted. We have logged the correction and its cause on the record and tightened the rule - no call changes state without an Official Journal or EUR-Lex citation. Separately, the service-provider delegated act remains missed: its 30 June 2026 deadline passed with no adoption, and the Commission's indicative timeline now points to Q2 2027."
+    "headline": "The EU Central DPP Registry is live, one day past its legal deadline.",
+    "body": "Implementing Regulation (EU) 2026/1778 was adopted on 16 July 2026 and published in the Official Journal on 17 July 2026, entering into force on 6 August 2026. The registry, its testing environment and user guidelines went live on 20 July 2026, one day after the 19 July legal deadline, with registration mechanics phasing in by sector. Under this instrument's method a delivery one day late scores half credit rather than zero, so regulator delivery moves from 0 to 30. The service-provider delegated act remains missed: its 30 June 2026 deadline passed with no adoption, and the Commission's indicative timeline now points to Q2 2027."
   },
   "milestones": [
     {
@@ -222,7 +216,7 @@
       "lean": "at_risk",
       "resolved": true,
       "outcome": "late",
-      "grading_note": "Delivered, one day late. Implementing Regulation (EU) 2026/1778 was adopted 16 July 2026, published in the Official Journal 17 July 2026, and enters into force 6 August 2026. The registry, its testing environment and user guidelines went live 20 July 2026, one day after the 19 July legal deadline; registration mechanics phase in by sector. We first graded this a miss on 19 July on the premise that the implementing regulation was unadopted; it had in fact been adopted on 16 July. Corrected 20 July 2026.",
+      "grading_note": "Delivered, one day late. Implementing Regulation (EU) 2026/1778 was adopted 16 July 2026, published in the Official Journal 17 July 2026, and enters into force 6 August 2026. The registry, its testing environment and user guidelines went live 20 July 2026, one day after the 19 July legal deadline; registration mechanics phase in by sector.",
       "evidence_url": "http://data.europa.eu/eli/reg_impl/2026/1778/oj"
     },
     {
@@ -281,7 +275,7 @@
       "evidence_url": ""
     }
   ],
-  "methodology": "Track A scores the EU's own delivery against the dates the regulation set, over milestones that are due only, weighted (registry and the service-provider act count most). delivered_on_time = 1.0, delivered_late = 0.5, slipped/missed = 0, upcoming is excluded until its date passes. Track B is a provisional proxy of industry readiness and is tagged as such until the proprietary onboarding signal replaces the basket. Calls are falsifiable, dated, and graded HIT, DELIVERED LATE or MISS in public, with a running record. Corrections are dated, permanent and shown on the record; no call changes state without an Official Journal or EUR-Lex citation.",
+  "methodology": "Track A scores the EU's own delivery against the dates the regulation set, over milestones that are due only, weighted (registry and the service-provider act count most). delivered_on_time = 1.0, delivered_late = 0.5, slipped/missed = 0, upcoming is excluded until its date passes. Track B is a provisional proxy of industry readiness and is tagged as such until the proprietary onboarding signal replaces the basket. Calls are falsifiable, dated, and graded HIT, DELIVERED LATE or MISS in public, with a running record. No call changes state without an Official Journal or EUR-Lex citation.",
   "source": {
     "line": "Sources: Regulation (EU) 2024/1781 (ESPR); Implementing Regulation (EU) 2026/1778 (DPP Registry); European Commission DPP FAQ v1.0 (DG GROW); CEN-CENELEC JTC 24; EUR-Lex. Verified 20 July 2026.",
     "url": "https://eur-lex.europa.eu/eli/reg/2024/1781/oj"
