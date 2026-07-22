@@ -148,8 +148,10 @@
   <script>
     (function(){
       function toLogin(){
-        var paid = new URLSearchParams(location.search).has('session_id');
-        location.replace('/research/model-adoption/login' + (paid ? '?welcome=1' : ''));
+        var sid = new URLSearchParams(location.search).get('session_id');
+        // Fresh purchase: sign in straight from the Stripe checkout session (no email).
+        if (sid) { location.replace('/api/auth/checkout?session_id=' + encodeURIComponent(sid)); return; }
+        location.replace('/research/model-adoption/login');
       }
       fetch('/api/me', { credentials: 'same-origin', cache: 'no-store' })
         .then(function(r){ return r.json(); })
