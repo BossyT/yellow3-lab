@@ -538,5 +538,20 @@
     "technical_report_url": null,
     "repository_url": null,
     "last_verified_at": null
+  },
+  "tencent-hy3": {
+    "release_date": null,
+    "model_family": null,
+    "description": null,
+    "model_type": "Text",
+    "modalities": "text",
+    "context_window": "262K tokens",
+    "license": null,
+    "open_weight": true,
+    "api_available": null,
+    "official_url": null,
+    "technical_report_url": null,
+    "repository_url": null,
+    "last_verified_at": null
   }
 }
