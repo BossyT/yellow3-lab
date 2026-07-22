@@ -62,6 +62,11 @@ a{color:inherit}img{display:block;max-width:100%}.num{text-align:right;font-vari
 .cover-dl{margin-top:22px}
 .cover-dl a{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--ink);text-decoration:none;padding:13px 24px}
 .cover-dl a:hover{background:#000}
+.rgate-check{padding:70px 0;color:var(--muted);font-size:14px}
+.rgate-alt{margin-top:16px;font-size:14px;color:var(--muted)}
+.rgate-alt a{color:var(--ink);border-bottom:2px solid var(--yellow);text-decoration:none;padding-bottom:2px}
+.pdfview{display:block;width:100%;height:1150px;border:1px solid var(--line);margin:28px 0 8px;background:var(--panel)}
+@media(max-width:820px){.pdfview{height:82vh}}
 .site-footer{background:#0e0e0e;color:#fff;padding:60px 48px 32px;margin-top:20px}.site-footer .inner{max-width:1240px;margin:0 auto}
 .foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr;gap:32px;padding-bottom:36px;border-bottom:1px solid #262626}
 .foot-brand img{height:20px;filter:invert(1);margin-bottom:12px}.fb-lab{font-size:13px;font-weight:600;margin-bottom:8px}.foot-brand p{font-size:13px;color:#8a8a8a}

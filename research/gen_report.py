@@ -356,26 +356,13 @@ def appendix(g):
 # ----------------------------------------------------------------- render --
 
 def render_report(period, g):
+    # Gated shell. The paid report is the PDF, served ONLY to a signed-in session
+    # via /api/report (private Blob). This page never emits the report content: a
+    # subscriber sees the real 42-page PDF embedded; everyone else gets a teaser.
     title = f"The Model Adoption Report &mdash; {esc(g['month'])}"
     url = f"{HOST}{RBASE}/{period}"
-    desc = (f"yellow3's monthly Model Adoption Report for {esc(g['month'])}: regional power shifts, "
-            f"model rankings, provider intelligence, economics, Europe Watch and the month's signals.")
-    ld = {
-        "@context": "https://schema.org", "@type": "Report",
-        "name": f"The Model Adoption Report - {g['month']}", "datePublished": g["as_of"],
-        "url": url, "publisher": {"@type": "Organization", "name": "yellow3 lab", "url": HOST},
-        "about": "AI model adoption, routing share and economics",
-    }
-    toc = [("exec", "Executive summary"), ("market", "Global AI market"), ("rankings", "Model rankings"),
-           ("providers", "Provider intelligence"), ("economics", "Economics"),
-           ("enterprise", "Enterprise Watch"), ("europe", "Europe Watch"),
-           ("emerging", "Emerging models"), ("forecast", "Forecast"), ("appendix", "Appendix")]
-    toc_html = "".join(f'<a href="#{i}">{esc(t)}</a>' for i, t in toc)
-
-    def sec(i, n, t, body):
-        return (f'<section class="rsec" id="{i}"><div class="rsec-h"><span class="rsec-n">{n:02d}</span>'
-                f'<h2>{esc(t)}</h2></div>{body}</section>')
-
+    desc = (f"The {esc(g['month'])} Model Adoption Report - the monthly intelligence edition for "
+            f"yellow3 Model Intelligence subscribers.")
     parts = [f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -383,6 +370,7 @@ def render_report(period, g):
   <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','{GA_ID}');</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
   <title>{title} | yellow3</title>
   <meta name="description" content="{desc}" />
   <link rel="canonical" href="{url}" />
@@ -391,12 +379,6 @@ def render_report(period, g):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="{RBASE}/report.css" />
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="{title} | yellow3" />
-  <meta property="og:description" content="{desc}" />
-  <meta property="og:url" content="{url}" />
-  <meta property="og:image" content="{HOST}/og/og-model-adoption-v2.png" />
-  <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 </head>
 <body>''', NAV, f'''
   <main class="rpt">
@@ -406,35 +388,48 @@ def render_report(period, g):
         <a href="{RBASE}">Reports</a> <span>/</span>
         <span aria-current="page">{esc(g["month"])}</span></nav>
 
-      <header class="cover">
-        <div class="cover-eyebrow">yellow3 Model Intelligence &middot; Monthly Report</div>
-        <h1>The Model Adoption Report</h1>
-        <div class="cover-month">{esc(g["month"])}</div>
-        <p class="cover-sub">Regional power shifts, model momentum, provider intelligence, the economics of
-        the top tier, Europe Watch, and the signals to monitor.</p>
-        <div class="cover-meta">{g["n_tracked"]} models tracked &middot; live routed traffic &middot;
-        published {esc(D(g["as_of"]))}</div>
-        <div class="cover-dl"><a href="{RBASE}/downloads/{period}.pdf" download>Download this edition (PDF) &#8595;</a></div>
-      </header>
+      <div id="rgate-check" class="rgate-check">Checking your access&hellip;</div>
 
-      <nav class="toc" aria-label="Contents">{toc_html}</nav>
+      <div id="rgate-out" hidden>
+        <header class="cover">
+          <div class="cover-eyebrow">yellow3 Model Intelligence &middot; Monthly Report</div>
+          <h1>The Model Adoption Report</h1>
+          <div class="cover-month">{esc(g["month"])}</div>
+          <p class="cover-sub">This edition is for Professional subscribers. Read the free monthly briefing
+          for the headline market read, or see the plans to unlock the full report.</p>
+          <div class="cover-dl"><a href="{BASE}">See plans &#8594;</a></div>
+          <p class="rgate-alt"><a href="{BASE}/briefing">Read the free briefing</a> &middot;
+            <a href="{BASE}/login">Sign in</a></p>
+        </header>
+      </div>
 
-      {sec(1, 1, "Executive summary", exec_summary(g))}
-      {sec(2, 2, "Global AI market", global_market(g))}
-      {sec(3, 3, "Model rankings - top 25", rankings(g))}
-      {sec(4, 4, "Provider intelligence", provider_intel(g))}
-      {sec(5, 5, "Economics", economics_section(g))}
-      {sec(6, 6, "Enterprise Watch", enterprise_watch(g))}
-      {sec(7, 7, "Europe Watch", europe_watch(g))}
-      {sec(8, 8, "Emerging models", emerging(g))}
-      {sec(9, 9, "Forecast", forecast(g))}
-      {sec(10, 10, "Appendix", appendix(g))}
-
-      <div class="rfoot">Media and press may use the data and graphics with clear attribution to yellow3.io.
-      Full historical data, CSV exports and the archive are Professional features.</div>
+      <div id="rgate-in" hidden>
+        <header class="cover">
+          <div class="cover-eyebrow">yellow3 Model Intelligence &middot; Monthly Report</div>
+          <h1>The Model Adoption Report</h1>
+          <div class="cover-month">{esc(g["month"])}</div>
+          <p class="cover-sub">Published {esc(D(g["as_of"]))}. Read it below, or download the PDF.</p>
+          <div class="cover-dl"><a href="/api/report" download>Download the PDF &#8595;</a></div>
+        </header>
+        <object class="pdfview" data="/api/report" type="application/pdf">
+          <p class="fine">Your browser can&rsquo;t show the PDF inline. <a href="/api/report">Open the report &#8594;</a></p>
+        </object>
+      </div>
     </div>
   </main>
 {FOOTER}
+  <script>
+    fetch('/api/me', {{ credentials: 'same-origin', cache: 'no-store' }})
+      .then(function(r){{ return r.json(); }})
+      .then(function(me){{
+        document.getElementById('rgate-check').hidden = true;
+        document.getElementById(me && me.authed ? 'rgate-in' : 'rgate-out').hidden = false;
+      }})
+      .catch(function(){{
+        document.getElementById('rgate-check').hidden = true;
+        document.getElementById('rgate-out').hidden = false;
+      }});
+  </script>
 </body>
 </html>''']
     return "\n".join(parts)
@@ -579,8 +574,7 @@ def render_archive(reports):
         f'<div class="arch-item"><span class="arch-m">{esc(m)}</span>'
         f'<span class="arch-t">The Model Adoption Report</span>'
         f'<span class="arch-d">Published {esc(D(a))}</span>'
-        f'<div class="arch-acts"><a href="{RBASE}/{p}">Read online &#8594;</a>'
-        f'<a href="{RBASE}/downloads/{p}.pdf" download>Download PDF &#8595;</a></div></div>'
+        f'<div class="arch-acts"><a href="{RBASE}/{p}">Open the report &#8594;</a></div></div>'
         for p, m, a in reports)
     return f'''<!DOCTYPE html>
 <html lang="en">
@@ -677,6 +671,11 @@ a{color:inherit}img{display:block;max-width:100%}.num{text-align:right;font-vari
 .cover-dl{margin-top:22px}
 .cover-dl a{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--ink);text-decoration:none;padding:13px 24px}
 .cover-dl a:hover{background:#000}
+.rgate-check{padding:70px 0;color:var(--muted);font-size:14px}
+.rgate-alt{margin-top:16px;font-size:14px;color:var(--muted)}
+.rgate-alt a{color:var(--ink);border-bottom:2px solid var(--yellow);text-decoration:none;padding-bottom:2px}
+.pdfview{display:block;width:100%;height:1150px;border:1px solid var(--line);margin:28px 0 8px;background:var(--panel)}
+@media(max-width:820px){.pdfview{height:82vh}}
 .site-footer{background:#0e0e0e;color:#fff;padding:60px 48px 32px;margin-top:20px}.site-footer .inner{max-width:1240px;margin:0 auto}
 .foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr;gap:32px;padding-bottom:36px;border-bottom:1px solid #262626}
 .foot-brand img{height:20px;filter:invert(1);margin-bottom:12px}.fb-lab{font-size:13px;font-weight:600;margin-bottom:8px}.foot-brand p{font-size:13px;color:#8a8a8a}
