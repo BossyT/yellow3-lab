@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3JXMM2VG5"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-K3JXMM2VG5');</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWARE - DPP Supplier Register - yellow3</title>
+  <meta name="description" content="AWARE - Digital Product Passport supplier profile. Sourced identity, headquarters and evidence, recorded by yellow3 lab." />
+  <link rel="canonical" href="https://yellow3.io/research/digital-product-passport/aware" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="AWARE - DPP Supplier Register - yellow3" />
+  <meta property="og:description" content="AWARE - Digital Product Passport supplier profile. Sourced identity, headquarters and evidence, recorded by yellow3 lab." />
+  <meta property="og:url" content="https://yellow3.io/research/digital-product-passport/aware" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --paper:#ffffff; --ink:#0e0e0e; --body:#4b4b4b; --muted:#8a8a8a; --mid:#8a8a8a;
+      --line:#e7e6e2; --yellow:#ffe000; --panel:#f7f6f3; --company:#fdf8e3; --companyline:#f0dfa0;
+      --green:#2E9D78; --amber:#D89A16; --red:#b3402e;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--paper); color: var(--ink); font-family: 'DM Sans', system-ui, sans-serif; line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+    img { display:block; max-width:100%; }
+    a { color: inherit; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 48px; }
+    .inner { max-width: 1240px; margin: 0 auto; }
+
+    .site-nav { position: fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:16px 48px; background:rgba(255,255,255,0.95); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+    .brand img { height:21px; }
+    .nav-mid { display:flex; gap:32px; }
+    .nav-mid a { font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:#3a3a3a; text-decoration:none; font-weight:500; padding-bottom:3px; }
+    .nav-mid a.active { border-bottom:2px solid var(--ink); color:var(--ink); }
+    .nav-cta { display:inline-flex; align-items:center; gap:10px; background:var(--ink); color:#fff; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:12px 20px; text-decoration:none; }
+    .nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:6px; }
+    .nav-toggle span { display:block; width:22px; height:2px; background:var(--ink); margin:5px 0; }
+
+    /* register bar */
+    .reg-head { padding: 128px 0 0; }
+    .reg-bar { display:flex; align-items:baseline; gap:26px; flex-wrap:wrap; padding-bottom:18px; border-bottom:1px solid var(--line); }
+    .reg-title { font-size:15px; font-weight:700; letter-spacing:-0.01em; }
+    .reg-title span { color:var(--muted); font-weight:500; }
+    .reg-counts { display:flex; gap:22px; flex-wrap:wrap; }
+    .reg-count { font-size:13px; color:var(--mid); }
+    .reg-count b { display:inline-block; min-width:34px; padding:2px 8px; margin-right:7px; border:1px solid var(--line); font-weight:700; color:var(--ink); text-align:center; }
+    .crumb { font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); font-weight:600; padding:22px 0 0; }
+    .crumb a { color:var(--muted); text-decoration:none; }
+    .crumb a:hover { color:var(--ink); }
+
+    /* card */
+    .card-outer { border:1px solid var(--line); margin:22px 0 40px; }
+    .card-id { display:grid; grid-template-columns:auto 1fr auto; gap:28px; padding:34px 36px; border-bottom:1px solid var(--line); align-items:start; }
+    .mark { width:104px; height:104px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:30px; font-weight:600; letter-spacing:0.02em; color:var(--ink); }
+    .mark img { width:100%; height:100%; object-fit:contain; padding:14px; }
+    .id-name { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:12px; }
+    .id-name h1 { font-family:Georgia,'Times New Roman',serif; font-size:clamp(32px,4.4vw,46px); font-weight:400; letter-spacing:-0.02em; line-height:1.05; }
+    .tag { font-size:10px; letter-spacing:0.14em; text-transform:uppercase; font-weight:600; border:1px solid var(--line); padding:6px 11px; color:var(--body); white-space:nowrap; }
+    /* non-commercial entities are marked in graphite, never in the company yellow -
+       pale yellow means one thing only on this site: supplied by the company. */
+    .tag.nc { border-color:#c9c9c9; background:#f0efec; color:var(--muted); }
+    .id-line { font-size:14px; color:var(--body); margin-bottom:6px; }
+    .id-line .k { color:var(--muted); }
+    .id-line a { color:var(--ink); }
+    .rail { writing-mode:vertical-rl; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+
+    .layer { padding:32px 36px; }
+    .layer-h { font-size:12px; letter-spacing:0.18em; text-transform:uppercase; font-weight:700; color:var(--ink); margin-bottom:26px; padding-top:14px; border-top:3px solid var(--yellow); display:inline-block; }
+    .layer.company { background:var(--company); border-top:1px solid var(--companyline); }
+
+    .sub-h { font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); font-weight:600; margin-bottom:16px; }
+    .glance { display:grid; grid-template-columns:repeat(5,1fr); border-top:1px solid var(--line); }
+    .gl { padding:18px 20px 18px 0; border-right:1px solid var(--line); }
+    .gl:last-child { border-right:none; }
+    .gl .k { font-size:12px; font-weight:600; color:var(--ink); margin-bottom:7px; }
+    .gl .v { font-size:13px; color:var(--body); line-height:1.45; }
+    .gl .v.none { color:var(--muted); }
+    .gl .v a { color:var(--body); }
+
+    .crit-note { font-size:13px; color:var(--mid); margin-bottom:20px; }
+    .crit-empty { font-size:14px; color:var(--body); line-height:1.6; max-width:640px; }
+    .crit-empty em { font-style:normal; color:var(--muted); display:block; margin-top:4px; }
+    .crit { display:grid; grid-template-columns:26px 1fr auto; gap:14px; align-items:baseline; padding:13px 0; border-top:1px solid var(--line); }
+    .crit .n { font-size:12px; color:var(--muted); }
+    .crit .l { font-size:14px; }
+    .crit .s { font-size:11px; letter-spacing:0.1em; text-transform:uppercase; font-weight:600; color:var(--muted); }
+    .crit .s.na { color:#aeaeae; }
+
+    .sup-empty { font-size:14px; color:var(--body); }
+    .btn-link { display:inline-block; margin-top:12px; font-size:13px; font-weight:600; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:2px; }
+
+    .evid { display:flex; flex-wrap:wrap; gap:0; border-top:1px solid var(--line); background:var(--panel); }
+    .evid .cell { padding:20px 26px; border-right:1px solid var(--line); }
+    .evid .cell:last-child { border-right:none; }
+    .evid .k { font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:6px; }
+    .evid .v { font-size:13px; color:var(--body); }
+    .evid a { color:var(--body); }
+
+    .src { font-size:11px; color:var(--muted); text-decoration:none; border-bottom:1px dotted var(--muted); }
+    .src:hover { color:var(--ink); border-bottom-color:var(--ink); }
+    .dated { font-size:12px; color:var(--muted); }
+
+    /* directory */
+    .dir-intro { padding:34px 0 26px; }
+    .dir-intro h1 { font-size:clamp(30px,4vw,46px); font-weight:800; letter-spacing:-0.03em; line-height:1.05; margin-bottom:16px; }
+    .dir-intro p { font-size:17px; color:var(--body); max-width:660px; border-left:3px solid var(--yellow); padding-left:22px; }
+    .filters { display:flex; gap:12px; flex-wrap:wrap; padding:20px 0 18px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); align-items:center; }
+    .filters select, .filters input { font-family:inherit; font-size:13px; padding:9px 12px; border:1px solid var(--line); background:#fff; color:var(--ink); }
+    .filters input { min-width:220px; }
+    .fcount { font-size:13px; color:var(--muted); margin-left:auto; }
+    table.dir { width:100%; border-collapse:collapse; }
+    table.dir th { text-align:left; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); font-weight:700; padding:16px 12px 12px 0; border-bottom:1px solid var(--line); }
+    table.dir td { padding:14px 12px 14px 0; border-bottom:1px solid var(--line); font-size:14px; vertical-align:top; }
+    table.dir td.nm a { font-weight:600; text-decoration:none; }
+    table.dir td.nm a:hover { border-bottom:1px solid var(--ink); }
+    table.dir tr.nc td { background:#f5f4f1; color:var(--mid); }
+    table.dir tr.nc td.nm a { color:var(--body); }
+    .pill { font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--body); border:1px solid var(--line); padding:3px 8px; white-space:nowrap; }
+    .conf { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; font-weight:600; color:var(--muted); }
+    .muted { color:var(--muted); }
+
+    .method { padding:52px 0 64px; border-top:1px solid var(--line); }
+    .method h2 { font-size:22px; font-weight:800; letter-spacing:-0.02em; margin-bottom:14px; }
+    .method p { font-size:15px; color:var(--body); max-width:720px; margin-bottom:14px; }
+    .method .states { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin:22px 0; }
+    .method .st { background:#fff; padding:20px 22px; }
+    .method .st b { display:block; font-size:13px; margin-bottom:6px; }
+    .method .st span { font-size:13px; color:var(--body); }
+
+    .site-footer { background:#0e0e0e; color:#fff; padding:72px 48px 36px; margin-top:20px; }
+    .foot-top { display:grid; grid-template-columns:1.4fr repeat(3,1fr) 1.2fr; gap:40px; padding-bottom:56px; border-bottom:1px solid #262626; }
+    .foot-brand img { height:22px; filter:invert(1); margin-bottom:18px; }
+    .foot-brand .fb-lab { font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.5); font-weight:600; margin-bottom:10px; }
+    .foot-brand p { font-size:14px; color:rgba(255,255,255,0.55); max-width:220px; }
+    .foot-col h4, .foot-contact h4 { font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:600; margin-bottom:18px; }
+    .foot-col a { display:block; font-size:14px; color:rgba(255,255,255,0.72); text-decoration:none; margin-bottom:11px; }
+    .foot-col a:hover { color:#fff; }
+    .foot-contact a.mail { font-size:14px; color:#fff; text-decoration:none; display:block; margin-bottom:10px; }
+    .foot-contact .loc { font-size:14px; color:rgba(255,255,255,0.55); }
+    .foot-bottom { display:flex; align-items:center; justify-content:space-between; padding-top:28px; flex-wrap:wrap; gap:16px; }
+    .foot-bottom .copy { font-size:12px; color:rgba(255,255,255,0.4); }
+    .foot-legal { display:flex; gap:24px; }
+    .foot-legal a { font-size:12px; text-transform:uppercase; color:rgba(255,255,255,0.4); text-decoration:none; }
+
+    @media (max-width: 980px) {
+      .glance { grid-template-columns:repeat(2,1fr); }
+      .gl { border-right:none; border-bottom:1px solid var(--line); }
+    }
+    @media (max-width: 880px) {
+      .site-nav { padding:14px 24px; }
+      .nav-mid { display:none; position:absolute; top:100%; left:0; right:0; background:#fff; border-bottom:1px solid var(--line); flex-direction:column; gap:0; padding:12px 24px 20px; }
+      .nav-mid.open { display:flex; }
+      .nav-cta { display:none; }
+      .nav-toggle { display:block; }
+      .wrap { padding:0 24px; }
+      .reg-head { padding-top:104px; }
+      .card-id { grid-template-columns:1fr; gap:18px; padding:26px 22px; }
+      .rail { display:none; }
+      .layer { padding:26px 22px; }
+      .glance { grid-template-columns:1fr; }
+      .evid .cell { border-right:none; border-bottom:1px solid var(--line); width:100%; }
+      .method .states { grid-template-columns:1fr; }
+      .foot-top { grid-template-columns:1fr 1fr; gap:32px; }
+      .site-footer { padding:56px 24px 32px; }
+      table.dir .hide-s { display:none; }
+    }
+    @media (max-width: 560px) { .foot-top { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
+    <div class="nav-mid" id="navMid">
+      <a href="/naffe">Work</a>
+      <a href="/research" class="active">Research</a>
+      <a href="/insights/">Thinking</a>
+      <a href="/advisory">Advisory</a>
+      <a href="/about">About</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <a href="/advisory" class="nav-cta">Work with us <span>&#8594;</span></a>
+    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </nav>
+
+
+  <div class="wrap reg-head">
+    <div class="reg-bar">
+      <div class="reg-title"><a href="/research/digital-product-passport/suppliers" style="text-decoration:none">yellow3 lab <span>&middot; DPP Supplier Register</span></a></div>
+      <div class="reg-counts">
+        <span class="reg-count"><b>184</b>organisations</span>
+        <span class="reg-count"><b>169</b>commercial suppliers</span>
+        <span class="reg-count"><b>29</b>countries</span>
+      </div>
+    </div>
+
+    <div class="crumb"><a href="/research/digital-product-passport/suppliers">&#8249; All suppliers</a></div>
+
+    <div class="card-outer">
+      <div class="card-id">
+        <div class="mark">AW</div>
+        <div>
+          <div class="id-name"><h1>AWARE</h1><span class="tag">Identity carrier</span></div>
+          
+          <div class="id-line"><span class="k">Evidence basis</span> &middot; verified</div>
+          <div class="id-line"><a href="https://www.traceaware.io" target="_blank" rel="noopener">traceaware.io</a> &#8599;</div>
+          <div class="id-line"><span class="k">Headquarters</span> &middot; Amsterdam, Netherlands &middot; <a class="src" href="https://www.traceaware.io/privacy-statement" target="_blank" rel="noopener">source</a></div>
+        </div>
+        <div class="rail">Supplier profile</div>
+      </div>
+
+      <div class="layer">
+        <div class="layer-h">Verified by yellow3</div>
+        <div class="sub-h">At a glance</div>
+        <div class="glance"><div class="gl"><div class="k">Sectors</div><div class="v">Textiles</div></div><div class="gl"><div class="k">Founded</div><div class="v none">Not yet assessed</div></div><div class="gl"><div class="k">Ownership</div><div class="v none">Not yet assessed</div></div><div class="gl"><div class="k">Funding stage</div><div class="v none">Not yet assessed</div></div><div class="gl"><div class="k">Disclosed funding</div><div class="v none">No public disclosure found<br><span class="dated">checked 28 Jul 2026</span></div></div></div>
+
+      <div class="sub-h" style="margin-top:38px">Capability evidence</div>
+      <div class="crit-note">Ten independent checks. No composite score.</div>
+      <div class="crit-empty">Not yet assessed for this supplier.
+        <em>Assessments are published as they are completed.</em></div>
+      <a class="btn-link" href="/research/digital-product-passport/suppliers#method">View assessment framework &#8599;</a>
+
+      </div>
+
+    <div class="layer company">
+      <div class="layer-h">Supplied by AWARE</div>
+      <div class="sup-empty">No company-supplied profile received.</div>
+      <a class="btn-link" href="/research/digital-product-passport/suppliers#claim">Claim this profile &#8599;</a>
+    </div>
+
+      <div class="evid">
+        <div class="cell"><div class="k">Register evidence</div><div class="v"><a href="https://www.traceaware.io/resource-centre/first-china-europe-digital-product-passport-for-textiles" target="_blank" rel="noopener">official company website</a> &#8599;</div></div>
+        <div class="cell"><div class="k">First recorded</div><div class="v">28 Jul 2026</div></div>
+        <div class="cell"><div class="k">Status</div><div class="v">Active</div></div>
+        <div class="cell"><div class="k">Method</div><div class="v"><a href="/research/digital-product-passport/suppliers#method">How we verify &#8599;</a></div></div>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--muted);max-width:680px;margin-bottom:44px">
+      This profile records what yellow3 could verify from public sources on the dates shown.
+      Absence of a fact is a statement about our research, not about the company.
+      Corrections with a source are welcome and are logged.
+    </p>
+  </div>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <img src="/logo.png" alt="yellow3" />
+          <div class="fb-lab">Copenhagen AI Lab</div>
+          <p>Building outcome infrastructure for the AI era.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Work</h4>
+          <a href="/naffe">naffe.ai</a>
+          <a href="/research/digital-product-passport">Digital Product Passports</a>
+          <a href="/advisory">Advisory</a>
+        </div>
+        <div class="foot-col">
+          <h4>Research</h4>
+          <a href="/research">Research areas</a>
+          <a href="/research/framework">The method</a>
+          <a href="/research/model-adoption">Model adoption</a>
+        </div>
+        <div class="foot-col">
+          <h4>Company</h4>
+          <a href="/about">About</a>
+          <a href="/insights/">Thinking</a>
+          <a href="/advisory">Contact</a>
+        </div>
+        <div class="foot-contact">
+          <h4>Get in touch</h4>
+          <a href="#" onclick="window.location.href='mailto:'+'hello'+String.fromCharCode(64)+'yellow3.io';return false;" class="mail">Email us</a>
+          <div class="loc">Copenhagen, Denmark</div>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span class="copy">&copy; 2026 yellow3 lab ApS. All rights reserved.</span>
+        <div class="foot-legal">
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+</body>
+</html>

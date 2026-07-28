@@ -156,6 +156,18 @@
     .source-line a { color: var(--ink); }
     #err { display:none; padding: 60px 0; color: var(--red); font-size: 15px; }
 
+    /* SUPPLIER REGISTER PROMO */
+    .reg-promo { display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px; margin-top: 34px; padding: 30px 34px; border: 1px solid var(--line); text-decoration: none; transition: border-color 0.2s, background 0.2s; }
+    .reg-promo:hover { border-color: var(--ink); background: var(--panel); }
+    .rp-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 10px; }
+    .rp-h { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 10px; }
+    .rp-p { font-size: 14px; color: var(--body); line-height: 1.6; max-width: 520px; }
+    .rp-r { border-left: 1px solid var(--line); padding-left: 32px; }
+    .rp-n { font-size: 46px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--ink); }
+    .rp-c { font-size: 12px; color: var(--mid); margin-top: 8px; line-height: 1.5; }
+    .rp-go { font-size: 13px; font-weight: 600; color: var(--ink); margin-top: 18px; }
+    @media (max-width: 880px) { .reg-promo { grid-template-columns: 1fr; gap: 24px; padding: 24px; } .rp-r { border-left: none; border-top: 1px solid var(--line); padding-left: 0; padding-top: 20px; } }
+
     /* FOOTER */
     .inner { max-width: 1240px; margin: 0 auto; }
     .site-footer { background: #0e0e0e; color: #fff; padding: 72px 48px 36px; }
@@ -328,6 +340,19 @@
       <div class="section-h">Industry readiness <span class="prov">Provisional</span></div>
       <div class="section-note">A proxy basket of public signals, every figure provisional until proprietary onboarding data replaces it. Do not read it with the same confidence as Track A.</div>
       <div id="signals"></div>
+
+      <a href="/research/digital-product-passport/suppliers" class="reg-promo">
+        <div class="rp-l">
+          <div class="rp-label">The supply side</div>
+          <div class="rp-h">The DPP supplier register</div>
+          <div class="rp-p">Every organisation we can find supplying Digital Product Passport capability, with the source behind each fact and the date we checked it. Built because the published picture of this market is mostly marketing.</div>
+        </div>
+        <div class="rp-r">
+          <div class="rp-n">184</div>
+          <div class="rp-c">organisations mapped<br>169 commercial suppliers, 29 countries</div>
+          <div class="rp-go">Open the register &#8594;</div>
+        </div>
+      </a>
     </div>
   </section>
 
