@@ -383,7 +383,64 @@ CSS = """
 """
 
 
-def page(title, desc, canonical, body, extra_js=""):
+def jsonld(obj):
+    return ('<script type="application/ld+json">'
+            + json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
+            + "</script>")
+
+
+def profile_jsonld(r):
+    """A page ABOUT an organisation, not markup claiming to speak for one.
+
+    Only fields we actually verified go in. An unsourced country is not published
+    here any more than it is published on the page.
+    """
+    org = {"@type": "Organization", "name": r["name"]}
+    if r["website"]:
+        org["url"] = r["website"]
+    if r["hq_country"] and r["country_source"].startswith("http"):
+        addr = {"@type": "PostalAddress", "addressCountry": r["hq_country"]}
+        if r["hq_city"]:
+            addr["addressLocality"] = r["hq_city"]
+        org["address"] = addr
+    if r["founded_year"]:
+        org["foundingDate"] = r["founded_year"]
+    return jsonld({
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "name": f"{r['name']} - DPP Supplier Register",
+        "url": f"https://yellow3.io/research/digital-product-passport/{r['id']}",
+        "dateModified": datetime.date.today().isoformat(),
+        "isPartOf": {
+            "@type": "Dataset",
+            "name": "yellow3 DPP Supplier Register",
+            "url": "https://yellow3.io/research/digital-product-passport/suppliers",
+        },
+        "about": org,
+        "publisher": {"@type": "Organization", "name": "yellow3 lab",
+                      "url": "https://yellow3.io"},
+    })
+
+
+def directory_jsonld(counts):
+    return jsonld({
+        "@context": "https://schema.org",
+        "@type": "Dataset",
+        "name": "yellow3 DPP Supplier Register",
+        "description": (f"{counts['organisations']} organisations supplying Digital Product Passport "
+                        f"capability, of which {counts['commercial_suppliers']} commercial suppliers "
+                        f"across {counts['countries']} countries. Every fact carries the source it came "
+                        f"from and the date it was checked."),
+        "url": "https://yellow3.io/research/digital-product-passport/suppliers",
+        "dateModified": datetime.date.today().isoformat(),
+        "creator": {"@type": "Organization", "name": "yellow3 lab", "url": "https://yellow3.io"},
+        "isAccessibleForFree": True,
+        "keywords": ["Digital Product Passport", "DPP", "ESPR", "product traceability",
+                     "supplier register", "EU regulation"],
+    })
+
+
+def page(title, desc, canonical, body, extra_js="", head_extra=""):
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -402,6 +459,7 @@ def page(title, desc, canonical, body, extra_js=""):
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  {head_extra}
   <style>{CSS}</style>
 </head>
 <body>
@@ -551,7 +609,7 @@ def card_html(r, counts):
     return page(f"{name} - DPP Supplier Register - yellow3",
                 desc,
                 f"https://yellow3.io/research/digital-product-passport/{r['id']}",
-                body)
+                body, head_extra=profile_jsonld(r))
 
 
 # ---------------------------------------------------------------- directory
@@ -671,7 +729,7 @@ def directory_html(rows, counts):
                 "Every organisation supplying Digital Product Passport capability, with the source "
                 "behind each fact and the date it was checked. A yellow3 lab register.",
                 "https://yellow3.io/research/digital-product-passport/suppliers",
-                body, js)
+                body, js, head_extra=directory_jsonld(counts))
 
 
 # ---------------------------------------------------------------- main

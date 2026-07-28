@@ -16,6 +16,17 @@
         if (d.edition) document.getElementById('dpp-edno').textContent = 'Edition ' + ('0'+d.edition).slice(-2);
       })
       .catch(function(){ document.getElementById('dpp-read').textContent = 'Is the EU DPP becoming real on schedule - updated weekly.'; });
+
+    fetch('/research/dpp-suppliers.json', { cache: 'no-store' })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        if (!d || !d.counts) return;
+        var c = d.counts;
+        document.getElementById('ds-n').textContent = c.organisations;
+        document.getElementById('ds-c').textContent =
+          'organisations \u00b7 ' + c.commercial_suppliers + ' commercial suppliers \u00b7 ' + c.countries + ' countries';
+      })
+      .catch(function(){});
   </script>
 
   <meta charset="UTF-8" />
@@ -102,6 +113,17 @@
     .foot-legal { display: flex; gap: 24px; }
     .foot-legal a { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
     .foot-legal a:hover { color: #fff; }
+
+    /* DATASET STRIP - the register is not an instrument, so it sits apart from the grid */
+    .dataset { display: grid; grid-template-columns: 1.7fr 1fr; gap: 40px; margin-top: 28px; padding: 30px 34px; border: 1px solid var(--line); background: var(--paper); text-decoration: none; transition: border-color 0.2s, background 0.2s; }
+    .dataset:hover { border-color: var(--ink); background: var(--panel); }
+    .ds-k { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 10px; }
+    .ds-h { font-size: 21px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 10px; }
+    .ds-p { font-size: 14px; color: var(--body); line-height: 1.6; max-width: 540px; }
+    .ds-r { border-left: 1px solid var(--line); padding-left: 32px; }
+    .ds-n { font-size: 44px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--ink); }
+    .ds-c { font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+    @media (max-width: 880px) { .dataset { grid-template-columns: 1fr; gap: 22px; padding: 24px; } .ds-r { border-left: none; border-top: 1px solid var(--line); padding-left: 0; padding-top: 20px; } }
 
     @media (max-width: 1000px) { .instruments { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 880px) {
@@ -224,6 +246,19 @@
         </a>
 
       </div>
+
+      <a class="dataset" href="/research/digital-product-passport/suppliers">
+        <div class="ds-l">
+          <div class="ds-k">Dataset</div>
+          <div class="ds-h">The DPP supplier register</div>
+          <div class="ds-p">Every organisation supplying Digital Product Passport capability, with the source behind each fact and the date it was checked.</div>
+        </div>
+        <div class="ds-r">
+          <div class="ds-n" id="ds-n">183</div>
+          <div class="ds-c" id="ds-c">organisations &middot; 167 commercial suppliers &middot; 32 countries</div>
+          <span class="open-link">Open the register</span>
+        </div>
+      </a>
     </div>
   </div>
 
