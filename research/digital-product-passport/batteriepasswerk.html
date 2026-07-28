@@ -48,6 +48,9 @@
     .reg-counts { display:flex; gap:22px; flex-wrap:wrap; }
     .reg-count { font-size:13px; color:var(--mid); }
     .reg-count b { display:inline-block; min-width:34px; padding:2px 8px; margin-right:7px; border:1px solid var(--line); font-weight:700; color:var(--ink); text-align:center; }
+    .reg-nav { margin-left:auto; display:flex; gap:26px; }
+    .reg-nav a { font-size:13px; color:var(--body); text-decoration:none; }
+    .reg-nav a:hover { color:var(--ink); }
     .crumb { font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); font-weight:600; padding:22px 0 0; }
     .crumb a { color:var(--muted); text-decoration:none; }
     .crumb a:hover { color:var(--ink); }
@@ -102,9 +105,14 @@
     .sup-empty { font-size:14px; color:var(--body); }
     .btn-link { display:inline-block; margin-top:12px; font-size:13px; font-weight:600; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:2px; }
 
-    .evid { display:flex; flex-wrap:wrap; gap:0; border-top:1px solid var(--line); background:var(--panel); }
+    .evid { display:flex; flex-wrap:wrap; align-items:stretch; gap:0; border-top:1px solid var(--line); background:var(--panel); }
     .evid .cell { padding:20px 26px; border-right:1px solid var(--line); }
     .evid .cell:last-child { border-right:none; }
+    .evid .cell.lab { background:transparent; }
+    .evid .cell.lab .k { margin-bottom:0; }
+    .evid .cell.act { display:flex; align-items:center; }
+    .evid .cell.act a { font-size:13px; color:var(--body); text-decoration:none; border-bottom:1px solid var(--line); }
+    .evid .cell.act a:hover { color:var(--ink); border-bottom-color:var(--ink); }
     .evid .k { font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:6px; }
     .evid .v { font-size:13px; color:var(--body); }
     .evid a { color:var(--body); }
@@ -204,6 +212,10 @@
         <span class="reg-count"><b>167</b>commercial suppliers</span>
         <span class="reg-count"><b>32</b>countries</span>
       </div>
+      <div class="reg-nav">
+        <a href="/research/digital-product-passport/suppliers#top">Search</a>
+        <a href="/research/digital-product-passport/suppliers#method">Method</a>
+      </div>
     </div>
 
     <div class="crumb"><a href="/research/digital-product-passport/suppliers">&#8249; All suppliers</a></div>
@@ -235,10 +247,13 @@
     </div>
 
       <div class="evid">
-        <div class="cell"><div class="k">Register evidence</div><div class="v"><a href="https://www.batteriepasswerk.com/en" target="_blank" rel="noopener">official company website</a> &#8599;</div></div>
+        <div class="cell lab"><div class="k">Register evidence</div></div>
+        <div class="cell"><div class="k">Source</div><div class="v"><a href="https://www.batteriepasswerk.com/en" target="_blank" rel="noopener">official company website</a> &#8599;</div></div>
         <div class="cell"><div class="k">First recorded</div><div class="v">28 Jul 2026</div></div>
-        <div class="cell"><div class="k">Status</div><div class="v">Active</div></div>
-        <div class="cell"><div class="k">Method</div><div class="v"><a href="/research/digital-product-passport/suppliers#method">How we verify &#8599;</a></div></div>
+        <div class="cell"><div class="k">Last checked</div><div class="v">28 Jul 2026</div></div>
+        <div class="cell act"><a href="/research/digital-product-passport/suppliers#method">Research method &#8599;</a></div>
+        <div class="cell act"><a href="/research/digital-product-passport/suppliers#corrections">Suggest a correction &#8599;</a></div>
+        <div class="cell act"><a href="/research/digital-product-passport/suppliers#claim">Claim this profile &#8599;</a></div>
       </div>
     </div>
 
