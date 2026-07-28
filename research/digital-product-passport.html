@@ -58,6 +58,18 @@
     .inst-head h1 { font-size: clamp(38px, 5.4vw, 66px); font-weight: 800; line-height: 1.03; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 20px; }
     .inst-thesis { font-size: 18px; color: var(--body); max-width: 640px; border-left: 3px solid var(--yellow); padding-left: 24px; }
 
+    /* HERO TWO-UP - the register is the biggest asset on this page and was
+       previously buried below both tracks. It belongs above the fold. */
+    .hero-two { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 40px; }
+    .ht { background: var(--paper); padding: 26px 28px 24px; text-decoration: none; display: flex; flex-direction: column; transition: background 0.2s; }
+    .ht:hover { background: var(--panel); }
+    .ht-k { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 12px; }
+    .ht-n { font-size: 17px; color: var(--body); letter-spacing: -0.01em; margin-bottom: 10px; }
+    .ht-n b { font-size: 22px; font-weight: 800; color: var(--ink); }
+    .ht-p { font-size: 13px; color: var(--mid); line-height: 1.55; margin-bottom: 16px; }
+    .ht-go { margin-top: auto; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: var(--ink); }
+    @media (max-width: 880px) { .hero-two { grid-template-columns: 1fr; } }
+
     /* PRIMER (on-ramp for non-experts) */
     .primer { padding: 60px 0; border-bottom: 1px solid var(--line); }
     .primer-eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
@@ -262,6 +274,21 @@
       </div>
       <h1 id="title">Digital Product Passport (DPP)</h1>
       <p class="inst-thesis" id="thesis"></p>
+
+      <div class="hero-two">
+        <a class="ht" href="/research/digital-product-passport/suppliers">
+          <div class="ht-k">The supplier register</div>
+          <div class="ht-n"><b>183</b> organisations &middot; <b>167</b> commercial suppliers &middot; <b>32</b> countries</div>
+          <div class="ht-p">Who actually supplies Digital Product Passports, with the source behind every fact and the date it was checked.</div>
+          <span class="ht-go">Open the register &#8594;</span>
+        </a>
+        <a class="ht" href="/research/digital-product-passport/suppliers#method">
+          <div class="ht-k">Capability evidence</div>
+          <div class="ht-n"><b>0 of 12</b> can show a registered passport</div>
+          <div class="ht-p">Ten checks against the twelve best-known suppliers. Eight days after the EU registry went live, none can show a passport in it.</div>
+          <span class="ht-go">See what was checked &#8594;</span>
+        </a>
+      </div>
     </div>
   </header>
 
