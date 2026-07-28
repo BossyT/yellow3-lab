@@ -3,8 +3,935 @@
   "buildCommand": "node generate-sitemap.js",
   "outputDirectory": ".",
   "redirects": [
-    { "source": "/masterclass", "destination": "/advisory", "permanent": true },
-    { "source": "/insights/europes-ai-slumber", "destination": "/insights/europe-ai-slumber", "permanent": true },
-    { "source": "/research/model-adoption/pro", "destination": "/research/model-adoption", "permanent": true }
+    {
+      "source": "/masterclass",
+      "destination": "/advisory",
+      "permanent": true
+    },
+    {
+      "source": "/insights/europes-ai-slumber",
+      "destination": "/insights/europe-ai-slumber",
+      "permanent": true
+    },
+    {
+      "source": "/research/model-adoption/pro",
+      "destination": "/research/model-adoption",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/360-smart-connect",
+      "destination": "/research/digital-product-passport/suppliers/360-smart-connect",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/3e-exchange",
+      "destination": "/research/digital-product-passport/suppliers/3e-exchange",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/accentis-cis",
+      "destination": "/research/digital-product-passport/suppliers/accentis-cis",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/aleverum-global",
+      "destination": "/research/digital-product-passport/suppliers/aleverum-global",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/alternew",
+      "destination": "/research/digital-product-passport/suppliers/alternew",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/arianee",
+      "destination": "/research/digital-product-passport/suppliers/arianee",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/aroundata-consulting",
+      "destination": "/research/digital-product-passport/suppliers/aroundata-consulting",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/atma",
+      "destination": "/research/digital-product-passport/suppliers/atma",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/authena",
+      "destination": "/research/digital-product-passport/suppliers/authena",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/autonms",
+      "destination": "/research/digital-product-passport/suppliers/autonms",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/avl",
+      "destination": "/research/digital-product-passport/suppliers/avl",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/aware",
+      "destination": "/research/digital-product-passport/suppliers/aware",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/batteriepasswerk",
+      "destination": "/research/digital-product-passport/suppliers/batteriepasswerk",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/battery-pass-consortium",
+      "destination": "/research/digital-product-passport/suppliers/battery-pass-consortium",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/bcome",
+      "destination": "/research/digital-product-passport/suppliers/bcome",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/benelog-gmbh-co-kg",
+      "destination": "/research/digital-product-passport/suppliers/benelog-gmbh-co-kg",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/beopass",
+      "destination": "/research/digital-product-passport/suppliers/beopass",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/billon-group",
+      "destination": "/research/digital-product-passport/suppliers/billon-group",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/biniworld-innovations-private-limited",
+      "destination": "/research/digital-product-passport/suppliers/biniworld-innovations-private-limited",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/blue-room-innovation",
+      "destination": "/research/digital-product-passport/suppliers/blue-room-innovation",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/care-id",
+      "destination": "/research/digital-product-passport/suppliers/care-id",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/caruma",
+      "destination": "/research/digital-product-passport/suppliers/caruma",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/catena-x",
+      "destination": "/research/digital-product-passport/suppliers/catena-x",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/certilogo",
+      "destination": "/research/digital-product-passport/suppliers/certilogo",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/checkpoint-systems",
+      "destination": "/research/digital-product-passport/suppliers/checkpoint-systems",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/chemius",
+      "destination": "/research/digital-product-passport/suppliers/chemius",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/circthread",
+      "destination": "/research/digital-product-passport/suppliers/circthread",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/circudata",
+      "destination": "/research/digital-product-passport/suppliers/circudata",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/circuland",
+      "destination": "/research/digital-product-passport/suppliers/circuland",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/circular",
+      "destination": "/research/digital-product-passport/suppliers/circular",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/circularise",
+      "destination": "/research/digital-product-passport/suppliers/circularise",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/circularpass-easytrack",
+      "destination": "/research/digital-product-passport/suppliers/circularpass-easytrack",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/circulor",
+      "destination": "/research/digital-product-passport/suppliers/circulor",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/cirpass",
+      "destination": "/research/digital-product-passport/suppliers/cirpass",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/cirpass2",
+      "destination": "/research/digital-product-passport/suppliers/cirpass2",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/cirtag-ab",
+      "destination": "/research/digital-product-passport/suppliers/cirtag-ab",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/clothing-connected",
+      "destination": "/research/digital-product-passport/suppliers/clothing-connected",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/cobuilder",
+      "destination": "/research/digital-product-passport/suppliers/cobuilder",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/concular",
+      "destination": "/research/digital-product-passport/suppliers/concular",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/containergrid",
+      "destination": "/research/digital-product-passport/suppliers/containergrid",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/crystalchain",
+      "destination": "/research/digital-product-passport/suppliers/crystalchain",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/cycle-platform",
+      "destination": "/research/digital-product-passport/suppliers/cycle-platform",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/cyrcid",
+      "destination": "/research/digital-product-passport/suppliers/cyrcid",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/dataart",
+      "destination": "/research/digital-product-passport/suppliers/dataart",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/deeplai",
+      "destination": "/research/digital-product-passport/suppliers/deeplai",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/deloitte-consulting-gmbh",
+      "destination": "/research/digital-product-passport/suppliers/deloitte-consulting-gmbh",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/digipilpass",
+      "destination": "/research/digital-product-passport/suppliers/digipilpass",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/digipropass",
+      "destination": "/research/digital-product-passport/suppliers/digipropass",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/distinkt",
+      "destination": "/research/digital-product-passport/suppliers/distinkt",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/dnv",
+      "destination": "/research/digital-product-passport/suppliers/dnv",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/dpp-hero",
+      "destination": "/research/digital-product-passport/suppliers/dpp-hero",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/dpp-services",
+      "destination": "/research/digital-product-passport/suppliers/dpp-services",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/dpp-studio-by-ez-lab",
+      "destination": "/research/digital-product-passport/suppliers/dpp-studio-by-ez-lab",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/dpp4-0",
+      "destination": "/research/digital-product-passport/suppliers/dpp4-0",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/dppit",
+      "destination": "/research/digital-product-passport/suppliers/dppit",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/dppmanager-com",
+      "destination": "/research/digital-product-passport/suppliers/dppmanager-com",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/dppskop",
+      "destination": "/research/digital-product-passport/suppliers/dppskop",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/duepas",
+      "destination": "/research/digital-product-passport/suppliers/duepas",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/e-circular-aps",
+      "destination": "/research/digital-product-passport/suppliers/e-circular-aps",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/echo-prm-gmbh",
+      "destination": "/research/digital-product-passport/suppliers/echo-prm-gmbh",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/ecoviator",
+      "destination": "/research/digital-product-passport/suppliers/ecoviator",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/emblem",
+      "destination": "/research/digital-product-passport/suppliers/emblem",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/emidat",
+      "destination": "/research/digital-product-passport/suppliers/emidat",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/energy-web",
+      "destination": "/research/digital-product-passport/suppliers/energy-web",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/enseso-d-o-o",
+      "destination": "/research/digital-product-passport/suppliers/enseso-d-o-o",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/eon",
+      "destination": "/research/digital-product-passport/suppliers/eon",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/esgnext",
+      "destination": "/research/digital-product-passport/suppliers/esgnext",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/eviden",
+      "destination": "/research/digital-product-passport/suppliers/eviden",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/fabacus",
+      "destination": "/research/digital-product-passport/suppliers/fabacus",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/fairlymade",
+      "destination": "/research/digital-product-passport/suppliers/fairlymade",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/family-labs-pty-ltd",
+      "destination": "/research/digital-product-passport/suppliers/family-labs-pty-ltd",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/fluxy-one",
+      "destination": "/research/digital-product-passport/suppliers/fluxy-one",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/foodtraze",
+      "destination": "/research/digital-product-passport/suppliers/foodtraze",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/fraunhofer-iosb",
+      "destination": "/research/digital-product-passport/suppliers/fraunhofer-iosb",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/global-battery-alliance",
+      "destination": "/research/digital-product-passport/suppliers/global-battery-alliance",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/goods-tag",
+      "destination": "/research/digital-product-passport/suppliers/goods-tag",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/goodsid",
+      "destination": "/research/digital-product-passport/suppliers/goodsid",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/green-story",
+      "destination": "/research/digital-product-passport/suppliers/green-story",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/greenable-gmbh",
+      "destination": "/research/digital-product-passport/suppliers/greenable-gmbh",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/greenstitch-technologies-private-limited",
+      "destination": "/research/digital-product-passport/suppliers/greenstitch-technologies-private-limited",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/gs1",
+      "destination": "/research/digital-product-passport/suppliers/gs1",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/hala",
+      "destination": "/research/digital-product-passport/suppliers/hala",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/harbour-ai",
+      "destination": "/research/digital-product-passport/suppliers/harbour-ai",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/ibm",
+      "destination": "/research/digital-product-passport/suppliers/ibm",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/industryapps",
+      "destination": "/research/digital-product-passport/suppliers/industryapps",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/innopay",
+      "destination": "/research/digital-product-passport/suppliers/innopay",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/inriver",
+      "destination": "/research/digital-product-passport/suppliers/inriver",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/iota-foundation",
+      "destination": "/research/digital-product-passport/suppliers/iota-foundation",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/ipoint-systems",
+      "destination": "/research/digital-product-passport/suppliers/ipoint-systems",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/ixalab-2026",
+      "destination": "/research/digital-product-passport/suppliers/ixalab-2026",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/k4security-co-ltd",
+      "destination": "/research/digital-product-passport/suppliers/k4security-co-ltd",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/kelpai",
+      "destination": "/research/digital-product-passport/suppliers/kelpai",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/kerion-x-core",
+      "destination": "/research/digital-product-passport/suppliers/kerion-x-core",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/kevla-gmbh",
+      "destination": "/research/digital-product-passport/suppliers/kevla-gmbh",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/kezzler",
+      "destination": "/research/digital-product-passport/suppliers/kezzler",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/kinset",
+      "destination": "/research/digital-product-passport/suppliers/kinset",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/kolla",
+      "destination": "/research/digital-product-passport/suppliers/kolla",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/kurz-digital",
+      "destination": "/research/digital-product-passport/suppliers/kurz-digital",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/laava-id",
+      "destination": "/research/digital-product-passport/suppliers/laava-id",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/landbell-h2-compliance",
+      "destination": "/research/digital-product-passport/suppliers/landbell-h2-compliance",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/luxima",
+      "destination": "/research/digital-product-passport/suppliers/luxima",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/lw3-private-limited",
+      "destination": "/research/digital-product-passport/suppliers/lw3-private-limited",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/lyondellbasell",
+      "destination": "/research/digital-product-passport/suppliers/lyondellbasell",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/madaster",
+      "destination": "/research/digital-product-passport/suppliers/madaster",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/magellan-tx-dpp",
+      "destination": "/research/digital-product-passport/suppliers/magellan-tx-dpp",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/meatec",
+      "destination": "/research/digital-product-passport/suppliers/meatec",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/merloop",
+      "destination": "/research/digital-product-passport/suppliers/merloop",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/miceliodata",
+      "destination": "/research/digital-product-passport/suppliers/miceliodata",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/minespider",
+      "destination": "/research/digital-product-passport/suppliers/minespider",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/mobillor-technologies-b-v",
+      "destination": "/research/digital-product-passport/suppliers/mobillor-technologies-b-v",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/monxolo-ltd",
+      "destination": "/research/digital-product-passport/suppliers/monxolo-ltd",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/msp-ag",
+      "destination": "/research/digital-product-passport/suppliers/msp-ag",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/myproductpassport",
+      "destination": "/research/digital-product-passport/suppliers/myproductpassport",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/nam-viet-group-solutions-jsc",
+      "destination": "/research/digital-product-passport/suppliers/nam-viet-group-solutions-jsc",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/narravero",
+      "destination": "/research/digital-product-passport/suppliers/narravero",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/neocondo",
+      "destination": "/research/digital-product-passport/suppliers/neocondo",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/objective-partner-ag",
+      "destination": "/research/digital-product-passport/suppliers/objective-partner-ag",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/ootentik",
+      "destination": "/research/digital-product-passport/suppliers/ootentik",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/open-dpp-gmbh",
+      "destination": "/research/digital-product-passport/suppliers/open-dpp-gmbh",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/opendpp-uab",
+      "destination": "/research/digital-product-passport/suppliers/opendpp-uab",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/optel",
+      "destination": "/research/digital-product-passport/suppliers/optel",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/oracle",
+      "destination": "/research/digital-product-passport/suppliers/oracle",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/originpass",
+      "destination": "/research/digital-product-passport/suppliers/originpass",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/origovero",
+      "destination": "/research/digital-product-passport/suppliers/origovero",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/origyn",
+      "destination": "/research/digital-product-passport/suppliers/origyn",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/orijin-plus",
+      "destination": "/research/digital-product-passport/suppliers/orijin-plus",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/osapiens",
+      "destination": "/research/digital-product-passport/suppliers/osapiens",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/otokod-technologies-dppvisa",
+      "destination": "/research/digital-product-passport/suppliers/otokod-technologies-dppvisa",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/ovido",
+      "destination": "/research/digital-product-passport/suppliers/ovido",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/passportlab",
+      "destination": "/research/digital-product-passport/suppliers/passportlab",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/peftrust",
+      "destination": "/research/digital-product-passport/suppliers/peftrust",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/plasafe",
+      "destination": "/research/digital-product-passport/suppliers/plasafe",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/polytag-limited",
+      "destination": "/research/digital-product-passport/suppliers/polytag-limited",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/primafelicitas",
+      "destination": "/research/digital-product-passport/suppliers/primafelicitas",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/product-dna",
+      "destination": "/research/digital-product-passport/suppliers/product-dna",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/protag-as",
+      "destination": "/research/digital-product-passport/suppliers/protag-as",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/provenant",
+      "destination": "/research/digital-product-passport/suppliers/provenant",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/psqr",
+      "destination": "/research/digital-product-passport/suppliers/psqr",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/qliktag-software-inc",
+      "destination": "/research/digital-product-passport/suppliers/qliktag-software-inc",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/quifactum",
+      "destination": "/research/digital-product-passport/suppliers/quifactum",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/r-cycle",
+      "destination": "/research/digital-product-passport/suppliers/r-cycle",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/ramboll",
+      "destination": "/research/digital-product-passport/suppliers/ramboll",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/realign",
+      "destination": "/research/digital-product-passport/suppliers/realign",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/regilient",
+      "destination": "/research/digital-product-passport/suppliers/regilient",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/renoon",
+      "destination": "/research/digital-product-passport/suppliers/renoon",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/retraced",
+      "destination": "/research/digital-product-passport/suppliers/retraced",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/sacred-valley-tech",
+      "destination": "/research/digital-product-passport/suppliers/sacred-valley-tech",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/sap",
+      "destination": "/research/digital-product-passport/suppliers/sap",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/scantrust",
+      "destination": "/research/digital-product-passport/suppliers/scantrust",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/seamless-source",
+      "destination": "/research/digital-product-passport/suppliers/seamless-source",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/selinko",
+      "destination": "/research/digital-product-passport/suppliers/selinko",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/siemens",
+      "destination": "/research/digital-product-passport/suppliers/siemens",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/smart-drs",
+      "destination": "/research/digital-product-passport/suppliers/smart-drs",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/sourcemap",
+      "destination": "/research/digital-product-passport/suppliers/sourcemap",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/spherity",
+      "destination": "/research/digital-product-passport/suppliers/spherity",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/sqanit",
+      "destination": "/research/digital-product-passport/suppliers/sqanit",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/stefano-cipriani-studio",
+      "destination": "/research/digital-product-passport/suppliers/stefano-cipriani-studio",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/syncforce",
+      "destination": "/research/digital-product-passport/suppliers/syncforce",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/t-systems",
+      "destination": "/research/digital-product-passport/suppliers/t-systems",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/tappr",
+      "destination": "/research/digital-product-passport/suppliers/tappr",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/temera",
+      "destination": "/research/digital-product-passport/suppliers/temera",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/terra-matters-gie",
+      "destination": "/research/digital-product-passport/suppliers/terra-matters-gie",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/tex-tracer",
+      "destination": "/research/digital-product-passport/suppliers/tex-tracer",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/texpo-srl-deply",
+      "destination": "/research/digital-product-passport/suppliers/texpo-srl-deply",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/textilegenesis",
+      "destination": "/research/digital-product-passport/suppliers/textilegenesis",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/tieback",
+      "destination": "/research/digital-product-passport/suppliers/tieback",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/tilkal",
+      "destination": "/research/digital-product-passport/suppliers/tilkal",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/traceable-digital",
+      "destination": "/research/digital-product-passport/suppliers/traceable-digital",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/traced-systems",
+      "destination": "/research/digital-product-passport/suppliers/traced-systems",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/tracelia",
+      "destination": "/research/digital-product-passport/suppliers/tracelia",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/trackvision-ai-ltd",
+      "destination": "/research/digital-product-passport/suppliers/trackvision-ai-ltd",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/transpareo-ag",
+      "destination": "/research/digital-product-passport/suppliers/transpareo-ag",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/trustrace",
+      "destination": "/research/digital-product-passport/suppliers/trustrace",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/twintag",
+      "destination": "/research/digital-product-passport/suppliers/twintag",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/undo",
+      "destination": "/research/digital-product-passport/suppliers/undo",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/unisot",
+      "destination": "/research/digital-product-passport/suppliers/unisot",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/unnamed-durable-rfid-and-secured-qr-for-textile",
+      "destination": "/research/digital-product-passport/suppliers/unnamed-durable-rfid-and-secured-qr-for-textile",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/unopim",
+      "destination": "/research/digital-product-passport/suppliers/unopim",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/vechain",
+      "destination": "/research/digital-product-passport/suppliers/vechain",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/wetrack",
+      "destination": "/research/digital-product-passport/suppliers/wetrack",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/wiseside",
+      "destination": "/research/digital-product-passport/suppliers/wiseside",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/worldline",
+      "destination": "/research/digital-product-passport/suppliers/worldline",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/zeropact",
+      "destination": "/research/digital-product-passport/suppliers/zeropact",
+      "permanent": true
+    }
   ]
 }
