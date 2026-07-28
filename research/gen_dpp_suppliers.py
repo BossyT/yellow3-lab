@@ -299,7 +299,16 @@ CSS = """
     .crit .n { font-size:12px; color:var(--muted); }
     .crit .l { font-size:14px; }
     .crit .s { font-size:11px; letter-spacing:0.1em; text-transform:uppercase; font-weight:600; color:var(--muted); }
-    .crit .s.na { color:#aeaeae; }
+    .crit .s.cs-na { color:#aeaeae; }
+    /* verified and not-found sit at the same visual weight on purpose: a found
+       result is not a prize, a not-found is not a penalty. Both are findings. */
+    .crit .s.cs-v { color:#1C7A5A; }
+    .crit .s.cs-c { color:#9C6B0C; }
+    .crit .s.cs-n { color:var(--mid); }
+    .crit .s .cdate { color:var(--muted); font-weight:400; letter-spacing:0; text-transform:none; margin-left:10px; font-size:11px; }
+    .crit .s .src { margin-left:8px; font-weight:400; letter-spacing:0; text-transform:none; }
+    .crit-foot { font-size:12px; color:var(--muted); padding-top:14px; border-top:1px solid var(--line); margin-top:2px; }
+    .crit-foot a { color:var(--muted); }
 
     .sup-empty { font-size:14px; color:var(--body); }
     .btn-link { display:inline-block; margin-top:12px; font-size:13px; font-weight:600; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:2px; }
@@ -487,6 +496,76 @@ def reg_bar(counts, link=True):
 """
 
 
+# ---------------------------------------------------------------- capability
+
+CAP_STATE = {
+    # state -> (label, css class). Verified and not-found are deliberately close in
+    # weight: a found result is not a prize and a not-found is not a penalty. Both
+    # are findings.
+    "verified":       ("Verified", "cs-v"),
+    "company_states": ("Company states", "cs-c"),
+    "not_found":      ("Not found", "cs-n"),
+}
+
+
+def load_capability():
+    """Per-supplier capability results, keyed id -> check_id -> record.
+
+    Absent file, or a supplier absent from it, means NOT YET ASSESSED - which is a
+    different thing from not found, and must never be rendered as one.
+    """
+    path = os.path.join(HERE, "dpp-capability.json")
+    if not os.path.exists(path):
+        return {}
+    with open(path, encoding="utf-8") as fh:
+        data = json.load(fh)
+    out = {}
+    for row in data.get("results", []):
+        out.setdefault(row["supplier_id"], {})[row["check_id"]] = row
+    return out
+
+
+def capability_block(r, cap):
+    """The ten checks, or one honest sentence if nobody has looked yet."""
+    if r["entity_type"] in NON_COMMERCIAL:
+        return ""
+
+    results = cap.get(r["id"])
+    head = ('<div class="sub-h" style="margin-top:38px">Capability evidence</div>'
+            '<div class="crit-note">Ten independent checks. No composite score.</div>')
+
+    if not results:
+        return head + (
+            '<div class="crit-empty">Not yet assessed for this supplier.'
+            '<em>Assessments are published as they are completed.</em></div>'
+            '<a class="btn-link" href="/research/digital-product-passport/suppliers#method">'
+            'View assessment framework &#8599;</a>')
+
+    rows = []
+    for i, (name, question) in enumerate(CRITERIA, 1):
+        cid = f"c{i:02d}"
+        rec = results.get(cid)
+        if not rec:
+            label, cls, right = "Not yet assessed", "cs-na", ""
+        else:
+            label, cls = CAP_STATE.get(rec["state"], ("Not yet assessed", "cs-na"))
+            when = pretty_date(rec.get("checked_date", ""))
+            src = rec.get("evidence_url", "")
+            link = (f' <a class="src" href="{e(src)}" target="_blank" rel="noopener" '
+                    f'title="{e(rec.get("artifact",""))}">evidence</a>') if src else ""
+            right = f'<span class="cdate">{e(when)}</span>{link}'
+        rows.append(
+            f'<div class="crit"><span class="n">{i}</span>'
+            f'<span class="l" title="{e(question)}">{e(name)}</span>'
+            f'<span class="s {cls}">{e(label)}{right}</span></div>')
+
+    assessed = sum(1 for v in results.values() if v.get("state"))
+    foot = (f'<div class="crit-foot">{assessed} of 10 checked &middot; '
+            f'each check independent, each with its own evidence and date. '
+            f'<a href="/research/digital-product-passport/suppliers#method">How we verify &#8599;</a></div>')
+    return head + "".join(rows) + foot
+
+
 # ---------------------------------------------------------------- card
 
 def glance_cell(label, value, source, checked_note=True):
@@ -503,7 +582,7 @@ def glance_cell(label, value, source, checked_note=True):
     return f'<div class="gl"><div class="k">{label}</div><div class="v none">Not yet assessed</div></div>'
 
 
-def card_html(r, counts):
+def card_html(r, counts, cap):
     name = r["name"]
     nc = r["entity_type"] in NON_COMMERCIAL
     kind, curl, cdate = source_state(r["country_source"])
@@ -541,17 +620,7 @@ def card_html(r, counts):
         glance_cell("Disclosed funding", e(r["total_disclosed_funding"]), r["funding_source"]),
     ])
 
-    # capability layer - nothing is assessed yet, so it collapses to one statement
-    if nc:
-        capability = ""
-    else:
-        capability = f"""
-      <div class="sub-h" style="margin-top:38px">Capability evidence</div>
-      <div class="crit-note">Ten independent checks. No composite score.</div>
-      <div class="crit-empty">Not yet assessed for this supplier.
-        <em>Assessments are published as they are completed.</em></div>
-      <a class="btn-link" href="/research/digital-product-passport/suppliers#method">View assessment framework &#8599;</a>
-"""
+    capability = capability_block(r, cap)
 
     company = "" if nc else f"""
     <div class="layer company">
@@ -747,6 +816,7 @@ def main():
             payload = json.load(fh)
 
     rows, counts = payload["suppliers"], payload["counts"]
+    cap = load_capability()
     os.makedirs(OUTDIR, exist_ok=True)
 
     with open(os.path.join(OUTDIR, "suppliers.html"), "w", encoding="utf-8") as fh:
@@ -754,7 +824,7 @@ def main():
 
     for r in rows:
         with open(os.path.join(OUTDIR, f"{r['id']}.html"), "w", encoding="utf-8") as fh:
-            fh.write(card_html(r, counts))
+            fh.write(card_html(r, counts, cap))
 
     print(f"wrote suppliers.html + {len(rows)} profiles into research/digital-product-passport/")
     print(f"  {counts['organisations']} organisations, {counts['commercial_suppliers']} commercial "

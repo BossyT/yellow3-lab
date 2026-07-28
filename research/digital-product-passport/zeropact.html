@@ -88,7 +88,16 @@
     .crit .n { font-size:12px; color:var(--muted); }
     .crit .l { font-size:14px; }
     .crit .s { font-size:11px; letter-spacing:0.1em; text-transform:uppercase; font-weight:600; color:var(--muted); }
-    .crit .s.na { color:#aeaeae; }
+    .crit .s.cs-na { color:#aeaeae; }
+    /* verified and not-found sit at the same visual weight on purpose: a found
+       result is not a prize, a not-found is not a penalty. Both are findings. */
+    .crit .s.cs-v { color:#1C7A5A; }
+    .crit .s.cs-c { color:#9C6B0C; }
+    .crit .s.cs-n { color:var(--mid); }
+    .crit .s .cdate { color:var(--muted); font-weight:400; letter-spacing:0; text-transform:none; margin-left:10px; font-size:11px; }
+    .crit .s .src { margin-left:8px; font-weight:400; letter-spacing:0; text-transform:none; }
+    .crit-foot { font-size:12px; color:var(--muted); padding-top:14px; border-top:1px solid var(--line); margin-top:2px; }
+    .crit-foot a { color:var(--muted); }
 
     .sup-empty { font-size:14px; color:var(--body); }
     .btn-link { display:inline-block; margin-top:12px; font-size:13px; font-weight:600; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:2px; }
@@ -216,13 +225,7 @@
         <div class="layer-h">Verified by yellow3</div>
         <div class="sub-h">At a glance</div>
         <div class="glance"><div class="gl"><div class="k">Sectors</div><div class="v none">Not yet assessed</div></div><div class="gl"><div class="k">Founded</div><div class="v none">Not yet assessed</div></div><div class="gl"><div class="k">Ownership</div><div class="v">operated by ZEROPACT, LDA</div></div><div class="gl"><div class="k">Funding stage</div><div class="v">grant funded</div></div><div class="gl"><div class="k">Disclosed funding</div><div class="v">EUR 0.331m &middot; <a class="src" href="https://zeropact.co/public-funding" target="_blank" rel="noopener">source</a></div></div></div>
-
-      <div class="sub-h" style="margin-top:38px">Capability evidence</div>
-      <div class="crit-note">Ten independent checks. No composite score.</div>
-      <div class="crit-empty">Not yet assessed for this supplier.
-        <em>Assessments are published as they are completed.</em></div>
-      <a class="btn-link" href="/research/digital-product-passport/suppliers#method">View assessment framework &#8599;</a>
-
+<div class="sub-h" style="margin-top:38px">Capability evidence</div><div class="crit-note">Ten independent checks. No composite score.</div><div class="crit-empty">Not yet assessed for this supplier.<em>Assessments are published as they are completed.</em></div><a class="btn-link" href="/research/digital-product-passport/suppliers#method">View assessment framework &#8599;</a>
       </div>
 
     <div class="layer company">
