@@ -425,6 +425,21 @@ CSS = """
     .lg-r i { width:16px; height:3px; flex:none; }
     .legend .note { grid-column:1 / -1; font-size:13px; color:var(--muted); padding-top:8px; }
 
+    .claim-wrap { padding:36px 0 70px; max-width:760px; }
+    .claim-wrap h1 { font-size:clamp(30px,4vw,44px); font-weight:800; letter-spacing:-0.03em; line-height:1.05; margin-bottom:16px; }
+    .claim-lead { font-size:17px; color:var(--body); line-height:1.6; border-left:3px solid var(--yellow); padding-left:22px; margin-bottom:32px; }
+    .claim-form { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:14px; }
+    .claim-form input { font-family:inherit; font-size:15px; padding:15px 16px; border:1px solid var(--line); min-width:320px; flex:1 1 320px; color:var(--ink); }
+    .claim-form input:focus { outline:none; border-color:var(--ink); }
+    .btn { display:inline-flex; align-items:center; gap:12px; padding:15px 26px; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; border:1px solid var(--ink); cursor:pointer; font-family:inherit; }
+    .btn-dark { background:var(--ink); color:#fff; }
+    .btn-dark:hover { background:#000; }
+    .claim-msg { font-size:14px; color:var(--body); line-height:1.6; background:var(--panel); border:1px solid var(--line); padding:16px 18px; margin-bottom:30px; }
+    .claim-cols { display:grid; grid-template-columns:repeat(3,1fr); gap:30px; padding-top:34px; border-top:1px solid var(--line); }
+    .claim-cols h3 { font-size:14px; font-weight:700; margin-bottom:9px; }
+    .claim-cols p { font-size:14px; color:var(--body); line-height:1.6; }
+    @media (max-width:880px) { .claim-cols { grid-template-columns:1fr; gap:22px; } .claim-form input { min-width:100%; } }
+
     .method { padding:52px 0 64px; border-top:1px solid var(--line); }
     .method h2 { font-size:22px; font-weight:800; letter-spacing:-0.02em; margin-bottom:14px; }
     .method p { font-size:15px; color:var(--body); max-width:720px; margin-bottom:14px; }
@@ -741,7 +756,7 @@ def card_html(r, counts, cap):
     <div class="layer company">
       <div class="layer-h">Supplied by {e(name)}</div>
       <div class="sup-empty">No company-supplied profile received.</div>
-      <a class="btn-link" href="/research/digital-product-passport/suppliers#claim">Claim this profile &#8599;</a>
+      <a class="btn-link" href="/research/digital-product-passport/claim?s={e(r['id'])}">Claim this profile &#8599;</a>
     </div>
 """
 
@@ -784,7 +799,7 @@ def card_html(r, counts, cap):
         <div class="cell"><div class="k">Last checked</div><div class="v">{e(last_checked)}</div></div>
         <div class="cell act"><a href="/research/digital-product-passport/suppliers#method">Research method &#8599;</a></div>
         <div class="cell act"><a href="/research/digital-product-passport/suppliers#corrections">Suggest a correction &#8599;</a></div>
-        <div class="cell act"><a href="/research/digital-product-passport/suppliers#claim">Claim this profile &#8599;</a></div>
+        <div class="cell act"><a href="/research/digital-product-passport/claim?s={e(r['id'])}">Claim this profile &#8599;</a></div>
       </div>
     </div>
 
@@ -977,6 +992,87 @@ def directory_html(rows, counts, cap):
                 body, js, head_extra=directory_jsonld(counts))
 
 
+def claim_html(counts):
+    body = """
+  <div class="wrap reg-head">
+""" + reg_bar(counts) + """
+    <div class="crumb"><a href="/research/digital-product-passport/suppliers">&#8249; All suppliers</a></div>
+
+    <div class="claim-wrap">
+      <h1>Claim <span id="cname">your profile</span></h1>
+      <p class="claim-lead">Enter your work email. If it is at the domain on record for this
+      company, the claim is confirmed straight away - no account, no waiting for approval.</p>
+
+      <form id="cf" class="claim-form" novalidate>
+        <input id="cemail" type="email" required placeholder="you@yourcompany.com"
+               aria-label="Work email" autocomplete="email" />
+        <button class="btn btn-dark" type="submit">Claim this profile <span class="arr">&#8594;</span></button>
+      </form>
+      <div id="cmsg" class="claim-msg" hidden></div>
+
+      <div class="claim-cols">
+        <div>
+          <h3>What you can supply</h3>
+          <p>A logo, a one-line description, a contact link, and your answers to the ten
+          capability checks. It appears in its own layer on your profile, marked as coming
+          from you, and dated.</p>
+        </div>
+        <div>
+          <h3>What stays ours</h3>
+          <p>Everything we verified independently, with the source and the date we checked it.
+          Company-supplied content never overwrites it. If something we published is wrong,
+          send the correction with a source and we will fix it and log the change.</p>
+        </div>
+        <div>
+          <h3>Why a work email</h3>
+          <p>The register is keyed on company domains, so an address at the company domain is
+          proof enough. Personal mailboxes are not accepted, which is what keeps anyone from
+          claiming a company they do not work for.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+"""
+    js = """
+<script>
+(function(){
+  var reg = null, id = new URLSearchParams(location.search).get('s') || '';
+  var msg = document.getElementById('cmsg');
+  fetch('/research/dpp-suppliers.json').then(function(r){return r.json();}).then(function(d){
+    reg = (d.suppliers||[]).filter(function(x){return x.id===id;})[0];
+    if (reg) {
+      document.getElementById('cname').textContent = reg.name;
+      document.title = 'Claim ' + reg.name + ' - DPP Supplier Register - yellow3';
+    }
+  }).catch(function(){});
+
+  document.getElementById('cf').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var email = document.getElementById('cemail').value.trim();
+    if (!email) return;
+    msg.hidden = false;
+    msg.textContent = 'Checking\u2026';
+    fetch('/api/claim', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ email: email, supplier: id })
+    }).then(function(){
+      msg.innerHTML = '<b>Check your inbox.</b> If that address is at the domain on record '
+        + 'for this company, a confirmation is on its way. If it is not, nothing was sent - '
+        + 'write to us and we will sort it out.';
+    }).catch(function(){
+      msg.textContent = 'Something went wrong. Please try again.';
+    });
+  });
+})();
+</script>
+"""
+    return page("Claim a profile - DPP Supplier Register - yellow3",
+                "Claim your organisation's profile on the yellow3 DPP Supplier Register. "
+                "Verified by work email domain, no account required.",
+                "https://yellow3.io/research/digital-product-passport/claim",
+                body, js)
+
+
 # ---------------------------------------------------------------- main
 
 def main():
@@ -997,6 +1093,9 @@ def main():
 
     with open(os.path.join(OUTDIR, "suppliers.html"), "w", encoding="utf-8") as fh:
         fh.write(directory_html(rows, counts, cap))
+
+    with open(os.path.join(OUTDIR, "claim.html"), "w", encoding="utf-8") as fh:
+        fh.write(claim_html(counts))
 
     for r in rows:
         with open(os.path.join(OUTDIR, f"{r['id']}.html"), "w", encoding="utf-8") as fh:

@@ -180,6 +180,21 @@
     .lg-r i { width:16px; height:3px; flex:none; }
     .legend .note { grid-column:1 / -1; font-size:13px; color:var(--muted); padding-top:8px; }
 
+    .claim-wrap { padding:36px 0 70px; max-width:760px; }
+    .claim-wrap h1 { font-size:clamp(30px,4vw,44px); font-weight:800; letter-spacing:-0.03em; line-height:1.05; margin-bottom:16px; }
+    .claim-lead { font-size:17px; color:var(--body); line-height:1.6; border-left:3px solid var(--yellow); padding-left:22px; margin-bottom:32px; }
+    .claim-form { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:14px; }
+    .claim-form input { font-family:inherit; font-size:15px; padding:15px 16px; border:1px solid var(--line); min-width:320px; flex:1 1 320px; color:var(--ink); }
+    .claim-form input:focus { outline:none; border-color:var(--ink); }
+    .btn { display:inline-flex; align-items:center; gap:12px; padding:15px 26px; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; border:1px solid var(--ink); cursor:pointer; font-family:inherit; }
+    .btn-dark { background:var(--ink); color:#fff; }
+    .btn-dark:hover { background:#000; }
+    .claim-msg { font-size:14px; color:var(--body); line-height:1.6; background:var(--panel); border:1px solid var(--line); padding:16px 18px; margin-bottom:30px; }
+    .claim-cols { display:grid; grid-template-columns:repeat(3,1fr); gap:30px; padding-top:34px; border-top:1px solid var(--line); }
+    .claim-cols h3 { font-size:14px; font-weight:700; margin-bottom:9px; }
+    .claim-cols p { font-size:14px; color:var(--body); line-height:1.6; }
+    @media (max-width:880px) { .claim-cols { grid-template-columns:1fr; gap:22px; } .claim-form input { min-width:100%; } }
+
     .method { padding:52px 0 64px; border-top:1px solid var(--line); }
     .method h2 { font-size:22px; font-weight:800; letter-spacing:-0.02em; margin-bottom:14px; }
     .method p { font-size:15px; color:var(--body); max-width:720px; margin-bottom:14px; }
@@ -287,7 +302,7 @@
     <div class="layer company">
       <div class="layer-h">Supplied by Peftrust</div>
       <div class="sup-empty">No company-supplied profile received.</div>
-      <a class="btn-link" href="/research/digital-product-passport/suppliers#claim">Claim this profile &#8599;</a>
+      <a class="btn-link" href="/research/digital-product-passport/claim?s=peftrust">Claim this profile &#8599;</a>
     </div>
 
       <div class="evid">
@@ -297,7 +312,7 @@
         <div class="cell"><div class="k">Last checked</div><div class="v">28 Jul 2026</div></div>
         <div class="cell act"><a href="/research/digital-product-passport/suppliers#method">Research method &#8599;</a></div>
         <div class="cell act"><a href="/research/digital-product-passport/suppliers#corrections">Suggest a correction &#8599;</a></div>
-        <div class="cell act"><a href="/research/digital-product-passport/suppliers#claim">Claim this profile &#8599;</a></div>
+        <div class="cell act"><a href="/research/digital-product-passport/claim?s=peftrust">Claim this profile &#8599;</a></div>
       </div>
     </div>
 
