@@ -422,6 +422,8 @@
         var sub = o.note ? ' <span class="sub">· ' + esc(o.note) + '</span>' : '';
         var pill = o.status === 'in_force'
           ? '<span class="pill" style="background:#E3F3EC;color:#1C7A5A">In force · ' + esc(o.effective) + '</span>'
+          : o.status === 'upcoming'
+          ? '<span class="pill" style="background:#F2F0EA;color:#5A5548">Applies from · ' + esc(o.effective) + '</span>'
           : '<span class="pill" style="background:#FBEFD3;color:#9C6B0C">Moved → ' + esc(o.effective) + '</span>';
         return '<div class="row"><span class="rl">' + esc(o.label) + sub + '</span>' + pill + '</div>';
       }).join('');
