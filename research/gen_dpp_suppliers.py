@@ -318,8 +318,8 @@ CSS = """
     .id-line.hq .dated { font-size:12px; }
 
     /* footnote marker + hover provenance record */
-    .fn { position:relative; display:inline-flex; align-items:center; gap:6px; cursor:default; outline:none; }
-    .fn sup { font-size:10px; color:var(--muted); }
+    .fnm { font-size:10px; color:var(--muted); vertical-align:super; line-height:0; margin-left:1px; }
+    .fn { position:relative; display:inline-flex; align-items:center; cursor:default; outline:none; vertical-align:middle; margin-left:4px; }
     .fni { width:15px; height:15px; border:1px solid var(--line); border-radius:50%; font-size:9px;
            line-height:13px; text-align:center; color:var(--muted); font-style:italic; }
     .fn:hover .fni, .fn:focus .fni { border-color:var(--ink); color:var(--ink); }
@@ -679,38 +679,47 @@ def card_html(r, counts, cap):
     today = pretty_date(datetime.date.today().isoformat())
     checked = cdate or today
 
-    def prov(n, title, finding, when, url):
-        """The hover provenance record: what was checked, what was found, when."""
+    def marker(n):
+        return f'<sup class="fnm">{n}</sup>'
+
+    def prov(title, finding, when, url):
+        """The hover provenance record, anchored at the end of the line."""
         link = (f'<a href="{e(url)}" target="_blank" rel="noopener">View search record &#8599;</a>'
                 if url else
                 '<a href="/research/digital-product-passport/suppliers#method">How we verify &#8599;</a>')
         return (f'<span class="fn" tabindex="0" role="button" aria-label="{e(title)}">'
-                f'<sup>{n}</sup><span class="fni">i</span>'
+                f'<span class="fni">i</span>'
                 f'<span class="pv"><b>{e(title)}</b><span class="pv-f">{e(finding)}</span>'
                 f'<span class="pv-d">Checked {e(when)}</span><span class="pv-l">{link}</span></span></span>')
 
-    # website line
+    # website line, with its own checked date beneath
     if r["website"]:
         site = (f'<a href="{e(r["website"])}" target="_blank" rel="noopener">'
-                f'{e(r["domain"] or r["website"])}</a> &#8599;'
-                + prov(1, "Website check", "Official company website confirmed", checked, r["website"]))
+                f'{e(r["domain"] or r["website"])}</a> &#8599;{marker(1)}')
+        site_finding = "Official company website confirmed"
+        site_url = r["website"]
     elif kind == "not_found":
-        site = ("No official website established"
-                + prov(1, "Website check", "No official website found", checked, ""))
+        site = f'No official website established{marker(1)}'
+        site_finding = "No official website found"
+        site_url = ""
     else:
         site = '<span class="muted">Not yet assessed</span>'
+        site_finding = site_url = ""
+    site_prov = prov("Website check", site_finding, checked, site_url) if site_finding else ""
 
     # headquarters line
     if r["hq_country"]:
         place = ", ".join([x for x in (r["hq_city"], r["hq_country"]) if x])
-        finding = ("Confirmed from a primary source" if kind == "url"
-                   else "Stated by the company")
-        hq = e(place) + prov(2, "Country check", finding, checked, curl)
+        hq = e(place) + marker(2)
+        hq_finding = ("Confirmed from a primary source" if kind == "url"
+                      else "Stated by the company")
     elif kind == "not_found":
-        hq = ("Not publicly established"
-              + prov(2, "Country check", "No public country source found", checked, ""))
+        hq = f'Not publicly established{marker(2)}'
+        hq_finding = "No public country source found"
     else:
         hq = '<span class="muted">Not yet assessed</span>'
+        hq_finding = ""
+    hq_prov = prov("Country check", hq_finding, checked, curl) if hq_finding else ""
 
     tag = f'<span class="tag{" nc" if nc else ""}">{TYPE_LABEL.get(r["entity_type"], r["entity_type"])}</span>'
     ncline = (f'<div class="id-line" style="color:var(--body)">{NON_COMMERCIAL_NOTE[r["entity_type"]]}</div>'
@@ -753,10 +762,10 @@ def card_html(r, counts, cap):
         <div>
           <div class="id-name"><h1>{e(name)}</h1>{tag}</div>
           {ncline}
-          <div class="id-line">{site}</div>
+          <div class="id-line">{site} {site_prov}</div>
           <div class="id-sub">checked {e(checked)}</div>
           <div class="id-line hq"><span class="k">Headquarters</span> &middot; {hq}
-            <span class="dated">&middot; checked {e(checked)}</span></div>
+            <span class="dated">&middot; checked {e(checked)}</span> {hq_prov}</div>
         </div>
         <div class="rail">Supplier profile</div>
       </div>

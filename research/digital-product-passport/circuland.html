@@ -73,8 +73,8 @@
     .id-line.hq .dated { font-size:12px; }
 
     /* footnote marker + hover provenance record */
-    .fn { position:relative; display:inline-flex; align-items:center; gap:6px; cursor:default; outline:none; }
-    .fn sup { font-size:10px; color:var(--muted); }
+    .fnm { font-size:10px; color:var(--muted); vertical-align:super; line-height:0; margin-left:1px; }
+    .fn { position:relative; display:inline-flex; align-items:center; cursor:default; outline:none; vertical-align:middle; margin-left:4px; }
     .fni { width:15px; height:15px; border:1px solid var(--line); border-radius:50%; font-size:9px;
            line-height:13px; text-align:center; color:var(--muted); font-style:italic; }
     .fn:hover .fni, .fn:focus .fni { border-color:var(--ink); color:var(--ink); }
@@ -269,10 +269,10 @@
         <div>
           <div class="id-name"><h1>Circuland</h1><span class="tag">Platform</span></div>
           
-          <div class="id-line"><a href="https://circuland.co.uk" target="_blank" rel="noopener">circuland.co.uk</a> &#8599;<span class="fn" tabindex="0" role="button" aria-label="Website check"><sup>1</sup><span class="fni">i</span><span class="pv"><b>Website check</b><span class="pv-f">Official company website confirmed</span><span class="pv-d">Checked 28 Jul 2026</span><span class="pv-l"><a href="https://circuland.co.uk" target="_blank" rel="noopener">View search record &#8599;</a></span></span></span></div>
+          <div class="id-line"><a href="https://circuland.co.uk" target="_blank" rel="noopener">circuland.co.uk</a> &#8599;<sup class="fnm">1</sup> <span class="fn" tabindex="0" role="button" aria-label="Website check"><span class="fni">i</span><span class="pv"><b>Website check</b><span class="pv-f">Official company website confirmed</span><span class="pv-d">Checked 28 Jul 2026</span><span class="pv-l"><a href="https://circuland.co.uk" target="_blank" rel="noopener">View search record &#8599;</a></span></span></span></div>
           <div class="id-sub">checked 28 Jul 2026</div>
-          <div class="id-line hq"><span class="k">Headquarters</span> &middot; London, United Kingdom<span class="fn" tabindex="0" role="button" aria-label="Country check"><sup>2</sup><span class="fni">i</span><span class="pv"><b>Country check</b><span class="pv-f">Confirmed from a primary source</span><span class="pv-d">Checked 28 Jul 2026</span><span class="pv-l"><a href="https://circuland.co.uk/en/termsAndConditions" target="_blank" rel="noopener">View search record &#8599;</a></span></span></span>
-            <span class="dated">&middot; checked 28 Jul 2026</span></div>
+          <div class="id-line hq"><span class="k">Headquarters</span> &middot; London, United Kingdom<sup class="fnm">2</sup>
+            <span class="dated">&middot; checked 28 Jul 2026</span> <span class="fn" tabindex="0" role="button" aria-label="Country check"><span class="fni">i</span><span class="pv"><b>Country check</b><span class="pv-f">Confirmed from a primary source</span><span class="pv-d">Checked 28 Jul 2026</span><span class="pv-l"><a href="https://circuland.co.uk/en/termsAndConditions" target="_blank" rel="noopener">View search record &#8599;</a></span></span></span></div>
         </div>
         <div class="rail">Supplier profile</div>
       </div>

@@ -73,8 +73,8 @@
     .id-line.hq .dated { font-size:12px; }
 
     /* footnote marker + hover provenance record */
-    .fn { position:relative; display:inline-flex; align-items:center; gap:6px; cursor:default; outline:none; }
-    .fn sup { font-size:10px; color:var(--muted); }
+    .fnm { font-size:10px; color:var(--muted); vertical-align:super; line-height:0; margin-left:1px; }
+    .fn { position:relative; display:inline-flex; align-items:center; cursor:default; outline:none; vertical-align:middle; margin-left:4px; }
     .fni { width:15px; height:15px; border:1px solid var(--line); border-radius:50%; font-size:9px;
            line-height:13px; text-align:center; color:var(--muted); font-style:italic; }
     .fn:hover .fni, .fn:focus .fni { border-color:var(--ink); color:var(--ink); }
