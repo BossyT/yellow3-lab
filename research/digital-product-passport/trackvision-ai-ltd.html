@@ -69,6 +69,27 @@
     .id-line { font-size:14px; color:var(--body); margin-bottom:6px; }
     .id-line .k { color:var(--muted); }
     .id-line a { color:var(--ink); }
+    .id-sub { font-size:13px; color:var(--muted); margin:-2px 0 10px; }
+    .id-line.hq .dated { font-size:12px; }
+
+    /* footnote marker + hover provenance record */
+    .fn { position:relative; display:inline-flex; align-items:center; gap:6px; cursor:default; outline:none; }
+    .fn sup { font-size:10px; color:var(--muted); }
+    .fni { width:15px; height:15px; border:1px solid var(--line); border-radius:50%; font-size:9px;
+           line-height:13px; text-align:center; color:var(--muted); font-style:italic; }
+    .fn:hover .fni, .fn:focus .fni { border-color:var(--ink); color:var(--ink); }
+    .pv { position:absolute; left:26px; top:-10px; z-index:20; width:262px; background:#fff;
+          border:1px solid var(--line); box-shadow:0 8px 26px rgba(0,0,0,.10); padding:16px 18px;
+          display:none; flex-direction:column; text-align:left; }
+    .fn:hover .pv, .fn:focus .pv { display:flex; }
+    .pv b { font-size:13px; font-weight:600; color:var(--ink); margin-bottom:5px; }
+    .pv-f { font-size:12px; color:var(--body); padding-bottom:12px; border-bottom:1px solid var(--line); }
+    .pv-d { font-size:12px; color:var(--body); padding:12px 0; border-bottom:1px solid var(--line); }
+    .pv-l { padding-top:12px; }
+    .pv-l a { font-size:12px; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); }
+    .pv-l a:hover { border-bottom-color:var(--ink); }
+    @media (max-width:880px) { .pv { left:auto; right:0; top:24px; width:236px; } }
+
     .rail { writing-mode:vertical-rl; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); font-weight:600; }
 
     .layer { padding:32px 36px; }
@@ -105,12 +126,14 @@
     .sup-empty { font-size:14px; color:var(--body); }
     .btn-link { display:inline-block; margin-top:12px; font-size:13px; font-weight:600; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:2px; }
 
-    .evid { display:flex; flex-wrap:wrap; align-items:stretch; gap:0; border-top:1px solid var(--line); background:var(--panel); }
-    .evid .cell { padding:20px 26px; border-right:1px solid var(--line); }
+    .evid { display:flex; flex-wrap:nowrap; align-items:stretch; gap:0; border-top:1px solid var(--line); background:var(--panel); }
+    .evid .cell { padding:18px 20px; border-right:1px solid var(--line); min-width:0; flex:0 1 auto; }
+    .evid .cell .v { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
     .evid .cell:last-child { border-right:none; }
     .evid .cell.lab { background:transparent; }
     .evid .cell.lab .k { margin-bottom:0; }
     .evid .cell.act { display:flex; align-items:center; }
+    .evid .cell.act { white-space:nowrap; }
     .evid .cell.act a { font-size:13px; color:var(--body); text-decoration:none; border-bottom:1px solid var(--line); }
     .evid .cell.act a:hover { color:var(--ink); border-bottom-color:var(--ink); }
     .evid .k { font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:6px; }
@@ -122,23 +145,40 @@
     .dated { font-size:12px; color:var(--muted); }
 
     /* directory */
-    .dir-intro { padding:34px 0 26px; }
-    .dir-intro h1 { font-size:clamp(30px,4vw,46px); font-weight:800; letter-spacing:-0.03em; line-height:1.05; margin-bottom:16px; }
-    .dir-intro p { font-size:17px; color:var(--body); max-width:660px; border-left:3px solid var(--yellow); padding-left:22px; }
-    .filters { display:flex; gap:12px; flex-wrap:wrap; padding:20px 0 18px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); align-items:center; }
-    .filters select, .filters input { font-family:inherit; font-size:13px; padding:9px 12px; border:1px solid var(--line); background:#fff; color:var(--ink); }
-    .filters input { min-width:220px; }
-    .fcount { font-size:13px; color:var(--muted); margin-left:auto; }
+    .dir-intro { padding:30px 0 22px; }
+    .dir-intro h1 { font-size:clamp(30px,4vw,42px); font-weight:800; letter-spacing:-0.03em; line-height:1.05; margin-bottom:10px; }
+    .dir-sub { font-size:16px; color:var(--body); }
+    .filters { display:flex; gap:12px; flex-wrap:wrap; padding:8px 0 14px; align-items:center; }
+    .filters select, .filters input { font-family:inherit; font-size:13px; padding:11px 13px; border:1px solid var(--line); background:#fff; color:var(--ink); }
+    .filters input { min-width:260px; flex:1 1 260px; }
+    .filters select { flex:0 0 auto; }
+    .fcount { font-size:13px; color:var(--muted); padding-bottom:10px; }
     table.dir { width:100%; border-collapse:collapse; }
-    table.dir th { text-align:left; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); font-weight:700; padding:16px 12px 12px 0; border-bottom:1px solid var(--line); }
-    table.dir td { padding:14px 12px 14px 0; border-bottom:1px solid var(--line); font-size:14px; vertical-align:top; }
-    table.dir td.nm a { font-weight:600; text-decoration:none; }
+    table.dir th { text-align:left; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); font-weight:700; padding:14px 14px 12px 0; border-bottom:1px solid var(--line); }
+    table.dir td { padding:16px 14px 16px 0; border-bottom:1px solid var(--line); font-size:14px; vertical-align:middle; }
+    table.dir th.bar, table.dir td.bar { width:4px; padding:0; border-bottom:none; }
+    table.dir tr.nc td { background:#fafaf8; color:var(--mid); }
+    table.dir td.nm { padding-left:16px; }
+    .nmw { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+    .avatar { width:38px; height:38px; border:1px solid var(--line); display:inline-flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; color:var(--ink); flex:none; }
+    table.dir td.nm a { font-size:17px; font-weight:600; text-decoration:none; letter-spacing:-0.01em; }
     table.dir td.nm a:hover { border-bottom:1px solid var(--ink); }
-    table.dir tr.nc td { background:#f5f4f1; color:var(--mid); }
-    table.dir tr.nc td.nm a { color:var(--body); }
-    .pill { font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--body); border:1px solid var(--line); padding:3px 8px; white-space:nowrap; }
-    .conf { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; font-weight:600; color:var(--muted); }
+    .ext { font-size:12px; color:var(--muted); text-decoration:none; }
+    .ext:hover { color:var(--ink); }
+    .nctag { display:block; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); font-weight:700; border:1px solid var(--line); padding:4px 7px; margin-bottom:9px; width:max-content; }
+    .pill { font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--body); border:1px solid var(--line); padding:4px 9px; white-space:nowrap; display:inline-block; margin:2px 4px 2px 0; }
+    .evsub { font-size:12px; color:var(--muted); margin-top:3px; }
+    .dt { color:var(--mid); white-space:nowrap; }
     .muted { color:var(--muted); }
+    table.dir sup { font-size:9px; color:var(--muted); }
+
+    /* legend - metadata, explicitly not a ranking */
+    .legend { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; padding:34px 0 10px; border-top:1px solid var(--line); margin-top:6px; }
+    .lg-k { font-size:12px; font-weight:600; color:var(--ink); margin-bottom:10px; }
+    .lg-k span { color:var(--muted); font-weight:400; }
+    .lg-r { font-size:13px; color:var(--body); display:flex; align-items:center; gap:9px; margin-bottom:6px; }
+    .lg-r i { width:16px; height:3px; flex:none; }
+    .legend .note { grid-column:1 / -1; font-size:13px; color:var(--muted); padding-top:8px; }
 
     .method { padding:52px 0 64px; border-top:1px solid var(--line); }
     .method h2 { font-size:22px; font-weight:800; letter-spacing:-0.02em; margin-bottom:14px; }
@@ -179,11 +219,14 @@
       .rail { display:none; }
       .layer { padding:26px 22px; }
       .glance { grid-template-columns:1fr; }
+      .evid { flex-wrap:wrap; }
       .evid .cell { border-right:none; border-bottom:1px solid var(--line); width:100%; }
       .method .states { grid-template-columns:1fr; }
       .foot-top { grid-template-columns:1fr 1fr; gap:32px; }
       .site-footer { padding:56px 24px 32px; }
-      table.dir .hide-s { display:none; }
+      table.dir .hide-s, table.dir .hide-m { display:none; }
+      .legend { grid-template-columns:1fr; gap:22px; }
+      .filters input, .filters select { flex:1 1 100%; }
     }
     @media (max-width: 560px) { .foot-top { grid-template-columns:1fr; } }
 </style>
@@ -226,9 +269,10 @@
         <div>
           <div class="id-name"><h1>TrackVision AI Ltd</h1><span class="tag">Platform</span></div>
           
-          <div class="id-line"><span class="k">Evidence basis</span> &middot; verified</div>
-          <div class="id-line"><a href="https://trackvision.ai" target="_blank" rel="noopener">trackvision.ai</a> &#8599;</div>
-          <div class="id-line"><span class="k">Headquarters</span> &middot; St Albans, United Kingdom &middot; <a class="src" href="https://find-and-update.company-information.service.gov.uk/company/15051218" target="_blank" rel="noopener">source</a></div>
+          <div class="id-line"><a href="https://trackvision.ai" target="_blank" rel="noopener">trackvision.ai</a> &#8599;<span class="fn" tabindex="0" role="button" aria-label="Website check"><sup>1</sup><span class="fni">i</span><span class="pv"><b>Website check</b><span class="pv-f">Official company website confirmed</span><span class="pv-d">Checked 28 Jul 2026</span><span class="pv-l"><a href="https://trackvision.ai" target="_blank" rel="noopener">View search record &#8599;</a></span></span></span></div>
+          <div class="id-sub">checked 28 Jul 2026</div>
+          <div class="id-line hq"><span class="k">Headquarters</span> &middot; St Albans, United Kingdom<span class="fn" tabindex="0" role="button" aria-label="Country check"><sup>2</sup><span class="fni">i</span><span class="pv"><b>Country check</b><span class="pv-f">Confirmed from a primary source</span><span class="pv-d">Checked 28 Jul 2026</span><span class="pv-l"><a href="https://find-and-update.company-information.service.gov.uk/company/15051218" target="_blank" rel="noopener">View search record &#8599;</a></span></span></span>
+            <span class="dated">&middot; checked 28 Jul 2026</span></div>
         </div>
         <div class="rail">Supplier profile</div>
       </div>

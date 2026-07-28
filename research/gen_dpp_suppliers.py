@@ -71,6 +71,40 @@ CRITERIA = [
     ("Resolver uptime", "Availability published as measured history, not promised in a contract."),
 ]
 
+# Region rule, reusing the Model Intelligence palette rather than inventing a second one.
+REGION_COLOR = {"europe": "#c1972b", "asia": "#5b2b4d", "us": "#223a5e", "other": "#565a60"}
+EUROPE = {"Austria","Belgium","Croatia","Czech Republic","Denmark","Estonia","Finland","France",
+          "Germany","Greece","Hungary","Iceland","Ireland","Italy","Latvia","Lithuania","Luxembourg",
+          "Malta","Netherlands","Norway","Poland","Portugal","Romania","San Marino","Slovakia",
+          "Slovenia","Spain","Sweden","Switzerland","Turkey","United Kingdom","Bulgaria","Cyprus"}
+ASIA = {"China","India","Indonesia","Japan","Malaysia","Singapore","South Korea","Taiwan","Thailand","Vietnam"}
+
+
+def region_of(country):
+    if not country:
+        return "other"
+    if country in EUROPE:
+        return "europe"
+    if country in ASIA:
+        return "asia"
+    if country in ("USA", "United States"):
+        return "us"
+    return "other"
+
+
+def fact_count(r):
+    """Facts we recorded WITH a source. Not a score - a count of what is on the record."""
+    n = 0
+    for f in ("website", "hq_country", "hq_city", "founded_year", "ownership", "sectors"):
+        if (r.get(f) or "").strip():
+            n += 1
+    if (r.get("total_disclosed_funding") or "").strip():
+        n += 1
+    if (r.get("funding_stage") or "").strip():
+        n += 1
+    return n
+
+
 SECTOR_LABEL = {
     "textiles": "Textiles", "electronics": "Electronics", "batteries": "Batteries",
     "construction": "Construction", "tyres": "Tyres", "furniture": "Furniture",
@@ -280,6 +314,27 @@ CSS = """
     .id-line { font-size:14px; color:var(--body); margin-bottom:6px; }
     .id-line .k { color:var(--muted); }
     .id-line a { color:var(--ink); }
+    .id-sub { font-size:13px; color:var(--muted); margin:-2px 0 10px; }
+    .id-line.hq .dated { font-size:12px; }
+
+    /* footnote marker + hover provenance record */
+    .fn { position:relative; display:inline-flex; align-items:center; gap:6px; cursor:default; outline:none; }
+    .fn sup { font-size:10px; color:var(--muted); }
+    .fni { width:15px; height:15px; border:1px solid var(--line); border-radius:50%; font-size:9px;
+           line-height:13px; text-align:center; color:var(--muted); font-style:italic; }
+    .fn:hover .fni, .fn:focus .fni { border-color:var(--ink); color:var(--ink); }
+    .pv { position:absolute; left:26px; top:-10px; z-index:20; width:262px; background:#fff;
+          border:1px solid var(--line); box-shadow:0 8px 26px rgba(0,0,0,.10); padding:16px 18px;
+          display:none; flex-direction:column; text-align:left; }
+    .fn:hover .pv, .fn:focus .pv { display:flex; }
+    .pv b { font-size:13px; font-weight:600; color:var(--ink); margin-bottom:5px; }
+    .pv-f { font-size:12px; color:var(--body); padding-bottom:12px; border-bottom:1px solid var(--line); }
+    .pv-d { font-size:12px; color:var(--body); padding:12px 0; border-bottom:1px solid var(--line); }
+    .pv-l { padding-top:12px; }
+    .pv-l a { font-size:12px; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); }
+    .pv-l a:hover { border-bottom-color:var(--ink); }
+    @media (max-width:880px) { .pv { left:auto; right:0; top:24px; width:236px; } }
+
     .rail { writing-mode:vertical-rl; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); font-weight:600; }
 
     .layer { padding:32px 36px; }
@@ -316,12 +371,14 @@ CSS = """
     .sup-empty { font-size:14px; color:var(--body); }
     .btn-link { display:inline-block; margin-top:12px; font-size:13px; font-weight:600; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:2px; }
 
-    .evid { display:flex; flex-wrap:wrap; align-items:stretch; gap:0; border-top:1px solid var(--line); background:var(--panel); }
-    .evid .cell { padding:20px 26px; border-right:1px solid var(--line); }
+    .evid { display:flex; flex-wrap:nowrap; align-items:stretch; gap:0; border-top:1px solid var(--line); background:var(--panel); }
+    .evid .cell { padding:18px 20px; border-right:1px solid var(--line); min-width:0; flex:0 1 auto; }
+    .evid .cell .v { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
     .evid .cell:last-child { border-right:none; }
     .evid .cell.lab { background:transparent; }
     .evid .cell.lab .k { margin-bottom:0; }
     .evid .cell.act { display:flex; align-items:center; }
+    .evid .cell.act { white-space:nowrap; }
     .evid .cell.act a { font-size:13px; color:var(--body); text-decoration:none; border-bottom:1px solid var(--line); }
     .evid .cell.act a:hover { color:var(--ink); border-bottom-color:var(--ink); }
     .evid .k { font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:6px; }
@@ -333,23 +390,40 @@ CSS = """
     .dated { font-size:12px; color:var(--muted); }
 
     /* directory */
-    .dir-intro { padding:34px 0 26px; }
-    .dir-intro h1 { font-size:clamp(30px,4vw,46px); font-weight:800; letter-spacing:-0.03em; line-height:1.05; margin-bottom:16px; }
-    .dir-intro p { font-size:17px; color:var(--body); max-width:660px; border-left:3px solid var(--yellow); padding-left:22px; }
-    .filters { display:flex; gap:12px; flex-wrap:wrap; padding:20px 0 18px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); align-items:center; }
-    .filters select, .filters input { font-family:inherit; font-size:13px; padding:9px 12px; border:1px solid var(--line); background:#fff; color:var(--ink); }
-    .filters input { min-width:220px; }
-    .fcount { font-size:13px; color:var(--muted); margin-left:auto; }
+    .dir-intro { padding:30px 0 22px; }
+    .dir-intro h1 { font-size:clamp(30px,4vw,42px); font-weight:800; letter-spacing:-0.03em; line-height:1.05; margin-bottom:10px; }
+    .dir-sub { font-size:16px; color:var(--body); }
+    .filters { display:flex; gap:12px; flex-wrap:wrap; padding:8px 0 14px; align-items:center; }
+    .filters select, .filters input { font-family:inherit; font-size:13px; padding:11px 13px; border:1px solid var(--line); background:#fff; color:var(--ink); }
+    .filters input { min-width:260px; flex:1 1 260px; }
+    .filters select { flex:0 0 auto; }
+    .fcount { font-size:13px; color:var(--muted); padding-bottom:10px; }
     table.dir { width:100%; border-collapse:collapse; }
-    table.dir th { text-align:left; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); font-weight:700; padding:16px 12px 12px 0; border-bottom:1px solid var(--line); }
-    table.dir td { padding:14px 12px 14px 0; border-bottom:1px solid var(--line); font-size:14px; vertical-align:top; }
-    table.dir td.nm a { font-weight:600; text-decoration:none; }
+    table.dir th { text-align:left; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); font-weight:700; padding:14px 14px 12px 0; border-bottom:1px solid var(--line); }
+    table.dir td { padding:16px 14px 16px 0; border-bottom:1px solid var(--line); font-size:14px; vertical-align:middle; }
+    table.dir th.bar, table.dir td.bar { width:4px; padding:0; border-bottom:none; }
+    table.dir tr.nc td { background:#fafaf8; color:var(--mid); }
+    table.dir td.nm { padding-left:16px; }
+    .nmw { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+    .avatar { width:38px; height:38px; border:1px solid var(--line); display:inline-flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; color:var(--ink); flex:none; }
+    table.dir td.nm a { font-size:17px; font-weight:600; text-decoration:none; letter-spacing:-0.01em; }
     table.dir td.nm a:hover { border-bottom:1px solid var(--ink); }
-    table.dir tr.nc td { background:#f5f4f1; color:var(--mid); }
-    table.dir tr.nc td.nm a { color:var(--body); }
-    .pill { font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--body); border:1px solid var(--line); padding:3px 8px; white-space:nowrap; }
-    .conf { font-size:10px; letter-spacing:0.1em; text-transform:uppercase; font-weight:600; color:var(--muted); }
+    .ext { font-size:12px; color:var(--muted); text-decoration:none; }
+    .ext:hover { color:var(--ink); }
+    .nctag { display:block; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); font-weight:700; border:1px solid var(--line); padding:4px 7px; margin-bottom:9px; width:max-content; }
+    .pill { font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--body); border:1px solid var(--line); padding:4px 9px; white-space:nowrap; display:inline-block; margin:2px 4px 2px 0; }
+    .evsub { font-size:12px; color:var(--muted); margin-top:3px; }
+    .dt { color:var(--mid); white-space:nowrap; }
     .muted { color:var(--muted); }
+    table.dir sup { font-size:9px; color:var(--muted); }
+
+    /* legend - metadata, explicitly not a ranking */
+    .legend { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; padding:34px 0 10px; border-top:1px solid var(--line); margin-top:6px; }
+    .lg-k { font-size:12px; font-weight:600; color:var(--ink); margin-bottom:10px; }
+    .lg-k span { color:var(--muted); font-weight:400; }
+    .lg-r { font-size:13px; color:var(--body); display:flex; align-items:center; gap:9px; margin-bottom:6px; }
+    .lg-r i { width:16px; height:3px; flex:none; }
+    .legend .note { grid-column:1 / -1; font-size:13px; color:var(--muted); padding-top:8px; }
 
     .method { padding:52px 0 64px; border-top:1px solid var(--line); }
     .method h2 { font-size:22px; font-weight:800; letter-spacing:-0.02em; margin-bottom:14px; }
@@ -390,11 +464,14 @@ CSS = """
       .rail { display:none; }
       .layer { padding:26px 22px; }
       .glance { grid-template-columns:1fr; }
+      .evid { flex-wrap:wrap; }
       .evid .cell { border-right:none; border-bottom:1px solid var(--line); width:100%; }
       .method .states { grid-template-columns:1fr; }
       .foot-top { grid-template-columns:1fr 1fr; gap:32px; }
       .site-footer { padding:56px 24px 32px; }
-      table.dir .hide-s { display:none; }
+      table.dir .hide-s, table.dir .hide-m { display:none; }
+      .legend { grid-template-columns:1fr; gap:22px; }
+      .filters input, .filters select { flex:1 1 100%; }
     }
     @media (max-width: 560px) { .foot-top { grid-template-columns:1fr; } }
 """
@@ -599,24 +676,41 @@ def card_html(r, counts, cap):
     nc = r["entity_type"] in NON_COMMERCIAL
     kind, curl, cdate = source_state(r["country_source"])
 
+    today = pretty_date(datetime.date.today().isoformat())
+    checked = cdate or today
+
+    def prov(n, title, finding, when, url):
+        """The hover provenance record: what was checked, what was found, when."""
+        link = (f'<a href="{e(url)}" target="_blank" rel="noopener">View search record &#8599;</a>'
+                if url else
+                '<a href="/research/digital-product-passport/suppliers#method">How we verify &#8599;</a>')
+        return (f'<span class="fn" tabindex="0" role="button" aria-label="{e(title)}">'
+                f'<sup>{n}</sup><span class="fni">i</span>'
+                f'<span class="pv"><b>{e(title)}</b><span class="pv-f">{e(finding)}</span>'
+                f'<span class="pv-d">Checked {e(when)}</span><span class="pv-l">{link}</span></span></span>')
+
+    # website line
+    if r["website"]:
+        site = (f'<a href="{e(r["website"])}" target="_blank" rel="noopener">'
+                f'{e(r["domain"] or r["website"])}</a> &#8599;'
+                + prov(1, "Website check", "Official company website confirmed", checked, r["website"]))
+    elif kind == "not_found":
+        site = ("No official website established"
+                + prov(1, "Website check", "No official website found", checked, ""))
+    else:
+        site = '<span class="muted">Not yet assessed</span>'
+
     # headquarters line
     if r["hq_country"]:
         place = ", ".join([x for x in (r["hq_city"], r["hq_country"]) if x])
-        if kind == "url":
-            hq = f'{e(place)} &middot; <a class="src" href="{e(curl)}" target="_blank" rel="noopener">source</a>'
-        else:
-            hq = e(place)
+        finding = ("Confirmed from a primary source" if kind == "url"
+                   else "Stated by the company")
+        hq = e(place) + prov(2, "Country check", finding, checked, curl)
     elif kind == "not_found":
-        hq = f'Not publicly established <span class="dated">&middot; checked {e(cdate)}</span>'
+        hq = ("Not publicly established"
+              + prov(2, "Country check", "No public country source found", checked, ""))
     else:
         hq = '<span class="muted">Not yet assessed</span>'
-
-    if r["website"]:
-        site = f'<a href="{e(r["website"])}" target="_blank" rel="noopener">{e(r["domain"] or r["website"])}</a> &#8599;'
-    elif kind == "not_found":
-        site = f'No official website established <span class="dated">&middot; checked {e(cdate)}</span>'
-    else:
-        site = '<span class="muted">Not yet assessed</span>'
 
     tag = f'<span class="tag{" nc" if nc else ""}">{TYPE_LABEL.get(r["entity_type"], r["entity_type"])}</span>'
     ncline = (f'<div class="id-line" style="color:var(--body)">{NON_COMMERCIAL_NOTE[r["entity_type"]]}</div>'
@@ -659,9 +753,10 @@ def card_html(r, counts, cap):
         <div>
           <div class="id-name"><h1>{e(name)}</h1>{tag}</div>
           {ncline}
-          <div class="id-line"><span class="k">Evidence basis</span> &middot; {e(r["confidence"])}</div>
           <div class="id-line">{site}</div>
-          <div class="id-line"><span class="k">Headquarters</span> &middot; {hq}</div>
+          <div class="id-sub">checked {e(checked)}</div>
+          <div class="id-line hq"><span class="k">Headquarters</span> &middot; {hq}
+            <span class="dated">&middot; checked {e(checked)}</span></div>
         </div>
         <div class="rail">Supplier profile</div>
       </div>
@@ -701,7 +796,7 @@ def card_html(r, counts, cap):
 
 # ---------------------------------------------------------------- directory
 
-def directory_html(rows, counts):
+def directory_html(rows, counts, cap):
     countries = sorted({r["hq_country"] for r in rows if r["hq_country"]})
     sectors = sorted({s for r in rows for s in r["sectors_list"]})
     types = sorted({r["entity_type"] for r in rows})
@@ -710,54 +805,106 @@ def directory_html(rows, counts):
     for r in sorted(rows, key=lambda x: x["name"].lower()):
         nc = r["entity_type"] in NON_COMMERCIAL
         kind, curl, cdate = source_state(r["country_source"])
-        country = e(r["hq_country"]) if r["hq_country"] else '<span class="muted">Not established</span>'
-        secs = " ".join(f'<span class="pill">{e(SECTOR_LABEL.get(s, s.title()))}</span>' for s in r["sectors_list"][:3]) or '<span class="muted">&mdash;</span>'
-        site = (f'<a href="{e(r["website"])}" target="_blank" rel="noopener">{e(r["domain"])}</a>'
-                if r["website"] else '<span class="muted">&mdash;</span>')
+        reg = region_of(r["hq_country"])
+        checked = cdate or pretty_date(datetime.date.today().isoformat())
+        results = cap.get(r["id"]) or {}
+        findings = sum(1 for v in results.values() if v.get("state"))
+        facts = fact_count(r)
+
+        # HQ, with the footnote where nothing was found
+        if r["hq_country"]:
+            hq = e(", ".join([x for x in (r["hq_city"], r["hq_country"]) if x]))
+        elif kind == "not_found":
+            hq = 'Not publicly established<sup>1</sup>'
+        else:
+            hq = '<span class="muted">Not yet assessed</span>'
+
+        secs = " ".join(f'<span class="pill">{e(SECTOR_LABEL.get(x, x.title()))}</span>'
+                        for x in r["sectors_list"][:2]) or 'No public sector focus found<sup>2</sup>'
+
+        # evidence cell
+        if nc:
+            ev = ('Research project &middot; not available<br>for procurement'
+                  if r["entity_type"] == "project-consortium" else
+                  'Not a commercial supplier')
+            evsub = ""
+        else:
+            cf = (f'{findings} capability findings' if findings
+                  else 'capability research pending')
+            ev = f'{facts} fact{"" if facts == 1 else "s"} &middot; {cf}'
+            evsub = f'<div class="evsub">{e(r["confidence"])}</div>'
+
+        mark = (f'<span class="avatar">{e(initials(r["name"]))}</span>')
+        nclabel = '<span class="nctag">Non-supplier entity</span>' if nc else ''
+        site = (f'<a class="ext" href="{e(r["website"])}" target="_blank" rel="noopener" '
+                f'aria-label="{e(r["name"])} website">&#8599;</a>') if r["website"] else ''
+
         trs.append(
             f'<tr class="{"nc" if nc else ""}" data-country="{e(r["hq_country"])}" '
             f'data-sectors="{e(",".join(r["sectors_list"]))}" data-type="{e(r["entity_type"])}" '
+            f'data-cap="{"assessed" if findings else "pending"}" '
             f'data-name="{e(r["name"].lower())}">'
-            f'<td class="nm"><a href="/research/digital-product-passport/{e(r["id"])}">{e(r["name"])}</a></td>'
-            f'<td>{country}</td>'
-            f'<td class="hide-s"><span class="pill">{e(TYPE_LABEL.get(r["entity_type"], r["entity_type"]))}</span></td>'
+            f'<td class="bar" style="background:{REGION_COLOR[reg]}"></td>'
+            f'<td class="nm">{nclabel}<div class="nmw">{mark}'
+            f'<a href="/research/digital-product-passport/{e(r["id"])}">{e(r["name"])}</a>{site}</div></td>'
+            f'<td><span class="pill">{e(TYPE_LABEL.get(r["entity_type"], r["entity_type"]))}</span></td>'
+            f'<td class="hide-s">{hq}</td>'
             f'<td class="hide-s">{secs}</td>'
-            f'<td class="hide-s">{site}</td>'
-            f'<td><span class="conf">{e(r["confidence"])}</span></td>'
-            f'</tr>'
-        )
+            f'<td class="hide-m">{ev}{evsub}</td>'
+            f'<td class="hide-s dt">{e(checked)}</td>'
+            f'</tr>')
 
     opts = lambda vals, lab: "".join(f'<option value="{e(v)}">{e(lab(v))}</option>' for v in vals)
 
     body = f"""
-  <div class="wrap reg-head">
+  <div class="wrap reg-head" id="top">
 {reg_bar(counts, link=False)}
-    <div class="crumb"><a href="/research/digital-product-passport">&#8249; Digital Product Passport</a></div>
-
     <div class="dir-intro">
-      <h1>The DPP supplier register</h1>
-      <p>Every organisation we can find supplying Digital Product Passport capability, with the
-      source behind each fact and the date we checked it. Built because the published picture of
-      this market is mostly marketing.</p>
+      <h1>Supplier directory</h1>
+      <p class="dir-sub">Evidence-led profiles of the Digital Product Passport market.</p>
     </div>
 
     <div class="filters">
-      <input id="q" type="search" placeholder="Search by name" aria-label="Search by name" />
-      <select id="fc"><option value="">All countries</option>{opts(countries, lambda v: v)}</select>
-      <select id="fs"><option value="">All sectors</option>{opts(sectors, lambda v: SECTOR_LABEL.get(v, v.title()))}</select>
-      <select id="ft"><option value="">All types</option>{opts(types, lambda v: TYPE_LABEL.get(v, v))}</select>
-      <span class="fcount" id="fcount"></span>
+      <input id="q" type="search" placeholder="Search {counts['organisations']} suppliers" aria-label="Search suppliers" />
+      <select id="fc"><option value="">Country</option>{opts(countries, lambda v: v)}</select>
+      <select id="fs"><option value="">Sector</option>{opts(sectors, lambda v: SECTOR_LABEL.get(v, v.title()))}</select>
+      <select id="ft"><option value="">Entity type</option>{opts(types, lambda v: TYPE_LABEL.get(v, v))}</select>
+      <select id="fe"><option value="">Capability evidence</option><option value="assessed">Assessed</option><option value="pending">Research pending</option></select>
     </div>
+    <div class="fcount" id="fcount"></div>
 
     <table class="dir">
       <thead><tr>
-        <th>Organisation</th><th>Country</th><th class="hide-s">Type</th>
-        <th class="hide-s">Sectors</th><th class="hide-s">Site</th><th>Evidence</th>
+        <th class="bar"></th><th>Supplier</th><th>Type</th><th class="hide-s">HQ</th>
+        <th class="hide-s">Sectors</th><th class="hide-m">Evidence</th><th class="hide-s">Last checked</th>
       </tr></thead>
       <tbody id="rows">
 {chr(10).join(trs)}
       </tbody>
     </table>
+
+    <div class="legend">
+      <div class="lg">
+        <div class="lg-k">Region rule <span>(metadata)</span></div>
+        <div class="lg-r"><i style="background:{REGION_COLOR['europe']}"></i>Europe (ochre)</div>
+        <div class="lg-r"><i style="background:{REGION_COLOR['asia']}"></i>Asia (aubergine)</div>
+        <div class="lg-r"><i style="background:{REGION_COLOR['us']}"></i>US (navy)</div>
+        <div class="lg-r"><i style="background:{REGION_COLOR['other']}"></i>Other (graphite)</div>
+      </div>
+      <div class="lg">
+        <div class="lg-k">Evidence basis <span>(metadata)</span></div>
+        <div class="lg-r">verified &nbsp;/&nbsp; claimed &nbsp;/&nbsp; unverified</div>
+        <div class="lg-k" style="margin-top:18px">Capability states <span>(metadata)</span></div>
+        <div class="lg-r">verified &nbsp;/&nbsp; company states &nbsp;/&nbsp; not found</div>
+      </div>
+      <div class="lg">
+        <div class="lg-k">Footnotes</div>
+        <div class="lg-r"><sup>1</sup> No public country source found.</div>
+        <div class="lg-r"><sup>2</sup> No sector focus statement identified.</div>
+        <div class="lg-r">&#8599; External link icon indicates the supplier website.</div>
+      </div>
+      <div class="lg note">These are metadata, not rankings. Nothing here is scored, weighted or ordered by merit.</div>
+    </div>
 
     <div class="method" id="method">
       <h2>How we verify</h2>
@@ -774,15 +921,17 @@ def directory_html(rows, counts):
         <div class="st"><b>Not found</b><span>We looked on the date shown and the fact was not
           published. Dated, so you can see how fresh the check is.</span></div>
       </div>
-      <p>Capability assessments against the ten checks are being carried out supplier by supplier
-      and published as they are completed. Until a supplier has been assessed its profile says so
-      plainly. There is no composite score and no ranking: ten independent checks, each with its
-      own evidence and its own date.</p>
+      <p>Capability assessments run against ten independent checks, each with its own evidence and
+      its own date. There is no composite score and no ranking. A supplier that has not been
+      assessed says so; it is never shown as failing a check nobody ran.</p>
+      <h2 id="corrections" style="margin-top:34px">Corrections</h2>
+      <p>If something here is wrong, send the correction with a source and we will check it, fix it
+      and log the change. Corrections are welcome from anyone, and we do not need you to be the
+      company to send one.</p>
       <h2 id="claim" style="margin-top:34px">Claiming a profile</h2>
       <p>If you work at one of these organisations you can claim your profile and supply your own
       logo, description and answers. Company-supplied content is shown in its own layer, marked as
-      yours, and never overwrites what we verified independently. Corrections to verified fields
-      are welcome with a source, and are logged.</p>
+      yours, and never overwrites what we verified independently.</p>
       <p style="color:var(--muted);font-size:13px">Register generated {e(pretty_date(datetime.date.today().isoformat()))}
       &middot; {counts['verified']} profiles with a primary-sourced identity
       &middot; {counts['countries_primary_sourced']} countries with a primary-sourced headquarters.</p>
@@ -792,29 +941,29 @@ def directory_html(rows, counts):
     js = """
 <script>
 (function(){
-  var q=document.getElementById('q'),fc=document.getElementById('fc'),
-      fs=document.getElementById('fs'),ft=document.getElementById('ft'),
-      rows=[].slice.call(document.querySelectorAll('#rows tr')),
-      out=document.getElementById('fcount');
+  var ids=['q','fc','fs','ft','fe'], el={};
+  ids.forEach(function(i){el[i]=document.getElementById(i);});
+  var rows=[].slice.call(document.querySelectorAll('#rows tr')), out=document.getElementById('fcount');
   function apply(){
-    var t=(q.value||'').toLowerCase(),c=fc.value,s=fs.value,y=ft.value,n=0;
+    var t=(el.q.value||'').toLowerCase(),n=0;
     rows.forEach(function(r){
       var ok=(!t||r.dataset.name.indexOf(t)>-1)
-        &&(!c||r.dataset.country===c)
-        &&(!s||(','+r.dataset.sectors+',').indexOf(','+s+',')>-1)
-        &&(!y||r.dataset.type===y);
+        &&(!el.fc.value||r.dataset.country===el.fc.value)
+        &&(!el.fs.value||(','+r.dataset.sectors+',').indexOf(','+el.fs.value+',')>-1)
+        &&(!el.ft.value||r.dataset.type===el.ft.value)
+        &&(!el.fe.value||r.dataset.cap===el.fe.value);
       r.style.display=ok?'':'none'; if(ok)n++;
     });
-    out.textContent=n+' of '+rows.length+' shown';
+    out.textContent=n+(n===rows.length?' profiles':' of '+rows.length+' profiles');
   }
-  [q,fc,fs,ft].forEach(function(el){el.addEventListener('input',apply);});
+  ids.forEach(function(i){el[i].addEventListener('input',apply);});
   apply();
 })();
 </script>
 """
-    return page("The DPP supplier register - yellow3 Research",
-                "Every organisation supplying Digital Product Passport capability, with the source "
-                "behind each fact and the date it was checked. A yellow3 lab register.",
+    return page("Supplier directory - DPP Supplier Register - yellow3",
+                "Evidence-led profiles of the Digital Product Passport market. Every organisation "
+                "supplying DPP capability, with the source behind each fact and the date it was checked.",
                 "https://yellow3.io/research/digital-product-passport/suppliers",
                 body, js, head_extra=directory_jsonld(counts))
 
@@ -838,7 +987,7 @@ def main():
     os.makedirs(OUTDIR, exist_ok=True)
 
     with open(os.path.join(OUTDIR, "suppliers.html"), "w", encoding="utf-8") as fh:
-        fh.write(directory_html(rows, counts))
+        fh.write(directory_html(rows, counts, cap))
 
     for r in rows:
         with open(os.path.join(OUTDIR, f"{r['id']}.html"), "w", encoding="utf-8") as fh:
