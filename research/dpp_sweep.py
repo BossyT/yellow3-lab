@@ -61,7 +61,9 @@ def score_b(signals):
     counted = [s for s in signals if s.get("value") is not None]
     if not counted:
         return 0
-    num = sum((s["value"] / s["ceiling"]) * s.get("weight", 1) for s in counted)
+    # a signal that overshoots its ceiling is saturated, not worth more than 100%.
+    # without this a re-based ceiling that lags reality would distort the whole score.
+    num = sum(min(1.0, s["value"] / s["ceiling"]) * s.get("weight", 1) for s in counted)
     den = sum(s.get("weight", 1) for s in counted)
     return round(100 * num / den)
 

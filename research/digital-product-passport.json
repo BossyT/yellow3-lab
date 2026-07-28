@@ -9,7 +9,7 @@
   "scores": {
     "regulator_delivery": 30,
     "regulator_delivery_note": "Of everything the EU committed to deliver by now, how much landed - and on time. Computed over milestones that are due, weighted. The registry (weight 3) delivered one day late and scores half credit; the service-provider act (weight 2) is missed and scores zero. That is 1.5 of 5 weighted points, or 30 of 100.",
-    "industry_readiness": 61,
+    "industry_readiness": 72,
     "industry_confidence": "provisional"
   },
   "call_record": {
@@ -168,15 +168,15 @@
       "id": "s2",
       "track": "B",
       "name": "Public DPP solutions / vendors live",
-      "value": 15,
+      "value": 167,
       "unit": "vendors",
-      "ceiling": 40,
+      "ceiling": 200,
       "weight": 1,
-      "confidence": "provisional",
-      "source": "Market mapping / CIRPASS-2 Community of Practice",
-      "source_url": "https://cirpass2.eu/",
-      "note": "~15 established public DPP solution vendors (Circularise, Kezzler, Scantrust, Spherity, OPTEL, Protokol and peers); the CIRPASS-2 Community of Practice now lists 111 participants.",
-      "as_of": "2026-06-24"
+      "confidence": "sourced",
+      "source": "yellow3 DPP Supplier Register",
+      "source_url": "https://yellow3.io/research/digital-product-passport/suppliers",
+      "note": "167 commercial suppliers with a sourced identity, counted in the yellow3 DPP Supplier Register: 183 organisations mapped across 32 countries, less 8 flagged not-a-supplier, 5 EU projects and 3 standards bodies. The earlier figure of 15 was a market-mapping estimate, not a count. Availability of suppliers, not their capability - the ten capability checks are being carried out supplier by supplier and are not yet reflected here.",
+      "as_of": "2026-07-28"
     },
     {
       "id": "s3",
