@@ -32,7 +32,7 @@ DATA = os.path.join(HERE, "dpp-suppliers.json")
 OUTDIR = os.path.join(HERE, "digital-product-passport")
 
 PUBLIC_FIELDS = [
-    "id", "name", "website", "domain", "hq_country", "hq_city", "country_source",
+    "id", "name", "website", "domain", "alias_domains", "hq_country", "hq_city", "country_source",
     "entity_type", "sectors", "founded_year", "ownership", "funding_stage",
     "total_disclosed_funding", "last_funding_date", "funding_source", "status",
     "evidence_url", "source", "source_date", "confidence",
@@ -177,7 +177,7 @@ def build_json(csv_path):
     payload = {
         "register": "DPP Supplier Register",
         "generated": datetime.date.today().isoformat(),
-        "schema": "v1.2",
+        "schema": "v1.3",
         "counts": counts,
         "suppliers": out,
     }

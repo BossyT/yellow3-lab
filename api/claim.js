@@ -74,8 +74,15 @@ module.exports = async (req, res) => {
   const dom = domainOf(email);
   if (!dom || PUBLIC_MAILBOXES.has(dom)) return ok();
 
+  // CLAIM_TEST_DOMAIN lets us prove the whole path end to end without faking an
+  // alias in the register. Set it to a domain we control, test, then unset it.
+  const TEST = String(process.env.CLAIM_TEST_DOMAIN || '').toLowerCase().trim();
+
   let row;
-  try { row = findSupplier(id, dom); } catch (e) { return ok(); }
+  try {
+    row = findSupplier(id, dom);
+    if (!row && TEST && dom === TEST) row = register().find(r => r.id === id) || null;
+  } catch (e) { return ok(); }
   if (!row) return ok();
 
   const KEY = process.env.RESEND_API_KEY;
