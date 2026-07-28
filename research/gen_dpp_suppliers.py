@@ -343,8 +343,10 @@ CSS = """
 
     .sub-h { font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); font-weight:600; margin-bottom:16px; }
     .glance { display:grid; grid-template-columns:repeat(5,1fr); border-top:1px solid var(--line); }
-    .gl { padding:18px 20px 18px 0; border-right:1px solid var(--line); }
-    .gl:last-child { border-right:none; }
+    /* every divider needs a gutter on BOTH sides or the rule sits on the text */
+    .gl { padding:20px 26px; border-right:1px solid var(--line); }
+    .gl:first-child { padding-left:0; }
+    .gl:last-child { border-right:none; padding-right:0; }
     .gl .k { font-size:12px; font-weight:600; color:var(--ink); margin-bottom:7px; }
     .gl .v { font-size:13px; color:var(--body); line-height:1.45; }
     .gl .v.none { color:var(--muted); }
@@ -465,7 +467,7 @@ CSS = """
 
     @media (max-width: 980px) {
       .glance { grid-template-columns:repeat(2,1fr); }
-      .gl { border-right:none; border-bottom:1px solid var(--line); }
+      .gl { border-right:none; border-bottom:1px solid var(--line); padding-left:0; padding-right:0; }
     }
     @media (max-width: 880px) {
       .site-nav { padding:14px 24px; }
