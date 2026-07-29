@@ -253,9 +253,21 @@ def register_nav(counts, active=""):
 
 # ---------------------------------------------------------------- profile
 
+STATUS_LABEL = {
+    "verified": "Public evidence found",
+    "company": "Company states",
+    "not-found": "No public evidence found",
+    "unassessed": "Not yet assessed",
+}
+
+
 def profile_html(r, counts, cap):
+    """Supplier profile, built to the approved v4 handoff.
+
+    Two layers behind two tabs: what yellow3 lab established from public sources,
+    and what the company says about itself. They never merge, and the company
+    layer cannot alter a single researched field."""
     results = cap.get(r["id"], {})
-    findings = sum(1 for v in results.values() if v.get("state"))
     nc = r["entity_type"] in NON_COMMERCIAL
     kind, curl, cdate = source_state(r["country_source"])
     # A date on this page means a human looked on that date. Never today's date:
@@ -263,216 +275,295 @@ def profile_html(r, counts, cap):
     # silently re-date 183 provenance claims every time the generator runs.
     checked = cdate or pretty_date(r.get("source_date") or "") or "Not recorded"
     sid = r["id"]
+    name = r["name"]
 
-    # website line
-    if r["website"]:
-        site = (f'<a href="{e(r["website"])}" target="_blank" rel="noopener">{e(r["domain"])}</a>'
-                f'<sup>1</sup> &#8599;')
-    elif kind == "not_found":
-        site = 'No official website established<sup>1</sup> &#8599;'
-    else:
-        site = 'Not yet assessed'
+    site = (f'<a class="website" href="{e(r["website"])}" target="_blank" rel="noopener">{e(r["domain"])} &#8599;</a>'
+            if r["website"] else
+            '<span class="website">No official website established</span>' if kind == "not_found" else
+            '<span class="website">Website not yet assessed</span>')
 
-    # country line, and the provenance drawer that belongs to it
     if r["hq_country"]:
         place = ", ".join([x for x in (r["hq_city"], r["hq_country"]) if x])
-        country_line = f'{e(place)}<sup>2</sup> &middot; checked {e(checked)}'
-        pop_find = "Confirmed from a primary source" if kind == "url" else "Stated by the company"
+        hq_note = "Primary source" if kind == "url" else "Stated by the company"
     elif kind == "not_found":
-        country_line = f'Not publicly established<sup>2</sup> &middot; checked {e(checked)}'
-        pop_find = "No public country source found"
+        place, hq_note = "Not publicly established", "No public source found"
     else:
-        country_line = 'Not yet assessed'
-        pop_find = "Not yet assessed"
-    pop_link = (f'<a href="{e(curl)}" target="_blank" rel="noopener">View search record &#8599;</a>'
-                if curl else '<a href="#evidence">View search record &#8599;</a>')
+        place, hq_note = "Not yet assessed", "No check recorded"
 
-    # at a glance - absence is a dated finding, never an empty cell
-    def glance(label, value, src=""):
+    # Four facts. Absence is a dated research finding, never an empty cell and
+    # never a negative.
+    def fact(label, value, note_present, note_absent, src=""):
         k, u, d = source_state(src)
         if value:
-            tail = f' &middot; <a href="{e(u)}" target="_blank" rel="noopener">source</a>' if k == "url" else ""
-            return f"<div><strong>{label}</strong><span>{e(value)}{tail}</span></div>"
+            note = (f'<small><a href="{e(u)}" target="_blank" rel="noopener">Source &#8599;</a></small>'
+                    if k == "url" else f"<small>{e(note_present)}</small>")
+            return f"<article><span>{e(label)}</span><strong>{e(value)}</strong>{note}</article>"
         if k == "not_found":
-            return (f"<div><strong>{label}</strong><span>No public disclosure found"
-                    f"<br />checked {e(d)}</span></div>")
-        return f"<div><strong>{label}</strong><span>Not yet assessed</span></div>"
+            return (f"<article><span>{e(label)}</span><strong>Not disclosed</strong>"
+                    f"<small>Checked {e(d)}</small></article>")
+        return (f"<article><span>{e(label)}</span><strong>{e(note_absent)}</strong>"
+                f"<small>No public disclosure found</small></article>")
 
-    sectors = ", ".join(SECTOR_LABEL.get(s, s.title()) for s in r.get("sectors_list", []))
-    glance_grid = "".join([
-        glance("Sectors", sectors),
-        glance("Founded", r["founded_year"]),
-        glance("Ownership", r["ownership"]),
-        glance("Funding stage", r["funding_stage"].replace("-", " ")),
-        glance("Disclosed funding", r["total_disclosed_funding"], r["funding_source"]),
+    sector_names = [SECTOR_LABEL.get(s, s.title()) for s in r.get("sectors_list", [])]
+    sector_head = " &middot; ".join(sector_names[:2]) if sector_names else ""
+    sector_tail = ("Also " + ", ".join(sector_names[2:]).lower()) if len(sector_names) > 2 else "As recorded"
+
+    facts = "".join([
+        f'<article><span>Headquarters</span><strong>{e(place)}</strong><small>{e(hq_note)}</small></article>',
+        (f'<article><span>Sectors</span><strong>{sector_head}</strong><small>{e(sector_tail)}</small></article>'
+         if sector_names else
+         '<article><span>Sectors</span><strong>Not recorded</strong><small>No public disclosure found</small></article>'),
+        # the data stores these lower case; only the presentation changes
+        fact("Ownership", (r["ownership"][:1].upper() + r["ownership"][1:]) if r["ownership"] else "",
+             "Independently recorded", "Not disclosed"),
+        fact("Funding", r["total_disclosed_funding"] or r["funding_stage"].replace("-", " ").capitalize(),
+             "Independently recorded", "Not disclosed", r["funding_source"]),
     ])
 
-    # capability: ten rows, or one honest sentence when nobody has looked
-    if nc:
-        capability = ""
-    elif not results:
-        capability = (
-            '<div class="capability-block"><h3>Capability evidence</h3>'
-            '<p>Ten independent checks. No composite score.</p>'
-            '<p>Not yet assessed for this supplier.<br />Assessments are published as they are completed.</p>'
-            '<a href="/research/digital-product-passport/suppliers#framework">View assessment framework &#8599;</a></div>')
-    else:
-        LABEL = {"verified": "Verified", "company_states": "Company states", "not_found": "Not found"}
-        rows_html = ""
-        for i, name in enumerate(CRITERIA, 1):
-            rec = results.get(f"c{i:02d}")
-            if not rec:
-                rows_html += (f'<div class="capability-row"><span>{i}</span><strong>{e(name)}</strong>'
-                              f'<em class="cap-na">Not yet assessed</em></div>')
-                continue
-            st = rec.get("state", "")
-            link = (f' <a href="{e(rec["evidence_url"])}" target="_blank" rel="noopener" '
-                    f'title="{e(rec.get("artifact",""))}">evidence &#8599;</a>') if rec.get("evidence_url") else ""
-            rows_html += (f'<div class="capability-row"><span>{i}</span><strong>{e(name)}</strong>'
-                          f'<em class="cap-{st}">{LABEL.get(st, "Not yet assessed")}'
-                          f'<i>{e(pretty_date(rec.get("checked_date","")))}</i>{link}</em></div>')
-        capability = (
-            '<div class="capability-block"><h3>Capability evidence</h3>'
-            '<p>Ten independent checks. No composite score.</p>'
-            f'<div class="capability-rows">{rows_html}</div>'
-            f'<a href="/research/digital-product-passport/suppliers#framework">View assessment framework &#8599;</a></div>')
+    # ---- capability: ten checks, each carrying its own evidence record
+    STATE_CLASS = {"verified": "verified", "company_states": "company", "not_found": "not-found"}
+    checks = []
+    for i, cname in enumerate(CRITERIA, 1):
+        rec = results.get(f"c{i:02d}") or {}
+        st = rec.get("state", "")
+        checks.append({
+            "n": i,
+            "name": cname,
+            "state": STATE_CLASS.get(st, "unassessed"),
+            "date": pretty_date(rec.get("checked_date", "")) or "",
+            "artifact": rec.get("artifact", "") or "",
+            "note": rec.get("note", "") or "",
+            "url": rec.get("evidence_url", "") or "",
+        })
 
-    # company layer - never merged with the evidence layer above
-    # The supplied content arrives at runtime, after the page was built, so this
-    # block is filled in the browser from /api/supplied. Absent is the honest
-    # default and what search engines see.
-    company = "" if nc else f"""
-          <section class="company-layer" id="companyLayer" data-supplier="{e(sid)}">
-            <span class="layer-rule yellow"></span>
-            <h3>Supplied by {e(r["name"])}</h3>
-            <div id="companyBody">
-              <p>No company-supplied profile received</p>
-              <a href="/research/digital-product-passport/suppliers/{e(sid)}/claim">Claim this profile &#8599;</a>
+    if nc or not results:
+        capability = ""
+    else:
+        rows = ""
+        for c in checks:
+            rows += (
+                f'<button type="button" class="capability-row" data-check="{c["n"] - 1}">'
+                f'<span class="row-number">{c["n"]:02d}</span>'
+                f'<strong>{e(c["name"])}</strong>'
+                f'<span class="status status-{c["state"]}"><span class="status-dot"></span>'
+                f'<span>{STATUS_LABEL[c["state"]]}</span><time>{e(c["date"])}</time></span>'
+                f'<span class="row-arrow">&#8599;</span></button>')
+        capability = f"""
+        <section class="capability-section">
+          <header>
+            <div>
+              <p class="eyebrow"><i></i> Capability evidence</p>
+              <h2>Ten independent checks</h2>
             </div>
-          </section>"""
+            <p>No composite score. Select a row to inspect the finding.</p>
+          </header>
+          <div class="capability-layout">
+            <div class="capability-list">{rows}</div>
+            <aside class="evidence-panel" id="evidencePanel">
+              <p class="panel-kicker" id="panelKicker">Selected finding &middot; 01</p>
+              <h3 id="panelName">{e(checks[0]["name"])}</h3>
+              <div class="status status-{checks[0]["state"]}" id="panelStatus">
+                <span class="status-dot"></span><span>{STATUS_LABEL[checks[0]["state"]]}</span>
+                <time>{e(checks[0]["date"])}</time></div>
+              <div class="panel-rule"></div>
+              <span class="panel-label">What was checked</span>
+              <p>Public product pages, technical documentation, standards references and
+              relevant company disclosures.</p>
+              <span class="panel-label">Finding</span>
+              <p id="panelFinding"></p>
+              <a id="panelLink" href="/research/digital-product-passport/suppliers#framework">View search record &#8599;</a>
+            </aside>
+          </div>
+        </section>"""
+
+    unassessed_note = "" if (nc or results) else """
+        <section class="capability-section">
+          <header>
+            <div>
+              <p class="eyebrow"><i></i> Capability evidence</p>
+              <h2>Not yet assessed</h2>
+            </div>
+            <p>Ten independent checks. No composite score.</p>
+          </header>
+          <p class="intro-copy">No check has been run against this supplier yet. Assessments
+          are published as they are completed, each with its own source and date. An absent
+          assessment is not a finding about the company.</p>
+        </section>"""
+
+    claim_href = f"/research/digital-product-passport/suppliers/{e(sid)}/claim"
+    company_tab = "" if nc else (
+        f'<button type="button" class="company-tab" data-tab="company">'
+        f'<span>02</span> Supplied by {e(name)}</button>')
+
+    company_panel = "" if nc else f"""
+        <section class="company-layer" id="companyPanel" data-supplier="{e(sid)}" hidden>
+          <p class="eyebrow yellow"><i></i> Supplied by {e(name)}</p>
+          <div class="company-content" id="companyBody">
+            <div>
+              <h2>No company-supplied profile received.</h2>
+              <p>This layer is reserved for information provided directly by {e(name)}. It
+              never changes yellow3 lab's independent research.</p>
+            </div>
+            <a class="claim-button" href="{claim_href}">Claim this profile &#8594;</a>
+          </div>
+        </section>"""
 
     src_cell = (f'<a href="{e(r["evidence_url"])}" target="_blank" rel="noopener">{e(r["source"])} &#8599;</a>'
                 if r["evidence_url"] else e(r["source"]) or "Not recorded")
-    claim_foot = ("" if nc else
-                  f'<a href="/research/digital-product-passport/suppliers/{e(sid)}/claim">Claim this profile &#8599;</a>')
+    claim_foot = "" if nc else f'<a href="{claim_href}">Claim this profile &#8599;</a>'
 
-    body = f"""{SITE_NAV}<main class="profile-shell">
-  <a class="back-link" href="/research/digital-product-passport/suppliers">&#8249; <span>All suppliers</span></a>
+    body = f"""{SITE_NAV}<main class="dpp-profile">
+  <div class="page-shell">
+    <a class="back-link" href="/research/digital-product-passport/suppliers">&#8592; All suppliers</a>
 
-  <div class="profile-layout">
-    <article class="profile-record">
-      <header class="profile-identity">
-        <span class="profile-monogram" id="profileMonogram">{e(initials(r["name"]))}</span>
+    <section class="profile-hero">
+      <div class="identity">
+        <div class="monogram" id="profileMonogram">{e(initials(name))}</div>
         <div>
-          <div class="profile-name-line"><h1>{e(r["name"])}</h1><span>{e(TYPE_LABEL.get(r["entity_type"], r["entity_type"]))}</span></div>
-          <p>{site}<small>checked {e(checked)}</small></p>
-          <button type="button" id="provToggle" aria-expanded="false">{country_line} <i>&#9432;</i></button>
+          <div class="title-line">
+            <h1>{e(name)}</h1>
+            <span class="type-chip">{e(TYPE_LABEL.get(r["entity_type"], r["entity_type"]))}</span>
+          </div>
+          {site}
+          <p class="checked">Research record checked {e(checked)}</p>
         </div>
-        <b class="vertical-label">Supplier profile</b>
-        <div class="profile-popover" id="prov" hidden><strong>Country check</strong><span>{e(pop_find)}</span><span>Checked {e(checked)}</span>{pop_link}</div>
-      </header>
+      </div>
+      <div class="hero-meta">
+        <span>Supplier profile</span>
+        <strong>{e(r["hq_country"] or "Not established")}</strong>
+        <span>First recorded {e(pretty_date(r["source_date"]))}</span>
+      </div>
+    </section>
 
-      <section class="verified-layer">
-        <span class="layer-rule yellow"></span>
-        <h2>Verified by yellow3</h2>
-        <h3>At a glance</h3>
-        <div class="glance-grid">{glance_grid}</div>
-        {capability}
+    <nav class="layer-tabs" aria-label="Profile layers">
+      <button type="button" class="active" data-tab="research"><span>01</span> yellow3 lab research</button>
+      {company_tab}
+    </nav>
+
+    <div id="researchPanel">
+      <section class="research-intro">
+        <div>
+          <p class="eyebrow"><i></i> Independently researched</p>
+          <h2>A public evidence record,<br />not a supplier score.</h2>
+        </div>
+        <p class="intro-copy">Ten independent checks show what yellow3 lab could establish
+        from public sources on the date shown. Every finding keeps its provenance.</p>
       </section>
-{company}
-      <footer class="register-evidence" id="evidence">
-        <h3>Register evidence</h3>
-        <div><strong>Source</strong><span>{src_cell}</span></div>
-        <div><strong>First recorded</strong><span>{e(pretty_date(r["source_date"]))}</span></div>
-        <div><strong>Last checked</strong><span>{e(checked)}</span></div>
-        <a href="/research/digital-product-passport/suppliers#method">Research method &#8599;</a>
-        <a href="/research/digital-product-passport/suppliers#corrections">Suggest a correction &#8599;</a>
-        {claim_foot}
-      </footer>
-    </article>
 
-    <aside class="profile-legend">
-      <section><span class="layer-rule black"></span><h3>Evidence layer</h3><p>Independently verified by yellow3 through public sources.</p></section>
-      <section class="company" id="companyAside"><span class="layer-rule yellow"></span><h3>Company layer</h3><p id="companyAsideText">Information supplied by the company. Currently absent.</p></section>
-      <section><span class="layer-rule grey"></span><h3>Source drawer</h3><p>Provenance and research details for this profile.</p></section>
-    </aside>
+      <section class="facts-grid">{facts}</section>
+      {capability}{unassessed_note}
+    </div>
+{company_panel}
+    <footer class="register-footer">
+      <div><span>Register evidence</span><strong>{src_cell}</strong></div>
+      <div><span>First recorded</span><strong>{e(pretty_date(r["source_date"]))}</strong></div>
+      <div><span>Last checked</span><strong>{e(checked)}</strong></div>
+      <a href="/research/digital-product-passport/suppliers#method">Research method &#8599;</a>
+      <a href="/research/digital-product-passport/suppliers#corrections">Suggest a correction &#8599;</a>
+      {claim_foot}
+    </footer>
   </div>
 </main>
 """ + SITE_FOOTER
-    script = """
+
+    checks_json = json.dumps(checks, ensure_ascii=False, separators=(",", ":"))
+    script = ("""
+<script id="checkData" type="application/json">""" + checks_json + """</script>
 <script>
 (function(){
-  var b=document.getElementById('provToggle'), p=document.getElementById('prov');
-  if(!b||!p) return;
-  b.addEventListener('click',function(){
-    var open=p.hasAttribute('hidden');
-    if(open){p.removeAttribute('hidden');}else{p.setAttribute('hidden','');}
-    b.setAttribute('aria-expanded',open?'true':'false');
+  var CHECKS=JSON.parse(document.getElementById('checkData').textContent);
+  var LABEL={verified:'Public evidence found',company:'Company states',
+             'not-found':'No public evidence found',unassessed:'Not yet assessed'};
+
+  // ---- layers
+  var tabs=document.querySelectorAll('.layer-tabs button'),
+      research=document.getElementById('researchPanel'),
+      company=document.getElementById('companyPanel');
+  Array.prototype.forEach.call(tabs,function(b){
+    b.addEventListener('click',function(){
+      var want=b.dataset.tab;
+      Array.prototype.forEach.call(tabs,function(x){ x.classList.toggle('active',x===b); });
+      if(research) research.hidden = want!=='research';
+      if(company) company.hidden = want!=='company';
+    });
   });
-})();
-(function(){
-  // Company layer. Everything here is written by the company itself and is
-  // labelled as such - it is never merged with what we verified, and it is
-  // inserted as text, never as markup.
-  var host=document.getElementById('companyLayer'), box=document.getElementById('companyBody');
-  if(!host||!box) return;
-  var sid=host.dataset.supplier;
-  fetch('/api/supplied?id='+encodeURIComponent(sid)).then(function(r){return r.json();})
-    .then(function(d){
-      var s=d&&d.supplied; if(!s) return;
-      var frag=document.createDocumentFragment();
-      if(s.logo_url){
-        var fig=document.createElement('div'); fig.className='company-logo';
-        var img=document.createElement('img'); img.src=s.logo_url; img.alt='';
-        img.loading='lazy'; fig.appendChild(img); frag.appendChild(fig);
-      }
-      if(s.description){
-        var p=document.createElement('p'); p.className='company-desc';
-        p.textContent=s.description; frag.appendChild(p);
-      }
-      if(s.sectors&&s.sectors.length){
-        var ul=document.createElement('ul'); ul.className='company-tags';
-        s.sectors.forEach(function(t){var li=document.createElement('li');li.textContent=t;ul.appendChild(li);});
-        frag.appendChild(ul);
-      }
-      if(s.contact_url){
-        var a=document.createElement('a'); a.href=s.contact_url; a.target='_blank';
-        a.rel='noopener nofollow'; a.textContent='Contact this company \\u2199';
-        a.className='company-contact'; frag.appendChild(a);
-      }
-      var stamp=document.createElement('p'); stamp.className='company-stamp';
-      stamp.textContent='Supplied by the company'+(s.updated_at?', updated '+s.updated_at:'')
-        +'. Not verified by yellow3 lab.';
-      frag.appendChild(stamp);
-      if(d.editable){
-        var ed=document.createElement('a'); ed.className='company-contact';
-        ed.href='/research/digital-product-passport/suppliers/'+sid+'/edit';
-        ed.textContent='Edit your layer \\u2199'; frag.appendChild(ed);
-      }
-      box.textContent=''; box.appendChild(frag);
-      // the sidebar card describes the same layer, so it cannot keep saying absent
-      // the identity mark: their logo if they have supplied one, initials if not.
-      // only the mark changes - every fact around it stays what we verified.
-      var mono=document.getElementById('profileMonogram');
-      if(mono && s.logo_url){
-        var mi=document.createElement('img'); mi.src=s.logo_url; mi.alt='';
-        mono.textContent=''; mono.appendChild(mi);
-      }
-      var aside=document.getElementById('companyAsideText');
-      if(aside){ aside.textContent='Information supplied by the company'
-        +(s.updated_at?', updated '+s.updated_at:'')+'. Not verified by yellow3 lab.'; }
-    }).catch(function(){});
+
+  // ---- capability rows and their evidence record
+  var rows=document.querySelectorAll('.capability-row'),
+      kicker=document.getElementById('panelKicker'), pname=document.getElementById('panelName'),
+      pstatus=document.getElementById('panelStatus'), pfind=document.getElementById('panelFinding'),
+      plink=document.getElementById('panelLink');
+  function pad(n){ return (n<10?'0':'')+n; }
+  function finding(c){
+    // the real artifact and note first; the state sentence only when we have neither
+    if(c.artifact && c.note) return c.artifact+'. '+c.note;
+    if(c.artifact) return c.artifact;
+    if(c.note) return c.note;
+    if(c.state==='verified') return 'A specific public disclosure was located and recorded in the research trail.';
+    if(c.state==='company') return 'The capability is described by the company. Independent supporting documentation was not established in this check.';
+    if(c.state==='not-found') return 'No specific public disclosure was located during this research check. This is a dated finding, not a claim of absence.';
+    return 'This check has not been run against this supplier yet.';
+  }
+  function select(i){
+    var c=CHECKS[i]; if(!c||!pname) return;
+    kicker.textContent='Selected finding \\u00b7 '+pad(c.n);
+    pname.textContent=c.name;
+    pstatus.className='status status-'+c.state;
+    pstatus.innerHTML='';
+    var dot=document.createElement('span'); dot.className='status-dot'; pstatus.appendChild(dot);
+    var lab=document.createElement('span'); lab.textContent=LABEL[c.state]||LABEL.unassessed; pstatus.appendChild(lab);
+    var t=document.createElement('time'); t.textContent=c.date; pstatus.appendChild(t);
+    pfind.textContent=finding(c);
+    plink.href=c.url||'/research/digital-product-passport/suppliers#framework';
+    plink.textContent=c.url?'View search record \\u2197':'View assessment framework \\u2197';
+    Array.prototype.forEach.call(rows,function(x){ x.classList.toggle('selected', x.dataset.check==String(i)); });
+  }
+  Array.prototype.forEach.call(rows,function(b){
+    b.addEventListener('click',function(){ select(Number(b.dataset.check)); });
+  });
+  if(rows.length) select(0);
+
+  // ---- the company's own layer, written by the company, fetched at runtime
+  if(company){
+    var sid=company.dataset.supplier, box=document.getElementById('companyBody'),
+        mono=document.getElementById('profileMonogram'), tab=document.querySelector('.company-tab');
+    fetch('/api/supplied?id='+encodeURIComponent(sid)).then(function(r){return r.json();})
+      .then(function(d){
+        var s=d&&d.supplied; if(!s) return;
+        if(mono && s.logo_url){
+          var mi=document.createElement('img'); mi.src=s.logo_url; mi.alt='';
+          mono.textContent=''; mono.appendChild(mi);
+        }
+        var left=document.createElement('div');
+        if(s.description){ var h=document.createElement('h2'); h.textContent=s.description; left.appendChild(h); }
+        if(s.sectors&&s.sectors.length){
+          var p=document.createElement('p'); p.textContent='Sectors: '+s.sectors.join(', '); left.appendChild(p);
+        }
+        var stamp=document.createElement('p');
+        stamp.textContent='Supplied by the company'+(s.updated_at?', updated '+s.updated_at:'')
+          +'. Not verified by yellow3 lab.';
+        left.appendChild(stamp);
+        box.textContent=''; box.appendChild(left);
+        if(s.contact_url){
+          var a=document.createElement('a'); a.className='claim-button'; a.href=s.contact_url;
+          a.target='_blank'; a.rel='noopener nofollow'; a.textContent='Contact this company \\u2192';
+          box.appendChild(a);
+        }
+        if(tab) tab.classList.add('has-content');
+      }).catch(function(){});
+  }
 })();
 </script>
-"""
+""")
+
     jsonld = ('\n  <script type="application/ld+json">' + json.dumps({
         "@context": "https://schema.org", "@type": "ProfilePage",
-        "name": f"{r['name']} - DPP Supplier Register",
+        "name": f"{name} - DPP Supplier Register",
         "url": f"https://yellow3.io/research/digital-product-passport/suppliers/{sid}",
         "isPartOf": {"@type": "Dataset", "name": "yellow3 DPP Supplier Register",
                      "url": "https://yellow3.io/research/digital-product-passport/suppliers"},
         "about": {k: v for k, v in {
-            "@type": "Organization", "name": r["name"],
+            "@type": "Organization", "name": name,
             "url": r["website"] or None,
             "address": ({"@type": "PostalAddress", "addressCountry": r["hq_country"],
                          **({"addressLocality": r["hq_city"]} if r["hq_city"] else {})}
@@ -481,11 +572,15 @@ def profile_html(r, counts, cap):
         "publisher": {"@type": "Organization", "name": "yellow3 lab", "url": "https://yellow3.io"},
     }, ensure_ascii=False, separators=(",", ":")) + "</script>")
 
-    return page(f"{r['name']} - DPP Supplier Register - yellow3",
-                f"{r['name']}: Digital Product Passport supplier profile. Independently sourced "
-                f"identity, headquarters and evidence, recorded by yellow3 lab.",
-                f"https://yellow3.io/research/digital-product-passport/suppliers/{sid}",
-                body, script, jsonld)
+    out = page(f"{name} - DPP Supplier Register - yellow3",
+               f"{name}: Digital Product Passport supplier profile. Independently sourced "
+               f"identity, headquarters and evidence, recorded by yellow3 lab.",
+               f"https://yellow3.io/research/digital-product-passport/suppliers/{sid}",
+               body, script, jsonld)
+    return out.replace(
+        '<link rel="stylesheet" href="/research/digital-product-passport/register.css" />',
+        '<link rel="stylesheet" href="/research/digital-product-passport/register.css" />\n'
+        '  <link rel="stylesheet" href="/research/digital-product-passport/profile-v4.css" />')
 
 
 # ---------------------------------------------------------------- claim

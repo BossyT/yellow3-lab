@@ -1,0 +1,245 @@
+/* DPP supplier profile - ChatGPT handoff, approved v4.
+   app/globals.css reproduced as delivered and scoped to .dpp-profile, so its
+   tokens (--yellow #ffd92f, --ink, --line) cannot recolour the site nav and
+   footer. Values, spacing, breakpoints and the two responsive layouts are
+   unchanged. The tailwind import is dropped; nothing external is fetched. */
+
+.dpp-profile{
+  --ink: #171815;
+  --muted: #6f716b;
+  --line: #d9dad3;
+  --soft: #f4f4ef;
+  --yellow: #ffd92f;
+  --yellow-soft: #fff9dc;
+  --green: #1c7350;
+}
+
+.dpp-profile *{ box-sizing: border-box; }
+
+.dpp-profile{ background: #ecece6; }
+
+.dpp-profile{ margin: 0; color: var(--ink); font-family: Arial, Helvetica, sans-serif; }
+
+.dpp-profile button, .dpp-profile a{ font: inherit; }
+
+.dpp-profile button{ color: inherit; }
+
+.dpp-profile{ min-height: 100vh; padding: 18px; }
+
+.dpp-profile .page-shell{ max-width: 1420px; margin: 0 auto; background: #fff; border: 1px solid #c9cac2; }
+
+.dpp-profile .back-link{ display: inline-block; margin: 20px 26px 18px; color: var(--ink); text-decoration: none; font-size: 13px; }
+
+.dpp-profile .back-link:hover, .dpp-profile .website:hover, .dpp-profile .register-footer a:hover, .dpp-profile .evidence-panel a:hover{ text-decoration: underline; }
+
+.dpp-profile .profile-hero{ border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 42px 48px; display: flex; justify-content: space-between; gap: 32px; align-items: center; }
+
+.dpp-profile .identity{ display: flex; align-items: center; gap: 28px; }
+
+.dpp-profile .monogram{ width: 94px; height: 94px; display: grid; place-items: center; border: 1px solid var(--ink); font: 400 31px Georgia, serif; }
+
+.dpp-profile .title-line{ display: flex; align-items: center; gap: 15px; }
+
+.dpp-profile h1{ margin: 0; font: 400 clamp(42px,5vw,64px)/1 Georgia, serif; letter-spacing: -.035em; }
+
+.dpp-profile .type-chip{ text-transform: uppercase; border: 1px solid #aaa; padding: 6px 9px 5px; font-size: 9px; letter-spacing: .14em; }
+
+.dpp-profile .website{ display: inline-block; color: var(--ink); margin-top: 16px; font-size: 13px; }
+
+.dpp-profile .checked{ margin: 8px 0 0; color: var(--muted); font-size: 11px; }
+
+.dpp-profile .hero-meta{ min-width: 250px; padding-left: 26px; border-left: 1px solid var(--line); display: grid; gap: 6px; text-align: right; font-size: 11px; color: var(--muted); }
+
+.dpp-profile .hero-meta strong{ color: var(--ink); font: 400 24px Georgia, serif; }
+
+.dpp-profile .layer-tabs{ display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--line); }
+
+.dpp-profile .layer-tabs button{ background: #fff; border: 0; border-right: 1px solid var(--line); text-align: left; padding: 20px 28px; font-size: 12px; cursor: pointer; text-transform: uppercase; letter-spacing: .1em; }
+
+.dpp-profile .layer-tabs button:last-child{ border-right: 0; }
+
+.dpp-profile .layer-tabs button span{ color: #999; margin-right: 16px; }
+
+.dpp-profile .layer-tabs button.active{ box-shadow: inset 0 -4px 0 var(--ink); }
+
+.dpp-profile .layer-tabs button.company-tab{
+  background: #fff6c7;
+  border-color: #e2d38a;
+}
+
+.dpp-profile .layer-tabs button.company-tab span{ color: #6d5b00; }
+
+.dpp-profile .layer-tabs button.company-tab:hover{
+  background: #fff2b2;
+}
+
+.dpp-profile .layer-tabs button.company-tab.active{
+  background: #fff6c7;
+  box-shadow: inset 0 -4px 0 var(--ink);
+}
+
+.dpp-profile .research-intro{ padding: 70px 48px 48px; display: grid; grid-template-columns: 1.25fr .75fr; align-items: end; gap: 60px; }
+
+.dpp-profile .eyebrow{ margin: 0 0 20px; text-transform: uppercase; letter-spacing: .15em; font-size: 10px; font-weight: 700; }
+
+.dpp-profile .eyebrow i{ width: 22px; height: 3px; display: inline-block; background: var(--ink); margin: 0 11px 3px 0; }
+
+.dpp-profile .eyebrow.yellow i{ background: #d3aa00; }
+
+.dpp-profile h2{ margin: 0; font: 400 clamp(30px,3.2vw,46px)/1.08 Georgia, serif; letter-spacing: -.025em; }
+
+.dpp-profile .intro-copy{ color: #54564f; max-width: 500px; font: 400 17px/1.65 Georgia, serif; margin: 0; }
+
+.dpp-profile .facts-grid{ margin: 0 48px 72px; border: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); }
+
+.dpp-profile .facts-grid article{ min-height: 142px; padding: 24px; border-right: 1px solid var(--line); display: flex; flex-direction: column; }
+
+.dpp-profile .facts-grid article:last-child{ border-right: 0; }
+
+.dpp-profile .facts-grid span, .dpp-profile .facts-grid small, .dpp-profile .panel-label{ color: var(--muted); text-transform: uppercase; font-size: 9px; letter-spacing: .12em; }
+
+.dpp-profile .facts-grid strong{ margin: auto 0 8px; font: 400 20px Georgia, serif; }
+
+.dpp-profile .capability-section{ background: #f3f3ee; border-top: 1px solid var(--line); padding: 58px 48px 70px; }
+
+.dpp-profile .capability-section > header{ display: flex; justify-content: space-between; align-items: end; margin-bottom: 34px; gap: 30px; }
+
+.dpp-profile .capability-section > header p:last-child{ color: var(--muted); font-size: 12px; }
+
+.dpp-profile .capability-layout{ display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(320px, .65fr); gap: 18px; align-items: start; }
+
+.dpp-profile .capability-list{ background: #fff; border: 1px solid var(--line); }
+
+.dpp-profile .capability-row{ width: 100%; border: 0; border-bottom: 1px solid var(--line); background: #fff; min-height: 66px; padding: 0 18px; display: grid; grid-template-columns: 44px minmax(150px, 1fr) minmax(255px, auto) 24px; align-items: center; gap: 12px; text-align: left; cursor: pointer; }
+
+.dpp-profile .capability-row:last-child{ border-bottom: 0; }
+
+.dpp-profile .capability-row:hover, .dpp-profile .capability-row.selected{ background: #fafaf6; }
+
+.dpp-profile .capability-row.selected{ box-shadow: inset 4px 0 0 var(--ink); }
+
+.dpp-profile .row-number{ color: #a4a59f; font: 10px var(--font-geist-mono), monospace; }
+
+.dpp-profile .capability-row strong{ font-size: 13px; font-weight: 500; }
+
+.dpp-profile .row-arrow{ text-align: right; color: #777; }
+
+.dpp-profile .status{ display: flex; align-items: center; justify-content: flex-end; gap: 8px; text-transform: uppercase; letter-spacing: .08em; font-size: 8px; white-space: nowrap; }
+
+.dpp-profile .status time{ color: #999; margin-left: 6px; }
+
+.dpp-profile .status-dot{ width: 7px; height: 7px; border-radius: 50%; background: #8f918b; }
+
+.dpp-profile .status-company{ color: #8a6900; }
+
+.dpp-profile .status-company .status-dot{ background: #e0b600; }
+
+.dpp-profile .status-verified{ color: var(--green); }
+
+.dpp-profile .status-verified .status-dot{ background: var(--green); }
+
+.dpp-profile .evidence-panel{ position: sticky; top: 20px; background: var(--ink); color: #fff; padding: 30px; min-height: 470px; }
+
+.dpp-profile .panel-kicker{ color: #a9aaa5; text-transform: uppercase; font-size: 9px; letter-spacing: .14em; margin: 0 0 30px; }
+
+.dpp-profile .evidence-panel h3{ font: 400 30px/1.1 Georgia, serif; margin: 0 0 20px; }
+
+.dpp-profile .evidence-panel .status{ justify-content: flex-start; }
+
+.dpp-profile .evidence-panel .status time{ color: #aaa; }
+
+.dpp-profile .panel-rule{ height: 1px; background: #4c4e48; margin: 30px 0; }
+
+.dpp-profile .panel-label{ display: block; color: #a8aaa4; margin-top: 22px; }
+
+.dpp-profile .evidence-panel p:not(.panel-kicker){ color: #d8d8d4; font: 14px/1.6 Georgia, serif; }
+
+.dpp-profile .evidence-panel a{ color: #fff; display: inline-block; margin-top: 20px; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+
+.dpp-profile .company-layer{ margin: 48px; padding: 46px; border: 1px solid #e0b900; background: var(--yellow-soft); min-height: 310px; }
+
+.dpp-profile .company-content{ display: flex; align-items: end; justify-content: space-between; gap: 40px; }
+
+.dpp-profile .company-content p{ color: #66604b; max-width: 650px; font: 16px/1.65 Georgia, serif; }
+
+.dpp-profile .claim-button{ background: var(--ink); color: #fff; padding: 17px 22px; text-decoration: none; white-space: nowrap; font-size: 12px; }
+
+.dpp-profile .register-footer{ border-top: 1px solid var(--line); padding: 26px 48px; display: grid; grid-template-columns: 1.2fr 1fr 1fr repeat(3, auto); gap: 28px; align-items: end; }
+
+.dpp-profile .register-footer div{ display: grid; gap: 6px; }
+
+.dpp-profile .register-footer span{ color: var(--muted); text-transform: uppercase; font-size: 8px; letter-spacing: .1em; }
+
+.dpp-profile .register-footer strong, .dpp-profile .register-footer a{ color: var(--ink); font-size: 10px; font-weight: 500; }
+
+@media (max-width: 900px){.dpp-profile{ padding: 0; }
+
+.dpp-profile .page-shell{ border: 0; }
+
+.dpp-profile .profile-hero{ padding: 32px 24px; align-items: flex-start; }
+
+.dpp-profile .hero-meta{ display: none; }
+
+.dpp-profile .research-intro{ padding: 50px 24px 34px; grid-template-columns: 1fr; gap: 24px; }
+
+.dpp-profile .facts-grid{ margin: 0 24px 48px; grid-template-columns: 1fr 1fr; }
+
+.dpp-profile .facts-grid article:nth-child(2){ border-right: 0; }
+
+.dpp-profile .facts-grid article:nth-child(-n+2){ border-bottom: 1px solid var(--line); }
+
+.dpp-profile .capability-section{ padding: 42px 24px; }
+
+.dpp-profile .capability-layout{ grid-template-columns: 1fr; }
+
+.dpp-profile .evidence-panel{ position: static; min-height: auto; }
+
+.dpp-profile .register-footer{ padding: 24px; grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 620px){.dpp-profile .back-link{ margin-left: 20px; }
+
+.dpp-profile .profile-hero{ padding: 28px 20px; }
+
+.dpp-profile .identity{ gap: 16px; align-items: flex-start; }
+
+.dpp-profile .monogram{ width: 64px; height: 64px; font-size: 23px; flex: 0 0 auto; }
+
+.dpp-profile .title-line{ align-items: flex-start; flex-direction: column; gap: 8px; }
+
+.dpp-profile h1{ font-size: 39px; }
+
+.dpp-profile .layer-tabs button{ padding: 17px 14px; font-size: 9px; line-height: 1.4; }
+
+.dpp-profile .layer-tabs button span{ display: block; margin: 0 0 5px; }
+
+.dpp-profile .research-intro{ padding: 42px 20px 28px; }
+
+.dpp-profile .intro-copy{ font-size: 15px; }
+
+.dpp-profile .facts-grid{ margin: 0 20px 40px; grid-template-columns: 1fr; }
+
+.dpp-profile .facts-grid article{ border-right: 0; border-bottom: 1px solid var(--line); min-height: 116px; }
+
+.dpp-profile .facts-grid article:last-child{ border-bottom: 0; }
+
+.dpp-profile .capability-section{ padding: 38px 20px; }
+
+.dpp-profile .capability-section > header{ align-items: flex-start; flex-direction: column; }
+
+.dpp-profile .capability-row{ padding: 14px; grid-template-columns: 30px 1fr 18px; min-height: 78px; }
+
+.dpp-profile .capability-row .status{ grid-column: 2 / 3; justify-content: flex-start; white-space: normal; }
+
+.dpp-profile .row-arrow{ grid-column: 3; grid-row: 1 / 3; }
+
+.dpp-profile .evidence-panel{ padding: 25px 22px; }
+
+.dpp-profile .company-layer{ margin: 24px 20px; padding: 28px 22px; }
+
+.dpp-profile .company-content{ display: block; }
+
+.dpp-profile .claim-button{ display: inline-block; margin-top: 20px; }
+
+.dpp-profile .register-footer{ grid-template-columns: 1fr 1fr; gap: 22px; }
+}
