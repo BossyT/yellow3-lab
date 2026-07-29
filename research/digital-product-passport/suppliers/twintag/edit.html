@@ -18,8 +18,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/research/digital-product-passport/register.css" />
+  <link rel="stylesheet" href="/research/digital-product-passport/company-layer.css" />
 </head>
-<body data-supplier="twintag">
+<body data-supplier="twintag" data-name="Twintag">
   <nav class="site-nav y3nav">
     <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
     <div class="nav-mid" id="navMid">
@@ -33,65 +34,177 @@
     <a href="/advisory" class="nav-cta y3cta">Work with us <span>&#8594;</span></a>
     <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
   </nav>
-<main class="claim-shell">
-  <section class="claim-body">
-    <a class="claim-back" href="/research/digital-product-passport/suppliers/twintag">&#8249; Back to profile</a>
+<main class="dpp-edit">
+  <section class="intro">
+    <div class="intro-inner">
+      <a class="back-link" href="/research/digital-product-passport/suppliers/twintag">
+        <span aria-hidden="true" class="arrow">&#8592;</span> Back to Twintag profile</a>
 
-    <section class="claim-content" id="editShell">
-      <h1>Your layer on Twintag</h1>
-      <p class="claim-intro">This is the company-supplied side of your profile. It publishes
-      immediately, appears in its own layer marked as yours, and carries the date you last
-      changed it. What yellow3 verified independently is not editable here and is never
-      overwritten by it.</p>
-
-      <p class="claim-message" role="status" id="editMsg" hidden></p>
-
-      <form id="editForm" hidden>
-        <div class="edit-field">
-          <label for="edLogo">Logo</label>
-          <div class="edit-logo-row">
-            <img id="edLogoPrev" alt="" hidden />
-            <input id="edLogo" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" />
+      <div class="intro-grid">
+        <div>
+          <p class="eyebrow">COMPANY-SUPPLIED LAYER</p>
+          <h1>Add Twintag's<br />own information</h1>
+        </div>
+        <div class="intro-copy">
+          <p>This page publishes only the information Twintag supplies. It appears in a
+          separately labelled layer on the public profile. yellow3 lab's independent research
+          remains unchanged and cannot be edited here.</p>
+          <div class="evidence-key" aria-label="Evidence key">
+            <div><span class="swatch"></span><span>Researched independently by yellow3 lab</span></div>
+            <div><span class="swatch swatch-supplied"></span><span>Supplied directly by Twintag</span></div>
           </div>
-          <p class="edit-hint">PNG, JPG, WEBP or SVG, up to 400 KB. We display the mark you
-          upload, unaltered. We never redraw or recolour a logo.</p>
-          <label class="edit-check"><input id="edLicence" type="checkbox" />
-            <span>I am authorised to supply this logo on behalf of Twintag, and I grant
-            yellow3 lab the right to display it on this profile.</span></label>
-          <button type="button" class="edit-remove" id="edRemoveLogo" hidden>Remove logo</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="workspace">
+    <div class="workspace-grid">
+      <form class="form-panel" id="editForm">
+        <div class="panel-heading">
+          <span class="panel-index">01</span>
+          <div>
+            <p class="eyebrow dark">YOUR PUBLIC INFORMATION</p>
+            <p class="panel-note">Everything inside this yellow field is published as supplied
+            by Twintag.</p>
+          </div>
         </div>
 
-        <div class="edit-field">
-          <label for="edDesc">One-line description</label>
-          <input id="edDesc" type="text" maxlength="160" placeholder="What this company does, in one line" />
-          <p class="edit-hint"><span id="edCount">0</span>/160</p>
-        </div>
+        <p class="claim-message" role="status" id="editMsg" hidden></p>
 
-        <div class="edit-field">
-          <label for="edContact">Contact link</label>
-          <input id="edContact" type="url" placeholder="https://yourcompany.com/contact" />
-          <p class="edit-hint">Must be https.</p>
-        </div>
+        <fieldset>
+          <legend><span>A</span>Company identity</legend>
+          <div class="field-grid identity-grid">
+            <div class="field">
+              <label id="logoLabel">Logo</label>
+              <input id="edLogo" class="visually-hidden" type="file"
+                     accept=".png,.jpg,.jpeg,.webp,.svg" aria-labelledby="logoLabel" />
+              <button class="upload" type="button" id="edUploadBtn">
+                <span class="upload-mark"><img id="edLogoPrev" alt="" hidden /><span id="edLogoPlus" aria-hidden="true">+</span></span>
+                <span class="upload-copy">
+                  <strong id="edLogoName">Upload company logo</strong>
+                  <small>PNG, JPG, WebP or SVG &middot; Maximum 400 KB</small>
+                </span>
+                <span class="upload-action"><span id="edUploadVerb">Choose file</span>
+                  <span aria-hidden="true" class="arrow">&#8594;</span></span>
+              </button>
+              <button type="button" class="edit-remove" id="edRemoveLogo" hidden>Remove logo</button>
+            </div>
 
-        <div class="edit-field">
-          <label for="edSectors">Sectors</label>
-          <input id="edSectors" type="text" placeholder="textiles, batteries, electronics" />
-          <p class="edit-hint">Comma separated, up to eight.</p>
-        </div>
+            <div class="field">
+              <div class="label-row">
+                <label for="edDesc">One-line description</label>
+                <span><span id="edCount">0</span> / 160</span>
+              </div>
+              <textarea id="edDesc" maxlength="160" rows="4"
+                        placeholder="What does Twintag do?"></textarea>
+            </div>
+          </div>
+        </fieldset>
 
-        <button type="submit">Publish changes <span>&#8594;</span></button>
+        <fieldset>
+          <legend><span>B</span>Public contact</legend>
+          <div class="field-grid">
+            <div class="field">
+              <label for="edContact">Contact link</label>
+              <input id="edContact" type="url" inputmode="url"
+                     placeholder="https://yourcompany.com/contact" />
+              <small>Must use a secure https address.</small>
+            </div>
+            <div class="field">
+              <div class="label-row">
+                <label for="edSectors">Sectors</label>
+                <span><span id="edTagCount">0</span> / 8</span>
+              </div>
+              <div class="tag-entry" id="edTagEntry">
+                <input id="edSectors" placeholder="Add a sector" />
+              </div>
+              <small>Press enter to add. Select a tag to remove it.</small>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="authorisation-fieldset">
+          <legend><span>C</span>Authorisation</legend>
+          <label class="check-row">
+            <input type="checkbox" id="edLicence" />
+            <span class="custom-check" aria-hidden="true" id="edCheckMark"></span>
+            <span>I am authorised to supply this logo and company information on behalf of
+            Twintag, and I grant yellow3 lab permission to display it on this supplier
+            profile.</span>
+          </label>
+        </fieldset>
+
+        <div class="form-action">
+          <button class="publish" type="submit" id="edPublish" disabled>
+            <span>Publish changes</span><span aria-hidden="true" class="arrow">&#8594;</span></button>
+          <p>Published changes appear immediately in Twintag's labelled company-supplied
+          layer.</p>
+        </div>
       </form>
 
-      <div class="claim-principles">
-        <article><h2>What stays ours</h2><p>Identity, headquarters, ownership, funding and every
-        capability finding, each with its source and the date we checked it. If something there is
-        wrong, reply to your claim email with the correction and a source. We check it, fix it and
-        log the change.</p></article>
-        <article><h2>Why it is labelled</h2><p>Separating what a company claims from what has been
-        independently verified is the whole point of this register. So your layer is marked as
-        yours, and ours is marked as ours. Neither pretends to be the other.</p></article>
-      </div>
-    </section>
+      <aside class="preview-column">
+        <div class="preview-sticky">
+          <div class="preview-heading">
+            <div>
+              <span class="panel-index light">02</span>
+              <p class="eyebrow dark">PROFILE PREVIEW</p>
+            </div>
+            <span class="live-state"><i></i> LIVE</span>
+          </div>
+
+          <article class="supplier-card">
+            <div class="supplied-ribbon">SUPPLIED BY TWINTAG</div>
+            <div class="supplier-identity">
+              <div class="supplier-logo" id="pvLogoBox">TW</div>
+              <div>
+                <p class="company-type">PLATFORM</p>
+                <h2>Twintag</h2>
+              </div>
+            </div>
+            <p class="description placeholder" id="pvDesc">Your one-line company description
+            will appear here.</p>
+            <div class="card-details">
+              <div>
+                <span>PUBLIC CONTACT</span>
+                <strong class="muted" id="pvContact">Not yet supplied</strong>
+              </div>
+              <div>
+                <span>SECTORS</span>
+                <div class="card-chips" id="pvChips"><strong class="muted">Not yet supplied</strong></div>
+              </div>
+            </div>
+            <footer>
+              <span>Company-supplied information</span>
+              <span id="pvStamp">Updated on publication</span>
+            </footer>
+          </article>
+
+          <div class="boundary-card">
+            <div class="boundary-heading">
+              <span class="swatch"></span>
+              <div>
+                <p class="eyebrow dark">INDEPENDENT RESEARCH LAYER</p>
+                <h3>What Twintag cannot edit</h3>
+              </div>
+            </div>
+            <p>Identity, headquarters, ownership, funding, capability findings and every
+            independently checked source remain part of the yellow3 lab research layer.</p>
+            <a href="#" id="edCorrection">Suggest a correction
+              <span aria-hidden="true" class="arrow">&#8594;</span></a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="principle">
+    <div class="principle-inner">
+      <p class="eyebrow dark">WHY THIS LAYER IS LABELLED</p>
+      <p>Separating what a company says from what has been independently researched is the
+      basis of this register. Neither layer pretends to be the other.</p>
+      <span>yellow3 lab &middot; Research method 01</span>
+    </div>
   </section>
 </main>
   <footer class="site-footer y3foot">
@@ -136,76 +249,154 @@
 
 <script>
 (function(){
-  var sid=document.body.dataset.supplier;
-  var form=document.getElementById('editForm'), msg=document.getElementById('editMsg');
-  var desc=document.getElementById('edDesc'), contact=document.getElementById('edContact'),
-      sectors=document.getElementById('edSectors'), file=document.getElementById('edLogo'),
-      lic=document.getElementById('edLicence'), prev=document.getElementById('edLogoPrev'),
-      rm=document.getElementById('edRemoveLogo'), count=document.getElementById('edCount');
-  var pending=null, removeLogo=false;
+  var sid=document.body.dataset.supplier, name=document.body.dataset.name;
+  var form=document.getElementById('editForm'), msg=document.getElementById('editMsg'),
+      desc=document.getElementById('edDesc'), contact=document.getElementById('edContact'),
+      tagIn=document.getElementById('edSectors'), tagBox=document.getElementById('edTagEntry'),
+      file=document.getElementById('edLogo'), upBtn=document.getElementById('edUploadBtn'),
+      prev=document.getElementById('edLogoPrev'), plus=document.getElementById('edLogoPlus'),
+      logoName=document.getElementById('edLogoName'), verb=document.getElementById('edUploadVerb'),
+      rm=document.getElementById('edRemoveLogo'), lic=document.getElementById('edLicence'),
+      mark=document.getElementById('edCheckMark'), pub=document.getElementById('edPublish'),
+      count=document.getElementById('edCount'), tagCount=document.getElementById('edTagCount'),
+      pvLogoBox=document.getElementById('pvLogoBox'), pvDesc=document.getElementById('pvDesc'),
+      pvContact=document.getElementById('pvContact'), pvChips=document.getElementById('pvChips'),
+      pvStamp=document.getElementById('pvStamp'), initials=pvLogoBox.textContent;
+  var sectors=[], pending=null, removeLogo=false, currentLogo='';
 
-  function say(t,bad){ msg.hidden=false; msg.textContent=t; msg.className='claim-message'+(bad?' bad':''); }
-  desc.addEventListener('input',function(){ count.textContent=String(desc.value.length); });
+  function say(t,bad){ msg.hidden=!t; msg.textContent=t||''; msg.className='claim-message'+(bad?' bad':''); }
+  function gate(){ pub.disabled=!lic.checked; }
+  lic.addEventListener('change',function(){ mark.textContent=lic.checked?'✓':''; gate(); });
 
-  fetch('/api/supplied?id='+encodeURIComponent(sid)).then(function(r){return r.json();})
-    .then(function(d){
-      if(!d.editable){
-        say('This editor opens from the link we email when you claim the profile. That link has '
-          +'expired or was not used on this device. Claim again and we will send a new one.',true);
-        return;
-      }
-      var s=d.supplied||{};
-      desc.value=s.description||''; count.textContent=String(desc.value.length);
-      contact.value=s.contact_url||'';
-      sectors.value=(s.sectors||[]).join(', ');
-      if(s.logo_url){ prev.src=s.logo_url; prev.hidden=false; rm.hidden=false; }
-      form.hidden=false;
-    }).catch(function(){ say('Could not load your profile. Please try again.',true); });
+  // ---- live preview, exactly what the public layer will show
+  function paint(){
+    count.textContent=String(desc.value.length);
+    tagCount.textContent=String(sectors.length);
+    if(desc.value.trim()){ pvDesc.textContent=desc.value; pvDesc.className='description'; }
+    else { pvDesc.textContent='Your one-line company description will appear here.';
+           pvDesc.className='description placeholder'; }
+    var c=contact.value.trim().replace(/^https?:\/\//,'').replace(/\/$/,'');
+    pvContact.textContent=c||'Not yet supplied';
+    pvContact.className=c?'':'muted';
+    pvChips.textContent='';
+    if(sectors.length){ sectors.forEach(function(s){var i=document.createElement('i');i.textContent=s;pvChips.appendChild(i);}); }
+    else { var st=document.createElement('strong'); st.className='muted';
+           st.textContent='Not yet supplied'; pvChips.appendChild(st); }
+    var src=pending?prev.src:(removeLogo?'':currentLogo);
+    pvLogoBox.textContent='';
+    if(src){ var im=document.createElement('img'); im.src=src; im.alt=name+' logo preview'; pvLogoBox.appendChild(im); }
+    else { pvLogoBox.textContent=initials; }
+  }
+  desc.addEventListener('input',paint);
+  contact.addEventListener('input',paint);
 
+  // ---- sector chips
+  function drawTags(){
+    Array.prototype.slice.call(tagBox.querySelectorAll('.form-chip')).forEach(function(n){n.remove();});
+    sectors.forEach(function(s){
+      var b=document.createElement('button'); b.type='button'; b.className='form-chip';
+      b.setAttribute('aria-label','Remove '+s);
+      b.appendChild(document.createTextNode(s+' '));
+      var x=document.createElement('span'); x.setAttribute('aria-hidden','true'); x.textContent='×';
+      b.appendChild(x);
+      b.addEventListener('click',function(){ sectors=sectors.filter(function(t){return t!==s;}); drawTags(); paint(); });
+      tagBox.insertBefore(b,tagIn);
+    });
+    tagIn.placeholder=sectors.length?'':'Add a sector';
+    paint();
+  }
+  function addTag(){
+    var v=tagIn.value.trim().replace(/,$/,'');
+    if(!v||sectors.length>=8){ tagIn.value=''; return; }
+    if(!sectors.some(function(s){return s.toLowerCase()===v.toLowerCase();})) sectors.push(v);
+    tagIn.value=''; drawTags();
+  }
+  tagIn.addEventListener('keydown',function(ev){
+    if(ev.key==='Enter'||ev.key===','){ ev.preventDefault(); addTag(); }
+    else if(ev.key==='Backspace'&&!tagIn.value&&sectors.length){ sectors.pop(); drawTags(); }
+  });
+  tagIn.addEventListener('blur',addTag);
+
+  // ---- logo
+  upBtn.addEventListener('click',function(){ file.click(); });
   file.addEventListener('change',function(){
-    var f=file.files&&file.files[0]; pending=null; if(!f) return;
+    var f=file.files&&file.files[0]; if(!f) return;
     if(f.size>400*1024){ say('That logo is larger than 400 KB.',true); file.value=''; return; }
     var fr=new FileReader();
     fr.onload=function(){
       pending={data:String(fr.result).split(',')[1]||'',contentType:f.type};
-      prev.src=fr.result; prev.hidden=false; removeLogo=false;
-      say('Logo ready. Tick the permission box and publish.');
+      prev.src=fr.result; prev.hidden=false; plus.hidden=true; removeLogo=false;
+      logoName.textContent=f.name; verb.textContent='Replace'; rm.hidden=false;
+      say(''); paint();
     };
     fr.readAsDataURL(f);
   });
-
   rm.addEventListener('click',function(){
-    pending=null; removeLogo=true; prev.hidden=true; file.value='';
-    say('Logo will be removed when you publish.');
+    pending=null; removeLogo=true; prev.hidden=true; plus.hidden=false; file.value='';
+    logoName.textContent='Upload company logo'; verb.textContent='Choose file'; rm.hidden=true;
+    paint();
   });
 
+  // correction requests go to a person, never to a form we do not read
+  document.getElementById('edCorrection').addEventListener('click',function(ev){
+    ev.preventDefault();
+    window.location.href='mailto:'+'hello'+String.fromCharCode(64)+'yellow3.io'
+      +'?subject='+encodeURIComponent('Correction: '+name+' (DPP Supplier Register)');
+  });
+
+  // ---- load what is already published
+  fetch('/api/supplied?id='+encodeURIComponent(sid)).then(function(r){return r.json();})
+    .then(function(d){
+      if(!d.editable){
+        form.hidden=true;
+        say('This editor opens from the link we email when you claim the profile. That link '
+          +'has expired or was not used on this device. Claim the profile again and we will '
+          +'send a new one.',true);
+        msg.hidden=false;
+        return;
+      }
+      var s=d.supplied||{};
+      desc.value=s.description||'';
+      contact.value=s.contact_url||'';
+      sectors=(s.sectors||[]).slice(0,8);
+      if(s.logo_url){ currentLogo=s.logo_url; prev.src=s.logo_url; prev.hidden=false;
+        plus.hidden=true; verb.textContent='Replace'; rm.hidden=false;
+        logoName.textContent='Current logo'; }
+      if(s.updated_at) pvStamp.textContent='Updated '+s.updated_at;
+      drawTags();
+    }).catch(function(){ say('Could not load your profile. Please try again.',true); });
+
+  // ---- publish
   form.addEventListener('submit',function(ev){
     ev.preventDefault();
-    if(pending && !lic.checked){ say('Tick the permission box to publish a logo.',true); return; }
-    var payload={
-      description:desc.value,
-      contact_url:contact.value,
-      sectors:sectors.value.split(',').map(function(t){return t.trim();}).filter(Boolean).slice(0,8)
-    };
-    if(pending){ payload.logo=pending; payload.licence=true; }
-    if(removeLogo){ payload.remove_logo=true; }
-    say('Publishing…');
+    var payload={ description:desc.value, contact_url:contact.value, sectors:sectors, licence:true };
+    if(pending) payload.logo=pending;
+    if(removeLogo) payload.remove_logo=true;
+    pub.disabled=true; say('Publishing…');
     fetch('/api/supplied',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify(payload)})
       .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
       .then(function(x){
         if(!x.ok||!x.j.ok){
-          var m={licence_required:'Tick the permission box to publish a logo.',
+          var m={licence_required:'Tick the authorisation box to publish a logo.',
                  logo_type:'That file type is not supported.',
                  logo_size:'That logo is larger than 400 KB.',
+                 logo_store_failed:'The logo could not be stored. Please try again.',
+                 store_failed:'Could not save. Please try again.',
                  not_signed_in:'Your link expired. Claim the profile again for a new one.'};
-          say(m[x.j&&x.j.error]||'Could not publish. Please try again.',true); return;
+          say(m[x.j&&x.j.error]||'Could not publish. Please try again.',true);
+          gate(); return;
         }
-        pending=null; removeLogo=false; lic.checked=false;
-        rm.hidden=!(x.j.supplied&&x.j.supplied.logo_url);
-        say('Published. Your layer is live on your profile.');
-      }).catch(function(){ say('Could not publish. Please try again.',true); });
+        var s=x.j.supplied||{};
+        currentLogo=s.logo_url||''; pending=null; removeLogo=false;
+        rm.hidden=!currentLogo;
+        if(s.updated_at) pvStamp.textContent='Updated '+s.updated_at;
+        say('Published. This is live on the public profile now.');
+        gate(); paint();
+      }).catch(function(){ say('Could not publish. Please try again.',true); gate(); });
   });
+
+  paint();
 })();
 </script>
 

@@ -1,0 +1,897 @@
+/* DPP company-supplied editor.
+   ChatGPT handoff app/globals.css (approved v2), reproduced as delivered and
+   scoped to .dpp-edit so its tokens cannot recolour the site nav and footer -
+   their --yellow, --paper, --ink and --line differ from ours by design.
+   Values, spacing and breakpoints are unchanged. */
+
+.dpp-edit{
+  --ink: #121212;
+  --paper: #f6f5f0;
+  --white: #ffffff;
+  --muted: #686861;
+  --line: #d9d8d1;
+  --yellow: #f4d000;
+  --yellow-soft: #fff3a8;
+  --yellow-pale: #fff9d7;
+  --green: #1e7d43;
+}
+
+.dpp-edit *{
+  box-sizing: border-box;
+}
+
+.dpp-edit{
+  scroll-behavior: smooth;
+}
+
+.dpp-edit{
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.dpp-edit button, .dpp-edit input, .dpp-edit textarea{
+  font: inherit;
+}
+
+.dpp-edit button, .dpp-edit a{
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dpp-edit a{
+  color: inherit;
+  text-decoration: none;
+}
+
+.dpp-edit .intro-inner, .dpp-edit .workspace-grid, .dpp-edit .principle-inner{
+  width: min(1280px, calc(100% - 64px));
+  margin: 0 auto;
+}
+
+.dpp-edit .intro{
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+
+.dpp-edit .intro-inner{
+  padding: 34px 0 68px;
+}
+
+.dpp-edit .back-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 58px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.dpp-edit .arrow{
+  display: inline-block;
+  font-weight: 400;
+  transition: transform 160ms ease;
+}
+
+.dpp-edit a:hover .arrow, .dpp-edit button:hover .arrow{
+  transform: translateX(4px);
+}
+
+.dpp-edit .back-link:hover .arrow{
+  transform: translateX(-4px);
+}
+
+.dpp-edit .intro-grid{
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: 80px;
+  align-items: end;
+}
+
+.dpp-edit .eyebrow{
+  margin: 0 0 18px;
+  color: #6e6100;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  line-height: 1.2;
+}
+
+.dpp-edit .eyebrow.dark{
+  color: var(--ink);
+}
+
+.dpp-edit h1{
+  margin: 0;
+  max-width: 740px;
+  font-size: clamp(50px, 5.7vw, 82px);
+  font-weight: 640;
+  letter-spacing: -0.065em;
+  line-height: 0.94;
+}
+
+.dpp-edit .intro-copy > p{
+  max-width: 570px;
+  margin: 0;
+  color: #464640;
+  font-size: 16px;
+  line-height: 1.65;
+  letter-spacing: -0.012em;
+}
+
+.dpp-edit .evidence-key{
+  display: grid;
+  gap: 10px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  color: #4f4f49;
+}
+
+.dpp-edit .evidence-key > div{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dpp-edit .swatch{
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+  background: var(--white);
+  border: 1px solid #afaea6;
+}
+
+.dpp-edit .swatch-supplied{
+  background: var(--yellow-soft);
+  border-color: #d1bb2d;
+}
+
+.dpp-edit .workspace{
+  padding: 72px 0 82px;
+}
+
+.dpp-edit .workspace-grid{
+  display: grid;
+  grid-template-columns: minmax(0, 1.62fr) minmax(360px, 0.9fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.dpp-edit .form-panel{
+  background: var(--yellow-soft);
+  border: 1px solid #d3be36;
+}
+
+.dpp-edit .panel-heading{
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 14px;
+  padding: 30px 34px 32px;
+  border-bottom: 1px solid rgba(18, 18, 18, 0.22);
+}
+
+.dpp-edit .panel-index{
+  width: 42px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.dpp-edit .panel-index.light{
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.dpp-edit .panel-heading .eyebrow{
+  margin: 1px 0 8px;
+}
+
+.dpp-edit .panel-note{
+  margin: 0;
+  color: #4a462e;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.dpp-edit fieldset{
+  min-width: 0;
+  margin: 0;
+  padding: 32px 34px 38px;
+  border: 0;
+  border-bottom: 1px solid rgba(18, 18, 18, 0.22);
+}
+
+.dpp-edit legend{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 27px;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 750;
+  letter-spacing: -0.01em;
+}
+
+.dpp-edit legend span{
+  width: 23px;
+  height: 23px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(18, 18, 18, 0.5);
+  border-radius: 50%;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+}
+
+.dpp-edit .field-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.dpp-edit .identity-grid{
+  grid-template-columns: 1.15fr 0.85fr;
+}
+
+.dpp-edit .field label, .dpp-edit .label-row{
+  display: block;
+  margin-bottom: 10px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.dpp-edit .label-row{
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.dpp-edit .label-row label{
+  margin: 0;
+}
+
+.dpp-edit .label-row span{
+  color: #6e6841;
+  font-weight: 650;
+  letter-spacing: 0.03em;
+}
+
+.dpp-edit .field > small{
+  display: block;
+  margin-top: 9px;
+  color: #706a43;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.dpp-edit .field input, .dpp-edit .field textarea, .dpp-edit .tag-entry{
+  width: 100%;
+  border: 1px solid rgba(18, 18, 18, 0.32);
+  border-radius: 0;
+  outline: none;
+  background: rgba(255, 255, 255, 0.62);
+  color: var(--ink);
+  transition: background 160ms ease, border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.dpp-edit .field input, .dpp-edit .field textarea{
+  padding: 15px 16px;
+  font-size: 13px;
+}
+
+.dpp-edit .field input{
+  min-height: 52px;
+}
+
+.dpp-edit .field textarea{
+  min-height: 121px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.dpp-edit .field input::placeholder, .dpp-edit .field textarea::placeholder{
+  color: #8a866a;
+  opacity: 1;
+}
+
+.dpp-edit .field input:focus, .dpp-edit .field textarea:focus, .dpp-edit .tag-entry:focus-within{
+  background: var(--white);
+  border-color: var(--ink);
+  box-shadow: 0 0 0 2px var(--yellow-soft), 0 0 0 4px var(--ink);
+}
+
+.dpp-edit .visually-hidden{
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.dpp-edit .upload{
+  width: 100%;
+  min-height: 121px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 15px;
+  padding: 17px;
+  border: 1px dashed rgba(18, 18, 18, 0.45);
+  background: rgba(255, 255, 255, 0.42);
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.dpp-edit .upload:hover, .dpp-edit .upload:focus-visible{
+  background: var(--white);
+  border-color: var(--ink);
+  outline: none;
+}
+
+.dpp-edit .upload:focus-visible{
+  box-shadow: 0 0 0 2px var(--yellow-soft), 0 0 0 4px var(--ink);
+}
+
+.dpp-edit .upload-mark{
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(18, 18, 18, 0.35);
+  background: var(--white);
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.dpp-edit .upload-mark img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 7px;
+}
+
+.dpp-edit .upload-copy{
+  min-width: 0;
+  display: grid;
+  gap: 7px;
+}
+
+.dpp-edit .upload-copy strong{
+  overflow: hidden;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dpp-edit .upload-copy small{
+  color: #6e6841;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.dpp-edit .upload-action{
+  display: flex;
+  gap: 9px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dpp-edit .tag-entry{
+  min-height: 52px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  padding: 8px;
+}
+
+.dpp-edit .tag-entry input{
+  min-width: 110px;
+  min-height: 34px;
+  flex: 1;
+  padding: 6px 8px;
+  border: 0;
+  background: transparent;
+  box-shadow: none !important;
+}
+
+.dpp-edit .form-chip{
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 9px;
+  border: 1px solid #8a813e;
+  background: transparent;
+  color: var(--ink);
+  font-size: 10px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.dpp-edit .form-chip:hover{
+  background: var(--white);
+}
+
+.dpp-edit .authorisation-fieldset{
+  padding-bottom: 34px;
+}
+
+.dpp-edit .check-row{
+  position: relative;
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 15px;
+  align-items: start;
+  max-width: 690px;
+  cursor: pointer;
+}
+
+.dpp-edit .check-row input{
+  position: absolute;
+  opacity: 0;
+}
+
+.dpp-edit .custom-check{
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--ink);
+  background: rgba(255, 255, 255, 0.55);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.dpp-edit .check-row input:checked + .custom-check{
+  background: var(--ink);
+  color: var(--yellow);
+}
+
+.dpp-edit .check-row input:focus-visible + .custom-check{
+  box-shadow: 0 0 0 2px var(--yellow-soft), 0 0 0 4px var(--ink);
+}
+
+.dpp-edit .check-row > span:last-child{
+  padding-top: 2px;
+  color: #2f2d20;
+  font-size: 12px;
+  font-weight: 620;
+  line-height: 1.55;
+}
+
+.dpp-edit .form-action{
+  display: grid;
+  grid-template-columns: minmax(260px, 0.55fr) 1fr;
+  align-items: center;
+  gap: 24px;
+  padding: 28px 34px;
+}
+
+.dpp-edit .publish{
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.dpp-edit .publish:disabled{
+  background: #777366;
+  border-color: #777366;
+  cursor: not-allowed;
+}
+
+.dpp-edit .publish:not(:disabled):hover, .dpp-edit .publish:not(:disabled):focus-visible{
+  background: var(--white);
+  color: var(--ink);
+  outline: none;
+}
+
+.dpp-edit .form-action p{
+  margin: 0;
+  color: #625d3b;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.dpp-edit .preview-column{
+  min-width: 0;
+}
+
+.dpp-edit .preview-sticky{
+  position: sticky;
+  top: 24px;
+}
+
+.dpp-edit .preview-heading{
+  min-height: 73px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 19px;
+  background: var(--ink);
+  color: var(--white);
+}
+
+.dpp-edit .preview-heading > div{
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.dpp-edit .preview-heading .eyebrow{
+  margin: 0;
+  color: var(--white);
+}
+
+.dpp-edit .live-state{
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+}
+
+.dpp-edit .live-state i{
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #65c881;
+  box-shadow: 0 0 0 4px rgba(101, 200, 129, 0.15);
+}
+
+.dpp-edit .supplier-card{
+  background: var(--yellow-pale);
+  border: 1px solid #d3be36;
+  border-top: 0;
+}
+
+.dpp-edit .supplied-ribbon{
+  padding: 13px 18px 12px;
+  border-bottom: 1px solid #d3be36;
+  background: var(--yellow-soft);
+  color: #665900;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+}
+
+.dpp-edit .supplier-identity{
+  display: grid;
+  grid-template-columns: 68px 1fr;
+  gap: 18px;
+  align-items: center;
+  padding: 24px 22px 20px;
+}
+
+.dpp-edit .supplier-logo{
+  width: 68px;
+  height: 68px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid #c6b743;
+  background: var(--white);
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.dpp-edit .supplier-logo img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
+}
+
+.dpp-edit .company-type{
+  margin: 0 0 7px;
+  color: #706715;
+  font-size: 8px;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+}
+
+.dpp-edit .supplier-identity h2{
+  margin: 0;
+  font-size: 31px;
+  font-weight: 650;
+  letter-spacing: -0.045em;
+}
+
+.dpp-edit .description{
+  min-height: 68px;
+  margin: 0 22px;
+  padding: 0 0 22px;
+  border-bottom: 1px solid rgba(18, 18, 18, 0.16);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.dpp-edit .placeholder{
+  color: #817a4f;
+  font-style: italic;
+}
+
+.dpp-edit .card-details{
+  display: grid;
+  gap: 21px;
+  padding: 22px;
+}
+
+.dpp-edit .card-details > div{
+  display: grid;
+  gap: 9px;
+}
+
+.dpp-edit .card-details span{
+  color: #756d27;
+  font-size: 8px;
+  font-weight: 850;
+  letter-spacing: 0.13em;
+}
+
+.dpp-edit .card-details strong{
+  overflow-wrap: anywhere;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.dpp-edit .muted{
+  color: #89815a;
+  font-weight: 500 !important;
+}
+
+.dpp-edit .card-chips{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.dpp-edit .card-chips i{
+  padding: 6px 8px;
+  border: 1px solid #bdb044;
+  background: rgba(255, 255, 255, 0.38);
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 650;
+}
+
+.dpp-edit .supplier-card footer{
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 13px 22px;
+  border-top: 1px solid #d3be36;
+  color: #716821;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.dpp-edit .boundary-card{
+  padding: 25px 22px 23px;
+  border: 1px solid var(--line);
+  border-top: 0;
+  background: var(--white);
+}
+
+.dpp-edit .boundary-heading{
+  display: grid;
+  grid-template-columns: 17px 1fr;
+  gap: 13px;
+  align-items: start;
+}
+
+.dpp-edit .boundary-heading .eyebrow{
+  margin: 1px 0 6px;
+}
+
+.dpp-edit .boundary-card h3{
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.dpp-edit .boundary-card > p{
+  margin: 18px 0 17px 30px;
+  color: #5b5b55;
+  font-size: 11px;
+  line-height: 1.58;
+}
+
+.dpp-edit .boundary-card > a{
+  display: inline-flex;
+  gap: 10px;
+  margin-left: 30px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--ink);
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.dpp-edit .principle{
+  border-top: 1px solid var(--line);
+  background: var(--white);
+}
+
+.dpp-edit .principle-inner{
+  display: grid;
+  grid-template-columns: 0.6fr 1.6fr 0.6fr;
+  gap: 70px;
+  align-items: start;
+  padding: 56px 0 64px;
+}
+
+.dpp-edit .principle-inner .eyebrow{
+  margin-top: 5px;
+}
+
+.dpp-edit .principle-inner > p:nth-child(2){
+  margin: 0;
+  max-width: 720px;
+  font-size: 25px;
+  font-weight: 470;
+  letter-spacing: -0.035em;
+  line-height: 1.35;
+}
+
+.dpp-edit .principle-inner > span{
+  justify-self: end;
+  color: #73736d;
+  font-size: 9px;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 1020px){.dpp-edit .intro-grid{
+    gap: 45px;
+  }
+
+.dpp-edit .workspace-grid{
+    grid-template-columns: 1fr;
+  }
+
+.dpp-edit .preview-sticky{
+    position: static;
+  }
+
+.dpp-edit .preview-column{
+    max-width: 650px;
+  }
+
+.dpp-edit .principle-inner{
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 45px;
+  }
+
+.dpp-edit .principle-inner > span{
+    display: none;
+  }
+}
+
+@media (max-width: 720px){.dpp-edit .intro-inner, .dpp-edit .workspace-grid, .dpp-edit .principle-inner{
+    width: min(100% - 32px, 1280px);
+  }
+
+.dpp-edit .intro-inner{
+    padding: 25px 0 44px;
+  }
+
+.dpp-edit .back-link{
+    margin-bottom: 40px;
+  }
+
+.dpp-edit .intro-grid, .dpp-edit .field-grid, .dpp-edit .identity-grid, .dpp-edit .form-action, .dpp-edit .principle-inner{
+    grid-template-columns: 1fr;
+  }
+
+.dpp-edit .intro-grid{
+    gap: 34px;
+  }
+
+.dpp-edit h1{
+    font-size: 49px;
+  }
+
+.dpp-edit .intro-copy > p{
+    font-size: 14px;
+  }
+
+.dpp-edit .workspace{
+    padding: 35px 0 48px;
+  }
+
+.dpp-edit .panel-heading, .dpp-edit fieldset, .dpp-edit .form-action{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+.dpp-edit .panel-heading{
+    grid-template-columns: 44px 1fr;
+  }
+
+.dpp-edit .field-grid{
+    gap: 26px;
+  }
+
+.dpp-edit .form-action{
+    gap: 12px;
+  }
+
+.dpp-edit .publish{
+    width: 100%;
+  }
+
+.dpp-edit .preview-column{
+    max-width: none;
+  }
+
+.dpp-edit .principle-inner{
+    gap: 18px;
+    padding: 40px 0 45px;
+  }
+
+.dpp-edit .principle-inner > p:nth-child(2){
+    font-size: 21px;
+  }
+}
+
+@media (max-width: 440px){.dpp-edit .panel-heading{
+    grid-template-columns: 1fr;
+  }
+
+.dpp-edit .upload{
+    grid-template-columns: auto 1fr;
+  }
+
+.dpp-edit .upload-action{
+    display: none;
+  }
+
+.dpp-edit .supplier-card footer{
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){.dpp-edit{
+    scroll-behavior: auto;
+  }
+
+.dpp-edit *{
+    transition: none !important;
+  }
+}
