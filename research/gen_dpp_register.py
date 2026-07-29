@@ -586,88 +586,175 @@ def profile_html(r, counts, cap):
 # ---------------------------------------------------------------- claim
 
 def claim_html(r, counts):
+    """The claim page, built to the approved v1 handoff.
+
+    The design's own client-side check is NOT the authorisation: the server
+    decides, and answers identically either way so the form cannot be used to
+    work out who works where. That behaviour predates this design and the
+    handoff asks for it to be preserved."""
     sid = r["id"]
-    # 5 commercial rows have no domain on record. Telling those visitors the claim
-    # is checked "against the domain on record" promises a check we cannot run, and
-    # they would wait for a confirmation that can never come. Their attempt still
-    # reaches us as a near miss, which is how the row gets resolved.
-    if r["domain"]:
-        intro = ("Enter your work email. If it is at the domain on record for this company, "
-                 "the claim is confirmed straight away, no account, no waiting for approval.")
+    name = r["name"]
+    dom = r["domain"]
+
+    # 5 commercial rows have no domain on record. The approved card shows the
+    # domain and the state beside it; with nothing on record it says so rather
+    # than promising a check we cannot run.
+    if dom:
+        domain_line = (f'<p class="domain"><span class="domain-dot"></span>{e(dom)}</p>')
+        domain_state = "DOMAIN ON RECORD"
+        field_help = f"It must end in @{e(dom)}"
+        placeholder = f"you@{e(dom)}"
+        lede = (f"Confirm that you represent {e(name)} using your company email. If the domain "
+                f"matches our research record, access is granted immediately.")
     else:
-        intro = ("We do not have a domain on record for this company yet, so this claim cannot "
-                 "be confirmed automatically. Enter your work email and it reaches us directly: "
-                 "we verify it by hand, record the domain, and the profile becomes claimable "
-                 "from then on.")
-    body = f"""{SITE_NAV}<main class="claim-shell">
+        domain_line = '<p class="domain"><span class="domain-dot no-domain"></span>No domain recorded yet</p>'
+        domain_state = "NO DOMAIN ON RECORD"
+        field_help = "Use your company email, not a personal mailbox"
+        placeholder = "you@yourcompany.com"
+        lede = (f"We have no domain on record for {e(name)} yet, so this claim cannot be "
+                f"confirmed automatically. Send your company email and it reaches us directly: "
+                f"we verify it by hand and record the domain.")
 
-  <section class="claim-body">
-    <a class="claim-back" href="/research/digital-product-passport/suppliers/{e(sid)}">&#8249; Back to profile</a>
+    body = f"""{SITE_NAV}<main class="dpp-claim">
+  <div class="page-shell">
+    <a class="back-link" href="/research/digital-product-passport/suppliers/{e(sid)}"><span>&#8592;</span> Back to profile</a>
+    <section class="claim-grid" aria-labelledby="claim-title">
+      <div class="main-column">
+        <div class="title-block">
+          <p class="eyebrow">SUPPLIER CLAIM</p>
+          <h1 id="claim-title">Claim {e(name)}</h1>
+          <p class="lede">{lede}</p>
+        </div>
 
-    <section class="claim-content">
-      <h1>Claim {e(r["name"])}</h1>
-      <p class="claim-intro">{intro}</p>
-      <form id="claimForm">
-        <label><span class="sr-only">Work email</span>
-          <input id="claimEmail" type="email" placeholder="you@yourcompany.com" autocomplete="email" /></label>
-        <button type="submit">Claim this profile <span>&#8594;</span></button>
-      </form>
-      <p class="claim-message" role="status" id="claimMsg" hidden></p>
+        <section class="claim-card">
+          <div class="company-row">
+            <div class="company-mark">{e(initials(name))}</div>
+            <div>
+              <p class="field-kicker">PROFILE TO CLAIM</p>
+              <h2>{e(name)}</h2>
+              {domain_line}
+            </div>
+            <span class="domain-state">{domain_state}</span>
+          </div>
+          <div class="card-rule"></div>
 
-      <div class="claim-principles">
-        <article><h2>What you can supply</h2><p>A logo, a one-line description, a contact link
-        and your sectors. It appears in its own layer on your profile, marked as coming from you,
-        and dated.</p></article>
-        <article><h2>What stays ours</h2><p>Everything we verified independently, with the source and
-        the date we checked it. Company-supplied content never overwrites it. If something we
-        published is wrong, send the correction with a source and we will fix it and log the
-        change.</p></article>
-        <article><h2>Why a work email</h2><p>The register is keyed on company domains, so an address
-        at the company domain is proof enough. Personal mailboxes are not accepted, which is what
-        keeps anyone from claiming a company they do not work for.</p></article>
+          <div class="success" role="status" id="claimSuccess" hidden>
+            <span class="success-icon">&#10003;</span>
+            <div>
+              <p class="success-title" id="successTitle">Work email received</p>
+              <p id="successBody"></p>
+            </div>
+          </div>
+
+          <form id="claimForm" novalidate>
+            <label for="work-email">Your work email</label>
+            <p class="field-help">{field_help}</p>
+            <div class="input-row">
+              <div class="input-wrap" id="inputWrap">
+                <span>@</span>
+                <input id="work-email" type="email" placeholder="{placeholder}" autocomplete="email" />
+              </div>
+              <button type="submit">Claim this profile <span>&#8594;</span></button>
+            </div>
+            <p class="privacy-note">No account setup and no manual approval when the domain matches.</p>
+            <p class="error" role="alert" id="claimError" hidden></p>
+          </form>
+        </section>
+
+        <div class="assurance-grid">
+          <article><span class="number">01</span><h3>Immediate domain check</h3>
+            <p>We match your work email to the company domain already recorded in the register.</p></article>
+          <article><span class="number">02</span><h3>Your layer stays labelled</h3>
+            <p>Anything you add appears separately as company-supplied information, with its own date.</p></article>
+          <article><span class="number">03</span><h3>Our research stays ours</h3>
+            <p>Independent findings and sources cannot be overwritten. Corrections remain reviewable.</p></article>
+        </div>
       </div>
+
+      <aside class="side-column">
+        <section class="what-next">
+          <p class="side-eyebrow">AFTER YOU CLAIM</p>
+          <h2>Add {e(name)}&#8217;s own information</h2>
+          <p class="side-copy">A claimed supplier can add a logo, a concise description, a public
+          contact link and sectors.</p>
+          <div class="preview-card">
+            <span class="supplied-label">SUPPLIED BY {e(name.upper())}</span>
+            <div class="preview-company">
+              <div class="mini-mark">{e(initials(name))}</div>
+              <div><strong>{e(name)}</strong><span>Company information layer</span></div>
+            </div>
+            <div class="preview-lines"><span></span><span></span></div>
+          </div>
+        </section>
+        <section class="boundary">
+          <p class="side-eyebrow">EVIDENCE BOUNDARY</p>
+          <div class="key-row"><i class="white-key"></i><span>Researched independently by yellow3 lab</span></div>
+          <div class="key-row"><i class="yellow-key"></i><span>Supplied directly by {e(name)}</span></div>
+          <p class="boundary-note">The two layers remain separate on the public profile.</p>
+        </section>
+        <p class="support">The domain is wrong or you cannot access a company inbox?
+          <a href="#" id="claimSupport">Contact register support &#8594;</a></p>
+      </aside>
     </section>
-  </section>
+  </div>
 </main>
 """ + SITE_FOOTER
+
     script = """
 <script>
 (function(){
   var PUBLIC=['gmail.com','googlemail.com','outlook.com','hotmail.com','live.com','yahoo.com',
     'yahoo.co.uk','icloud.com','me.com','mac.com','aol.com','proton.me','protonmail.com',
     'gmx.com','gmx.net','msn.com','yandex.com','zoho.com','fastmail.com','hey.com'];
-  var f=document.getElementById('claimForm'), i=document.getElementById('claimEmail'),
-      m=document.getElementById('claimMsg'), id=document.body.dataset.supplier;
-  function say(t){ m.hidden=false; m.textContent=t; }
+  var f=document.getElementById('claimForm'), i=document.getElementById('work-email'),
+      wrap=document.getElementById('inputWrap'), err=document.getElementById('claimError'),
+      ok=document.getElementById('claimSuccess'), okBody=document.getElementById('successBody'),
+      id=document.body.dataset.supplier, noDomain=!!document.body.dataset.nodomain;
+
+  function fail(t){ err.hidden=false; err.textContent=t; wrap.classList.add('has-error'); }
+  function clear(){ err.hidden=true; wrap.classList.remove('has-error'); }
+
   f.addEventListener('submit',function(ev){
     ev.preventDefault();
-    var email=(i.value||'').trim().toLowerCase();
-    var domain=email.split('@')[1];
-    if(!domain||email.indexOf('@')<1){ say('Enter a valid work email.'); return; }
-    if(PUBLIC.indexOf(domain)>-1){
-      say('Personal mailboxes are not accepted. Use your company email.'); return; }
-    say('Checking\\u2026');
-    // eligibility is decided on the server against the supplier domain; the
-    // browser is never trusted with the answer.
+    var email=(i.value||'').trim().toLowerCase(), domain=email.split('@')[1];
+    if(!domain||email.indexOf('@')<1){ fail('Enter a valid work email address.'); return; }
+    if(PUBLIC.indexOf(domain)>-1){ fail('Personal mailboxes are not accepted. Use your company email.'); return; }
+    clear();
+    // The server decides, and answers the same either way, so this form cannot
+    // be used to find out who works where. The prototype's client-side domain
+    // test is deliberately not the gate.
     fetch('/api/claim',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({email:email,supplier:id})})
-      .then(function(){ say(document.body.dataset.nodomain
-        ? 'Work email received. We will verify it by hand and be in touch.'
-        : 'Work email received. If ' + domain + ' is the domain on record for '
-        + 'this company, a confirmation is on its way. If it is not, nothing was sent.'); })
-      .catch(function(){ say('Something went wrong. Please try again.'); });
+      .then(function(){
+        okBody.textContent = noDomain
+          ? 'We will verify it by hand, record the domain, and be in touch.'
+          : 'If ' + domain + ' is the domain on record for this company, a link to the '
+            + 'Company Information Editor is on its way. If it is not, nothing was sent.';
+        f.hidden=true; ok.hidden=false;
+      })
+      .catch(function(){ fail('Something went wrong. Please try again.'); });
+  });
+
+  document.getElementById('claimSupport').addEventListener('click',function(ev){
+    ev.preventDefault();
+    window.location.href='mailto:'+'hello'+String.fromCharCode(64)+'yellow3.io'
+      +'?subject='+encodeURIComponent('DPP Supplier Register claim: '+document.title.split(' - ')[0]);
   });
 })();
 </script>
 """
-    out = page(f"Claim {r['name']} - DPP Supplier Register - yellow3",
-               f"Claim the {r['name']} profile on the yellow3 DPP Supplier Register. "
+    out = page(f"Claim {name} - DPP Supplier Register - yellow3",
+               f"Claim the {name} profile on the yellow3 DPP Supplier Register. "
                f"Confirmed by work email domain, no account required.",
                f"https://yellow3.io/research/digital-product-passport/suppliers/{sid}/claim",
                body, script)
-    # claim pages are a company action, not research - keep them out of the index
-    nod = '' if r["domain"] else ' data-nodomain="1"'
+    out = out.replace(
+        '<link rel="stylesheet" href="/research/digital-product-passport/register.css" />',
+        '<link rel="stylesheet" href="/research/digital-product-passport/register.css" />\n'
+        '  <link rel="stylesheet" href="/research/digital-product-passport/claim-v1.css" />')
+    nod = '' if dom else ' data-nodomain="1"'
     out = out.replace("<body>", f'<body data-supplier="{e(sid)}"{nod}>')
+    # a company action, not research - keep it out of the index
     return out.replace('<meta property="og:type" content="website" />',
                        '<meta property="og:type" content="website" />\n  <meta name="robots" content="noindex,follow" />')
 

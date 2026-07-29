@@ -1,0 +1,195 @@
+/* DPP claim page - ChatGPT handoff, approved v1 (29 Jul 2026).
+   app/globals.css reproduced as delivered and scoped to .dpp-claim so its tokens
+   and its generic class names (.eyebrow, .back-link, .success, .domain) cannot
+   collide with register.css or recolour the site nav and footer. Values, spacing
+   and both breakpoints are unchanged. Tailwind import dropped. */
+
+.dpp-claim{--ink:#11110f;--muted:#67675f;--line:#d9d9d0;--paper:#f6f6f1;--yellow:#f7efb7;--accent:#f2dc00}
+
+.dpp-claim *{box-sizing:border-box}
+
+.dpp-claim{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+
+.dpp-claim a{color:inherit}
+
+.dpp-claim button, .dpp-claim input{font:inherit}
+
+.dpp-claim{min-height:100vh;background:linear-gradient(rgba(17,17,15,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(17,17,15,.025) 1px,transparent 1px),var(--paper);background-size:64px 64px}
+
+.dpp-claim .page-shell{width:min(1280px,calc(100% - 80px));margin:auto;padding:46px 0 72px}
+
+.dpp-claim .back-link{display:inline-flex;gap:9px;margin-bottom:54px;color:#696960;font-size:11px;font-weight:700;letter-spacing:.15em;text-decoration:none;text-transform:uppercase}
+
+.dpp-claim .back-link:focus-visible, .dpp-claim button:focus-visible, .dpp-claim input:focus-visible, .dpp-claim a:focus-visible{outline:3px solid rgba(242,220,0,.55);outline-offset:3px}
+
+.dpp-claim .claim-grid{display:grid;grid-template-columns:minmax(0,1.68fr) minmax(320px,.8fr);gap:76px;align-items:start}
+
+.dpp-claim .main-column{min-width:0}
+
+.dpp-claim .title-block{max-width:800px}
+
+.dpp-claim .eyebrow, .dpp-claim .side-eyebrow, .dpp-claim .field-kicker{margin:0;font-size:11px;font-weight:800;letter-spacing:.15em}
+
+.dpp-claim .eyebrow{display:flex;align-items:center;gap:12px}
+
+.dpp-claim .eyebrow:before{content:"";width:28px;height:3px;background:var(--accent)}
+
+.dpp-claim h1{margin:17px 0 20px;max-width:750px;font-size:clamp(48px,5vw,76px);line-height:.98;letter-spacing:-.055em}
+
+.dpp-claim .lede{max-width:690px;margin:0;color:#515149;font-size:18px;line-height:1.65}
+
+.dpp-claim .claim-card{margin-top:43px;padding:28px;border:1px solid #cfcfc6;background:#fff;box-shadow:0 16px 38px rgba(28,28,20,.06)}
+
+.dpp-claim .company-row{display:grid;grid-template-columns:54px 1fr auto;gap:16px;align-items:center}
+
+.dpp-claim .company-mark, .dpp-claim .mini-mark{display:grid;place-items:center;border:1px solid var(--ink);background:var(--ink);color:#fff;font-weight:800}
+
+.dpp-claim .company-mark{width:54px;height:54px;font-size:15px}
+
+.dpp-claim .field-kicker{margin-bottom:4px;color:#74746c;font-size:9px}
+
+.dpp-claim .company-row h2{margin:0;font-size:22px}
+
+.dpp-claim .domain{display:flex;align-items:center;gap:7px;margin:5px 0 0;color:var(--muted);font-size:12px}
+
+.dpp-claim .domain-dot{width:6px;height:6px;border-radius:50%;background:#6c8b62}
+
+.dpp-claim .domain-state{padding:8px 10px;border:1px solid #d2d2c9;background:#f8f8f4;font-size:9px;font-weight:800;letter-spacing:.11em}
+
+.dpp-claim .card-rule{height:1px;margin:24px 0;background:var(--line)}
+
+.dpp-claim form label{display:block;font-size:14px;font-weight:800}
+
+.dpp-claim .field-help{margin:6px 0 14px;color:var(--muted);font-size:12px}
+
+.dpp-claim .input-row{display:grid;grid-template-columns:1fr auto;gap:10px}
+
+.dpp-claim .input-wrap{display:flex;align-items:center;min-width:0;border:1px solid #c8c8bf;background:#fff}
+
+.dpp-claim .input-wrap:focus-within{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+
+.dpp-claim .input-wrap.has-error{border-color:#9f3027}
+
+.dpp-claim .input-wrap>span{padding-left:17px;color:#85857d}
+
+.dpp-claim input{width:100%;min-width:0;height:56px;border:0;outline:0;padding:0 16px 0 8px;background:transparent}
+
+.dpp-claim button{display:inline-flex;align-items:center;justify-content:space-between;gap:32px;min-width:220px;height:56px;padding:0 22px;border:1px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+
+.dpp-claim button:hover{background:#292923}
+
+.dpp-claim button span{font-size:19px;font-weight:400}
+
+.dpp-claim .privacy-note{margin:13px 0 0;color:#77776f;font-size:11px}
+
+.dpp-claim .error{margin:10px 0 0;color:#9f3027;font-size:12px;font-weight:700}
+
+.dpp-claim .success{display:flex;gap:15px;align-items:center;padding:20px;background:#eef4eb;border:1px solid #c7d5c0}
+
+.dpp-claim .success-icon{display:grid;place-items:center;flex:0 0 34px;height:34px;border-radius:50%;background:#33562c;color:#fff}
+
+.dpp-claim .success p{margin:0;color:#53604f;font-size:13px}
+
+.dpp-claim .success-title{margin-bottom:3px!important;color:#263823!important;font-size:15px!important;font-weight:800}
+
+.dpp-claim .assurance-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:24px;border-block:1px solid var(--line)}
+
+.dpp-claim .assurance-grid article{padding:24px 24px 25px 0}
+
+.dpp-claim .assurance-grid article+article{padding-left:24px;border-left:1px solid var(--line)}
+
+.dpp-claim .number{color:#9a9a91;font-size:10px;font-weight:800}
+
+.dpp-claim .assurance-grid h3{margin:14px 0 9px;font-size:14px}
+
+.dpp-claim .assurance-grid p{margin:0;color:var(--muted);font-size:12px;line-height:1.65}
+
+.dpp-claim .side-column{position:sticky;top:32px;border-top:4px solid var(--ink)}
+
+.dpp-claim .what-next{padding:26px 25px 25px;border:1px solid #d3c878;border-top:0;background:var(--yellow)}
+
+.dpp-claim .side-eyebrow{color:#6f6841;font-size:9px}
+
+.dpp-claim .what-next h2{margin:18px 0 12px;font-size:27px;line-height:1.1;letter-spacing:-.035em}
+
+.dpp-claim .side-copy{margin:0;color:#5e5941;font-size:13px;line-height:1.65}
+
+.dpp-claim .preview-card{margin-top:24px;padding:17px;border:1px solid rgba(75,70,41,.32);background:rgba(255,255,255,.64)}
+
+.dpp-claim .supplied-label{display:inline-block;padding:6px 8px;border:1px solid #c7b94e;background:#f5e888;font-size:8px;font-weight:800;letter-spacing:.1em}
+
+.dpp-claim .preview-company{display:flex;align-items:center;gap:11px;margin-top:17px}
+
+.dpp-claim .mini-mark{width:38px;height:38px;font-size:10px}
+
+.dpp-claim .preview-company strong, .dpp-claim .preview-company span{display:block}
+
+.dpp-claim .preview-company strong{font-size:14px}
+
+.dpp-claim .preview-company span{margin-top:3px;color:#77715a;font-size:10px}
+
+.dpp-claim .preview-lines{display:grid;gap:7px;margin-top:17px}
+
+.dpp-claim .preview-lines span{width:100%;height:5px;background:rgba(75,70,41,.15)}
+
+.dpp-claim .preview-lines span:last-child{width:68%}
+
+.dpp-claim .boundary{padding:24px 25px;border:1px solid #d3d3ca;border-top:0;background:#fff}
+
+.dpp-claim .boundary .side-eyebrow{color:#77776f;margin-bottom:17px}
+
+.dpp-claim .key-row{display:flex;align-items:center;gap:10px;margin-top:10px;color:#4f4f48;font-size:11px}
+
+.dpp-claim .key-row i{width:16px;height:16px;flex:0 0 16px;border:1px solid #c8c8bf}
+
+.dpp-claim .white-key{background:#fff}
+
+.dpp-claim .yellow-key{background:var(--yellow)}
+
+.dpp-claim .boundary-note{margin:18px 0 0;padding-top:16px;border-top:1px solid #e1e1da;color:#77776f;font-size:11px}
+
+.dpp-claim .support{margin:17px 3px 0;color:#6d6d65;font-size:11px;line-height:1.6}
+
+.dpp-claim .support a{font-weight:800;text-underline-offset:3px}
+
+@media(max-width:980px){.dpp-claim .page-shell{width:min(760px,calc(100% - 48px))}
+
+.dpp-claim .claim-grid{grid-template-columns:1fr;gap:40px}
+
+.dpp-claim .side-column{position:static;display:grid;grid-template-columns:1.1fr .9fr}
+
+.dpp-claim .boundary{border-top:0;border-left:0}
+
+.dpp-claim .support{grid-column:1/-1}}
+
+@media(max-width:680px){.dpp-claim{background-size:44px 44px}
+
+.dpp-claim .page-shell{width:calc(100% - 32px);padding:28px 0 48px}
+
+.dpp-claim .back-link{margin-bottom:38px}
+
+.dpp-claim h1{font-size:48px}
+
+.dpp-claim .lede{font-size:16px}
+
+.dpp-claim .claim-card{margin-top:30px;padding:20px}
+
+.dpp-claim .company-row{grid-template-columns:48px 1fr}
+
+.dpp-claim .company-mark{width:48px;height:48px}
+
+.dpp-claim .domain-state{grid-column:1/-1;justify-self:start}
+
+.dpp-claim .input-row{grid-template-columns:1fr}
+
+.dpp-claim button{width:100%}
+
+.dpp-claim .assurance-grid{grid-template-columns:1fr}
+
+.dpp-claim .assurance-grid article{padding:20px 0}
+
+.dpp-claim .assurance-grid article+article{padding-left:0;border-left:0;border-top:1px solid var(--line)}
+
+.dpp-claim .side-column{display:block}
+
+.dpp-claim .boundary{border-left:1px solid #d3d3ca}}

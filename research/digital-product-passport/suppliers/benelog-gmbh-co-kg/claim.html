@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/research/digital-product-passport/register.css" />
+  <link rel="stylesheet" href="/research/digital-product-passport/claim-v1.css" />
 </head>
 <body data-supplier="benelog-gmbh-co-kg">
   <nav class="site-nav y3nav">
@@ -33,35 +34,88 @@
     <a href="/advisory" class="nav-cta y3cta">Work with us <span>&#8594;</span></a>
     <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
   </nav>
-<main class="claim-shell">
+<main class="dpp-claim">
+  <div class="page-shell">
+    <a class="back-link" href="/research/digital-product-passport/suppliers/benelog-gmbh-co-kg"><span>&#8592;</span> Back to profile</a>
+    <section class="claim-grid" aria-labelledby="claim-title">
+      <div class="main-column">
+        <div class="title-block">
+          <p class="eyebrow">SUPPLIER CLAIM</p>
+          <h1 id="claim-title">Claim benelog GmbH &amp; Co. KG</h1>
+          <p class="lede">Confirm that you represent benelog GmbH &amp; Co. KG using your company email. If the domain matches our research record, access is granted immediately.</p>
+        </div>
 
-  <section class="claim-body">
-    <a class="claim-back" href="/research/digital-product-passport/suppliers/benelog-gmbh-co-kg">&#8249; Back to profile</a>
+        <section class="claim-card">
+          <div class="company-row">
+            <div class="company-mark">BG</div>
+            <div>
+              <p class="field-kicker">PROFILE TO CLAIM</p>
+              <h2>benelog GmbH &amp; Co. KG</h2>
+              <p class="domain"><span class="domain-dot"></span>benelog.com</p>
+            </div>
+            <span class="domain-state">DOMAIN ON RECORD</span>
+          </div>
+          <div class="card-rule"></div>
 
-    <section class="claim-content">
-      <h1>Claim benelog GmbH &amp; Co. KG</h1>
-      <p class="claim-intro">Enter your work email. If it is at the domain on record for this company, the claim is confirmed straight away, no account, no waiting for approval.</p>
-      <form id="claimForm">
-        <label><span class="sr-only">Work email</span>
-          <input id="claimEmail" type="email" placeholder="you@yourcompany.com" autocomplete="email" /></label>
-        <button type="submit">Claim this profile <span>&#8594;</span></button>
-      </form>
-      <p class="claim-message" role="status" id="claimMsg" hidden></p>
+          <div class="success" role="status" id="claimSuccess" hidden>
+            <span class="success-icon">&#10003;</span>
+            <div>
+              <p class="success-title" id="successTitle">Work email received</p>
+              <p id="successBody"></p>
+            </div>
+          </div>
 
-      <div class="claim-principles">
-        <article><h2>What you can supply</h2><p>A logo, a one-line description, a contact link
-        and your sectors. It appears in its own layer on your profile, marked as coming from you,
-        and dated.</p></article>
-        <article><h2>What stays ours</h2><p>Everything we verified independently, with the source and
-        the date we checked it. Company-supplied content never overwrites it. If something we
-        published is wrong, send the correction with a source and we will fix it and log the
-        change.</p></article>
-        <article><h2>Why a work email</h2><p>The register is keyed on company domains, so an address
-        at the company domain is proof enough. Personal mailboxes are not accepted, which is what
-        keeps anyone from claiming a company they do not work for.</p></article>
+          <form id="claimForm" novalidate>
+            <label for="work-email">Your work email</label>
+            <p class="field-help">It must end in @benelog.com</p>
+            <div class="input-row">
+              <div class="input-wrap" id="inputWrap">
+                <span>@</span>
+                <input id="work-email" type="email" placeholder="you@benelog.com" autocomplete="email" />
+              </div>
+              <button type="submit">Claim this profile <span>&#8594;</span></button>
+            </div>
+            <p class="privacy-note">No account setup and no manual approval when the domain matches.</p>
+            <p class="error" role="alert" id="claimError" hidden></p>
+          </form>
+        </section>
+
+        <div class="assurance-grid">
+          <article><span class="number">01</span><h3>Immediate domain check</h3>
+            <p>We match your work email to the company domain already recorded in the register.</p></article>
+          <article><span class="number">02</span><h3>Your layer stays labelled</h3>
+            <p>Anything you add appears separately as company-supplied information, with its own date.</p></article>
+          <article><span class="number">03</span><h3>Our research stays ours</h3>
+            <p>Independent findings and sources cannot be overwritten. Corrections remain reviewable.</p></article>
+        </div>
       </div>
+
+      <aside class="side-column">
+        <section class="what-next">
+          <p class="side-eyebrow">AFTER YOU CLAIM</p>
+          <h2>Add benelog GmbH &amp; Co. KG&#8217;s own information</h2>
+          <p class="side-copy">A claimed supplier can add a logo, a concise description, a public
+          contact link and sectors.</p>
+          <div class="preview-card">
+            <span class="supplied-label">SUPPLIED BY BENELOG GMBH &amp; CO. KG</span>
+            <div class="preview-company">
+              <div class="mini-mark">BG</div>
+              <div><strong>benelog GmbH &amp; Co. KG</strong><span>Company information layer</span></div>
+            </div>
+            <div class="preview-lines"><span></span><span></span></div>
+          </div>
+        </section>
+        <section class="boundary">
+          <p class="side-eyebrow">EVIDENCE BOUNDARY</p>
+          <div class="key-row"><i class="white-key"></i><span>Researched independently by yellow3 lab</span></div>
+          <div class="key-row"><i class="yellow-key"></i><span>Supplied directly by benelog GmbH &amp; Co. KG</span></div>
+          <p class="boundary-note">The two layers remain separate on the public profile.</p>
+        </section>
+        <p class="support">The domain is wrong or you cannot access a company inbox?
+          <a href="#" id="claimSupport">Contact register support &#8594;</a></p>
+      </aside>
     </section>
-  </section>
+  </div>
 </main>
   <footer class="site-footer y3foot">
     <div class="inner">
@@ -108,26 +162,39 @@
   var PUBLIC=['gmail.com','googlemail.com','outlook.com','hotmail.com','live.com','yahoo.com',
     'yahoo.co.uk','icloud.com','me.com','mac.com','aol.com','proton.me','protonmail.com',
     'gmx.com','gmx.net','msn.com','yandex.com','zoho.com','fastmail.com','hey.com'];
-  var f=document.getElementById('claimForm'), i=document.getElementById('claimEmail'),
-      m=document.getElementById('claimMsg'), id=document.body.dataset.supplier;
-  function say(t){ m.hidden=false; m.textContent=t; }
+  var f=document.getElementById('claimForm'), i=document.getElementById('work-email'),
+      wrap=document.getElementById('inputWrap'), err=document.getElementById('claimError'),
+      ok=document.getElementById('claimSuccess'), okBody=document.getElementById('successBody'),
+      id=document.body.dataset.supplier, noDomain=!!document.body.dataset.nodomain;
+
+  function fail(t){ err.hidden=false; err.textContent=t; wrap.classList.add('has-error'); }
+  function clear(){ err.hidden=true; wrap.classList.remove('has-error'); }
+
   f.addEventListener('submit',function(ev){
     ev.preventDefault();
-    var email=(i.value||'').trim().toLowerCase();
-    var domain=email.split('@')[1];
-    if(!domain||email.indexOf('@')<1){ say('Enter a valid work email.'); return; }
-    if(PUBLIC.indexOf(domain)>-1){
-      say('Personal mailboxes are not accepted. Use your company email.'); return; }
-    say('Checking\u2026');
-    // eligibility is decided on the server against the supplier domain; the
-    // browser is never trusted with the answer.
+    var email=(i.value||'').trim().toLowerCase(), domain=email.split('@')[1];
+    if(!domain||email.indexOf('@')<1){ fail('Enter a valid work email address.'); return; }
+    if(PUBLIC.indexOf(domain)>-1){ fail('Personal mailboxes are not accepted. Use your company email.'); return; }
+    clear();
+    // The server decides, and answers the same either way, so this form cannot
+    // be used to find out who works where. The prototype's client-side domain
+    // test is deliberately not the gate.
     fetch('/api/claim',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({email:email,supplier:id})})
-      .then(function(){ say(document.body.dataset.nodomain
-        ? 'Work email received. We will verify it by hand and be in touch.'
-        : 'Work email received. If ' + domain + ' is the domain on record for '
-        + 'this company, a confirmation is on its way. If it is not, nothing was sent.'); })
-      .catch(function(){ say('Something went wrong. Please try again.'); });
+      .then(function(){
+        okBody.textContent = noDomain
+          ? 'We will verify it by hand, record the domain, and be in touch.'
+          : 'If ' + domain + ' is the domain on record for this company, a link to the '
+            + 'Company Information Editor is on its way. If it is not, nothing was sent.';
+        f.hidden=true; ok.hidden=false;
+      })
+      .catch(function(){ fail('Something went wrong. Please try again.'); });
+  });
+
+  document.getElementById('claimSupport').addEventListener('click',function(ev){
+    ev.preventDefault();
+    window.location.href='mailto:'+'hello'+String.fromCharCode(64)+'yellow3.io'
+      +'?subject='+encodeURIComponent('DPP Supplier Register claim: '+document.title.split(' - ')[0]);
   });
 })();
 </script>
