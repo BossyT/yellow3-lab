@@ -362,7 +362,7 @@ def profile_html(r, counts, cap):
   <div class="profile-layout">
     <article class="profile-record">
       <header class="profile-identity">
-        <span class="profile-monogram">{e(initials(r["name"]))}</span>
+        <span class="profile-monogram" id="profileMonogram">{e(initials(r["name"]))}</span>
         <div>
           <div class="profile-name-line"><h1>{e(r["name"])}</h1><span>{e(TYPE_LABEL.get(r["entity_type"], r["entity_type"]))}</span></div>
           <p>{site}<small>checked {e(checked)}</small></p>
@@ -451,6 +451,13 @@ def profile_html(r, counts, cap):
       }
       box.textContent=''; box.appendChild(frag);
       // the sidebar card describes the same layer, so it cannot keep saying absent
+      // the identity mark: their logo if they have supplied one, initials if not.
+      // only the mark changes - every fact around it stays what we verified.
+      var mono=document.getElementById('profileMonogram');
+      if(mono && s.logo_url){
+        var mi=document.createElement('img'); mi.src=s.logo_url; mi.alt='';
+        mono.textContent=''; mono.appendChild(mi);
+      }
       var aside=document.getElementById('companyAsideText');
       if(aside){ aside.textContent='Information supplied by the company'
         +(s.updated_at?', updated '+s.updated_at:'')+'. Not verified by yellow3 lab.'; }
