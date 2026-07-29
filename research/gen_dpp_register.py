@@ -393,7 +393,7 @@ def profile_html(r, counts, cap):
 
     <aside class="profile-legend">
       <section><span class="layer-rule black"></span><h3>Evidence layer</h3><p>Independently verified by yellow3 through public sources.</p></section>
-      <section class="company"><span class="layer-rule yellow"></span><h3>Company layer</h3><p>Information supplied by the company. Currently absent.</p></section>
+      <section class="company" id="companyAside"><span class="layer-rule yellow"></span><h3>Company layer</h3><p id="companyAsideText">Information supplied by the company. Currently absent.</p></section>
       <section><span class="layer-rule grey"></span><h3>Source drawer</h3><p>Provenance and research details for this profile.</p></section>
     </aside>
   </div>
@@ -450,6 +450,10 @@ def profile_html(r, counts, cap):
         ed.textContent='Edit your layer \\u2199'; frag.appendChild(ed);
       }
       box.textContent=''; box.appendChild(frag);
+      // the sidebar card describes the same layer, so it cannot keep saying absent
+      var aside=document.getElementById('companyAsideText');
+      if(aside){ aside.textContent='Information supplied by the company'
+        +(s.updated_at?', updated '+s.updated_at:'')+'. Not verified by yellow3 lab.'; }
     }).catch(function(){});
 })();
 </script>
@@ -926,6 +930,19 @@ DIR_SCRIPT = r"""
 (function () {
   "use strict";
   var DATA = JSON.parse(document.getElementById("registerData").textContent);
+
+  // Company-supplied logos arrive at runtime. One index fetch covers every row;
+  // until it lands the rows show initials, which is the honest default.
+  var SUPPLIED = {};
+  function mark(r) {
+    var s = SUPPLIED[r.id];
+    return (s && s.logo_url)
+      ? '<img src="' + esc(s.logo_url) + '" alt="" loading="lazy" />'
+      : esc(r.initials);
+  }
+  fetch("/api/supplied?all=1").then(function (r) { return r.json(); })
+    .then(function (d) { SUPPLIED = (d && d.supplied) || {}; render(); })
+    .catch(function () {});
   var NON_COMMERCIAL = { "not-a-supplier": 1, "project-consortium": 1, "standards-body": 1 };
   var REGION_COLOR = { europe: "#c1972b", asia: "#5b2b4d", usa: "#223a5e", other: "#565a60" };
   var REGION_TINT  = { europe: "#efe7cf", asia: "#e7dce4", usa: "#dce3ec", other: "#e1e1df" };
@@ -1028,7 +1045,7 @@ DIR_SCRIPT = r"""
         '</h3></div><button type="button" class="panel-close" id="pc" aria-label="Close country details">&times;</button></div>' +
         '<div class="country-summary"><strong>' + g.count + "</strong><span>" + (g.count === 1 ? "organisation" : "organisations") + "<br />in the current view</span></div>" +
         '<div class="supplier-list">' + g.suppliers.map(function (s) {
-          return '<a href="' + BASE + esc(s.id) + '" class="supplier-row"><span class="supplier-mark">' + esc(s.initials) +
+          return '<a href="' + BASE + esc(s.id) + '" class="supplier-row"><span class="supplier-mark">' + mark(s) +
             '</span><span class="supplier-copy"><strong>' + esc(s.name) + "</strong><small>" +
             (s.city ? esc(s.city) + " &middot; " : "") + esc(s.type) + "</small></span><span class=\"row-arrow\">&#8599;</span></a>";
         }).join("") + "</div>";
@@ -1071,7 +1088,7 @@ DIR_SCRIPT = r"""
       return '<article class="directory-row state-' + r.state + (open ? " is-open" : "") + '" data-row="' + esc(r.id) + '">' +
         '<a class="row-supplier" href="' + BASE + esc(r.id) + '">' +
         (r.state === "non-supplier" ? "<small>Non-supplier<br />entity</small>" : "") +
-        '<span class="row-initials">' + esc(r.initials) + '</span><strong>' + esc(r.name) + "</strong><em>&#8599;</em></a>" +
+        '<span class="row-initials">' + mark(r) + '</span><strong>' + esc(r.name) + "</strong><em>&#8599;</em></a>" +
         '<div><span class="type-chip">' + esc(r.type) + "</span></div>" +
         '<div class="row-hq">' + r.hq + "</div>" +
         '<div class="sector-list">' + r.sectors.map(function (x) { return "<span>" + x + "</span>"; }).join("") + "</div>" +

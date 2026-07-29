@@ -30,6 +30,10 @@ function knownId(id) {
 }
 
 const keyFor = sid => 'dpp/supplied/' + sid + '.json';
+// One small index so the directory can show 183 rows without 183 requests.
+// Rewritten on every save; at a handful of claims a day a lost-update race is
+// not worth a lock, and the per-supplier record above stays authoritative.
+const INDEX = 'dpp/supplied/_index.json';
 
 // Plain text only. Everything here is rendered with textContent on the page, but
 // strip anyway so nothing tag-shaped is ever stored under our name.
@@ -62,6 +66,11 @@ module.exports = async (req, res) => {
   if (req.method === 'GET') {
     const url = new URL(req.url, 'https://www.yellow3.io');
     const id = String(url.searchParams.get('id') || '').trim();
+    if (url.searchParams.get('all')) {
+      let idx = null;
+      try { idx = await blob.getJson(INDEX); } catch (e) { console.error('supplied index', e); }
+      return res.status(200).json({ supplied: idx || {} });
+    }
     if (!id || !knownId(id)) return res.status(200).json({ supplied: null });
     const s = session(req);
     let supplied = null;
@@ -141,6 +150,19 @@ module.exports = async (req, res) => {
   } catch (e) {
     console.error(JSON.stringify({ evt: 'dpp_supplied', outcome: 'store_failed', supplier: sid, error: String(e && e.message || e) }));
     return res.status(502).json({ ok: false, error: 'store_failed' });
+  }
+
+  // keep the directory index in step; a failure here must not lose the save
+  try {
+    const idx = (await blob.getJson(INDEX)) || {};
+    if (rec.logo_url || rec.description) {
+      idx[sid] = { logo_url: rec.logo_url, description: rec.description, updated_at: rec.updated_at };
+    } else {
+      delete idx[sid];
+    }
+    await blob.putJson(INDEX, idx);
+  } catch (e) {
+    console.error(JSON.stringify({ evt: 'dpp_supplied', outcome: 'index_update_failed', supplier: sid, error: String(e && e.message || e) }));
   }
 
   console.log(JSON.stringify({ evt: 'dpp_supplied', outcome: 'saved', supplier: sid, by: s.email || '', has_logo: !!rec.logo_url }));

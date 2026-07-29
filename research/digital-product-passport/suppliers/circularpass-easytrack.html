@@ -70,7 +70,7 @@
 
     <aside class="profile-legend">
       <section><span class="layer-rule black"></span><h3>Evidence layer</h3><p>Independently verified by yellow3 through public sources.</p></section>
-      <section class="company"><span class="layer-rule yellow"></span><h3>Company layer</h3><p>Information supplied by the company. Currently absent.</p></section>
+      <section class="company" id="companyAside"><span class="layer-rule yellow"></span><h3>Company layer</h3><p id="companyAsideText">Information supplied by the company. Currently absent.</p></section>
       <section><span class="layer-rule grey"></span><h3>Source drawer</h3><p>Provenance and research details for this profile.</p></section>
     </aside>
   </div>
@@ -165,6 +165,10 @@
         ed.textContent='Edit your layer \u2199'; frag.appendChild(ed);
       }
       box.textContent=''; box.appendChild(frag);
+      // the sidebar card describes the same layer, so it cannot keep saying absent
+      var aside=document.getElementById('companyAsideText');
+      if(aside){ aside.textContent='Information supplied by the company'
+        +(s.updated_at?', updated '+s.updated_at:'')+'. Not verified by yellow3 lab.'; }
     }).catch(function(){});
 })();
 </script>
