@@ -30,6 +30,15 @@ function knownId(id) {
 }
 
 const keyFor = sid => 'dpp/supplied/' + sid + '.json';
+
+// A company that clears everything is unclaimed again, not "claimed with
+// nothing to say". Without this a cleared profile would still announce a
+// supplied layer and date it, which is a claim about the company that the
+// company did not make.
+function isEmpty(rec) {
+  return !rec || (!rec.logo_url && !rec.description && !rec.contact_url
+    && !(rec.sectors && rec.sectors.length));
+}
 // One small index so the directory can show 183 rows without 183 requests.
 // Rewritten on every save; at a handful of claims a day a lost-update race is
 // not worth a lock, and the per-supplier record above stays authoritative.
@@ -75,6 +84,7 @@ module.exports = async (req, res) => {
     const s = session(req);
     let supplied = null;
     try { supplied = await blob.getJson(keyFor(id)); } catch (e) { console.error('supplied get', e); }
+    if (isEmpty(supplied)) supplied = null;
     return res.status(200).json({ supplied: supplied, editable: !!(s && s.sid === id) });
   }
 
@@ -155,7 +165,7 @@ module.exports = async (req, res) => {
   // keep the directory index in step; a failure here must not lose the save
   try {
     const idx = (await blob.getJson(INDEX)) || {};
-    if (rec.logo_url || rec.description) {
+    if (!isEmpty(rec)) {
       idx[sid] = { logo_url: rec.logo_url, description: rec.description, updated_at: rec.updated_at };
     } else {
       delete idx[sid];
