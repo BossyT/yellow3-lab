@@ -41,13 +41,26 @@ function findSupplier(id, dom) {
   return owned.includes(dom) ? row : null;
 }
 
-async function send(apiKey, from, to, subject, html) {
+async function send(apiKey, from, to, subject, html, replyTo) {
+  const payload = { from, to: [to], subject, html };
+  if (replyTo) payload.reply_to = [replyTo];
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: 'Bearer ' + apiKey, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from, to: [to], subject, html }),
+    body: JSON.stringify(payload),
   });
   if (!res.ok) throw new Error('resend ' + res.status + ' ' + (await res.text()));
+}
+
+// FROM_EMAIL is shared with Model Intelligence and reads "yellow3 Model
+// Intelligence <access@yellow3.io>". A supplier claiming their register profile
+// should not hear from a subscription product they have never heard of, so we
+// keep the verified sending address and put the register's name on it.
+function senderFor(from) {
+  if (process.env.CLAIM_FROM_EMAIL) return process.env.CLAIM_FROM_EMAIL;
+  const m = String(from || '').match(/<([^>]+)>/);
+  const addr = m ? m[1] : String(from || '').trim();
+  return addr ? 'yellow3 DPP Supplier Register <' + addr + '>' : from;
 }
 
 // Every claim leaves a trace in the runtime log, whatever happens to the email.
@@ -114,9 +127,12 @@ module.exports = async (req, res) => {
   // Us first, the claimant second, each in its own try. They used to share one
   // try/catch in sequence, so a claimant address our sender rejected also took
   // out the internal notification - the claim vanished twice over.
+  const SENDER = senderFor(FROM);
+
   if (NOTIFY) {
     try {
-      await send(KEY, FROM, NOTIFY,
+      // reply_to the claimant, so answering a supplier is one tap.
+      await send(KEY, SENDER, NOTIFY,
         'Profile claimed: ' + row.name,
         shell(
           '<h1 style="font-size:18px;font-weight:800;margin:0 0 12px">' + row.name + '</h1>'
@@ -124,7 +140,7 @@ module.exports = async (req, res) => {
           + '<b>Claimed by:</b> ' + email + '<br>'
           + '<b>Domain matched:</b> ' + dom + '<br>'
           + '<b>Row:</b> ' + row.id + '<br>'
-          + '<b>Profile:</b> <a href="' + url + '">' + url + '</a></p>'));
+          + '<b>Profile:</b> <a href="' + url + '">' + url + '</a></p>'), email);
       note('notified', { supplier: row.id, to: NOTIFY });
     } catch (e) {
       note('notify_failed', { supplier: row.id, to: NOTIFY, email: email, error: String(e && e.message || e) }, true);
@@ -134,7 +150,9 @@ module.exports = async (req, res) => {
   }
 
   try {
-    await send(KEY, FROM, email,
+    // The mail asks them to reply with their logo and description. Those replies
+    // must reach a mailbox a human reads, not the sending address.
+    await send(KEY, SENDER, email,
       'Your claim on the yellow3 DPP Supplier Register',
       shell(
         '<h1 style="font-size:20px;font-weight:800;letter-spacing:-0.02em;margin:0 0 12px">Claim received for ' + row.name + '</h1>'
@@ -142,7 +160,8 @@ module.exports = async (req, res) => {
         + '<p style="font-size:15px;color:#4b4b4b;line-height:1.55;margin:0 0 18px">Reply to this email with anything you want on the company-supplied side of your profile: a logo, a one-line description, a contact link, and your answers to the ten capability checks. It appears in its own layer, marked as yours.</p>'
         + '<p style="font-size:15px;color:#4b4b4b;line-height:1.55;margin:0 0 24px">What we verified independently stays as it is. If something there is wrong, send the correction with a source and we will check it, fix it and log the change.</p>'
         + '<a href="' + url + '" style="display:inline-block;background:#0e0e0e;color:#fff;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;padding:15px 30px">View your profile &#8594;</a>'
-        + '<p style="font-size:12px;color:#8a8a8a;line-height:1.5;margin:28px 0 0">If you did not request this, you can ignore it. Nothing on the profile has changed.</p>'));
+        + '<p style="font-size:12px;color:#8a8a8a;line-height:1.5;margin:28px 0 0">If you did not request this, you can ignore it. Nothing on the profile has changed.</p>'),
+      NOTIFY || undefined);
     note('confirmed', { supplier: row.id, email: email });
   } catch (e) {
     // The claimant did not get their copy. We still have the claim, logged and
