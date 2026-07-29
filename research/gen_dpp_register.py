@@ -1050,7 +1050,7 @@ DIR_SCRIPT = r"""
   var REGION_TINT  = { europe: "#efe7cf", asia: "#e7dce4", usa: "#dce3ec", other: "#e1e1df" };
   var BASE = "/research/digital-product-passport/suppliers/";
   var SVGNS = "http://www.w3.org/2000/svg";
-  var geo = null, selected = "", openRow = "";
+  var geo = null, selected = "";
 
   function svg(t, a) { var el = document.createElementNS(SVGNS, t); for (var k in a) if (a[k] != null) el.setAttribute(k, a[k]); return el; }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
@@ -1202,14 +1202,14 @@ DIR_SCRIPT = r"""
     $("loadMore").hidden = rows.length >= all.length;
 
     $("dirRows").innerHTML = rows.map(function (r) {
-      var open = openRow === r.id;
       var tone = r.basis === "verified" ? "verified" : "claimed";
       var status = r.findings ? r.findings + " capability findings" : "Capability research pending";
       var chips = r.sector_keys && r.sector_keys.length
         ? r.sectors.map(function (x) { return "<i>" + x + "</i>"; }).join("")
         : '<i class="empty">No public sector focus</i>';
-      return '<article class="supplier' + (open ? " expanded" : "") + '" data-row="' + esc(r.id) + '">' +
-        '<button type="button" class="supplier-main" data-toggle="' + esc(r.id) + '" aria-expanded="' + (open ? "true" : "false") + '">' +
+      // the row is the link: one press opens the profile, no disclosure step
+      return '<article class="supplier" data-row="' + esc(r.id) + '">' +
+        '<a class="supplier-main" href="' + BASE + esc(r.id) + '">' +
         '<span class="edge ' + tone + '"></span>' +
         '<span class="supplier-name"><span class="avatar">' + mark(r) + '</span>' +
         '<span><b>' + esc(r.name) + "</b><small>View profile &#8599;</small></span></span>" +
@@ -1218,30 +1218,15 @@ DIR_SCRIPT = r"""
         '<span class="chips">' + chips + "</span>" +
         '<span class="evidence-cell"><b>' + r.facts + " public fact" + (r.facts === 1 ? "" : "s") +
         "</b><small>" + esc(status) + "</small></span>" +
-        '<span class="date">' + esc(r.date) + "</span>" + chev(open) + "</button>" +
-        (open
-          ? '<div class="expanded-panel"><div><span>EVIDENCE STATUS</span><b>' + esc(status) + "</b>" +
-            "<p>" + r.facts + " independently recorded public fact" + (r.facts === 1 ? "" : "s") +
-            ". Every finding links to its provenance record.</p></div>" +
-            "<div><span>RESEARCH LAYER</span><b>Checked by yellow3 lab</b>" +
-            "<p>Company-supplied information, where present, is displayed separately.</p></div>" +
-            '<a href="' + BASE + esc(r.id) + '">Open ' + esc(r.name) + " profile <span>&#8594;</span></a></div>"
-          : "") +
-        "</article>";
+        '<span class="date">' + esc(r.date) + "</span>" +
+        '<span class="go" aria-hidden="true">&#8599;</span></a></article>';
     }).join("");
-
-    Array.prototype.forEach.call($("dirRows").querySelectorAll("[data-toggle]"), function (b) {
-      b.addEventListener("click", function () {
-        openRow = openRow === b.dataset.toggle ? "" : b.dataset.toggle;
-        renderDir();
-      });
-    });
   }
 
   $("loadMore").addEventListener("click", function () { shown += PAGE; renderDir(); });
   Array.prototype.forEach.call(document.querySelectorAll(".segmented button"), function (b) {
     b.addEventListener("click", function () {
-      scope = b.dataset.view; shown = PAGE; openRow = "";
+      scope = b.dataset.view; shown = PAGE;
       Array.prototype.forEach.call(document.querySelectorAll(".segmented button"), function (x) {
         x.classList.toggle("active", x === b);
       });

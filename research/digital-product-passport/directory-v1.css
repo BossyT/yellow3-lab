@@ -275,3 +275,7 @@
   .dpp-dir .hero { padding: 38px 20px 30px; }
   .dpp-dir .hero h1 { font-size: 47px; }
 }
+
+/* The row is a link, so it carries the page's text colour and no underline. */
+.dpp-dir .supplier-main { color: inherit; text-decoration: none; }
+.dpp-dir .supplier-main .go { text-align: right; color: #777; font-size: 13px; }
