@@ -118,6 +118,30 @@
    "sectors_list": []
   },
   {
+   "alias_domains": "",
+   "confidence": "claimed",
+   "country_source": "not_found 2026-07-29",
+   "domain": "aidgent.io",
+   "entity_type": "platform",
+   "evidence_url": "https://www.aidgent.io/digital-product-pass",
+   "founded_year": "",
+   "funding_source": "",
+   "funding_stage": "",
+   "hq_city": "",
+   "hq_country": "",
+   "id": "aidgent",
+   "last_funding_date": "",
+   "name": "Aidgent",
+   "ownership": "",
+   "sectors": "",
+   "sectors_list": [],
+   "source": "official Digital Product Pass product page",
+   "source_date": "2026-07-29",
+   "status": "active",
+   "total_disclosed_funding": "",
+   "website": "https://www.aidgent.io"
+  },
+  {
    "id": "aleverum-global",
    "name": "Aleverum Global",
    "website": "https://aleverum.com",
@@ -1261,6 +1285,33 @@
    "source_date": "2026-07-28",
    "confidence": "verified",
    "sectors_list": []
+  },
+  {
+   "alias_domains": "",
+   "confidence": "verified",
+   "country_source": "https://deply.it/",
+   "domain": "deply.it",
+   "entity_type": "platform",
+   "evidence_url": "https://deply.it/",
+   "founded_year": "",
+   "funding_source": "",
+   "funding_stage": "",
+   "hq_city": "Rome",
+   "hq_country": "Italy",
+   "id": "deply",
+   "last_funding_date": "",
+   "name": "Deply",
+   "ownership": "operated by TeXPo S.r.l (P.IVA 16003981004)",
+   "sectors": "textiles,electronics",
+   "sectors_list": [
+    "textiles",
+    "electronics"
+   ],
+   "source": "official product site and imprint",
+   "source_date": "2026-07-29",
+   "status": "active",
+   "total_disclosed_funding": "",
+   "website": "https://deply.it"
   },
   {
    "id": "digipilpass",
@@ -2638,6 +2689,30 @@
    ]
   },
   {
+   "alias_domains": "",
+   "confidence": "verified",
+   "country_source": "https://www.lingon.io/platform",
+   "domain": "lingon.io",
+   "entity_type": "platform",
+   "evidence_url": "https://www.lingon.io/platform",
+   "founded_year": "",
+   "funding_source": "",
+   "funding_stage": "",
+   "hq_city": "Stockholm",
+   "hq_country": "Sweden",
+   "id": "lingon",
+   "last_funding_date": "",
+   "name": "Lingon",
+   "ownership": "operated by Lingon Certificates AB (Swedish org. no. 559063-5032)",
+   "sectors": "",
+   "sectors_list": [],
+   "source": "official product page and company legal footer",
+   "source_date": "2026-07-29",
+   "status": "active",
+   "total_disclosed_funding": "",
+   "website": "https://www.lingon.io"
+  },
+  {
    "id": "luxima",
    "name": "Luxima",
    "website": "https://luxima.io",
@@ -3801,6 +3876,32 @@
    "sectors_list": [
     "textiles"
    ]
+  },
+  {
+   "alias_domains": "",
+   "confidence": "claimed",
+   "country_source": "https://www.rosellastreet.com/",
+   "domain": "rosellastreet.com",
+   "entity_type": "platform",
+   "evidence_url": "https://www.rosellastreet.com/",
+   "founded_year": "",
+   "funding_source": "",
+   "funding_stage": "",
+   "hq_city": "",
+   "hq_country": "Australia",
+   "id": "rosella-street",
+   "last_funding_date": "",
+   "name": "Rosella Street",
+   "ownership": "",
+   "sectors": "construction",
+   "sectors_list": [
+    "construction"
+   ],
+   "source": "official product site; listed on the NSW government supplier register",
+   "source_date": "2026-07-29",
+   "status": "active",
+   "total_disclosed_funding": "",
+   "website": "https://www.rosellastreet.com"
   },
   {
    "id": "sacred-valley-tech",

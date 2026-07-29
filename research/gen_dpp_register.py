@@ -143,7 +143,24 @@ def load():
         with open(CAP, encoding="utf-8") as fh:
             for row in json.load(fh).get("results", []):
                 cap.setdefault(row["supplier_id"], {})[row["check_id"]] = row
-    return payload["suppliers"], payload["counts"], cap
+    rows = payload["suppliers"]
+
+    # Every public total is computed from the rows, never read from the file.
+    # A stored counts block goes stale the moment a supplier is added - which is
+    # exactly what happened when four researched rows landed and the header kept
+    # announcing the old figure.
+    def sourced(r):
+        return str(r.get("country_source", "")).startswith("http")
+    counts = {
+        "organisations": len(rows),
+        "commercial_suppliers": sum(1 for r in rows if r["entity_type"] not in NON_COMMERCIAL),
+        "countries": len({r["hq_country"] for r in rows if r.get("hq_country")}),
+        "countries_primary_sourced": len({r["hq_country"] for r in rows
+                                          if r.get("hq_country") and sourced(r)}),
+        "verified": sum(1 for r in rows if r.get("confidence") == "verified"),
+        "with_disclosed_funding": sum(1 for r in rows if r.get("total_disclosed_funding")),
+    }
+    return rows, counts, cap
 
 
 # ---------------------------------------------------------------- shell

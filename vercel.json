@@ -34,6 +34,11 @@
       "permanent": true
     },
     {
+      "source": "/research/digital-product-passport/aidgent",
+      "destination": "/research/digital-product-passport/suppliers/aidgent",
+      "permanent": true
+    },
+    {
       "source": "/research/digital-product-passport/aleverum-global",
       "destination": "/research/digital-product-passport/suppliers/aleverum-global",
       "permanent": true
@@ -246,6 +251,11 @@
     {
       "source": "/research/digital-product-passport/deloitte-consulting-gmbh",
       "destination": "/research/digital-product-passport/suppliers/deloitte-consulting-gmbh",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/deply",
+      "destination": "/research/digital-product-passport/suppliers/deply",
       "permanent": true
     },
     {
@@ -519,6 +529,11 @@
       "permanent": true
     },
     {
+      "source": "/research/digital-product-passport/lingon",
+      "destination": "/research/digital-product-passport/suppliers/lingon",
+      "permanent": true
+    },
+    {
       "source": "/research/digital-product-passport/luxima",
       "destination": "/research/digital-product-passport/suppliers/luxima",
       "permanent": true
@@ -746,6 +761,11 @@
     {
       "source": "/research/digital-product-passport/retraced",
       "destination": "/research/digital-product-passport/suppliers/retraced",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/rosella-street",
+      "destination": "/research/digital-product-passport/suppliers/rosella-street",
       "permanent": true
     },
     {
