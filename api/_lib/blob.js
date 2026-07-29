@@ -30,21 +30,42 @@ function publicUrl(pathname) {
 // must declare private access or the API rejects them, and every read has to
 // carry the token. Nothing here is reachable by URL alone, which is why the
 // logo is served through /api/logo rather than linked directly.
+// The store rejects anything it reads as a public write, and the header that
+// declares otherwise is not documented for the raw API. Rather than burn a
+// round trip per guess, try the plausible spellings in one call and log which
+// one the store accepts, so this can collapse to that single variant.
+const ACCESS_VARIANTS = [
+  { v: '11', h: { 'x-access': 'private' } },
+  { v: '7', h: { 'x-blob-access': 'private' } },
+  { v: '11', h: { 'x-access-level': 'private' } },
+  { v: '11', h: {} },
+  { v: '7', h: {} },
+];
+
 async function put(pathname, body, contentType, maxAgeSec) {
-  const res = await fetch(API + '/' + String(pathname).replace(/^\/+/, ''), {
-    method: 'PUT',
-    headers: {
+  const clean = String(pathname).replace(/^\/+/, '');
+  const tried = [];
+  for (const variant of ACCESS_VARIANTS) {
+    const headers = Object.assign({
       authorization: 'Bearer ' + token(),
-      'x-api-version': '7',
-      'x-access': 'private',
+      'x-api-version': variant.v,
       'x-content-type': contentType || 'application/octet-stream',
       'x-add-random-suffix': '0',
       'x-cache-control-max-age': String(maxAgeSec == null ? 60 : maxAgeSec),
-    },
-    body: body,
-  });
-  if (!res.ok) throw new Error('blob put ' + res.status + ' ' + (await res.text()));
-  return res.json();
+    }, variant.h);
+
+    const res = await fetch(API + '/' + clean, { method: 'PUT', headers, body });
+    if (res.ok) {
+      console.log(JSON.stringify({
+        evt: 'blob_put', outcome: 'ok', pathname: clean,
+        accepted: { api_version: variant.v, headers: Object.keys(variant.h) },
+      }));
+      return res.json();
+    }
+    const text = await res.text();
+    tried.push(variant.v + '+' + (Object.keys(variant.h)[0] || 'none') + ' -> ' + res.status + ' ' + text.slice(0, 140));
+  }
+  throw new Error('blob put failed; tried: ' + tried.join(' | '));
 }
 
 async function getRaw(pathname) {
