@@ -9,9 +9,13 @@
 
 const API = 'https://blob.vercel-storage.com';
 
+// A SEPARATE, PUBLIC store. BLOB_READ_WRITE_TOKEN points at the private store
+// holding the paid report PDF, which rejects public writes outright - and it
+// should: a paid report and a company's logo are not the same kind of content
+// and do not belong in one bucket. Supplied content is public by definition.
 function token() {
-  const t = process.env.BLOB_READ_WRITE_TOKEN;
-  if (!t) throw new Error('BLOB_READ_WRITE_TOKEN missing');
+  const t = process.env.BLOB_PUBLIC_RW_TOKEN || process.env.BLOB_READ_WRITE_TOKEN;
+  if (!t) throw new Error('BLOB_PUBLIC_RW_TOKEN missing');
   return t;
 }
 
@@ -30,42 +34,20 @@ function publicUrl(pathname) {
 // must declare private access or the API rejects them, and every read has to
 // carry the token. Nothing here is reachable by URL alone, which is why the
 // logo is served through /api/logo rather than linked directly.
-// The store rejects anything it reads as a public write, and the header that
-// declares otherwise is not documented for the raw API. Rather than burn a
-// round trip per guess, try the plausible spellings in one call and log which
-// one the store accepts, so this can collapse to that single variant.
-const ACCESS_VARIANTS = [
-  { v: '11', h: { 'x-access': 'private' } },
-  { v: '7', h: { 'x-blob-access': 'private' } },
-  { v: '11', h: { 'x-access-level': 'private' } },
-  { v: '11', h: {} },
-  { v: '7', h: {} },
-];
-
 async function put(pathname, body, contentType, maxAgeSec) {
-  const clean = String(pathname).replace(/^\/+/, '');
-  const tried = [];
-  for (const variant of ACCESS_VARIANTS) {
-    const headers = Object.assign({
+  const res = await fetch(API + '/' + String(pathname).replace(/^\/+/, ''), {
+    method: 'PUT',
+    headers: {
       authorization: 'Bearer ' + token(),
-      'x-api-version': variant.v,
+      'x-api-version': '7',
       'x-content-type': contentType || 'application/octet-stream',
       'x-add-random-suffix': '0',
       'x-cache-control-max-age': String(maxAgeSec == null ? 60 : maxAgeSec),
-    }, variant.h);
-
-    const res = await fetch(API + '/' + clean, { method: 'PUT', headers, body });
-    if (res.ok) {
-      console.log(JSON.stringify({
-        evt: 'blob_put', outcome: 'ok', pathname: clean,
-        accepted: { api_version: variant.v, headers: Object.keys(variant.h) },
-      }));
-      return res.json();
-    }
-    const text = await res.text();
-    tried.push(variant.v + '+' + (Object.keys(variant.h)[0] || 'none') + ' -> ' + res.status + ' ' + text.slice(0, 140));
-  }
-  throw new Error('blob put failed; tried: ' + tried.join(' | '));
+    },
+    body: body,
+  });
+  if (!res.ok) throw new Error('blob put ' + res.status + ' ' + (await res.text()));
+  return res.json();
 }
 
 async function getRaw(pathname) {
