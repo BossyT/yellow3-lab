@@ -95,6 +95,7 @@ module.exports = async (req, res) => {
     contact_url: httpsUrl(body.contact_url),
     sectors: Array.isArray(body.sectors)
       ? body.sectors.map(t => text(t, 30)).filter(Boolean).slice(0, 8) : [],
+    logo_path: (current && current.logo_path) || '',
     logo_url: (current && current.logo_url) || '',
     licence: (current && current.licence) || null,
     updated_at: now,
@@ -120,8 +121,12 @@ module.exports = async (req, res) => {
       return res.status(400).json({ ok: false, error: 'logo_size' });
     }
     try {
-      const up = await blob.put('dpp/logos/' + sid + '.' + ext, buf, type, 300);
-      rec.logo_url = up.url || blob.publicUrl('dpp/logos/' + sid + '.' + ext);
+      const p = 'dpp/logos/' + sid + '.' + ext;
+      await blob.put(p, buf, type, 300);
+      rec.logo_path = p;
+      // the store is private, so the browser loads it through our own endpoint.
+      // the stamp busts the CDN cache when a company replaces its mark.
+      rec.logo_url = '/api/logo?id=' + encodeURIComponent(sid) + '&v=' + Date.now();
       rec.licence = { granted_by: s.email || '', granted_at: now, warrant: 'owner_or_authorised' };
     } catch (e) {
       console.error(JSON.stringify({ evt: 'dpp_supplied', outcome: 'logo_store_failed', supplier: sid, error: String(e && e.message || e) }));
@@ -129,7 +134,7 @@ module.exports = async (req, res) => {
     }
   }
 
-  if (body.remove_logo === true) { rec.logo_url = ''; rec.licence = null; }
+  if (body.remove_logo === true) { rec.logo_url = ''; rec.logo_path = ''; rec.licence = null; }
 
   try {
     await blob.putJson(keyFor(sid), rec);

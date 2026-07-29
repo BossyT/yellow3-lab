@@ -26,12 +26,17 @@ function publicUrl(pathname) {
   return publicBase() + String(pathname).replace(/^\/+/, '');
 }
 
+// The store is PRIVATE - it was created to hold the gated report PDF. Writes
+// must declare private access or the API rejects them, and every read has to
+// carry the token. Nothing here is reachable by URL alone, which is why the
+// logo is served through /api/logo rather than linked directly.
 async function put(pathname, body, contentType, maxAgeSec) {
   const res = await fetch(API + '/' + String(pathname).replace(/^\/+/, ''), {
     method: 'PUT',
     headers: {
       authorization: 'Bearer ' + token(),
       'x-api-version': '7',
+      'x-access': 'private',
       'x-content-type': contentType || 'application/octet-stream',
       'x-add-random-suffix': '0',
       'x-cache-control-max-age': String(maxAgeSec == null ? 60 : maxAgeSec),
@@ -42,14 +47,23 @@ async function put(pathname, body, contentType, maxAgeSec) {
   return res.json();
 }
 
+async function getRaw(pathname) {
+  let url;
+  try { url = publicUrl(pathname); } catch (e) { return null; }
+  const res = await fetch(url + '?t=' + Date.now(), {
+    headers: { authorization: 'Bearer ' + token() },
+    cache: 'no-store',
+  });
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error('blob get ' + res.status);
+  return res;
+}
+
 // null when nothing has been stored yet - an unclaimed supplier is the normal
 // case, not an error.
 async function getJson(pathname) {
-  let url;
-  try { url = publicUrl(pathname); } catch (e) { return null; }
-  const res = await fetch(url + '?t=' + Date.now(), { cache: 'no-store' });
-  if (res.status === 404) return null;
-  if (!res.ok) throw new Error('blob get ' + res.status);
+  const res = await getRaw(pathname);
+  if (!res) return null;
   try { return await res.json(); } catch (e) { return null; }
 }
 
@@ -57,4 +71,4 @@ async function putJson(pathname, obj) {
   return put(pathname, JSON.stringify(obj), 'application/json', 0);
 }
 
-module.exports = { put, putJson, getJson, publicUrl };
+module.exports = { put, putJson, getJson, getRaw, publicUrl };
