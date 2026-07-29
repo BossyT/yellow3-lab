@@ -481,6 +481,18 @@ def profile_html(r, counts, cap):
 
 def claim_html(r, counts):
     sid = r["id"]
+    # 5 commercial rows have no domain on record. Telling those visitors the claim
+    # is checked "against the domain on record" promises a check we cannot run, and
+    # they would wait for a confirmation that can never come. Their attempt still
+    # reaches us as a near miss, which is how the row gets resolved.
+    if r["domain"]:
+        intro = ("Enter your work email. If it is at the domain on record for this company, "
+                 "the claim is confirmed straight away, no account, no waiting for approval.")
+    else:
+        intro = ("We do not have a domain on record for this company yet, so this claim cannot "
+                 "be confirmed automatically. Enter your work email and it reaches us directly: "
+                 "we verify it by hand, record the domain, and the profile becomes claimable "
+                 "from then on.")
     body = f"""{SITE_NAV}<main class="claim-shell">
 
   <section class="claim-body">
@@ -488,8 +500,7 @@ def claim_html(r, counts):
 
     <section class="claim-content">
       <h1>Claim {e(r["name"])}</h1>
-      <p class="claim-intro">Enter your work email. If it is at the domain on record for this company,
-      the claim is confirmed straight away, no account, no waiting for approval.</p>
+      <p class="claim-intro">{intro}</p>
       <form id="claimForm">
         <label><span class="sr-only">Work email</span>
           <input id="claimEmail" type="email" placeholder="you@yourcompany.com" autocomplete="email" /></label>
@@ -498,9 +509,9 @@ def claim_html(r, counts):
       <p class="claim-message" role="status" id="claimMsg" hidden></p>
 
       <div class="claim-principles">
-        <article><h2>What you can supply</h2><p>A logo, a one-line description, a contact link, and
-        your answers to the ten capability checks. It appears in its own layer on your profile,
-        marked as coming from you, and dated.</p></article>
+        <article><h2>What you can supply</h2><p>A logo, a one-line description, a contact link
+        and your sectors. It appears in its own layer on your profile, marked as coming from you,
+        and dated.</p></article>
         <article><h2>What stays ours</h2><p>Everything we verified independently, with the source and
         the date we checked it. Company-supplied content never overwrites it. If something we
         published is wrong, send the correction with a source and we will fix it and log the
@@ -534,7 +545,9 @@ def claim_html(r, counts):
     // browser is never trusted with the answer.
     fetch('/api/claim',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({email:email,supplier:id})})
-      .then(function(){ say('Work email received. If ' + domain + ' is the domain on record for '
+      .then(function(){ say(document.body.dataset.nodomain
+        ? 'Work email received. We will verify it by hand and be in touch.'
+        : 'Work email received. If ' + domain + ' is the domain on record for '
         + 'this company, a confirmation is on its way. If it is not, nothing was sent.'); })
       .catch(function(){ say('Something went wrong. Please try again.'); });
   });
@@ -547,7 +560,8 @@ def claim_html(r, counts):
                f"https://yellow3.io/research/digital-product-passport/suppliers/{sid}/claim",
                body, script)
     # claim pages are a company action, not research - keep them out of the index
-    out = out.replace("<body>", f'<body data-supplier="{e(sid)}">')
+    nod = '' if r["domain"] else ' data-nodomain="1"'
+    out = out.replace("<body>", f'<body data-supplier="{e(sid)}"{nod}>')
     return out.replace('<meta property="og:type" content="website" />',
                        '<meta property="og:type" content="website" />\n  <meta name="robots" content="noindex,follow" />')
 
