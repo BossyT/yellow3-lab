@@ -1,0 +1,60 @@
+'use strict';
+// Vercel Blob, hand-rolled. The register's static pages are built and committed;
+// anything a company supplies about itself arrives at runtime, when the repo is
+// read-only, so it lives here instead.
+//
+// Deterministic pathnames (no random suffix) so a supplier's record is always at
+// the same place and can be overwritten when they edit it again.
+// Zero-dependency: global fetch only.
+
+const API = 'https://blob.vercel-storage.com';
+
+function token() {
+  const t = process.env.BLOB_READ_WRITE_TOKEN;
+  if (!t) throw new Error('BLOB_READ_WRITE_TOKEN missing');
+  return t;
+}
+
+// vercel_blob_rw_<storeId>_<secret> -> the store's public read host.
+function publicBase() {
+  const parts = String(token()).split('_');
+  if (parts.length < 4) throw new Error('BLOB token malformed');
+  return 'https://' + parts[3] + '.public.blob.vercel-storage.com/';
+}
+
+function publicUrl(pathname) {
+  return publicBase() + String(pathname).replace(/^\/+/, '');
+}
+
+async function put(pathname, body, contentType, maxAgeSec) {
+  const res = await fetch(API + '/' + String(pathname).replace(/^\/+/, ''), {
+    method: 'PUT',
+    headers: {
+      authorization: 'Bearer ' + token(),
+      'x-api-version': '7',
+      'x-content-type': contentType || 'application/octet-stream',
+      'x-add-random-suffix': '0',
+      'x-cache-control-max-age': String(maxAgeSec == null ? 60 : maxAgeSec),
+    },
+    body: body,
+  });
+  if (!res.ok) throw new Error('blob put ' + res.status + ' ' + (await res.text()));
+  return res.json();
+}
+
+// null when nothing has been stored yet - an unclaimed supplier is the normal
+// case, not an error.
+async function getJson(pathname) {
+  let url;
+  try { url = publicUrl(pathname); } catch (e) { return null; }
+  const res = await fetch(url + '?t=' + Date.now(), { cache: 'no-store' });
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error('blob get ' + res.status);
+  try { return await res.json(); } catch (e) { return null; }
+}
+
+async function putJson(pathname, obj) {
+  return put(pathname, JSON.stringify(obj), 'application/json', 0);
+}
+
+module.exports = { put, putJson, getJson, publicUrl };

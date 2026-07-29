@@ -57,11 +57,13 @@
         <div class="capability-block"><h3>Capability evidence</h3><p>Ten independent checks. No composite score.</p><div class="capability-rows"><div class="capability-row"><span>1</span><strong>Standards mapping</strong><em class="cap-not_found">Not found<i>28 Jul 2026</i></em></div><div class="capability-row"><span>2</span><strong>Evidence architecture</strong><em class="cap-not_found">Not found<i>28 Jul 2026</i></em></div><div class="capability-row"><span>3</span><strong>Identity portability</strong><em class="cap-company_states">Company states<i>28 Jul 2026</i> <a href="https://trustrace.com/solutions/digital-product-passport-dpp-compliance" target="_blank" rel="noopener" title="">evidence &#8599;</a></em></div><div class="capability-row"><span>4</span><strong>Model / batch / item</strong><em class="cap-not_found">Not found<i>28 Jul 2026</i></em></div><div class="capability-row"><span>5</span><strong>Clean export</strong><em class="cap-not_found">Not found<i>28 Jul 2026</i></em></div><div class="capability-row"><span>6</span><strong>Regulatory pace</strong><em class="cap-company_states">Company states<i>28 Jul 2026</i> <a href="https://trustrace.com/knowledge-hub/what-happens-on-19-july-2026-under-espr" target="_blank" rel="noopener" title="dated policy update naming Delegated Regulation (EU) 2026/296 and its 19 July 2026 ESPR obligation">evidence &#8599;</a></em></div><div class="capability-row"><span>7</span><strong>EU DPP Registry</strong><em class="cap-not_found">Not found<i>28 Jul 2026</i></em></div><div class="capability-row"><span>8</span><strong>Passport afterlife</strong><em class="cap-not_found">Not found<i>28 Jul 2026</i></em></div><div class="capability-row"><span>9</span><strong>Role-based disclosure</strong><em class="cap-verified">Verified<i>28 Jul 2026</i> <a href="https://trustrace.com/knowledge-hub/how-fashion-brands-can-prepare-for-the-eu-digital-product-passport-a-practical-guide-1" target="_blank" rel="noopener" title="dated DPP pilot guide showing separate consumer, brand, supplier, recycler, and reseller access levels">evidence &#8599;</a></em></div><div class="capability-row"><span>10</span><strong>Resolver uptime</strong><em class="cap-verified">Verified<i>28 Jul 2026</i> <a href="https://status.trustrace.com/" target="_blank" rel="noopener" title="public status page with dated daily incident and availability history">evidence &#8599;</a></em></div></div><a href="/research/digital-product-passport/suppliers#framework">View assessment framework &#8599;</a></div>
       </section>
 
-          <section class="company-layer">
+          <section class="company-layer" id="companyLayer" data-supplier="trustrace">
             <span class="layer-rule yellow"></span>
             <h3>Supplied by TrusTrace</h3>
-            <p>No company-supplied profile received</p>
-            <a href="/research/digital-product-passport/suppliers/trustrace/claim">Claim this profile &#8599;</a>
+            <div id="companyBody">
+              <p>No company-supplied profile received</p>
+              <a href="/research/digital-product-passport/suppliers/trustrace/claim">Claim this profile &#8599;</a>
+            </div>
           </section>
       <footer class="register-evidence" id="evidence">
         <h3>Register evidence</h3>
@@ -130,6 +132,48 @@
     if(open){p.removeAttribute('hidden');}else{p.setAttribute('hidden','');}
     b.setAttribute('aria-expanded',open?'true':'false');
   });
+})();
+(function(){
+  // Company layer. Everything here is written by the company itself and is
+  // labelled as such - it is never merged with what we verified, and it is
+  // inserted as text, never as markup.
+  var host=document.getElementById('companyLayer'), box=document.getElementById('companyBody');
+  if(!host||!box) return;
+  var sid=host.dataset.supplier;
+  fetch('/api/supplied?id='+encodeURIComponent(sid)).then(function(r){return r.json();})
+    .then(function(d){
+      var s=d&&d.supplied; if(!s) return;
+      var frag=document.createDocumentFragment();
+      if(s.logo_url){
+        var fig=document.createElement('div'); fig.className='company-logo';
+        var img=document.createElement('img'); img.src=s.logo_url; img.alt='';
+        img.loading='lazy'; fig.appendChild(img); frag.appendChild(fig);
+      }
+      if(s.description){
+        var p=document.createElement('p'); p.className='company-desc';
+        p.textContent=s.description; frag.appendChild(p);
+      }
+      if(s.sectors&&s.sectors.length){
+        var ul=document.createElement('ul'); ul.className='company-tags';
+        s.sectors.forEach(function(t){var li=document.createElement('li');li.textContent=t;ul.appendChild(li);});
+        frag.appendChild(ul);
+      }
+      if(s.contact_url){
+        var a=document.createElement('a'); a.href=s.contact_url; a.target='_blank';
+        a.rel='noopener nofollow'; a.textContent='Contact this company \u2199';
+        a.className='company-contact'; frag.appendChild(a);
+      }
+      var stamp=document.createElement('p'); stamp.className='company-stamp';
+      stamp.textContent='Supplied by the company'+(s.updated_at?', updated '+s.updated_at:'')
+        +'. Not verified by yellow3 lab.';
+      frag.appendChild(stamp);
+      if(d.editable){
+        var ed=document.createElement('a'); ed.className='company-contact';
+        ed.href='/research/digital-product-passport/suppliers/'+sid+'/edit';
+        ed.textContent='Edit your layer \u2199'; frag.appendChild(ed);
+      }
+      box.textContent=''; box.appendChild(frag);
+    }).catch(function(){});
 })();
 </script>
 

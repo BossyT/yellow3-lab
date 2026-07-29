@@ -57,11 +57,13 @@
         <div class="capability-block"><h3>Capability evidence</h3><p>Ten independent checks. No composite score.</p><p>Not yet assessed for this supplier.<br />Assessments are published as they are completed.</p><a href="/research/digital-product-passport/suppliers#framework">View assessment framework &#8599;</a></div>
       </section>
 
-          <section class="company-layer">
+          <section class="company-layer" id="companyLayer" data-supplier="wiseside">
             <span class="layer-rule yellow"></span>
             <h3>Supplied by Wiseside</h3>
-            <p>No company-supplied profile received</p>
-            <a href="/research/digital-product-passport/suppliers/wiseside/claim">Claim this profile &#8599;</a>
+            <div id="companyBody">
+              <p>No company-supplied profile received</p>
+              <a href="/research/digital-product-passport/suppliers/wiseside/claim">Claim this profile &#8599;</a>
+            </div>
           </section>
       <footer class="register-evidence" id="evidence">
         <h3>Register evidence</h3>
@@ -130,6 +132,48 @@
     if(open){p.removeAttribute('hidden');}else{p.setAttribute('hidden','');}
     b.setAttribute('aria-expanded',open?'true':'false');
   });
+})();
+(function(){
+  // Company layer. Everything here is written by the company itself and is
+  // labelled as such - it is never merged with what we verified, and it is
+  // inserted as text, never as markup.
+  var host=document.getElementById('companyLayer'), box=document.getElementById('companyBody');
+  if(!host||!box) return;
+  var sid=host.dataset.supplier;
+  fetch('/api/supplied?id='+encodeURIComponent(sid)).then(function(r){return r.json();})
+    .then(function(d){
+      var s=d&&d.supplied; if(!s) return;
+      var frag=document.createDocumentFragment();
+      if(s.logo_url){
+        var fig=document.createElement('div'); fig.className='company-logo';
+        var img=document.createElement('img'); img.src=s.logo_url; img.alt='';
+        img.loading='lazy'; fig.appendChild(img); frag.appendChild(fig);
+      }
+      if(s.description){
+        var p=document.createElement('p'); p.className='company-desc';
+        p.textContent=s.description; frag.appendChild(p);
+      }
+      if(s.sectors&&s.sectors.length){
+        var ul=document.createElement('ul'); ul.className='company-tags';
+        s.sectors.forEach(function(t){var li=document.createElement('li');li.textContent=t;ul.appendChild(li);});
+        frag.appendChild(ul);
+      }
+      if(s.contact_url){
+        var a=document.createElement('a'); a.href=s.contact_url; a.target='_blank';
+        a.rel='noopener nofollow'; a.textContent='Contact this company \u2199';
+        a.className='company-contact'; frag.appendChild(a);
+      }
+      var stamp=document.createElement('p'); stamp.className='company-stamp';
+      stamp.textContent='Supplied by the company'+(s.updated_at?', updated '+s.updated_at:'')
+        +'. Not verified by yellow3 lab.';
+      frag.appendChild(stamp);
+      if(d.editable){
+        var ed=document.createElement('a'); ed.className='company-contact';
+        ed.href='/research/digital-product-passport/suppliers/'+sid+'/edit';
+        ed.textContent='Edit your layer \u2199'; frag.appendChild(ed);
+      }
+      box.textContent=''; box.appendChild(frag);
+    }).catch(function(){});
 })();
 </script>
 

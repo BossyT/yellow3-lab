@@ -1485,3 +1485,35 @@ body { padding-top: 62px; }
 .capability-row .cap-company_states { color: #9c6b0c; }
 .capability-row .cap-not_found { color: var(--body); }
 .capability-row .cap-na { color: #aeaeae; }
+
+/* ---- company-supplied layer + the company's own editor -------------------
+   Appended below the handoff stylesheet, which stays byte-identical above. */
+
+.company-logo { margin: 0 0 14px; }
+.company-logo img { max-width: 150px; max-height: 56px; width: auto; height: auto; display: block; }
+.company-desc { margin: 0 0 12px; color: var(--ink); }
+.company-tags { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.company-tags li { font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase;
+  border: 1px solid var(--line); padding: 4px 9px; color: var(--body); }
+.company-contact { display: inline-block; margin: 0 14px 0 0; font-size: 13px; font-weight: 600; }
+.company-stamp { margin: 12px 0 8px; font-size: 12px; line-height: 1.5; color: var(--muted); }
+
+.edit-field { margin: 0 0 26px; }
+.edit-field > label { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; margin: 0 0 8px; color: var(--ink); }
+.edit-field input[type="text"], .edit-field input[type="url"] { width: 100%; }
+.edit-hint { margin: 6px 0 0; font-size: 12px; line-height: 1.5; color: var(--muted); }
+.edit-logo-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.edit-logo-row img { max-width: 150px; max-height: 56px; border: 1px solid var(--line); padding: 6px; }
+.edit-check { display: flex; gap: 10px; align-items: flex-start; margin: 12px 0 0;
+  font-size: 13px; line-height: 1.5; color: var(--body); }
+.edit-check input { margin-top: 3px; flex: 0 0 auto; }
+.edit-remove { display: inline-block; margin: 12px 0 0; background: none; border: 0; padding: 0;
+  font: inherit; font-size: 13px; color: var(--body); text-decoration: underline; cursor: pointer; }
+.edit-remove:hover { color: var(--ink); }
+.claim-message.bad { color: #a3341f; }
+
+@media (max-width: 560px) {
+  .edit-logo-row { gap: 10px; }
+  .company-logo img, .edit-logo-row img { max-width: 120px; }
+}

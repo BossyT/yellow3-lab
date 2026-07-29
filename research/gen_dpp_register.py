@@ -258,7 +258,10 @@ def profile_html(r, counts, cap):
     findings = sum(1 for v in results.values() if v.get("state"))
     nc = r["entity_type"] in NON_COMMERCIAL
     kind, curl, cdate = source_state(r["country_source"])
-    checked = cdate or pretty_date(datetime.date.today().isoformat())
+    # A date on this page means a human looked on that date. Never today's date:
+    # rebuilding the site is not research, and stamping the build date here would
+    # silently re-date 183 provenance claims every time the generator runs.
+    checked = cdate or pretty_date(r.get("source_date") or "") or "Not recorded"
     sid = r["id"]
 
     # website line
@@ -335,12 +338,17 @@ def profile_html(r, counts, cap):
             f'<a href="/research/digital-product-passport/suppliers#framework">View assessment framework &#8599;</a></div>')
 
     # company layer - never merged with the evidence layer above
+    # The supplied content arrives at runtime, after the page was built, so this
+    # block is filled in the browser from /api/supplied. Absent is the honest
+    # default and what search engines see.
     company = "" if nc else f"""
-          <section class="company-layer">
+          <section class="company-layer" id="companyLayer" data-supplier="{e(sid)}">
             <span class="layer-rule yellow"></span>
             <h3>Supplied by {e(r["name"])}</h3>
-            <p>No company-supplied profile received</p>
-            <a href="/research/digital-product-passport/suppliers/{e(sid)}/claim">Claim this profile &#8599;</a>
+            <div id="companyBody">
+              <p>No company-supplied profile received</p>
+              <a href="/research/digital-product-passport/suppliers/{e(sid)}/claim">Claim this profile &#8599;</a>
+            </div>
           </section>"""
 
     src_cell = (f'<a href="{e(r["evidence_url"])}" target="_blank" rel="noopener">{e(r["source"])} &#8599;</a>'
@@ -401,6 +409,48 @@ def profile_html(r, counts, cap):
     if(open){p.removeAttribute('hidden');}else{p.setAttribute('hidden','');}
     b.setAttribute('aria-expanded',open?'true':'false');
   });
+})();
+(function(){
+  // Company layer. Everything here is written by the company itself and is
+  // labelled as such - it is never merged with what we verified, and it is
+  // inserted as text, never as markup.
+  var host=document.getElementById('companyLayer'), box=document.getElementById('companyBody');
+  if(!host||!box) return;
+  var sid=host.dataset.supplier;
+  fetch('/api/supplied?id='+encodeURIComponent(sid)).then(function(r){return r.json();})
+    .then(function(d){
+      var s=d&&d.supplied; if(!s) return;
+      var frag=document.createDocumentFragment();
+      if(s.logo_url){
+        var fig=document.createElement('div'); fig.className='company-logo';
+        var img=document.createElement('img'); img.src=s.logo_url; img.alt='';
+        img.loading='lazy'; fig.appendChild(img); frag.appendChild(fig);
+      }
+      if(s.description){
+        var p=document.createElement('p'); p.className='company-desc';
+        p.textContent=s.description; frag.appendChild(p);
+      }
+      if(s.sectors&&s.sectors.length){
+        var ul=document.createElement('ul'); ul.className='company-tags';
+        s.sectors.forEach(function(t){var li=document.createElement('li');li.textContent=t;ul.appendChild(li);});
+        frag.appendChild(ul);
+      }
+      if(s.contact_url){
+        var a=document.createElement('a'); a.href=s.contact_url; a.target='_blank';
+        a.rel='noopener nofollow'; a.textContent='Contact this company \\u2199';
+        a.className='company-contact'; frag.appendChild(a);
+      }
+      var stamp=document.createElement('p'); stamp.className='company-stamp';
+      stamp.textContent='Supplied by the company'+(s.updated_at?', updated '+s.updated_at:'')
+        +'. Not verified by yellow3 lab.';
+      frag.appendChild(stamp);
+      if(d.editable){
+        var ed=document.createElement('a'); ed.className='company-contact';
+        ed.href='/research/digital-product-passport/suppliers/'+sid+'/edit';
+        ed.textContent='Edit your layer \\u2199'; frag.appendChild(ed);
+      }
+      box.textContent=''; box.appendChild(frag);
+    }).catch(function(){});
 })();
 </script>
 """
@@ -500,6 +550,161 @@ def claim_html(r, counts):
     out = out.replace("<body>", f'<body data-supplier="{e(sid)}">')
     return out.replace('<meta property="og:type" content="website" />',
                        '<meta property="og:type" content="website" />\n  <meta name="robots" content="noindex,follow" />')
+
+
+# ---------------------------------------------------------------- edit
+
+def edit_html(r, counts):
+    """The company's own editor. Reached only from the emailed claim link, and
+    the session it carries authorises this one row. Nobody at yellow3 approves
+    anything here - that is the point of the design."""
+    sid = r["id"]
+    body = f"""{SITE_NAV}<main class="claim-shell">
+  <section class="claim-body">
+    <a class="claim-back" href="/research/digital-product-passport/suppliers/{e(sid)}">&#8249; Back to profile</a>
+
+    <section class="claim-content" id="editShell">
+      <h1>Your layer on {e(r["name"])}</h1>
+      <p class="claim-intro">This is the company-supplied side of your profile. It publishes
+      immediately, appears in its own layer marked as yours, and carries the date you last
+      changed it. What yellow3 verified independently is not editable here and is never
+      overwritten by it.</p>
+
+      <p class="claim-message" role="status" id="editMsg" hidden></p>
+
+      <form id="editForm" hidden>
+        <div class="edit-field">
+          <label for="edLogo">Logo</label>
+          <div class="edit-logo-row">
+            <img id="edLogoPrev" alt="" hidden />
+            <input id="edLogo" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" />
+          </div>
+          <p class="edit-hint">PNG, JPG, WEBP or SVG, up to 400 KB. We display the mark you
+          upload, unaltered. We never redraw or recolour a logo.</p>
+          <label class="edit-check"><input id="edLicence" type="checkbox" />
+            <span>I am authorised to supply this logo on behalf of {e(r["name"])}, and I grant
+            yellow3 lab the right to display it on this profile.</span></label>
+          <button type="button" class="edit-remove" id="edRemoveLogo" hidden>Remove logo</button>
+        </div>
+
+        <div class="edit-field">
+          <label for="edDesc">One-line description</label>
+          <input id="edDesc" type="text" maxlength="160" placeholder="What this company does, in one line" />
+          <p class="edit-hint"><span id="edCount">0</span>/160</p>
+        </div>
+
+        <div class="edit-field">
+          <label for="edContact">Contact link</label>
+          <input id="edContact" type="url" placeholder="https://yourcompany.com/contact" />
+          <p class="edit-hint">Must be https.</p>
+        </div>
+
+        <div class="edit-field">
+          <label for="edSectors">Sectors</label>
+          <input id="edSectors" type="text" placeholder="textiles, batteries, electronics" />
+          <p class="edit-hint">Comma separated, up to eight.</p>
+        </div>
+
+        <button type="submit">Publish changes <span>&#8594;</span></button>
+      </form>
+
+      <div class="claim-principles">
+        <article><h2>What stays ours</h2><p>Identity, headquarters, ownership, funding and every
+        capability finding, each with its source and the date we checked it. If something there is
+        wrong, reply to your claim email with the correction and a source. We check it, fix it and
+        log the change.</p></article>
+        <article><h2>Why it is labelled</h2><p>Separating what a company claims from what has been
+        independently verified is the whole point of this register. So your layer is marked as
+        yours, and ours is marked as ours. Neither pretends to be the other.</p></article>
+      </div>
+    </section>
+  </section>
+</main>
+""" + SITE_FOOTER
+
+    script = r"""
+<script>
+(function(){
+  var sid=document.body.dataset.supplier;
+  var form=document.getElementById('editForm'), msg=document.getElementById('editMsg');
+  var desc=document.getElementById('edDesc'), contact=document.getElementById('edContact'),
+      sectors=document.getElementById('edSectors'), file=document.getElementById('edLogo'),
+      lic=document.getElementById('edLicence'), prev=document.getElementById('edLogoPrev'),
+      rm=document.getElementById('edRemoveLogo'), count=document.getElementById('edCount');
+  var pending=null, removeLogo=false;
+
+  function say(t,bad){ msg.hidden=false; msg.textContent=t; msg.className='claim-message'+(bad?' bad':''); }
+  desc.addEventListener('input',function(){ count.textContent=String(desc.value.length); });
+
+  fetch('/api/supplied?id='+encodeURIComponent(sid)).then(function(r){return r.json();})
+    .then(function(d){
+      if(!d.editable){
+        say('This editor opens from the link we email when you claim the profile. That link has '
+          +'expired or was not used on this device. Claim again and we will send a new one.',true);
+        return;
+      }
+      var s=d.supplied||{};
+      desc.value=s.description||''; count.textContent=String(desc.value.length);
+      contact.value=s.contact_url||'';
+      sectors.value=(s.sectors||[]).join(', ');
+      if(s.logo_url){ prev.src=s.logo_url; prev.hidden=false; rm.hidden=false; }
+      form.hidden=false;
+    }).catch(function(){ say('Could not load your profile. Please try again.',true); });
+
+  file.addEventListener('change',function(){
+    var f=file.files&&file.files[0]; pending=null; if(!f) return;
+    if(f.size>400*1024){ say('That logo is larger than 400 KB.',true); file.value=''; return; }
+    var fr=new FileReader();
+    fr.onload=function(){
+      pending={data:String(fr.result).split(',')[1]||'',contentType:f.type};
+      prev.src=fr.result; prev.hidden=false; removeLogo=false;
+      say('Logo ready. Tick the permission box and publish.');
+    };
+    fr.readAsDataURL(f);
+  });
+
+  rm.addEventListener('click',function(){
+    pending=null; removeLogo=true; prev.hidden=true; file.value='';
+    say('Logo will be removed when you publish.');
+  });
+
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    if(pending && !lic.checked){ say('Tick the permission box to publish a logo.',true); return; }
+    var payload={
+      description:desc.value,
+      contact_url:contact.value,
+      sectors:sectors.value.split(',').map(function(t){return t.trim();}).filter(Boolean).slice(0,8)
+    };
+    if(pending){ payload.logo=pending; payload.licence=true; }
+    if(removeLogo){ payload.remove_logo=true; }
+    say('Publishing…');
+    fetch('/api/supplied',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)})
+      .then(function(r){return r.json().then(function(j){return {ok:r.ok,j:j};});})
+      .then(function(x){
+        if(!x.ok||!x.j.ok){
+          var m={licence_required:'Tick the permission box to publish a logo.',
+                 logo_type:'That file type is not supported.',
+                 logo_size:'That logo is larger than 400 KB.',
+                 not_signed_in:'Your link expired. Claim the profile again for a new one.'};
+          say(m[x.j&&x.j.error]||'Could not publish. Please try again.',true); return;
+        }
+        pending=null; removeLogo=false; lic.checked=false;
+        rm.hidden=!(x.j.supplied&&x.j.supplied.logo_url);
+        say('Published. Your layer is live on your profile.');
+      }).catch(function(){ say('Could not publish. Please try again.',true); });
+  });
+})();
+</script>
+"""
+    out = page(f"Edit {r['name']} - DPP Supplier Register - yellow3",
+               f"Company-supplied profile editor for {r['name']} on the yellow3 DPP Supplier Register.",
+               f"https://yellow3.io/research/digital-product-passport/suppliers/{sid}/edit",
+               body, script)
+    out = out.replace("<body>", f'<body data-supplier="{e(sid)}">')
+    return out.replace('<meta property="og:type" content="website" />',
+                       '<meta property="og:type" content="website" />\n  <meta name="robots" content="noindex,nofollow" />')
 
 
 DIR_SCRIPT = r"""
@@ -764,7 +969,12 @@ def directory_html(rows, counts, cap):
     countries = sorted({p["country"] for p in payload if p["country"]})
     sectors = sorted({s for p in payload for s in p["sector_keys"]})
     types = sorted({p["entity_type"] for p in payload})
-    today = datetime.date.today().strftime("%-d %b")
+    # The most recent date any row was actually researched - not the build date.
+    latest = max((r.get("source_date") or "" for r in rows), default="")
+    try:
+        today = datetime.date.fromisoformat(latest).strftime("%-d %b")
+    except Exception:
+        today = latest or "-"
 
     opts = lambda vals, lab: "".join(f'<option value="{e(v)}">{e(lab(v))}</option>' for v in vals)
 
@@ -932,6 +1142,8 @@ def main():
             os.makedirs(d, exist_ok=True)
             with open(os.path.join(d, "claim.html"), "w", encoding="utf-8") as fh:
                 fh.write(claim_html(r, counts))
+            with open(os.path.join(d, "edit.html"), "w", encoding="utf-8") as fh:
+                fh.write(edit_html(r, counts))
             claims += 1
 
     # retire the old flat profile pages now that they redirect
@@ -947,6 +1159,7 @@ def main():
     print(f"/suppliers                     1 page")
     print(f"/suppliers/<id>              {profiles:3d} profiles")
     print(f"/suppliers/<id>/claim        {claims:3d} claim pages")
+    print(f"/suppliers/<id>/edit         {claims:3d} editor pages")
     print(f"removed old flat profiles    {old:3d}")
     print(f"vercel redirects written     {n:3d}")
     print(f"\n  {counts['organisations']} organisations, {counts['commercial_suppliers']} commercial "
