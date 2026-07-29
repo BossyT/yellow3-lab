@@ -1182,29 +1182,72 @@ DIR_SCRIPT = r"""
     if (state.dSort === "az") out.sort(function (a, b) { return a.name.localeCompare(b.name); });
     return out;
   }
+  var PAGE = 25, shown = PAGE, scope = "all";
+
+  function chev(open) {
+    return '<svg class="chevron' + (open ? " open" : "") + '" viewBox="0 0 20 20" aria-hidden="true">' +
+      '<path d="m6 8 4 4 4-4"/></svg>';
+  }
+
   function renderDir() {
-    var rows = dirFiltered();
-    $("profileCount").textContent = rows.length + (rows.length === DATA.length ? " profiles" : " of " + DATA.length + " profiles");
+    var all = dirFiltered().filter(function (r) {
+      // held out of the supplier results: it has its own research-exception block
+      if (r.name.toLowerCase().indexOf("(unnamed") === 0) return false;
+      return scope === "all" || r.findings > 0;
+    });
+    var rows = all.slice(0, shown);
+    $("profileCount").textContent = all.length;
+    $("showingNote").textContent = "Showing " + rows.length + " of " + all.length +
+      (all.length === DATA.length ? " profiles" : " matching profiles");
+    $("loadMore").hidden = rows.length >= all.length;
+
     $("dirRows").innerHTML = rows.map(function (r) {
       var open = openRow === r.id;
-      return '<article class="directory-row state-' + r.state + (open ? " is-open" : "") + '" data-row="' + esc(r.id) + '">' +
-        '<a class="row-supplier" href="' + BASE + esc(r.id) + '">' +
-        (r.state === "non-supplier" ? "<small>Non-supplier<br />entity</small>" : "") +
-        '<span class="row-initials">' + mark(r) + '</span><strong>' + esc(r.name) + "</strong><em>&#8599;</em></a>" +
-        '<div><span class="type-chip">' + esc(r.type) + "</span></div>" +
-        '<div class="row-hq">' + r.hq + "</div>" +
-        '<div class="sector-list">' + r.sectors.map(function (x) { return "<span>" + x + "</span>"; }).join("") + "</div>" +
-        '<div class="row-evidence"><span>' + r.evidence + "</span>" + (r.basis ? "<small>" + esc(r.basis) + "</small>" : "") + "</div>" +
-        '<div class="row-date"><span>' + esc(r.date) + "</span>" +
-        (r.state !== "non-supplier" ? '<button aria-label="Toggle ' + esc(r.name) + ' evidence" data-toggle="' + esc(r.id) + '">&#8964;</button>' : "") + "</div>" +
-        (open ? '<div class="row-drawer"><strong>Evidence record</strong><span>' + esc(r.drawer) +
-          "</span><span>Checked " + esc(r.date) + '</span><a href="' + BASE + esc(r.id) + '">View profile record &#8599;</a></div>' : "") +
+      var tone = r.basis === "verified" ? "verified" : "claimed";
+      var status = r.findings ? r.findings + " capability findings" : "Capability research pending";
+      var chips = r.sector_keys && r.sector_keys.length
+        ? r.sectors.map(function (x) { return "<i>" + x + "</i>"; }).join("")
+        : '<i class="empty">No public sector focus</i>';
+      return '<article class="supplier' + (open ? " expanded" : "") + '" data-row="' + esc(r.id) + '">' +
+        '<button type="button" class="supplier-main" data-toggle="' + esc(r.id) + '" aria-expanded="' + (open ? "true" : "false") + '">' +
+        '<span class="edge ' + tone + '"></span>' +
+        '<span class="supplier-name"><span class="avatar">' + mark(r) + '</span>' +
+        '<span><b>' + esc(r.name) + "</b><small>View profile &#8599;</small></span></span>" +
+        "<span><em>" + esc(r.type) + "</em></span>" +
+        '<span class="hq">' + r.hq + "</span>" +
+        '<span class="chips">' + chips + "</span>" +
+        '<span class="evidence-cell"><b>' + r.facts + " public fact" + (r.facts === 1 ? "" : "s") +
+        "</b><small>" + esc(status) + "</small></span>" +
+        '<span class="date">' + esc(r.date) + "</span>" + chev(open) + "</button>" +
+        (open
+          ? '<div class="expanded-panel"><div><span>EVIDENCE STATUS</span><b>' + esc(status) + "</b>" +
+            "<p>" + r.facts + " independently recorded public fact" + (r.facts === 1 ? "" : "s") +
+            ". Every finding links to its provenance record.</p></div>" +
+            "<div><span>RESEARCH LAYER</span><b>Checked by yellow3 lab</b>" +
+            "<p>Company-supplied information, where present, is displayed separately.</p></div>" +
+            '<a href="' + BASE + esc(r.id) + '">Open ' + esc(r.name) + " profile <span>&#8594;</span></a></div>"
+          : "") +
         "</article>";
     }).join("");
+
     Array.prototype.forEach.call($("dirRows").querySelectorAll("[data-toggle]"), function (b) {
-      b.addEventListener("click", function () { openRow = openRow === b.dataset.toggle ? "" : b.dataset.toggle; renderDir(); });
+      b.addEventListener("click", function () {
+        openRow = openRow === b.dataset.toggle ? "" : b.dataset.toggle;
+        renderDir();
+      });
     });
   }
+
+  $("loadMore").addEventListener("click", function () { shown += PAGE; renderDir(); });
+  Array.prototype.forEach.call(document.querySelectorAll(".segmented button"), function (b) {
+    b.addEventListener("click", function () {
+      scope = b.dataset.view; shown = PAGE; openRow = "";
+      Array.prototype.forEach.call(document.querySelectorAll(".segmented button"), function (x) {
+        x.classList.toggle("active", x === b);
+      });
+      renderDir();
+    });
+  });
 
   // ---- five profile states, drawn from real rows
   function renderStates() {
@@ -1289,6 +1332,7 @@ def directory_html(rows, counts, cap):
             "sectors": secs[:2] or ["No public sector focus found<sup>2</sup>"],
             "sector_keys": r.get("sectors_list", []),
             "evidence": evidence, "basis": basis,
+            "facts": facts, "findings": findings,
             "date": pretty_date(cdate or r["source_date"]),
             "region": region_of(r["hq_country"]),
             "state": profile_state(r, findings),
@@ -1311,13 +1355,45 @@ def directory_html(rows, counts, cap):
 
     opts = lambda vals, lab: "".join(f'<option value="{e(v)}">{e(lab(v))}</option>' for v in vals)
 
+    # values the approved directory markup needs
+    latest_pretty = pretty_date(latest) or "Not recorded"
+    country_opts = opts(countries, lambda v: v)
+    sector_opts = opts(sectors, lambda v: SECTOR_LABEL.get(v, v.title()))
+    type_opts = opts(types, lambda v: TYPE_LABEL.get(v, v))
+    chev = ('<svg class="chevron" viewBox="0 0 20 20" aria-hidden="true">'
+            '<path d="m6 8 4 4 4-4"/></svg>')
+
+    # Research exceptions: rows where no public supplier identity was established.
+    # They are held out of the supplier results rather than counted among them.
+    featured = ""
+    for x in rows:
+        if not x["name"].lower().startswith("(unnamed"):
+            continue
+        label = re.sub(r"^\(unnamed\)\s*", "", x["name"]).strip()
+        featured += f'''<div class="featured">
+        <div class="featured-label">RESEARCH EXCEPTION</div>
+        <div class="featured-body">
+          <div class="avatar muted">{e(initials(x["name"]))}</div>
+          <div class="identity">
+            <h2>{e(label)} <span>&#8599;</span></h2>
+            <p>Unnamed entity &middot; retained as market evidence</p>
+          </div>
+          <div class="exception-note">
+            <b>Not a commercial supplier</b>
+            <p>This record is separated from the supplier results because no public supplier
+            identity was established.</p>
+          </div>
+          <a class="record-link" href="/research/digital-product-passport/suppliers/{e(x["id"])}">View research record <span>&#8594;</span></a>
+        </div>
+      </div>'''
+
     body = f"""{SITE_NAV}<main class="registry-shell">
   <section class="hero">
     <div class="wrap">
       <p class="eyebrow">Research / Digital Product Passport / Supplier register</p>
       <div class="hero-grid">
         <div>
-          <h1>The global DPP supplier landscape.</h1>
+          <h2 class="page-title">The global DPP supplier landscape.</h2>
           <p class="lede">A research map of every organisation we could identify supplying Digital
           Product Passport capability. Every headquarters is sourced, dated, and open to inspection.</p>
         </div>
@@ -1372,26 +1448,58 @@ def directory_html(rows, counts, cap):
     </div>
   </section>
 
-  <section class="directory-head">
-    <h1>Supplier directory</h1>
-    <p>Evidence-led profiles of the global Digital Product Passport market.</p>
-  </section>
+  <div class="dpp-dir">
+    <section class="hero">
+      <div class="eyebrow"><span></span>GLOBAL MARKET RESEARCH</div>
+      <div class="hero-grid">
+        <div>
+          <h1>Supplier directory</h1>
+          <p>Evidence-led profiles of the global Digital Product Passport market.</p>
+        </div>
+        <div class="stat">
+          <strong>{counts['organisations']}</strong>
+          <span>organisations recorded</span>
+          <small>Research register &middot; {latest_pretty}</small>
+        </div>
+      </div>
+    </section>
 
-  <section class="directory-controls" aria-label="Supplier filters">
-    <label class="directory-search"><span aria-hidden="true">&#8981;</span>
-      <input id="dq" placeholder="Search {counts['organisations']} suppliers" /></label>
-    <label><span class="sr-only">Country</span><select id="dCountry"><option value="">Country</option>{opts(countries, lambda v: v)}</select></label>
-    <label><span class="sr-only">Sector</span><select id="dSector"><option value="">Sector</option>{opts(sectors, lambda v: SECTOR_LABEL.get(v, v.title()))}</select></label>
-    <label><span class="sr-only">Entity type</span><select id="dType"><option value="">Entity type</option>{opts(types, lambda v: TYPE_LABEL.get(v, v))}</select></label>
-    <label><span class="sr-only">Capability evidence</span><select id="dCap"><option value="">Capability evidence</option><option value="assessed">Assessed</option><option value="pending">Pending</option></select></label>
-    <label class="sort-control"><span class="sr-only">Sort order</span><select id="dSort"><option value="recent">Recently checked</option><option value="az">Supplier A&ndash;Z</option></select></label>
-  </section>
+    <section class="directory">
+      <div class="search-row">
+        <label class="search"><span class="sr-only">Search suppliers</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+          <input id="dq" placeholder="Search suppliers" aria-label="Search suppliers" /></label>
+        <label class="filter"><span class="sr-only">Country</span>
+          <select id="dCountry"><option value="">Country</option>{country_opts}</select>{chev}</label>
+        <label class="filter"><span class="sr-only">Sector</span>
+          <select id="dSector"><option value="">Sector</option>{sector_opts}</select>{chev}</label>
+        <label class="filter"><span class="sr-only">Entity type</span>
+          <select id="dType"><option value="">Entity type</option>{type_opts}</select>{chev}</label>
+        <label class="filter evidence"><span class="sr-only">Capability evidence</span>
+          <select id="dCap"><option value="">Capability evidence</option><option value="assessed">Assessed</option><option value="pending">Pending</option></select>{chev}</label>
+      </div>
 
-  <section class="directory-table">
-    <p class="profile-count" id="profileCount"></p>
-    <div class="directory-labels"><span>Supplier</span><span>Type</span><span>HQ</span><span>Sectors</span><span>Evidence</span><span>Last checked</span></div>
-    <div id="dirRows"></div>
-  </section>
+      <div class="toolbar">
+        <div class="result"><b id="profileCount">{counts['organisations']}</b> profiles <span>&middot;</span> Last register update {latest_pretty}</div>
+        <div class="segmented" role="group" aria-label="Result scope">
+          <button type="button" data-view="all" class="active">All suppliers</button>
+          <button type="button" data-view="researched">Capability researched</button>
+        </div>
+      </div>
+
+      {featured}
+
+      <div class="table-head">
+        <span>SUPPLIER</span><span>TYPE</span><span>HEADQUARTERS</span><span>SECTORS</span><span>EVIDENCE</span><span>CHECKED</span><span></span>
+      </div>
+      <div class="rows" id="dirRows"></div>
+      <div class="footer-note">
+        <span id="showingNote"></span>
+        <button type="button" id="loadMore">Load more suppliers &#8595;</button>
+        <a href="#method">Research method &#8599;</a>
+      </div>
+    </section>
+  </div>
 
   <section class="profile-states" id="about">
     <div class="profile-states-main">
@@ -1427,12 +1535,18 @@ def directory_html(rows, counts, cap):
     data_json = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
     script = ('<script id="registerData" type="application/json">' + data_json + "</script>\n"
               + DIR_SCRIPT)
-    return page("Supplier directory - DPP Supplier Register - yellow3",
+    out = page("Supplier directory - DPP Supplier Register - yellow3",
                 f"Evidence-led profiles of the Digital Product Passport market. "
                 f"{counts['organisations']} organisations across {counts['countries']} countries, "
                 f"every headquarters sourced and dated.",
                 "https://yellow3.io/research/digital-product-passport/suppliers",
                 body, script)
+
+    return out.replace(
+        '<link rel="stylesheet" href="/research/digital-product-passport/register.css" />',
+        '<link rel="stylesheet" href="/research/digital-product-passport/register.css" />\n'
+        '  <link rel="stylesheet" href="/research/digital-product-passport/directory-v1.css" />')
+
 
 
 # ---------------------------------------------------------------- routes
