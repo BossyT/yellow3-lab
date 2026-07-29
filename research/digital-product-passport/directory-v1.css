@@ -241,3 +241,37 @@
 }
 .dpp-dir .filter select:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
 .dpp-dir .filter .chevron { margin-left: auto; pointer-events: none; }
+
+/* ---- isolation, not design ---------------------------------------------
+   register.css is also loaded on this page and defines .hero and .eyebrow.
+   Scoping the handoff stopped its rules leaking OUT; these stop ours leaking
+   IN. Every value below is the approved package's own - the handoff sets no
+   font-family on headings, so they inherit Arial from the block, and .hero h1
+   was picking up register.css's Georgia and its 760px cap instead. */
+
+.dpp-dir h1, .dpp-dir h2, .dpp-dir h3, .dpp-dir .hero h1 { font-family: inherit; }
+.dpp-dir .hero h1 {
+  max-width: none;
+  font-size: clamp(48px, 5.2vw, 78px);
+  font-weight: 650;
+  letter-spacing: -.055em;
+  line-height: .96;
+}
+.dpp-dir .hero {
+  padding: 68px max(34px, calc((100vw - 1380px) / 2)) 45px;
+  border-bottom: 1px solid var(--line);
+  border-top: 0;
+}
+.dpp-dir .eyebrow {
+  margin: 0;
+  color: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: none;
+}
+
+@media (max-width: 700px) {
+  .dpp-dir .hero { padding: 38px 20px 30px; }
+  .dpp-dir .hero h1 { font-size: 47px; }
+}
