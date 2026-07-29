@@ -1517,12 +1517,3 @@ body { padding-top: 62px; }
   .edit-logo-row { gap: 10px; }
   .company-logo img, .edit-logo-row img { max-width: 120px; }
 }
-
-/* The company-supplied layer reads in the pale yellow of the editor's evidence
-   key, not the brand yellow. On this register the faded yellow is a semantic
-   colour - it means "the company said this" - so it has to be the same colour
-   in the editor and on the profile, or the two-layer distinction is being
-   taught twice in two languages. Brand #ffe000 stays the brand. */
-.company-layer { background: #fff9d7; border-color: #f4d000; }
-.company-layer .layer-rule.yellow { background: #f4d000; }
-.company-layer .company-stamp { color: #6f6a4a; }
