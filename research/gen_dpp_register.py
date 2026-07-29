@@ -1234,25 +1234,6 @@ DIR_SCRIPT = r"""
     });
   });
 
-  // ---- five profile states, drawn from real rows
-  function renderStates() {
-    var want = ["rich", "typical", "sparse", "non-supplier", "claimed"];
-    var LABEL = { rich: "Rich", typical: "Typical", sparse: "Sparse", "non-supplier": "Not a supplier", claimed: "Claimed" };
-    $("stateCards").innerHTML = want.map(function (st) {
-      var r = DATA.filter(function (x) { return x.state === st; })[0];
-      if (!r) return '<article class="state-card state-' + st + '"><h3>' + LABEL[st] + "</h3><p>No profile is in this state yet.</p></article>";
-      var head = '<div class="state-card-head"><span>' + esc(r.initials) + "</span><b>" + esc(r.type) + "</b><small>" + esc(r.basis || "non-commercial entity") + "</small></div>";
-      if (st === "non-supplier") {
-        return '<article class="state-card state-' + st + '"><h3>' + LABEL[st] + "</h3>" + head +
-          "<p>" + r.evidence + "</p><dl><dt>HQ</dt><dd>" + r.hq + "</dd><dt>Last checked</dt><dd>" + esc(r.date) +
-          "</dd></dl><footer>Non-commercial entity</footer></article>";
-      }
-      return '<article class="state-card state-' + st + '"><h3>' + LABEL[st] + "</h3>" + head +
-        "<dl><dt>Sectors</dt><dd>" + r.sectors.join(", ") + "</dd><dt>HQ</dt><dd>" + r.hq +
-        "</dd><dt>Evidence</dt><dd>" + r.evidence + "</dd><dt>Last checked</dt><dd>" + esc(r.date) +
-        "</dd></dl><footer>Verified by yellow3</footer></article>";
-    }).join("");
-  }
 
   function render() { if (geo) renderMap(); renderDir(); }
 
@@ -1278,7 +1259,6 @@ DIR_SCRIPT = r"""
     el.addEventListener(ev, function () { state[pair[1]] = el.value; renderDir(); });
   });
 
-  renderStates();
   renderDir();
   fetch("/research/dpp-map-geometry.json").then(function (r) { return r.json(); }).then(function (g) { geo = g; drawBase(); renderMap(); })
     .catch(function () { $("resultCount").textContent = DATA.length + " organisations shown"; });
@@ -1485,19 +1465,6 @@ def directory_html(rows, counts, cap):
       </div>
     </section>
   </div>
-
-  <section class="profile-states" id="about">
-    <div class="profile-states-main">
-      <h2>Five profile states</h2>
-      <div class="state-card-grid" id="stateCards"></div>
-    </div>
-    <aside class="metadata-key">
-      <section><h3>Evidence basis <small>(metadata)</small></h3><p>verified <i>/</i> claimed <i>/</i> unverified</p></section>
-      <section><h3>Capability states <small>(metadata)</small></h3><p>&#9675; verified</p><p>&#9651; claimed</p><p>&#215; not found</p></section>
-      <section><h3>Region rule <small>(metadata)</small></h3><p><b class="key-line europe"></b>Europe (ochre)</p><p><b class="key-line asia"></b>Asia (aubergine)</p><p><b class="key-line usa"></b>US (navy)</p><p><b class="key-line other"></b>Other / unknown (graphite)</p></section>
-      <p>These are metadata, not rankings.</p>
-    </aside>
-  </section>
 
   <section class="evidence-band" id="method">
     <div class="evidence-copy">
