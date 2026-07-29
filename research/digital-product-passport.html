@@ -382,8 +382,8 @@
           <div class="rp-p">Every organisation we can find supplying Digital Product Passport capability, with the source behind each fact and the date we checked it. Built because the published picture of this market is mostly marketing.</div>
         </div>
         <div class="rp-r">
-          <div class="rp-n">183</div>
-          <div class="rp-c">organisations mapped<br>167 commercial suppliers, 32 countries</div>
+          <div class="rp-n" id="regCount">187</div>
+          <div class="rp-c">organisations mapped<br><span id="regDetail">171 commercial suppliers, 32 countries</span></div>
           <div class="rp-go">Open the register &#8594;</div>
         </div>
       </a>
@@ -573,5 +573,18 @@
       .then(render)
       .catch(function(){ document.getElementById('err').style.display = 'block'; });
   </script>
+<script>
+// The register's headline numbers are published by its generator. Read them
+// rather than restating them here: a typed total is stale the moment a
+// supplier is added, which is exactly how this block came to say 183.
+(function(){
+  fetch('/research/dpp-register-counts.json').then(function(r){return r.json();}).then(function(c){
+    if(!c||!c.organisations) return;
+    var n=document.getElementById('regCount'), d=document.getElementById('regDetail');
+    if(n) n.textContent=c.organisations;
+    if(d) d.textContent=c.commercial_suppliers+' commercial suppliers, '+c.countries+' countries';
+  }).catch(function(){});
+})();
+</script>
 </body>
 </html>

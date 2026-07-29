@@ -1657,6 +1657,11 @@ def main():
             os.remove(p)
             old += 1
 
+    # The DPP instrument page shows the register's headline numbers. Publish them
+    # as data so that page can never quote a total the register no longer holds.
+    with open(os.path.join(HERE, "dpp-register-counts.json"), "w", encoding="utf-8") as fh:
+        json.dump(counts, fh, ensure_ascii=False, indent=1)
+
     n = write_redirects([r["id"] for r in rows])
 
     print(f"/suppliers                     1 page")
