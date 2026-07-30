@@ -1856,8 +1856,9 @@ def directory_html(rows, counts, cap):
               + DIR_SCRIPT)
     out = page("Supplier directory - DPP Supplier Register - yellow3",
                 f"Evidence-led profiles of the Digital Product Passport market. "
-                f"{counts['organisations']} organisations across {counts['countries']} countries, "
-                f"every headquarters sourced and dated.",
+                f"{counts['organisations']} organisations, of which "
+                f"{counts['commercial_suppliers']} commercial suppliers, across "
+                f"{counts['countries']} countries - every headquarters sourced and dated.",
                 "https://yellow3.io/research/digital-product-passport/suppliers",
                 body, script)
 
