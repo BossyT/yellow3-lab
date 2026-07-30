@@ -296,7 +296,7 @@
   },
   {
    "id": "autonms",
-   "name": "AutoNMS",
+   "name": "PassPer",
    "website": "https://www.passper.eu",
    "domain": "passper.eu",
    "alias_domains": "",
@@ -313,7 +313,7 @@
    "funding_source": "not_found 2026-07-28",
    "status": "active",
    "evidence_url": "https://www.passper.eu/platform.html",
-   "source": "official company website",
+   "source": "official product website; the site brands itself PassPer and names no operating entity - it has no imprint, impressum or legal notice. The name \"AutoNMS\" came from an aggregator and could not be sourced to the site on 2026-07-28 or 2026-07-30, so the register records the brand it can see.",
    "source_date": "2026-07-28",
    "confidence": "unverified",
    "sectors_list": [

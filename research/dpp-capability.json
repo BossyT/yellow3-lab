@@ -2,12 +2,12 @@
  "layer": "capability",
  "framework": "capability-framework.md",
  "generated": "2026-07-30",
- "suppliers_assessed": 103,
- "checks_run": 1030,
+ "suppliers_assessed": 124,
+ "checks_run": 1240,
  "totals": {
-  "not_found": 825,
-  "company_states": 174,
-  "verified": 31
+  "not_found": 987,
+  "company_states": 212,
+  "verified": 41
  },
  "results": [
   {
@@ -202,6 +202,206 @@
   },
   {
    "supplier_id": "aidgent",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "aleverum-global",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "aleverum-global",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "No public navigable example passport or inline or downloadable schema was found."
+  },
+  {
+   "supplier_id": "aleverum-global",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "company_states",
+   "evidence_url": "https://aleverum.com/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Aleverum asserts GS1-compatible resolver URLs, but publishes neither a working sample Digital Link nor an explicit printed-identifier survival commitment."
+  },
+  {
+   "supplier_id": "aleverum-global",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "aleverum-global",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "aleverum-global",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "aleverum-global",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "company_states",
+   "evidence_url": "https://aleverum.com/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Aleverum describes future EU registry interoperability, not a completed registry or test-environment integration after 20 July 2026."
+  },
+  {
+   "supplier_id": "aleverum-global",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "aleverum-global",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "company_states",
+   "evidence_url": "https://aleverum.com/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Aleverum names internal teams, suppliers, partners, auditors and regulators in access controls, but does not state what two audiences see differently."
+  },
+  {
+   "supplier_id": "aleverum-global",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "alternew",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "The official site describes a fashion care and repair operating system; no DPP product or module was identified."
+  },
+  {
+   "supplier_id": "alternew",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "No public DPP example passport or published schema was found; the official site did not identify a DPP product."
+  },
+  {
+   "supplier_id": "alternew",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "alternew",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "alternew",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "alternew",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "alternew",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "alternew",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "alternew",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "alternew",
    "check_id": "c10",
    "check_name": "Resolver uptime",
    "state": "not_found",
@@ -511,6 +711,106 @@
    "note": ""
   },
   {
+   "supplier_id": "autonms",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "company_states",
+   "evidence_url": "https://www.passper.eu/how-it-works.html",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "PassPer says it tracks JTC 24 and draft standards but publishes no field-to-clause mapping. The public site is branded PassPer; no primary source identified AutoNMS as its operator, so the supplier-product relationship remains unresolved."
+  },
+  {
+   "supplier_id": "autonms",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "A public navigable PassPer example passport exists, but it does not visibly separate claims, supporting documents and third-party verification by provenance. The public site is branded PassPer; no primary source identified AutoNMS as its operator, so the supplier-product relationship remains unresolved."
+  },
+  {
+   "supplier_id": "autonms",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "company_states",
+   "evidence_url": "https://www.passper.eu/how-it-works.html",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "A PassPer Digital Link resolved, and the site claims long-term custody, but it does not explicitly commit that already-printed identifiers survive customer departure, migration or non-payment. The public site is branded PassPer; no primary source identified AutoNMS as its operator, so the supplier-product relationship remains unresolved."
+  },
+  {
+   "supplier_id": "autonms",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "autonms",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "verified",
+   "evidence_url": "https://www.passper.eu/how-it-works.html",
+   "artifact": "public product architecture page documenting complete JSON-LD, CSV and AAS export at any time",
+   "checked_date": "2026-07-30",
+   "note": "The public site is branded PassPer; no primary source identified AutoNMS as its operator, so the supplier-product relationship remains unresolved."
+  },
+  {
+   "supplier_id": "autonms",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "company_states",
+   "evidence_url": "https://www.passper.eu/how-it-works.html",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "PassPer says regulatory profiles are updated as rules change, but publishes no dated product change naming a regulatory instrument. The public site is branded PassPer; no primary source identified AutoNMS as its operator, so the supplier-product relationship remains unresolved."
+  },
+  {
+   "supplier_id": "autonms",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "company_states",
+   "evidence_url": "https://www.passper.eu/how-it-works.html",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "PassPer says its registry pipeline will connect when the API opens, not that it completed a registry or test-environment integration. The public site is branded PassPer; no primary source identified AutoNMS as its operator, so the supplier-product relationship remains unresolved."
+  },
+  {
+   "supplier_id": "autonms",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "verified",
+   "evidence_url": "https://www.passper.eu/how-it-works.html",
+   "artifact": "public product architecture page documenting independent backup custody and 15-year passport availability",
+   "checked_date": "2026-07-30",
+   "note": "The public site is branded PassPer; no primary source identified AutoNMS as its operator, so the supplier-product relationship remains unresolved."
+  },
+  {
+   "supplier_id": "autonms",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "verified",
+   "evidence_url": "https://www.passper.eu/track.html",
+   "artifact": "live PassPer sample passport showing public, professional and authority tiers with different field counts",
+   "checked_date": "2026-07-30",
+   "note": "The sample names consumers, repairers, recyclers, customs and market-surveillance authorities and shows progressively deeper product views. The public site is branded PassPer; no primary source identified AutoNMS as its operator, so the supplier-product relationship remains unresolved."
+  },
+  {
+   "supplier_id": "autonms",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
    "supplier_id": "aware",
    "check_id": "c01",
    "check_name": "Standards mapping",
@@ -711,6 +1011,106 @@
    "note": "The pricing page states a 99.9% SLA, but does not publish measured availability history."
   },
   {
+   "supplier_id": "bcome",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "bcome",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "No public navigable example passport or inline or downloadable schema was found."
+  },
+  {
+   "supplier_id": "bcome",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "bcome",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "bcome",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "verified",
+   "evidence_url": "https://help.bcome.biz/es/help-center/tutoriales/como-exportar-los-datos-en-excel/",
+   "artifact": "public help-center tutorial documenting export of every tab and column to an Excel workbook",
+   "checked_date": "2026-07-30",
+   "note": "The tutorial says results can be taken outside the platform and the full workbook can be exported at any time."
+  },
+  {
+   "supplier_id": "bcome",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "company_states",
+   "evidence_url": "https://help.bcome.biz/regulation-radar/digital-product-passport-2022-0095-cod-chapter-iii/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "BCome publishes a product-facing explainer on Regulation (EU) 2024/1781, but no qualifying dated product change."
+  },
+  {
+   "supplier_id": "bcome",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "bcome",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "bcome",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "bcome",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
    "supplier_id": "benelog-gmbh-co-kg",
    "check_id": "c01",
    "check_name": "Standards mapping",
@@ -802,6 +1202,106 @@
   },
   {
    "supplier_id": "benelog-gmbh-co-kg",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "beopass",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "beopass",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "No public navigable example passport or inline or downloadable schema was found."
+  },
+  {
+   "supplier_id": "beopass",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "beopass",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "beopass",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "beopass",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "company_states",
+   "evidence_url": "https://beopass.eu/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "BeoPass says its battery DPP supports Regulation (EU) 2023/1542, but no qualifying dated product change was published."
+  },
+  {
+   "supplier_id": "beopass",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "beopass",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "beopass",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "company_states",
+   "evidence_url": "https://beopass.eu/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "BeoPass names manufacturer, auditor and consumer roles, but does not document what two audiences see differently."
+  },
+  {
+   "supplier_id": "beopass",
    "check_id": "c10",
    "check_name": "Resolver uptime",
    "state": "not_found",
@@ -908,6 +1408,206 @@
    "evidence_url": "",
    "artifact": "",
    "checked_date": "2026-07-29",
+   "note": ""
+  },
+  {
+   "supplier_id": "biniworld-innovations-private-limited",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "The official site describes sustainability, traceability and MRV work; no DPP product or module was identified."
+  },
+  {
+   "supplier_id": "biniworld-innovations-private-limited",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "No public DPP example passport or published schema was found; the official site did not identify a DPP product."
+  },
+  {
+   "supplier_id": "biniworld-innovations-private-limited",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "biniworld-innovations-private-limited",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "biniworld-innovations-private-limited",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "biniworld-innovations-private-limited",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "biniworld-innovations-private-limited",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "biniworld-innovations-private-limited",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "biniworld-innovations-private-limited",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "biniworld-innovations-private-limited",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "blue-room-innovation",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "blue-room-innovation",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "No public navigable example passport or inline or downloadable schema was found."
+  },
+  {
+   "supplier_id": "blue-room-innovation",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "blue-room-innovation",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "blue-room-innovation",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "blue-room-innovation",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "company_states",
+   "evidence_url": "https://www.blueroominnovation.com/en/digital-product-passport/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Blue Room Innovation presents CircularPass in the ESPR context, but publishes no qualifying dated product change."
+  },
+  {
+   "supplier_id": "blue-room-innovation",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "blue-room-innovation",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "blue-room-innovation",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "company_states",
+   "evidence_url": "https://www.blueroominnovation.com/en/circularpass/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "CircularPass claims access control for consumers and regulators, but does not document the different data two audiences see."
+  },
+  {
+   "supplier_id": "blue-room-innovation",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
    "note": ""
   },
   {
@@ -1109,6 +1809,106 @@
    "artifact": "",
    "checked_date": "2026-07-30",
    "note": "Checkpoint states 99.9% uptime, but publishes no measured resolver availability history."
+  },
+  {
+   "supplier_id": "circudata",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "circudata",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "No public navigable example passport or inline or downloadable schema was found."
+  },
+  {
+   "supplier_id": "circudata",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "company_states",
+   "evidence_url": "https://circudata.co/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Circudata asserts GS1 Digital Link QR support, but provides neither a working sample resolver nor a post-exit identifier commitment."
+  },
+  {
+   "supplier_id": "circudata",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "company_states",
+   "evidence_url": "https://circudata.co/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Circudata says data can be matched to a product, batch or serial number, but publishes no documentation or live example demonstrating all three passport levels."
+  },
+  {
+   "supplier_id": "circudata",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "circudata",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "company_states",
+   "evidence_url": "https://circudata.co/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Circudata says its DPP is ESPR compliant, but publishes no qualifying dated product change naming the instrument."
+  },
+  {
+   "supplier_id": "circudata",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "circudata",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "circudata",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "circudata",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
   },
   {
    "supplier_id": "circuland",
@@ -2011,6 +2811,106 @@
    "note": ""
   },
   {
+   "supplier_id": "cycle-platform",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "cycle-platform",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "No public navigable example passport or inline or downloadable schema was found; the public dashboard imagery is not an inspectable record."
+  },
+  {
+   "supplier_id": "cycle-platform",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "cycle-platform",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "cycle-platform",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "cycle-platform",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "company_states",
+   "evidence_url": "https://cycle-platform.com/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Cycle says its platform produces ESPR-aligned DPPs, but publishes no qualifying dated product change."
+  },
+  {
+   "supplier_id": "cycle-platform",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "cycle-platform",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "cycle-platform",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "cycle-platform",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
    "supplier_id": "deply",
    "check_id": "c01",
    "check_name": "Standards mapping",
@@ -2202,6 +3102,106 @@
   },
   {
    "supplier_id": "digipropass",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "distinkt",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "distinkt",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "A public DPP viewer shell exists, but no sample identifier, navigable passport record or inline or downloadable schema was provided."
+  },
+  {
+   "supplier_id": "distinkt",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "distinkt",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "distinkt",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "distinkt",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "company_states",
+   "evidence_url": "https://www.trustdistinkt.com/products/dpp",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Distinkt presents its DPP product for ESPR compliance, but publishes no qualifying dated product change."
+  },
+  {
+   "supplier_id": "distinkt",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "distinkt",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "distinkt",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "distinkt",
    "check_id": "c10",
    "check_name": "Resolver uptime",
    "state": "not_found",
@@ -2609,6 +3609,106 @@
    "artifact": "",
    "checked_date": "2026-07-29",
    "note": "DPPskop states that its status page has historical SLA data, but the status page returned a 502 response."
+  },
+  {
+   "supplier_id": "duepas",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "duepas",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "No public navigable example passport or inline or downloadable schema was found."
+  },
+  {
+   "supplier_id": "duepas",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "duepas",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "duepas",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "duepas",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "company_states",
+   "evidence_url": "https://exponential.com.tr/projects/dupas",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "The DUEPAS product page names ESPR and Regulation (EU) 2024/1781, but publishes no qualifying dated product change."
+  },
+  {
+   "supplier_id": "duepas",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "duepas",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "duepas",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "company_states",
+   "evidence_url": "https://exponential.com.tr/projects/dupas",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "The product page says consumers and state inspectors receive different categories of information, but it is marketing rather than product documentation or a live example."
+  },
+  {
+   "supplier_id": "duepas",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
   },
   {
    "supplier_id": "e-circular-aps",
@@ -3511,6 +4611,106 @@
    "note": ""
   },
   {
+   "supplier_id": "family-labs-pty-ltd",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "family-labs-pty-ltd",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Public product documentation exists, but no navigable example passport or inline or downloadable schema separates the three required evidence objects."
+  },
+  {
+   "supplier_id": "family-labs-pty-ltd",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "family-labs-pty-ltd",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "verified",
+   "evidence_url": "https://docs.universalgoods.org/start/how-it-works.html",
+   "artifact": "public product documentation defining separate product, batch and item passports",
+   "checked_date": "2026-07-30",
+   "note": "Universal Goods documents a Product to Batch to Item hierarchy and passport data at each level."
+  },
+  {
+   "supplier_id": "family-labs-pty-ltd",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "family-labs-pty-ltd",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "company_states",
+   "evidence_url": "https://docs.universalgoods.org/start/how-it-works.html",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Universal Goods documentation describes EU DPP and ESPR readiness, but publishes no qualifying dated product change."
+  },
+  {
+   "supplier_id": "family-labs-pty-ltd",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "family-labs-pty-ltd",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "family-labs-pty-ltd",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "company_states",
+   "evidence_url": "https://docs.universalgoods.org/start/how-it-works.html",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Universal Goods claims role-based access and consumer-versus-partner disclosure, but does not name the different fields two audiences see."
+  },
+  {
+   "supplier_id": "family-labs-pty-ltd",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
    "supplier_id": "fluxy-one",
    "check_id": "c01",
    "check_name": "Standards mapping",
@@ -3609,6 +4809,106 @@
    "artifact": "",
    "checked_date": "2026-07-30",
    "note": "Fluxy.One guarantees 99.5% platform and QR-resolution uptime, but publishes no measured availability history."
+  },
+  {
+   "supplier_id": "foodtraze",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "The official site describes food traceability software; no identifiable DPP product or module was found."
+  },
+  {
+   "supplier_id": "foodtraze",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "No public DPP example passport or published schema was found; the official site did not identify a DPP product."
+  },
+  {
+   "supplier_id": "foodtraze",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "foodtraze",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "foodtraze",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "foodtraze",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "company_states",
+   "evidence_url": "https://www.foodtraze.com/en/blog/dpp/digital-product-passports-dpp-food-traceability-supply-chain-transparency",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "FoodTraze connects its traceability offer to ESPR in a blog post, but no identifiable DPP product change was published."
+  },
+  {
+   "supplier_id": "foodtraze",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "foodtraze",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "foodtraze",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "foodtraze",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
   },
   {
    "supplier_id": "goods-tag",
@@ -3811,6 +5111,106 @@
    "note": ""
   },
   {
+   "supplier_id": "green-story",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "green-story",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "No public navigable example passport or inline or downloadable schema was found."
+  },
+  {
+   "supplier_id": "green-story",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "green-story",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "green-story",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "green-story",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "company_states",
+   "evidence_url": "https://www.greenstory.io/digital-product-passports-for-textile-manufacturers",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Green Story says its textile DPPs support ESPR compliance, but publishes no qualifying dated product change."
+  },
+  {
+   "supplier_id": "green-story",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "green-story",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "green-story",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "green-story",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
    "supplier_id": "greenable-gmbh",
    "check_id": "c01",
    "check_name": "Standards mapping",
@@ -3902,6 +5302,106 @@
   },
   {
    "supplier_id": "greenable-gmbh",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "greenstitch-technologies-private-limited",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "company_states",
+   "evidence_url": "https://greenstitch.io/product/digital-product-passport/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "GreenStitch says its product aligns with emerging CEN-CENELEC standards, but publishes no field-to-clause JTC 24 mapping."
+  },
+  {
+   "supplier_id": "greenstitch-technologies-private-limited",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "A public navigable example passport exists, but it does not visibly separate claims, supporting documents and third-party verification by provenance."
+  },
+  {
+   "supplier_id": "greenstitch-technologies-private-limited",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "company_states",
+   "evidence_url": "https://greenstitch.io/product/digital-product-passport/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "GreenStitch asserts GS1 Digital Link support, but publishes neither a working sample Digital Link nor an explicit printed-identifier survival commitment."
+  },
+  {
+   "supplier_id": "greenstitch-technologies-private-limited",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Public material supports model and batch data but describes item-level identity as a later phase, so all three levels are not demonstrated today."
+  },
+  {
+   "supplier_id": "greenstitch-technologies-private-limited",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "greenstitch-technologies-private-limited",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "company_states",
+   "evidence_url": "https://greenstitch.io/product/digital-product-passport/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "GreenStitch presents its product for ESPR compliance, but publishes no qualifying dated product change."
+  },
+  {
+   "supplier_id": "greenstitch-technologies-private-limited",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "company_states",
+   "evidence_url": "https://greenstitch.io/product/digital-product-passport/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "GreenStitch describes future registry integration as requirements are finalized, not a completed integration after 20 July 2026."
+  },
+  {
+   "supplier_id": "greenstitch-technologies-private-limited",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "greenstitch-technologies-private-limited",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "company_states",
+   "evidence_url": "https://greenstitch.io/blogs/eu-dpp-jrc-update/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "A GreenStitch blog says its demo differs for consumers, recyclers and regulators, but product documentation or a live example did not show what each audience sees."
+  },
+  {
+   "supplier_id": "greenstitch-technologies-private-limited",
    "check_id": "c10",
    "check_name": "Resolver uptime",
    "state": "not_found",
@@ -5211,6 +6711,106 @@
    "note": ""
   },
   {
+   "supplier_id": "lw3-private-limited",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "lw3-private-limited",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "A public demo route exists, but it did not expose a navigable passport or schema separating the three required evidence objects."
+  },
+  {
+   "supplier_id": "lw3-private-limited",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "lw3-private-limited",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "lw3-private-limited",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "lw3-private-limited",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "company_states",
+   "evidence_url": "https://www.lw3.world/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "LW3 says its battery DPP supports Regulation (EU) 2023/1542, but publishes no qualifying dated product change."
+  },
+  {
+   "supplier_id": "lw3-private-limited",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "company_states",
+   "evidence_url": "https://www.lw3.world/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "LW3 depicts an EU central registry in its workflow, but does not document a completed registry or test-environment integration after 20 July 2026."
+  },
+  {
+   "supplier_id": "lw3-private-limited",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "lw3-private-limited",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "company_states",
+   "evidence_url": "https://www.lw3.world/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "LW3 claims configurable access controls, but does not name two audiences and state what data each sees."
+  },
+  {
+   "supplier_id": "lw3-private-limited",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
    "supplier_id": "madaster",
    "check_id": "c01",
    "check_name": "Standards mapping",
@@ -5509,6 +7109,106 @@
    "artifact": "",
    "checked_date": "2026-07-30",
    "note": "The pricing page states a 99.9% SLA, but does not publish measured availability history."
+  },
+  {
+   "supplier_id": "miceliodata",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "miceliodata",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "No public navigable example passport or inline or downloadable schema was found."
+  },
+  {
+   "supplier_id": "miceliodata",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "miceliodata",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "miceliodata",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "miceliodata",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "company_states",
+   "evidence_url": "https://miceliodata.eu/miceliodata-welcomes-sinateks-as-dpp-pilot-partner-in-turkey/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "MicelioData links a dated DPP pilot to ESPR in a company post, but does not publish a qualifying product release or schema change."
+  },
+  {
+   "supplier_id": "miceliodata",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "miceliodata",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "miceliodata",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "miceliodata",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
   },
   {
    "supplier_id": "minespider",
@@ -6811,6 +8511,106 @@
    "note": "No specific public DPP product or module was identified."
   },
   {
+   "supplier_id": "orijin-plus",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "orijin-plus",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "No public navigable example passport or inline or downloadable schema was found."
+  },
+  {
+   "supplier_id": "orijin-plus",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "company_states",
+   "evidence_url": "https://www.orijinplus.global/digital-product-passport",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Orijin Plus asserts GS1 Digital Link and a managed resolver, but provides neither a working sample resolver nor a post-exit identifier commitment."
+  },
+  {
+   "supplier_id": "orijin-plus",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "orijin-plus",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "orijin-plus",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "company_states",
+   "evidence_url": "https://www.orijinplus.global/blog/what-is-the-eu-espr",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Orijin Plus discusses ESPR and its DPP offer in a blog post, not a qualifying dated product change."
+  },
+  {
+   "supplier_id": "orijin-plus",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "orijin-plus",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "orijin-plus",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "company_states",
+   "evidence_url": "https://www.orijinplus.global/blog/how-to-choose-dpp-software",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Orijin Plus says its platform routes information by audience, including regulators and consumers, but the blog does not document the different data each sees."
+  },
+  {
+   "supplier_id": "orijin-plus",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
    "supplier_id": "osapiens",
    "check_id": "c01",
    "check_name": "Standards mapping",
@@ -7411,6 +9211,106 @@
    "note": ""
   },
   {
+   "supplier_id": "regilient",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "The official material describes DPP readiness and a data foundation, not an identifiable DPP issuing or hosting product."
+  },
+  {
+   "supplier_id": "regilient",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "No public DPP example passport or published schema was found; an identifiable DPP issuing or hosting product was not identified."
+  },
+  {
+   "supplier_id": "regilient",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "regilient",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "regilient",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "regilient",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "company_states",
+   "evidence_url": "https://www.regilient.ai/blog/digital-product-passport-dpp-eu-espr-compliance",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Regilient discusses ESPR and DPP readiness in a blog post, not a qualifying dated change to an identifiable DPP product."
+  },
+  {
+   "supplier_id": "regilient",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "regilient",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "regilient",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "regilient",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
    "supplier_id": "renoon",
    "check_id": "c01",
    "check_name": "Standards mapping",
@@ -7608,6 +9508,106 @@
    "evidence_url": "https://status.retraced.com/",
    "artifact": "public status page with measured 90-day uptime history",
    "checked_date": "2026-07-28",
+   "note": ""
+  },
+  {
+   "supplier_id": "rosella-street",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "rosella-street",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "No public navigable example passport or inline or downloadable schema was found for the DPPMS product."
+  },
+  {
+   "supplier_id": "rosella-street",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "rosella-street",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "rosella-street",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "rosella-street",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "rosella-street",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "rosella-street",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "rosella-street",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "rosella-street",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
    "note": ""
   },
   {
@@ -9509,6 +11509,106 @@
    "artifact": "",
    "checked_date": "2026-07-30",
    "note": ""
+  },
+  {
+   "supplier_id": "traceable-digital",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "traceable-digital",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "A public OpenAPI document exists, but it does not separate a claim, supporting document and third-party verification into distinct objects with different provenance."
+  },
+  {
+   "supplier_id": "traceable-digital",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "company_states",
+   "evidence_url": "https://traceable.digital/company/trust/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Traceable states that it uses GS1 Digital Link identifiers and retains passport data, but publishes no explicit commitment that already-printed identifiers survive customer exit."
+  },
+  {
+   "supplier_id": "traceable-digital",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": ""
+  },
+  {
+   "supplier_id": "traceable-digital",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "verified",
+   "evidence_url": "https://traceable.digital/company/trust/",
+   "artifact": "public trust page committing to complete passport export in JSON-LD, CSV or PDF at any time",
+   "checked_date": "2026-07-30",
+   "note": "The page states that customers can export the complete passport without lock-in."
+  },
+  {
+   "supplier_id": "traceable-digital",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "verified",
+   "evidence_url": "https://dev.traceable.digital/changelog/compliance-wizard-march-2026",
+   "artifact": "dated product changelog recording an ESPR gate and EU Battery Regulation field changes",
+   "checked_date": "2026-07-30",
+   "note": "The 23 March 2026 entry names ESPR and Regulation (EU) 2023/1542 and records corresponding product changes."
+  },
+  {
+   "supplier_id": "traceable-digital",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "company_states",
+   "evidence_url": "https://dev.traceable.digital/docs/compliance/eu-dpp-registry/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Traceable documentation says the product does not yet submit to the EU DPP Registry and describes expected future support."
+  },
+  {
+   "supplier_id": "traceable-digital",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "verified",
+   "evidence_url": "https://traceable.digital/company/trust/",
+   "artifact": "public trust page committing published passports to remain accessible after a subscription lapses",
+   "checked_date": "2026-07-30",
+   "note": "The page commits published passports to a minimum ten-year availability period even if the subscription lapses."
+  },
+  {
+   "supplier_id": "traceable-digital",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "verified",
+   "evidence_url": "https://dev.traceable.digital/docs/developer-guide/api-reference/poli-endpoints",
+   "artifact": "developer guide documenting general-public and authority views with different restricted data",
+   "checked_date": "2026-07-30",
+   "note": "Traceable says market-surveillance authorities and customs can receive restricted supply-chain documents and internal test references that the general public cannot view."
+  },
+  {
+   "supplier_id": "traceable-digital",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "verified",
+   "evidence_url": "https://status.traceable.digital/",
+   "artifact": "public status page showing measured availability history",
+   "checked_date": "2026-07-30",
+   "note": "The status URL opened a public UptimeRobot history page with daily measured availability."
   },
   {
    "supplier_id": "trackvision-ai-ltd",
