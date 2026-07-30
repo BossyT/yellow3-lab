@@ -899,6 +899,11 @@
       "permanent": true
     },
     {
+      "source": "/research/digital-product-passport/treverum",
+      "destination": "/research/digital-product-passport/suppliers/treverum",
+      "permanent": true
+    },
+    {
       "source": "/research/digital-product-passport/trustrace",
       "destination": "/research/digital-product-passport/suppliers/trustrace",
       "permanent": true
