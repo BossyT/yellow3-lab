@@ -41,7 +41,7 @@
     <div class="subscribe">
       <strong>This is an RSS feed.</strong> To follow yellow3 insights, paste this URL into your feed reader (Feedly, Inoreader, NetNewsWire, Reeder, or any other RSS app):
       <br/>
-      <code>https://yellow3.io/feed.xml</code>
+      <code>https://www.yellow3.io/feed.xml</code>
     </div>
     <xsl:for-each select="rss/channel/item">
       <div class="item">

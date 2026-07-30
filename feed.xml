@@ -3,11 +3,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>yellow3 lab - Insights</title>
-    <link>https://yellow3.io/insights/</link>
+    <link>https://www.yellow3.io/insights/</link>
     <description>Perspectives on AI and what it makes possible. Writing from yellow3 lab on autonomous software, the future of digital products, and what European businesses need to understand about AI right now.</description>
     <language>en</language>
     <lastBuildDate>Sat, 18 Jul 2026 06:10:44 GMT</lastBuildDate>
-    <atom:link href="https://yellow3.io/feed.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.yellow3.io/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Collapse of AI Is Being Greatly Exaggerated</title>
       <link>https://www.yellow3.io/insights/the-collapse-of-ai-is-being-greatly-exaggerated</link>
@@ -46,65 +46,65 @@
     </item>
     <item>
       <title>Who Holds the Off-Switch?</title>
-      <link>https://yellow3.io/insights/who-holds-the-off-switch</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/who-holds-the-off-switch</guid>
+      <link>https://www.yellow3.io/insights/who-holds-the-off-switch</link>
+      <guid isPermaLink="true">https://www.yellow3.io/insights/who-holds-the-off-switch</guid>
       <pubDate>Sat, 13 Jun 2026 14:50:28 GMT</pubDate>
       <description>A US government letter switched off two frontier AI models for the entire planet in one afternoon. The real question for Europe was never whether government should have a say. It is who holds the switch, and what we do when it is not us.</description>
-      <media:content url="https://yellow3.io/insights/hero-who-holds-the-off-switch.png" medium="image" />
+      <media:content url="https://www.yellow3.io/insights/hero-who-holds-the-off-switch.png" medium="image" />
       <media:description>A gloved hand flips a red industrial switch connected by glowing data cables to a digital map of Europe, symbolising Europe’s dependence on foreign-controlled AI infrastructure.</media:description>
     </item>
     <item>
       <title>Five Times the Future Arrived</title>
-      <link>https://yellow3.io/insights/five-times-the-future-arrived</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/five-times-the-future-arrived</guid>
+      <link>https://www.yellow3.io/insights/five-times-the-future-arrived</link>
+      <guid isPermaLink="true">https://www.yellow3.io/insights/five-times-the-future-arrived</guid>
       <pubDate>Wed, 20 May 2026 07:01:35 GMT</pubDate>
       <description>Mechanised weaving, electrification, personal computing, the internet, container shipping. Five technology transitions, one pattern. What history actually tells us about the question everyone is asking about AI and jobs.</description>
-      <media:content url="https://yellow3.io/insights/hero-five-times-the-future-arrived.png" medium="image" />
+      <media:content url="https://www.yellow3.io/insights/hero-five-times-the-future-arrived.png" medium="image" />
       <media:description>Editorial illustration showing five stages of industrial transition arranged as a horizontal timeline: a mechanised loom from 1811, an electrified factory floor from 1900, a shipping container being loaded in 1956, a personal computer from 1987, and a network server rack from 1995.</media:description>
     </item>
     <item>
       <title>The Gun Just Fired for European Founders. EU Inc. Is Here.</title>
-      <link>https://yellow3.io/insights/the-gun-just-fired-for-european-founders-eu-inc-is-here</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/the-gun-just-fired-for-european-founders-eu-inc-is-here</guid>
+      <link>https://www.yellow3.io/insights/the-gun-just-fired-for-european-founders-eu-inc-is-here</link>
+      <guid isPermaLink="true">https://www.yellow3.io/insights/the-gun-just-fired-for-european-founders-eu-inc-is-here</guid>
       <pubDate>Wed, 18 Mar 2026 00:00:00 GMT</pubDate>
       <description>EU Inc. lets any European founder incorporate across 27 countries in 48 hours for under €100. The starting gun just fired. Here is what it means and what comes next.</description>
-      <media:content url="https://yellow3.io/insights/hero-the-gun-just-fired-for-european-founders-eu-inc-is-here.png" medium="image" />
+      <media:content url="https://www.yellow3.io/insights/hero-the-gun-just-fired-for-european-founders-eu-inc-is-here.png" medium="image" />
       <media:description>A futuristic European founder pilots a sleek EU Inc. aircraft over Brussels as a glowing digital map of Europe and startup incorporation billboard symbolize the 28th regime, faster company formation, and a new runway for European entrepreneurs.</media:description>
     </item>
     <item>
       <title>The Shopify Moment for Business Software Is Here</title>
-      <link>https://yellow3.io/insights/the-shopify-moment-for-business-software-is-here</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/the-shopify-moment-for-business-software-is-here</guid>
+      <link>https://www.yellow3.io/insights/the-shopify-moment-for-business-software-is-here</link>
+      <guid isPermaLink="true">https://www.yellow3.io/insights/the-shopify-moment-for-business-software-is-here</guid>
       <pubDate>Fri, 06 Mar 2026 00:00:00 GMT</pubDate>
       <description>Before Shopify, building an online store required a developer and months of patience. The same shift is happening right now with business software - and the consequences for SMB growth are enormous.</description>
-      <media:content url="https://yellow3.io/insights/hero-the-shopify-moment-for-business-software-is-here.png" medium="image" />
+      <media:content url="https://www.yellow3.io/insights/hero-the-shopify-moment-for-business-software-is-here.png" medium="image" />
       <media:description>A founder moves from a dark, cluttered workspace filled with disconnected spreadsheets, manual processes, old CRM tools, invoices, and workarounds into a bright modern office with a custom software dashboard showing growth, automation, sales, customers, inventory, and operations. The image visualizes how SMBs using custom-fit software can grow 2.8x faster by replacing fragmented generic tools with integrated systems built around their business.</media:description>
     </item>
     <item>
       <title>I Analyzed What 50 AI Platforms Actually Cost to Build</title>
-      <link>https://yellow3.io/insights/ai-platform-costs-2026</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/ai-platform-costs-2026</guid>
+      <link>https://www.yellow3.io/insights/ai-platform-costs-2026</link>
+      <guid isPermaLink="true">https://www.yellow3.io/insights/ai-platform-costs-2026</guid>
       <pubDate>Thu, 19 Feb 2026 00:00:00 GMT</pubDate>
       <description>A 788x price gap between AI models. $250/mo vs $2.3M/mo to build. A Copenhagen founder breaks down the real economics of AI platforms in 2026.</description>
     </item>
     <item>
       <title>Europe&apos;s AI Slumber</title>
-      <link>https://yellow3.io/insights/europe-ai-slumber</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/europe-ai-slumber</guid>
+      <link>https://www.yellow3.io/insights/europe-ai-slumber</link>
+      <guid isPermaLink="true">https://www.yellow3.io/insights/europe-ai-slumber</guid>
       <pubDate>Thu, 12 Feb 2026 00:00:00 GMT</pubDate>
       <description>The US controls 74% of global AI supercomputer capacity. Europe holds 4.8%. A European founder asks: are we regulating ourselves into irrelevance?</description>
     </item>
     <item>
       <title>The Rise of Autonomous Software</title>
-      <link>https://yellow3.io/insights/autonomous-layer</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/autonomous-layer</guid>
+      <link>https://www.yellow3.io/insights/autonomous-layer</link>
+      <guid isPermaLink="true">https://www.yellow3.io/insights/autonomous-layer</guid>
       <pubDate>Wed, 13 May 2026 10:42:26 GMT</pubDate>
       <description>Software that doesn&apos;t wait for instructions. The architecture, the implications, and the businesses it will create.</description>
     </item>
     <item>
       <title>Your Software Should Work While You Sleep</title>
-      <link>https://yellow3.io/insights/autonomous-software</link>
-      <guid isPermaLink="true">https://yellow3.io/insights/autonomous-software</guid>
+      <link>https://www.yellow3.io/insights/autonomous-software</link>
+      <guid isPermaLink="true">https://www.yellow3.io/insights/autonomous-software</guid>
       <pubDate>Wed, 13 May 2026 10:42:26 GMT</pubDate>
       <description>The shift from tools that assist to software that acts. What autonomous systems mean for how businesses operate.</description>
     </item>

@@ -1,4 +1,4 @@
-# yellow3 lab – https://yellow3.io
+# yellow3 lab – https://www.yellow3.io
 # AI Research Lab, Copenhagen
 
 User-agent: *
@@ -32,4 +32,4 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-Sitemap: https://yellow3.io/sitemap.xml
+Sitemap: https://www.yellow3.io/sitemap.xml

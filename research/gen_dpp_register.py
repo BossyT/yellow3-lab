@@ -195,7 +195,7 @@ def page(title, desc, canonical, body, script="", og_extra=""):
   <meta property="og:url" content="{e(canonical)}" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="yellow3 lab" />
-  <meta property="og:image" content="https://yellow3.io/og/og-digital-product-passport-v2.png" />
+  <meta property="og:image" content="https://www.yellow3.io/og/og-digital-product-passport-v2.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />{og_extra}
@@ -602,7 +602,7 @@ def profile_html(r, counts, cap):
     jsonld = ('\n  <script type="application/ld+json">' + json.dumps({
         "@context": "https://schema.org", "@type": "ProfilePage",
         "name": f"{name} - DPP Supplier Register",
-        "url": f"https://yellow3.io/research/digital-product-passport/suppliers/{sid}",
+        "url": f"https://www.yellow3.io/research/digital-product-passport/suppliers/{sid}",
         "dateCreated": r["source_date"],
         "dateModified": r["source_date"],
         "isPartOf": {"@type": "Dataset",
@@ -610,10 +610,10 @@ def profile_html(r, counts, cap):
                      "description": ("A public register of organisations supplying Digital "
                                      "Product Passport capability. Every recorded fact carries "
                                      "its source and the date it was checked."),
-                     "url": "https://yellow3.io/research/digital-product-passport/suppliers",
+                     "url": "https://www.yellow3.io/research/digital-product-passport/suppliers",
                      "creator": {"@type": "Organization", "name": "yellow3 lab",
-                                 "url": "https://yellow3.io"},
-                     "license": "https://yellow3.io/terms"},
+                                 "url": "https://www.yellow3.io"},
+                     "license": "https://www.yellow3.io/terms"},
         "mainEntity": {k: v for k, v in {
             "@type": "Organization", "name": name,
             "url": r["website"] or None,
@@ -621,13 +621,13 @@ def profile_html(r, counts, cap):
                          **({"addressLocality": r["hq_city"]} if r["hq_city"] else {})}
                         if r["hq_country"] and kind == "url" else None),
         }.items() if v},
-        "publisher": {"@type": "Organization", "name": "yellow3 lab", "url": "https://yellow3.io"},
+        "publisher": {"@type": "Organization", "name": "yellow3 lab", "url": "https://www.yellow3.io"},
     }, ensure_ascii=False, separators=(",", ":")) + "</script>")
 
     out = page(f"{name} - DPP Supplier Register - yellow3",
                f"{name}: Digital Product Passport supplier profile. Independently sourced "
                f"identity, headquarters and evidence, recorded by yellow3 lab.",
-               f"https://yellow3.io/research/digital-product-passport/suppliers/{sid}",
+               f"https://www.yellow3.io/research/digital-product-passport/suppliers/{sid}",
                body, script, jsonld)
     return out.replace(
         '<link rel="stylesheet" href="/research/digital-product-passport/register.css" />',
@@ -798,7 +798,7 @@ def claim_html(r, counts):
     out = page(f"Claim {name} - DPP Supplier Register - yellow3",
                f"Claim the {name} profile on the yellow3 DPP Supplier Register. "
                f"Confirmed by work email domain, no account required.",
-               f"https://yellow3.io/research/digital-product-passport/suppliers/{sid}/claim",
+               f"https://www.yellow3.io/research/digital-product-passport/suppliers/{sid}/claim",
                body, script)
     out = out.replace(
         '<link rel="stylesheet" href="/research/digital-product-passport/register.css" />',
@@ -1060,7 +1060,7 @@ def add_html(counts):
     out = page("Add your company - DPP Supplier Register - yellow3",
                "Ask yellow3 lab to research your company for the DPP Supplier Register. "
                "Two details, no fee, and nothing is published without public evidence.",
-               "https://yellow3.io/research/digital-product-passport/suppliers/add",
+               "https://www.yellow3.io/research/digital-product-passport/suppliers/add",
                body, script)
     return out.replace(
         '<link rel="stylesheet" href="/research/digital-product-passport/register.css" />',
@@ -1412,7 +1412,7 @@ def edit_html(r, counts):
 """
     out = page(f"Edit {name} - DPP Supplier Register - yellow3",
                f"Company-supplied profile editor for {name} on the yellow3 DPP Supplier Register.",
-               f"https://yellow3.io/research/digital-product-passport/suppliers/{sid}/edit",
+               f"https://www.yellow3.io/research/digital-product-passport/suppliers/{sid}/edit",
                body, script)
     out = out.replace(
         '<link rel="stylesheet" href="/research/digital-product-passport/register.css" />',
@@ -1913,7 +1913,7 @@ def directory_html(rows, counts, cap):
                 f"{counts['organisations']} organisations, of which "
                 f"{counts['commercial_suppliers']} commercial suppliers, across "
                 f"{counts['countries']} countries - every headquarters sourced and dated.",
-                "https://yellow3.io/research/digital-product-passport/suppliers",
+                "https://www.yellow3.io/research/digital-product-passport/suppliers",
                 body, script)
 
     return out.replace(
