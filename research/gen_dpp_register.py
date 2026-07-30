@@ -1828,10 +1828,7 @@ def directory_html(rows, counts, cap):
       <div class="footer-note">
         <span id="showingNote"></span>
         <button type="button" id="loadMore">Load more suppliers &#8595;</button>
-        <span class="foot-links">
-          <a href="/research/digital-product-passport/suppliers/add">Add your company &#8599;</a>
-          <a href="#method">Research method &#8599;</a>
-        </span>
+        <a href="#method">Research method &#8599;</a>
       </div>
     </section>
   </div>
