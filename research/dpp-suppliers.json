@@ -1294,7 +1294,7 @@
    "entity_type": "platform",
    "evidence_url": "https://deply.it/",
    "founded_year": "",
-   "funding_source": "",
+   "funding_source": "not_found 2026-07-28",
    "funding_stage": "",
    "hq_city": "Rome",
    "hq_country": "Italy",
@@ -1307,8 +1307,8 @@
     "textiles",
     "electronics"
    ],
-   "source": "official product site and imprint",
-   "source_date": "2026-07-29",
+   "source": "official product site and imprint; merged with the duplicate row texpo-srl-deply on 2026-07-30 (same domain, same company)",
+   "source_date": "2026-07-28",
    "status": "active",
    "total_disclosed_funding": "",
    "website": "https://deply.it"
@@ -4346,30 +4346,6 @@
    "sectors_list": [
     "textiles"
    ]
-  },
-  {
-   "id": "texpo-srl-deply",
-   "name": "TeXpo Srl (Deply)",
-   "website": "https://deply.it",
-   "domain": "deply.it",
-   "alias_domains": "",
-   "hq_country": "Italy",
-   "hq_city": "Rome",
-   "country_source": "https://deply.it/",
-   "entity_type": "platform",
-   "sectors": "",
-   "founded_year": "",
-   "ownership": "operator of Deply",
-   "funding_stage": "",
-   "total_disclosed_funding": "",
-   "last_funding_date": "",
-   "funding_source": "not_found 2026-07-28",
-   "status": "active",
-   "evidence_url": "https://deply.it/",
-   "source": "official product website and legal footer",
-   "source_date": "2026-07-28",
-   "confidence": "verified",
-   "sectors_list": []
   },
   {
    "id": "textilegenesis",

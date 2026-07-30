@@ -854,11 +854,6 @@
       "permanent": true
     },
     {
-      "source": "/research/digital-product-passport/texpo-srl-deply",
-      "destination": "/research/digital-product-passport/suppliers/texpo-srl-deply",
-      "permanent": true
-    },
-    {
       "source": "/research/digital-product-passport/textilegenesis",
       "destination": "/research/digital-product-passport/suppliers/textilegenesis",
       "permanent": true
@@ -956,6 +951,16 @@
     {
       "source": "/research/digital-product-passport/zeropact",
       "destination": "/research/digital-product-passport/suppliers/zeropact",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/suppliers/texpo-srl-deply",
+      "destination": "/research/digital-product-passport/suppliers/deply",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/texpo-srl-deply",
+      "destination": "/research/digital-product-passport/suppliers/deply",
       "permanent": true
     }
   ]

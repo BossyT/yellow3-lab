@@ -145,6 +145,19 @@ def load():
                 cap.setdefault(row["supplier_id"], {})[row["check_id"]] = row
     rows = payload["suppliers"]
 
+    # The join key is the domain, so two rows sharing one is a data error, not a
+    # style question. It has happened once: a supplier added by id-only dedup
+    # duplicated a row already present under its legal name. Fail loudly.
+    seen = {}
+    for r in rows:
+        d = (r.get("domain") or "").lower()
+        if not d:
+            continue
+        if d in seen:
+            raise SystemExit(f"duplicate domain {d}: rows '{seen[d]}' and '{r['id']}' - "
+                             f"merge them before building")
+        seen[d] = r["id"]
+
     # Every public total is computed from the rows, never read from the file.
     # A stored counts block goes stale the moment a supplier is added - which is
     # exactly what happened when four researched rows landed and the header kept
@@ -1880,6 +1893,14 @@ def directory_html(rows, counts, cap):
 
 # ---------------------------------------------------------------- routes
 
+# Rows that were merged away. Their profile URL must keep working: the register
+# publishes ids, people link to them, and a 404 is a worse answer than a redirect.
+RETIRED = {
+    # merged 2026-07-30 - same domain, same company, recorded twice
+    "texpo-srl-deply": "deply",
+}
+
+
 def write_redirects(ids):
     """The old profile URLs are indexed. Move them with explicit 308s.
 
@@ -1894,6 +1915,15 @@ def write_redirects(ids):
     moved = [{"source": f"/research/digital-product-passport/{i}",
               "destination": f"/research/digital-product-passport/suppliers/{i}",
               "permanent": True} for i in sorted(ids)]
+    # a merged row's profile URL keeps working, under both the old flat path and
+    # the current one, pointing at the row that survived
+    for old_id, new_id in sorted(RETIRED.items()):
+        moved.append({"source": f"/research/digital-product-passport/suppliers/{old_id}",
+                      "destination": f"/research/digital-product-passport/suppliers/{new_id}",
+                      "permanent": True})
+        moved.append({"source": f"/research/digital-product-passport/{old_id}",
+                      "destination": f"/research/digital-product-passport/suppliers/{new_id}",
+                      "permanent": True})
     conf["redirects"] = keep + moved
     with open(VERCEL, "w", encoding="utf-8") as fh:
         json.dump(conf, fh, indent=2)
