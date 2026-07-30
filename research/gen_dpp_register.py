@@ -595,13 +595,26 @@ def profile_html(r, counts, cap):
 </script>
 """)
 
+    # Google validates ProfilePage and Dataset separately and both were failing:
+    # ProfilePage requires mainEntity (we had `about`, which it does not read), and
+    # Dataset requires a description. Search Console reported one invalid item for
+    # each on every one of the 187 profiles.
     jsonld = ('\n  <script type="application/ld+json">' + json.dumps({
         "@context": "https://schema.org", "@type": "ProfilePage",
         "name": f"{name} - DPP Supplier Register",
         "url": f"https://yellow3.io/research/digital-product-passport/suppliers/{sid}",
-        "isPartOf": {"@type": "Dataset", "name": "yellow3 DPP Supplier Register",
-                     "url": "https://yellow3.io/research/digital-product-passport/suppliers"},
-        "about": {k: v for k, v in {
+        "dateCreated": r["source_date"],
+        "dateModified": r["source_date"],
+        "isPartOf": {"@type": "Dataset",
+                     "name": "yellow3 DPP Supplier Register",
+                     "description": ("A public register of organisations supplying Digital "
+                                     "Product Passport capability. Every recorded fact carries "
+                                     "its source and the date it was checked."),
+                     "url": "https://yellow3.io/research/digital-product-passport/suppliers",
+                     "creator": {"@type": "Organization", "name": "yellow3 lab",
+                                 "url": "https://yellow3.io"},
+                     "license": "https://yellow3.io/terms"},
+        "mainEntity": {k: v for k, v in {
             "@type": "Organization", "name": name,
             "url": r["website"] or None,
             "address": ({"@type": "PostalAddress", "addressCountry": r["hq_country"],
@@ -1962,6 +1975,26 @@ def main():
             with open(os.path.join(d, "edit.html"), "w", encoding="utf-8") as fh:
                 fh.write(edit_html(r, counts))
             claims += 1
+
+    # A merged or removed row leaves its generated pages behind. The redirect hides
+    # them, but a stale profile on disk is a page that would serve outdated content
+    # the moment a redirect changed - and it still fails structured-data validation
+    # in the meantime. Remove anything the register no longer holds.
+    live = {r["id"] for r in rows}
+    KEEP = {"add.html"}          # pages in this directory that are not supplier rows
+    stale = 0
+    for f in os.listdir(OUT):
+        if f in KEEP:
+            continue
+        full = os.path.join(OUT, f)
+        if f.endswith(".html") and f[:-5] not in live:
+            os.remove(full); stale += 1
+        elif os.path.isdir(full) and f not in live:
+            for sub in os.listdir(full):
+                os.remove(os.path.join(full, sub))
+            os.rmdir(full); stale += 1
+    if stale:
+        print(f"removed stale pages for retired rows {stale:3d}")
 
     # retire the old flat profile pages now that they redirect
     old = 0
