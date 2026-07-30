@@ -569,6 +569,9 @@ def profile_html(r, counts, cap):
         if(mono && s.logo_url){
           var mi=document.createElement('img'); mi.src=s.logo_url; mi.alt='';
           mono.textContent=''; mono.appendChild(mi);
+        // a logo carries its own shape and colour, so the frame drawn for
+        // initials comes off. The footprint stays, so nothing shifts.
+        mono.classList.add('has-logo');
         }
         var left=document.createElement('div');
         if(s.description){ var h=document.createElement('h2'); h.textContent=s.description; left.appendChild(h); }
@@ -1422,6 +1425,11 @@ DIR_SCRIPT = r"""
       ? '<img src="' + esc(s.logo_url) + '" alt="" loading="lazy" />'
       : esc(r.initials);
   }
+  // the frame is for initials; a logo brings its own
+  function markClass(r) {
+    var s = SUPPLIED[r.id];
+    return (s && s.logo_url) ? ' has-logo' : '';
+  }
   fetch("/api/supplied?all=1").then(function (r) { return r.json(); })
     .then(function (d) { SUPPLIED = (d && d.supplied) || {}; render(); })
     .catch(function () {});
@@ -1527,7 +1535,7 @@ DIR_SCRIPT = r"""
         '</h3></div><button type="button" class="panel-close" id="pc" aria-label="Close country details">&times;</button></div>' +
         '<div class="country-summary"><strong>' + g.count + "</strong><span>" + (g.count === 1 ? "organisation" : "organisations") + "<br />in the current view</span></div>" +
         '<div class="supplier-list">' + g.suppliers.map(function (s) {
-          return '<a href="' + BASE + esc(s.id) + '" class="supplier-row"><span class="supplier-mark">' + mark(s) +
+          return '<a href="' + BASE + esc(s.id) + '" class="supplier-row"><span class="supplier-mark' + markClass(s) + '">' + mark(s) +
             '</span><span class="supplier-copy"><strong>' + esc(s.name) + "</strong><small>" +
             (s.city ? esc(s.city) + " &middot; " : "") + esc(s.type) + "</small></span><span class=\"row-arrow\">&#8599;</span></a>";
         }).join("") + "</div>";
@@ -1591,7 +1599,7 @@ DIR_SCRIPT = r"""
       return '<article class="supplier" data-row="' + esc(r.id) + '">' +
         '<a class="supplier-main" href="' + BASE + esc(r.id) + '">' +
         '<span class="edge ' + tone + '"></span>' +
-        '<span class="supplier-name"><span class="avatar">' + mark(r) + '</span>' +
+        '<span class="supplier-name"><span class="avatar' + markClass(r) + '">' + mark(r) + '</span>' +
         '<span><b>' + esc(r.name) + "</b><small>View profile &#8599;</small></span></span>" +
         "<span><em>" + esc(r.type) + "</em></span>" +
         '<span class="hq">' + r.hq + "</span>" +

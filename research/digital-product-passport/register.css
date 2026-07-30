@@ -1535,3 +1535,15 @@ body { padding-top: 62px; }
   object-fit: contain;
   display: block;
 }
+
+/* A supplied logo carries its own shape, colour and padding - a rounded app
+   icon or a wordmark inside a bordered square reads as two competing shapes.
+   So when a logo replaces the initials, the frame drawn for those initials
+   comes off. The box keeps its footprint, so no layout moves.
+   Thomas's call, 30 Jul 2026, after TreVerum became the first real logo. */
+.dpp-profile .monogram.has-logo,
+.dpp-dir .avatar.has-logo,
+.dpp-dir .supplier-mark.has-logo {
+  border-color: transparent;
+  background: transparent;
+}

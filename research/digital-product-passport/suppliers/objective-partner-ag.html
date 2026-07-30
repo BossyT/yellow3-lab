@@ -220,6 +220,9 @@
         if(mono && s.logo_url){
           var mi=document.createElement('img'); mi.src=s.logo_url; mi.alt='';
           mono.textContent=''; mono.appendChild(mi);
+        // a logo carries its own shape and colour, so the frame drawn for
+        // initials comes off. The footprint stays, so nothing shifts.
+        mono.classList.add('has-logo');
         }
         var left=document.createElement('div');
         if(s.description){ var h=document.createElement('h2'); h.textContent=s.description; left.appendChild(h); }
