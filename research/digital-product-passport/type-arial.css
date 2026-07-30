@@ -1,0 +1,21 @@
+/* One typeface across the register - Arial for body and headings alike.
+   Thomas, 30 Jul 2026: "always use same font, otherwise it will be considered
+   amateur. We will use Arial for both Body and Heading all over."
+
+   Loaded last, after each approved package, so it wins. It overrides ONLY
+   font-family: every size, weight, letter-spacing, line-height and colour the
+   packages specify is untouched. The packages arrived over two days with three
+   different faces between them (Georgia display, Helvetica Neue, Arial); this
+   settles it in one place rather than editing five stylesheets.
+
+   The site nav and footer sit outside these scopes and keep the site's own
+   face, as they do on every other page of yellow3.io. */
+
+.dpp-profile, .dpp-profile *,
+.dpp-add, .dpp-add *,
+.dpp-dir, .dpp-dir *,
+.dpp-claim, .dpp-claim *,
+.dpp-edit, .dpp-edit *,
+.registry-shell, .registry-shell * {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
