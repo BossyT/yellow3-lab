@@ -3736,7 +3736,7 @@
    "hq_country": "Germany",
    "hq_city": "Troisdorf",
    "country_source": "https://www.r-cycle.org/en/impressum.html",
-   "entity_type": "platform",
+   "entity_type": "project-consortium",
    "sectors": "general",
    "founded_year": "",
    "ownership": "operated by ProData GmbH",
@@ -3746,7 +3746,7 @@
    "funding_source": "not_found 2026-07-28",
    "status": "active",
    "evidence_url": "https://www.r-cycle.org/en/digital-product-passport.html",
-   "source": "official website and imprint",
+   "source": "official website and imprint; reclassified 2026-07-30: a cross-industry community establishing an open traceability standard, with 50+ member organisations, not a commercial supplier",
    "source_date": "2026-07-28",
    "confidence": "verified",
    "sectors_list": [
