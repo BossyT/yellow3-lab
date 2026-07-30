@@ -329,6 +329,11 @@
       "permanent": true
     },
     {
+      "source": "/research/digital-product-passport/eclass-e-v",
+      "destination": "/research/digital-product-passport/suppliers/eclass-e-v",
+      "permanent": true
+    },
+    {
       "source": "/research/digital-product-passport/ecoviator",
       "destination": "/research/digital-product-passport/suppliers/ecoviator",
       "permanent": true
