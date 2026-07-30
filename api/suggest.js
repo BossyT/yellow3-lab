@@ -37,14 +37,22 @@ function register() {
 
 // domain first, then alias_domains - a company can already be in the register
 // under a name it would not recognise, or as a parent it does not think of.
+//
+// The second return value matters for privacy. A supplier's `domain` is already
+// published in the directory, so telling the browser "this one is already
+// recorded" reveals nothing anyone could not read off the register. Its
+// `alias_domains` are NOT published, so an alias match is never disclosed in the
+// response - it is answered by email instead, which only reaches an address at
+// that domain.
 function findByDomain(dom) {
-  return register().find(function (r) {
-    return [r.domain]
-      .concat(String(r.alias_domains || '').split(',').map(s => s.trim()))
-      .filter(Boolean)
-      .map(s => s.toLowerCase())
-      .includes(dom);
-  }) || null;
+  var rows = register();
+  var direct = rows.find(r => String(r.domain || '').toLowerCase() === dom);
+  if (direct) return [direct, 'domain'];
+  var alias = rows.find(function (r) {
+    return String(r.alias_domains || '').split(',')
+      .map(s => s.trim().toLowerCase()).filter(Boolean).includes(dom);
+  });
+  return alias ? [alias, 'alias'] : [null, ''];
 }
 
 function note(outcome, fields, failed) {
@@ -109,8 +117,8 @@ module.exports = async (req, res) => {
   const NOTIFY = process.env.CLAIM_NOTIFY_EMAIL || FROM;
   const SENDER = senderFor(FROM);
 
-  let existing = null;
-  try { existing = findByDomain(dom); } catch (e) {
+  let existing = null, matchedOn = '';
+  try { [existing, matchedOn] = findByDomain(dom); } catch (e) {
     note('register_read_failed', { domain: dom, error: String(e && e.message || e) }, true);
   }
 
@@ -118,7 +126,8 @@ module.exports = async (req, res) => {
   // This is the most useful outcome of the whole form: it turns "please add us"
   // into a claim, at no cost to anyone.
   if (existing) {
-    note('already_listed', { domain: dom, supplier: existing.id, submitted_as: name, email: email });
+    note('already_listed', { domain: dom, supplier: existing.id, submitted_as: name,
+                             email: email, matched_on: matchedOn });
     if (KEY && FROM) {
       try {
         await send(KEY, SENDER, email, 'You are already in the yellow3 DPP Supplier Register',
@@ -134,6 +143,12 @@ module.exports = async (req, res) => {
             + 'If something we published is wrong, reply with the correction and a source and we '
             + 'will check it, fix it and log the change.</p>'), NOTIFY || undefined);
       } catch (e) { note('reply_failed', { domain: dom, error: String(e && e.message || e) }, true); }
+    }
+    if (matchedOn === 'domain') {
+      return res.status(200).json({ ok: true, existing: {
+        id: existing.id, name: existing.name,
+        claim_url: '/research/digital-product-passport/suppliers/' + existing.id + '/claim',
+      } });
     }
     return ok();
   }

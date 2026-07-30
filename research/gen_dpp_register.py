@@ -781,6 +781,263 @@ def claim_html(r, counts):
                        '<meta property="og:type" content="website" />\n  <meta name="robots" content="noindex,follow" />')
 
 
+# ---------------------------------------------------------------- add
+
+def add_html(counts):
+    """"Add your company" - approved v1 handoff.
+
+    For a company NOT in the register asking to be researched. Nothing submitted
+    here is published; the backend queues it as a research lead. The prototype's
+    knownProfiles demo map is removed: whether a domain is already recorded comes
+    from the backend, which discloses it only for domains the register already
+    publishes."""
+    body = f"""{SITE_NAV}<main class="dpp-add">
+  <section class="page-intro">
+    <div class="intro-inner">
+      <a class="back-link" href="/research/digital-product-passport/suppliers">
+        <span aria-hidden="true">&#8592;</span> Back to supplier directory</a>
+      <p class="breadcrumb">Research / Digital Product Passport / Supplier Register / Add your company</p>
+      <div class="intro-grid">
+        <div>
+          <h1>Put your company<br />forward for research.</h1>
+        </div>
+        <div class="intro-copy">
+          <p>Not in the DPP Supplier Register? Tell us the company name and use a work email.
+          That starts a research request, not a listing.</p>
+          <p class="plain-note">Nothing you submit is published.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="request-section">
+    <div class="request-grid">
+      <div class="request-content">
+        <div class="section-heading">
+          <span>01</span>
+          <div>
+            <p class="eyebrow">THE REQUEST</p>
+            <h2>Two details. One honest research queue.</h2>
+          </div>
+        </div>
+        <div class="expectation-list">
+          <article><span>01</span><div><h3>You suggest the company</h3>
+            <p>The work email establishes the company domain. It is never typed twice, and
+            personal mailboxes are refused.</p></div></article>
+          <article><span>02</span><div><h3>We research it ourselves</h3>
+            <p>We look for public evidence of DPP capability. A suggestion does not create a
+            profile and does not move anyone ahead.</p></div></article>
+          <article><span>03</span><div><h3>We reply either way</h3>
+            <p>If the evidence supports an entry, we add it. If it does not, we tell you.
+            There is no fee and no paid priority.</p></div></article>
+        </div>
+      </div>
+
+      <div class="request-card-wrap">
+        <form class="request-card" id="addForm" novalidate>
+          <div class="card-heading">
+            <p class="eyebrow">COMPANY-SUPPLIED REQUEST</p>
+            <span>2 fields</span>
+          </div>
+          <h2>Add your company</h2>
+          <p class="card-lede">We use these details only to identify the company and reply to
+          the request.</p>
+
+          <div class="field">
+            <label for="company">Company name</label>
+            <input id="company" type="text" placeholder="Your company" autocomplete="organization" />
+          </div>
+
+          <div class="field">
+            <label for="work-email">Work email</label>
+            <input id="work-email" type="email" placeholder="you@company.com"
+                   autocomplete="email" aria-describedby="email-help form-error" />
+            <div class="field-meta">
+              <span id="email-help">Personal email addresses are refused.</span>
+              <strong id="domainEcho" hidden></strong>
+            </div>
+          </div>
+
+          <div class="form-error" id="formError" role="alert" hidden>
+            <span>!</span><p id="formErrorText"></p>
+          </div>
+
+          <button class="submit-button" type="submit">
+            <span>Send for research</span><span aria-hidden="true">&#8594;</span></button>
+          <p class="form-note">Free to suggest. Free to be listed. No verification product is
+          being sold.</p>
+        </form>
+
+        <section class="result-card queued-card" id="queuedCard" aria-live="polite" hidden>
+          <div class="result-label">QUEUED FOR RESEARCH</div>
+          <p class="result-number">01</p>
+          <h2 id="queuedName">Your company is in the next research pass.</h2>
+          <p class="result-lede">Your suggestion is not a listing. We add a company only when
+          we can establish it from public evidence ourselves.</p>
+          <div class="help-box">
+            <span>WHAT HELPS MOST</span>
+            <p>A public product page describing DPP capability, technical documentation, an
+            example passport, or a named customer pilot.</p>
+          </div>
+          <div class="result-footer">
+            <p>We reply either way. We never charge a company to be included.</p>
+            <button type="button" data-reset>Submit another company</button>
+          </div>
+        </section>
+
+        <section class="result-card existing-card" id="existingCard" aria-live="polite" hidden>
+          <div class="result-label">PROFILE ALREADY RECORDED</div>
+          <p class="result-number">01</p>
+          <h2>We already hold a profile for this domain.</h2>
+          <p class="result-lede">It may be recorded under a name you did not recognise in the
+          directory.</p>
+          <article class="existing-profile">
+            <div class="profile-initials" id="existingInitials"></div>
+            <div>
+              <span>EXISTING REGISTER PROFILE</span>
+              <h3 id="existingName"></h3>
+              <p id="existingDomain"></p>
+            </div>
+          </article>
+          <a class="claim-button" id="existingClaim" href="#">
+            <span>Claim this profile</span><span aria-hidden="true">&#8594;</span></a>
+          <div class="result-footer">
+            <p>Claiming proves control of the domain. It does not change yellow3 lab's
+            independent research.</p>
+            <button type="button" data-reset>Use another email</button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="meaning-section">
+    <div class="meaning-inner">
+      <div class="section-heading">
+        <span>02</span>
+        <div>
+          <p class="eyebrow">WHAT INCLUSION MEANS</p>
+          <h2>Evidence first. Company voice second.</h2>
+        </div>
+      </div>
+      <div class="meaning-grid">
+        <article class="research-layer">
+          <div class="layer-title"><i class="key-white"></i><span>INDEPENDENT RESEARCH</span></div>
+          <h3>Every fact sourced, dated and inspectable.</h3>
+          <p>yellow3 lab establishes the identity, headquarters, ownership, funding and
+          capability findings from public evidence. Blank space remains blank when evidence
+          is absent.</p>
+        </article>
+        <article class="company-layer">
+          <div class="layer-title"><i class="key-yellow"></i><span>COMPANY-SUPPLIED INFORMATION</span></div>
+          <h3>Your information stays visibly yours.</h3>
+          <p>After a profile is claimed, the company can add its own information in a separate
+          pale-yellow layer. It never overwrites or becomes yellow3 lab research.</p>
+        </article>
+      </div>
+      <div class="evidence-key" aria-label="Information layers">
+        <div><i class="key-white"></i><span>Researched independently by yellow3 lab</span></div>
+        <div><i class="key-yellow"></i><span>Supplied directly by the company</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="independence-section">
+    <div class="independence-inner">
+      <p class="eyebrow">THE INDEPENDENCE RULE</p>
+      <blockquote>No fee to be listed. No paid priority for asking. Nothing sold that
+      resembles verification.</blockquote>
+      <a href="/research/digital-product-passport/suppliers#method">Read the research method
+        <span aria-hidden="true">&#8594;</span></a>
+    </div>
+  </section>
+</main>
+""" + SITE_FOOTER
+
+    script = r"""
+<script>
+(function(){
+  var PUBLIC=['gmail.com','googlemail.com','outlook.com','hotmail.com','live.com','yahoo.com',
+    'yahoo.co.uk','icloud.com','me.com','mac.com','aol.com','proton.me','protonmail.com',
+    'gmx.com','gmx.net','msn.com','yandex.com','zoho.com','fastmail.com','hey.com'];
+  var f=document.getElementById('addForm'),
+      company=document.getElementById('company'), email=document.getElementById('work-email'),
+      echo=document.getElementById('domainEcho'), err=document.getElementById('formError'),
+      errText=document.getElementById('formErrorText'),
+      queued=document.getElementById('queuedCard'), queuedName=document.getElementById('queuedName'),
+      existing=document.getElementById('existingCard');
+
+  function domainOf(v){
+    var p=String(v||'').trim().toLowerCase().split('@');
+    return (p.length===2 && p[1].indexOf('.')>0) ? p[1] : '';
+  }
+  function fail(t){ err.hidden=false; errText.textContent=t; email.classList.add('has-error'); }
+  function clear(){ err.hidden=true; email.classList.remove('has-error'); }
+  function show(card){ f.hidden=true; queued.hidden=true; existing.hidden=true; card.hidden=false; }
+
+  email.addEventListener('input',function(){
+    clear();
+    var d=domainOf(email.value);
+    echo.hidden=!d; echo.textContent = d ? 'Domain: '+d : '';
+  });
+  company.addEventListener('input',clear);
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-reset]'),function(b){
+    b.addEventListener('click',function(){
+      company.value=''; email.value=''; echo.hidden=true; clear();
+      queued.hidden=true; existing.hidden=true; f.hidden=false; company.focus();
+    });
+  });
+
+  f.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var name=(company.value||'').trim(), addr=(email.value||'').trim().toLowerCase();
+    if(!name){ fail('Enter the company name.'); return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(addr)){ fail('Enter a valid work email address.'); return; }
+    var dom=domainOf(addr);
+    if(PUBLIC.indexOf(dom)>-1){
+      fail('Use your company email. Personal mailboxes cannot be used because a work domain '
+        + 'is how we prevent unauthorised submissions.'); return;
+    }
+    clear();
+    // The register decides. There is no client-side lookup: whether a domain is
+    // already recorded comes back from the server, and only for domains the
+    // register already publishes.
+    fetch('/api/suggest',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({company:name,email:addr})})
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(d && d.existing){
+          document.getElementById('existingName').textContent=d.existing.name;
+          document.getElementById('existingDomain').textContent=dom;
+          document.getElementById('existingClaim').href=d.existing.claim_url;
+          // the register draws a two-letter mark everywhere; a one-word name must
+          // not become a single letter only on this page
+          var parts=d.existing.name.split(/[\s.\-_/]+/).filter(Boolean);
+          document.getElementById('existingInitials').textContent=(parts.length>1
+            ? parts[0][0]+parts[1][0]
+            : (parts[0]||'??').slice(0,2)).toUpperCase();
+          show(existing); return;
+        }
+        queuedName.textContent=name+' is in the next research pass.';
+        show(queued);
+      })
+      .catch(function(){ fail('Something went wrong. Please try again.'); });
+  });
+})();
+</script>
+"""
+    out = page("Add your company - DPP Supplier Register - yellow3",
+               "Ask yellow3 lab to research your company for the DPP Supplier Register. "
+               "Two details, no fee, and nothing is published without public evidence.",
+               "https://yellow3.io/research/digital-product-passport/suppliers/add",
+               body, script)
+    return out.replace(
+        '<link rel="stylesheet" href="/research/digital-product-passport/register.css" />',
+        '<link rel="stylesheet" href="/research/digital-product-passport/register.css" />\n'
+        '  <link rel="stylesheet" href="/research/digital-product-passport/add-v1.css" />')
+
+
 # ---------------------------------------------------------------- edit
 
 def edit_html(r, counts):
@@ -1640,6 +1897,9 @@ def main():
     with open(os.path.join(HERE, "digital-product-passport", "suppliers.html"), "w", encoding="utf-8") as fh:
         fh.write(directory_html(rows, counts, cap))
 
+    with open(os.path.join(OUT, "add.html"), "w", encoding="utf-8") as fh:
+        fh.write(add_html(counts))
+
     profiles = claims = 0
     for r in rows:
         with open(os.path.join(OUT, f"{r['id']}.html"), "w", encoding="utf-8") as fh:
@@ -1670,6 +1930,7 @@ def main():
     n = write_redirects([r["id"] for r in rows])
 
     print(f"/suppliers                     1 page")
+    print(f"/suppliers/add                 1 page")
     print(f"/suppliers/<id>              {profiles:3d} profiles")
     print(f"/suppliers/<id>/claim        {claims:3d} claim pages")
     print(f"/suppliers/<id>/edit         {claims:3d} editor pages")
