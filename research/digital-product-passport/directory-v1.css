@@ -279,3 +279,24 @@
 /* The row is a link, so it carries the page's text colour and no underline. */
 .dpp-dir .supplier-main { color: inherit; text-decoration: none; }
 .dpp-dir .supplier-main .go { text-align: right; color: #777; font-size: 13px; }
+
+/* ---- entry point to "Add your company" -----------------------------------
+   ChatGPT handoff, approved v1 - a surgical addition to the approved directory.
+   Reproduced as delivered and scoped to .dpp-dir like the rest of the package.
+   Placement per the handoff: after the toolbar, before the research exception. */
+
+.dpp-dir .missing-company { min-height:76px; margin-bottom:17px; padding:17px 22px; border:1px solid #d7cd82; background:var(--yellow); color:var(--ink); display:grid; grid-template-columns:1fr auto; gap:28px; align-items:center; font-family:Arial, Helvetica, sans-serif; text-decoration:none; }
+.dpp-dir .missing-company-copy { display:flex; align-items:baseline; gap:18px; min-width:0; }
+.dpp-dir .missing-company-copy strong { font-size:16px; letter-spacing:-.015em; white-space:nowrap; }
+.dpp-dir .missing-company-copy>span { color:#5f5d4f; font-size:11px; line-height:1.5; }
+.dpp-dir .missing-company-action { border-bottom:1px solid var(--ink); padding:6px 0; font-size:11px; font-weight:700; white-space:nowrap; }
+.dpp-dir .missing-company-action span { margin-left:18px; transition:transform .18s ease; display:inline-block; }
+.dpp-dir .missing-company:hover .missing-company-action span { transform:translateX(4px); }
+.dpp-dir .missing-company:focus-visible { outline:3px solid #d5bb00; outline-offset:3px; }
+
+@media (max-width:700px) {
+  .dpp-dir .missing-company { min-height:0; padding:17px 16px; grid-template-columns:1fr; gap:15px; }
+  .dpp-dir .missing-company-copy { align-items:flex-start; flex-direction:column; gap:7px; }
+  .dpp-dir .missing-company-copy strong { font-size:15px; }
+  .dpp-dir .missing-company-action { justify-self:start; min-height:34px; display:flex; align-items:center; }
+}

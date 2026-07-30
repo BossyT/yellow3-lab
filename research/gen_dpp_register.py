@@ -1819,6 +1819,15 @@ def directory_html(rows, counts, cap):
         </div>
       </div>
 
+      <a class="missing-company" href="/research/digital-product-passport/suppliers/add">
+        <span class="missing-company-copy">
+          <strong>Not in the register?</strong>
+          <span>Suggest your company for independent research. A request is not a listing,
+          and nothing submitted is published.</span>
+        </span>
+        <span class="missing-company-action">Request research <span aria-hidden="true">&#8594;</span></span>
+      </a>
+
       {featured}
 
       <div class="table-head">
