@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <!-- Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3JXMM2VG5"></script>
+      <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-K3JXMM2VG5');
+      </script>
+      </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GS1 is not one organisation - yellow3 lab</title>
+  <meta name="description" content="GS1 is a federation of local member organisations, not a single body in Brussels. What that means for anyone relying on GS1 identifiers for a Digital Product Passport - sourced and dated." />
+  <link rel="canonical" href="https://www.yellow3.io/insights/gs1-federation-dpp" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+        :root { --paper:#ffffff; --ink:#0e0e0e; --body:#3f3f3f; --muted:#8a8a8a; --line:#e7e6e2; --yellow:#ffe000; --panel:#f7f6f3; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+        body { font-family:'DM Sans', system-ui, sans-serif; background:var(--paper); color:var(--body); font-size:18px; line-height:1.75; font-weight:400; }
+        ::selection { background:var(--yellow); color:var(--ink); }
+        img { display:block; max-width:100%; }
+        a { color:inherit; }
+        .inner { max-width:1240px; margin:0 auto; }
+
+        /* NAV */
+        .site-nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:16px 48px; background:rgba(255,255,255,0.95); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+        .brand { display:flex; align-items:baseline; gap:7px; text-decoration:none; }
+        .brand img { height:21px; align-self:center; }
+        .brand .lab { font-weight:600; font-size:15px; color:var(--ink); letter-spacing:-0.01em; }
+        .nav-mid { display:flex; gap:32px; }
+        .nav-mid a { font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:#3a3a3a; text-decoration:none; font-weight:500; padding-bottom:3px; transition:color 0.2s; }
+        .nav-mid a:hover { color:var(--ink); }
+        .nav-mid a.active { border-bottom:2px solid var(--ink); color:var(--ink); }
+        .nav-cta { display:inline-flex; align-items:center; gap:10px; background:var(--ink); color:#fff; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:12px 20px; text-decoration:none; transition:background 0.2s; }
+        .nav-cta:hover { background:#000; }
+        .nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:6px; }
+        .nav-toggle span { display:block; width:22px; height:2px; background:var(--ink); margin:5px 0; transition:transform 0.3s, opacity 0.3s; }
+
+        /* HEADER */
+        .article-header { padding:150px 24px 36px; max-width:800px; margin:0 auto; }
+        .article-header .meta { font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:26px; display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+        .article-header .meta .tag { background:var(--yellow); color:var(--ink); padding:4px 10px; font-size:10px; letter-spacing:0.1em; }
+        .article-header h1 { font-size:clamp(34px, 5vw, 58px); font-weight:800; line-height:1.06; letter-spacing:-0.025em; color:var(--ink); margin-bottom:26px; }
+        .article-header .lede { font-size:20px; color:var(--body); line-height:1.6; border-left:3px solid var(--yellow); padding-left:22px; font-weight:400; }
+
+        /* SHARE */
+        .article-share { max-width:800px; margin:0 auto 8px; padding:0 24px; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+        .article-share-label { font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+        .article-share-btn { display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; border:1px solid var(--line); background:transparent; color:#888; cursor:pointer; transition:color 0.15s, border-color 0.15s; padding:0; text-decoration:none; }
+        .article-share-btn:hover { color:var(--ink); border-color:var(--ink); }
+        .article-share-btn.copied { color:#27ae60; border-color:#27ae60; }
+        .article-share-feedback { font-size:11px; color:#27ae60; opacity:0; transition:opacity 0.15s; }
+        .article-share-feedback.visible { opacity:1; }
+
+        /* HERO IMG */
+        .article-hero { max-width:920px; margin:24px auto 0; padding:0 24px; }
+        .article-hero img { width:100%; height:auto; display:block; }
+
+        /* BODY */
+        .article-body { max-width:720px; margin:0 auto; padding:44px 24px 88px; }
+        .article-body p { margin-bottom:26px; font-size:18px; line-height:1.8; color:var(--body); }
+        .article-body h2 { font-size:clamp(26px, 3vw, 36px); font-weight:800; letter-spacing:-0.02em; line-height:1.15; color:var(--ink); margin:54px 0 22px; }
+        .article-body h3 { font-size:20px; font-weight:700; color:var(--ink); margin:38px 0 16px; }
+        .article-body strong { font-weight:700; color:var(--ink); }
+        .article-body a { color:var(--ink); text-decoration:underline; text-decoration-color:var(--yellow); text-underline-offset:3px; text-decoration-thickness:2px; }
+        .article-body blockquote { margin:36px 0; padding:20px 26px; border-left:3px solid var(--yellow); background:#fffbe6; font-size:21px; font-weight:600; line-height:1.4; color:var(--ink); font-style:normal; }
+        .article-body ul, .article-body ol { margin:0 0 26px 22px; }
+        .article-body li { margin-bottom:10px; }
+
+        /* AUTHOR */
+        .author-box { max-width:720px; margin:0 auto; padding:40px 24px; border-top:1px solid var(--line); }
+        .author-box p { font-size:15px; color:var(--muted); line-height:1.7; }
+        .author-box a { color:var(--ink); text-decoration:underline; text-decoration-color:var(--yellow); }
+
+        /* ARTICLE NAV */
+        .article-nav { max-width:720px; margin:0 auto; padding:0 24px 80px; display:flex; justify-content:space-between; align-items:center; }
+        .back-link { font-size:13px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:#3a3a3a; text-decoration:none; }
+        .back-link:hover { color:var(--ink); }
+
+        /* FOOTER */
+        .site-footer { background:#0e0e0e; color:#fff; padding:72px 48px 36px; }
+        .foot-top { display:grid; grid-template-columns:1.4fr repeat(3, 1fr) 1.2fr; gap:40px; padding-bottom:56px; border-bottom:1px solid #262626; }
+        .foot-brand img { height:22px; filter:invert(1); margin-bottom:18px; }
+        .foot-brand .fb-lab { font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.5); font-weight:600; margin-bottom:10px; }
+        .foot-brand p { font-size:14px; color:rgba(255,255,255,0.55); line-height:1.5; max-width:220px; }
+        .foot-col h4 { font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:600; margin-bottom:18px; }
+        .foot-col a { display:block; font-size:14px; color:rgba(255,255,255,0.72); text-decoration:none; margin-bottom:11px; transition:color 0.2s; }
+        .foot-col a:hover { color:#fff; }
+        .foot-contact h4 { font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:600; margin-bottom:18px; }
+        .foot-contact a.mail { font-size:14px; color:#fff; text-decoration:none; display:block; margin-bottom:10px; }
+        .foot-contact .loc { font-size:14px; color:rgba(255,255,255,0.55); margin-bottom:18px; }
+        .foot-social { display:flex; gap:14px; }
+        .foot-social a { color:rgba(255,255,255,0.6); transition:color 0.2s; }
+        .foot-social a:hover { color:#fff; }
+        .foot-bottom { display:flex; align-items:center; justify-content:space-between; padding-top:28px; flex-wrap:wrap; gap:16px; }
+        .foot-bottom .copy { font-size:12px; color:rgba(255,255,255,0.4); }
+        .foot-legal { display:flex; gap:24px; }
+        .foot-legal a { font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:rgba(255,255,255,0.4); text-decoration:none; transition:color 0.2s; }
+        .foot-legal a:hover { color:#fff; }
+
+        @media (max-width:880px) {
+            .site-nav { padding:14px 24px; }
+            .nav-mid { display:none; position:absolute; top:100%; left:0; right:0; background:#fff; border-bottom:1px solid var(--line); flex-direction:column; gap:0; padding:12px 24px 20px; }
+            .nav-mid.open { display:flex; }
+            .nav-mid a { padding:12px 0; }
+            .nav-cta { display:none; }
+            .nav-toggle { display:block; }
+            .nav-toggle.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+            .nav-toggle.open span:nth-child(2) { opacity:0; }
+            .nav-toggle.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+            .article-header { padding:120px 24px 32px; }
+            .foot-top { grid-template-columns:1fr 1fr; gap:32px; }
+            .site-footer { padding:56px 24px 32px; }
+        }
+        @media (max-width:560px) { .foot-top { grid-template-columns:1fr; } }
+    </style>
+
+  <!-- OG / Social sharing -->
+  <meta property="og:image" content="/og/og-homepage-v2.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="yellow3 lab">
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:image" content="/og/og-homepage-v2.png" />
+  <meta property="og:title" content="GS1 is not one organisation - yellow3 lab" />
+  <meta property="og:description" content="GS1 is a federation of local member organisations, not a single body in Brussels. What that means for anyone relying on GS1 identifiers for a Digital Product Passport - sourced and dated." />
+  <meta property="og:url" content="https://www.yellow3.io/insights/gs1-federation-dpp" />
+  <meta property="twitter:title" content="GS1 is not one organisation - yellow3 lab" />
+  <meta property="twitter:description" content="GS1 is a federation, not one body in Brussels." />
+</head>
+<body>
+
+    <nav class="site-nav">
+        <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
+        <div class="nav-mid" id="navMid">
+            <a href="/naffe">Work</a>
+            <a href="/research">Research</a>
+            <a href="/insights/" class="active">Thinking</a>
+            <a href="/advisory">Advisory</a>
+            <a href="/about">About</a>
+            <a href="/#contact">Contact</a>
+        </div>
+        <a href="/feed.xml" class="nav-cta">Subscribe <span>&#8594;</span></a>
+        <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
+    </nav>
+
+    <header class="article-header">
+        <div class="meta">
+            <span>Reference</span>
+            <span>July 2026</span>
+            <span class="tag">DPP Register</span>
+            <span>6 minutes</span>
+        </div>
+        <h1>GS1 is not one organisation</h1>
+        <p class="lede">Our DPP Supplier Register lists GS1 as one organisation with a headquarters in Brussels. That is a simplification, and this page is the correction. GS1 is a federation: the barcode you scan in Lisbon and the barcode you scan in Helsinki are governed by the same standard but issued, priced and supported by different organisations.</p>
+    </header>
+
+    <div class="article-share">
+        <span class="article-share-label">Share</span>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.yellow3.io%2Finsights%2Fgs1-federation-dpp" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" class="article-share-btn" data-share-method="linkedin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.yellow3.io%2Finsights%2Fgs1-federation-dpp&text=GS1%20is%20not%20one%20organisation" target="_blank" rel="noopener noreferrer" aria-label="Share on X" class="article-share-btn" data-share-method="twitter"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <button type="button" class="article-share-btn" data-share-method="copy" data-share-url="https://www.yellow3.io/insights/gs1-federation-dpp" aria-label="Copy link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button>
+        <span class="article-share-feedback" aria-live="polite"></span>
+      </div>
+
+    <article class="article-body">
+        <p>The register we publish records <a href="/research/digital-product-passport/suppliers">188 organisations</a>
+        working on the Digital Product Passport. One of them is GS1, recorded as a standards body with a
+        headquarters in Brussels, Belgium. That single row is accurate about the Global Office and misleading
+        about everything else.</p>
+
+        <p>We considered adding each member organisation as its own entry. We decided against it: it would have
+        added more than a hundred rows to a register of DPP suppliers without adding a single supplier anyone can
+        assess. This page exists instead.</p>
+
+        <h2>What GS1 actually is</h2>
+
+        <p>GS1 describes itself as operating <strong>through local organisations in over 120 countries</strong>.
+        Its history page, marking the barcode's fiftieth anniversary, describes GS1 celebrating
+        <strong>together with its family of 116 local GS1 Member Organisations</strong>. A third page, the year in
+        review, says its services are <strong>available in over 120 GS1 Member Organisations globally</strong>.</p>
+
+        <p>Those three numbers come from GS1's own website and they do not agree with each other. We are recording
+        what each page says rather than picking the one we like, because the discrepancy is itself the point: there
+        is no single authoritative count of GS1 published in an obvious place. What is not in doubt is the shape.
+        GS1 is a federation of national bodies, each a separate legal entity, and the organisation in Brussels sets
+        standards rather than serving companies directly.</p>
+
+        <p>The membership is large. GS1 says its members are <strong>over a million organisations</strong>, and that
+        those members drive what the standards become.</p>
+
+        <h2>How it got that way</h2>
+
+        <p>The structure is an accident of history rather than a design. GS1's own timeline records the European
+        Article Numbering Association being established as an international, not-for-profit standards organisation
+        in Brussels, Belgium - a European counterpart to the American UPC. By the start of the millennium GS1
+        records being <strong>present in 90 countries</strong>. In 2005 the two merged, creating
+        <strong>a single, international organisation with 101 local GS1 Member Organisations</strong>. By the
+        barcode's fiftieth anniversary the family had grown to 116.</p>
+
+        <p>Each of those member organisations remained what it had been: a national body with its own staff, its own
+        pricing, its own language and its own commercial priorities.</p>
+
+        <h2>Why this matters for a Digital Product Passport</h2>
+
+        <p>It matters because of where the passport's identifier comes from.</p>
+
+        <p>GS1 Digital Link is the standard that turns a GS1 identifier into a web address, and it is the mechanism
+        underneath a large share of the passports in our register - it is what our resolver check tests. GS1
+        describes it as <strong>the standardised method for encoding identifiers like GS1 GTINs, GLNs and SSCCs,
+        along with batch numbers, serial numbers, expiry dates and more</strong>.</p>
+
+        <p>At the global level GS1 has published a <strong>Digital Product Passport Provisional Standard</strong>.
+        Its own description is careful about what it is for: the provisional application standard
+        <strong>aims to help GS1 standards users to prepare fulfilment of regulatory requirements regarding
+        identification and data carrier as a means to access DPP data</strong>. That is a standard about
+        identification and carriers. It is not a passport, and it does not claim to be.</p>
+
+        <p>The guidance a company actually reads is national, and it is uneven. GS1 Sweden publishes a handbook in
+        Swedish for companies wanting to get started with digital product passports in practice - written, in its own
+        words, to help you understand which decisions you need to take without going down into technical detail. GS1
+        France publishes a DPP page in French stating that from 2027 the DPP becomes mandatory for certain priority
+        sectors: textiles, electronics, batteries, construction. Others publish nothing we could find from their own
+        home page.</p>
+
+        <blockquote>Your GTIN, your resolver, your price and your DPP guidance come from a national member
+        organisation. They do not come from Brussels.</blockquote>
+
+        <p>For a company choosing a DPP supplier, the practical consequence is that two suppliers can both be
+        correct when they describe GS1 support differently, because they are describing different member
+        organisations. And a buyer asking "is this GS1 compliant?" is asking a question that has more than one
+        answer depending on where the identifiers were issued.</p>
+
+        <h2>What the register does about it</h2>
+
+        <p>GS1 stays as one row, typed as a standards body. Standards bodies are never put through our ten
+        capability checks - those checks ask what a product does, and a standard is not a product. The same applies
+        to <a href="/research/digital-product-passport/suppliers/catena-x">Catena-X</a> and to
+        <a href="/research/digital-product-passport/suppliers/eclass-e-v">ECLASS</a>.</p>
+
+        <p>The register's headquarters field will keep saying Brussels, because that is where the Global Office is
+        and because inventing a better answer would be worse than an honest simplification. This page is what the
+        field cannot say.</p>
+
+        <p>If we have something wrong here, the fix is the same as everywhere else in this register: publish the
+        evidence and we will record it.</p>
+
+        <h2>Sources</h2>
+
+        <p>Every claim above was read on the page it is attributed to, on 30 July 2026.</p>
+
+        <ul>
+        <li>Operating in over 120 countries -
+        <a href="https://www.gs1.org/standards/need-gs1-barcode" rel="nofollow noopener" target="_blank">gs1.org/standards/need-gs1-barcode</a></li>
+        <li>116 local Member Organisations; EAN founded in Brussels; present in 90 countries; the 2005 merger and 101 MOs -
+        <a href="https://www.gs1.org/about/how-we-got-here" rel="nofollow noopener" target="_blank">gs1.org/about/how-we-got-here</a></li>
+        <li>Over 120 GS1 Member Organisations globally -
+        <a href="https://www.gs1.org/about-gs1/year-review" rel="nofollow noopener" target="_blank">gs1.org/about-gs1/year-review</a></li>
+        <li>Over a million member organisations -
+        <a href="https://www.gs1.org/about/what-we-do" rel="nofollow noopener" target="_blank">gs1.org/about/what-we-do</a></li>
+        <li>GS1 Digital Link, what it encodes -
+        <a href="https://www.gs1.org/standards/gs1-digital-link" rel="nofollow noopener" target="_blank">gs1.org/standards/gs1-digital-link</a></li>
+        <li>GS1 Digital Product Passport Provisional Standard -
+        <a href="https://www.gs1.org/standards/standards-emerging-regulations/DPP" rel="nofollow noopener" target="_blank">gs1.org/standards/standards-emerging-regulations/DPP</a></li>
+        <li>GS1 position on the circular economy and ESPR -
+        <a href="https://www.gs1.org/public-policy/priorities/circular-economy-sustainability" rel="nofollow noopener" target="_blank">gs1.org/public-policy/priorities/circular-economy-sustainability</a></li>
+        <li>GS1 Sweden, digital product passport handbook -
+        <a href="https://gs1.se/digitala-produktpass/" rel="nofollow noopener" target="_blank">gs1.se/digitala-produktpass</a></li>
+        <li>GS1 France, DPP and the 2027 sectors -
+        <a href="https://www.gs1.fr/enjeux-perspectives/passeport-numerique-produits-dpp" rel="nofollow noopener" target="_blank">gs1.fr/enjeux-perspectives/passeport-numerique-produits-dpp</a></li>
+        </ul>
+
+    </article>
+
+    <div class="author-box">
+        <p><strong style="color: var(--ink);">yellow3 lab</strong> is an AI research lab in Copenhagen. We research and develop autonomous AI platforms. <a href="/">Learn more &rarr;</a></p>
+    </div>
+
+    <div class="article-nav">
+        <a href="/insights/" class="back-link">&larr; All thinking</a>
+    </div>
+
+    <footer class="site-footer">
+        <div class="inner">
+            <div class="foot-top">
+                <div class="foot-brand">
+                    <img src="/logo.png" alt="yellow3" />
+                    <div class="fb-lab">Copenhagen AI Lab</div>
+                    <p>Building outcome infrastructure for the AI era.</p>
+                </div>
+                <div class="foot-col">
+                    <h4>Work</h4>
+                    <a href="/naffe">naffe.ai</a>
+                    <a href="/research/digital-product-passport">Digital Product Passports</a>
+                    <a href="/advisory">Advisory</a>
+                </div>
+                <div class="foot-col">
+                    <h4>Research</h4>
+                    <a href="/research">Research areas</a>
+                    <a href="/research/model-adoption">Model adoption</a>
+                    <a href="/research/eu-ai-act">EU AI Act</a>
+                </div>
+                <div class="foot-col">
+                    <h4>Company</h4>
+                    <a href="/about">About</a>
+                    <a href="/insights/">Thinking</a>
+                    <a href="#" onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;;return false;">Contact</a>
+                </div>
+                <div class="foot-contact">
+                    <h4>Get in touch</h4>
+                    <a href="#" onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;;return false;" class="mail">Email us</a>
+                    <div class="loc">Copenhagen, Denmark</div>
+                    <div class="foot-social">
+                        <a href="https://www.linkedin.com/company/yellow3" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                        <a href="https://x.com/yellow3" target="_blank" rel="noopener" aria-label="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="foot-bottom">
+                <span class="copy">&copy; 2026 yellow3 lab ApS. All rights reserved.</span>
+                <div class="foot-legal">
+                    <a href="/privacy">Privacy</a>
+                    <a href="/terms">Terms</a>
+                    <a href="/cookies">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>(function(){document.querySelectorAll(".article-share-btn").forEach(function(btn){btn.addEventListener("click",function(e){var method=btn.getAttribute("data-share-method");var url=btn.getAttribute("data-share-url")||btn.href;if(method==="copy"){e.preventDefault();var copyUrl=btn.getAttribute("data-share-url");if(navigator.clipboard){navigator.clipboard.writeText(copyUrl).then(function(){btn.classList.add("copied");var feedback=btn.parentElement.querySelector(".article-share-feedback");if(feedback){feedback.textContent="Copied";feedback.classList.add("visible");}setTimeout(function(){btn.classList.remove("copied");if(feedback){feedback.classList.remove("visible");}},1500);}).catch(function(){});}}if(typeof window.gtag==="function"){window.gtag("event","article_share",{method:method,article_url:url});}});});})();</script>
+</body>
+</html>
