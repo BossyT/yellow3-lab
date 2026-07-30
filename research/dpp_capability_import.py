@@ -37,6 +37,10 @@ DATA = os.path.join(HERE, "dpp-suppliers.json")
 
 STATES = ("verified", "company_states", "not_found")
 NON_COMMERCIAL = {"project-consortium", "standards-body", "not-a-supplier"}
+# Consultancies are commercial suppliers but supply services, not a passport product.
+# The ten checks ask what a product does, so they are not assessed at all - decided
+# 2026-07-30. Enforced here so a future batch cannot quietly include one.
+NOT_ASSESSED = NON_COMMERCIAL | {"consultancy"}
 MIN_ARTIFACT = 15   # "a page" is not a description of an artifact
 CHECKS = ["c%02d" % i for i in range(1, 11)]
 
@@ -59,8 +63,9 @@ def validate(row, reg, seen):
 
     if sid not in reg:
         bad.append("supplier_id is not in the register")
-    elif reg[sid]["entity_type"] in NON_COMMERCIAL:
-        bad.append("non-commercial rows are not assessed")
+    elif reg[sid]["entity_type"] in NOT_ASSESSED:
+        bad.append(f"{reg[sid]['entity_type']} rows are not assessed - the ten checks "
+                   f"measure a product")
     if cid not in CHECKS:
         bad.append("check_id must be c01..c10")
     if (sid, cid) in seen:
