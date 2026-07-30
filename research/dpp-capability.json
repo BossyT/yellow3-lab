@@ -2,11 +2,11 @@
  "layer": "capability",
  "framework": "capability-framework.md",
  "generated": "2026-07-30",
- "suppliers_assessed": 153,
- "checks_run": 1530,
+ "suppliers_assessed": 154,
+ "checks_run": 1540,
  "totals": {
-  "not_found": 1215,
-  "company_states": 269,
+  "not_found": 1222,
+  "company_states": 272,
   "verified": 46
  },
  "results": [
@@ -14609,6 +14609,106 @@
    "artifact": "",
    "checked_date": "2026-07-30",
    "note": ""
+  },
+  {
+   "supplier_id": "undo",
+   "check_id": "c01",
+   "check_name": "Standards mapping",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Only a \\GS1 Compliance\\\" bullet in a pricing tier. No published mapping of fields to JTC 24 or the EN 182xx series.\""
+  },
+  {
+   "supplier_id": "undo",
+   "check_id": "c02",
+   "check_name": "Evidence architecture",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "No public example passport exists at all, and no published schema was found."
+  },
+  {
+   "supplier_id": "undo",
+   "check_id": "c03",
+   "check_name": "Identity portability",
+   "state": "company_states",
+   "evidence_url": "https://undo.software/digital_product_passport_management_system/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "A component claim only: \\GS1 Compliance\\\" listed as a package feature. No resolver was demonstrated and no commitment that printed identifiers keep resolving after termination - the terms say access ceases.\""
+  },
+  {
+   "supplier_id": "undo",
+   "check_id": "c04",
+   "check_name": "Model / batch / item",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "No documentation or example showing model, batch and item levels supported today."
+  },
+  {
+   "supplier_id": "undo",
+   "check_id": "c05",
+   "check_name": "Clean export",
+   "state": "company_states",
+   "evidence_url": "https://undo.software/terms-of-use/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "The terms commit to \\an export of its data upon request\\\" on termination"
+  },
+  {
+   "supplier_id": "undo",
+   "check_id": "c06",
+   "check_name": "Regulatory pace",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "Blog explainers about the DPP timeline and affected industries were found, but no changelog, release note or versioned artifact showing the product changed in response to a named instrument."
+  },
+  {
+   "supplier_id": "undo",
+   "check_id": "c07",
+   "check_name": "EU DPP Registry",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "No statement, demo or documentation of registration or integration with the EU DPP Registry."
+  },
+  {
+   "supplier_id": "undo",
+   "check_id": "c08",
+   "check_name": "Passport afterlife",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "The terms state that on termination the right to access the Services ceases. No continuity, escrow or custodianship commitment for passports already issued."
+  },
+  {
+   "supplier_id": "undo",
+   "check_id": "c09",
+   "check_name": "Role-based disclosure",
+   "state": "company_states",
+   "evidence_url": "https://undo.software/digital_product_passport_management_system/",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "\\Control who sees what information - based on user roles"
+  },
+  {
+   "supplier_id": "undo",
+   "check_id": "c10",
+   "check_name": "Resolver uptime",
+   "state": "not_found",
+   "evidence_url": "",
+   "artifact": "",
+   "checked_date": "2026-07-30",
+   "note": "The terms offer \\commercially reasonable efforts\\\" without a guarantee. No status page or measured uptime history was found.\""
   },
   {
    "supplier_id": "unisot",
