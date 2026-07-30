@@ -120,15 +120,15 @@
   {
    "alias_domains": "",
    "confidence": "claimed",
-   "country_source": "not_found 2026-07-29",
+   "country_source": "https://www.aidgent.io/contact",
    "domain": "aidgent.io",
    "entity_type": "identity-carrier",
    "evidence_url": "https://www.aidgent.io/digital-product-pass",
    "founded_year": "",
    "funding_source": "",
    "funding_stage": "",
-   "hq_city": "",
-   "hq_country": "",
+   "hq_city": "Stockholm",
+   "hq_country": "Sweden",
    "id": "aidgent",
    "last_funding_date": "",
    "name": "Aidgent",
@@ -151,7 +151,7 @@
    "hq_city": "Ultimo",
    "country_source": "https://aleverum.com/contact/",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "textiles,electronics,batteries,construction",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -163,7 +163,12 @@
    "source": "official company website",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles",
+    "electronics",
+    "batteries",
+    "construction"
+   ]
   },
   {
    "id": "alternew",
@@ -175,7 +180,7 @@
    "hq_city": "",
    "country_source": "not_found 2026-07-28",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "textiles",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -187,7 +192,9 @@
    "source": "official company website",
    "source_date": "2026-07-28",
    "confidence": "claimed",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles"
+   ]
   },
   {
    "id": "arianee",
@@ -280,7 +287,7 @@
    "hq_city": "Zug",
    "country_source": "https://authena.io/quality-policy/",
    "entity_type": "identity-carrier",
-   "sectors": "",
+   "sectors": "food",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -292,7 +299,9 @@
    "source": "official company website",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "food"
+   ]
   },
   {
    "id": "autonms",
@@ -300,9 +309,9 @@
    "website": "https://www.passper.eu",
    "domain": "passper.eu",
    "alias_domains": "",
-   "hq_country": "",
+   "hq_country": "Cyprus",
    "hq_city": "",
-   "country_source": "not_found 2026-07-28",
+   "country_source": "https://www.passper.eu/terms",
    "entity_type": "platform",
    "sectors": "batteries,textiles,general,tyres,construction,electronics,chemicals",
    "founded_year": "",
@@ -491,7 +500,7 @@
    "hq_city": "",
    "country_source": "not_found 2026-07-28",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "batteries",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -503,7 +512,9 @@
    "source": "official company website",
    "source_date": "2026-07-28",
    "confidence": "claimed",
-   "sectors_list": []
+   "sectors_list": [
+    "batteries"
+   ]
   },
   {
    "id": "billon-group",
@@ -1220,7 +1231,7 @@
    "hq_city": "New York",
    "country_source": "https://www.dataart.com/legal-information",
    "entity_type": "consultancy",
-   "sectors": "",
+   "sectors": "automotive",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -1232,7 +1243,9 @@
    "source": "official company website and legal information",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "automotive"
+   ]
   },
   {
    "id": "deeplai",
@@ -1319,9 +1332,9 @@
    "website": "https://digipilpass.com",
    "domain": "digipilpass.com",
    "alias_domains": "",
-   "hq_country": "",
+   "hq_country": "Turkey",
    "hq_city": "",
-   "country_source": "not_found 2026-07-28",
+   "country_source": "https://digipilpass.com",
    "entity_type": "not-a-supplier",
    "sectors": "batteries",
    "founded_year": "",
@@ -1606,9 +1619,9 @@
    "website": "https://dupastr.com",
    "domain": "dupastr.com",
    "alias_domains": "digipilpass.com",
-   "hq_country": "",
-   "hq_city": "",
-   "country_source": "not_found 2026-07-28",
+   "hq_country": "Turkey",
+   "hq_city": "Kocaeli",
+   "country_source": "https://dupastr.com",
    "entity_type": "platform",
    "sectors": "electronics,batteries",
    "founded_year": "",
@@ -1786,7 +1799,7 @@
    "hq_city": "Zagreb",
    "country_source": "https://sunrise2027.ai/privacy-policy",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "food",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -1798,7 +1811,9 @@
    "source": "official corporate and product websites; product privacy policy",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "food"
+   ]
   },
   {
    "id": "eon",
@@ -1963,7 +1978,7 @@
    "hq_city": "Riga",
    "country_source": "https://fluxy.one/contact",
    "entity_type": "middleware",
-   "sectors": "",
+   "sectors": "textiles,electronics,construction,tyres,furniture,food",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -1975,7 +1990,14 @@
    "source": "official website and contact page",
    "source_date": "2026-07-28",
    "confidence": "claimed",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles",
+    "electronics",
+    "construction",
+    "tyres",
+    "furniture",
+    "food"
+   ]
   },
   {
    "id": "foodtraze",
@@ -2218,7 +2240,7 @@
    "hq_city": "Milan",
    "country_source": "https://www.haladpp.com/",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "textiles",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -2230,7 +2252,9 @@
    "source": "official company website",
    "source_date": "2026-07-28",
    "confidence": "claimed",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles"
+   ]
   },
   {
    "id": "harbour-ai",
@@ -2386,7 +2410,7 @@
    "hq_city": "Reutlingen",
    "country_source": "https://www.ipoint-systems.com/legal-notice/",
    "entity_type": "erp-pim-plm",
-   "sectors": "",
+   "sectors": "electronics,automotive",
    "founded_year": "",
    "ownership": "subsidiary of Assent",
    "funding_stage": "subsidiary",
@@ -2398,7 +2422,10 @@
    "source": "official IPOINT legal notice and Assent acquisition release",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "electronics",
+    "automotive"
+   ]
   },
   {
    "id": "ixalab-2026",
@@ -2410,7 +2437,7 @@
    "hq_city": "",
    "country_source": "https://www.gub.uy/ministerio-industria-energia-mineria/sites/ministerio-industria-energia-mineria/files/documentos/publicaciones/Boletin%20276.pdf",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "textiles",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -2422,7 +2449,9 @@
    "source": "official company website and Uruguay industrial property bulletin",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles"
+   ]
   },
   {
    "id": "k4security-co-ltd",
@@ -2647,7 +2676,7 @@
    "hq_city": "",
    "country_source": "https://abr.business.gov.au/ABN/View/99617775578",
    "entity_type": "identity-carrier",
-   "sectors": "",
+   "sectors": "textiles,electronics,batteries,construction,automotive",
    "founded_year": "2017",
    "ownership": "",
    "funding_stage": "grant-funded",
@@ -2659,7 +2688,13 @@
    "source": "official company website, Australian Business Register, and GrantConnect",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles",
+    "electronics",
+    "batteries",
+    "construction",
+    "automotive"
+   ]
   },
   {
    "id": "landbell-h2-compliance",
@@ -2704,8 +2739,10 @@
    "last_funding_date": "",
    "name": "Lingon",
    "ownership": "operated by Lingon Certificates AB (Swedish org. no. 559063-5032)",
-   "sectors": "",
-   "sectors_list": [],
+   "sectors": "furniture",
+   "sectors_list": [
+    "furniture"
+   ],
    "source": "official product page and company legal footer",
    "source_date": "2026-07-29",
    "status": "active",
@@ -2751,7 +2788,7 @@
    "hq_city": "Guwahati",
    "country_source": "https://www.lw3.world/",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "batteries",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -2763,7 +2800,9 @@
    "source": "official company website",
    "source_date": "2026-07-28",
    "confidence": "claimed",
-   "sectors_list": []
+   "sectors_list": [
+    "batteries"
+   ]
   },
   {
    "id": "lyondellbasell",
@@ -2775,7 +2814,7 @@
    "hq_city": "",
    "country_source": "not_found 2026-07-28",
    "entity_type": "not-a-supplier",
-   "sectors": "",
+   "sectors": "chemicals",
    "founded_year": "",
    "ownership": "public (NYSE: LYB)",
    "funding_stage": "",
@@ -2787,7 +2826,9 @@
    "source": "official company website and SEC filing",
    "source_date": "2026-07-28",
    "confidence": "unverified",
-   "sectors_list": []
+   "sectors_list": [
+    "chemicals"
+   ]
   },
   {
    "id": "madaster",
@@ -2955,7 +2996,7 @@
    "hq_city": "Den Haag",
    "country_source": "https://mobillor.com/contact-us/",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "electronics,automotive",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -2967,7 +3008,10 @@
    "source": "official company website",
    "source_date": "2026-07-28",
    "confidence": "claimed",
-   "sectors_list": []
+   "sectors_list": [
+    "electronics",
+    "automotive"
+   ]
   },
   {
    "id": "monxolo-ltd",
@@ -3080,7 +3124,7 @@
    "hq_city": "Münster",
    "country_source": "https://www.narravero.com/en/imprint",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "textiles,furniture",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -3092,7 +3136,10 @@
    "source": "official company website and imprint",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles",
+    "furniture"
+   ]
   },
   {
    "id": "neocondo",
@@ -3104,7 +3151,7 @@
    "hq_city": "Vanves",
    "country_source": "https://annuaire-entreprises.data.gouv.fr/entreprise/907754600",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "textiles",
    "founded_year": "",
    "ownership": "brand of Nichen SAS",
    "funding_stage": "",
@@ -3116,7 +3163,9 @@
    "source": "official product website, legal notice and French national business register",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles"
+   ]
   },
   {
    "id": "objective-partner-ag",
@@ -3128,7 +3177,7 @@
    "hq_city": "Weinheim",
    "country_source": "https://objective-partner.de/en/imprint/",
    "entity_type": "consultancy",
-   "sectors": "",
+   "sectors": "batteries",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -3140,7 +3189,9 @@
    "source": "official company website and imprint",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "batteries"
+   ]
   },
   {
    "id": "ootentik",
@@ -3152,7 +3203,7 @@
    "hq_city": "Aix-en-Provence",
    "country_source": "https://annuaire-entreprises.data.gouv.fr/entreprise/914524814",
    "entity_type": "identity-carrier",
-   "sectors": "",
+   "sectors": "textiles",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -3164,7 +3215,9 @@
    "source": "official company website and French national business register",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles"
+   ]
   },
   {
    "id": "open-dpp-gmbh",
@@ -3176,7 +3229,7 @@
    "hq_city": "Freiburg im Breisgau",
    "country_source": "https://open-dpp.de/en/legal/imprint",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "textiles,tyres",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -3188,7 +3241,10 @@
    "source": "official company website and imprint",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles",
+    "tyres"
+   ]
   },
   {
    "id": "opendpp-uab",
@@ -3200,7 +3256,7 @@
    "hq_city": "Vilnius",
    "country_source": "https://opendpp-node.eu/imprint",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "textiles,electronics,batteries",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -3212,7 +3268,11 @@
    "source": "official product website and imprint",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles",
+    "electronics",
+    "batteries"
+   ]
   },
   {
    "id": "optel",
@@ -3333,7 +3393,7 @@
    "hq_city": "Neuchâtel",
    "country_source": "https://www.origyn.com/INTEGRATORS_CONTRACT.pdf",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "textiles",
    "founded_year": "2020",
    "ownership": "non-profit foundation; operating entity ORIGYN Entreprise SA",
    "funding_stage": "",
@@ -3345,7 +3405,9 @@
    "source": "official foundation website, legal contract, and company-issued release",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles"
+   ]
   },
   {
    "id": "orijin-plus",
@@ -3357,7 +3419,7 @@
    "hq_city": "Perth",
    "country_source": "https://abr.business.gov.au/ABN/View/67614469760",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "food",
    "founded_year": "2016",
    "ownership": "",
    "funding_stage": "",
@@ -3369,7 +3431,9 @@
    "source": "official product website and Australian Business Register",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "food"
+   ]
   },
   {
    "id": "osapiens",
@@ -3381,7 +3445,7 @@
    "hq_city": "Mannheim",
    "country_source": "https://osapiens.com/imprint/",
    "entity_type": "erp-pim-plm",
-   "sectors": "",
+   "sectors": "food,automotive",
    "founded_year": "",
    "ownership": "DPP offering operated by osapiens Services GmbH",
    "funding_stage": "series-a-plus",
@@ -3393,7 +3457,10 @@
    "source": "official company website, imprint, and funding release",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "food",
+    "automotive"
+   ]
   },
   {
    "id": "otokod-technologies-dppvisa",
@@ -3457,7 +3524,7 @@
    "hq_city": "Elsdorf",
    "country_source": "https://www.passportlab.io/legal-notice/",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "electronics,batteries,construction",
    "founded_year": "",
    "ownership": "product of NextGate Digital UG (haftungsbeschränkt)",
    "funding_stage": "",
@@ -3469,7 +3536,11 @@
    "source": "official product website and imprint",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "electronics",
+    "batteries",
+    "construction"
+   ]
   },
   {
    "id": "peftrust",
@@ -3635,7 +3706,7 @@
    "hq_city": "Amsterdam",
    "country_source": "https://www.provenant.com/terms-of-service",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "textiles,furniture",
    "founded_year": "",
    "ownership": "trading name of Protokol DPP B.V.",
    "funding_stage": "",
@@ -3647,7 +3718,10 @@
    "source": "official product website and terms of service",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles",
+    "furniture"
+   ]
   },
   {
    "id": "psqr",
@@ -3713,7 +3787,7 @@
    "hq_city": "Brugge",
    "country_source": "https://www.quifactum.com/nl/pagina/privacybeleid",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "textiles",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -3725,7 +3799,9 @@
    "source": "official company website and privacy policy",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles"
+   ]
   },
   {
    "id": "r-cycle",
@@ -3787,7 +3863,7 @@
    "hq_city": "Paris",
    "country_source": "https://www.realign.tech/legal",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "textiles",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -3799,7 +3875,9 @@
    "source": "official company website and legal notice",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles"
+   ]
   },
   {
    "id": "regilient",
@@ -3811,7 +3889,7 @@
    "hq_city": "",
    "country_source": "not_found 2026-07-28",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "electronics",
    "founded_year": "",
    "ownership": "operated by Acquis Engineering LLP",
    "funding_stage": "",
@@ -3823,7 +3901,9 @@
    "source": "official company website, privacy policy, and contact page",
    "source_date": "2026-07-28",
    "confidence": "unverified",
-   "sectors_list": []
+   "sectors_list": [
+    "electronics"
+   ]
   },
   {
    "id": "renoon",
@@ -4254,7 +4334,7 @@
    "hq_city": "Rotterdam",
    "country_source": "https://www.usetappr.com/privacy-policy",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "textiles",
    "founded_year": "",
    "ownership": "operated by Tappr Network B.V.",
    "funding_stage": "",
@@ -4266,7 +4346,9 @@
    "source": "official product site and privacy policy",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles"
+   ]
   },
   {
    "id": "temera",
@@ -4383,7 +4465,7 @@
    "hq_city": "London",
    "country_source": "https://www.tieback.io/terms-of-use/",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "textiles,electronics,food",
    "founded_year": "",
    "ownership": "trade name of Startwitus Limited",
    "funding_stage": "",
@@ -4395,7 +4477,11 @@
    "source": "official product website and terms of use",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles",
+    "electronics",
+    "food"
+   ]
   },
   {
    "id": "tilkal",
@@ -4462,7 +4548,7 @@
    "hq_city": "Copenhagen",
    "country_source": "https://tracedsystems.com/terms-of-service",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "textiles,batteries",
    "founded_year": "",
    "ownership": "operated by Traced Systems ApS",
    "funding_stage": "",
@@ -4474,7 +4560,10 @@
    "source": "official product website and terms of service",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles",
+    "batteries"
+   ]
   },
   {
    "id": "tracelia",
@@ -4486,7 +4575,7 @@
    "hq_city": "Warsaw",
    "country_source": "https://tracelia.com/terms",
    "entity_type": "not-a-supplier",
-   "sectors": "",
+   "sectors": "textiles",
    "founded_year": "",
    "ownership": "founder-operated project; no incorporated entity",
    "funding_stage": "",
@@ -4498,7 +4587,9 @@
    "source": "official project website and terms",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles"
+   ]
   },
   {
    "id": "trackvision-ai-ltd",
@@ -4534,7 +4625,7 @@
    "hq_city": "Zug",
    "country_source": "https://transpareo.com/en/imprint",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "textiles,electronics,batteries,construction,cosmetics",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -4546,7 +4637,13 @@
    "source": "official product website and imprint",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles",
+    "electronics",
+    "batteries",
+    "construction",
+    "cosmetics"
+   ]
   },
   {
    "id": "treverum",
@@ -4568,8 +4665,13 @@
    "last_funding_date": "",
    "total_disclosed_funding": "",
    "alias_domains": "",
-   "sectors_list": [],
-   "sectors": "",
+   "sectors_list": [
+    "textiles",
+    "batteries",
+    "furniture",
+    "chemicals"
+   ],
+   "sectors": "textiles,batteries,furniture,chemicals",
    "confidence": "claimed"
   },
   {
@@ -4656,7 +4758,7 @@
    "hq_city": "Kløfta",
    "country_source": "https://virksomhet.brreg.no/en/oppslag/enheter/920239749",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "textiles,construction,food",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -4668,7 +4770,11 @@
    "source": "Norwegian business register and official product website",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles",
+    "construction",
+    "food"
+   ]
   },
   {
    "id": "unopim",
@@ -4754,7 +4860,7 @@
    "hq_city": "Turin",
    "country_source": "https://www.wiseside.com/en/privacy-policy-en/",
    "entity_type": "platform",
-   "sectors": "",
+   "sectors": "food",
    "founded_year": "",
    "ownership": "operator of iChain4DPP",
    "funding_stage": "",
@@ -4766,7 +4872,9 @@
    "source": "official company privacy policy and product page",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "food"
+   ]
   },
   {
    "id": "worldline",
@@ -4778,7 +4886,7 @@
    "hq_city": "Paris La Défense",
    "country_source": "https://worldline.com/en/compliancy/imprint",
    "entity_type": "middleware",
-   "sectors": "",
+   "sectors": "textiles,electronics,food,automotive,cosmetics",
    "founded_year": "",
    "ownership": "public (Euronext Paris: WLN); DPP-relevant product line is Worldline Track and Trace",
    "funding_stage": "public",
@@ -4790,7 +4898,13 @@
    "source": "official corporate imprint, registration document, and product material",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles",
+    "electronics",
+    "food",
+    "automotive",
+    "cosmetics"
+   ]
   },
   {
    "id": "zeropact",
