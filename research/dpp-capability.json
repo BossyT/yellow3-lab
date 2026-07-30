@@ -2,10 +2,10 @@
  "layer": "capability",
  "framework": "capability-framework.md",
  "generated": "2026-07-30",
- "suppliers_assessed": 154,
- "checks_run": 1540,
+ "suppliers_assessed": 153,
+ "checks_run": 1530,
  "totals": {
-  "not_found": 1222,
+  "not_found": 1212,
   "company_states": 272,
   "verified": 46
  },
@@ -4509,106 +4509,6 @@
    "artifact": "",
    "checked_date": "2026-07-30",
    "note": ""
-  },
-  {
-   "supplier_id": "e-circular-aps",
-   "check_id": "c01",
-   "check_name": "Standards mapping",
-   "state": "not_found",
-   "evidence_url": "",
-   "artifact": "",
-   "checked_date": "2026-07-29",
-   "note": "No specific public DPP product or module was identified."
-  },
-  {
-   "supplier_id": "e-circular-aps",
-   "check_id": "c02",
-   "check_name": "Evidence architecture",
-   "state": "not_found",
-   "evidence_url": "",
-   "artifact": "",
-   "checked_date": "2026-07-29",
-   "note": "No public example passport or published schema was found for the supplier's DPP offering."
-  },
-  {
-   "supplier_id": "e-circular-aps",
-   "check_id": "c03",
-   "check_name": "Identity portability",
-   "state": "not_found",
-   "evidence_url": "",
-   "artifact": "",
-   "checked_date": "2026-07-29",
-   "note": "No specific public DPP product or module was identified."
-  },
-  {
-   "supplier_id": "e-circular-aps",
-   "check_id": "c04",
-   "check_name": "Model / batch / item",
-   "state": "not_found",
-   "evidence_url": "",
-   "artifact": "",
-   "checked_date": "2026-07-29",
-   "note": "No specific public DPP product or module was identified."
-  },
-  {
-   "supplier_id": "e-circular-aps",
-   "check_id": "c05",
-   "check_name": "Clean export",
-   "state": "not_found",
-   "evidence_url": "",
-   "artifact": "",
-   "checked_date": "2026-07-29",
-   "note": "No specific public DPP product or module was identified."
-  },
-  {
-   "supplier_id": "e-circular-aps",
-   "check_id": "c06",
-   "check_name": "Regulatory pace",
-   "state": "not_found",
-   "evidence_url": "",
-   "artifact": "",
-   "checked_date": "2026-07-29",
-   "note": "No specific public DPP product or module was identified."
-  },
-  {
-   "supplier_id": "e-circular-aps",
-   "check_id": "c07",
-   "check_name": "EU DPP Registry",
-   "state": "not_found",
-   "evidence_url": "",
-   "artifact": "",
-   "checked_date": "2026-07-29",
-   "note": "No public artifact showed an actual registration or completed integration after 20 July 2026."
-  },
-  {
-   "supplier_id": "e-circular-aps",
-   "check_id": "c08",
-   "check_name": "Passport afterlife",
-   "state": "not_found",
-   "evidence_url": "",
-   "artifact": "",
-   "checked_date": "2026-07-29",
-   "note": "No specific public DPP product or module was identified."
-  },
-  {
-   "supplier_id": "e-circular-aps",
-   "check_id": "c09",
-   "check_name": "Role-based disclosure",
-   "state": "not_found",
-   "evidence_url": "",
-   "artifact": "",
-   "checked_date": "2026-07-29",
-   "note": "No specific public DPP product or module was identified."
-  },
-  {
-   "supplier_id": "e-circular-aps",
-   "check_id": "c10",
-   "check_name": "Resolver uptime",
-   "state": "not_found",
-   "evidence_url": "",
-   "artifact": "",
-   "checked_date": "2026-07-29",
-   "note": "No specific public DPP product or module was identified."
   },
   {
    "supplier_id": "echo-prm-gmbh",
