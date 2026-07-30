@@ -7,14 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Supplier directory - DPP Supplier Register - yellow3</title>
   <meta name="description" content="Evidence-led profiles of the Digital Product Passport market. 187 organisations, of which 170 commercial suppliers, across 32 countries - every headquarters sourced and dated." />
-  <link rel="canonical" href="https://www.yellow3.io/research/digital-product-passport/suppliers" />
+  <link rel="canonical" href="https://yellow3.io/research/digital-product-passport/suppliers" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <meta property="og:title" content="Supplier directory - DPP Supplier Register - yellow3" />
   <meta property="og:description" content="Evidence-led profiles of the Digital Product Passport market. 187 organisations, of which 170 commercial suppliers, across 32 countries - every headquarters sourced and dated." />
-  <meta property="og:url" content="https://www.yellow3.io/research/digital-product-passport/suppliers" />
+  <meta property="og:url" content="https://yellow3.io/research/digital-product-passport/suppliers" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="yellow3 lab" />
-  <meta property="og:image" content="https://www.yellow3.io/og/og-digital-product-passport-v2.png" />
+  <meta property="og:image" content="https://yellow3.io/og/og-digital-product-passport-v2.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -268,17 +268,28 @@
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   var $ = function (id) { return document.getElementById(id); };
 
+  // A reader typing "munster" must find Münster, and "quebec" Québec - nobody
+  // reaches for the umlaut key to look up a supplier. NFD splits the accent off
+  // the letter so it can be dropped; the letters with no decomposition are mapped.
+  var MARKS = new RegExp("[\\u0300-\\u036f]", "g");
+  function norm(s) {
+    s = String(s == null ? "" : s).toLowerCase()
+      .replace(/ø/g, "o").replace(/æ/g, "ae").replace(/ß/g, "ss")
+      .replace(/ł/g, "l").replace(/đ/g, "d");
+    return s.normalize ? s.normalize("NFD").replace(MARKS, "") : s;
+  }
+
   var state = { q: "", scope: "all", type: "all", sector: "all",
                 dq: "", dCountry: "", dSector: "", dType: "", dCap: "", dSort: "recent" };
 
   // ---- map filters
   function mapFiltered() {
-    var q = state.q.trim().toLowerCase();
+    var q = norm(state.q.trim());
     return DATA.filter(function (r) {
       if (state.scope === "commercial" && NON_COMMERCIAL[r.entity_type]) return false;
       if (state.type !== "all" && r.entity_type !== state.type) return false;
       if (state.sector !== "all" && r.sector_keys.indexOf(state.sector) < 0) return false;
-      if (q && [r.name, r.country, r.city, r.entity_type].join(" ").toLowerCase().indexOf(q) < 0) return false;
+      if (q && norm([r.name, r.country, r.city, r.entity_type].join(" ")).indexOf(q) < 0) return false;
       return true;
     });
   }
@@ -382,9 +393,9 @@
 
   // ---- directory
   function dirFiltered() {
-    var q = state.dq.trim().toLowerCase();
+    var q = norm(state.dq.trim());
     var out = DATA.filter(function (r) {
-      if (q && (r.name + " " + r.hq + " " + r.type + " " + r.sectors.join(" ")).toLowerCase().indexOf(q) < 0) return false;
+      if (q && norm(r.name + " " + r.hq + " " + r.type + " " + r.sectors.join(" ")).indexOf(q) < 0) return false;
       if (state.dCountry && r.country !== state.dCountry) return false;
       if (state.dSector && r.sector_keys.indexOf(state.dSector) < 0) return false;
       if (state.dType && r.entity_type !== state.dType) return false;
