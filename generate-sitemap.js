@@ -29,6 +29,23 @@ function getLastMod(file) {
   }
 }
 
+// A page that tells search engines not to index it must not be submitted in the
+// sitemap. Google Search Console reports every one as "Submitted URL marked
+// noindex" - an error, not a warning - and crawl budget is spent fetching pages
+// we have already excluded. The register alone adds 344 such pages: a claim page
+// and an editor page for every supplier.
+//
+// Detected from the file rather than listed by path, so any future noindex page
+// drops out automatically.
+function isNoIndex(file) {
+  try {
+    const head = fs.readFileSync(path.join(root, file), 'utf8').slice(0, 8000);
+    return /<meta[^>]+name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(head);
+  } catch {
+    return false;
+  }
+}
+
 function getPriority(urlPath) {
   if (urlPath === '/') return '1.0';
   if (urlPath === '/insights/' || urlPath === '/advisory' || urlPath === '/research') return '0.9';
@@ -54,7 +71,9 @@ function fileToUrl(file) {
 }
 
 const root = __dirname;
-const files = getHtmlFiles(root).sort();
+const allFiles = getHtmlFiles(root).sort();
+const noIndexed = allFiles.filter(isNoIndex);
+const files = allFiles.filter(f => !noIndexed.includes(f));
 
 const urls = files.map(file => {
   const urlPath = fileToUrl(file);
@@ -79,6 +98,7 @@ ${urls.map(u => `    <url>
 
 fs.writeFileSync(path.join(root, 'sitemap.xml'), xml);
 console.log(`Sitemap generated with ${urls.length} URLs`);
+console.log(`Excluded ${noIndexed.length} noindex pages`);
 
 // --- Normalize host in static files (canonical/og/schema URLs) ---
 // The live site is served at www.yellow3.io (yellow3.io 301-redirects to it),
