@@ -1521,3 +1521,17 @@ body { padding-top: 62px; }
 /* A supplied logo stands in for the initials once a company has claimed. */
 .row-initials img, .supplier-mark img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
 .profile-monogram img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+
+/* A supplied logo must stay inside the mark the design draws. The rules above
+   were written for the previous markup; the approved v4 profile calls that box
+   .monogram and the approved v1 directory calls it .avatar, so neither was
+   constrained and TreVerum's logo - the first real one uploaded - overflowed it.
+   Containment only: the box, its size and its border are the packages'. */
+.dpp-profile .monogram img,
+.dpp-dir .avatar img,
+.dpp-add .profile-initials img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
