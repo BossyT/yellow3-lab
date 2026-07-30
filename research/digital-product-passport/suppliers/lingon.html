@@ -84,13 +84,27 @@
           <header>
             <div>
               <p class="eyebrow"><i></i> Capability evidence</p>
-              <h2>Not yet assessed</h2>
+              <h2>Ten independent checks</h2>
             </div>
-            <p>Ten independent checks. No composite score.</p>
+            <p>No composite score. Select a row to inspect the finding.</p>
           </header>
-          <p class="intro-copy">No check has been run against this supplier yet. Assessments
-          are published as they are completed, each with its own source and date. An absent
-          assessment is not a finding about the company.</p>
+          <div class="capability-layout">
+            <div class="capability-list"><button type="button" class="capability-row" data-check="0"><span class="row-number">01</span><strong>Standards mapping</strong><span class="status status-not-found"><span class="status-dot"></span><span>No public evidence found</span><time>30 Jul 2026</time></span><span class="row-arrow">&#8599;</span></button><button type="button" class="capability-row" data-check="1"><span class="row-number">02</span><strong>Evidence architecture</strong><span class="status status-not-found"><span class="status-dot"></span><span>No public evidence found</span><time>30 Jul 2026</time></span><span class="row-arrow">&#8599;</span></button><button type="button" class="capability-row" data-check="2"><span class="row-number">03</span><strong>Identity portability</strong><span class="status status-not-found"><span class="status-dot"></span><span>No public evidence found</span><time>30 Jul 2026</time></span><span class="row-arrow">&#8599;</span></button><button type="button" class="capability-row" data-check="3"><span class="row-number">04</span><strong>Model / batch / item</strong><span class="status status-not-found"><span class="status-dot"></span><span>No public evidence found</span><time>30 Jul 2026</time></span><span class="row-arrow">&#8599;</span></button><button type="button" class="capability-row" data-check="4"><span class="row-number">05</span><strong>Clean export</strong><span class="status status-not-found"><span class="status-dot"></span><span>No public evidence found</span><time>30 Jul 2026</time></span><span class="row-arrow">&#8599;</span></button><button type="button" class="capability-row" data-check="5"><span class="row-number">06</span><strong>Regulatory pace</strong><span class="status status-company"><span class="status-dot"></span><span>Company states</span><time>30 Jul 2026</time></span><span class="row-arrow">&#8599;</span></button><button type="button" class="capability-row" data-check="6"><span class="row-number">07</span><strong>EU DPP Registry</strong><span class="status status-not-found"><span class="status-dot"></span><span>No public evidence found</span><time>30 Jul 2026</time></span><span class="row-arrow">&#8599;</span></button><button type="button" class="capability-row" data-check="7"><span class="row-number">08</span><strong>Passport afterlife</strong><span class="status status-not-found"><span class="status-dot"></span><span>No public evidence found</span><time>30 Jul 2026</time></span><span class="row-arrow">&#8599;</span></button><button type="button" class="capability-row" data-check="8"><span class="row-number">09</span><strong>Role-based disclosure</strong><span class="status status-not-found"><span class="status-dot"></span><span>No public evidence found</span><time>30 Jul 2026</time></span><span class="row-arrow">&#8599;</span></button><button type="button" class="capability-row" data-check="9"><span class="row-number">10</span><strong>Resolver uptime</strong><span class="status status-not-found"><span class="status-dot"></span><span>No public evidence found</span><time>30 Jul 2026</time></span><span class="row-arrow">&#8599;</span></button></div>
+            <aside class="evidence-panel" id="evidencePanel">
+              <p class="panel-kicker" id="panelKicker">Selected finding &middot; 01</p>
+              <h3 id="panelName">Standards mapping</h3>
+              <div class="status status-not-found" id="panelStatus">
+                <span class="status-dot"></span><span>No public evidence found</span>
+                <time>30 Jul 2026</time></div>
+              <div class="panel-rule"></div>
+              <span class="panel-label">What was checked</span>
+              <p>Public product pages, technical documentation, standards references and
+              relevant company disclosures.</p>
+              <span class="panel-label">Finding</span>
+              <p id="panelFinding"></p>
+              <a id="panelLink" href="/research/digital-product-passport/suppliers#framework">View search record &#8599;</a>
+            </aside>
+          </div>
         </section>
     </div>
 
@@ -155,7 +169,7 @@
   </footer>
 
 
-<script id="checkData" type="application/json">[{"n":1,"name":"Standards mapping","state":"unassessed","date":"","artifact":"","note":"","url":""},{"n":2,"name":"Evidence architecture","state":"unassessed","date":"","artifact":"","note":"","url":""},{"n":3,"name":"Identity portability","state":"unassessed","date":"","artifact":"","note":"","url":""},{"n":4,"name":"Model / batch / item","state":"unassessed","date":"","artifact":"","note":"","url":""},{"n":5,"name":"Clean export","state":"unassessed","date":"","artifact":"","note":"","url":""},{"n":6,"name":"Regulatory pace","state":"unassessed","date":"","artifact":"","note":"","url":""},{"n":7,"name":"EU DPP Registry","state":"unassessed","date":"","artifact":"","note":"","url":""},{"n":8,"name":"Passport afterlife","state":"unassessed","date":"","artifact":"","note":"","url":""},{"n":9,"name":"Role-based disclosure","state":"unassessed","date":"","artifact":"","note":"","url":""},{"n":10,"name":"Resolver uptime","state":"unassessed","date":"","artifact":"","note":"","url":""}]</script>
+<script id="checkData" type="application/json">[{"n":1,"name":"Standards mapping","state":"not-found","date":"30 Jul 2026","artifact":"","note":"Lingon was included from the brief's 29 July inbound addition and was absent from the supplied register snapshot.","url":""},{"n":2,"name":"Evidence architecture","state":"not-found","date":"30 Jul 2026","artifact":"","note":"No public navigable passport or published schema was found.","url":""},{"n":3,"name":"Identity portability","state":"not-found","date":"30 Jul 2026","artifact":"","note":"","url":""},{"n":4,"name":"Model / batch / item","state":"not-found","date":"30 Jul 2026","artifact":"","note":"","url":""},{"n":5,"name":"Clean export","state":"not-found","date":"30 Jul 2026","artifact":"","note":"","url":""},{"n":6,"name":"Regulatory pace","state":"company","date":"30 Jul 2026","artifact":"","note":"Lingon presents a furniture and lighting DPP product for EU requirements, but no dated product-change artifact was found.","url":"https://www.lingon.io/digital-product-passport"},{"n":7,"name":"EU DPP Registry","state":"not-found","date":"30 Jul 2026","artifact":"","note":"","url":""},{"n":8,"name":"Passport afterlife","state":"not-found","date":"30 Jul 2026","artifact":"","note":"","url":""},{"n":9,"name":"Role-based disclosure","state":"not-found","date":"30 Jul 2026","artifact":"","note":"","url":""},{"n":10,"name":"Resolver uptime","state":"not-found","date":"30 Jul 2026","artifact":"","note":"","url":""}]</script>
 <script>
 (function(){
   var CHECKS=JSON.parse(document.getElementById('checkData').textContent);
