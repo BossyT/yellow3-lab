@@ -41,8 +41,14 @@ LOG = os.path.join(HERE, "dpp-intake-log.md")
 MIN_QUOTE = 25  # a quote shorter than this is not evidence, it is a label
 
 # a source that can carry `verified`: the company stating its own legal identity
-LEGAL_HINTS = ("imprint", "impressum", "legal", "mentions-legales", "privacy",
-               "terms", "about", "contact", "company", "registration")
+# `verified` means the company stated its own LEGAL IDENTITY on a page whose
+# purpose is to state it. A contact page saying "Munich, Germany" is the company
+# saying where it is - not who it is - so it cannot carry `verified`. Learned
+# 2026-07-31 on DPP.PRO, which names an address and no operating entity at all.
+LEGAL_HINTS = ("imprint", "impressum", "legal-notice", "mentions-legales",
+               "registration", "company-details", "legal")
+# real pages, but they establish location or policy, never legal identity
+WEAK_HINTS = ("privacy", "terms", "about", "contact")
 
 # fields the agent may set, and whether each one needs its own evidence
 EVIDENCED = ("hq_city", "hq_country", "ownership", "founded_year",
@@ -129,7 +135,10 @@ def assess(cand, known_domains):
     if row["hq_country"]:
         src = (ev.get("hq_country") or {}).get("url", "")
         row["country_source"] = src
-        legal = any(h in src.lower() for h in LEGAL_HINTS)
+        low = src.lower()
+        legal = any(h in low for h in LEGAL_HINTS) and not (
+            any(w in low for w in WEAK_HINTS) and
+            not any(h in low for h in ("imprint", "impressum", "mentions-legales")))
         row["confidence"] = "verified" if legal else "claimed"
         if not legal:
             reasons.append("confidence held at claimed: the source is not a legal "

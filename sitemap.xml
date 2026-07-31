@@ -236,7 +236,7 @@
     </url>
     <url>
         <loc>https://www.yellow3.io/research/digital-product-passport/suppliers</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -561,6 +561,12 @@
     <url>
         <loc>https://www.yellow3.io/research/digital-product-passport/suppliers/dpp-hero</loc>
         <lastmod>2026-07-30</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.yellow3.io/research/digital-product-passport/suppliers/dpp-pro</loc>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -1400,115 +1406,115 @@
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/anthropic-claude-4-6-sonnet</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/anthropic-claude-4-7-opus</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/anthropic-claude-4-8-opus</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/anthropic-claude-5-fable</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/anthropic-claude-opus-5</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/anthropic-claude-sonnet-5</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/briefing</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/deepseek-v3-2</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/deepseek-v4-flash</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/deepseek-v4-pro</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/google-gemini-2-5-flash-lite</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/google-gemini-2-5-flash</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/google-gemini-3-1-flash-lite</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/google-gemini-3-5-flash</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/google-gemini-3-6-flash</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/google-gemini-3-flash-preview</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/google-gemma-4-26b-a4b-it</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/google-gemma-4-31b-it</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/inclusionai-ling-3-0-flash-free</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -1520,139 +1526,151 @@
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/minimax-m3</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/mistralai-mistral-nemo</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/moonshotai-kimi-k2-6</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/moonshotai-kimi-k3</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/nvidia-nemotron-3-super-120b-a12b-free</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/nvidia-nemotron-3-ultra-550b-a55b-free</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/openai-gpt-4o-mini</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/openai-gpt-5-4</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/openai-gpt-5-5</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/openai-gpt-5-6-luna</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/openai-gpt-5-6-sol</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/openai-gpt-oss-120b</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.yellow3.io/research/model-adoption/perplexity-pplx-embed-v1-0-6b</loc>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/poolside-laguna-m-1-free</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.yellow3.io/research/model-adoption/poolside-laguna-s-2-1-free</loc>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/reports/</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/stepfun-step-3-7-flash</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/tencent-hy3-free</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/tencent-hy3-preview</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/tencent-hy3</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/x-ai-grok-4-5</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/xiaomi-mimo-v2-5-pro</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/xiaomi-mimo-v2-5</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/z-ai-glm-5-2</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/z-ai-glm-5</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-07-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>

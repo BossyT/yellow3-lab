@@ -284,6 +284,11 @@
       "permanent": true
     },
     {
+      "source": "/research/digital-product-passport/dpp-pro",
+      "destination": "/research/digital-product-passport/suppliers/dpp-pro",
+      "permanent": true
+    },
+    {
       "source": "/research/digital-product-passport/dpp-services",
       "destination": "/research/digital-product-passport/suppliers/dpp-services",
       "permanent": true
