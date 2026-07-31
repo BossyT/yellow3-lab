@@ -409,6 +409,11 @@
       "permanent": true
     },
     {
+      "source": "/research/digital-product-passport/go-trace",
+      "destination": "/research/digital-product-passport/suppliers/go-trace",
+      "permanent": true
+    },
+    {
       "source": "/research/digital-product-passport/goods-tag",
       "destination": "/research/digital-product-passport/suppliers/goods-tag",
       "permanent": true

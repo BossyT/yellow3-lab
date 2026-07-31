@@ -715,6 +715,12 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://www.yellow3.io/research/digital-product-passport/suppliers/go-trace</loc>
+        <lastmod>2026-07-31</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://www.yellow3.io/research/digital-product-passport/suppliers/goods-tag</loc>
         <lastmod>2026-07-30</lastmod>
         <changefreq>weekly</changefreq>

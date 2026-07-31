@@ -2068,6 +2068,32 @@
    ]
   },
   {
+   "id": "go-trace",
+   "name": "GO TRACE",
+   "domain": "go-trace.com",
+   "website": "https://www.go-trace.com",
+   "evidence_url": "https://www.go-trace.com",
+   "source": "official company website",
+   "source_date": "2026-07-31",
+   "status": "active",
+   "entity_type": "consultancy",
+   "hq_city": "Annecy",
+   "hq_country": "France",
+   "country_source": "https://www.go-trace.com/legal-notice",
+   "ownership": "Altanest SAS",
+   "founded_year": "2019",
+   "funding_stage": "",
+   "funding_source": "",
+   "last_funding_date": "",
+   "total_disclosed_funding": "",
+   "alias_domains": "",
+   "sectors_list": [
+    "textiles"
+   ],
+   "sectors": "textiles",
+   "confidence": "verified"
+  },
+  {
    "id": "goods-tag",
    "name": "GOODS TAG",
    "website": "https://www.goodstag.com",
