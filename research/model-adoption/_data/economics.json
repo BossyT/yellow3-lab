@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-30",
+  "as_of": "2026-07-31",
   "workloads": {
     "coding-agent": {
       "label": "Coding agent",
@@ -46,7 +46,7 @@
       "knowledge_cutoff": null,
       "or_id": "anthropic/claude-sonnet-4.6",
       "or_url": "https://openrouter.ai/anthropic/claude-sonnet-4.6",
-      "uptime": 99.785,
+      "uptime": 99.905,
       "workload_cost": 261.0,
       "price_position": "Premium",
       "adoption_trend": "rising",
@@ -73,180 +73,28 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
     },
     "anthropic-claude-4-7-opus": {
-      "in": 2.5e-06,
-      "out": 1.25e-05,
-      "cache_read": 2.5e-07,
-      "cache_write": 3.125e-06,
-      "context": 1000000,
-      "modalities": [
-        "text",
-        "image",
-        "file"
-      ],
-      "image_in": true,
-      "audio_in": false,
-      "video_in": false,
-      "tools": true,
-      "structured": true,
-      "reasoning": true,
-      "open_weight": false,
-      "free_tier": false,
-      "knowledge_cutoff": null,
-      "or_id": "anthropic/claude-opus-4.7:batch",
-      "or_url": "https://openrouter.ai/anthropic/claude-opus-4.7:batch",
-      "uptime": null,
-      "workload_cost": 217.5,
-      "price_position": "Premium",
-      "adoption_trend": "falling",
-      "position_label": "Under pressure",
-      "price_history": [
-        {
-          "date": "2026-07-28",
-          "in": 2.5e-06,
-          "out": 1.25e-05,
-          "change_pct": -50.0
-        },
-        {
-          "date": "2026-07-12",
-          "in": 5e-06,
-          "out": 2.5e-05,
-          "change_pct": null
-        }
-      ],
-      "compare": [
-        {
-          "slug": "anthropic-claude-4-7-opus",
-          "name": "Anthropic Claude 4.7 Opus",
-          "in": 2.5e-06,
-          "out": 1.25e-05,
-          "cache_read": 2.5e-07,
-          "you": true
-        },
-        {
-          "slug": "deepseek-v4-flash",
-          "name": "DeepSeek V4 Flash",
-          "in": 1.4e-07,
-          "out": 2.8e-07,
-          "cache_read": 2.8e-08,
-          "you": false
-        },
-        {
-          "slug": "google-gemini-2-5-flash",
-          "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
-          "cache_read": 3e-08,
-          "you": false
-        },
-        {
-          "slug": "anthropic-claude-sonnet-5",
-          "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
-          "you": false
-        }
-      ]
-    },
-    "anthropic-claude-4-8-opus": {
-      "in": 2.5e-06,
-      "out": 1.25e-05,
-      "cache_read": 2.5e-07,
-      "cache_write": 3.125e-06,
-      "context": 1000000,
-      "modalities": [
-        "text",
-        "image",
-        "file"
-      ],
-      "image_in": true,
-      "audio_in": false,
-      "video_in": false,
-      "tools": true,
-      "structured": true,
-      "reasoning": true,
-      "open_weight": false,
-      "free_tier": false,
-      "knowledge_cutoff": null,
-      "or_id": "anthropic/claude-opus-4.8:batch",
-      "or_url": "https://openrouter.ai/anthropic/claude-opus-4.8:batch",
-      "uptime": null,
-      "workload_cost": 217.5,
-      "price_position": "Premium",
-      "adoption_trend": "falling",
-      "position_label": "Under pressure",
-      "price_history": [
-        {
-          "date": "2026-07-28",
-          "in": 2.5e-06,
-          "out": 1.25e-05,
-          "change_pct": -50.0
-        },
-        {
-          "date": "2026-07-12",
-          "in": 5e-06,
-          "out": 2.5e-05,
-          "change_pct": null
-        }
-      ],
-      "compare": [
-        {
-          "slug": "anthropic-claude-4-8-opus",
-          "name": "Anthropic Claude 4.8 Opus",
-          "in": 2.5e-06,
-          "out": 1.25e-05,
-          "cache_read": 2.5e-07,
-          "you": true
-        },
-        {
-          "slug": "deepseek-v4-flash",
-          "name": "DeepSeek V4 Flash",
-          "in": 1.4e-07,
-          "out": 2.8e-07,
-          "cache_read": 2.8e-08,
-          "you": false
-        },
-        {
-          "slug": "google-gemini-2-5-flash",
-          "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
-          "cache_read": 3e-08,
-          "you": false
-        },
-        {
-          "slug": "anthropic-claude-sonnet-5",
-          "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
-          "you": false
-        }
-      ]
-    },
-    "anthropic-claude-5-fable": {
       "in": 5e-06,
       "out": 2.5e-05,
       "cache_read": 5e-07,
@@ -266,14 +114,184 @@
       "open_weight": false,
       "free_tier": false,
       "knowledge_cutoff": null,
-      "or_id": "anthropic/claude-fable-5:batch",
-      "or_url": "https://openrouter.ai/anthropic/claude-fable-5:batch",
-      "uptime": null,
+      "or_id": "anthropic/claude-opus-4.7",
+      "or_url": "https://openrouter.ai/anthropic/claude-opus-4.7",
+      "uptime": 99.944,
       "workload_cost": 435.0,
       "price_position": "Premium",
       "adoption_trend": "falling",
       "position_label": "Under pressure",
       "price_history": [
+        {
+          "date": "2026-07-31",
+          "in": 5e-06,
+          "out": 2.5e-05,
+          "change_pct": 100.0
+        },
+        {
+          "date": "2026-07-28",
+          "in": 2.5e-06,
+          "out": 1.25e-05,
+          "change_pct": -50.0
+        },
+        {
+          "date": "2026-07-12",
+          "in": 5e-06,
+          "out": 2.5e-05,
+          "change_pct": null
+        }
+      ],
+      "compare": [
+        {
+          "slug": "anthropic-claude-4-7-opus",
+          "name": "Anthropic Claude 4.7 Opus",
+          "in": 5e-06,
+          "out": 2.5e-05,
+          "cache_read": 5e-07,
+          "you": true
+        },
+        {
+          "slug": "deepseek-v4-flash",
+          "name": "DeepSeek V4 Flash",
+          "in": 1.4e-07,
+          "out": 2.8e-07,
+          "cache_read": 2.8e-09,
+          "you": false
+        },
+        {
+          "slug": "google-gemini-2-5-flash",
+          "name": "Google Gemini 2.5 Flash",
+          "in": 3e-07,
+          "out": 2.5e-06,
+          "cache_read": 3e-08,
+          "you": false
+        },
+        {
+          "slug": "anthropic-claude-sonnet-5",
+          "name": "Anthropic Claude Sonnet 5",
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
+          "you": false
+        }
+      ]
+    },
+    "anthropic-claude-4-8-opus": {
+      "in": 5e-06,
+      "out": 2.5e-05,
+      "cache_read": 5e-07,
+      "cache_write": 6.25e-06,
+      "context": 1000000,
+      "modalities": [
+        "text",
+        "image",
+        "file"
+      ],
+      "image_in": true,
+      "audio_in": false,
+      "video_in": false,
+      "tools": true,
+      "structured": true,
+      "reasoning": true,
+      "open_weight": false,
+      "free_tier": false,
+      "knowledge_cutoff": null,
+      "or_id": "anthropic/claude-opus-4.8",
+      "or_url": "https://openrouter.ai/anthropic/claude-opus-4.8",
+      "uptime": 99.733,
+      "workload_cost": 435.0,
+      "price_position": "Premium",
+      "adoption_trend": "falling",
+      "position_label": "Under pressure",
+      "price_history": [
+        {
+          "date": "2026-07-31",
+          "in": 5e-06,
+          "out": 2.5e-05,
+          "change_pct": 100.0
+        },
+        {
+          "date": "2026-07-28",
+          "in": 2.5e-06,
+          "out": 1.25e-05,
+          "change_pct": -50.0
+        },
+        {
+          "date": "2026-07-12",
+          "in": 5e-06,
+          "out": 2.5e-05,
+          "change_pct": null
+        }
+      ],
+      "compare": [
+        {
+          "slug": "anthropic-claude-4-8-opus",
+          "name": "Anthropic Claude 4.8 Opus",
+          "in": 5e-06,
+          "out": 2.5e-05,
+          "cache_read": 5e-07,
+          "you": true
+        },
+        {
+          "slug": "deepseek-v4-flash",
+          "name": "DeepSeek V4 Flash",
+          "in": 1.4e-07,
+          "out": 2.8e-07,
+          "cache_read": 2.8e-09,
+          "you": false
+        },
+        {
+          "slug": "google-gemini-2-5-flash",
+          "name": "Google Gemini 2.5 Flash",
+          "in": 3e-07,
+          "out": 2.5e-06,
+          "cache_read": 3e-08,
+          "you": false
+        },
+        {
+          "slug": "anthropic-claude-sonnet-5",
+          "name": "Anthropic Claude Sonnet 5",
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
+          "you": false
+        }
+      ]
+    },
+    "anthropic-claude-5-fable": {
+      "in": 1e-05,
+      "out": 5e-05,
+      "cache_read": 1e-06,
+      "cache_write": 1.25e-05,
+      "context": 1000000,
+      "modalities": [
+        "text",
+        "image",
+        "file"
+      ],
+      "image_in": true,
+      "audio_in": false,
+      "video_in": false,
+      "tools": true,
+      "structured": true,
+      "reasoning": true,
+      "open_weight": false,
+      "free_tier": false,
+      "knowledge_cutoff": null,
+      "or_id": "anthropic/claude-fable-5",
+      "or_url": "https://openrouter.ai/anthropic/claude-fable-5",
+      "uptime": 95.454,
+      "workload_cost": 870.0,
+      "price_position": "Premium",
+      "adoption_trend": "falling",
+      "position_label": "Under pressure",
+      "price_history": [
+        {
+          "date": "2026-07-31",
+          "in": 1e-05,
+          "out": 5e-05,
+          "change_pct": 100.0
+        },
         {
           "date": "2026-07-28",
           "in": 5e-06,
@@ -291,9 +309,9 @@
         {
           "slug": "anthropic-claude-5-fable",
           "name": "Anthropic Claude 5 Fable",
-          "in": 5e-06,
-          "out": 2.5e-05,
-          "cache_read": 5e-07,
+          "in": 1e-05,
+          "out": 5e-05,
+          "cache_read": 1e-06,
           "you": true
         },
         {
@@ -301,23 +319,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -344,7 +362,7 @@
       "knowledge_cutoff": null,
       "or_id": "anthropic/claude-opus-5",
       "or_url": "https://openrouter.ai/anthropic/claude-opus-5",
-      "uptime": 99.493,
+      "uptime": 99.825,
       "workload_cost": 435.0,
       "price_position": "Premium",
       "adoption_trend": "flat",
@@ -371,32 +389,32 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
     },
     "anthropic-claude-sonnet-5": {
-      "in": 1e-06,
-      "out": 5e-06,
-      "cache_read": 1e-07,
-      "cache_write": 1.25e-06,
+      "in": 2e-06,
+      "out": 1e-05,
+      "cache_read": 2e-07,
+      "cache_write": 2.5e-06,
       "context": 1000000,
       "modalities": [
         "text",
@@ -412,14 +430,20 @@
       "open_weight": false,
       "free_tier": false,
       "knowledge_cutoff": null,
-      "or_id": "anthropic/claude-sonnet-5:batch",
-      "or_url": "https://openrouter.ai/anthropic/claude-sonnet-5:batch",
-      "uptime": null,
-      "workload_cost": 87.0,
+      "or_id": "anthropic/claude-sonnet-5",
+      "or_url": "https://openrouter.ai/anthropic/claude-sonnet-5",
+      "uptime": 99.95,
+      "workload_cost": 174.0,
       "price_position": "Premium",
       "adoption_trend": "rising",
       "position_label": "Premium leader",
       "price_history": [
+        {
+          "date": "2026-07-31",
+          "in": 2e-06,
+          "out": 1e-05,
+          "change_pct": 100.0
+        },
         {
           "date": "2026-07-28",
           "in": 1e-06,
@@ -437,9 +461,9 @@
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": true
         },
         {
@@ -447,23 +471,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "openai-gpt-5-5",
           "name": "OpenAI GPT 5.5",
-          "in": 2.5e-06,
-          "out": 1.5e-05,
-          "cache_read": 2.5e-07,
+          "in": 5e-06,
+          "out": 3e-05,
+          "cache_read": 5e-07,
           "you": false
         }
       ]
@@ -488,7 +512,7 @@
       "knowledge_cutoff": null,
       "or_id": "deepseek/deepseek-v3.2",
       "or_url": "https://openrouter.ai/deepseek/deepseek-v3.2",
-      "uptime": 99.497,
+      "uptime": 99.385,
       "workload_cost": 21.48,
       "price_position": "Mid cost",
       "adoption_trend": "rising",
@@ -521,23 +545,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -545,7 +569,7 @@
     "deepseek-v4-flash": {
       "in": 1.4e-07,
       "out": 2.8e-07,
-      "cache_read": 2.8e-08,
+      "cache_read": 2.8e-09,
       "cache_write": null,
       "context": 1048576,
       "modalities": [
@@ -560,13 +584,13 @@
       "open_weight": true,
       "free_tier": false,
       "knowledge_cutoff": null,
-      "or_id": "deepseek/deepseek-v4-flash",
-      "or_url": "https://openrouter.ai/deepseek/deepseek-v4-flash",
-      "uptime": 97.987,
-      "workload_cost": 8.96,
+      "or_id": "deepseek/deepseek-v4-flash-0731",
+      "or_url": "https://openrouter.ai/deepseek/deepseek-v4-flash-0731",
+      "uptime": 99.486,
+      "workload_cost": 7.2,
       "price_position": "Low cost",
-      "adoption_trend": "rising",
-      "position_label": "High-growth challenger",
+      "adoption_trend": "flat",
+      "position_label": "Value play",
       "price_history": [
         {
           "date": "2026-07-25",
@@ -611,31 +635,31 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": true
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         },
         {
           "slug": "openai-gpt-5-5",
           "name": "OpenAI GPT 5.5",
-          "in": 2.5e-06,
-          "out": 1.5e-05,
-          "cache_read": 2.5e-07,
+          "in": 5e-06,
+          "out": 3e-05,
+          "cache_read": 5e-07,
           "you": false
         }
       ]
@@ -660,7 +684,7 @@
       "knowledge_cutoff": null,
       "or_id": "deepseek/deepseek-v4-pro",
       "or_url": "https://openrouter.ai/deepseek/deepseek-v4-pro",
-      "uptime": 96.508,
+      "uptime": 98.111,
       "workload_cost": 22.0,
       "price_position": "Mid cost",
       "adoption_trend": "rising",
@@ -687,32 +711,32 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
     },
     "google-gemini-2-5-flash": {
-      "in": 1.5e-07,
-      "out": 1.25e-06,
+      "in": 3e-07,
+      "out": 2.5e-06,
       "cache_read": 3e-08,
-      "cache_write": null,
+      "cache_write": 8.333333333333334e-08,
       "context": 1048576,
       "modalities": [
         "file",
@@ -730,14 +754,20 @@
       "open_weight": false,
       "free_tier": false,
       "knowledge_cutoff": "2025-01-31",
-      "or_id": "google/gemini-2.5-flash:batch",
-      "or_url": "https://openrouter.ai/google/gemini-2.5-flash:batch",
-      "uptime": null,
-      "workload_cost": 19.1,
+      "or_id": "google/gemini-2.5-flash",
+      "or_url": "https://openrouter.ai/google/gemini-2.5-flash",
+      "uptime": 98.015,
+      "workload_cost": 36.1,
       "price_position": "Mid cost",
       "adoption_trend": "falling",
       "position_label": "Losing ground",
       "price_history": [
+        {
+          "date": "2026-07-31",
+          "in": 3e-07,
+          "out": 2.5e-06,
+          "change_pct": 100.0
+        },
         {
           "date": "2026-07-28",
           "in": 1.5e-07,
@@ -755,8 +785,8 @@
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": true
         },
@@ -765,32 +795,32 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         },
         {
           "slug": "openai-gpt-5-5",
           "name": "OpenAI GPT 5.5",
-          "in": 2.5e-06,
-          "out": 1.5e-05,
-          "cache_read": 2.5e-07,
+          "in": 5e-06,
+          "out": 3e-05,
+          "cache_read": 5e-07,
           "you": false
         }
       ]
     },
     "google-gemini-2-5-flash-lite": {
-      "in": 5e-08,
-      "out": 2e-07,
+      "in": 1e-07,
+      "out": 4e-07,
       "cache_read": 1e-08,
-      "cache_write": null,
+      "cache_write": 8.333333333333334e-08,
       "context": 1048576,
       "modalities": [
         "text",
@@ -808,14 +838,20 @@
       "open_weight": false,
       "free_tier": false,
       "knowledge_cutoff": "2025-01-31",
-      "or_id": "google/gemini-2.5-flash-lite:batch",
-      "or_url": "https://openrouter.ai/google/gemini-2.5-flash-lite:batch",
-      "uptime": null,
-      "workload_cost": 4.2,
+      "or_id": "google/gemini-2.5-flash-lite",
+      "or_url": "https://openrouter.ai/google/gemini-2.5-flash-lite",
+      "uptime": 98.967,
+      "workload_cost": 7.7,
       "price_position": "Low cost",
-      "adoption_trend": "rising",
-      "position_label": "High-growth challenger",
+      "adoption_trend": "flat",
+      "position_label": "Value play",
       "price_history": [
+        {
+          "date": "2026-07-31",
+          "in": 1e-07,
+          "out": 4e-07,
+          "change_pct": 100.0
+        },
         {
           "date": "2026-07-28",
           "in": 5e-08,
@@ -833,8 +869,8 @@
         {
           "slug": "google-gemini-2-5-flash-lite",
           "name": "Google Gemini 2.5 Flash Lite",
-          "in": 5e-08,
-          "out": 2e-07,
+          "in": 1e-07,
+          "out": 4e-07,
           "cache_read": 1e-08,
           "you": true
         },
@@ -843,187 +879,31 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
     },
     "google-gemini-3-1-flash-lite": {
-      "in": 1.25e-07,
-      "out": 7.5e-07,
-      "cache_read": 1.25e-08,
-      "cache_write": null,
-      "context": 1048576,
-      "modalities": [
-        "text",
-        "image",
-        "video",
-        "file",
-        "audio"
-      ],
-      "image_in": true,
-      "audio_in": true,
-      "video_in": true,
-      "tools": true,
-      "structured": true,
-      "reasoning": true,
-      "open_weight": false,
-      "free_tier": false,
-      "knowledge_cutoff": null,
-      "or_id": "google/gemini-3.1-flash-lite:batch",
-      "or_url": "https://openrouter.ai/google/gemini-3.1-flash-lite:batch",
-      "uptime": null,
-      "workload_cost": 12.12,
-      "price_position": "Mid cost",
-      "adoption_trend": "falling",
-      "position_label": "Losing ground",
-      "price_history": [
-        {
-          "date": "2026-07-28",
-          "in": 1.25e-07,
-          "out": 7.5e-07,
-          "change_pct": -50.0
-        },
-        {
-          "date": "2026-07-12",
-          "in": 2.5e-07,
-          "out": 1.5e-06,
-          "change_pct": null
-        }
-      ],
-      "compare": [
-        {
-          "slug": "google-gemini-3-1-flash-lite",
-          "name": "Google Gemini 3.1 Flash Lite",
-          "in": 1.25e-07,
-          "out": 7.5e-07,
-          "cache_read": 1.25e-08,
-          "you": true
-        },
-        {
-          "slug": "deepseek-v4-flash",
-          "name": "DeepSeek V4 Flash",
-          "in": 1.4e-07,
-          "out": 2.8e-07,
-          "cache_read": 2.8e-08,
-          "you": false
-        },
-        {
-          "slug": "google-gemini-2-5-flash",
-          "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
-          "cache_read": 3e-08,
-          "you": false
-        },
-        {
-          "slug": "anthropic-claude-sonnet-5",
-          "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
-          "you": false
-        }
-      ]
-    },
-    "google-gemini-3-5-flash": {
-      "in": 7.5e-07,
-      "out": 4.5e-06,
-      "cache_read": 7.5e-08,
-      "cache_write": null,
-      "context": 1048576,
-      "modalities": [
-        "text",
-        "image",
-        "video",
-        "file",
-        "audio"
-      ],
-      "image_in": true,
-      "audio_in": true,
-      "video_in": true,
-      "tools": true,
-      "structured": true,
-      "reasoning": true,
-      "open_weight": false,
-      "free_tier": false,
-      "knowledge_cutoff": "2025-01-01",
-      "or_id": "google/gemini-3.5-flash:batch",
-      "or_url": "https://openrouter.ai/google/gemini-3.5-flash:batch",
-      "uptime": null,
-      "workload_cost": 72.75,
-      "price_position": "Mid cost",
-      "adoption_trend": "falling",
-      "position_label": "Losing ground",
-      "price_history": [
-        {
-          "date": "2026-07-28",
-          "in": 7.5e-07,
-          "out": 4.5e-06,
-          "change_pct": -50.0
-        },
-        {
-          "date": "2026-07-12",
-          "in": 1.5e-06,
-          "out": 9e-06,
-          "change_pct": null
-        }
-      ],
-      "compare": [
-        {
-          "slug": "google-gemini-3-5-flash",
-          "name": "Google Gemini 3.5 Flash",
-          "in": 7.5e-07,
-          "out": 4.5e-06,
-          "cache_read": 7.5e-08,
-          "you": true
-        },
-        {
-          "slug": "deepseek-v4-flash",
-          "name": "DeepSeek V4 Flash",
-          "in": 1.4e-07,
-          "out": 2.8e-07,
-          "cache_read": 2.8e-08,
-          "you": false
-        },
-        {
-          "slug": "google-gemini-2-5-flash",
-          "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
-          "cache_read": 3e-08,
-          "you": false
-        },
-        {
-          "slug": "anthropic-claude-sonnet-5",
-          "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
-          "you": false
-        }
-      ]
-    },
-    "google-gemini-3-6-flash": {
-      "in": 7.5e-07,
-      "out": 3.75e-06,
-      "cache_read": 7.5e-08,
+      "in": 2.5e-07,
+      "out": 1.5e-06,
+      "cache_read": 2.5e-08,
       "cache_write": 8.333333333333334e-08,
       "context": 1048576,
       "modalities": [
@@ -1042,14 +922,188 @@
       "open_weight": false,
       "free_tier": false,
       "knowledge_cutoff": null,
-      "or_id": "google/gemini-3.6-flash:batch",
-      "or_url": "https://openrouter.ai/google/gemini-3.6-flash:batch",
-      "uptime": null,
-      "workload_cost": 65.25,
+      "or_id": "google/gemini-3.1-flash-lite",
+      "or_url": "https://openrouter.ai/google/gemini-3.1-flash-lite",
+      "uptime": 98.612,
+      "workload_cost": 24.25,
       "price_position": "Mid cost",
-      "adoption_trend": "rising",
-      "position_label": "Momentum builder",
+      "adoption_trend": "falling",
+      "position_label": "Losing ground",
       "price_history": [
+        {
+          "date": "2026-07-31",
+          "in": 2.5e-07,
+          "out": 1.5e-06,
+          "change_pct": 100.0
+        },
+        {
+          "date": "2026-07-28",
+          "in": 1.25e-07,
+          "out": 7.5e-07,
+          "change_pct": -50.0
+        },
+        {
+          "date": "2026-07-12",
+          "in": 2.5e-07,
+          "out": 1.5e-06,
+          "change_pct": null
+        }
+      ],
+      "compare": [
+        {
+          "slug": "google-gemini-3-1-flash-lite",
+          "name": "Google Gemini 3.1 Flash Lite",
+          "in": 2.5e-07,
+          "out": 1.5e-06,
+          "cache_read": 2.5e-08,
+          "you": true
+        },
+        {
+          "slug": "deepseek-v4-flash",
+          "name": "DeepSeek V4 Flash",
+          "in": 1.4e-07,
+          "out": 2.8e-07,
+          "cache_read": 2.8e-09,
+          "you": false
+        },
+        {
+          "slug": "google-gemini-2-5-flash",
+          "name": "Google Gemini 2.5 Flash",
+          "in": 3e-07,
+          "out": 2.5e-06,
+          "cache_read": 3e-08,
+          "you": false
+        },
+        {
+          "slug": "anthropic-claude-sonnet-5",
+          "name": "Anthropic Claude Sonnet 5",
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
+          "you": false
+        }
+      ]
+    },
+    "google-gemini-3-5-flash": {
+      "in": 1.5e-06,
+      "out": 9e-06,
+      "cache_read": 1.5e-07,
+      "cache_write": 8.333333333333334e-08,
+      "context": 1048576,
+      "modalities": [
+        "text",
+        "image",
+        "video",
+        "file",
+        "audio"
+      ],
+      "image_in": true,
+      "audio_in": true,
+      "video_in": true,
+      "tools": true,
+      "structured": true,
+      "reasoning": true,
+      "open_weight": false,
+      "free_tier": false,
+      "knowledge_cutoff": "2025-01-01",
+      "or_id": "google/gemini-3.5-flash",
+      "or_url": "https://openrouter.ai/google/gemini-3.5-flash",
+      "uptime": 99.694,
+      "workload_cost": 145.5,
+      "price_position": "Premium",
+      "adoption_trend": "falling",
+      "position_label": "Under pressure",
+      "price_history": [
+        {
+          "date": "2026-07-31",
+          "in": 1.5e-06,
+          "out": 9e-06,
+          "change_pct": 100.0
+        },
+        {
+          "date": "2026-07-28",
+          "in": 7.5e-07,
+          "out": 4.5e-06,
+          "change_pct": -50.0
+        },
+        {
+          "date": "2026-07-12",
+          "in": 1.5e-06,
+          "out": 9e-06,
+          "change_pct": null
+        }
+      ],
+      "compare": [
+        {
+          "slug": "google-gemini-3-5-flash",
+          "name": "Google Gemini 3.5 Flash",
+          "in": 1.5e-06,
+          "out": 9e-06,
+          "cache_read": 1.5e-07,
+          "you": true
+        },
+        {
+          "slug": "deepseek-v4-flash",
+          "name": "DeepSeek V4 Flash",
+          "in": 1.4e-07,
+          "out": 2.8e-07,
+          "cache_read": 2.8e-09,
+          "you": false
+        },
+        {
+          "slug": "google-gemini-2-5-flash",
+          "name": "Google Gemini 2.5 Flash",
+          "in": 3e-07,
+          "out": 2.5e-06,
+          "cache_read": 3e-08,
+          "you": false
+        },
+        {
+          "slug": "anthropic-claude-sonnet-5",
+          "name": "Anthropic Claude Sonnet 5",
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
+          "you": false
+        }
+      ]
+    },
+    "google-gemini-3-6-flash": {
+      "in": 1.5e-06,
+      "out": 7.5e-06,
+      "cache_read": 1.5e-07,
+      "cache_write": 8.333333333333334e-08,
+      "context": 1048576,
+      "modalities": [
+        "text",
+        "image",
+        "video",
+        "file",
+        "audio"
+      ],
+      "image_in": true,
+      "audio_in": true,
+      "video_in": true,
+      "tools": true,
+      "structured": true,
+      "reasoning": true,
+      "open_weight": false,
+      "free_tier": false,
+      "knowledge_cutoff": null,
+      "or_id": "google/gemini-3.6-flash",
+      "or_url": "https://openrouter.ai/google/gemini-3.6-flash",
+      "uptime": 99.574,
+      "workload_cost": 130.5,
+      "price_position": "Premium",
+      "adoption_trend": "rising",
+      "position_label": "Premium leader",
+      "price_history": [
+        {
+          "date": "2026-07-31",
+          "in": 1.5e-06,
+          "out": 7.5e-06,
+          "change_pct": 100.0
+        },
         {
           "date": "2026-07-28",
           "in": 7.5e-07,
@@ -1061,9 +1115,9 @@
         {
           "slug": "google-gemini-3-6-flash",
           "name": "Google Gemini 3.6 Flash",
-          "in": 7.5e-07,
-          "out": 3.75e-06,
-          "cache_read": 7.5e-08,
+          "in": 1.5e-06,
+          "out": 7.5e-06,
+          "cache_read": 1.5e-07,
           "you": true
         },
         {
@@ -1071,32 +1125,32 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
     },
     "google-gemini-3-flash-preview": {
-      "in": 2.5e-07,
-      "out": 1.5e-06,
-      "cache_read": null,
-      "cache_write": null,
+      "in": 5e-07,
+      "out": 3e-06,
+      "cache_read": 5e-08,
+      "cache_write": 8.333333333333334e-08,
       "context": 1048576,
       "modalities": [
         "text",
@@ -1114,14 +1168,20 @@
       "open_weight": false,
       "free_tier": false,
       "knowledge_cutoff": null,
-      "or_id": "google/gemini-3-flash-preview:batch",
-      "or_url": "https://openrouter.ai/google/gemini-3-flash-preview:batch",
-      "uptime": null,
-      "workload_cost": 40.0,
+      "or_id": "google/gemini-3-flash-preview",
+      "or_url": "https://openrouter.ai/google/gemini-3-flash-preview",
+      "uptime": 99.055,
+      "workload_cost": 48.5,
       "price_position": "Mid cost",
       "adoption_trend": "rising",
       "position_label": "Momentum builder",
       "price_history": [
+        {
+          "date": "2026-07-31",
+          "in": 5e-07,
+          "out": 3e-06,
+          "change_pct": 100.0
+        },
         {
           "date": "2026-07-28",
           "in": 2.5e-07,
@@ -1139,9 +1199,9 @@
         {
           "slug": "google-gemini-3-flash-preview",
           "name": "Google Gemini 3 Flash Preview",
-          "in": 2.5e-07,
-          "out": 1.5e-06,
-          "cache_read": null,
+          "in": 5e-07,
+          "out": 3e-06,
+          "cache_read": 5e-08,
           "you": true
         },
         {
@@ -1149,23 +1209,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -1192,10 +1252,10 @@
       "knowledge_cutoff": null,
       "or_id": "google/gemma-4-26b-a4b-it:free",
       "or_url": "https://openrouter.ai/google/gemma-4-26b-a4b-it:free",
-      "uptime": 98.092,
+      "uptime": 98.008,
       "workload_cost": 0.0,
       "price_position": "Low cost",
-      "adoption_trend": "flat",
+      "adoption_trend": "falling",
       "position_label": "Value play",
       "price_history": [
         {
@@ -1219,23 +1279,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -1262,11 +1322,11 @@
       "knowledge_cutoff": null,
       "or_id": "google/gemma-4-31b-it:free",
       "or_url": "https://openrouter.ai/google/gemma-4-31b-it:free",
-      "uptime": 99.839,
+      "uptime": 99.872,
       "workload_cost": 0.0,
       "price_position": "Low cost",
-      "adoption_trend": "rising",
-      "position_label": "High-growth challenger",
+      "adoption_trend": "falling",
+      "position_label": "Value play",
       "price_history": [
         {
           "date": "2026-07-12",
@@ -1289,23 +1349,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -1330,11 +1390,11 @@
       "knowledge_cutoff": null,
       "or_id": "inclusionai/ling-3.0-flash:free",
       "or_url": "https://openrouter.ai/inclusionai/ling-3.0-flash:free",
-      "uptime": 99.946,
+      "uptime": 99.922,
       "workload_cost": 0.0,
       "price_position": "Low cost",
-      "adoption_trend": "flat",
-      "position_label": "Value play",
+      "adoption_trend": "rising",
+      "position_label": "High-growth challenger",
       "price_history": [
         {
           "date": "2026-07-26",
@@ -1357,33 +1417,33 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
     },
     "minimax-m3": {
-      "in": 1.5e-07,
-      "out": 6e-07,
-      "cache_read": 3e-08,
+      "in": 3e-07,
+      "out": 1.2e-06,
+      "cache_read": 6e-08,
       "cache_write": null,
-      "context": 524288,
+      "context": 1048576,
       "modalities": [
         "text",
         "image",
@@ -1398,14 +1458,20 @@
       "open_weight": true,
       "free_tier": false,
       "knowledge_cutoff": null,
-      "or_id": "minimax/minimax-m3:batch",
-      "or_url": "https://openrouter.ai/minimax/minimax-m3:batch",
-      "uptime": null,
-      "workload_cost": 12.6,
+      "or_id": "minimax/minimax-m3",
+      "or_url": "https://openrouter.ai/minimax/minimax-m3",
+      "uptime": 99.026,
+      "workload_cost": 25.2,
       "price_position": "Mid cost",
-      "adoption_trend": "falling",
-      "position_label": "Losing ground",
+      "adoption_trend": "flat",
+      "position_label": "Holding position",
       "price_history": [
+        {
+          "date": "2026-07-31",
+          "in": 3e-07,
+          "out": 1.2e-06,
+          "change_pct": 100.0
+        },
         {
           "date": "2026-07-28",
           "in": 1.5e-07,
@@ -1423,9 +1489,9 @@
         {
           "slug": "minimax-m3",
           "name": "MiniMax M3",
-          "in": 1.5e-07,
-          "out": 6e-07,
-          "cache_read": 3e-08,
+          "in": 3e-07,
+          "out": 1.2e-06,
+          "cache_read": 6e-08,
           "you": true
         },
         {
@@ -1433,23 +1499,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -1474,7 +1540,7 @@
       "knowledge_cutoff": "2024-04-30",
       "or_id": "mistralai/mistral-nemo",
       "or_url": "https://openrouter.ai/mistralai/mistral-nemo",
-      "uptime": 97.01,
+      "uptime": 85.842,
       "workload_cost": 2.2,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -1513,31 +1579,31 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
     },
     "moonshotai-kimi-k2-6": {
-      "in": 9.5e-07,
-      "out": 4e-06,
-      "cache_read": 1.6e-07,
+      "in": 6e-07,
+      "out": 3.41e-06,
+      "cache_read": 2e-07,
       "cache_write": null,
       "context": 262144,
       "modalities": [
@@ -1555,12 +1621,18 @@
       "knowledge_cutoff": null,
       "or_id": "moonshotai/kimi-k2.6",
       "or_url": "https://openrouter.ai/moonshotai/kimi-k2.6",
-      "uptime": 99.452,
-      "workload_cost": 79.7,
-      "price_position": "Premium",
+      "uptime": 99.356,
+      "workload_cost": 66.1,
+      "price_position": "Mid cost",
       "adoption_trend": "falling",
-      "position_label": "Under pressure",
+      "position_label": "Losing ground",
       "price_history": [
+        {
+          "date": "2026-07-31",
+          "in": 6e-07,
+          "out": 3.41e-06,
+          "change_pct": -14.7
+        },
         {
           "date": "2026-07-30",
           "in": 9.5e-07,
@@ -1596,9 +1668,9 @@
         {
           "slug": "moonshotai-kimi-k2-6",
           "name": "Moonshot Kimi K2.6",
-          "in": 9.5e-07,
-          "out": 4e-06,
-          "cache_read": 1.6e-07,
+          "in": 6e-07,
+          "out": 3.41e-06,
+          "cache_read": 2e-07,
           "you": true
         },
         {
@@ -1606,23 +1678,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -1648,7 +1720,7 @@
       "knowledge_cutoff": null,
       "or_id": "moonshotai/kimi-k3",
       "or_url": "https://openrouter.ai/moonshotai/kimi-k3",
-      "uptime": 94.243,
+      "uptime": 93.452,
       "workload_cost": 261.0,
       "price_position": "Premium",
       "adoption_trend": "rising",
@@ -1675,23 +1747,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -1716,11 +1788,11 @@
       "knowledge_cutoff": null,
       "or_id": "nvidia/nemotron-3-super-120b-a12b:free",
       "or_url": "https://openrouter.ai/nvidia/nemotron-3-super-120b-a12b:free",
-      "uptime": 99.608,
+      "uptime": 99.602,
       "workload_cost": 0.0,
       "price_position": "Low cost",
-      "adoption_trend": "rising",
-      "position_label": "High-growth challenger",
+      "adoption_trend": "falling",
+      "position_label": "Value play",
       "price_history": [
         {
           "date": "2026-07-12",
@@ -1743,23 +1815,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -1784,7 +1856,7 @@
       "knowledge_cutoff": null,
       "or_id": "nvidia/nemotron-3-ultra-550b-a55b:free",
       "or_url": "https://openrouter.ai/nvidia/nemotron-3-ultra-550b-a55b:free",
-      "uptime": 99.528,
+      "uptime": 99.56,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "rising",
@@ -1811,23 +1883,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -1854,7 +1926,7 @@
       "knowledge_cutoff": "2023-10-31",
       "or_id": "openai/gpt-4o-mini",
       "or_url": "https://openrouter.ai/openai/gpt-4o-mini",
-      "uptime": 99.982,
+      "uptime": 99.978,
       "workload_cost": 15.75,
       "price_position": "Mid cost",
       "adoption_trend": "falling",
@@ -1881,31 +1953,31 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
     },
     "openai-gpt-5-4": {
-      "in": 1.25e-06,
-      "out": 7.5e-06,
-      "cache_read": 1.25e-07,
+      "in": 2.5e-06,
+      "out": 1.5e-05,
+      "cache_read": 2.5e-07,
       "cache_write": null,
       "context": 1050000,
       "modalities": [
@@ -1922,14 +1994,20 @@
       "open_weight": false,
       "free_tier": false,
       "knowledge_cutoff": null,
-      "or_id": "openai/gpt-5.4:batch",
-      "or_url": "https://openrouter.ai/openai/gpt-5.4:batch",
-      "uptime": null,
-      "workload_cost": 121.25,
+      "or_id": "openai/gpt-5.4",
+      "or_url": "https://openrouter.ai/openai/gpt-5.4",
+      "uptime": 89.062,
+      "workload_cost": 242.5,
       "price_position": "Premium",
       "adoption_trend": "rising",
       "position_label": "Premium leader",
       "price_history": [
+        {
+          "date": "2026-07-31",
+          "in": 2.5e-06,
+          "out": 1.5e-05,
+          "change_pct": 100.0
+        },
         {
           "date": "2026-07-28",
           "in": 1.25e-06,
@@ -1947,9 +2025,9 @@
         {
           "slug": "openai-gpt-5-4",
           "name": "OpenAI GPT 5.4",
-          "in": 1.25e-06,
-          "out": 7.5e-06,
-          "cache_read": 1.25e-07,
+          "in": 2.5e-06,
+          "out": 1.5e-05,
+          "cache_read": 2.5e-07,
           "you": true
         },
         {
@@ -1957,31 +2035,31 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
     },
     "openai-gpt-5-5": {
-      "in": 2.5e-06,
-      "out": 1.5e-05,
-      "cache_read": 2.5e-07,
+      "in": 5e-06,
+      "out": 3e-05,
+      "cache_read": 5e-07,
       "cache_write": null,
       "context": 1050000,
       "modalities": [
@@ -1998,14 +2076,20 @@
       "open_weight": false,
       "free_tier": false,
       "knowledge_cutoff": "2025-12-01",
-      "or_id": "openai/gpt-5.5:batch",
-      "or_url": "https://openrouter.ai/openai/gpt-5.5:batch",
-      "uptime": null,
-      "workload_cost": 242.5,
+      "or_id": "openai/gpt-5.5",
+      "or_url": "https://openrouter.ai/openai/gpt-5.5",
+      "uptime": 99.125,
+      "workload_cost": 485.0,
       "price_position": "Premium",
       "adoption_trend": "falling",
       "position_label": "Under pressure",
       "price_history": [
+        {
+          "date": "2026-07-31",
+          "in": 5e-06,
+          "out": 3e-05,
+          "change_pct": 100.0
+        },
         {
           "date": "2026-07-28",
           "in": 2.5e-06,
@@ -2023,9 +2107,9 @@
         {
           "slug": "openai-gpt-5-5",
           "name": "OpenAI GPT 5.5",
-          "in": 2.5e-06,
-          "out": 1.5e-05,
-          "cache_read": 2.5e-07,
+          "in": 5e-06,
+          "out": 3e-05,
+          "cache_read": 5e-07,
           "you": true
         },
         {
@@ -2033,23 +2117,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -2076,7 +2160,7 @@
       "knowledge_cutoff": "2026-02-16",
       "or_id": "openai/gpt-5.6-luna",
       "or_url": "https://openrouter.ai/openai/gpt-5.6-luna",
-      "uptime": 99.891,
+      "uptime": 99.633,
       "workload_cost": 9.7,
       "price_position": "Low cost",
       "adoption_trend": "rising",
@@ -2115,23 +2199,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -2158,7 +2242,7 @@
       "knowledge_cutoff": "2026-02-16",
       "or_id": "openai/gpt-5.6-sol",
       "or_url": "https://openrouter.ai/openai/gpt-5.6-sol",
-      "uptime": 96.557,
+      "uptime": 93.67,
       "workload_cost": 485.0,
       "price_position": "Premium",
       "adoption_trend": "falling",
@@ -2185,23 +2269,93 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
+          "you": false
+        }
+      ]
+    },
+    "openai-gpt-5-6-terra": {
+      "in": 1.0000000000000002e-06,
+      "out": 6e-06,
+      "cache_read": 1e-07,
+      "cache_write": 1.25e-06,
+      "context": 1050000,
+      "modalities": [
+        "file",
+        "image",
+        "text"
+      ],
+      "image_in": true,
+      "audio_in": false,
+      "video_in": false,
+      "tools": true,
+      "structured": true,
+      "reasoning": true,
+      "open_weight": false,
+      "free_tier": false,
+      "knowledge_cutoff": "2026-02-16",
+      "or_id": "openai/gpt-5.6-terra",
+      "or_url": "https://openrouter.ai/openai/gpt-5.6-terra",
+      "uptime": 99.608,
+      "workload_cost": 97.0,
+      "price_position": "Premium",
+      "adoption_trend": "rising",
+      "position_label": "Premium leader",
+      "price_history": [
+        {
+          "date": "2026-07-31",
+          "in": 1.0000000000000002e-06,
+          "out": 6e-06,
+          "change_pct": null
+        }
+      ],
+      "compare": [
+        {
+          "slug": "openai-gpt-5-6-terra",
+          "name": "OpenAI GPT 5.6 Terra",
+          "in": 1.0000000000000002e-06,
+          "out": 6e-06,
           "cache_read": 1e-07,
+          "you": true
+        },
+        {
+          "slug": "deepseek-v4-flash",
+          "name": "DeepSeek V4 Flash",
+          "in": 1.4e-07,
+          "out": 2.8e-07,
+          "cache_read": 2.8e-09,
+          "you": false
+        },
+        {
+          "slug": "google-gemini-2-5-flash",
+          "name": "Google Gemini 2.5 Flash",
+          "in": 3e-07,
+          "out": 2.5e-06,
+          "cache_read": 3e-08,
+          "you": false
+        },
+        {
+          "slug": "anthropic-claude-sonnet-5",
+          "name": "Anthropic Claude Sonnet 5",
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -2226,11 +2380,11 @@
       "knowledge_cutoff": "2024-06-30",
       "or_id": "openai/gpt-oss-120b",
       "or_url": "https://openrouter.ai/openai/gpt-oss-120b",
-      "uptime": 97.89,
+      "uptime": 98.052,
       "workload_cost": 5.4,
       "price_position": "Low cost",
-      "adoption_trend": "rising",
-      "position_label": "High-growth challenger",
+      "adoption_trend": "flat",
+      "position_label": "Value play",
       "price_history": [
         {
           "date": "2026-07-14",
@@ -2259,23 +2413,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -2300,7 +2454,7 @@
       "knowledge_cutoff": null,
       "or_id": "poolside/laguna-s-2.1:free",
       "or_url": "https://openrouter.ai/poolside/laguna-s-2.1:free",
-      "uptime": 99.947,
+      "uptime": 99.966,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "rising",
@@ -2327,23 +2481,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -2370,7 +2524,7 @@
       "knowledge_cutoff": null,
       "or_id": "stepfun/step-3.7-flash",
       "or_url": "https://openrouter.ai/stepfun/step-3.7-flash",
-      "uptime": 99.38,
+      "uptime": 99.387,
       "workload_cost": 20.3,
       "price_position": "Mid cost",
       "adoption_trend": "rising",
@@ -2397,23 +2551,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -2438,7 +2592,7 @@
       "knowledge_cutoff": null,
       "or_id": "tencent/hy3",
       "or_url": "https://openrouter.ai/tencent/hy3",
-      "uptime": 99.515,
+      "uptime": 99.615,
       "workload_cost": 11.55,
       "price_position": "Low cost",
       "adoption_trend": "rising",
@@ -2471,23 +2625,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -2512,7 +2666,7 @@
       "knowledge_cutoff": null,
       "or_id": "tencent/hy3",
       "or_url": "https://openrouter.ai/tencent/hy3",
-      "uptime": 99.515,
+      "uptime": 99.615,
       "workload_cost": 11.55,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -2551,23 +2705,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -2592,7 +2746,7 @@
       "knowledge_cutoff": null,
       "or_id": "tencent/hy3-preview",
       "or_url": "https://openrouter.ai/tencent/hy3-preview",
-      "uptime": 99.919,
+      "uptime": 99.802,
       "workload_cost": 5.46,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -2619,23 +2773,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -2662,11 +2816,11 @@
       "knowledge_cutoff": null,
       "or_id": "x-ai/grok-4.5",
       "or_url": "https://openrouter.ai/x-ai/grok-4.5",
-      "uptime": 99.929,
+      "uptime": 99.895,
       "workload_cost": 141.0,
       "price_position": "Premium",
-      "adoption_trend": "rising",
-      "position_label": "Premium leader",
+      "adoption_trend": "falling",
+      "position_label": "Under pressure",
       "price_history": [
         {
           "date": "2026-07-14",
@@ -2689,23 +2843,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -2733,7 +2887,7 @@
       "knowledge_cutoff": null,
       "or_id": "xiaomi/mimo-v2.5",
       "or_url": "https://openrouter.ai/xiaomi/mimo-v2.5",
-      "uptime": 94.652,
+      "uptime": 94.386,
       "workload_cost": 7.2,
       "price_position": "Low cost",
       "adoption_trend": "flat",
@@ -2766,23 +2920,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -2807,7 +2961,7 @@
       "knowledge_cutoff": null,
       "or_id": "xiaomi/mimo-v2.5-pro",
       "or_url": "https://openrouter.ai/xiaomi/mimo-v2.5-pro",
-      "uptime": 93.571,
+      "uptime": 95.411,
       "workload_cost": 22.0,
       "price_position": "Mid cost",
       "adoption_trend": "rising",
@@ -2834,23 +2988,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
@@ -2875,7 +3029,7 @@
       "knowledge_cutoff": null,
       "or_id": "z-ai/glm-5",
       "or_url": "https://openrouter.ai/z-ai/glm-5",
-      "uptime": 98.99,
+      "uptime": 99.311,
       "workload_cost": 68.0,
       "price_position": "Mid cost",
       "adoption_trend": "falling",
@@ -2926,31 +3080,31 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
     },
     "z-ai-glm-5-2": {
-      "in": 1.19e-06,
-      "out": 3.74e-06,
-      "cache_read": 2.21e-07,
+      "in": 7.6006e-07,
+      "out": 2.38876e-06,
+      "cache_read": 1.41154e-07,
       "cache_write": null,
       "context": 1048576,
       "modalities": [
@@ -2967,12 +3121,18 @@
       "knowledge_cutoff": null,
       "or_id": "z-ai/glm-5.2",
       "or_url": "https://openrouter.ai/z-ai/glm-5.2",
-      "uptime": 99.27,
-      "workload_cost": 88.57,
-      "price_position": "Premium",
+      "uptime": 99.156,
+      "workload_cost": 56.57,
+      "price_position": "Mid cost",
       "adoption_trend": "falling",
-      "position_label": "Under pressure",
+      "position_label": "Losing ground",
       "price_history": [
+        {
+          "date": "2026-07-31",
+          "in": 7.6006e-07,
+          "out": 2.38876e-06,
+          "change_pct": -36.1
+        },
         {
           "date": "2026-07-30",
           "in": 1.19e-06,
@@ -3092,9 +3252,9 @@
         {
           "slug": "z-ai-glm-5-2",
           "name": "Z.ai GLM 5.2",
-          "in": 1.19e-06,
-          "out": 3.74e-06,
-          "cache_read": 2.21e-07,
+          "in": 7.6006e-07,
+          "out": 2.38876e-06,
+          "cache_read": 1.41154e-07,
           "you": true
         },
         {
@@ -3102,23 +3262,23 @@
           "name": "DeepSeek V4 Flash",
           "in": 1.4e-07,
           "out": 2.8e-07,
-          "cache_read": 2.8e-08,
+          "cache_read": 2.8e-09,
           "you": false
         },
         {
           "slug": "google-gemini-2-5-flash",
           "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
+          "in": 3e-07,
+          "out": 2.5e-06,
           "cache_read": 3e-08,
           "you": false
         },
         {
           "slug": "anthropic-claude-sonnet-5",
           "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
+          "in": 2e-06,
+          "out": 1e-05,
+          "cache_read": 2e-07,
           "you": false
         }
       ]
