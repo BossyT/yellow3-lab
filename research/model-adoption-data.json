@@ -3,25 +3,25 @@
   "title": "Model adoption",
   "thesis": "See which AI models the world is actually using, where they were built, and how the balance is changing. The live chart updates as new routed traffic is recorded, so rankings and regional shares can shift at any time. Return regularly to follow the movement.",
   "status": "live",
-  "as_of": "2026-07-31",
-  "as_of_pretty": "31 July 2026",
-  "generated_utc": "2026-08-01T07:19:38Z",
-  "refreshed_cet": "1 Aug 2026, 09:19 CET",
+  "as_of": "2026-08-01",
+  "as_of_pretty": "1 August 2026",
+  "generated_utc": "2026-08-02T07:21:55Z",
+  "refreshed_cet": "2 Aug 2026, 09:21 CET",
   "source": {
     "name": "OpenRouter",
     "url": "https://openrouter.ai/rankings",
-    "line": "Source: OpenRouter (openrouter.ai/rankings), as of 31 July 2026."
+    "line": "Source: OpenRouter (openrouter.ai/rankings), as of 1 August 2026."
   },
   "window": {
     "current": [
-      "2026-07-25",
-      "2026-07-31"
+      "2026-07-26",
+      "2026-08-01"
     ],
     "prior": [
-      "2026-07-18",
-      "2026-07-24"
+      "2026-07-19",
+      "2026-07-25"
     ],
-    "days_history": 89
+    "days_history": 90
   },
   "regions": [
     "Asia",
@@ -35,65 +35,65 @@
     "US": "#3b6ea5",
     "Other": "#a8a6a1"
   },
-  "payoff": "Asia leads with 62% of routed tokens this week (-1.9 points), while Europe sits at 0.29%.",
+  "payoff": "Asia leads with 61% of routed tokens this week (-2.6 points), while Europe sits at 0.25%.",
   "share": [
     {
       "region": "Asia",
-      "pct": 62.16,
-      "delta_pp": -1.85,
-      "delta_pp_4w": 3.14,
-      "models": 11
+      "pct": 61.14,
+      "delta_pp": -2.59,
+      "delta_pp_4w": 1.34,
+      "models": 12
     },
     {
       "region": "Europe",
-      "pct": 0.29,
-      "delta_pp": -0.15,
-      "delta_pp_4w": -0.24,
+      "pct": 0.25,
+      "delta_pp": -0.19,
+      "delta_pp_4w": -0.27,
       "models": 0
     },
     {
       "region": "US",
-      "pct": 29.47,
-      "delta_pp": 0.73,
-      "delta_pp_4w": -4.48,
-      "models": 19
+      "pct": 30.58,
+      "delta_pp": 1.92,
+      "delta_pp_4w": -2.78,
+      "models": 18
     },
     {
       "region": "Other",
-      "pct": 8.08,
-      "delta_pp": 1.27,
-      "delta_pp_4w": 1.58,
+      "pct": 8.03,
+      "delta_pp": 0.86,
+      "delta_pp_4w": 1.71,
       "models": 0
     }
   ],
   "leaderboard": [
     {
       "rank": 1,
-      "prev_rank": 1,
-      "move": "flat",
-      "new": false,
-      "model": "xiaomi/mimo-v2.5-20260422",
-      "name": "Xiaomi Mimo V2.5",
-      "slug": "xiaomi-mimo-v2-5",
-      "developer": "Xiaomi",
-      "region": "Asia",
-      "pct": 14.13
-    },
-    {
-      "rank": 2,
       "prev_rank": 2,
-      "move": "flat",
+      "move": "up",
       "new": false,
       "model": "deepseek/deepseek-v4-flash-20260423",
       "name": "DeepSeek V4 Flash",
       "slug": "deepseek-v4-flash",
       "developer": "DeepSeek",
       "region": "Asia",
-      "pct": 13.2
+      "pct": 13.03
+    },
+    {
+      "rank": 2,
+      "prev_rank": 1,
+      "move": "down",
+      "new": false,
+      "model": "xiaomi/mimo-v2.5-20260422",
+      "name": "Xiaomi Mimo V2.5",
+      "slug": "xiaomi-mimo-v2-5",
+      "developer": "Xiaomi",
+      "region": "Asia",
+      "pct": 12.68
     },
     {
       "rank": 3,
-      "prev_rank": 6,
+      "prev_rank": 4,
       "move": "up",
       "new": false,
       "model": "tencent/hy3-20260706",
@@ -101,11 +101,11 @@
       "slug": "tencent-hy3",
       "developer": "Tencent",
       "region": "Asia",
-      "pct": 8.38
+      "pct": 8.4
     },
     {
       "rank": 4,
-      "prev_rank": 5,
+      "prev_rank": 6,
       "move": "up",
       "new": false,
       "model": "deepseek/deepseek-v4-pro-20260423",
@@ -113,11 +113,11 @@
       "slug": "deepseek-v4-pro",
       "developer": "DeepSeek",
       "region": "Asia",
-      "pct": 6.28
+      "pct": 6.14
     },
     {
       "rank": 5,
-      "prev_rank": 4,
+      "prev_rank": 3,
       "move": "down",
       "new": false,
       "model": "z-ai/glm-5.2-20260616",
@@ -125,11 +125,11 @@
       "slug": "z-ai-glm-5-2",
       "developer": "Z.ai",
       "region": "Asia",
-      "pct": 5.34
+      "pct": 5.24
     },
     {
       "rank": 6,
-      "prev_rank": 8,
+      "prev_rank": 7,
       "move": "up",
       "new": false,
       "model": "nvidia/nemotron-3-ultra-550b-a55b-20260604:free",
@@ -137,19 +137,19 @@
       "slug": "nvidia-nemotron-3-ultra-550b-a55b-free",
       "developer": "NVIDIA",
       "region": "US",
-      "pct": 4.51
+      "pct": 4.38
     },
     {
       "rank": 7,
-      "prev_rank": 7,
-      "move": "flat",
+      "prev_rank": 8,
+      "move": "up",
       "new": false,
       "model": "minimax/minimax-m3-20260531",
       "name": "MiniMax M3",
       "slug": "minimax-m3",
       "developer": "MiniMax",
       "region": "Asia",
-      "pct": 3.54
+      "pct": 3.5
     },
     {
       "rank": 8,
@@ -161,11 +161,11 @@
       "slug": "stepfun-step-3-7-flash",
       "developer": "StepFun",
       "region": "Asia",
-      "pct": 2.97
+      "pct": 2.93
     },
     {
       "rank": 9,
-      "prev_rank": 12,
+      "prev_rank": 11,
       "move": "up",
       "new": false,
       "model": "moonshotai/kimi-k3-20260715",
@@ -173,11 +173,11 @@
       "slug": "moonshotai-kimi-k3",
       "developer": "Moonshot",
       "region": "Asia",
-      "pct": 2.4
+      "pct": 2.48
     },
     {
       "rank": 10,
-      "prev_rank": 47,
+      "prev_rank": 34,
       "move": "up",
       "new": false,
       "model": "inclusionai/ling-3.0-flash-20260723:free",
@@ -185,31 +185,31 @@
       "slug": "inclusionai-ling-3-0-flash-free",
       "developer": "inclusionAI",
       "region": "Asia",
-      "pct": 2.35
+      "pct": 2.43
     },
     {
       "rank": 11,
-      "prev_rank": 13,
+      "prev_rank": 31,
       "move": "up",
+      "new": false,
+      "model": "openai/gpt-5.6-luna-20260709",
+      "name": "OpenAI GPT 5.6 Luna",
+      "slug": "openai-gpt-5-6-luna",
+      "developer": "OpenAI",
+      "region": "US",
+      "pct": 2.4
+    },
+    {
+      "rank": 12,
+      "prev_rank": 12,
+      "move": "flat",
       "new": false,
       "model": "anthropic/claude-sonnet-5-20260630",
       "name": "Anthropic Claude Sonnet 5",
       "slug": "anthropic-claude-sonnet-5",
       "developer": "Anthropic",
       "region": "US",
-      "pct": 1.78
-    },
-    {
-      "rank": 12,
-      "prev_rank": 14,
-      "move": "up",
-      "new": false,
-      "model": "google/gemini-3-flash-preview-20251217",
-      "name": "Google Gemini 3 Flash Preview",
-      "slug": "google-gemini-3-flash-preview",
-      "developer": "Google",
-      "region": "US",
-      "pct": 1.71
+      "pct": 1.77
     },
     {
       "rank": 13,
@@ -221,36 +221,48 @@
       "slug": "anthropic-claude-4-6-sonnet",
       "developer": "Anthropic",
       "region": "US",
-      "pct": 1.7
+      "pct": 1.73
     },
     {
       "rank": 14,
-      "prev_rank": null,
-      "move": "new",
-      "new": true,
+      "prev_rank": 14,
+      "move": "flat",
+      "new": false,
+      "model": "google/gemini-3-flash-preview-20251217",
+      "name": "Google Gemini 3 Flash Preview",
+      "slug": "google-gemini-3-flash-preview",
+      "developer": "Google",
+      "region": "US",
+      "pct": 1.73
+    },
+    {
+      "rank": 15,
+      "prev_rank": 54,
+      "move": "up",
+      "new": false,
       "model": "anthropic/claude-opus-5-20260723",
       "name": "Anthropic Claude Opus 5",
       "slug": "anthropic-claude-opus-5",
       "developer": "Anthropic",
       "region": "US",
-      "pct": 1.62
-    },
-    {
-      "rank": 15,
-      "prev_rank": 32,
-      "move": "up",
-      "new": false,
-      "model": "openai/gpt-5.6-luna-20260709",
-      "name": "OpenAI GPT 5.6 Luna",
-      "slug": "openai-gpt-5-6-luna",
-      "developer": "OpenAI",
-      "region": "US",
-      "pct": 1.46
+      "pct": 1.66
     },
     {
       "rank": 16,
+      "prev_rank": 43,
+      "move": "up",
+      "new": false,
+      "model": "poolside/laguna-s-2.1-20260720:free",
+      "name": "Poolside Laguna S 2.1 (free)",
+      "slug": "poolside-laguna-s-2-1-free",
+      "developer": "Poolside",
+      "region": "US",
+      "pct": 1.27
+    },
+    {
+      "rank": 17,
       "prev_rank": 16,
-      "move": "flat",
+      "move": "down",
       "new": false,
       "model": "google/gemini-2.5-flash-lite",
       "name": "Google Gemini 2.5 Flash Lite",
@@ -260,7 +272,7 @@
       "pct": 1.17
     },
     {
-      "rank": 17,
+      "rank": 18,
       "prev_rank": 20,
       "move": "up",
       "new": false,
@@ -269,10 +281,22 @@
       "slug": "xiaomi-mimo-v2-5-pro",
       "developer": "Xiaomi",
       "region": "Asia",
-      "pct": 1.11
+      "pct": 1.09
     },
     {
-      "rank": 18,
+      "rank": 19,
+      "prev_rank": null,
+      "move": "new",
+      "new": true,
+      "model": "deepseek/deepseek-v4-flash-20260731",
+      "name": "DeepSeek V4 Flash",
+      "slug": "deepseek-v4-flash",
+      "developer": "DeepSeek",
+      "region": "Asia",
+      "pct": 1.07
+    },
+    {
+      "rank": 20,
       "prev_rank": 10,
       "move": "down",
       "new": false,
@@ -281,10 +305,10 @@
       "slug": "anthropic-claude-4-8-opus",
       "developer": "Anthropic",
       "region": "US",
-      "pct": 1.04
+      "pct": 1.01
     },
     {
-      "rank": 19,
+      "rank": 21,
       "prev_rank": 17,
       "move": "down",
       "new": false,
@@ -296,7 +320,7 @@
       "pct": 1.0
     },
     {
-      "rank": 20,
+      "rank": 22,
       "prev_rank": 18,
       "move": "down",
       "new": false,
@@ -305,34 +329,34 @@
       "slug": "google-gemini-3-1-flash-lite",
       "developer": "Google",
       "region": "US",
-      "pct": 1.0
+      "pct": 0.99
     },
     {
-      "rank": 21,
-      "prev_rank": 45,
-      "move": "up",
-      "new": false,
-      "model": "poolside/laguna-s-2.1-20260720:free",
-      "name": "Poolside Laguna S 2.1 (free)",
-      "slug": "poolside-laguna-s-2-1-free",
-      "developer": "Poolside",
-      "region": "US",
-      "pct": 0.94
-    },
-    {
-      "rank": 22,
+      "rank": 23,
       "prev_rank": 22,
-      "move": "flat",
+      "move": "down",
       "new": false,
       "model": "openai/gpt-oss-120b",
       "name": "OpenAI GPT OSS 120b",
       "slug": "openai-gpt-oss-120b",
       "developer": "OpenAI",
       "region": "US",
-      "pct": 0.91
+      "pct": 0.94
     },
     {
-      "rank": 23,
+      "rank": 24,
+      "prev_rank": 47,
+      "move": "up",
+      "new": false,
+      "model": "openai/gpt-5.6-terra-20260709",
+      "name": "OpenAI GPT 5.6 Terra",
+      "slug": "openai-gpt-5-6-terra",
+      "developer": "OpenAI",
+      "region": "US",
+      "pct": 0.77
+    },
+    {
+      "rank": 25,
       "prev_rank": 19,
       "move": "down",
       "new": false,
@@ -341,10 +365,46 @@
       "slug": "openai-gpt-5-6-sol",
       "developer": "OpenAI",
       "region": "US",
-      "pct": 0.78
+      "pct": 0.75
     },
     {
-      "rank": 24,
+      "rank": 26,
+      "prev_rank": 44,
+      "move": "up",
+      "new": false,
+      "model": "google/gemini-3.6-flash-20260721",
+      "name": "Google Gemini 3.6 Flash",
+      "slug": "google-gemini-3-6-flash",
+      "developer": "Google",
+      "region": "US",
+      "pct": 0.71
+    },
+    {
+      "rank": 27,
+      "prev_rank": 25,
+      "move": "down",
+      "new": false,
+      "model": "google/gemma-4-31b-it-20260402",
+      "name": "Google Gemma 4 31b It",
+      "slug": "google-gemma-4-31b-it",
+      "developer": "Google",
+      "region": "US",
+      "pct": 0.71
+    },
+    {
+      "rank": 28,
+      "prev_rank": 24,
+      "move": "down",
+      "new": false,
+      "model": "deepseek/deepseek-v3.2-20251201",
+      "name": "DeepSeek V3.2",
+      "slug": "deepseek-v3-2",
+      "developer": "DeepSeek",
+      "region": "Asia",
+      "pct": 0.71
+    },
+    {
+      "rank": 29,
       "prev_rank": 21,
       "move": "down",
       "new": false,
@@ -353,59 +413,11 @@
       "slug": "x-ai-grok-4-5",
       "developer": "xAI",
       "region": "US",
-      "pct": 0.74
-    },
-    {
-      "rank": 25,
-      "prev_rank": 49,
-      "move": "up",
-      "new": false,
-      "model": "google/gemini-3.6-flash-20260721",
-      "name": "Google Gemini 3.6 Flash",
-      "slug": "google-gemini-3-6-flash",
-      "developer": "Google",
-      "region": "US",
-      "pct": 0.7
-    },
-    {
-      "rank": 26,
-      "prev_rank": 27,
-      "move": "up",
-      "new": false,
-      "model": "deepseek/deepseek-v3.2-20251201",
-      "name": "DeepSeek V3.2",
-      "slug": "deepseek-v3-2",
-      "developer": "DeepSeek",
-      "region": "Asia",
-      "pct": 0.7
-    },
-    {
-      "rank": 27,
-      "prev_rank": 26,
-      "move": "down",
-      "new": false,
-      "model": "google/gemma-4-31b-it-20260402",
-      "name": "Google Gemma 4 31b It",
-      "slug": "google-gemma-4-31b-it",
-      "developer": "Google",
-      "region": "US",
-      "pct": 0.68
-    },
-    {
-      "rank": 28,
-      "prev_rank": 44,
-      "move": "up",
-      "new": false,
-      "model": "openai/gpt-5.6-terra-20260709",
-      "name": "OpenAI GPT 5.6 Terra",
-      "slug": "openai-gpt-5-6-terra",
-      "developer": "OpenAI",
-      "region": "US",
       "pct": 0.66
     },
     {
-      "rank": 29,
-      "prev_rank": 59,
+      "rank": 30,
+      "prev_rank": 53,
       "move": "up",
       "new": false,
       "model": "perplexity/pplx-embed-v1-0.6B",
@@ -413,19 +425,7 @@
       "slug": "perplexity-pplx-embed-v1-0-6b",
       "developer": "Perplexity",
       "region": "US",
-      "pct": 0.65
-    },
-    {
-      "rank": 30,
-      "prev_rank": 29,
-      "move": "down",
-      "new": false,
-      "model": "google/gemma-4-26b-a4b-it-20260403",
-      "name": "Google Gemma 4 26b A4b It",
-      "slug": "google-gemma-4-26b-a4b-it",
-      "developer": "Google",
-      "region": "US",
-      "pct": 0.62
+      "pct": 0.63
     }
   ],
   "records": [
@@ -446,25 +446,25 @@
       "key": "current_streak",
       "label": "Current number one",
       "value": "DeepSeek V4 Flash",
-      "detail": "3 days running"
+      "detail": "4 days running"
     },
     {
       "key": "biggest_mover",
       "label": "Biggest weekly mover",
-      "value": "#46 \u2192 #9",
-      "detail": "Poolside Laguna S 2.1 (free)"
+      "value": "#37 \u2192 #4",
+      "detail": "OpenAI GPT 5.6 Luna"
     },
     {
       "key": "steepest_fall",
       "label": "Steepest fall",
-      "value": "#19 \u2192 #42",
-      "detail": "Anthropic Claude 4.7 Opus"
+      "value": "#25 \u2192 #48",
+      "detail": "OpenAI GPT 5.4 Mini"
     },
     {
       "key": "new_entrants",
       "label": "New entrants this week",
       "value": "8",
-      "detail": "Anthropic Claude Opus 5 and others"
+      "detail": "DeepSeek V4 Flash and others"
     }
   ],
   "edition": {
@@ -561,16 +561,16 @@
       "example": "cohere/north-mini-code-20260617:free"
     },
     {
-      "developer": "baai",
-      "example": "baai/bge-m3-20251117"
-    },
-    {
       "developer": "nex-agi",
       "example": "nex-agi/nex-n2-pro:free"
     },
     {
       "developer": "bytedance-seed",
       "example": "bytedance-seed/seed-2.0-mini-20260224"
+    },
+    {
+      "developer": "baai",
+      "example": "baai/bge-m3-20251117"
     }
   ],
   "links": {}
