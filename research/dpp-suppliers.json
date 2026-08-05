@@ -444,7 +444,7 @@
    "hq_city": "Cologne",
    "country_source": "https://benelog.com/imprint/",
    "entity_type": "middleware",
-   "sectors": "",
+   "sectors": "textiles,electronics,batteries,construction,food,chemicals",
    "founded_year": "",
    "ownership": "",
    "funding_stage": "",
@@ -456,7 +456,14 @@
    "source": "official company website",
    "source_date": "2026-07-28",
    "confidence": "verified",
-   "sectors_list": []
+   "sectors_list": [
+    "textiles",
+    "electronics",
+    "batteries",
+    "construction",
+    "food",
+    "chemicals"
+   ]
   },
   {
    "id": "beopass",

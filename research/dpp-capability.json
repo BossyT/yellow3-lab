@@ -5,8 +5,8 @@
  "suppliers_assessed": 153,
  "checks_run": 1530,
  "totals": {
-  "not_found": 1211,
-  "company_states": 271,
+  "not_found": 1210,
+  "company_states": 272,
   "verified": 48
  },
  "results": [
@@ -1327,8 +1327,8 @@
    "state": "not_found",
    "evidence_url": "",
    "artifact": "",
-   "checked_date": "2026-07-30",
-   "note": "OpenEPCIS publishes a DPP schema and worked examples, but they do not demonstrate separate claim, supporting-document and third-party-verification provenance."
+   "checked_date": "2026-08-05",
+   "note": "An example passport DOES exist and is navigable - amperia-staxwall-model.jsonld renders via the live EN 18223 converter for GS1 Digital Link 01/09521234002000. It separates the claim from the supporting document with typed provenance: eubat:euDeclarationOfConformity is typed cccev:Evidence and carries a document URI, eubat:resultOfTestReport carries a separate test-report URI, and gs1:CertificationDetails names the certification subject. What is NOT distinguished is third-party verification: no notified body or auditor is named as a separate field, which is the third leg this check requires. Recorded 2026-08-05 after review prompted by the supplier."
   },
   {
    "supplier_id": "benelog-gmbh-co-kg",
@@ -1354,11 +1354,11 @@
    "supplier_id": "benelog-gmbh-co-kg",
    "check_id": "c05",
    "check_name": "Clean export",
-   "state": "not_found",
-   "evidence_url": "",
+   "state": "company_states",
+   "evidence_url": "https://github.com/openepcis/openepcis-document-converter",
    "artifact": "",
-   "checked_date": "2026-07-30",
-   "note": ""
+   "checked_date": "2026-08-05",
+   "note": "Upgraded from not_found 2026-08-05. Apache 2.0 throughout with published OpenAPI/Swagger documentation for bulk EPCIS document conversion, and an open-source EPCIS 2.0 repository implementation - 23 artifacts on Maven Central under io.openepcis. That is a real published position on data portability. It is not a written export-on-exit commitment, which is what the check asks for, and the check does not map cleanly onto a self-hostable open-source stack. Flagged for framework review rather than bent."
   },
   {
    "supplier_id": "benelog-gmbh-co-kg",
