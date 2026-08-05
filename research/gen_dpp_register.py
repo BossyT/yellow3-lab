@@ -222,6 +222,7 @@ SITE_NAV = """  <nav class="site-nav y3nav">
     <div class="nav-mid" id="navMid">
       <a href="/naffe">Work</a>
       <a href="/research" class="active">Research</a>
+      <a href="/research/digital-product-passport/suppliers">DPP</a>
       <a href="/insights/">Thinking</a>
       <a href="/advisory">Advisory</a>
       <a href="/about">About</a>
@@ -2026,6 +2027,25 @@ def main():
             os.rmdir(full); stale += 1
     if stale:
         print(f"removed stale pages for retired rows {stale:3d}")
+
+    # A row can also stop being ELIGIBLE for pages without leaving the register.
+    # R-Cycle was reclassified from supplier to project-consortium; the generator
+    # correctly stopped producing its claim and edit pages, and the old ones stayed
+    # on disk - so a project consortium was still being invited to claim a profile
+    # it is not allowed to claim. The cleanup above only looks for rows that are
+    # GONE, not rows that changed type.
+    non_commercial = {r["id"] for r in rows if r["entity_type"] in NON_COMMERCIAL}
+    wrong = 0
+    for sid in non_commercial:
+        d = os.path.join(OUT, sid)
+        if not os.path.isdir(d):
+            continue
+        for page in ("claim.html", "edit.html"):
+            f = os.path.join(d, page)
+            if os.path.exists(f):
+                os.remove(f); wrong += 1
+    if wrong:
+        print(f"removed claim/edit pages for non-commercial rows {wrong:3d}")
 
     # retire the old flat profile pages now that they redirect
     old = 0
