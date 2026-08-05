@@ -5,9 +5,9 @@
  "suppliers_assessed": 153,
  "checks_run": 1530,
  "totals": {
-  "not_found": 1210,
-  "company_states": 272,
-  "verified": 48
+  "not_found": 1208,
+  "company_states": 278,
+  "verified": 44
  },
  "results": [
   {
@@ -7641,12 +7641,14 @@
    "supplier_id": "k4security-co-ltd",
    "check_id": "c03",
    "check_name": "Identity portability",
-   "state": "not_found",
-   "evidence_url": "",
+   "state": "company_states",
+   "evidence_url": "https://www.k4-security.com",
    "artifact": "",
-   "checked_date": "2026-07-30",
-   "note": "",
-   "search_ref": "k4security-co-ltd/c03"
+   "checked_date": "2026-08-05",
+   "quote": "",
+   "evidence_mode": "",
+   "search_ref": "",
+   "note": "Corrected from not_found 2026-08-05 by the search-record sweep. The site describes an extensible distributed-identity Resolver addressing DPP interoperability. That is a claim about their own resolver, so company_states. No resolver was resolved and no post-termination continuity commitment was found, so not demonstrated."
   },
   {
    "supplier_id": "k4security-co-ltd",
@@ -10765,12 +10767,14 @@
    "supplier_id": "origovero",
    "check_id": "c01",
    "check_name": "Standards mapping",
-   "state": "not_found",
-   "evidence_url": "",
+   "state": "company_states",
+   "evidence_url": "https://www.origovero.com/platform",
    "artifact": "",
-   "checked_date": "2026-07-30",
-   "note": "",
-   "search_ref": "origovero/c01"
+   "checked_date": "2026-08-05",
+   "quote": "",
+   "evidence_mode": "",
+   "search_ref": "",
+   "note": "Corrected from not_found 2026-08-05 by the search-record sweep. The platform page names three specific standards: 'OrigoVero is built along the harmonized core: unique identifiers (EN 18219), QR + NFC data carriers (EN 18220), and durable, tamper-evident storage (EN 18221).' That is an alignment claim naming the standards, not a published field-level mapping of its own fields, so it is what the company states rather than demonstrated. Recording it as not_found understated what they say in public."
   },
   {
    "supplier_id": "origovero",
@@ -14084,12 +14088,14 @@
    "supplier_id": "stefano-cipriani-studio",
    "check_id": "c07",
    "check_name": "EU DPP Registry",
-   "state": "not_found",
-   "evidence_url": "",
+   "state": "company_states",
+   "evidence_url": "https://reeco.eco/platform",
    "artifact": "",
-   "checked_date": "2026-07-30",
-   "note": "",
-   "search_ref": "stefano-cipriani-studio/c07"
+   "checked_date": "2026-08-05",
+   "quote": "",
+   "evidence_mode": "",
+   "search_ref": "",
+   "note": "Corrected from not_found 2026-08-05 by the search-record sweep. The platform page states 'GS1 Digital Link compatible, EU DPP Registry ready (operative July 2026), Ed25519 signed.' Registry-ready is a claim about their own capability, so it is company_states. No registered passport is shown, so it is not demonstrated - c07 remains unverified by any supplier in the register."
   },
   {
    "supplier_id": "stefano-cipriani-studio",
