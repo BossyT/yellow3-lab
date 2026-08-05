@@ -1,13 +1,13 @@
 {
  "layer": "capability",
  "framework": "capability-framework.md",
- "generated": "2026-07-30",
+ "generated": "2026-08-05",
  "suppliers_assessed": 153,
  "checks_run": 1530,
  "totals": {
-  "not_found": 1212,
-  "company_states": 272,
-  "verified": 46
+  "not_found": 1211,
+  "company_states": 271,
+  "verified": 48
  },
  "results": [
   {
@@ -1314,11 +1314,11 @@
    "supplier_id": "benelog-gmbh-co-kg",
    "check_id": "c01",
    "check_name": "Standards mapping",
-   "state": "not_found",
-   "evidence_url": "",
-   "artifact": "",
-   "checked_date": "2026-07-30",
-   "note": ""
+   "state": "verified",
+   "evidence_url": "https://github.com/openepcis/openepcis-dpp-ready",
+   "artifact": "public standards-harmonisation table mapping the module set to CEN/CENELEC JTC 24 - EN 18216, 18219, 18220, 18221, 18222, 18223 published 2026 with prEN 18239 and 18246 in development - plus seven JSON-LD bridge contexts (UNTP, CIRPASS2, JTC 24, BatteryPass, GS1 Rail, SEMICeu) that are field-level mappings",
+   "checked_date": "2026-08-05",
+   "note": "corrected on the supplier's evidence 2026-08-05: the work is published under the OpenEPCIS open-source organisation, which the original sweep did not reach"
   },
   {
    "supplier_id": "benelog-gmbh-co-kg",
@@ -1364,11 +1364,11 @@
    "supplier_id": "benelog-gmbh-co-kg",
    "check_id": "c06",
    "check_name": "Regulatory pace",
-   "state": "company_states",
-   "evidence_url": "https://openepcis.io/docs/digital-product-passport/espr-framework/",
-   "artifact": "",
-   "checked_date": "2026-07-30",
-   "note": "Current versioned documentation claims ESPR 2024/1781 alignment, but does not identify a released product change from a prior version."
+   "state": "verified",
+   "evidence_url": "https://github.com/openepcis/openepcis-dpp-ready",
+   "artifact": "public per-module version and date table in the repository README, twelve modules each carrying its own version and month, alongside a public release history",
+   "checked_date": "2026-08-05",
+   "note": "corrected 2026-08-05: previously company_states from openepcis.io alone"
   },
   {
    "supplier_id": "benelog-gmbh-co-kg",
