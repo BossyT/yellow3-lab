@@ -3,11 +3,11 @@
  "generated": "2026-07-28",
  "schema": "v1.3",
  "counts": {
-  "organisations": 183,
-  "commercial_suppliers": 167,
-  "countries": 32,
-  "countries_primary_sourced": 32,
-  "verified": 141,
+  "organisations": 190,
+  "commercial_suppliers": 171,
+  "countries": 33,
+  "countries_primary_sourced": 33,
+  "verified": 144,
   "with_disclosed_funding": 16
  },
  "suppliers": [

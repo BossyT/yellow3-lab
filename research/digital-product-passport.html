@@ -285,7 +285,7 @@
       <div class="hero-two">
         <a class="ht" href="/research/digital-product-passport/suppliers">
           <div class="ht-k">The supplier register</div>
-          <div class="ht-n"><b>183</b> organisations &middot; <b>167</b> commercial suppliers &middot; <b>32</b> countries</div>
+          <div class="ht-n"><b id="htOrgs">190</b> organisations &middot; <b id="htComm">171</b> commercial suppliers &middot; <b id="htCountries">33</b> countries</div>
           <div class="ht-p">Who actually supplies Digital Product Passports, with the source behind every fact and the date it was checked.</div>
           <span class="btn btn-dark">Open the register <span class="arr">&#8594;</span></span>
         </a>
@@ -383,7 +383,7 @@
         </div>
         <div class="rp-r">
           <div class="rp-n" id="regCount">187</div>
-          <div class="rp-c">organisations mapped<br><span id="regDetail">171 commercial suppliers, 32 countries</span></div>
+          <div class="rp-c">organisations mapped<br><span id="regDetail">171 commercial suppliers, 33 countries</span></div>
           <div class="rp-go">Open the register &#8594;</div>
         </div>
       </a>
@@ -580,9 +580,16 @@
 (function(){
   fetch('/research/dpp-register-counts.json').then(function(r){return r.json();}).then(function(c){
     if(!c||!c.organisations) return;
-    var n=document.getElementById('regCount'), d=document.getElementById('regDetail');
-    if(n) n.textContent=c.organisations;
+    var set=function(id,v){var e=document.getElementById(id); if(e) e.textContent=v;};
+    set('regCount', c.organisations);
+    var d=document.getElementById('regDetail');
     if(d) d.textContent=c.commercial_suppliers+' commercial suppliers, '+c.countries+' countries';
+    // the hero carried its own copy of the same three numbers and drifted to
+    // 183/167/32 while the register said 190/171/33. Every total on this page
+    // now comes from one source.
+    set('htOrgs', c.organisations);
+    set('htComm', c.commercial_suppliers);
+    set('htCountries', c.countries);
   }).catch(function(){});
 })();
 </script>

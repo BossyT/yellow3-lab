@@ -2040,6 +2040,23 @@ def main():
     with open(os.path.join(HERE, "dpp-register-counts.json"), "w", encoding="utf-8") as fh:
         json.dump(counts, fh, ensure_ascii=False, indent=1)
 
+    # dpp-suppliers.json carries its own `counts` block, and the intake scripts
+    # rewrite the whole document without touching it - so it went stale and sat
+    # there saying 183/167/32 while the register held 190/171/33. research.html
+    # read that block and published the stale numbers for weeks.
+    #
+    # "Never store a total" was the right rule and this is the copy that escaped
+    # it. Rather than delete the block and break whatever else reads it, the
+    # generator now overwrites it from the same computed values on every build,
+    # so the two sources cannot disagree.
+    src_path = os.path.join(HERE, "dpp-suppliers.json")
+    doc = json.load(open(src_path, encoding="utf-8"))
+    if doc.get("counts") != counts:
+        was = doc.get("counts", {}).get("organisations")
+        doc["counts"] = counts
+        json.dump(doc, open(src_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        print(f"stored counts refreshed      {was} -> {counts['organisations']} organisations")
+
     n = write_redirects([r["id"] for r in rows])
 
     print(f"/suppliers                     1 page")

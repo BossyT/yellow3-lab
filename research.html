@@ -17,11 +17,10 @@
       })
       .catch(function(){ document.getElementById('dpp-read').textContent = 'Is the EU DPP becoming real on schedule - updated weekly.'; });
 
-    fetch('/research/dpp-suppliers.json', { cache: 'no-store' })
+    fetch('/research/dpp-register-counts.json', { cache: 'no-store' })
       .then(function(r){ return r.ok ? r.json() : null; })
-      .then(function(d){
-        if (!d || !d.counts) return;
-        var c = d.counts;
+      .then(function(c){
+        if (!c || !c.organisations) return;
         document.getElementById('ds-n').textContent = c.organisations;
         document.getElementById('ds-c').textContent =
           'organisations \u00b7 ' + c.commercial_suppliers + ' commercial suppliers \u00b7 ' + c.countries + ' countries';
@@ -255,7 +254,7 @@
         </div>
         <div class="ds-r">
           <div class="ds-n" id="ds-n">183</div>
-          <div class="ds-c" id="ds-c">organisations &middot; 167 commercial suppliers &middot; 32 countries</div>
+          <div class="ds-c" id="ds-c">organisations &middot; 171 commercial suppliers &middot; 33 countries</div>
           <span class="open-link">Open the register</span>
         </div>
       </a>
