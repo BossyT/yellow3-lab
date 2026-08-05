@@ -21,7 +21,8 @@ Usage:
   python3 research/dpp_fields_import.py fills.csv          # validate only
   python3 research/dpp_fields_import.py fills.csv --apply  # merge and write
 
-CSV columns: supplier_id, hq_country, hq_city, sector_quote, source_url, quote
+CSV columns: supplier_id, hq_country, hq_city, sector_quote, source_url, quote,
+             ownership_url (required only when source_url is off-domain)
 Leave a column blank to leave that field alone.
 """
 
@@ -141,9 +142,24 @@ def check(row, reg):
     if not url:
         bad.append("a fill needs the source_url it was read from")
     elif r.get("domain") and host(url) and not host(url).endswith(r["domain"]):
-        # third-party sources are allowed, but they are not the company saying it
-        bad.append(f"source_url is not on the company's own domain ({r['domain']}); "
-                   f"record it by hand if that is intended")
+        # EVIDENCE OUTSIDE THE COMPANY'S OWN DOMAIN COUNTS.
+        #
+        # This used to be a flat refusal, and it was wrong. An infrastructure
+        # vendor publishing under an open-source organisation, a package registry
+        # or a hosted docs site was invisible to the register BY RULE - which is
+        # how benelog came to be recorded as having no standards mapping while
+        # publishing the most thorough JTC 24 mapping in the market. Reported by
+        # Sven Boeckelmann, 2026-08-05, and he was right.
+        #
+        # What must not slip back in is the opposite error: crediting a company
+        # for a repository that is not theirs. So an off-domain source is allowed
+        # only when the LINK to the supplier is itself evidenced - normally the
+        # supplier's own site linking to it, or the artifact naming the company.
+        if not (row.get("ownership_url") or "").strip():
+            bad.append(f"source_url is off-domain ({host(url)}); that is allowed, but "
+                       f"give ownership_url - a page on {r['domain']} that links to it, "
+                       f"or an artifact naming the company - so we are not crediting "
+                       f"someone else's work")
 
     if sq:
         if len(sq) < MIN_QUOTE:
