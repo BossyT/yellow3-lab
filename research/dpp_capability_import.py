@@ -29,6 +29,7 @@ import csv
 import datetime
 import json
 import os
+import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -42,6 +43,24 @@ NON_COMMERCIAL = {"project-consortium", "standards-body", "not-a-supplier"}
 # 2026-07-30. Enforced here so a future batch cannot quietly include one.
 NOT_ASSESSED = NON_COMMERCIAL | {"consultancy"}
 MIN_ARTIFACT = 15   # "a page" is not a description of an artifact
+# `verified` has always required a description of what the artifact IS. That is an
+# OBSERVATION: it says we looked and what we saw, not the sentence that proves the
+# capability. From 2026-08-05 a verified finding must also QUOTE the page - but
+# only where the evidence is prose.
+#
+# NOT ALL EVIDENCE IS QUOTABLE, and pretending otherwise would force fabrication.
+# A status page proving resolver uptime is a dashboard of component states and
+# dated incidents with no sentence in it. A demo passport is JSON. Both are real
+# evidence and neither can be quoted. So evidence carries a MODE, matching the
+# Decision Engine, and the quote is required only for text and document.
+MIN_QUOTE = 25
+EVIDENCE_MODES = ("text", "document", "structured_data", "technical_test",
+                  "visual_artifact")
+# A JSON schema is machine-readable but still contains literal text - the field
+# definition IS the evidence and quoting it is legitimate. What cannot be quoted
+# is a status dashboard: component states and dated incidents, no sentence in it.
+# So the line is not prose-versus-structured, it is "does literal text exist".
+QUOTABLE = ("text", "document", "structured_data")
 CHECKS = ["c%02d" % i for i in range(1, 11)]
 
 
@@ -60,6 +79,8 @@ def validate(row, reg, seen):
     art = (row.get("artifact") or "").strip()
     date = (row.get("checked_date") or "").strip()
     note = (row.get("note") or "").strip()
+    quote = re.sub(r"\s+", " ", (row.get("quote") or "").strip())
+    mode = (row.get("evidence_mode") or "").strip()
 
     if sid not in reg:
         bad.append("supplier_id is not in the register")
@@ -80,6 +101,15 @@ def validate(row, reg, seen):
             bad.append("verified needs the evidence_url of the artifact opened")
         if len(art) < MIN_ARTIFACT:
             bad.append("verified needs a one-line description of what the artifact IS")
+        if mode not in EVIDENCE_MODES:
+            bad.append(f"verified needs evidence_mode, one of {', '.join(EVIDENCE_MODES)}")
+        elif mode in QUOTABLE and len(quote) < MIN_QUOTE:
+            bad.append("verified on prose evidence needs the SENTENCE ON THE PAGE "
+                       "that proves it - a description of the artifact is an "
+                       "observation and cannot support a demonstrated claim")
+        elif mode not in QUOTABLE and quote:
+            bad.append(f"{mode} evidence must not carry a quote - an observation "
+                       f"must never be written up as a quotation")
     if state == "company_states" and not url:
         bad.append("company_states needs the URL where the company says it")
     if state == "not_found" and url:
@@ -124,6 +154,8 @@ def main():
                 "evidence_url": (row.get("evidence_url") or "").strip(),
                 "artifact": (row.get("artifact") or "").strip(),
                 "checked_date": (row.get("checked_date") or "").strip(),
+                "quote": re.sub(r"\s+", " ", (row.get("quote") or "").strip()),
+                "evidence_mode": (row.get("evidence_mode") or "").strip(),
                 "note": (row.get("note") or "").strip(),
             })
 

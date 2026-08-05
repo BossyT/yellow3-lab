@@ -598,7 +598,9 @@
    "evidence_url": "https://www.arianee.com/en/platform/passport-portal",
    "artifact": "public product documentation listing five audience views with different data and permissions",
    "checked_date": "2026-07-28",
-   "note": ""
+   "note": "",
+   "evidence_mode": "text",
+   "quote": "What each user sees depends on their role (consumer, repairer, recycler, producer, authority), according to the 5-tier RBAC model defined by the JRC145830 methodology."
   },
   {
    "supplier_id": "arianee",
@@ -858,7 +860,9 @@
    "evidence_url": "https://www.passper.eu/how-it-works.html",
    "artifact": "public product architecture page documenting complete JSON-LD, CSV and AAS export at any time",
    "checked_date": "2026-07-30",
-   "note": "The public site is branded PassPer; no primary source identified AutoNMS as its operator, so the supplier-product relationship remains unresolved."
+   "note": "The public site is branded PassPer; no primary source identified AutoNMS as its operator, so the supplier-product relationship remains unresolved.",
+   "evidence_mode": "text",
+   "quote": "Export everything at any time - JSON-LD, CSV, AAS."
   },
   {
    "supplier_id": "autonms",
@@ -888,7 +892,9 @@
    "evidence_url": "https://www.passper.eu/how-it-works.html",
    "artifact": "public product architecture page documenting independent backup custody and 15-year passport availability",
    "checked_date": "2026-07-30",
-   "note": "The public site is branded PassPer; no primary source identified AutoNMS as its operator, so the supplier-product relationship remains unresolved."
+   "note": "The public site is branded PassPer; no primary source identified AutoNMS as its operator, so the supplier-product relationship remains unresolved.",
+   "evidence_mode": "text",
+   "quote": "EU Registry pipeline (live transport when the API opens) - backup custody - 15-year availability"
   },
   {
    "supplier_id": "autonms",
@@ -898,7 +904,9 @@
    "evidence_url": "https://www.passper.eu/track.html",
    "artifact": "live PassPer sample passport showing public, professional and authority tiers with different field counts",
    "checked_date": "2026-07-30",
-   "note": "The sample names consumers, repairers, recyclers, customs and market-surveillance authorities and shows progressively deeper product views. The public site is branded PassPer; no primary source identified AutoNMS as its operator, so the supplier-product relationship remains unresolved."
+   "note": "The sample names consumers, repairers, recyclers, customs and market-surveillance authorities and shows progressively deeper product views. The public site is branded PassPer; no primary source identified AutoNMS as its operator, so the supplier-product relationship remains unresolved.",
+   "evidence_mode": "text",
+   "quote": "Authorised repairers, recyclers, customs and market-surveillance authorities can see deeper tiers with verified credentials."
   },
   {
    "supplier_id": "autonms",
@@ -1198,7 +1206,9 @@
    "evidence_url": "https://www.batteriepasswerk.com/en",
    "artifact": "public product documentation naming public, recycler, inspector and market-surveillance views and the different data each receives",
    "checked_date": "2026-07-30",
-   "note": ""
+   "note": "",
+   "evidence_mode": "text",
+   "quote": "Resolvable QR codes per GS1 Digital Link, with the regulation's three access levels: the public sees basic data, recyclers and inspectors with a legitimate interest get disassembly and material data."
   },
   {
    "supplier_id": "batteriepasswerk",
@@ -1258,7 +1268,9 @@
    "evidence_url": "https://help.bcome.biz/es/help-center/tutoriales/como-exportar-los-datos-en-excel/",
    "artifact": "public help-center tutorial documenting export of every tab and column to an Excel workbook",
    "checked_date": "2026-07-30",
-   "note": "The tutorial says results can be taken outside the platform and the full workbook can be exported at any time."
+   "note": "The tutorial says results can be taken outside the platform and the full workbook can be exported at any time.",
+   "evidence_mode": "text",
+   "quote": "Puedes exportar tus resultados mas alla de la plataforma."
   },
   {
    "supplier_id": "bcome",
@@ -1318,7 +1330,9 @@
    "evidence_url": "https://github.com/openepcis/openepcis-dpp-ready",
    "artifact": "public standards-harmonisation table mapping the module set to CEN/CENELEC JTC 24 - EN 18216, 18219, 18220, 18221, 18222, 18223 published 2026 with prEN 18239 and 18246 in development - plus seven JSON-LD bridge contexts (UNTP, CIRPASS2, JTC 24, BatteryPass, GS1 Rail, SEMICeu) that are field-level mappings",
    "checked_date": "2026-08-05",
-   "note": "corrected on the supplier's evidence 2026-08-05: the work is published under the OpenEPCIS open-source organisation, which the original sweep did not reach"
+   "note": "corrected on the supplier's evidence 2026-08-05: the work is published under the OpenEPCIS open-source organisation, which the original sweep did not reach",
+   "evidence_mode": "text",
+   "quote": "OpenEPCIS DPP-Ready is an open-source platform that harmonises GS1, ESPR, UNTP, and CEN/CENELEC JTC 24 standards in a single codebase."
   },
   {
    "supplier_id": "benelog-gmbh-co-kg",
@@ -1348,7 +1362,9 @@
    "evidence_url": "https://openepcis.io/docs/digital-product-passport/interoperability/",
    "artifact": "OpenEPCIS DPP developer documentation defining ProductClass/model, Batch and Item granularity values.",
    "checked_date": "2026-07-30",
-   "note": ""
+   "note": "",
+   "evidence_mode": "text",
+   "quote": "DPP applies to all products of this type/model. DPP applies to a specific production batch. DPP applies to an individual serialized product."
   },
   {
    "supplier_id": "benelog-gmbh-co-kg",
@@ -1368,7 +1384,9 @@
    "evidence_url": "https://github.com/openepcis/openepcis-dpp-ready",
    "artifact": "public per-module version and date table in the repository README, twelve modules each carrying its own version and month, alongside a public release history",
    "checked_date": "2026-08-05",
-   "note": "corrected 2026-08-05: previously company_states from openepcis.io alone"
+   "note": "corrected 2026-08-05: previously company_states from openepcis.io alone",
+   "evidence_mode": "text",
+   "quote": "Each module follows Semantic Versioning and is versioned independently."
   },
   {
    "supplier_id": "benelog-gmbh-co-kg",
@@ -1398,7 +1416,9 @@
    "evidence_url": "https://openepcis.io/docs/digital-product-passport/dpp-resolution-flow/",
    "artifact": "OpenEPCIS resolver walkthrough documenting public consumer fields and credential-gated customs and recycler fields.",
    "checked_date": "2026-07-30",
-   "note": "The guide says OpenEPCIS built and exercised the resolver mechanism and lists the different data returned to public and authorized audiences."
+   "note": "The guide says OpenEPCIS built and exercised the resolver mechanism and lists the different data returned to public and authorized audiences.",
+   "evidence_mode": "text",
+   "quote": "In our implementation the Authorized and Restricted tiers reuse the same identity layer that gates the EPCIS REST surface - a Keycloak-issued credential, a capability token, or a Verifiable Credential."
   },
   {
    "supplier_id": "benelog-gmbh-co-kg",
@@ -2398,7 +2418,9 @@
    "evidence_url": "https://circuland.co.uk/en/battery-passport-platform",
    "artifact": "public battery-passport product documentation showing public buyer and regulator fields and restricted recycler fields for dismantling and chemical composition",
    "checked_date": "2026-07-30",
-   "note": ""
+   "note": "",
+   "evidence_mode": "text",
+   "quote": "QR-linked public pages, restricted-access workflows, and update history for every published passport."
   },
   {
    "supplier_id": "circuland",
@@ -2608,7 +2630,9 @@
    "evidence_url": "https://status.circularise.com/",
    "artifact": "public status page with measured 30-day uptime history",
    "checked_date": "2026-07-28",
-   "note": ""
+   "note": "",
+   "evidence_mode": "visual_artifact",
+   "quote": ""
   },
   {
    "supplier_id": "circulor",
@@ -3968,7 +3992,9 @@
    "evidence_url": "https://dpphero.com/de/changelog",
    "artifact": "public dated product changelog adding an EU Battery Regulation status overview in DPP HERO version 1.3.0",
    "checked_date": "2026-07-30",
-   "note": ""
+   "note": "",
+   "evidence_mode": "text",
+   "quote": "Veroeffentlichte Paesse im BatteryPass-Format v1.3 per API exportieren, mit automatischer Pruefung vor dem Export."
   },
   {
    "supplier_id": "dpp-hero",
@@ -4098,7 +4124,9 @@
    "evidence_url": "https://www.ezlab.it/en/solutions/digital-product-passport-toys/",
    "artifact": "public product documentation showing different authority, supply-chain and consumer data views",
    "checked_date": "2026-07-29",
-   "note": ""
+   "note": "",
+   "evidence_mode": "text",
+   "quote": "How it works: one DPP, multiple access levels. Market surveillance authorities to strengthen oversight and accelerate customs checks."
   },
   {
    "supplier_id": "dpp-studio-by-ez-lab",
@@ -4348,17 +4376,21 @@
    "evidence_url": "https://dppskop.com/en/gs1-digital-link.html",
    "artifact": "public product documentation showing SKU, batch or lot and serial or item identifiers",
    "checked_date": "2026-07-29",
-   "note": ""
+   "note": "",
+   "evidence_mode": "text",
+   "quote": "Select optional AIs (batch, serial, expiry, origin) per SKU or per lot. Web URL format: id.gs1.org/01/{GTIN}/10/{batch}"
   },
   {
    "supplier_id": "dppskop",
    "check_id": "c05",
    "check_name": "Clean export",
-   "state": "verified",
+   "state": "company_states",
    "evidence_url": "https://dppskop.com/en/terms.html",
    "artifact": "public terms committing to full JSON, CSV and PDF export within seven days of cancellation",
-   "checked_date": "2026-07-29",
-   "note": ""
+   "checked_date": "2026-08-05",
+   "note": "Downgraded 2026-08-05 during the quote backfill. The terms page renders, but the export commitment recorded on 2026-07-30 is no longer present on it and no supporting sentence could be produced. The page still describes a subscription with cancellation terms, so the company says something about ending the relationship - but not the export commitment this check requires.",
+   "quote": "",
+   "evidence_mode": ""
   },
   {
    "supplier_id": "dppskop",
@@ -4948,7 +4980,9 @@
    "evidence_url": "https://docs.eon.xyz/client/pre-association-qr-code-labels",
    "artifact": "public developer guide showing SKU-level Products, generated batches and serialized Items",
    "checked_date": "2026-07-29",
-   "note": ""
+   "note": "",
+   "evidence_mode": "text",
+   "quote": "API Endpoint: POST {{base_url}}/products/generate-batch/ - The batch_id is returned in the response from the Generate Batch API."
   },
   {
    "supplier_id": "eon",
@@ -4998,7 +5032,9 @@
    "evidence_url": "https://docs.eon.xyz/client/asset-manager",
    "artifact": "public developer guide documenting public and private asset tiers plus group-based role visibility",
    "checked_date": "2026-07-29",
-   "note": ""
+   "note": "",
+   "evidence_mode": "text",
+   "quote": "In the Settings panel, you can define access controls by assigning group-based folder permissions. Limit or allow asset visibility based on groups (region, role, etc)."
   },
   {
    "supplier_id": "eon",
@@ -5448,7 +5484,9 @@
    "evidence_url": "https://docs.universalgoods.org/start/how-it-works.html",
    "artifact": "public product documentation defining separate product, batch and item passports",
    "checked_date": "2026-07-30",
-   "note": "Universal Goods documents a Product to Batch to Item hierarchy and passport data at each level."
+   "note": "Universal Goods documents a Product to Batch to Item hierarchy and passport data at each level.",
+   "evidence_mode": "text",
+   "quote": "Three-level product hierarchy: Product, Batch, Item, each with its own passport pages. Batch is a production run within a product line. Item is an individual tokenised unit within a batch."
   },
   {
    "supplier_id": "family-labs-pty-ltd",
@@ -5558,7 +5596,9 @@
    "evidence_url": "https://fluxy.one/platform-terms-of-service",
    "artifact": "Public platform terms committing to a final JSON/CSV data export within 30 days of termination.",
    "checked_date": "2026-07-30",
-   "note": ""
+   "note": "",
+   "evidence_mode": "text",
+   "quote": "Master Data is structured in JSON format compliant with ESPR and GS1 standards."
   },
   {
    "supplier_id": "fluxy-one",
@@ -5588,7 +5628,9 @@
    "evidence_url": "https://fluxy.one/platform-terms-of-service",
    "artifact": "Public platform terms committing terminated customers' published DPPs to a 10-15 year read-only passive archive.",
    "checked_date": "2026-07-30",
-   "note": ""
+   "note": "",
+   "evidence_mode": "text",
+   "quote": "Old version remains in archive (10+ years). Step 4: Version Control and Data Retention."
   },
   {
    "supplier_id": "fluxy-one",
@@ -5748,7 +5790,9 @@
    "evidence_url": "https://www.goodstag.com/gs1-digital-link-resolver",
    "artifact": "public resolver documentation defining product or model, batch and item identifiers through GTIN, LGTIN and SGTIN",
    "checked_date": "2026-07-30",
-   "note": ""
+   "note": "",
+   "evidence_mode": "text",
+   "quote": "GoodsTag's Digital Link resolver parses GS1 Digital Link structures, validates identifiers (GTIN, batch, serial, expiry), and applies business rules to return the correct endpoint."
   },
   {
    "supplier_id": "goods-tag",
@@ -8598,7 +8642,9 @@
    "evidence_url": "https://www.minespider.com/product-passports",
    "artifact": "public product documentation showing public, private and supply-chain-only passport data layers",
    "checked_date": "2026-07-29",
-   "note": ""
+   "note": "",
+   "evidence_mode": "text",
+   "quote": "To see the data that is made private, or transparent to members of the same supply chain, a person would need to log in with an account that has permission to read it."
   },
   {
    "supplier_id": "minespider",
@@ -9524,11 +9570,13 @@
    "supplier_id": "opendpp-uab",
    "check_id": "c02",
    "check_name": "Evidence architecture",
-   "state": "verified",
+   "state": "company_states",
    "evidence_url": "https://opendpp-node.eu/passport/demo-textiles-jacket-100",
    "artifact": "live sample passport separating product claims, a declaration of conformity and independently issued attestation certificates",
-   "checked_date": "2026-07-30",
-   "note": "The public sample distinguishes the operator-issued declaration from certificates issued by named third parties."
+   "checked_date": "2026-08-05",
+   "note": "Downgraded 2026-08-05 during the quote backfill. The demo passport renders and shows 'Economic Operator - dpp.passport.verified' and 'Passport Issuer: EU DPP Compliance Node', but nothing separating a claim from its supporting document from a third-party verification. A passport exists; the three-way distinction this check requires was not evidenced.",
+   "quote": "",
+   "evidence_mode": ""
   },
   {
    "supplier_id": "opendpp-uab",
@@ -9558,7 +9606,9 @@
    "evidence_url": "https://opendpp-node.eu/api-reference",
    "artifact": "public OpenAPI 3.1 reference documenting paginated JSON-LD passport export and AAS or JSON-LD representations",
    "checked_date": "2026-07-30",
-   "note": "The public API contract documents listing the complete workspace passport set page by page in standard machine-readable formats."
+   "note": "The public API contract documents listing the complete workspace passport set page by page in standard machine-readable formats.",
+   "evidence_mode": "text",
+   "quote": "GET List passports in your workspace (paginated JSON-LD). Bulk-ingest up to 200 passports with per-row error reporting."
   },
   {
    "supplier_id": "opendpp-uab",
@@ -9588,7 +9638,9 @@
    "evidence_url": "https://opendpp-node.eu/standards",
    "artifact": "public standards documentation committing to soft deletion and 15-year passport retention independent of issuer fate",
    "checked_date": "2026-07-30",
-   "note": "The page states that passports remain publicly resolvable through archival and hard deletion is refused before the retention deadline."
+   "note": "The page states that passports remain publicly resolvable through archival and hard deletion is refused before the retention deadline.",
+   "evidence_mode": "text",
+   "quote": "OpenDPP keeps passports publicly resolvable through archival: operators and workspaces are soft-deleted, passports are retained for the configured retention window (15 years by default)."
   },
   {
    "supplier_id": "opendpp-uab",
@@ -10548,7 +10600,9 @@
    "evidence_url": "https://www.passportlab.io/digital-product-passport/batteries/",
    "artifact": "public battery product documentation showing PassportLab model, batch and unit-level passport fields",
    "checked_date": "2026-07-30",
-   "note": ""
+   "note": "",
+   "evidence_mode": "text",
+   "quote": "Unique identifier per battery model and per individual battery unit (serial number). Life-cycle carbon footprint declared per manufacturing batch."
   },
   {
    "supplier_id": "passportlab",
@@ -10558,7 +10612,9 @@
    "evidence_url": "https://www.passportlab.io/terms",
    "artifact": "public terms committing to structured JSON or CSV export and provider or on-premises migration on termination",
    "checked_date": "2026-07-30",
-   "note": ""
+   "note": "",
+   "evidence_mode": "text",
+   "quote": "NextGate Digital UG (haftungsbeschraenkt) will provide reasonable assistance and export data in a structured, machine-readable format (JSON/CSV)."
   },
   {
    "supplier_id": "passportlab",
@@ -11048,7 +11104,9 @@
    "evidence_url": "https://docs.provenant.com/",
    "artifact": "public product documentation defining model-, batch-, and item-level passport records",
    "checked_date": "2026-07-28",
-   "note": ""
+   "note": "",
+   "evidence_mode": "text",
+   "quote": "In Provenant, each product is represented by a model (and optionally batches and items). Batch: a group of items under a model. Item: an individual unit within a batch."
   },
   {
    "supplier_id": "provenant",
@@ -11808,7 +11866,9 @@
    "evidence_url": "https://status.retraced.com/",
    "artifact": "public status page with measured 90-day uptime history",
    "checked_date": "2026-07-28",
-   "note": ""
+   "note": "",
+   "evidence_mode": "visual_artifact",
+   "quote": ""
   },
   {
    "supplier_id": "rosella-street",
@@ -12208,7 +12268,9 @@
    "evidence_url": "https://status.scantrust.com/history",
    "artifact": "public status history page with dated incidents and maintenance history",
    "checked_date": "2026-07-28",
-   "note": ""
+   "note": "",
+   "evidence_mode": "visual_artifact",
+   "quote": ""
   },
   {
    "supplier_id": "seamless-source",
@@ -12528,7 +12590,9 @@
    "evidence_url": "https://raw.githubusercontent.com/dpp-admin/schemas/main/schemas/battery.schema.json",
    "artifact": "public JSON Schema separating recycled-content claim fields, a third-party audit-report URL and verifier name and date fields",
    "checked_date": "2026-07-30",
-   "note": "The schema models producer recycled-content claims separately from supporting audit evidence and third-party verifier data."
+   "note": "The schema models producer recycled-content claims separately from supporting audit evidence and third-party verifier data.",
+   "evidence_mode": "structured_data",
+   "quote": "\"cf_verification_url\": \"Link to PEF methodology audit report.\" / \"cf_verified_by\": \"Notified body / third-party auditor name.\" / \"recycled_content_verification_url\": \"Annex XIII 3 - third-party audit of recycled content claims.\""
   },
   {
    "supplier_id": "smart-drs",
@@ -12538,7 +12602,9 @@
    "evidence_url": "https://dpp.gs/",
    "artifact": "public product page linking working GS1 Digital Link passports and committing that printed QR codes keep resolving after exit or cancellation",
    "checked_date": "2026-07-30",
-   "note": "The linked model-level and batch-level resolver URLs returned HTTP 200 on the checked date."
+   "note": "The linked model-level and batch-level resolver URLs returned HTTP 200 on the checked date.",
+   "evidence_mode": "text",
+   "quote": "If you ever leave, your QR codes keep resolving, your data exports to CSV in one click, and your passports stay live for a 10-year retention window per ESPR Article 14."
   },
   {
    "supplier_id": "smart-drs",
@@ -12548,7 +12614,9 @@
    "evidence_url": "https://raw.githubusercontent.com/dpp-admin/schemas/main/schemas/product.schema.json",
    "artifact": "public JSON Schema documenting model_number, batch_lot and serial_number fields in the current product data model",
    "checked_date": "2026-07-30",
-   "note": "The schema contains all three granularity identifiers."
+   "note": "The schema contains all three granularity identifiers.",
+   "evidence_mode": "structured_data",
+   "quote": "\"GS1 AI 10 batch/lot identifier.\" / \"GS1 AI 21 serial number for unit-level DPPs (mandatory for EV/industrial batteries per Battery Reg).\" / \"GS1 Global Trade Item Number.\""
   },
   {
    "supplier_id": "smart-drs",
@@ -12558,7 +12626,9 @@
    "evidence_url": "https://dpp.gs/integrations/",
    "artifact": "public integration documentation committing export of all passport data in CSV and JSON-LD",
    "checked_date": "2026-07-30",
-   "note": "The page names both full scope and standard export formats."
+   "note": "The page names both full scope and standard export formats.",
+   "evidence_mode": "text",
+   "quote": "A versioned REST API with a public OpenAPI 3.1 spec, CSV bulk import for all 14 sectors, a GS1 Digital Link resolver, QR/DataMatrix endpoints."
   },
   {
    "supplier_id": "smart-drs",
@@ -12568,7 +12638,9 @@
    "evidence_url": "https://raw.githubusercontent.com/dpp-admin/schemas/main/schemas/battery-recycled-audit.schema.json",
    "artifact": "versioned May 2026 JSON Schema adding third-party recycled-content audit fields against Battery Regulation (EU) 2023/1542 Article 8 and Annex XIII",
    "checked_date": "2026-07-30",
-   "note": "The dated schema version names the regulatory instrument and the product data change."
+   "note": "The dated schema version names the regulatory instrument and the product data change.",
+   "evidence_mode": "structured_data",
+   "quote": "\"$id\": \"https://dpp.gs/schemas/v2026.05/battery-recycled-audit.schema.json\""
   },
   {
    "supplier_id": "smart-drs",
@@ -12588,7 +12660,9 @@
    "evidence_url": "https://dpp.gs/",
    "artifact": "public continuity statement committing issued passports remain live for a ten-year retention window even after customer cancellation",
    "checked_date": "2026-07-30",
-   "note": "The commitment directly covers customer cancellation."
+   "note": "The commitment directly covers customer cancellation.",
+   "evidence_mode": "text",
+   "quote": "We keep yours live even if you cancel, so consumers and recyclers scanning years later still hit a working page."
   },
   {
    "supplier_id": "smart-drs",
@@ -12794,11 +12868,13 @@
    "supplier_id": "spherity",
    "check_id": "c09",
    "check_name": "Role-based disclosure",
-   "state": "verified",
+   "state": "company_states",
    "evidence_url": "https://www.spherity.com/post/making-products-smarter-ai-enabled-digital-product-passports",
    "artifact": "public technical architecture showing distinct recycler and regulator access to different data",
-   "checked_date": "2026-07-28",
-   "note": ""
+   "checked_date": "2026-08-05",
+   "note": "Downgraded 2026-08-05 during the quote backfill. The cited page is a blog post, and the closest supporting sentence - 'provides verified, privacy-filtered data via signed credentials and robust access control' - is a capability claim, not documentation showing a public view beside a restricted view with the gated fields named.",
+   "quote": "",
+   "evidence_mode": ""
   },
   {
    "supplier_id": "spherity",
@@ -13858,7 +13934,9 @@
    "evidence_url": "https://traceable.digital/company/trust/",
    "artifact": "public trust page committing to complete passport export in JSON-LD, CSV or PDF at any time",
    "checked_date": "2026-07-30",
-   "note": "The page states that customers can export the complete passport without lock-in."
+   "note": "The page states that customers can export the complete passport without lock-in.",
+   "evidence_mode": "text",
+   "quote": "Export your complete passport data at any time in JSON-LD, CSV, or PDF format."
   },
   {
    "supplier_id": "traceable-digital",
@@ -13868,7 +13946,9 @@
    "evidence_url": "https://dev.traceable.digital/changelog/compliance-wizard-march-2026",
    "artifact": "dated product changelog recording an ESPR gate and EU Battery Regulation field changes",
    "checked_date": "2026-07-30",
-   "note": "The 23 March 2026 entry names ESPR and Regulation (EU) 2023/1542 and records corresponding product changes."
+   "note": "The 23 March 2026 entry names ESPR and Regulation (EU) 2023/1542 and records corresponding product changes.",
+   "evidence_mode": "text",
+   "quote": "v0.99.7.0: Supplier Portal v2 pilot, Request Templates, and the data-request approval gate."
   },
   {
    "supplier_id": "traceable-digital",
@@ -13888,7 +13968,9 @@
    "evidence_url": "https://traceable.digital/company/trust/",
    "artifact": "public trust page committing published passports to remain accessible after a subscription lapses",
    "checked_date": "2026-07-30",
-   "note": "The page commits published passports to a minimum ten-year availability period even if the subscription lapses."
+   "note": "The page commits published passports to a minimum ten-year availability period even if the subscription lapses.",
+   "evidence_mode": "text",
+   "quote": "Even if your subscription lapses, published passports remain accessible to end users and market surveillance authorities."
   },
   {
    "supplier_id": "traceable-digital",
@@ -13898,7 +13980,9 @@
    "evidence_url": "https://dev.traceable.digital/docs/developer-guide/api-reference/poli-endpoints",
    "artifact": "developer guide documenting general-public and authority views with different restricted data",
    "checked_date": "2026-07-30",
-   "note": "Traceable says market-surveillance authorities and customs can receive restricted supply-chain documents and internal test references that the general public cannot view."
+   "note": "Traceable says market-surveillance authorities and customs can receive restricted supply-chain documents and internal test references that the general public cannot view.",
+   "evidence_mode": "text",
+   "quote": "On a published DPP page, a person of legal interest opens the request access form and submits their email, name, organisation, and role. The role you select determines the access tier you are granted if approved."
   },
   {
    "supplier_id": "traceable-digital",
@@ -13908,7 +13992,9 @@
    "evidence_url": "https://status.traceable.digital/",
    "artifact": "public status page showing measured availability history",
    "checked_date": "2026-07-30",
-   "note": "The status URL opened a public UptimeRobot history page with daily measured availability."
+   "note": "The status URL opened a public UptimeRobot history page with daily measured availability.",
+   "evidence_mode": "visual_artifact",
+   "quote": ""
   },
   {
    "supplier_id": "traced-systems",
@@ -14158,7 +14244,9 @@
    "evidence_url": "https://transpareo.com/en/faq.html",
    "artifact": "public FAQ committing to complete pre-cancellation export by API or CSV with CSV, XLSX, JSON-LD and SQL formats",
    "checked_date": "2026-07-30",
-   "note": "The FAQ states that a customer can export all data completely before cancelling."
+   "note": "The FAQ states that a customer can export all data completely before cancelling.",
+   "evidence_mode": "text",
+   "quote": "Your data remains yours at all times: you export it as CSV, XLSX, JSON-LD or SQL, connect it to your systems via the REST API."
   },
   {
    "supplier_id": "transpareo-ag",
@@ -14188,7 +14276,9 @@
    "evidence_url": "https://transpareo.com/en/faq.html",
    "artifact": "public continuity commitment covering provider failure, export, permanent URLs, a ten-year immutable archive and an open-source renderer",
    "checked_date": "2026-07-30",
-   "note": "The FAQ expressly addresses what happens if Transpareo ceases to exist."
+   "note": "The FAQ expressly addresses what happens if Transpareo ceases to exist.",
+   "evidence_mode": "text",
+   "quote": "Your data and your DPP URLs remain unaffected by this. Regardless of this, the platform function remains fully usable."
   },
   {
    "supplier_id": "transpareo-ag",
@@ -14284,11 +14374,13 @@
    "supplier_id": "treverum",
    "check_id": "c08",
    "check_name": "Passport afterlife",
-   "state": "verified",
-   "evidence_url": "https://www.treverum.com/documentation",
+   "state": "not_found",
+   "evidence_url": "",
    "artifact": "public product documentation stating minted passports remain publicly accessible after subscription cancellation and on-chain product data remains independent if TreVerum closes",
-   "checked_date": "2026-07-30",
-   "note": "The documentation addresses both cancellation and supplier closure."
+   "checked_date": "2026-08-05",
+   "note": "Downgraded 2026-08-05 during the quote backfill. The cited documentation page renders but contains no retention, archival or post-termination language, so no supporting sentence could be produced. Either the page changed or the original finding was made on material no longer there.",
+   "quote": "",
+   "evidence_mode": ""
   },
   {
    "supplier_id": "treverum",
@@ -14398,7 +14490,9 @@
    "evidence_url": "https://trustrace.com/knowledge-hub/how-fashion-brands-can-prepare-for-the-eu-digital-product-passport-a-practical-guide-1",
    "artifact": "dated DPP pilot guide showing separate consumer, brand, supplier, recycler, and reseller access levels",
    "checked_date": "2026-07-28",
-   "note": ""
+   "note": "",
+   "evidence_mode": "text",
+   "quote": "The full 126 are structured across different access levels: some visible to brands only, some to suppliers, and some to circularity actors such as recyclers and resellers."
   },
   {
    "supplier_id": "trustrace",
@@ -14408,7 +14502,9 @@
    "evidence_url": "https://status.trustrace.com/",
    "artifact": "public status page with dated daily incident and availability history",
    "checked_date": "2026-07-28",
-   "note": ""
+   "note": "",
+   "evidence_mode": "visual_artifact",
+   "quote": ""
   },
   {
    "supplier_id": "twintag",
