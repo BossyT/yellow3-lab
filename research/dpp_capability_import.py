@@ -114,6 +114,17 @@ def validate(row, reg, seen):
         bad.append("company_states needs the URL where the company says it")
     if state == "not_found" and url:
         bad.append("not_found must not carry an evidence_url")
+    # A not_found says "we looked and found nothing". Until 2026-08-05 it carried
+    # the date and nothing else - no domains, no pages, no terms, no reason. That
+    # is the gap Sven Boeckelmann found from outside, and it is what the Decision
+    # Engine requires before a not_found can become `not_established`.
+    #
+    # `search_ref` points at the supplier's entry in dpp-search-records.json.
+    # Without it the finding is an assertion that we looked, and nothing more.
+    if state == "not_found" and not (row.get("search_ref") or "").strip():
+        bad.append("not_found needs search_ref - what was inspected, which pages, "
+                   "which terms, and why nothing was found. A date alone is a "
+                   "claim that we looked, not evidence of it")
     if state == "not_found" and cid == "c02" and len(note) < 10:
         bad.append("c02 not_found must say which situation: no public example "
                    "passport at all, or one that does not separate the three")
@@ -156,6 +167,7 @@ def main():
                 "checked_date": (row.get("checked_date") or "").strip(),
                 "quote": re.sub(r"\s+", " ", (row.get("quote") or "").strip()),
                 "evidence_mode": (row.get("evidence_mode") or "").strip(),
+                "search_ref": (row.get("search_ref") or "").strip(),
                 "note": (row.get("note") or "").strip(),
             })
 

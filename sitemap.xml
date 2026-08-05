@@ -608,7 +608,7 @@
     </url>
     <url>
         <loc>https://www.yellow3.io/research/digital-product-passport/suppliers/dppskop</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-08-05</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -1004,7 +1004,7 @@
     </url>
     <url>
         <loc>https://www.yellow3.io/research/digital-product-passport/suppliers/opendpp-uab</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-08-05</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -1220,7 +1220,7 @@
     </url>
     <url>
         <loc>https://www.yellow3.io/research/digital-product-passport/suppliers/spherity</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-08-05</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -1322,7 +1322,7 @@
     </url>
     <url>
         <loc>https://www.yellow3.io/research/digital-product-passport/suppliers/treverum</loc>
-        <lastmod>2026-07-30</lastmod>
+        <lastmod>2026-08-05</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -1580,6 +1580,12 @@
     </url>
     <url>
         <loc>https://www.yellow3.io/research/model-adoption/openai-gpt-5-5</loc>
+        <lastmod>2026-08-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.yellow3.io/research/model-adoption/openai-gpt-5-6-luna-pro</loc>
         <lastmod>2026-08-05</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
