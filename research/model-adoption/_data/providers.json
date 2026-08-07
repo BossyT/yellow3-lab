@@ -238,5 +238,15 @@
     "logo_path": "/research/model-adoption/logos/z-ai.svg",
     "logo_source_url": "https://github.com/lobehub/lobe-icons",
     "logo_verified_at": "2026-07-13"
+  },
+  "meta": {
+    "slug": "meta",
+    "name": "Meta",
+    "region": "Other",
+    "country": "",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   }
 }
