@@ -19,6 +19,10 @@ The best technology is the technology you forget is there. Technology promised t
 
 ## Published Research & Insights
 
+### A $400 Escape Route (August 2026)
+URL: https://www.yellow3.io/insights/a-400-escape-route
+Summary: OpenAI has spent $6.5 billion moving into hardware before selling a single device. The rumoured $400 doughnut is not the product. Independence is.
+
 ### Europe’s AI Sovereignty Has an American Off-Switch (August 2026)
 URL: https://www.yellow3.io/insights/europes-ai-sovereignty-has-an-american-off-switch
 Summary: Europe’s AI gigafactories promise technological sovereignty, but their chips, software and supply chains leave America with a hand on the switch.
