@@ -28,7 +28,7 @@ yellow3 evidence and company-supplied statements are held in separate data and
 separate DOM, and a company submission can never write into the evidence layer.
 """
 
-import json, os, re, html, datetime
+import json, os, re, html, datetime, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -217,17 +217,17 @@ def page(title, desc, canonical, body, script="", og_extra=""):
 # genuine logo asset. The handoff shipped its own wordmark treatment and a
 # generated logo file; neither is used - a mark we did not draw is not ours to
 # redraw, and the shared component is what rule 1 of the handoff asks for.
+#
+# THE ITEMS COME FROM research/site_nav.py. They used to be written out here as
+# well as in every static page, and the last menu change had to be swept across
+# 629 generated pages by hand. One definition, imported - so regenerating can
+# never quietly restore an old menu.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from site_nav import render as _nav          # noqa: E402
+
 SITE_NAV = """  <nav class="site-nav y3nav">
     <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
-    <div class="nav-mid" id="navMid">
-      <a href="/naffe">Work</a>
-      <a href="/research" class="active">Research</a>
-      <a href="/research/digital-product-passport/suppliers">DPP</a>
-      <a href="/insights/">Thinking</a>
-      <a href="/advisory">Advisory</a>
-      <a href="/about">About</a>
-      <a href="/#contact">Contact</a>
-    </div>
+    <div class="nav-mid" id="navMid">""" + _nav(active="/research") + """</div>
     <a href="/advisory" class="nav-cta y3cta">Work with us <span>&#8594;</span></a>
     <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
   </nav>

@@ -15,6 +15,7 @@ Or it is called at the end of build.py's run.
 """
 import os
 import re
+import sys
 import json
 import html
 import datetime as dt
@@ -53,16 +54,14 @@ def D_short(iso):
 
 # --------------------------------------------------------------- components --
 
+# Items from research/site_nav.py - one definition for the whole site, so a
+# regeneration cannot restore a menu the site has moved on from.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from site_nav import render as _nav          # noqa: E402
+
 NAV = """  <nav class="site-nav">
     <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
-    <div class="nav-mid" id="navMid">
-      <a href="/naffe">Work</a>
-      <a href="/research" class="active">Research</a>
-      <a href="/insights/">Thinking</a>
-      <a href="/advisory">Advisory</a>
-      <a href="/about">About</a>
-      <a href="/#contact">Contact</a>
-    </div>
+    <div class="nav-mid" id="navMid">""" + _nav(active="/research") + """</div>
     <a href="#" onclick="window.location.href='mailto:'+'hello'+String.fromCharCode(64)+'yellow3.io';return false;" class="nav-cta">Get in touch <span>&#8594;</span></a>
     <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
   </nav>"""
