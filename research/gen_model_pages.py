@@ -54,10 +54,11 @@ def D_short(iso):
 
 # --------------------------------------------------------------- components --
 
-# Items from research/site_nav.py - one definition for the whole site, so a
+# Items and footer architecture from research/site_nav.py - one definition
+# for the whole site, so a
 # regeneration cannot restore a menu the site has moved on from.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from site_nav import render as _nav          # noqa: E402
+from site_nav import render as _nav, sweep_footer as _foot  # noqa: E402
 
 NAV = """  <nav class="site-nav">
     <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
@@ -66,7 +67,7 @@ NAV = """  <nav class="site-nav">
     <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
   </nav>"""
 
-FOOTER = """  <footer class="site-footer">
+FOOTER = _foot("""  <footer class="site-footer">
     <div class="inner">
       <div class="foot-top">
         <div class="foot-brand">
@@ -107,7 +108,7 @@ FOOTER = """  <footer class="site-footer">
         </div>
       </div>
     </div>
-  </footer>"""
+  </footer>""")
 
 
 def provider_tile(provider):

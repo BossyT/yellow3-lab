@@ -71,6 +71,63 @@ def render(active=None, indent="      "):
     return "\n" + "\n".join(out) + "\n    "
 
 
+# ---------------------------------------------------------------- the footer
+#
+# The footer is a separate component and is NOT redesigned here - only its
+# information architecture, so it says the same things the menu says. Approved
+# 2026-08-11: `Work` and `Thinking` are retired as structural headings, naffe.ai
+# belongs under Platforms, and Advisory sits with the company rather than among
+# the platforms.
+#
+# The middle Research column is deliberately untouched. It differs by page type
+# (a model page lists the model work, the register lists the method) and that is
+# contextual navigation, not architecture.
+
+FOOT_WORK_COL = re.compile(
+    r'(<div class="foot-col">\s*<h4>)Work(</h4>\s*)'
+    r'<a href="/naffe">naffe\.ai</a>\s*'
+    r'<a href="/research/digital-product-passport">Digital Product Passports</a>\s*'
+    r'<a href="/advisory">Advisory</a>', re.S)
+
+# naffe.ai first - it is the platform a reader of this footer is most likely to
+# be looking for by name - then the register, then the page that explains why
+# either exists. The Buyer Platform is NOT listed: it is surfaced on /platforms
+# and from the DPP pages where its audience already is, and a footer link on
+# every page of the site would start making yellow3 look like a DPP vendor.
+FOOT_PLATFORMS_COL = (
+    r'\1Platforms\2'
+    r'<a href="/naffe">naffe.ai</a>\n'
+    r'          <a href="/research/digital-product-passport/suppliers">DPP Supplier Register</a>\n'
+    r'          <a href="/platforms">All platforms</a>')
+
+FOOT_THINKING = re.compile(r'(<a href="/insights/"[^>]*>)Thinking(</a>)')
+
+# Advisory left the first column, so it joins the company links.
+#
+# SCOPED TO THE COMPANY COLUMN, and it has to be. The first version matched the
+# first `About` link in the document, which is the one in the NAV - so every
+# page got a second Advisory item in its menu. Caught by reading a swept page,
+# not by the sweep, which reported success on all 630.
+FOOT_COMPANY_COL = re.compile(
+    r'(<div class="foot-col">\s*<h4>Company</h4>.*?)(</div>)', re.S)
+FOOT_ABOUT = re.compile(r'(<a href="/about">About</a>)(\s*)')
+
+
+def sweep_footer(text):
+    """Footer information architecture, matching the menu. Layout untouched."""
+    out = FOOT_WORK_COL.sub(FOOT_PLATFORMS_COL, text)
+    out = FOOT_THINKING.sub(r'\1Insights\2', out)
+
+    def company(match):
+        block, close = match.group(1), match.group(2)
+        if '>Advisory</a>' in block:
+            return block + close
+        return FOOT_ABOUT.sub(
+            r'\1\2<a href="/advisory">Advisory</a>\2', block, count=1) + close
+
+    return FOOT_COMPANY_COL.sub(company, out, count=1)
+
+
 def _html_files(root):
     for base, dirs, files in os.walk(root):
         dirs[:] = [d for d in dirs if d not in SKIP_DIRS]
@@ -99,6 +156,7 @@ def sweep(root, apply_changes):
         rebuilt = NAV_BLOCK.sub(
             lambda m: m.group(1) + render(active) + m.group(3), text, count=1)
         rebuilt = OLD_CTA.sub(NEW_CTA, rebuilt)
+        rebuilt = sweep_footer(rebuilt)
 
         if rebuilt != text:
             changed.append(os.path.relpath(path, root))

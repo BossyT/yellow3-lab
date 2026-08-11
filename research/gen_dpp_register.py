@@ -223,7 +223,7 @@ def page(title, desc, canonical, body, script="", og_extra=""):
 # 629 generated pages by hand. One definition, imported - so regenerating can
 # never quietly restore an old menu.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from site_nav import render as _nav          # noqa: E402
+from site_nav import render as _nav, sweep_footer as _foot  # noqa: E402
 
 SITE_NAV = """  <nav class="site-nav y3nav">
     <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
@@ -235,7 +235,7 @@ SITE_NAV = """  <nav class="site-nav y3nav">
 
 
 # The site's real footer, same component as every other page.
-SITE_FOOTER = """  <footer class="site-footer y3foot">
+SITE_FOOTER = _foot("""  <footer class="site-footer y3foot">
     <div class="inner">
       <div class="foot-top">
         <div class="foot-brand">
@@ -273,7 +273,7 @@ SITE_FOOTER = """  <footer class="site-footer y3foot">
       </div>
     </div>
   </footer>
-"""
+""")
 
 
 def register_nav(counts, active=""):

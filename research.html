@@ -114,7 +114,7 @@
     .foot-legal a:hover { color: #fff; }
 
     /* DATASET STRIP - the register is not an instrument, so it sits apart from the grid */
-    .dataset { display: grid; grid-template-columns: 1.7fr 1fr; gap: 40px; margin-top: 28px; padding: 30px 34px; border: 1px solid var(--line); background: var(--paper); text-decoration: none; transition: border-color 0.2s, background 0.2s; }
+    .dataset { display: grid; grid-template-columns: 1.7fr 1fr; gap: 40px; margin-bottom: 28px; padding: 30px 34px; border: 1px solid var(--line); background: var(--paper); text-decoration: none; transition: border-color 0.2s, background 0.2s; }
     .dataset:hover { border-color: var(--ink); background: var(--panel); }
     .ds-k { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 10px; }
     .ds-h { font-size: 21px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 10px; }
@@ -197,6 +197,19 @@
         <div class="panel-label">The instruments</div>
         <div class="panel-note">Live and updated weekly. The shelf grows as new instruments ship.</div>
       </div>
+      <a class="dataset" href="/research/digital-product-passport/suppliers">
+        <div class="ds-l">
+          <div class="ds-k">Dataset</div>
+          <div class="ds-h">The DPP supplier register</div>
+          <div class="ds-p">Every organisation supplying Digital Product Passport capability, with the source behind each fact and the date it was checked.</div>
+        </div>
+        <div class="ds-r">
+          <div class="ds-n" id="ds-n">190</div>
+          <div class="ds-c" id="ds-c">organisations · 171 commercial suppliers · 33 countries</div>
+          <span class="open-link">Open the register</span>
+        </div>
+      </a>
+
       <div class="instruments">
 
         <!-- LIVE: Model adoption -->
@@ -246,18 +259,6 @@
 
       </div>
 
-      <a class="dataset" href="/research/digital-product-passport/suppliers">
-        <div class="ds-l">
-          <div class="ds-k">Dataset</div>
-          <div class="ds-h">The DPP supplier register</div>
-          <div class="ds-p">Every organisation supplying Digital Product Passport capability, with the source behind each fact and the date it was checked.</div>
-        </div>
-        <div class="ds-r">
-          <div class="ds-n" id="ds-n">190</div>
-          <div class="ds-c" id="ds-c">organisations · 171 commercial suppliers · 33 countries</div>
-          <span class="open-link">Open the register</span>
-        </div>
-      </a>
     </div>
   </div>
 
@@ -270,10 +271,10 @@
           <p>Building outcome infrastructure for the AI era.</p>
         </div>
         <div class="foot-col">
-          <h4>Work</h4>
+          <h4>Platforms</h4>
           <a href="/naffe">naffe.ai</a>
-          <a href="/research/digital-product-passport">Digital Product Passports</a>
-          <a href="/advisory">Advisory</a>
+          <a href="/research/digital-product-passport/suppliers">DPP Supplier Register</a>
+          <a href="/platforms">All platforms</a>
         </div>
         <div class="foot-col">
           <h4>Research</h4>
@@ -284,7 +285,8 @@
         <div class="foot-col">
           <h4>Company</h4>
           <a href="/about">About</a>
-          <a href="/insights/">Thinking</a>
+          <a href="/advisory">Advisory</a>
+          <a href="/insights/">Insights</a>
           <a href="#" onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;;return false;">Contact</a>
         </div>
         <div class="foot-contact">
