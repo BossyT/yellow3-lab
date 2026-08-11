@@ -136,6 +136,33 @@ def _html_files(root):
                 yield os.path.join(base, name)
 
 
+def nav_faults(text):
+    """Anything wrong with a page's menu, in words.
+
+    THE FOOTER SWEEP ONCE EDITED THE MENU. Its Advisory insertion matched the
+    first `About` link in the document, which is the one in the nav, so every
+    page gained a second Advisory item - and the sweep reported success on all
+    630 because it only compared the nav block it had just written. A rewrite
+    that is checked against itself proves nothing, so the page is now read back
+    and asked plain questions instead.
+    """
+    faults = []
+    match = NAV_BLOCK.search(text)
+    if not match:
+        return faults
+    block = match.group(2)
+    for href, label in NAV_ITEMS:
+        seen = block.count(f'href="{href}"')
+        if seen != 1:
+            faults.append(f'{label} appears {seen} times in the menu')
+    extra = len(re.findall(r'<a ', block)) - len(NAV_ITEMS)
+    if extra:
+        faults.append(f'{extra} menu item(s) that are not in NAV_ITEMS')
+    if block.count('class="active"') > 1:
+        faults.append('more than one active item')
+    return faults
+
+
 def sweep(root, apply_changes):
     changed, checked = [], 0
     for path in _html_files(root):
@@ -169,6 +196,19 @@ def main():
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     apply_changes = "--apply" in sys.argv
     checked, changed = sweep(root, apply_changes)
+
+    # Read back what is on disk, whether or not anything was rewritten.
+    faults = []
+    for path in _html_files(root):
+        for fault in nav_faults(open(path, encoding="utf-8").read()):
+            faults.append(f"{os.path.relpath(path, root)}: {fault}")
+    if faults:
+        print(f"nav: {len(faults)} broken menu(s)")
+        for fault in faults[:20]:
+            print("  " + fault)
+        if len(faults) > 20:
+            print(f"  ... and {len(faults) - 20} more")
+        return 1
 
     if apply_changes:
         print(f"nav: {checked} pages checked, {len(changed)} rewritten")
