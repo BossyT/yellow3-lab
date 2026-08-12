@@ -153,16 +153,20 @@
        styles by design. */
     /* STATUS: DESIGN HANDOFF. Additions-only prototype CSS. No menu/header styles. */
     .y3-platforms {
-      /* Production tokens, not new ones. The package shipped its own hexes as a
-         standalone prototype; on the site they resolve to what every other page
-         already uses, so a change to the palette reaches this page too. */
-      --y3p-ink: var(--ink);
-      --y3p-muted: var(--body);
-      --y3p-line: var(--line);
-      --y3p-wash: var(--panel);
-      --y3p-yellow: var(--yellow);
+      /* The package's own values, exactly as designed. They were mapped onto the
+         site tokens and DM Sans in the first build; that was a deviation I
+         should have raised before shipping rather than after, and Thomas's
+         instruction is that an approved design ships as specified. The DPP
+         Registry - which the visual rules name as the typographic reference -
+         is Arial for headings and body alike, by his standing rule of 30 Jul. */
+      --y3p-ink: #111111;
+      --y3p-muted: #5f5f5b;
+      --y3p-line: #deded8;
+      --y3p-wash: #f5f5f0;
+      --y3p-yellow: #ffd800;
       color: var(--y3p-ink);
-      background: var(--paper);
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fff;
     }
 
     .y3-platforms > .y3-platforms__section:first-child {
