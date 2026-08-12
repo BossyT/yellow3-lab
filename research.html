@@ -194,7 +194,11 @@
   <div class="panel">
     <div class="inner">
       <div class="panel-head">
-        <div class="panel-label">The instruments</div>
+        <!-- h2, not a div: the three instruments below are h3 and the page
+             hero is h1, so this label is the level that was missing. The
+             class sets font-size, weight, colour and tracking explicitly and
+             the page resets margins, so nothing moves. -->
+        <h2 class="panel-label">The instruments</h2>
         <div class="panel-note">Live and updated weekly. The shelf grows as new instruments ship.</div>
       </div>
       <a class="dataset" href="/research/digital-product-passport/suppliers">
