@@ -375,9 +375,6 @@ def render_report(period, g):
   <meta name="description" content="{desc}" />
   <link rel="canonical" href="{url}" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="{RBASE}/report.css" />
 </head>
 <body>''', NAV, f'''
@@ -522,9 +519,6 @@ def render_briefing(period, g):
   <meta name="description" content="{desc}" />
   <link rel="canonical" href="{url}" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="{RBASE}/report.css" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="{title} | yellow3" />
@@ -587,7 +581,6 @@ def render_archive(reports):
   <link rel="canonical" href="{HOST}{RBASE}" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400..600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="{RBASE}/report.css" />
 </head>
 <body>
@@ -610,7 +603,7 @@ def render_archive(reports):
 REPORT_CSS = """*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--paper:#fff;--ink:#0e0e0e;--body:#333;--muted:#8a8a8a;--line:#e7e6e2;--yellow:#ffe000;--panel:#f7f6f3;
 --up:#2E9D78;--down:#b3402e;--flat:#9a9a95;--asia:#4d146c;--us:#003268;--europe:#c99a12;--other:#828383}
-body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+body{background:var(--paper);color:var(--ink);font-family:Arial, Helvetica, sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
 a{color:inherit}img{display:block;max-width:100%}.num{text-align:right;font-variant-numeric:tabular-nums}
 .mono{font-variant-numeric:tabular-nums;color:var(--muted)}
 .site-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}

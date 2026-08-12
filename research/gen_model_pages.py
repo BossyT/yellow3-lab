@@ -391,9 +391,6 @@ def head(m, provider, meta, updated_iso):
   <meta name="description" content="{esc(desc)}" />
   <link rel="canonical" href="{url}" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="{BASE}/model.css" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="yellow3 lab" />
@@ -709,7 +706,7 @@ CSS = """*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 --up:#2E9D78;--down:#b3402e;--flat:#9a9a95;
 --r-asia:#4d146c;--r-us:#003268;--r-europe:#ffba02;--r-other:#828383}
 html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;font-weight:400;line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+body{background:var(--paper);color:var(--ink);font-family:Arial, Helvetica, sans-serif;font-weight:400;line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
 img{display:block;max-width:100%}a{color:inherit}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .num{font-variant-numeric:tabular-nums;text-align:right}

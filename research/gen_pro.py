@@ -161,7 +161,6 @@ def render(main, econ, models):
   <link rel="canonical" href="{HOST}{BASE}/pro" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400..600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="{BASE}/pro.css" />
 </head>
 <body>
@@ -271,7 +270,7 @@ def render(main, econ, models):
 PRO_CSS = """*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--paper:#fff;--ink:#0e0e0e;--body:#4b4b4b;--muted:#8a8a8a;--line:#e7e6e2;--yellow:#ffe000;--panel:#f7f6f3;
 --up:#2E9D78;--down:#b3402e;--flat:#9a9a95;--asia:#4d146c;--us:#003268;--europe:#c99a12;--other:#828383}
-body{background:var(--panel);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+body{background:var(--panel);color:var(--ink);font-family:Arial, Helvetica, sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
 a{color:inherit}.num{text-align:right}.fine{font-size:12px;color:var(--muted)}
 .rc-up{color:var(--up);font-weight:700}.rc-down{color:var(--down);font-weight:700}.rc-flat{color:var(--flat)}
 .app{display:grid;grid-template-columns:236px 1fr;min-height:100vh;background:#fff}

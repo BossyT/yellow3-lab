@@ -1,7 +1,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--paper:#fff;--ink:#0e0e0e;--body:#4b4b4b;--muted:#8a8a8a;--line:#e7e6e2;--yellow:#ffe000;--panel:#f7f6f3;
 --up:#2E9D78;--down:#b3402e;--flat:#9a9a95;--asia:#4d146c;--us:#003268;--europe:#c99a12;--other:#828383}
-body{background:var(--panel);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+body{background:var(--panel);color:var(--ink);font-family:Arial, Helvetica, sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
 a{color:inherit}.num{text-align:right}.fine{font-size:12px;color:var(--muted)}
 .rc-up{color:var(--up);font-weight:700}.rc-down{color:var(--down);font-weight:700}.rc-flat{color:var(--flat)}
 .app{display:grid;grid-template-columns:236px 1fr;min-height:100vh;background:#fff}

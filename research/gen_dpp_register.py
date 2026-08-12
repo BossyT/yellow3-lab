@@ -199,9 +199,6 @@ def page(title, desc, canonical, body, script="", og_extra=""):
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />{og_extra}
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/research/digital-product-passport/register.css" />
   <link rel="stylesheet" href="/research/digital-product-passport/type-arial.css" />
 </head>
