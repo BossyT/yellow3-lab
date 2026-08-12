@@ -422,6 +422,13 @@
     .y3-platforms__callout {
       display: flex;
       align-items: flex-end;
+      /* Thomas, 12 Aug: the yellow must cover the text and no more. The package
+         stretches this to the full height of the story row, which reads as a
+         band beside four lines of DPP copy and as a mostly-empty block beside
+         naffe's one sentence. `end` keeps it where the design puts it - bottom
+         of the column - and sizes it to its own content. A DEVIATION FROM THE
+         PACKAGE, on his instruction, and GPT should know. */
+      align-self: end;
       padding: 30px 22px;
       background: var(--y3p-yellow);
       font-size: 15px;
@@ -496,7 +503,10 @@
       }
 
       .y3-platforms__callout {
-        min-height: 120px;
+        /* The package's 120px floor is there because the callout stops being a
+           column on a phone. It would put the empty yellow straight back, so it
+           goes with the same instruction the desktop rule above follows. */
+        min-height: 0;
       }
 
       .y3-platforms__headline {
