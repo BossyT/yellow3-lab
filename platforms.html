@@ -355,7 +355,13 @@
 
     .y3-platforms__story-visual {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 180px;
+      /* One column, not image + 180px band. The package splits them, so
+         shrinking the callout to its text left bare white where the band used
+         to be. The screenshot now spans the whole visual area and the callout
+         sits ON it - Thomas, 12 Aug: "the screen has to be behind the yellow
+         box, not just white". DEVIATION FROM THE PACKAGE, on his instruction. */
+      grid-template-columns: minmax(0, 1fr);
+      position: relative;
       border-left: 1px solid var(--y3p-line);
       min-width: 0;
     }
@@ -422,13 +428,12 @@
     .y3-platforms__callout {
       display: flex;
       align-items: flex-end;
-      /* Thomas, 12 Aug: the yellow must cover the text and no more. The package
-         stretches this to the full height of the story row, which reads as a
-         band beside four lines of DPP copy and as a mostly-empty block beside
-         naffe's one sentence. `end` keeps it where the design puts it - bottom
-         of the column - and sizes it to its own content. A DEVIATION FROM THE
-         PACKAGE, on his instruction, and GPT should know. */
-      align-self: end;
+      /* Over the screenshot, bottom right, the width the package gives it and
+         no more height than its own text. */
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 180px;
       padding: 30px 22px;
       background: var(--y3p-yellow);
       font-size: 15px;
@@ -503,10 +508,11 @@
       }
 
       .y3-platforms__callout {
-        /* The package's 120px floor is there because the callout stops being a
-           column on a phone. It would put the empty yellow straight back, so it
-           goes with the same instruction the desktop rule above follows. */
-        min-height: 0;
+        /* Stacked on a phone, not floating over the screenshot - a 180px
+           overlay on a narrow screen would cover the product it is meant to
+           be evidence of. */
+        position: static;
+        width: auto;
       }
 
       .y3-platforms__headline {
