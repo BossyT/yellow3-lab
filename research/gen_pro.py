@@ -288,10 +288,10 @@ a{color:inherit}.num{text-align:right}.fine{font-size:12px;color:var(--muted)}
 .tb-m{color:var(--muted)}.tb-sep{color:var(--line)}.tb-btn{margin-left:auto;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);padding:8px 14px;text-decoration:none;border-radius:6px}
 .brief{padding:30px 0 18px}
 .brief-eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
-.brief h1{font-family:'Newsreader',Georgia,serif;font-size:clamp(32px,4.6vw,52px);font-weight:600;letter-spacing:-.02em;line-height:1.05;margin:8px 0 12px}
+.brief h1{font-family:'Newsreader',Georgia,serif;font-size:clamp(32px,4.6vw,52px);font-weight: 400;letter-spacing: -0.05em;line-height:1.05;margin:8px 0 12px}
 .brief-sub{font-size:18px;color:var(--body);max-width:640px}
 .pstats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:8px 0}
-.pstat{background:#fff;padding:20px 22px}.pstat-v{font-size:28px;font-weight:800;letter-spacing:-.02em;line-height:1.05}
+.pstat{background:#fff;padding:20px 22px}.pstat-v{font-size:28px;font-weight: 400;letter-spacing: -0.025em;line-height:1.05}
 .v-asia{color:var(--asia)}.v-us{color:var(--us)}
 .pstat-l{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:8px}.pstat-s{font-size:12px;color:var(--body);margin-top:4px}
 .brief-obs{font-size:13px;color:var(--muted);border-left:3px solid var(--yellow);padding:8px 14px;margin:14px 0 24px}
@@ -303,9 +303,9 @@ a{color:inherit}.num{text-align:right}.fine{font-size:12px;color:var(--muted)}
 .feat-body{display:grid;grid-template-columns:150px 1fr;gap:22px}
 .feat-cover{background:linear-gradient(160deg,#faf8f2,#efece3);border:1px solid var(--line);padding:18px 16px;display:flex;flex-direction:column;justify-content:space-between;min-height:190px}
 .fc-eyebrow{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
-.fc-title{font-family:'Newsreader',serif;font-size:22px;font-weight:600;line-height:1.05;margin-top:10px}
+.fc-title{font-family:'Newsreader',serif;font-size:22px;font-weight: 400; letter-spacing: -0.025em;line-height:1.05;margin-top:10px}
 .fc-month{font-size:12px;color:var(--asia);font-weight:700;margin-top:auto}
-.feat-title{font-family:'Newsreader',serif;font-size:22px;font-weight:600;margin-bottom:8px}
+.feat-title{font-family:'Newsreader',serif;font-size:22px;font-weight: 400; letter-spacing: -0.025em;margin-bottom:8px}
 .feat-desc{font-size:14px;color:var(--body);margin-bottom:16px}
 .feat-cta{display:inline-block;background:var(--ink);color:#fff;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:11px 18px;text-decoration:none}
 .feat-note{font-size:11px;color:var(--muted);margin-top:12px}
@@ -341,7 +341,7 @@ a{color:inherit}.num{text-align:right}.fine{font-size:12px;color:var(--muted)}
 .gate{padding:118px 34px 46px;max-width:1000px;margin:0 auto;text-align:center;background:#fff}
 .gate-brand img{height:24px;margin:0 auto 30px}
 .gate-eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
-.gate h1{font-family:'Newsreader',Georgia,serif;font-size:clamp(46px,9vw,86px);font-weight:600;letter-spacing:-.02em;line-height:1;margin:12px 0 18px}
+.gate h1{font-family:'Newsreader',Georgia,serif;font-size:clamp(46px,9vw,86px);font-weight: 400;letter-spacing: -0.055em;line-height:1;margin:12px 0 18px}
 .gate-badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 16px}
 .gate-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--yellow)}
 .gate-sub{font-size:19px;color:var(--body);max-width:620px;margin:22px auto;line-height:1.5}

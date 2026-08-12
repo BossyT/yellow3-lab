@@ -732,16 +732,16 @@ img{display:block;max-width:100%}a{color:inherit}
 .mx-head h1{overflow-wrap:break-word;word-break:break-word}
 .ptile{width:60px;height:60px;flex:0 0 60px;border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff}
 .ptile img{width:78%;height:78%;object-fit:contain}
-.ptile-fallback{font-weight:700;font-size:20px;color:#3a3a3a;background:var(--panel);letter-spacing:.02em}
+.ptile-fallback{font-weight: 400;font-size:20px;color:#3a3a3a;background:var(--panel);letter-spacing: -0.025em}
 .mx-provider{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:4px}
-.mx-head h1{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.02em;line-height:1.05}
+.mx-head h1{font-size:clamp(28px,4vw,40px);font-weight: 400;letter-spacing: -0.05em;line-height:1.05}
 .mx-meta{font-size:14px;color:var(--body);margin-top:6px}
 .official{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;border-bottom:1.5px solid var(--ink);padding-bottom:2px;white-space:nowrap}
 .official span{font-weight:400}.official-none{color:var(--muted);border:none;text-transform:none;letter-spacing:0;font-weight:400}
 /* status strip */
 .status-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:28px 0 8px}
 .ss{background:#fff;padding:20px 22px;display:flex;flex-direction:column;gap:6px}
-.ss-v{font-size:24px;font-weight:800;letter-spacing:-.01em;line-height:1.1}
+.ss-v{font-size:24px;font-weight: 400;letter-spacing: -0.025em;line-height:1.1}
 .ss-l{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
 .mv{font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:4px}
 .mv-new{color:var(--up);font-size:12px;letter-spacing:.08em}.mv-flat{color:var(--flat)}
@@ -831,7 +831,7 @@ img{display:block;max-width:100%}a{color:inherit}
 .etiles{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 .etile{background:#fff;padding:20px 18px}
 .et-l{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:10px}
-.et-v{font-size:24px;font-weight:800;letter-spacing:-.01em;line-height:1.05}
+.et-v{font-size:24px;font-weight: 400;letter-spacing: -0.025em;line-height:1.05}
 .et-s{font-size:11px;color:var(--muted);margin-top:6px}
 .et-yes{color:var(--up)}.et-na{color:#b8b6ae;font-weight:400}
 /* calculator */
@@ -847,7 +847,7 @@ img{display:block;max-width:100%}a{color:inherit}
 .cf input[type=range]{width:100%;accent-color:var(--r-asia)}
 .calc-out{padding:24px 26px;background:var(--panel);display:flex;flex-direction:column}
 .co-l{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
-.co-total{font-size:46px;font-weight:800;color:var(--r-asia);letter-spacing:-.02em;line-height:1;margin:8px 0 18px}
+.co-total{font-size:46px;font-weight: 400;color:var(--r-asia);letter-spacing: -0.05em;line-height:1;margin:8px 0 18px}
 .co-row{display:flex;justify-content:space-between;font-size:14px;color:var(--body);padding:7px 0;border-top:1px solid var(--line)}
 .co-per{margin-top:14px;font-size:15px;font-weight:700;color:var(--r-asia)}
 .calc-note{font-size:12px;color:var(--muted);margin-top:12px}
@@ -861,7 +861,7 @@ img{display:block;max-width:100%}a{color:inherit}
 /* position box */
 .pos-box{margin-top:26px;border:1px solid var(--line);padding:22px 24px;max-width:520px}
 .pos-h{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
-.pos-label{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:6px 0 8px;text-transform:uppercase;color:var(--ink)}
+.pos-label{font-size:26px;font-weight: 400;letter-spacing: -0.025em;margin:6px 0 8px;text-transform:uppercase;color:var(--ink)}
 .pos-sub{font-size:13px;color:var(--muted);line-height:1.5}
 /* speed / capabilities */
 .speed-strip{grid-template-columns:1fr 1fr;margin:0 0 6px}

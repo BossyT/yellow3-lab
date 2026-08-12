@@ -108,8 +108,8 @@
   margin: 0;
   max-width: 740px;
   font-size: clamp(50px, 5.7vw, 82px);
-  font-weight: 640;
-  letter-spacing: -0.065em;
+  font-weight: 400;
+  letter-spacing: -0.055em;
   line-height: 0.94;
 }
 
@@ -628,8 +628,8 @@
 .dpp-edit .supplier-identity h2{
   margin: 0;
   font-size: 31px;
-  font-weight: 650;
-  letter-spacing: -0.045em;
+  font-weight: 400;
+  letter-spacing: -0.025em;
 }
 
 .dpp-edit .description{

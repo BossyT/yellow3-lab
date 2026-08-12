@@ -43,7 +43,7 @@
   padding: 0 26px;
   border-left: 1px solid #d7d7d7;
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 400; letter-spacing: -0.025em;
 }
 
 .registry-counts {
@@ -170,7 +170,7 @@
   place-items: center;
   border: 1px solid #aaa;
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 400; letter-spacing: -0.025em;
 }
 .row-supplier strong { font-size: 22px; }
 .row-supplier em { font-style: normal; }
@@ -359,7 +359,7 @@
   padding: 0 20px;
   border-bottom: 1px solid #e5e5e5;
 }
-.claim-logo { color: #111; font-size: 21px; font-weight: 800; text-decoration: none; }
+.claim-logo { color: #111; font-size: 21px; font-weight: 400; letter-spacing: -0.025em; text-decoration: none; }
 .claim-site-nav nav { display: flex; justify-content: center; gap: 34px; }
 .claim-site-nav nav a { padding: 24px 0 15px; color: #333; font-size: 12px; letter-spacing: .05em; text-decoration: none; text-transform: uppercase; }
 .claim-site-nav nav a.active { border-bottom: 2px solid #111; color: #111; }

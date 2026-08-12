@@ -25,7 +25,7 @@
 
 .dpp-dir .hero-grid{ display:grid; grid-template-columns:1fr 240px; gap:70px; align-items:end; margin-top:30px; }
 
-.dpp-dir h1{ font-size:clamp(48px,5.2vw,78px); line-height:.96; letter-spacing:-.055em; margin:0; font-weight:650; }
+.dpp-dir h1{ font-size:clamp(48px,5.2vw,78px); line-height:.96; letter-spacing: -0.055em; margin:0; font-weight: 400; }
 
 .dpp-dir .hero p{ font-family:Georgia,serif; font-size:21px; line-height:1.5; max-width:620px; color:#4d4f49; margin:22px 0 0; }
 
@@ -253,8 +253,8 @@
 .dpp-dir .hero h1 {
   max-width: none;
   font-size: clamp(48px, 5.2vw, 78px);
-  font-weight: 650;
-  letter-spacing: -.055em;
+  font-weight: 400;
+  letter-spacing: -0.055em;
   line-height: .96;
 }
 .dpp-dir .hero {

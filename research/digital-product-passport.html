@@ -52,7 +52,7 @@
     .badge-live .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 0 rgba(46,157,120,0.5); animation: pulse 2.4s infinite; }
     @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(46,157,120,0.45); } 70% { box-shadow: 0 0 0 7px rgba(46,157,120,0); } 100% { box-shadow: 0 0 0 0 rgba(46,157,120,0); } }
     .refresh { font-size: 12px; color: var(--mid); }
-    .inst-head h1 { font-size: clamp(38px, 5.4vw, 66px); font-weight: 800; line-height: 1.03; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 20px; }
+    .inst-head h1 { font-size: clamp(38px, 5.4vw, 66px); font-weight: 400; line-height: 1.03; letter-spacing: -0.055em; color: var(--ink); margin-bottom: 20px; }
     .inst-thesis { font-size: 18px; color: var(--body); max-width: 640px; border-left: 3px solid var(--yellow); padding-left: 24px; }
 
     .btn { display: inline-flex; align-items: center; gap: 12px; padding: 14px 24px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--ink); transition: background 0.2s, color 0.2s; cursor: pointer; }
@@ -69,7 +69,7 @@
     .ht:hover { background: var(--panel); }
     .ht-k { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 12px; }
     .ht-n { font-size: 17px; color: var(--body); letter-spacing: -0.01em; margin-bottom: 10px; }
-    .ht-n b { font-size: 22px; font-weight: 800; color: var(--ink); }
+    .ht-n b { font-size: 22px; font-weight: 400; letter-spacing: -0.025em; color: var(--ink); }
     .ht-p { font-size: 13px; color: var(--mid); line-height: 1.55; margin-bottom: 22px; }
     .ht .btn { margin-top: auto; align-self: flex-start; }
     @media (max-width: 880px) { .hero-two { grid-template-columns: 1fr; } }
@@ -93,8 +93,8 @@
     .board-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
     .sc { background: var(--paper); padding: 30px 32px; position: relative; }
     .sc .sk { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-    .sc .sv { font-size: 56px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--ink); }
-    .sc .sv .u { font-size: 22px; font-weight: 700; color: var(--muted); }
+    .sc .sv { font-size: 56px; font-weight: 400; letter-spacing: -0.05em; line-height: 1; color: var(--ink); }
+    .sc .sv .u { font-size: 22px; font-weight: 400; letter-spacing: -0.025em; color: var(--muted); }
     .sc .sd { font-size: 13px; color: var(--mid); margin-top: 10px; line-height: 1.45; }
     .prov { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); border: 1px solid rgba(216,154,22,0.4); border-radius: 999px; padding: 2px 8px; font-weight: 700; }
     .sc .prov { position: absolute; top: 28px; right: 32px; }
@@ -103,13 +103,13 @@
     /* THIS WEEK */
     .payoff { padding: 48px 0; border-bottom: 1px solid var(--line); background: var(--panel); }
     .payoff .label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 16px; }
-    .payoff h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 800; line-height: 1.18; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 18px; max-width: 880px; }
+    .payoff h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 400; line-height: 1.18; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 18px; max-width: 880px; }
     .payoff p { font-size: 16px; color: var(--body); line-height: 1.7; max-width: 760px; }
 
     /* SECTIONS */
     .section { padding: 64px 0; border-bottom: 1px solid var(--line); }
     .section-label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 8px; position: relative; }
-    .section-h { font-size: clamp(22px, 2.6vw, 30px); font-weight: 800; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 6px; }
+    .section-h { font-size: clamp(22px, 2.6vw, 30px); font-weight: 400; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 6px; }
     .section-note { font-size: 14px; color: var(--mid); line-height: 1.55; margin-bottom: 32px; max-width: 700px; }
 
     /* MILESTONES */
@@ -128,7 +128,7 @@
     .chip.amber { color: #9a6b0c; background: rgba(216,154,22,0.14); } .chip.amber .d { background: var(--amber); }
     .chip.red { color: var(--red); background: rgba(179,64,46,0.1); } .chip.red .d { background: var(--red); }
     .chip.neutral { color: var(--muted); background: var(--panel); border: 1px solid var(--line); } .chip.neutral .d { background: var(--muted); }
-    .count { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); }
+    .count { font-size: 22px; font-weight: 400; letter-spacing: -0.025em; color: var(--ink); }
     .count .cm { font-size: 14px; color: var(--muted); font-weight: 700; }
 
     /* SIGNALS */
@@ -136,7 +136,7 @@
     .sig:last-child { border-bottom: 1px solid var(--line); }
     .sig .sn { font-size: 16px; font-weight: 700; color: var(--ink); }
     .sig .ss { font-size: 12px; color: var(--muted); margin-top: 4px; }
-    .sig .sval { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); text-align: right; white-space: nowrap; }
+    .sig .sval { font-size: 24px; font-weight: 400; letter-spacing: -0.025em; color: var(--ink); text-align: right; white-space: nowrap; }
     .sig .sval .su { font-size: 13px; color: var(--muted); font-weight: 600; }
     .sig.pending .sval { color: var(--muted); }
 
@@ -156,7 +156,7 @@
     /* CALLS-GRADED RECORD (scoreboard tile) */
     .crec { display: flex; gap: 22px; align-items: flex-start; }
     .crec .cr { display: flex; flex-direction: column; }
-    .crec .cr b { font-size: 40px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--ink); }
+    .crec .cr b { font-size: 40px; font-weight: 400; letter-spacing: -0.05em; line-height: 1; color: var(--ink); }
     .crec .cr span { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-top: 9px; }
     .crec .cr.late b { color: #9a6b0c; }
     .crec .cr.miss b { color: var(--red); }
@@ -176,10 +176,10 @@
     .reg-promo { display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px; margin-top: 34px; padding: 30px 34px; border: 1px solid var(--line); text-decoration: none; transition: border-color 0.2s, background 0.2s; }
     .reg-promo:hover { border-color: var(--ink); background: var(--panel); }
     .rp-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 10px; }
-    .rp-h { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 10px; }
+    .rp-h { font-size: 22px; font-weight: 400; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 10px; }
     .rp-p { font-size: 14px; color: var(--body); line-height: 1.6; max-width: 520px; }
     .rp-r { border-left: 1px solid var(--line); padding-left: 32px; }
-    .rp-n { font-size: 46px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--ink); }
+    .rp-n { font-size: 46px; font-weight: 400; letter-spacing: -0.05em; line-height: 1; color: var(--ink); }
     .rp-c { font-size: 12px; color: var(--mid); margin-top: 8px; line-height: 1.5; }
     .rp-go { font-size: 13px; font-weight: 600; color: var(--ink); margin-top: 18px; }
     @media (max-width: 880px) { .reg-promo { grid-template-columns: 1fr; gap: 24px; padding: 24px; } .rp-r { border-left: none; border-top: 1px solid var(--line); padding-left: 0; padding-top: 20px; } }
