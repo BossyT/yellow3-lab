@@ -295,6 +295,7 @@
     }
 
     .y3-platforms__method-step h3,
+    .y3-platforms__method-title,
     .y3-platforms__question,
     .y3-platforms__product-name {
       margin: 0;
@@ -302,7 +303,8 @@
       letter-spacing: -.025em;
     }
 
-    .y3-platforms__method-step h3 {
+    .y3-platforms__method-step h3,
+    .y3-platforms__method-title {
       font-size: 27px;
       line-height: 1.1;
     }
@@ -520,6 +522,320 @@
       }
     }
 
+
+    /* ---- /platforms v2, from yellow3-platforms-v2-FULL-terminal-handoff
+       Appended after the live v1 additions, which stay as the baseline.
+       Additions-only and scoped under .y3-platforms; no header, nav or
+       footer rules. */
+    /*
+      yellow3.io /platforms v2
+      ADDITIONS ONLY against the live /platforms stylesheet.
+      All selectors are scoped under .y3-platforms.
+      Do not replace the live baseline CSS with this file.
+    */
+
+    .y3-platforms .y3-platforms__product-index {
+      border-top: 1px solid var(--y3p-ink);
+      margin-top: 7px;
+    }
+
+    .y3-platforms .y3-platforms__product-index-row {
+      display: grid;
+      grid-template-columns: 30px minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: start;
+      padding: 19px 0 18px;
+      border-bottom: 1px solid var(--y3p-line);
+      color: var(--y3p-ink);
+      text-decoration: none;
+    }
+
+    .y3-platforms .y3-platforms__product-index-number {
+      font-size: 10px;
+      line-height: 1.4;
+      font-weight: 700;
+      letter-spacing: .12em;
+    }
+
+    .y3-platforms .y3-platforms__product-index-copy {
+      min-width: 0;
+    }
+
+    .y3-platforms .y3-platforms__product-index-copy strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+      line-height: 1.25;
+      font-weight: 700;
+    }
+
+    .y3-platforms .y3-platforms__product-index-copy span {
+      display: block;
+      color: var(--y3p-muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .y3-platforms .y3-platforms__product-index-action {
+      align-self: end;
+      padding-bottom: 2px;
+      white-space: nowrap;
+      border-bottom: 1px solid var(--y3p-ink);
+      font-size: 10px;
+      line-height: 1.3;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .y3-platforms .y3-platforms__section--method {
+      padding-top: 54px;
+      padding-bottom: 58px;
+    }
+
+    .y3-platforms .y3-platforms__method-step .y3-platforms__eyebrow {
+      margin: -4px 0 12px;
+    }
+
+    .y3-platforms .y3-platforms__story--product {
+      grid-template-columns: minmax(390px, .92fr) minmax(0, 1.08fr);
+      min-height: 570px;
+    }
+
+    .y3-platforms .y3-platforms__product-tagline {
+      margin: 10px 0 24px;
+      color: var(--y3p-ink);
+      font-size: 20px;
+      line-height: 1.3;
+      font-weight: 700;
+      letter-spacing: -.015em;
+    }
+
+    .y3-platforms .y3-platforms__product-points {
+      margin: 28px 0 24px;
+      padding: 0;
+      border-top: 1px solid var(--y3p-ink);
+    }
+
+    .y3-platforms .y3-platforms__product-point {
+      display: grid;
+      grid-template-columns: 118px minmax(0, 1fr);
+      gap: 18px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--y3p-line);
+    }
+
+    .y3-platforms .y3-platforms__product-point dt,
+    .y3-platforms .y3-platforms__product-point dd {
+      margin: 0;
+    }
+
+    .y3-platforms .y3-platforms__product-point dt {
+      padding-top: 2px;
+      color: var(--y3p-ink);
+      font-size: 9px;
+      line-height: 1.35;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .y3-platforms .y3-platforms__product-point dd {
+      color: var(--y3p-muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .y3-platforms .y3-platforms__boundary {
+      margin: 22px 0 0;
+      padding: 1px 0 1px 15px;
+      border-left: 3px solid var(--y3p-yellow);
+    }
+
+    .y3-platforms .y3-platforms__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 20px;
+      align-items: center;
+      margin-top: 28px;
+    }
+
+    .y3-platforms .y3-platforms__actions .y3-platforms__link {
+      margin-top: 0;
+    }
+
+    .y3-platforms .y3-platforms__action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 18px;
+      background: var(--y3p-ink);
+      color: #fff;
+      text-decoration: none;
+      font-size: 10px;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .y3-platforms .y3-platforms__evidence {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: center;
+      margin-top: 22px;
+      padding: 24px 26px;
+      border: 1px solid var(--y3p-line);
+      border-top: 3px solid var(--y3p-yellow);
+    }
+
+    .y3-platforms .y3-platforms__evidence-label {
+      color: var(--y3p-ink);
+      font-size: 9px;
+      line-height: 1.35;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .y3-platforms .y3-platforms__evidence-copy h3 {
+      margin: 0 0 5px;
+      font-size: 21px;
+      line-height: 1.15;
+      font-weight: 400;
+      letter-spacing: -.025em;
+    }
+
+    .y3-platforms .y3-platforms__evidence-copy p {
+      max-width: 680px;
+      margin: 0;
+      color: var(--y3p-muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .y3-platforms .y3-platforms__evidence-link {
+      margin-top: 0;
+      white-space: nowrap;
+    }
+
+    .y3-platforms .y3-platforms__closing--commercial {
+      grid-template-columns: minmax(260px, .62fr) minmax(0, 1.38fr);
+      align-items: start;
+    }
+
+    .y3-platforms .y3-platforms__conversion-routes {
+      border-top: 1px solid var(--y3p-ink);
+    }
+
+    .y3-platforms .y3-platforms__conversion-row {
+      display: grid;
+      grid-template-columns: 28px 195px minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--y3p-line);
+      color: var(--y3p-ink);
+      text-decoration: none;
+    }
+
+    .y3-platforms .y3-platforms__conversion-row > span {
+      font-size: 9px;
+      line-height: 1.3;
+      font-weight: 700;
+      letter-spacing: .12em;
+    }
+
+    .y3-platforms .y3-platforms__conversion-row > strong {
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .y3-platforms .y3-platforms__conversion-row > em {
+      color: var(--y3p-muted);
+      font-size: 13px;
+      line-height: 1.4;
+      font-style: normal;
+    }
+
+    .y3-platforms .y3-platforms__conversion-row > b {
+      white-space: nowrap;
+      border-bottom: 1px solid var(--y3p-ink);
+      padding-bottom: 3px;
+      font-size: 9px;
+      line-height: 1.3;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      .y3-platforms .y3-platforms__product-index {
+        margin-top: 0;
+      }
+
+      .y3-platforms .y3-platforms__story--product {
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+
+      .y3-platforms .y3-platforms__evidence {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        align-items: start;
+      }
+
+      .y3-platforms .y3-platforms__evidence-link {
+        justify-self: start;
+      }
+
+      .y3-platforms .y3-platforms__closing--commercial {
+        grid-template-columns: 1fr;
+      }
+
+      .y3-platforms .y3-platforms__conversion-row {
+        grid-template-columns: 28px minmax(0, 1fr);
+        gap: 7px 14px;
+      }
+
+      .y3-platforms .y3-platforms__conversion-row > strong {
+        grid-column: 2;
+      }
+
+      .y3-platforms .y3-platforms__conversion-row > em,
+      .y3-platforms .y3-platforms__conversion-row > b {
+        grid-column: 2;
+      }
+
+      .y3-platforms .y3-platforms__conversion-row > b {
+        justify-self: start;
+        margin-top: 3px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .y3-platforms .y3-platforms__product-index-row {
+        grid-template-columns: 26px minmax(0, 1fr);
+      }
+
+      .y3-platforms .y3-platforms__product-index-action {
+        grid-column: 2;
+        justify-self: start;
+        margin-top: 6px;
+      }
+
+      .y3-platforms .y3-platforms__product-point {
+        grid-template-columns: 1fr;
+        gap: 5px;
+      }
+
+      .y3-platforms .y3-platforms__actions {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
   </style>
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Platforms - yellow3 lab" />
@@ -579,110 +895,172 @@
 
   <div class="y3-platforms">
 
-    <section class="y3-platforms__section">
-      <div class="y3-platforms__kicker">yellow3 lab / platforms</div>
-      <div class="y3-platforms__hero">
-        <div>
-          <h1 class="y3-platforms__headline">We go deep into things we believe matter.<br><span class="y3-platforms__highlight">Sometimes the outcome is a platform.</span></h1>
-          <p class="y3-platforms__lede">yellow3 lab researches markets, technologies and systems where important change is happening. We do the deep work first. When that research exposes a problem that can be solved more practically with software, we build the platform ourselves.</p>
-          <p class="y3-platforms__principle">Research tells us what matters. The platform turns that understanding into something people can use.</p>
-        </div>
-        <aside class="y3-platforms__hero-side" aria-label="How yellow3 lab thinks about platforms">
-          <div class="y3-platforms__hero-side-row"><strong>Research first</strong><span>We establish the problem before choosing the tool.</span></div>
-          <div class="y3-platforms__hero-side-row"><strong>Outcome over technology</strong><span>The desired result defines what gets built.</span></div>
-          <div class="y3-platforms__hero-side-row"><strong>Independent where it matters</strong><span>Evidence and buyer interests stay visible in the design.</span></div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="y3-platforms__section">
-      <div class="y3-platforms__kicker">How we work</div>
-      <div class="y3-platforms__method">
-        <div class="y3-platforms__method-step"><div class="y3-platforms__number">01</div><div class="y3-platforms__eyebrow">Problem</div><h3>Start with something worth understanding.</h3><p>We look for areas where complexity, new technology or structural change is making important decisions harder than they need to be.</p></div>
-        <div class="y3-platforms__method-step"><div class="y3-platforms__number">02</div><div class="y3-platforms__eyebrow">Research</div><h3>Go deep before building.</h3><p>We map the market, examine the evidence, find what is missing and make the underlying problem visible before deciding whether software is the answer.</p></div>
-        <div class="y3-platforms__method-step"><div class="y3-platforms__number">03</div><div class="y3-platforms__eyebrow">Platform</div><h3>Build around the outcome.</h3><p>When research shows that a repeatable system can help people act, we build the platform around the outcome rather than the technology.</p></div>
-      </div>
-    </section>
-
-    <section class="y3-platforms__section">
-      <div class="y3-platforms__kicker">Area 01 / Digital Product Passport</div>
-      <div class="y3-platforms__area-head">
-        <h2>A new transparency requirement created two buyer problems.</h2>
-        <p>Digital Product Passports will change how product information moves through the European economy. That transition creates new obligations, a new technology market and a difficult implementation problem for manufacturers. yellow3 lab approaches that market from the buyer's side.</p>
-      </div>
-
-      <article class="y3-platforms__story">
-        <div class="y3-platforms__story-copy">
-          <div class="y3-platforms__number">01</div>
-          <div class="y3-platforms__eyebrow">Problem</div>
-          <h3 class="y3-platforms__question">Who is actually in this market, and what can they demonstrate?</h3>
-          <p>We research the global DPP supplier market independently. We establish who is in the market, what suppliers publicly claim, what can actually be demonstrated and what remains unproven.</p>
-          <div class="y3-platforms__built-label">Built from that research</div>
-          <h4 class="y3-platforms__product-name">DPP Supplier Register</h4>
-          <p>An independent public research database and global supplier register for Digital Product Passport capability. Evidence-led, sourced and open to inspection.</p>
-          <a class="y3-platforms__link" href="/research/digital-product-passport/suppliers">Explore the Supplier Register →</a>
-        </div>
-        <div class="y3-platforms__story-visual">
-          <div class="y3-platforms__screenshot"><img loading="lazy" src="/img/platforms/dpp-supplier-register.png" alt="Current yellow3 DPP Supplier Register interface"></div>
-          <div class="y3-platforms__callout">Public research.<br>Free to use.<br><br>Suppliers cannot pay to appear differently, rank higher or improve an assessment.</div>
-        </div>
-      </article>
-
-      <article class="y3-platforms__story">
-        <div class="y3-platforms__story-copy">
-          <div class="y3-platforms__number">02</div>
-          <div class="y3-platforms__eyebrow">Problem</div>
-          <h3 class="y3-platforms__question">How does a buyer turn a regulatory obligation into an implementation programme?</h3>
-          <p>The supplier research exposed the next problem. Buyers still had to establish requirements, understand their own product and data gaps, compare providers on evidence, manage dependencies and determine whether implementation had actually delivered what was promised.</p>
-          <div class="y3-platforms__built-label">Built from that research</div>
-          <h4 class="y3-platforms__product-name">DPP Buyer Platform</h4>
-          <p>A private buyer-side operating platform for organisations planning, buying and implementing Digital Product Passport capability. It brings requirements, product facts, supplier evidence, provider selection, implementation and the decision record into one programme.</p>
-          <p><strong>Plan what is required. Establish what you already have. Identify what is missing. Compare providers on evidence. Manage implementation. Keep the evidence and decision record.</strong></p>
-          <p><strong>yellow3 lab does not operate Digital Product Passports. The platform works for the organisation buying and implementing them.</strong></p>
-          <a class="y3-platforms__link" href="https://buyer.yellow3.io/">Open the DPP Buyer Platform →</a>
-        </div>
-        <div class="y3-platforms__story-visual">
-          <div class="y3-platforms__screenshot"><img loading="lazy" src="/img/platforms/dpp-buyer-platform.png" alt="Current yellow3 DPP Buyer Platform interface"></div>
-          <div class="y3-platforms__callout">Plan.<br>Source.<br>Implement.<br>Prove.<br><br>Independent buyer infrastructure.</div>
-        </div>
-      </article>
-    </section>
-
-    <section class="y3-platforms__section y3-platforms__naffe">
-      <div class="y3-platforms__kicker">Area 02 / Software creation</div>
-      <div class="y3-platforms__area-head">
-        <h2>The people who understand the problem should not need to become software engineers.</h2>
-        <p>People inside businesses often know exactly what outcome they need, but cannot translate that knowledge into architecture, code and production software. That keeps useful ideas dependent on scarce technical capability.</p>
-      </div>
-      <article class="y3-platforms__story">
-        <div class="y3-platforms__story-copy">
-          <div class="y3-platforms__number">03</div>
-          <div class="y3-platforms__eyebrow">Problem</div>
-          <h3 class="y3-platforms__question">What if describing the outcome were enough to start building?</h3>
-          <p>Our work on outcome architecture starts from a different premise: the valuable human input is the definition of the desired outcome. The system should handle more of the translation from direction to implementation.</p>
-          <div class="y3-platforms__built-label">Built from that work</div>
-          <h4 class="y3-platforms__product-name">naffe.ai</h4>
-          <p>naffe.ai turns plain-language direction into working software. It is designed for people who understand the problem they want to solve, not the technology required to build the solution.</p>
-          <a class="y3-platforms__link" href="/naffe">Explore naffe.ai →</a>
-        </div>
-        <div class="y3-platforms__story-visual">
-          <div class="y3-platforms__screenshot"><img loading="lazy" src="/img/platforms/naffe-ai.png" alt="Current naffe.ai interface"></div>
-          <div class="y3-platforms__callout">If you can describe the outcome, naffe.ai builds the software.</div>
-        </div>
-      </article>
-    </section>
-
-    <section class="y3-platforms__closing">
-      <div>
-        <div class="y3-platforms__kicker">The platform is not the starting point.</div>
-        <h2>Research comes first.</h2>
-        <p>We do not begin by looking for software to build. We begin with a problem worth understanding. If the problem deserves a platform, we build one.</p>
-      </div>
-      <div class="y3-platforms__closing-links">
-        <a class="y3-platforms__link" href="/research">Explore our research →</a>
-        <a class="y3-platforms__link" href="/#contact">Get in touch →</a>
-      </div>
-    </section>
+  <section class="y3-platforms__section y3-platforms__section--commercial-hero">
+  <div class="y3-platforms__kicker">yellow3 lab / platforms</div>
+  <div class="y3-platforms__hero">
+  <div>
+  <h1 class="y3-platforms__headline">Three products.<br/><span class="y3-platforms__highlight">Built to do the work.</span></h1>
+  <p class="y3-platforms__lede">yellow3 lab researches problems deeply, then builds products around the outcome. Today that means an independent DPP buyer platform, live AI market intelligence and enterprise-grade software creation.</p>
+  <p class="y3-platforms__principle">Research earns the trust. The product does the work.</p>
+  </div>
+  <nav aria-label="yellow3 platforms" class="y3-platforms__product-index">
+  <a class="y3-platforms__product-index-row" href="https://buyer.yellow3.io/start">
+  <span class="y3-platforms__product-index-number">01</span>
+  <span class="y3-platforms__product-index-copy"><strong>DPP Buyer Platform</strong><span>Run and prove a DPP programme from the buyer's side.</span></span>
+  <span class="y3-platforms__product-index-action">Start programme →</span>
+  </a>
+  <a class="y3-platforms__product-index-row" href="/research/model-adoption">
+  <span class="y3-platforms__product-index-number">02</span>
+  <span class="y3-platforms__product-index-copy"><strong>yellow3 Model Intelligence</strong><span>See how AI adoption, economics and model markets are moving.</span></span>
+  <span class="y3-platforms__product-index-action">View plans →</span>
+  </a>
+  <a class="y3-platforms__product-index-row" href="https://naffe.ai/login">
+  <span class="y3-platforms__product-index-number">03</span>
+  <span class="y3-platforms__product-index-copy"><strong>naffe.ai</strong><span>Describe enterprise software and publish it with a full backend.</span></span>
+  <span class="y3-platforms__product-index-action">Start building →</span>
+  </a>
+  </nav>
+  </div>
+  </section>
+  <section class="y3-platforms__section y3-platforms__section--method">
+  <div class="y3-platforms__kicker">Why these products exist</div>
+  <div class="y3-platforms__method">
+  <div class="y3-platforms__method-step">
+  <div class="y3-platforms__number">01</div>
+  <div class="y3-platforms__eyebrow">Problem</div>
+  <div class="y3-platforms__method-title">Start with a problem worth solving.</div>
+  <p>We start where complexity, new technology or structural change makes a real decision harder than it should be.</p>
+  </div>
+  <div class="y3-platforms__method-step">
+  <div class="y3-platforms__number">02</div>
+  <div class="y3-platforms__eyebrow">Research</div>
+  <div class="y3-platforms__method-title">Establish what is true.</div>
+  <p>We map the market, inspect the evidence and find the failure points before deciding whether software is the answer.</p>
+  </div>
+  <div class="y3-platforms__method-step">
+  <div class="y3-platforms__number">03</div>
+  <div class="y3-platforms__eyebrow">Platform</div>
+  <div class="y3-platforms__method-title">Build the repeatable outcome.</div>
+  <p>When the work can be repeated, we turn it into a product customers can use directly rather than a consulting project they have to keep buying.</p>
+  </div>
+  </div>
+  </section>
+  <section class="y3-platforms__section y3-platforms__product-section" id="dpp-buyer-platform">
+  <div class="y3-platforms__kicker">Area 01 / Digital Product Passport</div>
+  <div class="y3-platforms__area-head">
+  <h2>Run the DPP programme. Keep the evidence behind every decision.</h2>
+  <p>The Supplier Register made the market visible. It also exposed the next buyer problem: knowing who is in the market is not enough. Buyers need one governed programme that connects requirements, evidence, provider selection, implementation and proof.</p>
+  </div>
+  <article class="y3-platforms__story y3-platforms__story--product">
+  <div class="y3-platforms__story-copy">
+  <div class="y3-platforms__eyebrow">Product</div>
+  <h3 class="y3-platforms__product-name">DPP Buyer Platform</h3>
+  <p class="y3-platforms__product-tagline">Plan it. Buy it. Implement it. Prove it.</p>
+  <p>Independent buyer-side infrastructure for organisations planning, buying and implementing Digital Product Passport capability. It brings requirements, product facts, supplier evidence, provider selection, implementation and the decision record into one programme.</p>
+  <dl class="y3-platforms__product-points">
+  <div class="y3-platforms__product-point"><dt>Requirements</dt><dd>Structure what the programme must deliver and establish product and data gaps before provider selection.</dd></div>
+  <div class="y3-platforms__product-point"><dt>Evidence</dt><dd>Compare providers requirement by requirement while independent findings and provider statements remain visibly separate.</dd></div>
+  <div class="y3-platforms__product-point"><dt>Implementation</dt><dd>Run structured provider engagement, procurement, workstreams, gates and acceptance evidence in the maintained programme.</dd></div>
+  <div class="y3-platforms__product-point"><dt>Proof</dt><dd>Preserve the decision history and immutable records behind what was known, unresolved and approved.</dd></div>
+  </dl>
+  <p class="y3-platforms__boundary"><strong>yellow3 lab does not issue, host, resolve or operate Digital Product Passports.</strong> The selected provider operates the passports. The buyer remains the economic operator.</p>
+  <div class="y3-platforms__actions">
+  <a class="y3-platforms__action" href="https://buyer.yellow3.io/start">Start your programme →</a>
+  <a class="y3-platforms__link" href="https://buyer.yellow3.io/start/free">Start free readiness →</a>
+  </div>
+  </div>
+  <div class="y3-platforms__story-visual">
+  <div class="y3-platforms__screenshot"><img alt="Current yellow3 DPP Buyer Platform interface" loading="lazy" src="/img/platforms/dpp-buyer-platform.png"/></div>
+  <div class="y3-platforms__callout">Self-service start.<br/>Monthly or annual.<br/><br/>Free readiness available.</div>
+  </div>
+  </article>
+  <aside aria-label="Research behind the DPP Buyer Platform" class="y3-platforms__evidence">
+  <div class="y3-platforms__evidence-label">Research behind the product</div>
+  <div class="y3-platforms__evidence-copy">
+  <h3>DPP Supplier Register</h3>
+  <p>Independent public research into the global DPP supplier market. Claims and demonstrated public evidence remain separate, and suppliers cannot pay to appear differently, rank higher or improve an assessment.</p>
+  </div>
+  <a class="y3-platforms__link y3-platforms__evidence-link" href="/research/digital-product-passport/suppliers">Explore the Supplier Register →</a>
+  </aside>
+  </section>
+  <section class="y3-platforms__section y3-platforms__product-section" id="model-intelligence">
+  <div class="y3-platforms__kicker">Area 02 / AI market intelligence</div>
+  <div class="y3-platforms__area-head">
+  <h2>See the AI market move before the report arrives.</h2>
+  <p>Model choice is moving faster than procurement cycles and annual reports. yellow3 Model Intelligence combines live adoption, model economics, historical data and recurring intelligence for people making decisions about AI.</p>
+  </div>
+  <article class="y3-platforms__story y3-platforms__story--product">
+  <div class="y3-platforms__story-copy">
+  <div class="y3-platforms__eyebrow">Product</div>
+  <h3 class="y3-platforms__product-name">yellow3 Model Intelligence</h3>
+  <p class="y3-platforms__product-tagline">Follow the market. Understand what is driving it.</p>
+  <p>A live intelligence product for decisions about models, providers, cost and dependency. Public signals stay visible, while paid plans add the deeper history, model detail, economics and monitoring needed for ongoing decisions.</p>
+  <dl class="y3-platforms__product-points">
+  <div class="y3-platforms__product-point"><dt>Live adoption</dt><dd>Track routed AI usage, regional share and the models capturing demand now.</dd></div>
+  <div class="y3-platforms__product-point"><dt>Model economics</dt><dd>Use model profiles, pricing and cost tools to compare the commercial reality behind model choice.</dd></div>
+  <div class="y3-platforms__product-point"><dt>History and monitoring</dt><dd>Retain historical adoption, build watchlists and follow changes through alerts rather than isolated snapshots.</dd></div>
+  <div class="y3-platforms__product-point"><dt>Decision intelligence</dt><dd>Use the full monthly report, subscriber briefings, exports and team features to turn movement into a maintained decision record.</dd></div>
+  </dl>
+  <div class="y3-platforms__actions">
+  <a class="y3-platforms__action" href="/research/model-adoption">View plans →</a>
+  <a class="y3-platforms__link" href="/research/model-adoption/live">Open live adoption →</a>
+  </div>
+  </div>
+  <div class="y3-platforms__story-visual">
+  <div class="y3-platforms__screenshot"><img alt="Current yellow3 Model Intelligence live adoption interface" loading="lazy" src="/img/platforms/model-intelligence.png"/></div>
+  <div class="y3-platforms__callout">Free public view.<br/><br/>Professional and Team subscriptions online.</div>
+  </div>
+  </article>
+  <aside aria-label="Public evidence instrument behind yellow3 Model Intelligence" class="y3-platforms__evidence">
+  <div class="y3-platforms__evidence-label">Public evidence instrument</div>
+  <div class="y3-platforms__evidence-copy">
+  <h3>Model Adoption Live</h3>
+  <p>A weekly read on where routed AI demand is flowing by model origin, regional share and top-model ranking, with the methodology and source boundary published alongside it.</p>
+  </div>
+  <a class="y3-platforms__link y3-platforms__evidence-link" href="/research/model-adoption/live">Explore live adoption →</a>
+  </aside>
+  </section>
+  <section class="y3-platforms__section y3-platforms__product-section y3-platforms__naffe" id="naffe-ai">
+  <div class="y3-platforms__kicker">Area 03 / Software creation</div>
+  <div class="y3-platforms__area-head">
+  <h2>Describe the outcome. Publish enterprise-grade software.</h2>
+  <p>The person who understands the business problem should not have to translate it into architecture, code or infrastructure. naffe.ai does that work and produces real full-stack software that can be published and used in production.</p>
+  </div>
+  <article class="y3-platforms__story y3-platforms__story--product">
+  <div class="y3-platforms__story-copy">
+  <div class="y3-platforms__eyebrow">Product</div>
+  <h3 class="y3-platforms__product-name">naffe.ai</h3>
+  <p class="y3-platforms__product-tagline">If you can describe it, naffe.ai builds it.</p>
+  <p>naffe.ai reasons about the architecture, writes production code, connects services and publishes the application. Database, APIs, UI, AI runtime and deployment can be generated as one working system, with a full backend behind the published outcome.</p>
+  <dl class="y3-platforms__product-points">
+  <div class="y3-platforms__product-point"><dt>Full stack</dt><dd>Architecture, production code, UI, APIs and the application backend are built as one system rather than a disposable front-end prototype.</dd></div>
+  <div class="y3-platforms__product-point"><dt>Connected</dt><dd>Connect the software to live services and data through naffe.ai's service integrations.</dd></div>
+  <div class="y3-platforms__product-point"><dt>Production ready</dt><dd>Publish with hosting, SSL, AI runtime and production infrastructure handled, including your own domain where required.</dd></div>
+  <div class="y3-platforms__product-point"><dt>Evolves after launch</dt><dd>Keep extending the live product with natural-language changes instead of rebuilding from scratch.</dd></div>
+  </dl>
+  <div class="y3-platforms__actions">
+  <a class="y3-platforms__action" href="https://naffe.ai/login">Start building →</a>
+  <a class="y3-platforms__link" href="https://naffe.ai/pricing">View pricing →</a>
+  </div>
+  </div>
+  <div class="y3-platforms__story-visual">
+  <div class="y3-platforms__screenshot"><img alt="Current naffe.ai interface" loading="lazy" src="/img/platforms/naffe-ai.png"/></div>
+  <div class="y3-platforms__callout">Full-stack software.<br/>Full backend.<br/><br/>Publishable.</div>
+  </div>
+  </article>
+  </section>
+  <section class="y3-platforms__closing y3-platforms__closing--commercial">
+  <div>
+  <div class="y3-platforms__kicker">Choose the outcome</div>
+  <h2>Choose what you need to do next.</h2>
+  <p>The ordinary path starts in the product, not in a consulting engagement.</p>
+  </div>
+  <div class="y3-platforms__conversion-routes">
+  <a class="y3-platforms__conversion-row" href="https://buyer.yellow3.io/start"><span>01</span><strong>DPP Buyer Platform</strong><em>Run and prove your DPP programme.</em><b>Start your programme →</b></a>
+  <a class="y3-platforms__conversion-row" href="/research/model-adoption"><span>02</span><strong>yellow3 Model Intelligence</strong><em>See what is moving in the AI market and why.</em><b>View plans →</b></a>
+  <a class="y3-platforms__conversion-row" href="https://naffe.ai/login"><span>03</span><strong>naffe.ai</strong><em>Describe software, build it and publish it.</em><b>Start building →</b></a>
+  </div>
+  </section>
   </div>
 
   <footer class="site-footer">
