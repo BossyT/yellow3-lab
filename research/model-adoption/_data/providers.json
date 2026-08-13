@@ -248,5 +248,15 @@
     "logo_path": null,
     "logo_source_url": null,
     "logo_verified_at": null
+  },
+  "upstage": {
+    "slug": "upstage",
+    "name": "Upstage",
+    "region": "Other",
+    "country": "",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   }
 }
