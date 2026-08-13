@@ -29,6 +29,10 @@ URL: https://www.yellow3.io/platforms
 
 ## Published Research & Insights
 
+### Europe’s Deadlines Are Firm. The Rulebook Is Not. (August 2026)
+URL: https://www.yellow3.io/insights/europes-deadlines-are-firm-the-rulebook-is-not
+Summary: EU packaging rules reveal a bigger regulatory problem: fixed deadlines, evolving specifications, and a critical lesson for Digital Product Passport providers.
+
 ### The DPP Deadline You Already Missed (August 2026)
 URL: https://www.yellow3.io/insights/the-dpp-deadline-you-already-missed
 Summary: The EU's Digital Product Passport isn't one deadline. A destruction ban has applied since July, and battery, detergent and toy dates are already locked in law.
