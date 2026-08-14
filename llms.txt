@@ -7,11 +7,15 @@ yellow3 lab is an AI research lab based in Copenhagen, Denmark. Founded by Thoma
 
 ## What We Do
 
-yellow3 lab builds AI platforms where the interface is conversation and the output is real. No dashboards to learn. No manuals to read. No code to write. We focus on three research areas:
+yellow3 lab researches markets where important change is happening, publishes what it measures, and builds a platform when the research exposes a problem software can solve better. We focus on five research areas, the same five the site itself lists:
 
-- AI Agent Architecture: Multi-agent systems that collaborate autonomously - interpreting intent, generating output, and ensuring quality.
-- Design Intelligence: Teaching AI to think like a design studio, not a template engine. Every output meets professional standards by default.
-- Prompt-to-Product: Turning natural language into real, working digital products - apps, games, dashboards, SaaS, websites, tools - anything.
+- Outcome Architecture: designing systems that start with the end in mind.
+- Human-Direction AI: AI that amplifies human judgment, not replaces human thinking.
+- Autonomous Software: software that plans, decides, and executes with reliability.
+- Digital Product Passports: how regulation, product data, evidence and supplier capabilities are reshaping the market. https://www.yellow3.io/research/digital-product-passport
+- AI-native SMB Infrastructure: the next generation of infrastructure for small and mid-sized businesses. https://www.yellow3.io/research/model-adoption
+
+The research is published as live instruments rather than opinion: original measurement, dated, with the method and the sources stated. https://www.yellow3.io/research
 
 ## Our Philosophy
 
