@@ -1,34 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K3JXMM2VG5"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-K3JXMM2VG5');
-    fetch('/research/digital-product-passport.json', { cache: 'no-store' })
-      .then(function(r){ return r.ok ? r.json() : null; })
-      .then(function(d){
-        if (!d) return;
-        if (d.this_week_read && d.this_week_read.headline) document.getElementById('dpp-read').textContent = d.this_week_read.headline;
-        if (d.edition) document.getElementById('dpp-edno').textContent = 'Edition ' + ('0'+d.edition).slice(-2);
-      })
-      .catch(function(){ document.getElementById('dpp-read').textContent = 'Is the EU DPP becoming real on schedule - updated weekly.'; });
-
-    fetch('/research/dpp-register-counts.json', { cache: 'no-store' })
-      .then(function(r){ return r.ok ? r.json() : null; })
-      .then(function(c){
-        if (!c || !c.organisations) return;
-        document.getElementById('ds-n').textContent = c.organisations;
-        document.getElementById('ds-c').textContent =
-          'organisations \u00b7 ' + c.commercial_suppliers + ' commercial suppliers \u00b7 ' + c.countries + ' countries';
-      })
-      .catch(function(){});
-  </script>
-
-  <meta charset="UTF-8" />
+<meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Research - yellow3 lab</title>
   <meta name="description" content="Live data instruments from yellow3 lab. Each instrument answers one thesis about AI through numbers that update weekly. An AI Research Studio, on the record." />

@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
-Remove Google Analytics from the public DPP Supplier Register.
+Remove Google Analytics from yellow3.io.
 
-WHY, AND WHY ONLY HERE. The register loads GA4 unconditionally - no consent
-gate of any kind - and the DPP Group post is about to drive suppliers to it to
-claim their profiles. Analytics cookies set for EU visitors before consent is
-an ePrivacy problem that disclosure does not cure, and the approved decision is
-to remove GA from the register rather than build a consent manager under
-campaign pressure.
+WHY. GA4 loaded unconditionally on every page - no consent gate of any kind -
+which sets analytics cookies for EU visitors before they are asked. Disclosure
+does not cure that; the requirement is prior consent.
 
-The rest of yellow3.io is deliberately untouched: that is a separate decision
-about the company's analytics, not a launch blocker, and quietly switching it
-off everywhere would be a business change nobody asked for.
+The register was cleared first, under campaign pressure. The decision then
+taken for the rest of the site is the same one: we do not need Google Analytics
+badly enough to build a consent system around 99 pages under time pressure.
+Search Console remains, and it is the source for impressions, clicks and
+queries anyway; Analytics was measuring post-click behaviour nobody was acting
+on. Analytics returns when consent is deliberately designed, not before.
 
     python3 research/ga_remove_register.py           # report
     python3 research/ga_remove_register.py --apply
@@ -21,11 +21,11 @@ import re, sys, pathlib
 APPLY = '--apply' in sys.argv
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
-# The register: the section page, the directory, and every supplier profile.
-TARGETS = sorted(set(
-    list(ROOT.glob('research/digital-product-passport.html')) +
-    list(ROOT.glob('research/digital-product-passport/**/*.html'))
-))
+# EVERY page. admin.html is included deliberately: the CMS is not a public page
+# but it is served from this domain and there is no reason for it to measure
+# anything either.
+TARGETS = sorted(p for p in ROOT.glob('**/*.html')
+                 if 'node_modules' not in p.parts and '.git' not in p.parts)
 
 # The loader and the inline config that follows it, as a single block.
 BLOCK = re.compile(
@@ -33,6 +33,21 @@ BLOCK = re.compile(
     r'<script>\s*window\.dataLayer[^<]*?</script>\s*\n?',
     re.S)
 LOOSE = re.compile(r'[ \t]*<script[^>]*googletagmanager[^>]*>.*?</script>\s*\n?', re.S)
+
+# The inline event handlers. 39 pages carry an onclick that fires a GA event,
+# guarded by `typeof window.gtag === 'function'`, so with GA gone they are
+# already no-ops - but they are dead references to a system that no longer
+# exists, and leaving them would make the next person think measurement is
+# still wired up. On the buttons where they sit alongside a second onclick they
+# never fired at all: a tag may only have one, and the browser keeps the first.
+EVENT = re.compile(r'\s*onclick="if\(typeof window\.gtag[^"]*"')
+
+# And the share tracker inside the article script, which is the same guarded
+# no-op in JavaScript rather than in an attribute. Removed as a statement, so
+# the surrounding share handler keeps working exactly as it did.
+SHARE = re.compile(
+    r'\s*if\s*\(\s*typeof window\.gtag\s*===?\s*["\']function["\']\s*\)\s*'
+    r'\{[^{}]*window\.gtag\([^;]*?\);\s*\}')
 
 changed, already, missed = [], [], []
 for f in TARGETS:
@@ -42,6 +57,8 @@ for f in TARGETS:
     out = BLOCK.sub('', html)
     if 'googletagmanager' in out:
         out = LOOSE.sub('', out)
+    out = EVENT.sub('', out)
+    out = SHARE.sub('', out)
     if 'googletagmanager' in out or 'gtag(' in out:
         missed.append(f); continue
     changed.append(f)

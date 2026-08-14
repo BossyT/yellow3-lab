@@ -4,6 +4,17 @@
   "outputDirectory": ".",
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "yellow3.io"
+        }
+      ],
+      "destination": "https://www.yellow3.io/:path*",
+      "permanent": true
+    },
+    {
       "source": "/masterclass",
       "destination": "/advisory",
       "permanent": true
