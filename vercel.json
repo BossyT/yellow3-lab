@@ -15,6 +15,11 @@
       "permanent": true
     },
     {
+      "source": "/naffe",
+      "destination": "/software",
+      "permanent": true
+    },
+    {
       "source": "/masterclass",
       "destination": "/advisory",
       "permanent": true

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Software | AI-Native Business Software | yellow3 lab</title>
+  <meta name="description" content="yellow3 lab explores how AI can help European SMBs own more of their internal software. naffe.ai is our platform for AI-native full-stack software creation with Claude, MCP, APIs and CLI access." />
+  <link rel="canonical" href="https://www.yellow3.io/software" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="yellow3 lab" />
+  <meta property="og:title" content="Software | AI-Native Business Software | yellow3 lab" />
+  <meta property="og:description" content="European SMBs should be able to own more of the software they run on." />
+  <meta property="og:url" content="https://www.yellow3.io/software" />
+  <meta property="og:image" content="https://www.yellow3.io/og/og-naffe-v2.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="yellow3 lab software" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:image" content="https://www.yellow3.io/og/og-naffe-v2.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://www.yellow3.io/software#webpage",
+    "url": "https://www.yellow3.io/software",
+    "name": "Software | AI-Native Business Software | yellow3 lab",
+    "about": { "@id": "https://www.yellow3.io/#organization" },
+    "publisher": { "@id": "https://www.yellow3.io/#organization" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.yellow3.io/" },
+      { "@type": "ListItem", "position": 2, "name": "Software", "item": "https://www.yellow3.io/software" }
+    ]
+  }
+  </script>
+
+<style>
+
+/* The production shell, whole. Not filtered: a component depends on rules that
+   never mention it, and filtering this by selector name broke the homepage
+   twice. */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --paper:#ffffff; --ink:#0e0e0e; --body:#4b4b4b; --muted:#8a8a8a; --line:#e7e6e2; --yellow:#ffe000; --panel:#f7f6f3; --live:#2E9D78; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; font-weight: 400; line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    .inner { max-width: 1240px; margin: 0 auto; }
+
+    /* NAV */
+    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+    .brand { display: flex; align-items: baseline; gap: 7px; text-decoration: none; }
+    .brand img { height: 21px; align-self: center; }
+    .brand .lab { font-weight: 600; font-size: 15px; color: var(--ink); letter-spacing: -0.01em; }
+    .nav-mid { display: flex; gap: 32px; }
+    .nav-mid a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #3a3a3a; text-decoration: none; font-weight: 500; padding-bottom: 3px; transition: color 0.2s; }
+    .nav-mid a:hover { color: var(--ink); }
+    .nav-mid a.active { border-bottom: 2px solid var(--ink); color: var(--ink); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: #fff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 20px; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: #000; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
+
+    /* The old /research content rules - .hero, .panel, .instruments, .inst,
+       .st, .read-*, .open-link, .dataset, .ds-* - are gone. They styled the
+       page this route used to serve, nothing in the approved markup renders
+       them, and .hero collided head-on with the approved hero. Nav, footer and
+       the globals above them stay: they are the shell the package builds on. */
+
+    /* FOOTER */
+    .site-footer { background: #0e0e0e; color: #fff; padding: 72px 48px 36px; }
+    .foot-top { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr) 1.2fr; gap: 40px; padding-bottom: 56px; border-bottom: 1px solid #262626; }
+    .foot-brand img { height: 22px; filter: invert(1); margin-bottom: 18px; }
+    .foot-brand .fb-lab { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); font-weight: 600; margin-bottom: 10px; }
+    .foot-brand p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.5; max-width: 220px; }
+    .foot-col h4 { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 18px; }
+    .foot-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.72); text-decoration: none; margin-bottom: 11px; transition: color 0.2s; }
+    .foot-col a:hover { color: #fff; }
+    .foot-contact h4 { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 18px; }
+    .foot-contact a.mail { font-size: 14px; color: #fff; text-decoration: none; display: block; margin-bottom: 10px; }
+    .foot-contact .loc { font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 18px; }
+    .foot-social { display: flex; gap: 14px; }
+    .foot-social a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .foot-social a:hover { color: #fff; }
+    .foot-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; flex-wrap: wrap; gap: 16px; }
+    .foot-bottom .copy { font-size: 12px; color: rgba(255,255,255,0.4); }
+    .foot-legal { display: flex; gap: 24px; }
+    .foot-legal a { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+    .foot-legal a:hover { color: #fff; }
+
+    @media (max-width: 880px) {
+      .site-nav { padding: 14px 24px; }
+      .nav-mid { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--line); flex-direction: column; gap: 0; padding: 12px 24px 20px; }
+      .nav-mid.open { display: flex; }
+      .nav-mid a { padding: 12px 0; }
+      .nav-cta { display: none; }
+      .nav-toggle { display: block; }
+      .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+      .nav-toggle.open span:nth-child(2) { opacity: 0; }
+      .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+      .foot-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .site-footer { padding: 56px 24px 32px; }
+    }
+    @media (max-width: 560px) { .foot-top { grid-template-columns: 1fr; } }
+
+
+/* >>> APPROVED /software, scoped under .sw1 by research/port_approved_css.py. Do not hand-edit. */
+.sw1 *{box-sizing:border-box}
+.sw1{--y:#ffd400;--ink:#0b0b0b;--muted:#626262;--line:#d8d8d4;--paper:#f5f5f1}
+.sw1{margin:0;padding:0;background:#fff;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+.sw1{font-size:16px;line-height:1.5}
+.sw1 .page{overflow:hidden}
+.sw1 .wrap{max-width:1280px;margin:0 auto;padding:0 56px}
+.sw1 p{margin:0}
+.sw1 .k{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.sw1 .k:before{content:"";display:inline-block;width:28px;height:3px;background:var(--y);margin-right:12px;vertical-align:middle}
+.sw1 h1,.sw1 h2,.sw1 h3{margin:0;font-weight:400;letter-spacing:-.05em}
+.sw1 .hero{padding:96px 0 92px;border-bottom:1px solid var(--line)}
+.sw1 .hero-grid{display:grid;grid-template-columns:1.38fr .62fr;gap:92px;align-items:end}
+.sw1 h1{font-size:78px;line-height:.98;max-width:900px;margin-top:22px}
+.sw1 .hero-copy{font-size:22px;line-height:1.45;max-width:810px;color:#333;margin-top:32px}
+.sw1 .actions{display:flex;gap:20px;flex-wrap:wrap;margin-top:34px}
+.sw1 .btn{display:inline-flex;padding:17px 23px;background:#0b0b0b;color:#fff;text-decoration:none;font-weight:700}
+.sw1 .textlink{display:inline-flex;padding:16px 0;color:#000;text-decoration:none;font-weight:700}
+.sw1 .logo-panel{border-top:1px solid #111;padding-top:22px}
+.sw1 .logo-panel img{display:block;width:100%;max-width:390px;height:auto}
+.sw1 .logo-panel p{font-size:14px;color:#666;margin-top:22px;max-width:360px}
+.sw1 .status{display:inline-block;margin-top:18px;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;background:var(--y);padding:8px 10px}
+.sw1 .thesis{background:#0b0b0b;color:#fff;padding:94px 0}
+.sw1 .thesis-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:110px}
+.sw1 .thesis h2{font-size:60px;line-height:1.04}
+.sw1 .thesis-copy p{font-size:23px;line-height:1.46;color:#d5d5d5;margin-bottom:26px;max-width:720px}
+.sw1 .thesis-rule{border-top:1px solid #555;padding-top:21px;font-size:18px;color:#fff}
+.sw1 .stack{padding:94px 0}
+.sw1 .stack-head{display:grid;grid-template-columns:.72fr 1.28fr;gap:110px;margin-bottom:50px}
+.sw1 .stack h2{font-size:57px;line-height:1.05}
+.sw1 .stack-head p{font-size:20px;color:#555;max-width:700px}
+.sw1 .stack-list{border-top:1px solid #111}
+.sw1 .stack-row{display:grid;grid-template-columns:85px 1fr 1.28fr;gap:30px;padding:31px 0;border-bottom:1px solid var(--line)}
+.sw1 .stack-row b{font-size:12px;letter-spacing:.12em;padding-top:5px}
+.sw1 .stack-row h3{font-size:29px;line-height:1.1}
+.sw1 .stack-row p{color:#5d5d5d;max-width:640px}
+.sw1 .independence{padding:94px 0;background:var(--paper)}
+.sw1 .independence-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:110px;margin-bottom:52px}
+.sw1 .independence h2{font-size:58px;line-height:1.04}
+.sw1 .independence-head p{font-size:20px;color:#555;max-width:650px}
+.sw1 .ind-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #111;border-bottom:1px solid #111}
+.sw1 .ind-card{padding:32px 32px 36px 0;min-height:290px}
+.sw1 .ind-card+.ind-card{border-left:1px solid #c9c9c4;padding-left:32px}
+.sw1 .ind-card b{font-size:12px;letter-spacing:.12em}
+.sw1 .ind-card h3{font-size:31px;line-height:1.08;margin:42px 0 15px}
+.sw1 .ind-card p{color:#606060}
+.sw1 .ind-note{margin-top:30px;font-size:17px;color:#444;max-width:900px}
+.sw1 .ind-note strong{font-weight:700;color:#000}
+.sw1 .flow{padding:94px 0}
+.sw1 .flow-head{display:flex;justify-content:space-between;gap:80px;align-items:end;margin-bottom:48px}
+.sw1 .flow h2{font-size:58px;line-height:1.04;max-width:650px}
+.sw1 .flow-head p{font-size:18px;color:#555;max-width:480px}
+.sw1 .flow-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #111;border-bottom:1px solid #111}
+.sw1 .step{padding:30px 30px 36px 0;min-height:270px}
+.sw1 .step+.step{border-left:1px solid #d0d0cc;padding-left:30px}
+.sw1 .step b{font-size:12px;letter-spacing:.12em}
+.sw1 .step h3{font-size:28px;line-height:1.08;margin:38px 0 14px}
+.sw1 .step p{color:#606060}
+.sw1 .human{padding:94px 0;background:#0b0b0b;color:#fff}
+.sw1 .human-grid{display:grid;grid-template-columns:.88fr 1.12fr;gap:110px}
+.sw1 .human h2{font-size:58px;line-height:1.04}
+.sw1 .human-list{border-top:1px solid #555}
+.sw1 .hr{display:grid;grid-template-columns:70px 1fr;gap:24px;padding:24px 0;border-bottom:1px solid #444}
+.sw1 .hr b{font-size:12px;letter-spacing:.12em;color:#aaa}
+.sw1 .hr strong{display:block;font-size:22px;font-weight:400;margin-bottom:6px}
+.sw1 .hr span{color:#c9c9c9}
+.sw1 .human-logo{margin-top:38px;width:240px;max-width:100%;height:auto}
+.sw1 .role{padding:92px 0}
+.sw1 .role-grid{display:grid;grid-template-columns:1fr 1fr;gap:110px}
+.sw1 .role h2{font-size:54px;line-height:1.05}
+.sw1 .role p{font-size:19px;color:#555;margin-bottom:22px;max-width:600px}
+.sw1 .role a{color:#000;text-decoration:none;font-weight:700}
+.sw1 .distinction{padding:82px 0;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sw1 .distinction-grid{display:grid;grid-template-columns:1fr 1fr;gap:110px}
+.sw1 .distinction h2{font-size:46px;line-height:1.07}
+.sw1 .distinction p{font-size:18px;color:#555}
+.sw1 .distinction p+p{margin-top:18px}
+.sw1 .close{padding:94px 0}
+.sw1 .close-grid{display:grid;grid-template-columns:1.24fr .76fr;gap:110px;align-items:end}
+.sw1 .close h2{font-size:62px;line-height:1.03}
+.sw1 .close p{font-size:19px;color:#555;margin-bottom:24px}
+.sw1 .close a{display:inline-flex;background:var(--y);color:#000;text-decoration:none;padding:17px 22px;font-weight:700}
+@media(max-width:760px){
+.sw1 .wrap{padding:0 22px}
+.sw1 .hero{padding:86px 0 58px}
+.sw1 .hero-grid,.sw1 .thesis-grid,.sw1 .stack-head,.sw1 .independence-head,.sw1 .human-grid,.sw1 .role-grid,.sw1 .distinction-grid,.sw1 .close-grid{grid-template-columns:1fr;gap:38px}
+.sw1 h1{font-size:47px}
+.sw1 .hero-copy{font-size:19px;margin-top:25px}
+.sw1 .logo-panel{margin-top:2px}
+.sw1 .logo-panel img{max-width:300px}
+.sw1 .thesis,.sw1 .stack,.sw1 .independence,.sw1 .flow,.sw1 .human,.sw1 .role,.sw1 .close{padding:62px 0}
+.sw1 .thesis h2,.sw1 .stack h2,.sw1 .independence h2,.sw1 .flow h2,.sw1 .human h2,.sw1 .role h2,.sw1 .close h2{font-size:42px}
+.sw1 .thesis-copy p{font-size:20px}
+.sw1 .stack-row{grid-template-columns:48px 1fr;gap:12px 16px;padding:25px 0}
+.sw1 .stack-row p{grid-column:2}
+.sw1 .stack-row h3{font-size:25px}
+.sw1 .ind-grid{grid-template-columns:1fr}
+.sw1 .ind-card{min-height:0;padding:28px 0 31px}
+.sw1 .ind-card+.ind-card{border-left:0;border-top:1px solid #c9c9c4;padding:31px 0}
+.sw1 .ind-card h3{font-size:28px;margin:25px 0 12px}
+.sw1 .flow-head{display:block;margin-bottom:34px}
+.sw1 .flow-head p{margin-top:20px}
+.sw1 .flow-grid{grid-template-columns:1fr}
+.sw1 .step{min-height:0;padding:27px 0 31px}
+.sw1 .step+.step{border-left:0;border-top:1px solid #d0d0cc;padding:31px 0}
+.sw1 .step h3{font-size:26px;margin:24px 0 12px}
+.sw1 .hr{grid-template-columns:50px 1fr}
+.sw1 .distinction{padding:58px 0}
+.sw1 .distinction h2{font-size:37px}
+}
+
+/* The package declares display:block on the hero mark and nothing on this */
+/* one, and ships no img reset, so the prototype renders it inline - on a */
+/* text baseline, carrying the descender gap. The production shell's */
+/* img{display:block} removed it and the section measured 7px short at */
+/* every width. Declaring it explicitly reproduces the approved reference */
+/* rather than compensating for it, which is the same resolution GPT chose */
+/* for .eg p on /contact. */
+.sw1 .human-logo{display:inline}
+/* <<< end approved /software */
+</style>
+</head>
+<body>
+<nav class="site-nav">
+    <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
+    <div class="nav-mid" id="navMid">
+      <a href="/research">Research</a>
+      <a href="/platforms">Platforms</a>
+      <a href="/insights/">Insights</a>
+      <a href="/advisory">Advisory</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <a href="#" onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;;return false;" class="nav-cta">Get in touch <span>&#8594;</span></a>
+    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </nav>
+
+<main class="sw1">
+  <div class="page">
+
+  <section class="hero">
+   <div class="wrap hero-grid">
+    <div>
+     <div class="k">A yellow3 lab platform · Coming soon</div>
+     <h1>Software creation should start with what needs to happen.</h1>
+     <p class="hero-copy">naffe.ai is being built to turn plain-language direction into working full-stack software, with Claude built into the working environment from the start.</p>
+     <div class="actions">
+      <a class="btn" href="https://naffe.ai/">Visit naffe.ai ↗</a>
+      <a class="textlink" href="#why">Why yellow3 is building it ↓</a>
+     </div>
+    </div>
+    <aside class="logo-panel">
+     <img src="/img/software/naffe-logo-black.png" width="1024" height="1024" decoding="async" alt="naffe.ai">
+     <div class="status">Preparing for release</div>
+     <p>Not live yet. This page explains the thinking behind the platform and where it fits inside yellow3.</p>
+    </aside>
+   </div>
+  </section>
+
+  <section class="thesis" id="why">
+   <div class="wrap thesis-grid">
+    <div>
+     <div class="k">The thesis</div>
+     <h2>European SMBs should be able to own more of the software they run on.</h2>
+    </div>
+    <div class="thesis-copy">
+     <p>For many smaller businesses, software has become an expanding stack of subscriptions built around somebody else’s workflow, somebody else’s roadmap and somebody else’s limits.</p>
+     <p>As AI reduces the cost of creating and changing software, we believe more of the systems that make a business distinctive can be built around the business itself.</p>
+     <div class="thesis-rule">Not every dependency disappears. The goal is more control over the software layer that matters to the company.</div>
+    </div>
+   </div>
+  </section>
+
+  <section class="stack">
+   <div class="wrap">
+    <div class="stack-head">
+     <h2>AI is part of the software, not a window beside it.</h2>
+     <p>naffe.ai is being designed around an AI-native working model. Claude is built into the environment so intelligence can participate in creating, understanding and evolving the software itself.</p>
+    </div>
+    <div class="stack-list">
+     <div class="stack-row"><b>01</b><h3>Claude built in</h3><p>AI is intended to work with the product context, structure and changes rather than operate as a disconnected general-purpose chat.</p></div>
+     <div class="stack-row"><b>02</b><h3>Full-stack creation</h3><p>The ambition is working software around the requested outcome: interface, application logic, data model, backend and the infrastructure needed to put it into use.</p></div>
+     <div class="stack-row"><b>03</b><h3>Designed around the business</h3><p>Internal workflows, specialised tools, customer operations and decision support can be shaped around how the organisation actually works instead of forcing the organisation into a generic SaaS template.</p></div>
+     <div class="stack-row"><b>04</b><h3>Built to keep changing</h3><p>The software should be able to evolve as the company, models, processes and requirements change. Building is not treated as a one-time handover.</p></div>
+    </div>
+   </div>
+  </section>
+
+  <section class="independence">
+   <div class="wrap">
+    <div class="independence-head">
+     <h2>Own the core. Connect what still makes sense to buy.</h2>
+     <p>Software autonomy does not mean rebuilding the internet. It means keeping the company’s own logic under its control while using open connection layers for everything around it.</p>
+    </div>
+    <div class="ind-grid">
+     <div class="ind-card"><b>01 · MCP</b><h3>Let systems expose what they can do.</h3><p>MCP creates a standard way for AI-enabled software to work with tools, information and services without every connection becoming a bespoke integration project.</p></div>
+     <div class="ind-card"><b>02 · API</b><h3>Connect instead of surrendering the architecture.</h3><p>Use external services where they are useful, but keep the operating logic of the company in software the business can shape and evolve.</p></div>
+     <div class="ind-card"><b>03 · CLI</b><h3>Keep a route below the interface.</h3><p>Command-line access makes the system more inspectable and adaptable for technical work, automation and future tools without making the visual product the only point of control.</p></div>
+    </div>
+    <p class="ind-note"><strong>The objective is not zero third parties.</strong> It is avoiding unnecessary dependence on packaged software vendors for capabilities an SMB can increasingly own itself.</p>
+   </div>
+  </section>
+
+  <section class="flow">
+   <div class="wrap">
+    <div class="flow-head">
+     <h2>The brief becomes the operating software.</h2>
+     <p>The technical work still exists. The difference is how much of that complexity the person with the business problem has to carry.</p>
+    </div>
+    <div class="flow-grid">
+     <div class="step"><b>01 · DESCRIBE</b><h3>State the outcome.</h3><p>Start with what the business, employee or customer should be able to accomplish.</p></div>
+     <div class="step"><b>02 · BUILD</b><h3>Turn intent into a system.</h3><p>naffe.ai plans and creates the software structure around that outcome.</p></div>
+     <div class="step"><b>03 · CONNECT</b><h3>Use the services that belong around it.</h3><p>MCP and APIs connect external capabilities without making them the owner of the company’s operating logic.</p></div>
+     <div class="step"><b>04 · EVOLVE</b><h3>Change when the business changes.</h3><p>Use AI, APIs and lower-level access to keep adapting the system instead of waiting for a third-party product roadmap.</p></div>
+    </div>
+   </div>
+  </section>
+
+  <section class="human">
+   <div class="wrap human-grid">
+    <div>
+     <div class="k">More autonomy, same responsibility</div>
+     <h2>Humans remain responsible for what the software does.</h2>
+     <img class="human-logo" src="/img/software/naffe-logo-white.png" width="1024" height="1024" loading="lazy" decoding="async" alt="naffe.ai">
+    </div>
+    <div class="human-list">
+     <div class="hr"><b>01</b><div><strong>People define the purpose.</strong><span>What should exist, who it serves and why.</span></div></div>
+     <div class="hr"><b>02</b><div><strong>People define the constraints.</strong><span>What the system may access, change or automate.</span></div></div>
+     <div class="hr"><b>03</b><div><strong>People make the judgment calls.</strong><span>Approval, direction and accountability remain human responsibilities.</span></div></div>
+     <div class="hr"><b>04</b><div><strong>Machines carry more of the execution.</strong><span>That is the leverage we are trying to unlock.</span></div></div>
+    </div>
+   </div>
+  </section>
+
+  <section class="role">
+   <div class="wrap role-grid">
+    <div>
+     <div class="k">Why yellow3 is building it</div>
+     <h2>Lowering the barrier to software is an economic question, not just a technical one.</h2>
+    </div>
+    <div>
+     <p>yellow3 researches emerging technology because we want to understand what it can genuinely change. naffe.ai turns one of those questions into a product: what happens when smaller businesses can create more of their own operational software?</p>
+     <p>For European SMBs, we think the answer could be more adaptability, less software lock-in and a lower barrier to building systems that previously required a dedicated software organisation.</p>
+     <a href="/research">Explore yellow3 research →</a>
+    </div>
+   </div>
+  </section>
+
+  <section class="distinction">
+   <div class="wrap distinction-grid">
+    <div>
+     <div class="k">The boundary</div>
+     <h2>naffe.ai is the product. yellow3 lab is the company building it.</h2>
+    </div>
+    <div>
+     <p>This page explains the strategic reason for the platform. Product capabilities, launch information, pricing and the future customer journey belong on naffe.ai.</p>
+     <p>Until the product is released, yellow3 should describe it as <strong>coming soon</strong>, not as a live service.</p>
+    </div>
+   </div>
+  </section>
+
+  <section class="close">
+   <div class="wrap close-grid">
+    <div>
+     <div class="k">Coming soon</div>
+     <h2>The next software supplier may be your own company.</h2>
+    </div>
+    <div>
+     <p>naffe.ai is preparing for release. Follow the product as we move toward launch.</p>
+     <a href="https://naffe.ai/">Visit naffe.ai ↗</a>
+    </div>
+   </div>
+  </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+    <div class="inner">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <img src="/logo.png" alt="yellow3" />
+          <div class="fb-lab">yellow3 lab</div>
+          <p>We use emerging technology to make business less complicated.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Platforms</h4>
+          <a href="https://naffe.ai/">naffe.ai</a>
+          <a href="/research/digital-product-passport/suppliers">DPP Supplier Register</a>
+          <a href="/platforms">All platforms</a>
+        </div>
+        <div class="foot-col">
+          <h4>Research</h4>
+          <a href="/research">Research areas</a>
+          <a href="/research/model-adoption">Model adoption</a>
+          <a href="/research/eu-ai-act">EU AI Act</a>
+        </div>
+        <div class="foot-col">
+          <h4>Company</h4>
+          <a href="/about">About</a>
+          <a href="/advisory">Advisory</a>
+          <a href="/insights/">Insights</a>
+          <a href="/contact">Contact</a>
+        </div>
+        <div class="foot-contact">
+          <h4>Get in touch</h4>
+          <a href="#" onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;;return false;" class="mail">Email us</a>
+          <div class="loc">Copenhagen, Denmark</div>
+          <div class="foot-social">
+            <a href="https://www.linkedin.com/company/yellow3" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="https://x.com/yellow3HQ" target="_blank" rel="noopener" aria-label="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span class="copy">&copy; 2026 yellow3 ApS. All rights reserved.</span>
+        <div class="foot-legal">
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <a href="/cookies">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

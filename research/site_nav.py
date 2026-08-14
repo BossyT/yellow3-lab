@@ -105,6 +105,14 @@ FOOT_PLATFORMS_COL = (
     r'          <a href="/research/digital-product-passport/suppliers">DPP Supplier Register</a>\n'
     r'          <a href="/platforms">All platforms</a>')
 
+# A link labelled naffe.ai goes to naffe.ai. Thomas, 2026-08-14, deciding the
+# one ambiguous case in the /software handoff: the yellow3 page about the
+# software is /software, and anything carrying the product's own name should
+# reach the product. The old /naffe route redirects to /software for anyone
+# holding an old link.
+FOOT_NAFFE = re.compile(r'<a href="/naffe">naffe\.ai</a>')
+FOOT_NAFFE_NEW = '<a href="https://naffe.ai/">naffe.ai</a>'
+
 FOOT_THINKING = re.compile(r'(<a href="/insights/"[^>]*>)Thinking(</a>)')
 
 # Advisory left the first column, so it joins the company links.
@@ -148,6 +156,7 @@ def sweep_footer(text):
     out = FOOT_WORK_COL.sub(FOOT_PLATFORMS_COL, text)
     out = FOOT_THINKING.sub(r'\1Insights\2', out)
     out = FOOT_CONTACT.sub(FOOT_CONTACT_NEW, out)
+    out = FOOT_NAFFE.sub(FOOT_NAFFE_NEW, out)
     out = FOOT_IDENTITY.sub(FOOT_IDENTITY_NEW, out)
 
     def company(match):
@@ -212,6 +221,8 @@ def footer_faults(text):
         faults.append('footer still carries the retired tagline')
     for stale in re.finditer(r'<a href="(/advisory|#)"[^>]*>Contact</a>', text):
         faults.append(f'footer Contact still points at {stale.group(1)}')
+    if '<a href="/naffe">naffe.ai</a>' in text:
+        faults.append('a link labelled naffe.ai still points at /naffe')
     return faults
 
 

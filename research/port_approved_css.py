@@ -95,6 +95,32 @@ PAGES = {
         "forbids": ["<video", "<iframe", "poster=", "autoplay=", " autoplay>"],
         "deviations": [],
     },
+    "software": {
+        "target": "software.html",
+        "wrapper": "sw1",
+        "package": (PKG + "/software/"
+                    "yellow3_software_ORIGINAL_APPROVED_V3_terminal_handoff/"
+                    "APPROVED_SOFTWARE_CONTENT.html"),
+        # The official marks, byte-identical to the package assets and to the
+        # base64 the prototype inlines. ASSET_CONTRACT is emphatic: used exactly
+        # as supplied, never recreated, recoloured, distorted or cropped.
+        "requires": ["/img/software/naffe-logo-black.png",
+                     "/img/software/naffe-logo-white.png"],
+        # The prototype carries 2.2MB of base64 for those two marks. Production
+        # references the files instead - provably the same bytes, and 2.2MB of
+        # HTML that no longer ships on every visit.
+        "forbids": ["data:image/png;base64"],
+        "deviations": [
+            ("", ".human-logo", "display:inline",
+             "The package declares display:block on the hero mark and nothing on "
+             "this one, and ships no img reset, so the prototype renders it "
+             "inline - on a text baseline, carrying the descender gap. The "
+             "production shell's img{display:block} removed it and the section "
+             "measured 7px short at every width. Declaring it explicitly "
+             "reproduces the approved reference rather than compensating for it, "
+             "which is the same resolution GPT chose for .eg p on /contact."),
+        ],
+    },
 }
 
 
@@ -198,6 +224,39 @@ def design_system_faults(css, markup, cfg):
             faults.append("%s has no margin and the package has no %s reset - "
                           "it renders on a browser default the shell will remove"
                           % (part, tag))
+
+    # The same rule, for `display` on images - added after /software, where the
+    # human section measured 7px short at every width. An <img> is inline by
+    # default, so it sits on a text baseline and carries the descender gap; the
+    # production shell declares img{display:block} and the gap disappears. The
+    # package declared display:block on one of its two logos and not the other,
+    # which is the same omission as a paragraph without a margin.
+    if not re.search(r"(?:^|[;}])\s*img\s*\{[^}]*display", css):
+        # An image that carries its own class is styled through that class, so
+        # that class must declare display. A descendant rule like `.panel img`
+        # is NOT accepted as cover for it: the first version of this check did
+        # accept that, and passed /software - the very page it was written for -
+        # because the package declares display on one logo and the checker let
+        # that stand in for the other. Only a rule on the image's own class, or
+        # a package-wide img reset, actually reaches it.
+        for tag in re.finditer(r"<img\b[^>]*>", markup):
+            classes = re.search(r'class="([^"]*)"', tag.group(0))
+            if not classes:
+                continue
+            for name in classes.group(1).split():
+                own = "." + name
+                if own in covered:
+                    continue
+                declares = any(
+                    "display" in m.group(2)
+                    and any(p.strip() == own for p in m.group(1).split(","))
+                    for m in re.finditer(r"([^{}]+)\{([^{}]*)\}", css))
+                if not declares:
+                    faults.append(
+                        "%s is on an <img> and never declares display, and the "
+                        "package has no img reset - it renders inline on a "
+                        "browser default, so the shell's img{display:block} "
+                        "removes its baseline gap" % own)
     return faults
 
 

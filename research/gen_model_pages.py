@@ -76,7 +76,7 @@ FOOTER = _foot("""  <footer class="site-footer">
         </div>
         <div class="foot-col">
           <h4>Work</h4>
-          <a href="/naffe">naffe.ai</a>
+          <a href="https://naffe.ai/">naffe.ai</a>
           <a href="/research/digital-product-passport">Digital Product Passports</a>
           <a href="/advisory">Advisory</a>
         </div>
