@@ -3,11 +3,39 @@
 <head>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Research - yellow3 lab</title>
-  <meta name="description" content="Live data instruments from yellow3 lab. Each instrument answers one thesis about AI through numbers that update weekly. An AI Research Studio, on the record." />
+  <title>Research | Live Technology Instruments &amp; Public Evidence | yellow3 lab</title>
+  <meta name="description" content="yellow3 lab publishes live research instruments, public datasets and evidence-led research on AI, Digital Product Passports, European regulation and emerging technology." />
   <link rel="canonical" href="https://www.yellow3.io/research" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <style>
+  
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="yellow3 lab" />
+  <meta property="og:title" content="Research - yellow3 lab" />
+  <meta property="og:description" content="Live data instruments. Each answers one thesis about AI through numbers that update weekly." />
+  <meta property="og:url" content="https://www.yellow3.io/research" />
+  <meta property="og:image" content="https://www.yellow3.io/og/og-research-v2.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="yellow3 Research - live data instruments, updated weekly" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:image" content="https://www.yellow3.io/og/og-research-v2.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.yellow3.io/" },
+      { "@type": "ListItem", "position": 2, "name": "Research", "item": "https://www.yellow3.io/research" }
+    ]
+  }
+  </script>
+
+<style>
+/* The production shell, whole. Not filtered: a component depends on rules that
+   never mention it, and filtering this by selector name broke the homepage
+   twice. */
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --paper:#ffffff; --ink:#0e0e0e; --body:#4b4b4b; --muted:#8a8a8a; --line:#e7e6e2; --yellow:#ffe000; --panel:#f7f6f3; --live:#2E9D78; }
     html { scroll-behavior: smooth; }
@@ -112,33 +140,107 @@
       .site-footer { padding: 56px 24px 32px; }
     }
     @media (max-width: 560px) { .foot-top { grid-template-columns: 1fr; } }
-  </style>
+  
 
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="yellow3 lab" />
-  <meta property="og:title" content="Research - yellow3 lab" />
-  <meta property="og:description" content="Live data instruments. Each answers one thesis about AI through numbers that update weekly." />
-  <meta property="og:url" content="https://www.yellow3.io/research" />
-  <meta property="og:image" content="https://www.yellow3.io/og/og-research-v2.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="yellow3 Research - live data instruments, updated weekly" />
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:image" content="https://www.yellow3.io/og/og-research-v2.png" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.yellow3.io/" },
-      { "@type": "ListItem", "position": 2, "name": "Research", "item": "https://www.yellow3.io/research" }
-    ]
-  }
-  </script>
+/* APPROVED /research V1, ported from APPROVED_RESEARCH_CONTENT.html. Selectors
+   scoped under .rs1 because the package styles bare names the site also uses;
+   values unchanged, and the @media block stays a block. */
+.rs1 {
+  --ink:#11120f; --muted:#666b67; --line:#d9dcd8; --soft:#f2f3f0;
+  --yellow:#ffd500; --cream:#fffdf2;
+  color: var(--ink); font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px; line-height: 1.45; background: #fff;
+}
+.rs1 *, .rs1 *::before, .rs1 *::after { box-sizing: border-box; }
+.rs1 a { color: inherit; text-decoration: none; }
+.rs1 img { max-width: 100%; }
+.rs1 .flagship-head{display:grid;grid-template-columns:1.1fr .9fr;gap:80px;align-items:end}
+.rs1 .flagship-head p{font-size:18px;line-height:1.5;color:#545852;max-width:500px}
+.rs1 .flagship-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:72px;align-items:start;margin-top:58px}
+.rs1 .flagship-copy{padding-top:8px}
+.rs1 .num{font-size:11px;letter-spacing:.08em;color:#858a84;text-transform:uppercase}
+.rs1 .flagship-title{font-size:48px;line-height:1.01;letter-spacing:-.045em;margin:14px 0 22px}
+.rs1 .flagship-lede{font-size:19px;line-height:1.48;color:#4e534e;max-width:470px}
+.rs1 .points{margin-top:34px;border-top:1px solid var(--ink)}
+.rs1 .point{display:grid;grid-template-columns:34px 1fr;gap:16px;padding:17px 0;border-bottom:1px solid var(--line)}
+.rs1 .point b{font-size:11px;color:#858a84}
+.rs1 .point strong{font-size:15px;display:block;margin-bottom:4px}
+.rs1 .point p{font-size:13px;color:#6a6f69}
+.rs1 .proof{border:1px solid #bfc3be;background:#fff;padding:10px;box-shadow:0 18px 44px rgba(17,18,15,.05)}
+.rs1 .proof img{display:block;width:100%;height:auto}
+.rs1 .caption{display:flex;justify-content:space-between;gap:20px;padding:12px 2px 0;font-size:11px;color:#747a74}
+.rs1 .caption strong{color:#20231f}
+.rs1 .soft{background:var(--soft)}
+.rs1 .instrument-list{margin-top:60px;border-top:1px solid var(--ink)}
+.rs1 .instrument{display:grid;grid-template-columns:82px 1.05fr 1.25fr .55fr;gap:30px;padding:34px 0;border-bottom:1px solid #cfd2ce;align-items:start}
+.rs1 .inst-n{font-size:11px;color:#858a84}
+.rs1 .inst-title{font-size:31px;line-height:1.03;letter-spacing:-.035em}
+.rs1 .inst-copy{font-size:16px;line-height:1.45;color:#555a54}
+.rs1 .inst-meta{font-size:12px;line-height:1.8}
+.rs1 .inst-meta strong{display:block;font-weight:700}
+.rs1 .inst-meta a{display:inline-block;margin-top:10px;border-bottom:1px solid var(--ink);font-weight:700}
+.rs1 .black{background:#11120f;color:#fff;border-top:0}
+.rs1 .black .kicker{color:#b9bdb7}
+.rs1 .black h2{max-width:920px}
+.rs1 .black-lede{font-size:24px;line-height:1.3;color:#e2e5df;max-width:860px;margin-top:40px}
+.rs1 .method-grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:68px;border-top:1px solid #373a36}
+.rs1 .method{padding:28px 30px 24px 0;border-right:1px solid #333632;min-height:235px}
+.rs1 .method:nth-child(n+2){padding-left:30px}
+.rs1 .method:last-child{border-right:0}
+.rs1 .method .num{color:#81877f;margin-bottom:42px}
+.rs1 .method h3{font-size:23px;margin-bottom:12px}
+.rs1 .method p{font-size:13px;line-height:1.55;color:#bdc2bb}
+.rs1 .method strong{color:var(--yellow);font-weight:400}
+.rs1 .dataset-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:92px;align-items:start}
+.rs1 .dataset-statement{font-size:31px;line-height:1.14;letter-spacing:-.03em;margin-top:30px;max-width:520px}
+.rs1 .dataset-copy{font-size:17px;line-height:1.55;color:#565b55;margin-top:24px;max-width:520px}
+.rs1 .metric-grid{border-top:1px solid var(--ink)}
+.rs1 .metric-row{display:grid;grid-template-columns:160px 1fr;gap:28px;padding:22px 0;border-bottom:1px solid var(--line);align-items:start}
+.rs1 .metric{font-size:42px;line-height:1;letter-spacing:-.045em}
+.rs1 .metric-label{font-size:15px}
+.rs1 .metric-note{font-size:12px;color:#767b75;margin-top:5px}
+.rs1 .yellow-note{background:var(--yellow);padding:22px 24px;margin-top:28px;font-size:14px;line-height:1.45}
+.rs1 .yellow-note strong{display:block;margin-bottom:5px}
+.rs1 .framework{background:var(--cream)}
+.rs1 .framework-grid{display:grid;grid-template-columns:1fr 1fr;gap:92px;align-items:start}
+.rs1 .framework p{font-size:18px;line-height:1.55;color:#545952;margin-top:28px;max-width:520px}
+.rs1 .layers{border-top:1px solid var(--ink)}
+.rs1 .layer{display:grid;grid-template-columns:34px 120px 1fr;gap:18px;padding:18px 0;border-bottom:1px solid #ddd9c8}
+.rs1 .layer b{font-size:11px}
+.rs1 .layer strong{font-size:15px}
+.rs1 .layer span{font-size:13px;color:#666b65}
+.rs1 .closing{background:#11120f;color:#fff;border-top:0;padding:98px 0}
+.rs1 .closing-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:80px;align-items:end}
+.rs1 .closing h2{font-size:58px}
+.rs1 .closing p{font-size:17px;color:#c7cbc5;margin-top:24px;max-width:650px}
+.rs1 .closing .btn{background:var(--yellow);color:var(--ink)}
+@media(max-width:800px){
+.rs1 .wrap{padding:0 22px}
+.rs1 .section{padding:76px 0}
+.rs1 .hero{padding:72px 0 80px}
+.rs1 .hero-grid, .rs1 .flagship-head, .rs1 .flagship-grid, .rs1 .dataset-grid, .rs1 .framework-grid, .rs1 .closing-grid{grid-template-columns:1fr}
+.rs1 .hero-grid{gap:48px}
+.rs1 h1{font-size:54px}
+.rs1 h2{font-size:41px}
+.rs1 .hero-copy{font-size:18px}
+.rs1 .flagship-head, .rs1 .flagship-grid, .rs1 .dataset-grid, .rs1 .framework-grid{gap:38px}
+.rs1 .flagship-title{font-size:38px}
+.rs1 .instrument{grid-template-columns:40px 1fr;gap:18px}
+.rs1 .inst-copy, .rs1 .inst-meta{grid-column:2}
+.rs1 .inst-title{font-size:26px}
+.rs1 .method-grid{grid-template-columns:1fr}
+.rs1 .method, .rs1 .method:nth-child(n+2){padding:24px 0;border-right:0;border-bottom:1px solid #333632;min-height:auto}
+.rs1 .metric-row{grid-template-columns:110px 1fr}
+.rs1 .metric{font-size:34px}
+.rs1 .layer{grid-template-columns:28px 90px 1fr;gap:12px}
+.rs1 .caption{display:block}
+.rs1 .caption span{display:block;margin-top:4px}
+.rs1 .closing h2{font-size:44px}
+}
+</style>
 </head>
 <body>
-
-  <nav class="site-nav">
+<nav class="site-nav">
     <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
     <div class="nav-mid" id="navMid">
       <a href="/research" class="active">Research</a>
@@ -152,91 +254,133 @@
     <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
   </nav>
 
-  <div class="hero">
-    <div class="inner">
-      <div class="hero-label">Research</div>
-      <h1>Live instruments, not <span class="hl">opinions.</span></h1>
-      <p class="hero-sub">yellow3 lab is an AI research studio. Research is where that work goes on the record. Each instrument answers one thesis through numbers that update weekly - and grades its own calls in public.</p>
-      <p style="margin-top:22px;"><a href="/research/framework" style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--yellow);padding-bottom:4px;">How we build research - the method &#8594;</a></p>
-    </div>
+<main class="rs1">
+<main>
+<section class="hero">
+<div class="wrap hero-grid">
+  <div>
+    <div class="kicker">YELLOW3 RESEARCH</div>
+    <h1>Live instruments, not opinions.</h1>
+    <p class="hero-copy">yellow3 publishes original evidence on emerging technology, regulation and markets. Each instrument starts with a question that can be measured, keeps the sources visible and records what changed over time.</p>
+    <div class="hero-rule">Research is where yellow3 puts its claims on the record. The work is designed to be inspected, challenged and updated, not merely read and forgotten.</div>
+    <div class="actions"><a class="btn">Explore the instruments →</a><a class="link">How we build research →</a></div>
   </div>
+  <aside class="hero-aside">
+    <div class="aside-head">Public research today</div>
+    <div class="aside-row"><strong>Model Adoption</strong><span>Live weekly routed AI usage</span></div>
+    <div class="aside-row"><strong>EU AI Act</strong><span>Enforcement and obligation record</span></div>
+    <div class="aside-row"><strong>Digital Product Passport</strong><span>Regulator delivery and industry readiness</span></div>
+    <div class="aside-row"><strong>DPP Supplier Register</strong><span>Independent public market dataset</span></div>
+  </aside>
+</div>
+</section>
 
-  <div class="panel">
-    <div class="inner">
-      <div class="panel-head">
-        <!-- h2, not a div: the three instruments below are h3 and the page
-             hero is h1, so this label is the level that was missing. The
-             class sets font-size, weight, colour and tracking explicitly and
-             the page resets margins, so nothing moves. -->
-        <h2 class="panel-label">The instruments</h2>
-        <div class="panel-note">Live and updated weekly. The shelf grows as new instruments ship.</div>
-      </div>
-      <a class="dataset" href="/research/digital-product-passport/suppliers">
-        <div class="ds-l">
-          <div class="ds-k">Dataset</div>
-          <div class="ds-h">The DPP supplier register</div>
-          <div class="ds-p">Every organisation supplying Digital Product Passport capability, with the source behind each fact and the date it was checked.</div>
-        </div>
-        <div class="ds-r">
-          <div class="ds-n" id="ds-n">190</div>
-          <div class="ds-c" id="ds-c">organisations · 171 commercial suppliers · 33 countries</div>
-          <span class="open-link">Open the register</span>
-        </div>
-      </a>
-
-      <div class="instruments">
-
-        <!-- LIVE: Model adoption -->
-        <a class="inst" href="/research/model-adoption">
-          <div class="inst-top">
-            <span class="st live"><span class="dot"></span> Live</span>
-            <span class="edno" id="ma-edno">Edition 01</span>
-          </div>
-          <h3>Model adoption</h3>
-          <p class="thesis">Where AI adoption actually sits, by region of origin, measured in real routed traffic, and how fast the lead changes.</p>
-          <div class="read-block">
-            <div class="read-k">This week's read</div>
-            <div class="read-v" id="ma-read">Loading this week's read…</div>
-            <span class="open-link">Open instrument</span>
-          </div>
-        </a>
-
-        <!-- LIVE: EU AI Act enforcement -->
-        <a class="inst" href="/research/eu-ai-act">
-          <div class="inst-top">
-            <span class="st live"><span class="dot"></span> Live</span>
-            <span class="edno" id="eu-edno">Edition 01</span>
-          </div>
-          <h3>EU AI Act enforcement</h3>
-          <p class="thesis">What is actually enforced versus what was announced - how far Europe has stood up the law it wrote, and what has happened to anyone who broke it.</p>
-          <div class="read-block">
-            <div class="read-k">This week's read</div>
-            <div class="read-v" id="eu-read">Loading this week's read…</div>
-            <span class="open-link">Open instrument</span>
-          </div>
-        </a>
-
-        <!-- LIVE: Digital Product Passport -->
-        <a class="inst" href="/research/digital-product-passport">
-          <div class="inst-top">
-            <span class="st live"><span class="dot"></span> Live</span>
-            <span class="edno" id="dpp-edno">Edition 01</span>
-          </div>
-          <h3>Digital Product Passport</h3>
-          <p class="thesis">Is the EU Digital Product Passport becoming real on schedule - on the regulator's side, and on industry's side?</p>
-          <div class="read-block">
-            <div class="read-k">This week's read</div>
-            <div class="read-v" id="dpp-read">Loading this week's read…</div>
-            <span class="open-link">Open instrument</span>
-          </div>
-        </a>
-
-      </div>
-
-    </div>
+<section class="section">
+<div class="wrap">
+  <div class="flagship-head">
+    <div><div class="kicker">FLAGSHIP INSTRUMENT</div><h2>Where AI demand is actually flowing.</h2></div>
+    <p>Model Adoption tracks routed AI usage by where the models were built, not where the user sits. It preserves regional share, model movement, a public record book and yellow3's weekly call.</p>
   </div>
+  <div class="flagship-grid">
+    <div class="flagship-copy">
+      <div class="num">MODEL ADOPTION / UPDATED WEEKLY</div>
+      <div class="flagship-title">Measure the market before explaining it.</div>
+      <p class="flagship-lede">Announcements tell you what launched. Benchmarks tell you how a model performed under a test. Routed usage tells you where real demand is moving inside the measured source.</p>
+      <div class="points">
+        <div class="point"><b>01</b><div><strong>Regional share</strong><p>Asia, the US, Europe and other origins measured by model origin.</p></div></div>
+        <div class="point"><b>02</b><div><strong>Most-routed models</strong><p>A weekly ranking of the models receiving routed traffic.</p></div></div>
+        <div class="point"><b>03</b><div><strong>Record book</strong><p>Streaks, movers and changes preserved rather than disappearing into the news cycle.</p></div></div>
+        <div class="point"><b>04</b><div><strong>On the record</strong><p>yellow3 makes a dated weekly call and grades it afterwards.</p></div></div>
+      </div>
+      <div class="actions"><a class="btn">Open Model Adoption →</a></div>
+    </div>
+    <figure style="margin:0">
+      <div class="proof"><img src="/img/homepage/model-adoption-interface.png" alt="Real yellow3 Model Adoption instrument and model explorer interfaces" /></div>
+      <figcaption class="caption"><strong>Real yellow3 research interface</strong><span>The live instrument updates weekly.</span></figcaption>
+    </figure>
+  </div>
+</div>
+</section>
 
-  <footer class="site-footer">
+<section class="section soft">
+<div class="wrap">
+  <div class="flagship-head">
+    <div><div class="kicker">THE RESEARCH SHELF</div><h2>Four public instruments. Four different questions.</h2></div>
+    <p>The shelf should grow only when a question deserves a maintained instrument. A new page is not research infrastructure by itself.</p>
+  </div>
+  <div class="instrument-list">
+    <div class="instrument"><div class="inst-n">01</div><div class="inst-title">Model Adoption</div><div class="inst-copy">Where is routed AI demand flowing by model origin, and how quickly is the balance changing?</div><div class="inst-meta"><strong>Live weekly</strong>Usage data<a>Open →</a></div></div>
+    <div class="instrument"><div class="inst-n">02</div><div class="inst-title">EU AI Act</div><div class="inst-copy">What has actually become applicable or enforced, compared with what has merely been announced?</div><div class="inst-meta"><strong>Living record</strong>Regulation<a>Open →</a></div></div>
+    <div class="instrument"><div class="inst-n">03</div><div class="inst-title">Digital Product Passport</div><div class="inst-copy">Is the European DPP system becoming real on schedule, on the regulator side and across industry readiness?</div><div class="inst-meta"><strong>Updated weekly</strong>Regulation + market<a>Open →</a></div></div>
+    <div class="instrument"><div class="inst-n">04</div><div class="inst-title">DPP Supplier Register</div><div class="inst-copy">Who supplies Digital Product Passport capability, what can be established publicly and where is the evidence?</div><div class="inst-meta"><strong>Public dataset</strong>Supplier evidence<a>Open →</a></div></div>
+  </div>
+</div>
+</section>
+
+<section class="section black">
+<div class="wrap">
+  <div class="kicker">THE STANDARD</div>
+  <h2>Evidence should survive the conclusion.</h2>
+  <p class="black-lede">A yellow3 finding should still make sense when somebody asks <strong>where did that come from?</strong> That means the source, date, uncertainty and later outcome remain visible.</p>
+  <div class="method-grid">
+    <div class="method"><div class="num">01</div><h3>Dated evidence</h3><p>Sources are attached to the finding, not hidden behind the conclusion.</p></div>
+    <div class="method"><div class="num">02</div><h3>Measurable thesis</h3><p>Where possible, the question is framed so reality can later prove it right or wrong.</p></div>
+    <div class="method"><div class="num">03</div><h3>Public grading</h3><p>Calls are preserved and graded. <strong>The record does not reset when the story changes.</strong></p></div>
+    <div class="method"><div class="num">04</div><h3>Visible uncertainty</h3><p>Not established is different from disproven. The research should say which one it means.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="section">
+<div class="wrap dataset-grid">
+  <div>
+    <div class="kicker">PUBLIC DATASET</div>
+    <h2>The DPP market can be inspected.</h2>
+    <div class="dataset-statement">The Supplier Register is research infrastructure, not a marketplace.</div>
+    <p class="dataset-copy">yellow3 maps organisations supplying Digital Product Passport capability and keeps the source and date behind the facts. Suppliers cannot pay to rank higher, buy a better finding or purchase verification.</p>
+    <div class="actions"><a class="btn">Explore DPP suppliers →</a><a class="link">Download dataset →</a></div>
+  </div>
+  <div>
+    <div class="metric-grid">
+      <div class="metric-row"><div class="metric">190</div><div><div class="metric-label">organisations in the current public register</div><div class="metric-note">Live count should be generated from the dataset in production.</div></div></div>
+      <div class="metric-row"><div class="metric">171</div><div><div class="metric-label">commercial suppliers</div><div class="metric-note">Non-commercial projects and bodies remain distinct.</div></div></div>
+      <div class="metric-row"><div class="metric">33</div><div><div class="metric-label">countries represented</div><div class="metric-note">Based on the current register snapshot.</div></div></div>
+    </div>
+    <div class="yellow-note"><strong>No paid ranking. No paid verification. No composite supplier score.</strong>The register measures what a buyer can independently establish from the evidence available at the dated check.</div>
+  </div>
+</div>
+</section>
+
+<section class="section framework">
+<div class="wrap framework-grid">
+  <div>
+    <div class="kicker">HOW WE BUILD RESEARCH</div>
+    <h2>From signal to decision.</h2>
+    <p>The Decision Intelligence Framework turns a complex topic into a sequence that separates evidence from interpretation and interpretation from action. The detailed method stays public so readers can understand how a conclusion was reached.</p>
+    <div class="actions"><a class="btn">Read the research method →</a></div>
+  </div>
+  <div class="layers">
+    <div class="layer"><b>01</b><strong>Signal</strong><span>What is actually happening?</span></div>
+    <div class="layer"><b>02</b><strong>Noise</strong><span>What is getting attention but matters less?</span></div>
+    <div class="layer"><b>03</b><strong>Evidence</strong><span>What supports the conclusion?</span></div>
+    <div class="layer"><b>04</b><strong>Risk</strong><span>What could change the outcome?</span></div>
+    <div class="layer"><b>05</b><strong>Opportunity</strong><span>Where could action create advantage?</span></div>
+    <div class="layer"><b>06</b><strong>Decision</strong><span>What should leadership do?</span></div>
+    <div class="layer"><b>07</b><strong>Watchlist</strong><span>What should be monitored next?</span></div>
+  </div>
+</div>
+</section>
+
+<section class="closing">
+<div class="wrap closing-grid">
+  <div><div class="kicker">YELLOW3 RESEARCH</div><h2>Research is useful when it changes what you do next.</h2><p>Explore the live instruments, inspect the underlying evidence and use the method where the decision matters.</p></div>
+  <div><a class="btn">Explore all research →</a></div>
+</div>
+</section>
+</main>
+</main>
+
+<footer class="site-footer">
     <div class="inner">
       <div class="foot-top">
         <div class="foot-brand">
@@ -283,33 +427,5 @@
       </div>
     </div>
   </footer>
-
-  <script>
-    // Pull this week's headline read + edition number from the live instrument data,
-    // so a ten-second visit shows the current state without opening the instrument.
-    fetch('/research/model-adoption-data.json', { cache: 'no-store' })
-      .then(function(r){ return r.ok ? r.json() : null; })
-      .then(function(d){
-        if (!d) return;
-        var read = document.getElementById('ma-read');
-        if (d.edition && d.edition.dek) read.textContent = d.edition.dek;
-        else if (d.payoff) read.textContent = d.payoff;
-        if (d.edition && d.edition.number){
-          document.getElementById('ma-edno').textContent = 'Edition ' + ('0' + d.edition.number).slice(-2);
-        }
-      })
-      .catch(function(){ document.getElementById('ma-read').textContent = 'Where adoption sits, by region of origin - updated weekly.'; });
-
-    fetch('/research/eu-ai-act.json', { cache: 'no-store' })
-      .then(function(r){ return r.ok ? r.json() : null; })
-      .then(function(d){
-        if (!d) return;
-        if (d.what_changed) document.getElementById('eu-read').textContent = d.what_changed;
-        if (d.edition && d.edition.number){
-          document.getElementById('eu-edno').textContent = 'Edition ' + ('0' + d.edition.number).slice(-2);
-        }
-      })
-      .catch(function(){ document.getElementById('eu-read').textContent = 'What is enforced versus what was announced - updated weekly.'; });
-  </script>
 </body>
 </html>
