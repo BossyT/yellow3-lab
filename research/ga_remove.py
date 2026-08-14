@@ -92,3 +92,21 @@ if '--check' in sys.argv:
             print(f'   {f.relative_to(ROOT)}')
         sys.exit(1)
     print(f'ok  {len(TARGETS)} register pages, no Google Analytics')
+
+    # The line above this guard had it right - the register is generated from
+    # templates - and then the guard only ever read the generated pages. It was
+    # checking the wrong side. Four generators still carried the snippet, so a
+    # single `python3 research/gen_dpp_register.py` put GA back into 536 files;
+    # this check was clean right up until the moment someone regenerated.
+    #
+    # A removal is not finished until the things that write the pages are clean.
+    sources = sorted(p for p in (ROOT / 'research').glob('*.py')
+                     if p.name not in ('ga_remove.py', 'build_check.py'))
+    emitting = [p for p in sources
+                if 'googletagmanager' in p.read_text(encoding='utf-8')]
+    if emitting:
+        print(f'REGRESSION: {len(emitting)} generator(s) would write Google Analytics')
+        for p in emitting:
+            print(f'   {p.relative_to(ROOT)}')
+        sys.exit(1)
+    print(f'ok  {len(sources)} generators, none emit Google Analytics')

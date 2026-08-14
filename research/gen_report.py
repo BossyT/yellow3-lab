@@ -15,7 +15,7 @@ import os
 import json
 import datetime as dt
 
-from gen_model_pages import esc, D, NAV, FOOTER, HOST, BASE, GA_ID
+from gen_model_pages import esc, D, NAV, FOOTER, HOST, BASE
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PAGES_DIR = os.path.join(HERE, "model-adoption")
@@ -366,8 +366,6 @@ def render_report(period, g):
     parts = [f'''<!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','{GA_ID}');</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
@@ -511,8 +509,6 @@ def render_briefing(period, g):
     parts = [f'''<!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','{GA_ID}');</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title} | yellow3</title>
@@ -573,8 +569,6 @@ def render_archive(reports):
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','{GA_ID}');</script>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Model Adoption Report - Archive | yellow3</title>
   <meta name="description" content="Every monthly Model Adoption Report from yellow3 - regional shifts, rankings, economics and Europe Watch." />

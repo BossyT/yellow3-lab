@@ -27,7 +27,6 @@ MAIN_JSON = os.path.join(HERE, "model-adoption-data.json")
 
 HOST = "https://yellow3.io"          # build rewrites to www at deploy
 BASE = "/research/model-adoption"
-GA_ID = "G-K3JXMM2VG5"
 
 # New model-research origin palette (aubergine / navy / ochre / graphite).
 REGION_HEX = {"Asia": "#4d146c", "US": "#003268", "Europe": "#ffba02", "Other": "#828383"}
@@ -383,8 +382,6 @@ def head(m, provider, meta, updated_iso):
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','{GA_ID}');</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{esc(title)}</title>

@@ -12,7 +12,7 @@ import os
 import json
 import datetime as dt
 
-from gen_model_pages import esc, D, HOST, BASE, GA_ID, FOOTER
+from gen_model_pages import esc, D, HOST, BASE, FOOTER
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PAGES_DIR = os.path.join(HERE, "model-adoption")
@@ -153,8 +153,6 @@ def render(main, econ, models):
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','{GA_ID}');</script>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Model Intelligence Professional | yellow3</title>
   <meta name="description" content="A live intelligence dashboard for AI model adoption, economics and rankings - subscriber briefing, watchlists, alerts and the monthly report. The yellow3 Professional tier." />
