@@ -31,13 +31,25 @@ except ImportError:
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-IMG = os.path.join(ROOT, "img", "homepage")
+IMG = os.path.join(ROOT, "img")
 
-WIDTHS = (420, 720, 1024, 1365)
 QUALITY = 85          # screenshots carry small text; below ~80 it starts to fur
 METHOD = 6            # slowest encode, smallest file - these are built once
 
-SOURCES = ("dpp-buyer-platform-stage4.png", "model-adoption-interface.png")
+# Per-asset ladders, from measured render widths rather than round numbers.
+#
+#   homepage proofs   677 and 655 css px at desktop, full-bleed below 800
+#   naffe marks       hero 334 desktop / 300 mobile, human logo a fixed 240
+#
+# The naffe marks are official brand assets: the PNGs are canonical, are never
+# altered or overwritten, and stay the <img src> fallback. These are delivery
+# derivatives only - no recreation, no tracing, no recolour, no effects.
+SOURCES = {
+    "homepage/dpp-buyer-platform-stage4.png": (420, 720, 1024, 1365),
+    "homepage/model-adoption-interface.png": (420, 720, 1024, 1365),
+    "software/naffe-logo-black.png": (240, 340, 480, 720, 1024),
+    "software/naffe-logo-white.png": (240, 340, 480, 720, 1024),
+}
 
 
 def derivative(name, width):
@@ -46,14 +58,20 @@ def derivative(name, width):
 
 def build(check_only):
     stale, made, total_png, total_webp = [], [], 0, 0
-    for name in SOURCES:
+    count = sum(len(w) for w in SOURCES.values())
+    for name, widths in SOURCES.items():
         src = os.path.join(IMG, name)
         if not os.path.exists(src):
             raise SystemExit("missing source: %s" % name)
         total_png += os.path.getsize(src)
         with Image.open(src) as im:
-            im = im.convert("RGB")
-            for width in WIDTHS:
+            # Preserve transparency where there is any. Today all four
+            # sources are RGB, so this is a no-op - but a blanket
+            # convert("RGB") would silently put a box behind the first
+            # asset that arrives with an alpha channel, and a white mark
+            # on a dark section is exactly where that would show.
+            im = im.convert("RGBA" if "A" in im.getbands() else "RGB")
+            for width in widths:
                 out = derivative(name, width)
                 fresh = (os.path.exists(out)
                          and os.path.getmtime(out) >= os.path.getmtime(src))
@@ -76,15 +94,14 @@ def build(check_only):
                 print("   " + s)
             print("\nRun: python3 research/gen_webp.py")
             return 1
-        print("webp: %d derivatives, all current" % (len(SOURCES) * len(WIDTHS)))
+        print("webp: %d derivatives, all current" % count)
         return 0
 
     for path, size in made:
         print("  %-52s %6.1f KB" % (path, size / 1024))
     print("\n  %d source PNG, %.0f KB, untouched and still canonical"
           % (len(SOURCES), total_png / 1024))
-    print("  %d derivatives, %.0f KB total"
-          % (len(SOURCES) * len(WIDTHS), total_webp / 1024))
+    print("  %d derivatives, %.0f KB total" % (count, total_webp / 1024))
     return 0
 
 
