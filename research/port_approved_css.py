@@ -80,6 +80,21 @@ PAGES = {
              "the approved reference depends on. GPT approved 2026-08-14."),
         ],
     },
+    "about": {
+        "target": "about.html",
+        "wrapper": "ab1",
+        "package": (PKG + "/about/yellow3_about_v1_terminal_handoff/"
+                    "APPROVED_ABOUT_CONTENT.html"),
+        # The founder film surface is deliberately reserved. No poster, no stock
+        # asset, no autoplay, and nothing that pretends to be a playable control
+        # before the video exists - the package is explicit about all four.
+        "requires": ["Video slot reserved", "AI avatar film will be added here"],
+        # Attribute-precise on purpose: the approved placeholder copy says "No
+        # autoplay." in prose, so a bare substring check fails on the very text
+        # that proves the rule is being kept.
+        "forbids": ["<video", "<iframe", "poster=", "autoplay=", " autoplay>"],
+        "deviations": [],
+    },
 }
 
 

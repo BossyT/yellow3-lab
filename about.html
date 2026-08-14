@@ -1,20 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About - yellow3 lab</title>
-  <meta name="description" content="yellow3 lab is an independent AI research and venture lab in Copenhagen, studying how humans and increasingly autonomous systems work together - and how that reshapes software, organizations, markets, and society." />
+  <title>About yellow3 lab | Emerging Technology Research &amp; Platforms</title>
+  <meta name="description" content="yellow3 lab is a Copenhagen-based emerging-technology company that researches, experiments with and builds platforms designed to make complex business problems easier to understand and operate." />
   <link rel="canonical" href="https://www.yellow3.io/about" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <style>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="yellow3 lab" />
+  <meta property="og:title" content="About yellow3 lab | Emerging Technology Research &amp; Platforms" />
+  <meta property="og:description" content="yellow3 lab researches emerging technology, experiments with what it can genuinely improve and builds platforms around useful business outcomes." />
+  <meta property="og:url" content="https://www.yellow3.io/about" />
+  <meta property="og:image" content="https://www.yellow3.io/og/og-about-v2.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="About yellow3 lab" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:image" content="https://www.yellow3.io/og/og-about-v2.png" />
+
+  <!-- AboutPage, with the Organization referenced by @id and never redefined.
+       The previous version of this page carried a full second Organization
+       record here - a competing entity, and the only place on the site that
+       disagreed with the canonical one about where the company is. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": "https://www.yellow3.io/about#aboutpage",
+    "url": "https://www.yellow3.io/about",
+    "name": "About yellow3 lab",
+    "description": "yellow3 lab is a Copenhagen-based emerging-technology company that researches, experiments with and builds platforms designed to make complex business problems easier to understand and operate.",
+    "mainEntity": { "@id": "https://www.yellow3.io/#organization" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.yellow3.io/" },
+      { "@type": "ListItem", "position": 2, "name": "About", "item": "https://www.yellow3.io/about" }
+    ]
+  }
+  </script>
+
+<style>
+
+/* The production shell, whole. Not filtered: a component depends on rules that
+   never mention it, and filtering this by selector name broke the homepage
+   twice. */
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --paper:#ffffff; --ink:#0e0e0e; --body:#3f3f3f; --muted:#8a8a8a; --line:#e7e6e2; --yellow:#ffe000; --panel:#f7f6f3; }
+    :root { --paper:#ffffff; --ink:#0e0e0e; --body:#4b4b4b; --muted:#8a8a8a; --line:#e7e6e2; --yellow:#ffe000; --panel:#f7f6f3; --live:#2E9D78; }
     html { scroll-behavior: smooth; }
     body { background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; font-weight: 400; line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
     img { display: block; max-width: 100%; }
     .inner { max-width: 1240px; margin: 0 auto; }
-    .hl { background: var(--yellow); color: var(--ink); padding: 0.02em 0.1em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 
     /* NAV */
     .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
@@ -30,64 +73,11 @@
     .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
     .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
 
-    /* HERO */
-    .hero { padding: 152px 48px 72px; border-bottom: 1px solid var(--line); }
-    .hero-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 28px; }
-    .hero h1 { font-size: clamp(38px, 5.4vw, 76px); font-weight: 400; line-height: 1.04; letter-spacing: -0.055em; color: var(--ink); max-width: 1000px; margin-bottom: 28px; }
-    .hero-sub { font-size: 18px; color: var(--body); max-width: 600px; line-height: 1.6; border-left: 3px solid var(--yellow); padding-left: 24px; }
-
-    /* PROSE SECTION */
-    .prose-section { padding: 88px 48px; border-bottom: 1px solid var(--line); }
-    .prose-section.alt { background: var(--panel); }
-    .prose { max-width: 760px; margin: 0 auto; }
-    .prose .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 30px; }
-    .prose h2 { font-size: clamp(26px, 3vw, 38px); font-weight: 400; letter-spacing: -0.05em; line-height: 1.14; color: var(--ink); margin-bottom: 30px; }
-    .prose p { font-size: 18px; color: var(--body); line-height: 1.75; margin-bottom: 24px; }
-    .prose p:last-child { margin-bottom: 0; }
-    .prose .define { font-size: 19px; color: var(--ink); font-weight: 600; line-height: 1.55; border-left: 3px solid var(--yellow); padding-left: 22px; margin: 8px 0 28px; }
-    .prose .emph { font-size: 20px; font-weight: 400; color: var(--ink); letter-spacing: -0.025em; }
-
-    /* QUESTION LIST */
-    .qlist { list-style: none; margin: 34px 0; border-top: 1px solid var(--line); }
-    .qlist li { font-size: clamp(18px, 2.1vw, 22px); font-weight: 400; color: var(--ink); letter-spacing: -0.025em; line-height: 1.3; padding: 22px 0 22px 28px; border-bottom: 1px solid var(--line); position: relative; }
-    .qlist li::before { content: ''; position: absolute; left: 0; top: 30px; width: 8px; height: 8px; background: var(--yellow); }
-
-    /* AREAS GRID */
-    .areas-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin: 34px 0; }
-    .area { background: var(--paper); padding: 22px 24px; font-size: 16px; font-weight: 600; color: var(--ink); display: flex; align-items: center; gap: 12px; }
-    .area .an { font-size: 11px; color: var(--muted); font-weight: 600; font-variant-numeric: tabular-nums; }
-
-    /* CLOSING */
-    .closing-section { padding: 104px 48px; border-bottom: 1px solid var(--line); }
-    .closing { max-width: 900px; margin: 0 auto; font-size: clamp(28px, 4vw, 52px); font-weight: 400; letter-spacing: -0.05em; line-height: 1.12; color: var(--ink); }
-
-    /* FOUNDER */
-    .founder { padding: 96px 48px; border-bottom: 1px solid var(--line); background: var(--panel); }
-    .founder-grid { display: grid; grid-template-columns: 340px 1fr; gap: 72px; align-items: start; }
-    .founder-photo img { width: 100%; aspect-ratio: 1/1; object-fit: cover; object-position: center top; filter: grayscale(1); }
-    .founder-name { font-size: 30px; font-weight: 400; line-height: 1.1; letter-spacing: -0.025em; color: var(--ink); margin: 24px 0 6px; }
-    .founder-role { font-size: 13px; color: var(--muted); letter-spacing: 0.04em; }
-    .founder-bio .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 24px; }
-    .founder-bio p { font-size: 18px; color: var(--body); line-height: 1.7; margin-bottom: 22px; }
-    .founder-tags { display: flex; flex-direction: column; gap: 0; margin-top: 30px; }
-    .founder-tag { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; border-top: 1px solid var(--line); padding: 12px 0; }
-
-    /* FACTS */
-    .facts { padding: 72px 48px; border-bottom: 1px solid var(--line); }
-    .facts-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
-    .fact { background: var(--paper); padding: 30px 28px; }
-    .fact .k { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 12px; }
-    .fact .v { font-size: 17px; font-weight: 600; color: var(--ink); line-height: 1.35; }
-
-    /* CTA */
-    .cta { background: var(--yellow); padding: 72px 48px; }
-    .cta-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; }
-    .cta-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(0,0,0,0.55); font-weight: 700; margin-bottom: 22px; }
-    .cta h2 { font-size: clamp(26px, 3vw, 42px); font-weight: 400; line-height: 1.12; letter-spacing: -0.05em; color: var(--ink); }
-    .cta-right { border-left: 1px solid rgba(0,0,0,0.18); padding-left: 48px; }
-    .cta-right p { font-size: 18px; color: var(--ink); margin-bottom: 26px; line-height: 1.4; }
-    .btn { display: inline-flex; align-items: center; gap: 12px; padding: 15px 26px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--ink); transition: background 0.2s; background: var(--ink); color: #fff; }
-    .btn:hover { background: #000; }
+    /* The old /research content rules - .hero, .panel, .instruments, .inst,
+       .st, .read-*, .open-link, .dataset, .ds-* - are gone. They styled the
+       page this route used to serve, nothing in the approved markup renders
+       them, and .hero collided head-on with the approved hero. Nav, footer and
+       the globals above them stay: they are the shell the package builds on. */
 
     /* FOOTER */
     .site-footer { background: #0e0e0e; color: #fff; padding: 72px 48px 36px; }
@@ -110,11 +100,6 @@
     .foot-legal a { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
     .foot-legal a:hover { color: #fff; }
 
-    /* REVEAL */
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    @media (max-width: 1000px) { .facts-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 880px) {
       .site-nav { padding: 14px 24px; }
       .nav-mid { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--line); flex-direction: column; gap: 0; padding: 12px 24px 20px; }
@@ -125,51 +110,135 @@
       .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
       .nav-toggle.open span:nth-child(2) { opacity: 0; }
       .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
-      .hero, .prose-section, .closing-section, .founder, .facts, .cta { padding-left: 24px; padding-right: 24px; }
-      .hero { padding-top: 120px; }
-      .areas-grid { grid-template-columns: 1fr; }
-      .founder-grid, .cta-grid { grid-template-columns: 1fr; gap: 40px; }
-      .cta-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(0,0,0,0.18); padding-top: 32px; }
       .foot-top { grid-template-columns: 1fr 1fr; gap: 32px; }
       .site-footer { padding: 56px 24px 32px; }
     }
-    @media (max-width: 560px) { .facts-grid, .foot-top { grid-template-columns: 1fr; } }
-  </style>
+    @media (max-width: 560px) { .foot-top { grid-template-columns: 1fr; } }
 
-  <!-- OG / Social sharing -->
-  <meta property="og:image" content="/og/og-about-v2.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="yellow3 lab" />
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:image" content="/og/og-about-v2.png" />
-  <meta property="og:title" content="About - yellow3 lab" />
-  <meta property="og:description" content="An independent AI research and venture lab in Copenhagen, studying how it is being built." />
-  <meta property="og:url" content="https://www.yellow3.io/about" />
-  <meta property="twitter:title" content="About - yellow3 lab" />
-  <meta property="twitter:description" content="An independent AI research and venture lab in Copenhagen, studying how it is being built." />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "name": "About - yellow3 lab",
-    "url": "https://www.yellow3.io/about",
-    "mainEntity": {
-      "@type": "Organization",
-      "name": "yellow3 lab",
-      "legalName": "yellow3 ApS",
-      "url": "https://www.yellow3.io",
-      "foundingDate": "2024",
-      "founder": { "@type": "Person", "name": "Thomas Christian Melskens", "jobTitle": "Founder & CEO" },
-      "address": { "@type": "PostalAddress", "addressLocality": "Copenhagen", "addressCountry": "DK" }
-    }
-  }
-  </script>
+
+/* >>> APPROVED /about, scoped under .ab1 by research/port_approved_css.py. Do not hand-edit. */
+.ab1{--ink:#11120f;--muted:#676c66;--line:#d8dbd7;--soft:#f3f4f1;--yellow:#ffd500;--cream:#fffdf2;}
+.ab1 *{box-sizing:border-box}
+.ab1{margin:0;padding:0;background:#fff;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+.ab1{font-size:16px;line-height:1.45}
+.ab1 a{color:inherit;text-decoration:none}
+.ab1 .wrap{max-width:1240px;margin:0 auto;padding:0 38px}
+.ab1 .section{padding:108px 0;border-top:1px solid var(--line)}
+.ab1 .hero{padding:92px 0 110px;border-top:0}
+.ab1 .kicker{font-size:11px;line-height:1.2;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#70756f;margin-bottom:28px}
+.ab1 h1,.ab1 h2,.ab1 h3{margin:0;font-weight:400}
+.ab1 h1{font-size:86px;line-height:.96;letter-spacing:-.055em;max-width:900px}
+.ab1 h2{font-size:58px;line-height:1;letter-spacing:-.05em;max-width:900px}
+.ab1 h3{font-size:29px;line-height:1.05;letter-spacing:-.03em}
+.ab1 p{margin:0}
+.ab1 .hero-grid{display:grid;grid-template-columns:1.55fr .75fr;gap:100px;align-items:end}
+.ab1 .hero-copy{font-size:20px;line-height:1.42;color:#3e423d;max-width:720px;margin-top:34px}
+.ab1 .hero-principle{font-size:16px;font-weight:700;line-height:1.4;max-width:700px;padding-top:20px;margin-top:28px;border-top:1px solid var(--ink)}
+.ab1 .facts{border-top:2px solid var(--ink)}
+.ab1 .fact-head{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#6f746e;padding:13px 0 18px}
+.ab1 .fact{display:grid;grid-template-columns:96px 1fr;gap:18px;padding:18px 0;border-top:1px solid var(--line)}
+.ab1 .fact b{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#828781}
+.ab1 .fact span{font-size:18px;letter-spacing:-.02em}
+.ab1 .why-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:84px;align-items:start}
+.ab1 .why-copy{padding-top:4px}
+.ab1 .why-copy .lede{font-size:21px;line-height:1.44;color:#434842;max-width:520px;margin-top:28px}
+.ab1 .why-copy .body{font-size:16px;line-height:1.65;color:#5d625b;max-width:520px;margin-top:24px}
+.ab1 .video-shell{background:#11120f;color:#fff;border:1px solid #11120f}
+.ab1 .video-top{display:flex;justify-content:space-between;gap:20px;padding:16px 18px;border-bottom:1px solid #393c38;font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:#b7bbb5}
+.ab1 .video-placeholder{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#141612,#20231f)}
+.ab1 .video-placeholder:before{content:"";position:absolute;left:0;top:0;width:44%;height:8px;background:var(--yellow)}
+.ab1 .video-placeholder:after{content:"";position:absolute;right:10%;bottom:16%;width:180px;height:180px;border:1px solid #30332f;border-radius:50%}
+.ab1 .playline{position:relative;z-index:1;width:76%;border-top:1px solid #454944;border-bottom:1px solid #454944;padding:28px 0}
+.ab1 .playline small{display:block;color:#999f98;letter-spacing:.12em;text-transform:uppercase;font-size:10px;margin-bottom:10px}
+.ab1 .playline strong{display:block;font-size:32px;line-height:1.05;font-weight:400;letter-spacing:-.035em}
+.ab1 .playline span{display:block;margin-top:14px;color:#c7cbc5;font-size:13px}
+.ab1 .video-meta{display:grid;grid-template-columns:1fr auto;gap:24px;padding:18px}
+.ab1 .video-meta strong{font-size:15px}
+.ab1 .video-meta span{font-size:12px;color:#aeb3ad}
+.ab1 .yellow-bar{width:74px;height:8px;background:var(--yellow);margin-bottom:25px}
+.ab1 .method-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:64px;border-top:1px solid var(--ink)}
+.ab1 .method{padding:28px 34px 36px 0;border-right:1px solid var(--line);min-height:260px}
+.ab1 .method:nth-child(2){padding-left:34px}
+.ab1 .method:nth-child(3){padding-left:34px;border-right:0}
+.ab1 .num{font-size:12px;color:#858a84;margin-bottom:48px}
+.ab1 .method h3{margin-bottom:15px}
+.ab1 .method p{font-size:14px;line-height:1.55;color:#666b65;max-width:310px}
+.ab1 .black{background:#11120f;color:white;border-top:0}
+.ab1 .black .kicker{color:#b9bdb7}
+.ab1 .black h2{max-width:960px}
+.ab1 .principle-list{margin-top:62px;border-top:1px solid #383b37}
+.ab1 .principle-row{display:grid;grid-template-columns:70px 1fr 1.1fr;gap:34px;padding:25px 0;border-bottom:1px solid #333632;align-items:start}
+.ab1 .principle-row .n{font-size:12px;color:#757a74}
+.ab1 .principle-row h3{font-size:25px}
+.ab1 .principle-row p{color:#bfc4bd;font-size:14px;line-height:1.55;max-width:520px}
+.ab1 .work{background:var(--soft)}
+.ab1 .split{display:grid;grid-template-columns:1fr 1fr;gap:84px;align-items:start}
+.ab1 .split .lede{font-size:19px;line-height:1.5;color:#555a54;max-width:560px}
+.ab1 .work-list{margin-top:58px;border-top:1px solid var(--ink)}
+.ab1 .work-row{display:grid;grid-template-columns:68px 1fr 1.2fr .75fr;gap:30px;padding:30px 0;border-bottom:1px solid #cfd2ce;align-items:start}
+.ab1 .work-n{font-size:12px;color:#858a84}
+.ab1 .work-title{font-size:29px;line-height:1.04;letter-spacing:-.035em}
+.ab1 .work-desc{font-size:16px;line-height:1.45;color:#4f544e}
+.ab1 .work-links{font-size:12px;font-weight:700;line-height:1.85}
+.ab1 .work-links span{display:block;border-bottom:1px solid #b9bdb7;padding-bottom:5px;margin-bottom:5px}
+.ab1 .belief-grid{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:start}
+.ab1 .statement{font-size:37px;line-height:1.08;letter-spacing:-.04em;max-width:570px}
+.ab1 .statement span{background:linear-gradient(transparent 68%,var(--yellow) 0)}
+.ab1 .belief-copy{font-size:17px;line-height:1.6;color:#555a54;max-width:540px}
+.ab1 .belief-copy p+p{margin-top:18px}
+.ab1 .europe{background:var(--cream)}
+.ab1 .europe-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:90px}
+.ab1 .europe-copy{font-size:17px;line-height:1.6;color:#535850;max-width:560px}
+.ab1 .europe-copy p+p{margin-top:18px}
+.ab1 .rules{border-top:1px solid var(--ink)}
+.ab1 .rule{display:grid;grid-template-columns:34px 1fr;gap:18px;padding:19px 0;border-bottom:1px solid #d6d7cf}
+.ab1 .rule b{font-size:11px}
+.ab1 .rule strong{font-size:16px;display:block;margin-bottom:4px}
+.ab1 .rule p{font-size:13px;color:#666b65}
+.ab1 .founder-grid{display:grid;grid-template-columns:.78fr 1.22fr;gap:90px;align-items:start}
+.ab1 .founder-name{font-size:45px;line-height:1;letter-spacing:-.045em}
+.ab1 .founder-role{font-size:13px;color:#717670;margin-top:10px}
+.ab1 .founder-meta{border-top:1px solid var(--ink);margin-top:34px}
+.ab1 .founder-meta div{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:13px 0;border-bottom:1px solid var(--line);font-size:13px}
+.ab1 .founder-meta b{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7a7f79}
+.ab1 .founder-copy{font-size:18px;line-height:1.58;color:#4e534d;max-width:650px}
+.ab1 .founder-copy p+p{margin-top:20px}
+.ab1 .founder-copy strong{color:var(--ink)}
+.ab1 .final{background:#11120f;color:#fff;padding:96px 0}
+.ab1 .final-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:80px;align-items:end}
+.ab1 .final h2{font-size:60px;max-width:860px}
+.ab1 .final p{font-size:17px;color:#c5cac3;margin-top:22px;max-width:620px}
+.ab1 .actions{display:flex;gap:18px;justify-content:flex-end;flex-wrap:wrap}
+.ab1 .btn{display:inline-block;padding:15px 19px;background:var(--yellow);color:#11120f;font-size:13px;font-weight:700}
+.ab1 .btn.secondary{background:transparent;color:#fff;border:1px solid #555a54}
+@media(max-width:800px){
+.ab1 .wrap{padding:0 22px}
+.ab1 .section{padding:78px 0}
+.ab1 .hero{padding:72px 0 84px}
+.ab1 .hero-grid,.ab1 .why-grid,.ab1 .split,.ab1 .belief-grid,.ab1 .europe-grid,.ab1 .founder-grid,.ab1 .final-grid{grid-template-columns:1fr;gap:52px}
+.ab1 h1{font-size:52px}
+.ab1 h2{font-size:42px}
+.ab1 .hero-copy{font-size:18px}
+.ab1 .facts{margin-top:8px}
+.ab1 .method-grid{grid-template-columns:1fr}
+.ab1 .method,.ab1 .method:nth-child(2),.ab1 .method:nth-child(3){padding:25px 0;border-right:0;border-bottom:1px solid var(--line);min-height:0}
+.ab1 .principle-row{grid-template-columns:42px 1fr;gap:16px}
+.ab1 .principle-row p{grid-column:2}
+.ab1 .work-row{grid-template-columns:44px 1fr}
+.ab1 .work-desc,.ab1 .work-links{grid-column:2}
+.ab1 .statement{font-size:31px}
+.ab1 .founder-name{font-size:38px}
+.ab1 .final h2{font-size:46px}
+.ab1 .actions{justify-content:flex-start}
+.ab1 .video-placeholder{aspect-ratio:4/3}
+.ab1 .playline{width:82%}
+.ab1 .playline strong{font-size:27px}
+}
+/* <<< end approved /about */
+</style>
 </head>
 <body>
-
-  <nav class="site-nav">
+<nav class="site-nav">
     <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
     <div class="nav-mid" id="navMid">
       <a href="/research">Research</a>
@@ -183,136 +252,146 @@
     <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
   </nav>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="inner reveal">
-      <div class="hero-eyebrow">About yellow3 lab</div>
-      <h1>What happens when people stop operating software and start <span class="hl">directing systems?</span></h1>
-      <p class="hero-sub">yellow3 lab is an independent research and venture lab in Copenhagen, Denmark - studying how humans and increasingly autonomous systems work together.</p>
+<main class="ab1">
+  <section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker">ABOUT YELLOW3 LAB</div>
+      <h1>Useful technology starts with understanding the problem.</h1>
+      <p class="hero-copy">yellow3 lab is a Copenhagen-based emerging-technology company. We research, experiment with and build platforms designed to remove complexity, lower barriers and help businesses operate better.</p>
+      <p class="hero-principle">Technology should increase what people can accomplish. Humans remain responsible for the outcome.</p>
+    </div>
+    <aside class="facts">
+      <div class="fact-head">At a glance</div>
+      <div class="fact"><b>Based</b><span>Copenhagen, Denmark</span></div>
+      <div class="fact"><b>Founded</b><span>2024</span></div>
+      <div class="fact"><b>Work</b><span>Research, products, experiments</span></div>
+      <div class="fact"><b>Focus</b><span>AI, DPP, software creation</span></div>
+    </aside>
+  </div>
+  </section>
+
+  <section class="section">
+  <div class="wrap why-grid">
+    <div class="why-copy">
+      <div class="kicker">WHY YELLOW3 EXISTS</div>
+      <h2>Understand first. Build second.</h2>
+      <p class="lede">New technology creates extraordinary possibilities. It also creates noise, complexity and pressure to act before anyone really knows what matters.</p>
+      <p class="body">yellow3 exists to work in the gap between the two. We research what is actually changing, test what emerging technology can genuinely improve and build only when the outcome is useful enough to operate in the real world.</p>
+      <p class="body">Sometimes the result is a platform. Sometimes it is an instrument, a dataset or an experiment that teaches us something valuable. The point is not to produce more technology. The point is to make difficult things easier to understand and do.</p>
+    </div>
+    <div class="video-shell">
+      <div class="video-top"><span>Founder film</span><span>Video slot reserved</span></div>
+      <div class="video-placeholder">
+        <div class="playline"><small>Thomas Melskens · Founder</small><strong>Why I built yellow3</strong><span>AI avatar film will be added here later. No autoplay.</span></div>
+      </div>
+      <div class="video-meta"><div><strong>Founder explanation</strong><br><span>Company purpose, research discipline and human responsibility.</span></div><span>60–90 sec</span></div>
     </div>
   </div>
-
-  <!-- THE QUESTION -->
-  <section class="prose-section">
-    <div class="prose reveal">
-      <div class="section-label">The question</div>
-      <p>For most of the history of computing, software has been something people actively use. We click buttons, navigate interfaces, fill in forms, move data between systems, and manually execute workflows. Software has largely been a tool that requires continuous human operation.</p>
-      <p>We believe that is beginning to change.</p>
-      <p>Advances in artificial intelligence, automation, and digital infrastructure are making it possible for software to take on a growing share of execution. Increasingly, humans define goals, constraints, priorities, and judgment, while systems handle the work required to achieve an outcome.</p>
-      <p>This shift raises important questions.</p>
-      <ul class="qlist">
-        <li>How should these systems be designed?</li>
-        <li>What decisions should remain human?</li>
-        <li>How do organizations operate when software becomes increasingly autonomous?</li>
-        <li>How do trust, accountability, and governance evolve when execution is delegated to machines?</li>
-      </ul>
-      <p class="emph">These questions sit at the center of yellow3 lab's work.</p>
-    </div>
   </section>
 
-  <!-- WHAT WE DO -->
-  <section class="prose-section alt">
-    <div class="prose reveal">
-      <div class="section-label">What we do</div>
-      <p>yellow3 lab is an independent research and venture lab based in Copenhagen, Denmark. We research how humans and increasingly autonomous systems work together, and how that relationship is reshaping software, organizations, markets, and society.</p>
-      <p>We use emerging technology to make business less complicated.</p>
-      <p class="define">Outcome Architecture, one of our working research frameworks, describes the design of systems where humans define objectives, constraints, and judgment, while software increasingly executes the work required to achieve an outcome.</p>
-      <p>We believe this represents a fundamental shift in how digital systems are designed and how businesses operate. Just as the internet changed how information moved and cloud computing changed how software was delivered, autonomous systems are changing how work itself is performed.</p>
-      <p>Our research currently spans areas including:</p>
-      <div class="areas-grid">
-        <div class="area"><span class="an">01</span> Outcome Architecture</div>
-        <div class="area"><span class="an">02</span> Human-Direction AI</div>
-        <div class="area"><span class="an">03</span> Autonomous Software</div>
-        <div class="area"><span class="an">04</span> Digital Infrastructure</div>
-        <div class="area"><span class="an">05</span> AI-Native Markets</div>
-        <div class="area"><span class="an">06</span> Compute Sovereignty</div>
-        <div class="area"><span class="an">07</span> Organizational Futures</div>
-        <div class="area"><span class="an">08</span> Systems &amp; Society</div>
+  <section class="section soft">
+  <div class="wrap">
+    <div class="split">
+      <div><div class="kicker">HOW WE WORK</div><h2>Research. Experiment. Build.</h2></div>
+      <p class="lede">The sequence matters. We do not start with technology and search for somewhere to use it. We start with a problem, establish what is true, test the possibilities and build when the result is worth repeating.</p>
+    </div>
+    <div class="method-grid">
+      <div class="method"><div class="num">01 / RESEARCH</div><h3>Understand before we build.</h3><p>We study markets, regulation, technology and evidence so we can distinguish between what matters, what is becoming possible and what can safely be ignored.</p></div>
+      <div class="method"><div class="num">02 / EXPERIMENT</div><h3>Test what is possible.</h3><p>We prototype, connect technologies and challenge ideas. Some experiments become products. Others fail. Both can create useful knowledge.</p></div>
+      <div class="method"><div class="num">03 / BUILD</div><h3>Turn useful outcomes into platforms.</h3><p>When a problem deserves a repeatable solution, we build something businesses can operate without depending on a consulting team.</p></div>
+    </div>
+  </div>
+  </section>
+
+  <section class="section black">
+  <div class="wrap">
+    <div class="kicker">THE PRINCIPLES</div>
+    <h2>What we will not trade away for speed, hype or convenience.</h2>
+    <div class="principle-list">
+      <div class="principle-row"><div class="n">01</div><h3>Research before claims.</h3><p>If something cannot be evidenced, it should not be presented as certainty. Good products should make their assumptions and limitations visible.</p></div>
+      <div class="principle-row"><div class="n">02</div><h3>Humans remain the operators.</h3><p>Technology can execute more work. People remain responsible for objectives, constraints, judgment and material decisions.</p></div>
+      <div class="principle-row"><div class="n">03</div><h3>Build around outcomes.</h3><p>The measure is not how impressive the technology looks. The measure is whether the result makes something genuinely easier, clearer or more useful.</p></div>
+      <div class="principle-row"><div class="n">04</div><h3>Experiment because the future is not settled.</h3><p>We do not assume today's AI architecture is the destination. Research and experimentation are how we keep learning as the technology changes.</p></div>
+      <div class="principle-row"><div class="n">05</div><h3>Regulation belongs inside the product.</h3><p>Rules that shape a market should influence product design from the beginning, not appear later as a compliance patch.</p></div>
+    </div>
+  </div>
+  </section>
+
+  <section class="section work">
+  <div class="wrap">
+    <div class="split">
+      <div><div class="kicker">WHAT WE ARE BUILDING NOW</div><h2>Different problems. One operating philosophy.</h2></div>
+      <p class="lede">yellow3 is not built around one technology category. The common thread across the work is evidence, useful automation and reducing complexity for the people who have to make the decision.</p>
+    </div>
+    <div class="work-list">
+      <div class="work-row"><div class="work-n">01</div><div class="work-title">Digital Product Passports</div><div class="work-desc">Independent research and buyer-side infrastructure for organisations trying to understand requirements, evaluate providers and implement DPP programmes from evidence rather than sales claims.</div><div class="work-links"><a href="/research/digital-product-passport/suppliers"><span>DPP Supplier Register →</span></a><a href="https://buyer.yellow3.io/"><span>DPP Buyer Platform →</span></a></div></div>
+      <div class="work-row"><div class="work-n">02</div><div class="work-title">AI market intelligence</div><div class="work-desc">Original measurement and decision intelligence on model adoption, capability, economics, providers and policy, including the live Model Adoption instrument.</div><div class="work-links"><a href="/research/model-adoption"><span>Model Adoption →</span></a><a href="/platforms#model-intelligence"><span>Model Intelligence →</span></a></div></div>
+      <div class="work-row"><div class="work-n">03</div><div class="work-title">Software creation</div><div class="work-desc">naffe.ai explores a different way to build software: define the outcome, then let technology handle far more of the engineering required to turn it into a working application.</div><div class="work-links"><a href="/naffe"><span>naffe.ai →</span></a></div></div>
+    </div>
+  </div>
+  </section>
+
+  <section class="section">
+  <div class="wrap belief-grid">
+    <div><div class="kicker">LOWERING BARRIERS</div><div class="statement">Technology should give <span>more people more capability</span>, not make complexity a privilege.</div></div>
+    <div class="belief-copy">
+      <p>Starting and operating a business is already difficult. Too many useful capabilities still require specialist teams, expensive consultants or infrastructure that smaller companies cannot justify.</p>
+      <p>Emerging technology can change that. We are interested in products that let entrepreneurs and smaller businesses do work that previously required far more people, time and capital.</p>
+      <p>That is one reason yellow3 keeps experimenting. The opportunity is larger than automating existing work. It is about widening access to what can be built and operated.</p>
+    </div>
+  </div>
+  </section>
+
+  <section class="section europe">
+  <div class="wrap europe-grid">
+    <div>
+      <div class="kicker">EUROPE + RESPONSIBILITY</div>
+      <h2>Built in Europe. Engaged with the rules shaping what comes next.</h2>
+    </div>
+    <div>
+      <div class="europe-copy">
+        <p>yellow3 follows European technology, regulation and infrastructure closely, including work around Digital Product Passports and the EU AI regulatory environment.</p>
+        <p>We want regulation, evidence and sustainability to influence how products are designed while they are being built. Product transparency, circularity and better information are not separate from innovation. They are part of whether innovation is useful.</p>
       </div>
-      <p>Through essays, frameworks, field reports, and ongoing research, we seek to better understand the forces shaping this transition.</p>
-    </div>
-  </section>
-
-  <!-- RESEARCH AND PRACTICE -->
-  <section class="prose-section">
-    <div class="prose reveal">
-      <div class="section-label">Research and practice</div>
-      <p>Research is only useful if it survives contact with reality.</p>
-      <p>Alongside our research activities, yellow3 lab builds and supports companies that put these ideas into practice. These ventures serve as real-world laboratories where concepts are tested against users, markets, regulation, operational constraints, and the complexities of everyday business.</p>
-      <p>This relationship matters. Research informs practice. Practice informs research. Ideas become stronger when they are challenged by reality, and products become better when they are grounded in clear thinking.</p>
-      <p class="emph">Rather than treating research and execution as separate disciplines, we see them as part of the same process.</p>
-    </div>
-  </section>
-
-  <!-- WHY WE EXIST -->
-  <section class="prose-section alt">
-    <div class="prose reveal">
-      <div class="section-label">Why we exist</div>
-      <p>Many conversations about artificial intelligence focus on models, tools, and technology. We are more interested in the systems that emerge around them.</p>
-      <p>Technology matters, but technology alone rarely changes the world. What matters is how people use it, how organizations adapt to it, how institutions respond to it, and how new forms of work become possible because of it.</p>
-      <p>Our goal is not simply to follow technological change. Our goal is to understand how that change reshapes the structures around us.</p>
-      <p>We believe the next generation of organizations will look fundamentally different from those that came before. We believe software will increasingly move from being something people operate to something people direct. And we believe understanding that transition will be one of the defining challenges of the coming decades.</p>
-    </div>
-  </section>
-
-  <!-- CLOSING -->
-  <section class="closing-section">
-    <div class="closing reveal">We are not trying to predict the future. We are trying to understand <span class="hl">how it is being built.</span></div>
-  </section>
-
-  <!-- FOUNDER -->
-  <section class="founder">
-    <div class="inner founder-grid">
-      <div class="reveal">
-        <div class="founder-photo"><img src="/thomas.jpg" alt="Thomas Christian Melskens" /></div>
-        <div class="founder-name">Thomas Chr. Melskens</div>
-        <div class="founder-role">Founder, yellow3 lab</div>
-        <div class="founder-tags">
-          <div class="founder-tag">Copenhagen, Denmark</div>
-          <div class="founder-tag">CIRPASS-2 Consortium Member</div>
-          <div class="founder-tag">European AI Policy Contributor</div>
-        </div>
-      </div>
-      <div class="founder-bio reveal">
-        <div class="section-label">The founder</div>
-        <p>Thomas Chr. Melskens is a founder, operator, and researcher focused on how artificial intelligence is changing the relationship between humans, software, and organizations.</p>
-        <p>Over the past three decades, he has built companies, advised leadership teams, and worked across multiple industries. That experience shaped a simple observation: most business problems are not technology problems. They are decision-making problems, coordination problems, and execution problems.</p>
-        <p>Today his work focuses on understanding how increasingly autonomous systems change the way those problems are solved.</p>
-        <p>As founder of yellow3 lab, Thomas researches what happens when people move from operating software to directing systems. His work explores areas including Outcome Architecture, Human-Direction AI, Autonomous Software, Digital Infrastructure, and the future of organizations.</p>
-        <p>Alongside the lab's research, he actively builds and operates AI-native products. This provides a practical perspective that complements the research. Ideas are tested against real users, real markets, and real operational constraints rather than remaining theoretical exercises.</p>
-        <p>His interest is not in artificial intelligence as a technology category. It is in the broader question of how people, institutions, and businesses adapt as software becomes increasingly capable of execution.</p>
-        <p>The work of yellow3 lab is an extension of that question.</p>
-        <p class="emph">Not how to build better tools. But how to build better systems.</p>
+      <div class="rules" style="margin-top:30px">
+        <div class="rule"><b>01</b><div><strong>Evidence stays public where it can.</strong><p>Research instruments, methods and datasets should be inspectable rather than hidden behind marketing claims.</p></div></div>
+        <div class="rule"><b>02</b><div><strong>Sustainability is a responsibility area.</strong><p>We participate where emerging technology can improve transparency, circularity and better decisions about products and systems.</p></div></div>
+        <div class="rule"><b>03</b><div><strong>Products evolve with the rules.</strong><p>Regulation and market requirements should continuously influence platform design.</p></div></div>
       </div>
     </div>
+  </div>
   </section>
 
-  <!-- FACTS -->
-  <section class="facts">
-    <div class="inner facts-grid reveal">
-      <div class="fact"><div class="k">Founded</div><div class="v">2024</div></div>
-      <div class="fact"><div class="k">Based in</div><div class="v">Copenhagen, Denmark</div></div>
-      <div class="fact"><div class="k">Entity</div><div class="v">yellow3 ApS</div></div>
-      <div class="fact"><div class="k">Field</div><div class="v">Emerging technology, applied</div></div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta" id="contact">
-    <div class="inner cta-grid">
-      <div class="reveal">
-        <div class="cta-label">Work with yellow3</div>
-        <h2>Want to build, understand where AI really stands, or put a hard question to someone who ships?</h2>
-      </div>
-      <div class="cta-right reveal">
-        <p>Let's build what's next - together.</p>
-        <a href="#" onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;;return false;" class="btn">Start a conversation <span>&#8594;</span></a>
+  <section class="section">
+  <div class="wrap founder-grid">
+    <div>
+      <div class="kicker">FOUNDER</div>
+      <div class="founder-name">Thomas Melskens</div>
+      <div class="founder-role">Founder · yellow3 lab</div>
+      <div class="founder-meta">
+        <div><b>Experience</b><span>30+ years in technology and entrepreneurship</span></div>
+        <div><b>Based</b><span>Copenhagen, Denmark</span></div>
+        <div><b>Role</b><span>Founder, product direction, research and governance</span></div>
       </div>
     </div>
+    <div class="founder-copy">
+      <p>yellow3 is shaped by more than three decades of building and operating technology businesses. That experience created a simple filter: <strong>impressive technology is not the same thing as useful technology.</strong></p>
+      <p>The founder's role is an input into the products, not the delivery model. yellow3 is designed to build platforms and research infrastructure that can do the work without requiring the founder to become the service.</p>
+      <p>The recurring question behind the company is practical: what should technology make easier, what evidence would make the decision better, and where should people remain responsible?</p>
+    </div>
+  </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
+  <section class="final">
+  <div class="wrap final-grid">
+    <div><div class="kicker" style="color:#aeb3ad">CONTINUE</div><h2>Explore what yellow3 is researching and building.</h2><p>Research earns the trust. Products turn that understanding into something businesses can use.</p></div>
+    <div class="actions"><a class="btn" href="/platforms">Explore our platforms →</a><a class="btn secondary" href="/research">View our research →</a></div>
+  </div>
+  </section>
+</main>
+
+<footer class="site-footer">
     <div class="inner">
       <div class="foot-top">
         <div class="foot-brand">
@@ -359,18 +438,5 @@
       </div>
     </div>
   </footer>
-
-  <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 50);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08 });
-    reveals.forEach(el => observer.observe(el));
-  </script>
 </body>
 </html>
