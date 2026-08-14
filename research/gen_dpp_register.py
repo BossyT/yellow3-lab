@@ -2142,36 +2142,54 @@ def main():
     # an LLM and a sceptic with the network tab open all see. Those fallbacks
     # drifted to 183 and 187 while the register held 190. Typing them again would
     # only restart the drift, so the generator sets them.
+    # This returns "changed", "current" or "missing" rather than a bool, because
+    # the bool could not tell a total that was already right from an element
+    # that was no longer there. /research was rebuilt from an approved package
+    # whose markup carries none of the old ids, so this quietly stopped setting
+    # anything and nothing said so - the very drift the function exists to stop.
     def set_by_id(path, elem_id, value):
         try:
             txt = open(path, encoding="utf-8").read()
         except OSError:
-            return False
+            return "missing"
         pat = r'(id="%s"[^>]*>)([^<]*)(<)' % re.escape(elem_id)
-        new = re.sub(pat, lambda m: m.group(1) + str(value) + m.group(3), txt, count=1)
-        if new != txt:
-            open(path, "w", encoding="utf-8").write(new)
-            return True
-        return False
+        new, hits = re.subn(pat, lambda m: m.group(1) + str(value) + m.group(3),
+                            txt, count=1)
+        if not hits:
+            return "missing"
+        if new == txt:
+            return "current"
+        open(path, "w", encoding="utf-8").write(new)
+        return "changed"
 
     ROOT = os.path.dirname(HERE)
     detail = f"{counts['commercial_suppliers']} commercial suppliers, {counts['countries']} countries"
     fixed = 0
+    absent = []
     for path, elem, val in (
-        (os.path.join(ROOT, "research.html"), "ds-n", counts["organisations"]),
-        (os.path.join(ROOT, "research.html"), "ds-c",
-         f"organisations \u00b7 {counts['commercial_suppliers']} commercial suppliers "
-         f"\u00b7 {counts['countries']} countries"),
+        # /research V1 states the three register totals as separate rows, so it
+        # carries three ids where the old page carried a number and a caption.
+        (os.path.join(ROOT, "research.html"), "rsOrgs", counts["organisations"]),
+        (os.path.join(ROOT, "research.html"), "rsComm", counts["commercial_suppliers"]),
+        (os.path.join(ROOT, "research.html"), "rsCountries", counts["countries"]),
         (os.path.join(HERE, "digital-product-passport.html"), "regCount", counts["organisations"]),
         (os.path.join(HERE, "digital-product-passport.html"), "regDetail", detail),
         (os.path.join(HERE, "digital-product-passport.html"), "htOrgs", counts["organisations"]),
         (os.path.join(HERE, "digital-product-passport.html"), "htComm", counts["commercial_suppliers"]),
         (os.path.join(HERE, "digital-product-passport.html"), "htCountries", counts["countries"]),
     ):
-        if set_by_id(path, elem, val):
+        state = set_by_id(path, elem, val)
+        if state == "changed":
             fixed += 1
+        elif state == "missing":
+            absent.append(f"{os.path.basename(path)}#{elem}")
     if fixed:
         print(f"static totals refreshed      {fixed} element(s) on the quoting pages")
+    if absent:
+        raise SystemExit(
+            "a page that quotes the register no longer carries the element the\n"
+            "generator sets, so its total would drift unnoticed: "
+            + ", ".join(absent))
 
     src_path = os.path.join(HERE, "dpp-suppliers.json")
     doc = json.load(open(src_path, encoding="utf-8"))
