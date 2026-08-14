@@ -1,195 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><head>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>yellow3 lab - emerging technology, measured and applied - Copenhagen</title>
-  <meta name="description" content="yellow3 lab uses emerging technology to make business less complicated. Independent research on AI adoption and Digital Product Passport readiness, published as live instruments, and the platforms built from it. Copenhagen, Denmark." />
+  <title>yellow3 lab | AI, Digital Product Passports &amp; Emerging Technology</title>
+  <meta name="description" content="yellow3 lab researches, experiments with and builds emerging-technology platforms for Digital Product Passports, AI market intelligence and software creation." />
   <link rel="canonical" href="https://www.yellow3.io/" />
   <link rel="alternate" type="application/rss+xml" title="yellow3 lab - Insights" href="/feed.xml" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --paper: #ffffff;
-      --ink: #0e0e0e;
-      --ink-soft: #1a1a1a;
-      --body: #4b4b4b;
-      --muted: #8a8a8a;
-      --line: #e7e6e2;
-      --yellow: #ffe000;
-      --panel: #f7f6f3;
-    }
-    html { scroll-behavior: smooth; }
-    body { background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; font-weight: 400; line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
-    img { display: block; max-width: 100%; }
-    .inner { max-width: 1240px; margin: 0 auto; }
-    .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-    .hl { background: var(--yellow); color: var(--ink); padding: 0.02em 0.1em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
-
-    /* BUTTONS */
-    .btn { display: inline-flex; align-items: center; gap: 12px; padding: 15px 26px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--ink); transition: background 0.2s, color 0.2s; cursor: pointer; }
-    .btn-dark { background: var(--ink); color: #fff; }
-    .btn-dark:hover { background: #000; }
-    .btn-outline { background: transparent; color: var(--ink); }
-    .btn-outline:hover { background: var(--ink); color: #fff; }
-    .btn-yellow { background: var(--yellow); color: var(--ink); border-color: var(--yellow); }
-    .btn-yellow:hover { background: #ffd400; }
-    .btn .arr { font-size: 14px; line-height: 1; }
-
-    /* NAV */
-    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
-    .brand { display: flex; align-items: baseline; gap: 7px; text-decoration: none; }
-    .brand img { height: 21px; align-self: center; }
-    .brand .lab { font-weight: 600; font-size: 15px; color: var(--ink); letter-spacing: -0.01em; }
-    .nav-mid { display: flex; gap: 32px; }
-    .nav-mid a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #3a3a3a; text-decoration: none; font-weight: 500; padding-bottom: 3px; transition: color 0.2s; }
-    .nav-mid a:hover { color: var(--ink); }
-    .nav-mid a.active { border-bottom: 2px solid var(--ink); color: var(--ink); }
-    .nav-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: #fff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 20px; text-decoration: none; transition: background 0.2s; }
-    .nav-cta:hover { background: #000; }
-    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
-    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
-
-    /* HERO */
-    .hero { padding: 152px 48px 88px; }
-    .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 64px; align-items: center; }
-    .hero-tag { display: inline-block; background: var(--yellow); color: var(--ink); font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; padding: 7px 13px; margin-bottom: 30px; }
-    .hero h1 { font-size: clamp(40px, 5.4vw, 72px); font-weight: 400; line-height: 1.04; letter-spacing: -0.055em; color: var(--ink); margin-bottom: 28px; }
-    .hero-sub { font-size: 17px; color: var(--body); max-width: 430px; margin-bottom: 36px; line-height: 1.6; }
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-    .hero-photo { position: relative; aspect-ratio: 5/4; background: linear-gradient(135deg, #2a2a2c 0%, #4a4a4d 40%, #1d1d1f 100%); overflow: hidden; }
-    .hero-photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
-    .hero-photo-note { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.3); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; }
-    .hero-badge { position: absolute; right: 0; bottom: 0; background: var(--yellow); padding: 26px 28px; max-width: 220px; }
-    .hero-badge .bl { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px solid rgba(0,0,0,0.25); }
-    .hero-badge p { font-size: 17px; font-weight: 600; line-height: 1.3; color: var(--ink); }
-
-    /* BELIEF */
-    .belief { padding: 84px 48px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    .belief-grid { display: grid; grid-template-columns: 44px 1.3fr 1fr; gap: 56px; align-items: start; }
-    .belief-rail { position: relative; height: 100%; }
-    .belief-rail span { position: absolute; top: 6px; left: 0; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-    .belief-rail::before { content: ""; position: absolute; left: 22px; top: 0; bottom: 0; width: 1px; background: var(--line); }
-    .belief h2 { font-size: clamp(28px, 3.4vw, 46px); font-weight: 400; line-height: 1.1; letter-spacing: -0.05em; color: var(--ink); }
-    .belief-text { font-size: 17px; color: var(--body); line-height: 1.65; padding-top: 8px; }
-
-    /* BUILD GRID (5 col, dividers) */
-    section.block { padding: 96px 48px; border-bottom: 1px solid var(--line); }
-    .block-head { margin-bottom: 52px; }
-    .grid5 { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); }
-    .grid5 > .cell { padding: 36px 26px 32px; border-right: 1px solid var(--line); }
-    .grid5 > .cell:first-child { padding-left: 0; }
-    .grid5 > .cell:last-child { border-right: none; padding-right: 0; }
-    .cell-icon { width: 30px; height: 30px; color: var(--ink); margin-bottom: 28px; }
-    .cell h3 { font-size: 17px; font-weight: 700; line-height: 1.25; color: var(--ink); margin-bottom: 14px; }
-    .cell p { font-size: 14px; color: var(--body); line-height: 1.6; margin-bottom: 22px; }
-    .cell-arr { font-size: 16px; color: var(--ink); }
-
-    /* NAFFE BLACK BAND */
-    .naffe { background: #0e0e0e; color: #fff; padding: 96px 48px; }
-    .naffe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
-    .naffe-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); font-weight: 600; margin-bottom: 26px; }
-    .naffe-word { font-size: clamp(48px, 6.4vw, 88px); font-weight: 400; letter-spacing: -0.055em; line-height: 1; margin-bottom: 24px; }
-    .naffe-word .dot { color: var(--yellow); }
-    .naffe-lede { font-size: 19px; font-weight: 600; color: #fff; margin-bottom: 16px; line-height: 1.35; }
-    .naffe p.body { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.6; max-width: 420px; margin-bottom: 32px; }
-    /* flow diagram */
-    .flow { display: grid; gap: 12px; }
-    .flow-row { display: grid; grid-template-columns: 110px 1fr; gap: 18px; align-items: center; }
-    .flow-key { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); font-weight: 600; }
-    .flow-box { background: #1a1a1a; border: 1px solid #2e2e2e; border-radius: 6px; padding: 16px 18px; font-size: 14px; color: #fff; }
-    .flow-cells { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .flow-cells .flow-box { font-size: 13px; padding: 13px 14px; }
-    .flow-box.out { border-color: var(--yellow); display: flex; align-items: center; justify-content: space-between; gap: 14px; font-weight: 600; }
-    .flow-check { width: 22px; height: 22px; border-radius: 50%; background: var(--yellow); color: #0e0e0e; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
-    .flow-conn { grid-column: 2; justify-self: start; margin-left: 8px; color: rgba(255,255,255,0.35); font-size: 14px; line-height: 1; }
-
-    /* RESEARCH AREAS (5 col, no icons) */
-    .grid5.areas > .cell { padding-top: 30px; }
-    .areas .cell h3 { margin-bottom: 12px; }
-
-    /* INSIGHTS */
-    .insights { padding: 96px 48px; border-bottom: 1px solid var(--line); }
-    .insights-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 44px; }
-    .view-all { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #3a3a3a; text-decoration: none; font-weight: 600; transition: color 0.2s; }
-    .view-all:hover { color: var(--ink); }
-    .insights-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; }
-    .insight-card { text-decoration: none; display: block; }
-    .insight-hero { width: 100%; aspect-ratio: 4/3; object-fit: cover; filter: grayscale(1); margin-bottom: 18px; transition: filter 0.3s; }
-    .insight-card:hover .insight-hero { filter: grayscale(0); }
-    .insight-issue { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 10px; }
-    .insight-card h3 { font-size: 16px; font-weight: 700; line-height: 1.28; color: var(--ink); margin-bottom: 14px; }
-    .insight-card p { display: none; }
-    .insight-read { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); font-weight: 600; }
-    .insight-read::after { content: " \2192"; }
-
-    /* CTA YELLOW BAND */
-    .cta { background: var(--yellow); padding: 72px 48px; }
-    .cta-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; }
-    .cta-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(0,0,0,0.55); font-weight: 700; margin-bottom: 22px; }
-    .cta h2 { font-size: clamp(26px, 3vw, 42px); font-weight: 400; line-height: 1.12; letter-spacing: -0.05em; color: var(--ink); }
-    .cta-right { border-left: 1px solid rgba(0,0,0,0.18); padding-left: 48px; }
-    .cta-right p { font-size: 18px; color: var(--ink); margin-bottom: 26px; line-height: 1.4; }
-
-    /* FOOTER */
-    .site-footer { background: #0e0e0e; color: #fff; padding: 72px 48px 36px; }
-    .foot-top { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr) 1.2fr; gap: 40px; padding-bottom: 56px; border-bottom: 1px solid #262626; }
-    .foot-brand img { height: 22px; filter: invert(1); margin-bottom: 18px; }
-    .foot-brand .fb-lab { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); font-weight: 600; margin-bottom: 10px; }
-    .foot-brand p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.5; max-width: 220px; }
-    .foot-col h4 { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 18px; }
-    .foot-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.72); text-decoration: none; margin-bottom: 11px; transition: color 0.2s; }
-    .foot-col a:hover { color: #fff; }
-    .foot-contact h4 { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 18px; }
-    .foot-contact a.mail { font-size: 14px; color: #fff; text-decoration: none; display: block; margin-bottom: 10px; }
-    .foot-contact .loc { font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 18px; }
-    .foot-social { display: flex; gap: 14px; }
-    .foot-social a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
-    .foot-social a:hover { color: #fff; }
-    .foot-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; flex-wrap: wrap; gap: 16px; }
-    .foot-bottom .copy { font-size: 12px; color: rgba(255,255,255,0.4); }
-    .foot-legal { display: flex; gap: 24px; }
-    .foot-legal a { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
-    .foot-legal a:hover { color: #fff; }
-
-    /* REVEAL */
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* RESPONSIVE */
-    @media (max-width: 1000px) {
-      .grid5, .insights-grid { grid-template-columns: repeat(2, 1fr); }
-      .grid5 > .cell { border-bottom: 1px solid var(--line); }
-      .grid5 > .cell:nth-child(2n) { border-right: none; }
-      .grid5 > .cell:first-child, .grid5 > .cell:last-child { padding-left: 26px; padding-right: 26px; }
-    }
-    @media (max-width: 880px) {
-      .site-nav { padding: 14px 24px; }
-      .nav-mid { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--line); flex-direction: column; gap: 0; padding: 12px 24px 20px; }
-      .nav-mid.open { display: flex; }
-      .nav-mid a { padding: 12px 0; }
-      .nav-cta { display: none; }
-      .nav-toggle { display: block; }
-      .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
-      .nav-toggle.open span:nth-child(2) { opacity: 0; }
-      .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
-      .hero, .belief, section.block, .naffe, .insights, .cta { padding-left: 24px; padding-right: 24px; }
-      .hero { padding-top: 120px; }
-      .hero-grid, .belief-grid, .naffe-grid, .cta-grid { grid-template-columns: 1fr; gap: 40px; }
-      .belief-rail { display: none; }
-      .cta-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(0,0,0,0.18); padding-top: 32px; }
-      .foot-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-      .site-footer { padding: 56px 24px 32px; }
-    }
-    @media (max-width: 560px) {
-      .grid5, .insights-grid, .foot-top { grid-template-columns: 1fr; }
-      .grid5 > .cell { border-right: none; padding-left: 0; padding-right: 0; }
-      .grid5 > .cell:first-child, .grid5 > .cell:last-child { padding-left: 0; padding-right: 0; }
-      .flow-row { grid-template-columns: 1fr; gap: 8px; }
-      .hero-badge { position: static; max-width: none; }
-    }
-  </style>
+  
 
   <!-- OG / Social sharing -->
   <meta property="og:image" content="/og/og-homepage-v2.png" />
@@ -212,7 +31,7 @@
     "legalName": "yellow3 ApS",
     "url": "https://www.yellow3.io",
     "logo": "https://www.yellow3.io/logo.png",
-    "description": "yellow3 lab uses emerging technology to make business less complicated. An independent research lab in Copenhagen: we measure what is actually happening in emerging technology and regulation, publish the numbers as live instruments, and build platforms where the research shows software can remove the complexity.",
+    "description": "yellow3 lab is a Copenhagen-based emerging-technology company that researches, experiments with and builds platforms designed to make complex business problems easier to understand and operate.",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Hovedgaden 43",
@@ -275,11 +94,283 @@
     }
   }
   </script>
+
+<style>
+/* ---------------------------------------------------------------------------
+   The production shell: nav, footer, page frame. Unchanged, and deliberately
+   separated from the content styles below - the homepage content was replaced
+   wholesale by the approved V3 package, and the rules that styled the previous
+   markup went with it rather than lingering to collide.
+   --------------------------------------------------------------------------- */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --paper: #ffffff;
+      --ink: #0e0e0e;
+      --ink-soft: #1a1a1a;
+      --body: #4b4b4b;
+      --muted: #8a8a8a;
+      --line: #e7e6e2;
+      --yellow: #ffe000;
+      --panel: #f7f6f3;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body { background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; font-weight: 400; line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+
+    /* NAV */
+    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+
+    .brand { display: flex; align-items: baseline; gap: 7px; text-decoration: none; }
+
+    .brand img { height: 21px; align-self: center; }
+
+    .brand .lab { font-weight: 600; font-size: 15px; color: var(--ink); letter-spacing: -0.01em; }
+
+    .nav-mid { display: flex; gap: 32px; }
+
+    .nav-mid a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #3a3a3a; text-decoration: none; font-weight: 500; padding-bottom: 3px; transition: color 0.2s; }
+
+    .nav-mid a:hover { color: var(--ink); }
+
+    .nav-mid a.active { border-bottom: 2px solid var(--ink); color: var(--ink); }
+
+    .nav-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: #fff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 20px; text-decoration: none; transition: background 0.2s; }
+
+    .nav-cta:hover { background: #000; }
+
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
+
+
+    /* FOOTER */
+    .site-footer { background: #0e0e0e; color: #fff; padding: 72px 48px 36px; }
+
+    .foot-top { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr) 1.2fr; gap: 40px; padding-bottom: 56px; border-bottom: 1px solid #262626; }
+
+    .foot-brand img { height: 22px; filter: invert(1); margin-bottom: 18px; }
+
+    .foot-brand .fb-lab { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); font-weight: 600; margin-bottom: 10px; }
+
+    .foot-brand p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.5; max-width: 220px; }
+
+    .foot-col h4 { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 18px; }
+
+    .foot-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.72); text-decoration: none; margin-bottom: 11px; transition: color 0.2s; }
+
+    .foot-col a:hover { color: #fff; }
+
+    .foot-contact h4 { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; margin-bottom: 18px; }
+
+    .foot-contact a.mail { font-size: 14px; color: #fff; text-decoration: none; display: block; margin-bottom: 10px; }
+
+    .foot-contact .loc { font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 18px; }
+
+    .foot-social { display: flex; gap: 14px; }
+
+    .foot-social a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+
+    .foot-social a:hover { color: #fff; }
+
+    .foot-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; flex-wrap: wrap; gap: 16px; }
+
+    .foot-bottom .copy { font-size: 12px; color: rgba(255,255,255,0.4); }
+
+    .foot-legal { display: flex; gap: 24px; }
+
+    .foot-legal a { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+
+    .foot-legal a:hover { color: #fff; }
+
+      .site-nav { padding: 14px 24px; }
+
+      .nav-mid { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--line); flex-direction: column; gap: 0; padding: 12px 24px 20px; }
+
+      .nav-mid.open { display: flex; }
+
+      .nav-mid a { padding: 12px 0; }
+
+      .nav-cta { display: none; }
+
+      .nav-toggle { display: block; }
+
+      .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+
+      .nav-toggle.open span:nth-child(2) { opacity: 0; }
+
+      .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+      .foot-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+
+      .site-footer { padding: 56px 24px 32px; }
+
+      .grid5, .insights-grid, .foot-top { grid-template-columns: 1fr; }
+
+/* ---------------------------------------------------------------------------
+   APPROVED HOMEPAGE V3, ported class-for-class from
+   APPROVED_HOMEPAGE_CONTENT_V3.html. Every selector is scoped under .hp3: the
+   package styles bare names - .section, .wrap, h1, .btn - and so does the rest
+   of this site. Values are the approved values; the scoping is the only change.
+   --------------------------------------------------------------------------- */
+.hp3 {
+  --ink:#11120f; --muted:#666b67; --line:#d9dcd8; --soft:#f2f3f0;
+  --yellow:#ffd500; --cream:#fffdf2;
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+  background: #fff;
+}
+.hp3 *, .hp3 *::before, .hp3 *::after { box-sizing: border-box; }
+.hp3 a { color: inherit; text-decoration: none; }
+.hp3 img { max-width: 100%; }
+.hp3 body{font-size:16px;line-height:1.45}
+.hp3 a{color:inherit;text-decoration:none}
+.hp3 .wrap{max-width:1240px;margin:0 auto;padding:0 38px}
+.hp3 .section{padding:110px 0;border-top:1px solid var(--line)}
+.hp3 .hero{padding:92px 0 108px;border-top:0}
+.hp3 .kicker{font-size:11px;line-height:1.2;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#737872;margin-bottom:28px}
+.hp3 h1, .hp3 h2, .hp3 h3{margin:0;font-weight:400}
+.hp3 h1{font-size:88px;line-height:.96;letter-spacing:-.055em;max-width:880px}
+.hp3 h2{font-size:58px;line-height:1;letter-spacing:-.05em;max-width:850px}
+.hp3 h3{font-size:30px;line-height:1.05;letter-spacing:-.03em}
+.hp3 p{margin:0}
+.hp3 .hero-grid{display:grid;grid-template-columns:2fr 1fr;gap:96px;align-items:end}
+.hp3 .hero-copy{max-width:760px;margin-top:34px;font-size:20px;line-height:1.38;color:#343733}
+.hp3 .hero-principle{max-width:730px;margin-top:26px;padding-top:20px;border-top:1px solid var(--ink);font-size:16px;line-height:1.4;font-weight:700}
+.hp3 .actions{display:flex;gap:24px;margin-top:34px;align-items:center}
+.hp3 .btn{display:inline-block;padding:15px 19px;background:var(--ink);color:white;font-size:13px;font-weight:700;letter-spacing:.01em}
+.hp3 .link{font-size:13px;font-weight:700;border-bottom:1px solid var(--ink);padding-bottom:4px}
+.hp3 .index{border-top:2px solid var(--ink)}
+.hp3 .index-head{padding:13px 0 18px;font-size:11px;letter-spacing:.18em;font-weight:700;color:#666;text-transform:uppercase}
+.hp3 .index-row{display:grid;grid-template-columns:42px 1fr;gap:12px;padding:18px 0;border-top:1px solid var(--line);align-items:start}
+.hp3 .index-num{font-size:12px;color:#858a84}
+.hp3 .index-title{font-size:20px;letter-spacing:-.02em}
+.hp3 .index-sub{font-size:13px;color:#70756f;margin-top:4px}
+.hp3 .yellow-rule{width:76px;height:8px;background:var(--yellow);margin-bottom:26px}
+.hp3 .split-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-bottom:70px;align-items:start}
+.hp3 .lede{font-size:20px;line-height:1.4;color:#454944;max-width:550px}
+.hp3 .method-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink)}
+.hp3 .method{padding:28px 36px 36px 0;border-right:1px solid var(--line);min-height:240px}
+.hp3 .method:nth-child(2){padding-left:36px}
+.hp3 .method:nth-child(3){padding-left:36px;border-right:0}
+.hp3 .num{font-size:12px;color:#8a8e88;margin-bottom:50px}
+.hp3 .method h3{margin-bottom:18px}
+.hp3 .method p{color:#60645e;max-width:300px}
+.hp3 .soft{background:var(--soft)}
+.hp3 .work-list{margin-top:60px;border-top:1px solid var(--ink)}
+.hp3 .work-row{display:grid;grid-template-columns:70px 1.05fr 1.1fr .75fr;gap:32px;padding:34px 0;border-bottom:1px solid #cfd2ce;align-items:start}
+.hp3 .work-n{font-size:12px;color:#868a84}
+.hp3 .work-title{font-size:31px;line-height:1.03;letter-spacing:-.035em}
+.hp3 .work-why{font-size:18px;line-height:1.35}
+.hp3 .work-links{font-size:13px;line-height:1.9;font-weight:700}
+.hp3 .work-links span{display:block;border-bottom:1px solid #b8bbb7;padding-bottom:6px;margin-bottom:6px}
+.hp3 .evidence-head{display:grid;grid-template-columns:1.2fr .8fr;gap:80px;align-items:end}
+.hp3 .evidence-head p{font-size:18px;color:#545852;max-width:480px}
+.hp3 .evidence-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:60px;border-top:1px solid var(--ink)}
+.hp3 .evidence-item{padding:28px 28px 32px 0;border-right:1px solid var(--line);min-height:270px}
+.hp3 .evidence-item:nth-child(2){padding-left:28px}
+.hp3 .evidence-item:nth-child(3){padding-left:28px;border-right:0}
+.hp3 .metric{font-size:56px;line-height:1;letter-spacing:-.055em;margin:28px 0 18px}
+.hp3 .evidence-item h3{font-size:24px;margin-bottom:10px}
+.hp3 .evidence-item p{color:#666b65;font-size:14px;max-width:310px}
+.hp3 .product-proof{background:#fff}
+.hp3 .product-proof-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:72px;align-items:start;margin-top:56px}
+.hp3 .product-proof-copy{padding-top:8px}
+.hp3 .product-proof-title{font-size:48px;line-height:1.01;letter-spacing:-.045em;margin:12px 0 22px;font-weight:400}
+.hp3 .product-proof-lede{font-size:19px;line-height:1.48;color:#4e534e;max-width:470px}
+.hp3 .product-proof-points{margin-top:34px;border-top:1px solid var(--ink)}
+.hp3 .product-proof-point{display:grid;grid-template-columns:34px 1fr;gap:16px;padding:17px 0;border-bottom:1px solid var(--line)}
+.hp3 .product-proof-point b{font-size:11px;color:#858a84}
+.hp3 .product-proof-point strong{font-size:15px;display:block;margin-bottom:4px}
+.hp3 .product-proof-point p{font-size:13px;color:#6a6f69}
+.hp3 .product-proof-frame{border:1px solid #bfc3be;background:#fff;padding:10px;box-shadow:0 18px 44px rgba(17,18,15,.05);overflow:hidden}
+.hp3 .product-proof-frame img{display:block;width:100%;height:auto}
+.hp3 .product-proof-caption{display:flex;justify-content:space-between;gap:20px;padding:12px 2px 0;font-size:11px;color:#747a74}
+.hp3 .product-proof-caption strong{color:#20231f}
+.hp3 .flagship{background:#fff}
+.hp3 .flagship-grid{display:grid;grid-template-columns:.76fr 1.24fr;gap:72px;align-items:start;margin-top:56px}
+.hp3 .flagship-copy{padding-top:8px}
+.hp3 .flagship-title{font-size:48px;line-height:1.01;letter-spacing:-.045em;margin:12px 0 22px;font-weight:400}
+.hp3 .flagship-lede{font-size:19px;line-height:1.48;color:#4e534e;max-width:470px}
+.hp3 .flagship-points{margin-top:34px;border-top:1px solid var(--ink)}
+.hp3 .flagship-point{display:grid;grid-template-columns:34px 1fr;gap:16px;padding:17px 0;border-bottom:1px solid var(--line)}
+.hp3 .flagship-point b{font-size:11px;color:#858a84}
+.hp3 .flagship-point strong{font-size:15px;display:block;margin-bottom:4px}
+.hp3 .flagship-point p{font-size:13px;color:#6a6f69}
+.hp3 .flagship-frame{border:1px solid #bfc3be;background:#fff;padding:10px;box-shadow:0 18px 44px rgba(17,18,15,.05)}
+.hp3 .flagship-frame img{display:block;width:100%;height:auto}
+.hp3 .flagship-caption{display:flex;justify-content:space-between;gap:20px;padding:12px 2px 0;font-size:11px;color:#747a74}
+.hp3 .flagship-caption strong{color:#20231f}
+.hp3 .instrument-strip{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);margin-top:64px}
+.hp3 .instrument{padding:24px 28px 26px 0;border-right:1px solid var(--line)}
+.hp3 .instrument:nth-child(2){padding-left:28px}
+.hp3 .instrument:nth-child(3){padding-left:28px;border-right:0}
+.hp3 .instrument .num{margin-bottom:28px}
+.hp3 .instrument h3{font-size:23px;margin-bottom:10px}
+.hp3 .instrument p{font-size:13px;color:#666b65;max-width:315px}
+.hp3 .instrument a{font-size:12px;font-weight:700;display:inline-block;margin-top:18px;border-bottom:1px solid var(--ink);padding-bottom:3px}
+.hp3 .black{background:#11120f;color:#fff;border-top:0}
+.hp3 .black .kicker{color:#b9bdb7}
+.hp3 .black h2{max-width:950px}
+.hp3 .black .bigline{font-size:27px;line-height:1.25;margin-top:44px;max-width:870px;color:#e5e7e3}
+.hp3 .black .bigline strong{color:var(--yellow);font-weight:400}
+.hp3 .principles{display:grid;grid-template-columns:repeat(3,1fr);margin-top:70px;border-top:1px solid #383b37}
+.hp3 .principle{padding:28px 32px 20px 0;border-right:1px solid #333632;min-height:245px}
+.hp3 .principle:nth-child(2){padding-left:32px}
+.hp3 .principle:nth-child(3){padding-left:32px;border-right:0}
+.hp3 .principle .num{color:#777d76;margin-bottom:42px}
+.hp3 .principle h3{font-size:24px;margin-bottom:12px}
+.hp3 .principle p{color:#bfc3bc;font-size:14px;line-height:1.5}
+.hp3 .lower-grid{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:start}
+.hp3 .statement{font-size:28px;line-height:1.18;letter-spacing:-.025em;margin-top:34px;max-width:520px}
+.hp3 .detail{font-size:17px;color:#565b55;line-height:1.55;margin-top:26px;max-width:520px}
+.hp3 .rule-list{border-top:1px solid var(--ink);margin-top:8px}
+.hp3 .rule{display:grid;grid-template-columns:34px 1fr;gap:18px;padding:20px 0;border-bottom:1px solid var(--line)}
+.hp3 .rule b{font-size:12px}
+.hp3 .rule strong{font-size:17px;display:block;margin-bottom:5px}
+.hp3 .rule p{font-size:13px;color:#6b7069}
+.hp3 .future{background:var(--cream)}
+.hp3 .quote{font-size:46px;line-height:1.03;letter-spacing:-.045em;max-width:980px;margin-top:34px}
+.hp3 .quote span{background:linear-gradient(transparent 65%, var(--yellow) 0)}
+.hp3 .future-grid{display:grid;grid-template-columns:1fr 1fr;gap:90px;margin-top:62px}
+.hp3 .future-grid p{font-size:17px;line-height:1.55;color:#565b55}
+.hp3 .insight-list{margin-top:56px;border-top:1px solid var(--ink)}
+.hp3 .insight{display:grid;grid-template-columns:105px 1fr 150px;gap:24px;padding:22px 0;border-bottom:1px solid var(--line);align-items:center}
+.hp3 .issue{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#777}
+.hp3 .insight-title{font-size:22px;letter-spacing:-.02em}
+.hp3 .read{font-size:12px;text-align:right;font-weight:700}
+.hp3 .final{padding:100px 0;background:#11120f;color:white}
+.hp3 .final-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:80px;align-items:end}
+.hp3 .final h2{font-size:60px;max-width:850px}
+.hp3 .final p{margin-top:24px;font-size:18px;color:#c7cbc5;max-width:650px}
+.hp3 .final .btn{background:var(--yellow);color:#11120f;padding:16px 20px}
+.hp3 .wrap{padding:0 22px}
+.hp3 .hero-grid, .hp3 .split-intro, .hp3 .evidence-head, .hp3 .lower-grid, .hp3 .future-grid, .hp3 .final-grid, .hp3 .flagship-grid, .hp3 .product-proof-grid{grid-template-columns:1fr}
+.hp3 .hero-grid{gap:55px}
+.hp3 h1{font-size:52px}
+.hp3 h2{font-size:42px}
+.hp3 .method-grid, .hp3 .evidence-grid, .hp3 .principles, .hp3 .instrument-strip{grid-template-columns:1fr}
+.hp3 .method, .hp3 .method:nth-child(2), .hp3 .method:nth-child(3), .hp3 .evidence-item, .hp3 .evidence-item:nth-child(2), .hp3 .evidence-item:nth-child(3), .hp3 .principle, .hp3 .principle:nth-child(2), .hp3 .principle:nth-child(3){padding:26px 0;border-right:0;border-bottom:1px solid var(--line)}
+.hp3 .instrument, .hp3 .instrument:nth-child(2), .hp3 .instrument:nth-child(3){padding:24px 0;border-right:0;border-bottom:1px solid var(--line)}
+.hp3 .flagship-title, .hp3 .product-proof-title{font-size:38px}
+.hp3 .flagship-grid, .hp3 .product-proof-grid{gap:40px}
+.hp3 .flagship-frame, .hp3 .product-proof-frame{padding:6px}
+.hp3 .flagship-caption, .hp3 .product-proof-caption{display:block;line-height:1.45}
+.hp3 .work-row{grid-template-columns:44px 1fr}
+.hp3 .work-why, .hp3 .work-links{grid-column:2}
+.hp3 .quote{font-size:35px}
+.hp3 .insight{grid-template-columns:90px 1fr}
+.hp3 .read{display:none}
+.hp3 .section{padding:78px 0}
+</style>
 </head>
 <body>
-
-  <!-- NAV -->
-  <nav class="site-nav">
+<nav class="site-nav">
     <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
     <div class="nav-mid" id="navMid">
       <a href="/research">Research</a>
@@ -293,208 +384,181 @@
     <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
   </nav>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="inner hero-grid">
-      <div class="reveal">
-        <span class="hero-tag">Copenhagen AI Lab</span>
-        <h1>We use emerging technology to make business <span class="hl">less complicated.</span></h1>
-        <p class="hero-sub">yellow3 lab is a Copenhagen research lab. We measure what is actually happening in emerging technology and regulation, publish the numbers, and build platforms where the research shows software can remove the complexity.</p>
-        <div class="hero-actions">
-          <a href="/platforms" class="btn btn-dark">Explore our platforms <span class="arr">&#8594;</span></a>
-          <a href="/insights/" class="btn btn-outline">Read insights</a>
-        </div>
-      </div>
-      <div class="hero-photo reveal">
-        <img src="/img/hero-architecture.jpg" alt="Concrete stairs ascending toward light" />
-        <div class="hero-badge">
-          <div class="bl">Based in Copenhagen</div>
-          <p>Building outcome infrastructure for the AI era.</p>
-        </div>
-      </div>
-    </div>
+<main class="hp3">
+<main>
+<section class="hero">
+<div class="wrap hero-grid">
+  <div>
+    <div class="kicker">AI + EMERGING TECHNOLOGY</div>
+    <div class="yellow-rule"></div>
+    <h1>We use emerging technology to make business less complicated.</h1>
+    <p class="hero-copy">yellow3 lab researches, experiments with and builds platforms that remove complexity, lower barriers and help businesses operate better.</p>
+    <p class="hero-principle">Technology should increase what people can accomplish. Humans remain responsible for the outcome.</p>
+    <div class="actions"><a class="btn">Explore our platforms →</a><a class="link">View our research →</a></div>
   </div>
+  <aside class="index">
+    <div class="index-head">What we work on</div>
+    <div class="index-row"><div class="index-num">01</div><div><div class="index-title">Digital Product Passports</div><div class="index-sub">Evidence and decision infrastructure for buyers.</div></div></div>
+    <div class="index-row"><div class="index-num">02</div><div><div class="index-title">AI market intelligence</div><div class="index-sub">Measure what is changing before acting on it.</div></div></div>
+    <div class="index-row"><div class="index-num">03</div><div><div class="index-title">Software creation</div><div class="index-sub">Turn a defined outcome into working software.</div></div></div>
+  </aside>
+</div>
+</section>
 
-  <!-- BELIEF -->
-  <section class="belief" id="about">
-    <div class="inner belief-grid">
-      <div class="belief-rail"><span>Our belief</span></div>
-      <h2 class="reveal">The future is not prompt-based. It is <span class="hl">outcome-based.</span></h2>
-      <p class="belief-text reveal">People should not operate tools forever. They should define what matters, make the judgment calls, and let intelligent systems execute.</p>
+<section class="section">
+<div class="wrap">
+  <div class="split-intro">
+    <div><div class="kicker">HOW WE WORK</div><h2>Research first. Build when it helps.</h2></div>
+    <p class="lede">We do not begin with a product category. We begin with a problem worth understanding, establish what is true, test what technology can change and build only when the outcome is useful enough to repeat.</p>
+  </div>
+  <div class="method-grid">
+    <div class="method"><div class="num">01 / RESEARCH</div><h3>Understand before we build.</h3><p>Markets, regulation, technology and evidence come first. Research is how we separate signal from noise.</p></div>
+    <div class="method"><div class="num">02 / EXPERIMENT</div><h3>Test what technology can actually change.</h3><p>We prototype, connect technologies and challenge ideas. Some experiments become products. Many should not.</p></div>
+    <div class="method"><div class="num">03 / BUILD</div><h3>Turn useful outcomes into platforms.</h3><p>When a problem deserves a repeatable solution, we build something businesses can operate without us.</p></div>
+  </div>
+</div>
+</section>
+
+<section class="section soft">
+<div class="wrap">
+  <div class="split-intro">
+    <div><div class="kicker">WHAT WE ARE BUILDING NOW</div><h2>Three problems. Three different outcomes.</h2></div>
+    <p class="lede">Our products are different because the problems are different. The common thread is removing work, uncertainty or barriers that should not be there.</p>
+  </div>
+  <div class="work-list">
+    <div class="work-row"><div class="work-n">01</div><div class="work-title">Digital Product Passports</div><div class="work-why">Help buyers understand the market, define what they need and make provider decisions from evidence rather than claims.</div><div class="work-links"><span>DPP Supplier Register →</span><span>DPP Buyer Platform →</span></div></div>
+    <div class="work-row"><div class="work-n">02</div><div class="work-title">AI market intelligence</div><div class="work-why">Track real model movement, capability, adoption and policy so businesses can act on evidence rather than the AI news cycle.</div><div class="work-links"><span>Model Adoption →</span><span>Model Intelligence →</span></div></div>
+    <div class="work-row"><div class="work-n">03</div><div class="work-title">Software creation</div><div class="work-why">Let people who understand a business problem describe the outcome, while technology handles more of the engineering required to build it.</div><div class="work-links"><span>naffe.ai →</span></div></div>
+  </div>
+</div>
+</section>
+
+<section class="section product-proof">
+<div class="wrap">
+  <div class="evidence-head">
+    <div><div class="kicker">PRODUCT IN PRACTICE</div><h2>From DPP uncertainty to a decision a buyer can defend.</h2></div>
+    <p>The DPP Buyer Platform structures the buyer's work from strategy and readiness through evidence-based provider selection and procurement. yellow3 works for the buyer. The selected provider operates the passports.</p>
+  </div>
+  <div class="product-proof-grid">
+    <div class="product-proof-copy">
+      <div class="num">DPP BUYER PLATFORM / LIVE PRODUCT</div>
+      <div class="product-proof-title">The evidence stays visible while the decision moves forward.</div>
+      <p class="product-proof-lede">Buyers do not need another supplier list. They need a governed way to turn regulation, internal facts, provider claims and implementation evidence into a programme they can explain and defend.</p>
+      <div class="product-proof-points">
+        <div class="product-proof-point"><b>01</b><div><strong>Strategy and readiness</strong><p>Establish scope, ownership, systems, data and what the organisation can already prove.</p></div></div>
+        <div class="product-proof-point"><b>02</b><div><strong>Capability architecture</strong><p>Turn the buyer's situation into explicit requirements before comparing providers.</p></div></div>
+        <div class="product-proof-point"><b>03</b><div><strong>Evidence-based selection</strong><p>Separate demonstrated evidence, provider statements and what remains not established.</p></div></div>
+        <div class="product-proof-point"><b>04</b><div><strong>Structured procurement</strong><p>Carry unresolved conditions and decision evidence into the buying process.</p></div></div>
+      </div>
+      <div class="actions"><a class="btn" href="/platforms">Explore the DPP Buyer Platform →</a></div>
     </div>
-  </section>
+    <figure style="margin:0">
+      <div class="product-proof-frame"><img src="/img/homepage/dpp-buyer-platform-stage4.png" alt="Real yellow3 DPP Buyer Platform evidence-based selection workspace" /></div>
+      <figcaption class="product-proof-caption"><strong>Real Buyer Platform interface</strong><span>Evidence-based selection workspace from the current product build.</span></figcaption>
+    </figure>
+  </div>
+</div>
+</section>
 
-  <!-- WHAT WE BUILD -->
-  <section class="block">
-    <div class="inner">
-      <div class="block-head"><div class="section-label">What we build</div></div>
-      <div class="grid5">
-        <div class="cell reveal">
-          <svg class="cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/></svg>
-          <h3>Autonomous software platforms</h3>
-          <p>Scalable platforms that run with minimal human intervention and maximum reliability.</p>
-          <a href="/naffe" class="cell-arr">&#8594;</a>
-        </div>
-        <div class="cell reveal">
-          <svg class="cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="12" cy="18" r="2.4"/><path d="M8.2 7.2l7.6 0M7.2 8.1l4 8M16.8 8.1l-4 8"/></svg>
-          <h3>Agentic business systems</h3>
-          <p>End-to-end systems where AI agents coordinate, decide, and deliver outcomes.</p>
-          <a href="/naffe" class="cell-arr">&#8594;</a>
-        </div>
-        <div class="cell reveal">
-          <svg class="cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 8V4h4M20 8V4h-4M4 16v4h4M20 16v4h-4"/><rect x="9" y="9" width="6" height="6"/></svg>
-          <h3>Digital Product Passport research</h3>
-          <p>Independent research into the emerging DPP market, regulation, suppliers and the evidence behind their claims.</p>
-          <a href="/research/digital-product-passport" class="cell-arr">&#8594;</a>
-        </div>
-        <div class="cell reveal">
-          <svg class="cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg>
-          <h3>AI-native marketplaces</h3>
-          <p>New marketplace models designed for autonomy, network effects, and trust.</p>
-          <a href="/research" class="cell-arr">&#8594;</a>
-        </div>
-        <div class="cell reveal">
-          <svg class="cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/></svg>
-          <h3>Research-backed product concepts</h3>
-          <p>We research, validate, and incubate the products that shape tomorrow's markets.</p>
-          <a href="/research" class="cell-arr">&#8594;</a>
-        </div>
+<section class="section flagship">
+<div class="wrap">
+  <div class="evidence-head">
+    <div><div class="kicker">FLAGSHIP RESEARCH INSTRUMENT</div><h2>Where AI demand is actually flowing.</h2></div>
+    <p>Model Adoption is yellow3's live weekly instrument for routed AI usage. It measures where demand is flowing by where the models were built, tracks the most-routed models and grades yellow3's own weekly call in public.</p>
+  </div>
+  <div class="flagship-grid">
+    <div class="flagship-copy">
+      <div class="num">MODEL ADOPTION / LIVE WEEKLY DATA</div>
+      <div class="flagship-title">Original measurement, not another AI opinion.</div>
+      <p class="flagship-lede">Launch announcements and benchmark headlines tell you what vendors say. Model Adoption follows observed routed usage over time, so businesses, journalists and researchers can see how the market is actually moving.</p>
+      <div class="flagship-points">
+        <div class="flagship-point"><b>01</b><div><strong>Regional share of routed tokens</strong><p>Asia, the US, Europe and other origins measured as model origin, not user location.</p></div></div>
+        <div class="flagship-point"><b>02</b><div><strong>Most-routed models</strong><p>A ranked weekly view of which models are actually receiving traffic.</p></div></div>
+        <div class="flagship-point"><b>03</b><div><strong>A public record book</strong><p>Movement, streaks and changes preserved over time instead of disappearing into a news cycle.</p></div></div>
+        <div class="flagship-point"><b>04</b><div><strong>yellow3 on the record</strong><p>This week's call and last week's call, graded in public.</p></div></div>
       </div>
+      <div class="actions"><a class="btn" href="/research/model-adoption">Explore Model Adoption →</a></div>
     </div>
-  </section>
+    <figure style="margin:0">
+      <div class="flagship-frame"><img src="/img/homepage/model-adoption-interface.png" alt="Real yellow3 Model Adoption instrument and model explorer screens" /></div>
+      <figcaption class="flagship-caption"><strong>Real instrument interface</strong><span>Example capture. The live instrument updates weekly.</span></figcaption>
+    </figure>
+  </div>
+  <div class="instrument-strip">
+    <div class="instrument"><div class="num">DIGITAL PRODUCT PASSPORTS</div><h3>DPP supplier evidence</h3><p>190 organisations mapped in an independent public register, with a machine-readable CSV and JSON dataset generated from the same evidence base.</p><a href="/research/digital-product-passport/suppliers">Explore DPP suppliers →</a></div>
+    <div class="instrument"><div class="num">EU REGULATION</div><h3>EU AI Act record</h3><p>A living instrument for what changed, what applies and what evidence sits behind the obligation status.</p><a href="/research/eu-ai-act">Explore EU AI Act →</a></div>
+    <div class="instrument"><div class="num">METHOD</div><h3>Research that can be checked</h3><p>Sources, methodology and dated records remain visible so conclusions can be inspected rather than merely trusted.</p><a href="/research">Explore yellow3 research →</a></div>
+  </div>
+</div>
+</section>
 
-  <!-- NAFFE -->
-  <section class="naffe">
-    <div class="inner naffe-grid">
-      <div class="reveal">
-        <div class="naffe-label">Featured platform</div>
-        <div class="naffe-word">naffe<span class="dot">.ai</span></div>
-        <p class="naffe-lede">You decide what is worth building. naffe builds it.</p>
-        <p class="body">naffe.ai is yellow3 lab's flagship platform that turns human direction into software, workflows, and agents that deliver real-world outcomes.</p>
-        <a href="/naffe" class="btn btn-yellow">Explore naffe.ai <span class="arr">&#8594;</span></a>
-      </div>
-      <div class="flow reveal">
-        <div class="flow-row">
-          <div class="flow-key">Direction</div>
-          <div class="flow-box">Reduce return handling time by 40% across EU operations</div>
-        </div>
-        <div class="flow-conn">&#8595;</div>
-        <div class="flow-row">
-          <div class="flow-key">naffe builds</div>
-          <div class="flow-cells">
-            <div class="flow-box">Process automation</div>
-            <div class="flow-box">AI agents</div>
-            <div class="flow-box">Data infrastructure</div>
-            <div class="flow-box">Monitoring &amp; optimization</div>
-          </div>
-        </div>
-        <div class="flow-conn">&#8595;</div>
-        <div class="flow-row">
-          <div class="flow-key">Outcome</div>
-          <div class="flow-box out"><span>Return handling time reduced by 41%</span><span class="flow-check">&#10003;</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="section black">
+<div class="wrap">
+  <div class="kicker">HUMAN DIRECTION</div>
+  <h2>Machines can do more of the work. Humans should retain responsibility.</h2>
+  <p class="bigline">AI will automate work and change organisations. We should not pretend otherwise. The opportunity is to give people <strong>more leverage without giving away responsibility for the outcome.</strong></p>
+  <div class="principles">
+    <div class="principle"><div class="num">01</div><h3>People define what matters.</h3><p>Objectives, constraints, priorities and material judgments remain explicit human responsibilities.</p></div>
+    <div class="principle"><div class="num">02</div><h3>Systems do more execution.</h3><p>Technology should remove repetitive coordination, complexity and unnecessary operating work where it can do so reliably.</p></div>
+    <div class="principle"><div class="num">03</div><h3>Evidence stays inspectable.</h3><p>Useful automation should make decisions easier to understand, not harder to question.</p></div>
+  </div>
+</div>
+</section>
 
-  <!-- RESEARCH AREAS -->
-  <section class="block">
-    <div class="inner">
-      <div class="block-head"><div class="section-label">Research areas</div></div>
-      <div class="grid5 areas">
-        <a href="/research" class="cell reveal" style="text-decoration:none">
-          <h3>Outcome Architecture</h3>
-          <p>A working framework: designing systems that start with the end in mind.</p>
-          <span class="cell-arr">&#8594;</span>
-        </a>
-        <a href="/research" class="cell reveal" style="text-decoration:none">
-          <h3>Human-Direction AI</h3>
-          <p>AI that amplifies human judgment, not replaces human thinking.</p>
-          <span class="cell-arr">&#8594;</span>
-        </a>
-        <a href="/research" class="cell reveal" style="text-decoration:none">
-          <h3>Autonomous Software</h3>
-          <p>Software that plans, decides, and executes with reliability.</p>
-          <span class="cell-arr">&#8594;</span>
-        </a>
-        <a href="/research/digital-product-passport" class="cell reveal" style="text-decoration:none">
-          <h3>Digital Product Passports</h3>
-          <p>Researching how regulation, product data, evidence and supplier capabilities are reshaping the market.</p>
-          <span class="cell-arr">&#8594;</span>
-        </a>
-        <a href="/research/model-adoption" class="cell reveal" style="text-decoration:none">
-          <h3>AI-native SMB Infrastructure</h3>
-          <p>The next generation infrastructure for small and mid-sized businesses.</p>
-          <span class="cell-arr">&#8594;</span>
-        </a>
-      </div>
-    </div>
-  </section>
+<section class="section">
+<div class="wrap lower-grid">
+  <div>
+    <div class="kicker">WHY IT MATTERS</div>
+    <h2>Technology should lower barriers, not create new ones.</h2>
+    <p class="statement">Capabilities that once required specialist teams, consultants and significant capital should become available to smaller businesses too.</p>
+    <p class="detail">yellow3 builds from the perspective of people who actually have to start companies, run operations and make decisions with limited time and resources. Useful technology is the goal, not impressive technology.</p>
+  </div>
+  <div class="rule-list">
+    <div class="rule"><b>01</b><div><strong>Make complex work easier to operate.</strong><p>Remove friction without hiding the decisions that still matter.</p></div></div>
+    <div class="rule"><b>02</b><div><strong>Use technology where responsibility extends beyond business.</strong><p>Product transparency, circularity and better information are practical places digital infrastructure can help.</p></div></div>
+    <div class="rule"><b>03</b><div><strong>Build regulation into the product.</strong><p>European rules and standards should shape systems as they evolve, not be bolted on after launch.</p></div></div>
+    <div class="rule"><b>04</b><div><strong>Keep learning after shipping.</strong><p>Technology, markets and regulation move. Products should be designed to move with them.</p></div></div>
+  </div>
+</div>
+</section>
 
-  <!-- INSIGHTS -->
-  <section class="insights">
-    <div class="inner">
-      <div class="insights-head">
-        <div class="section-label">Insights</div>
-        <a href="/insights/" class="view-all">View all insights &#8594;</a>
-      </div>
-      <div class="insights-grid">
-        <a href="/insights/europes-5-billion-answer-to-foreign-capital-just-followed-it" class="insight-card reveal">
-          <img src="/insights/hero-europes-5-billion-answer-to-foreign-capital-just-followed-it.png" alt="" class="insight-hero">
-          <div class="insight-issue">Issue 33</div>
-          <h3>Europe’s €5 Billion Answer to Foreign Capital Just Followed It</h3>
-          <p>Europe created a €5 billion fund to counter foreign dominance in scaleup finance. Its first investment joined a €1 billion round led from New York.</p>
-          <span class="insight-read">Read article</span>
-        </a>
-        <a href="/insights/europes-deadlines-are-firm-the-rulebook-is-not" class="insight-card reveal">
-          <img src="/insights/hero-europes-deadlines-are-firm-the-rulebook-is-not.png" alt="" class="insight-hero">
-          <div class="insight-issue">Issue 32</div>
-          <h3>Europe’s Deadlines Are Firm. The Rulebook Is Not.</h3>
-          <p>EU packaging rules reveal a bigger regulatory problem: fixed deadlines, evolving specifications, and a critical lesson for Digital Product Passport providers.</p>
-          <span class="insight-read">Read article</span>
-        </a>
-        <a href="/insights/the-dpp-deadline-you-already-missed" class="insight-card reveal">
-          <img src="/insights/hero-the-dpp-deadline-you-already-missed.png" alt="" class="insight-hero">
-          <div class="insight-issue">Issue 31</div>
-          <h3>The DPP Deadline You Already Missed</h3>
-          <p>The EU's Digital Product Passport isn't one deadline. A destruction ban has applied since July, and battery, detergent and toy dates are already locked in law.</p>
-          <span class="insight-read">Read article</span>
-        </a>
-        <a href="/insights/a-400-escape-route" class="insight-card reveal">
-          <img src="/insights/hero-a-400-escape-route.png" alt="" class="insight-hero">
-          <div class="insight-issue">Issue 30</div>
-          <h3>A $400 Escape Route</h3>
-          <p>OpenAI has spent $6.5 billion moving into hardware before selling a single device. The rumoured $400 doughnut is not the product. Independence is.</p>
-          <span class="insight-read">Read article</span>
-        </a>
-        <a href="/insights/europes-ai-sovereignty-has-an-american-off-switch" class="insight-card reveal">
-          <img src="/insights/hero-europes-ai-sovereignty-has-an-american-off-switch.png" alt="" class="insight-hero">
-          <div class="insight-issue">Issue 29</div>
-          <h3>Europe’s AI Sovereignty Has an American Off-Switch</h3>
-          <p>Europe’s AI gigafactories promise technological sovereignty, but their chips, software and supply chains leave America with a hand on the switch.</p>
-          <span class="insight-read">Read article</span>
-        </a>
-      </div>
-    </div>
-  </section>
-  <!-- CONTACT -->
+<section class="section future">
+<div class="wrap">
+  <div class="kicker">WHY WE KEEP EXPERIMENTING</div>
+  <div class="quote">We do not assume today’s AI architecture is <span>the destination.</span></div>
+  <div class="future-grid">
+    <p>Language models have already changed what software can do. They may also be one stage in a much longer transition. That uncertainty is a reason to research and experiment, not a reason to pretend certainty.</p>
+    <p>Some of our experiments will never ship. That is useful too. Learning by building often creates knowledge that improves a completely different product.</p>
+  </div>
+</div>
+</section>
 
-  <!-- CTA -->
-  <section class="cta" id="contact">
-    <div class="inner cta-grid">
-      <div class="reveal">
-        <div class="cta-label">Work with yellow3</div>
-        <h2>We work with founders, operators, and companies building where AI changes the economics of an industry.</h2>
-      </div>
-      <div class="cta-right reveal">
-        <p>Let's build what's next - together.</p>
-        <a href="#" onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;;return false;" class="btn btn-dark">Start a conversation <span class="arr">&#8594;</span></a>
-      </div>
-    </div>
-  </section>
+<section class="section">
+<div class="wrap">
+  <div class="split-intro">
+    <div><div class="kicker">LATEST INSIGHTS</div><h2>Evidence, analysis and what changed.</h2></div>
+    <p class="lede">We publish when there is something worth checking, measuring or understanding, especially across AI, Digital Product Passports, European technology and regulation.</p>
+  </div>
+  <div class="insight-list">
+    <div class="insight"><div class="issue">Issue 29</div><div class="insight-title">Europe’s AI Sovereignty Has an American Off-Switch</div><div class="read">Read article →</div></div>
+    <div class="insight"><div class="issue">Reference</div><div class="insight-title">GS1 is not one organisation</div><div class="read">Read article →</div></div>
+    <div class="insight"><div class="issue">Issue 28</div><div class="insight-title">The Collapse of AI Is Being Greatly Exaggerated</div><div class="read">Read article →</div></div>
+    <div class="insight"><div class="issue">Issue 27</div><div class="insight-title">The Owl Behind the Wall</div><div class="read">Read article →</div></div>
+  </div>
+  <div class="actions"><a class="link">View all insights →</a></div>
+</div>
+</section>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
+<section class="final">
+<div class="wrap final-grid">
+  <div><div class="kicker">YELLOW3 LAB</div><h2>Research what matters. Build what survives the evidence.</h2><p>Explore the platforms we are building now, or bring us a problem worth understanding.</p></div>
+  <div class="actions" style="justify-content:flex-end"><a class="btn">Explore platforms →</a></div>
+</div>
+</section>
+</main>
+</main>
+
+<footer class="site-footer">
     <div class="inner">
       <div class="foot-top">
         <div class="foot-brand">
@@ -541,18 +605,5 @@
       </div>
     </div>
   </footer>
-
-  <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 50);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08 });
-    reveals.forEach(el => observer.observe(el));
-  </script>
 </body>
 </html>
