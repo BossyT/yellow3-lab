@@ -235,8 +235,8 @@ SITE_FOOTER = _foot("""  <footer class="site-footer y3foot">
       <div class="foot-top">
         <div class="foot-brand">
           <img src="/logo.png" alt="yellow3" />
-          <div class="fb-lab">Copenhagen AI Lab</div>
-          <p>Building outcome infrastructure for the AI era.</p>
+          <div class="fb-lab">yellow3 lab</div>
+          <p>We use emerging technology to make business less complicated.</p>
         </div>
         <div class="foot-col">
           <h4>Work</h4>
@@ -254,7 +254,7 @@ SITE_FOOTER = _foot("""  <footer class="site-footer y3foot">
           <h4>Company</h4>
           <a href="/about">About</a>
           <a href="/insights/">Thinking</a>
-          <a href="/advisory">Contact</a>
+          <a href="/contact">Contact</a>
         </div>
         <div class="foot-contact">
           <h4>Get in touch</h4>
