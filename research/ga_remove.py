@@ -34,6 +34,35 @@ BLOCK = re.compile(
     re.S)
 LOOSE = re.compile(r'[ \t]*<script[^>]*googletagmanager[^>]*>.*?</script>\s*\n?', re.S)
 
+# THE GUARD THIS FILE COST BEFORE IT HAD ONE.
+#
+# LOOSE is dot-all and terminates on the first literal </script>. admin.html
+# builds published articles inside JavaScript strings, where the closing tag has
+# to be written <\/script> or it would end the CMS's own script early. That
+# escaped form does not match, so the pattern ran past every one of them to the
+# next real </script> - the end of the CMS's own script block - and removed 657
+# lines in a single pass: both article templates, and the closing tag itself.
+# The file was left with an unterminated <script>, so nothing in the CMS ran.
+# It shipped, and the page audit could not see it because the audit reads pages
+# and this was a tool.
+#
+# A GA snippet is a dozen lines. Anything larger is not a GA snippet.
+MAX_REMOVAL = 2000  # characters
+
+
+def strip(pattern, html, path):
+    """Apply a removal, refusing any single match that is implausibly large."""
+    for m in pattern.finditer(html):
+        if len(m.group(0)) > MAX_REMOVAL:
+            raise SystemExit(
+                f'{path.relative_to(ROOT)}: refusing to remove {len(m.group(0))} '
+                f'characters as a Google Analytics snippet.\n'
+                f'The match starts at offset {m.start()} and is far larger than a '
+                f'loader plus its config, which means the closing tag it found is '
+                f'not the one that belongs to it - most likely because the real '
+                f'one is escaped as <\\/script> inside a JavaScript string.')
+    return pattern.sub('', html)
+
 # The inline event handlers. 39 pages carry an onclick that fires a GA event,
 # guarded by `typeof window.gtag === 'function'`, so with GA gone they are
 # already no-ops - but they are dead references to a system that no longer
@@ -54,9 +83,9 @@ for f in TARGETS:
     html = f.read_text(encoding='utf-8')
     if 'googletagmanager' not in html and 'gtag(' not in html:
         already.append(f); continue
-    out = BLOCK.sub('', html)
+    out = strip(BLOCK, html, f)
     if 'googletagmanager' in out:
-        out = LOOSE.sub('', out)
+        out = strip(LOOSE, out, f)
     out = EVENT.sub('', out)
     out = SHARE.sub('', out)
     if 'googletagmanager' in out or 'gtag(' in out:

@@ -59,6 +59,51 @@ def main() -> int:
         else:
             print(f'  ok  {what}: {n} characters readable')
 
+    # 2b. The CMS still runs.
+    #
+    # On 2026-08-14 the Google Analytics sweep removed 657 lines from admin.html
+    # in one pass, including the </script> that closed its only script block. The
+    # CMS was dead - no publishing, no editing - and it shipped, because every
+    # check this repo had reads PAGES and admin.html is a program. The typography
+    # freeze already reads the article templates, so the one thing nobody was
+    # asking was whether the file was still a working program at all.
+    #
+    # Cheap version of that question: the script blocks must be balanced and the
+    # article templates must still be in there.
+    admin = ROOT / 'admin.html'
+    if not admin.exists():
+        FAIL.append('admin.html is missing')
+    else:
+        text = admin.read_text(encoding='utf-8')
+        # Counting <script> against </script> does NOT work here, and the reason
+        # is the whole bug: the article templates contain unescaped <script>
+        # opens with escaped <\/script> closes, so the tags are legitimately
+        # unbalanced as text. Only a close that is not escaped ends a real block.
+        blocks = re.findall(r'<script(?![^>]*\bsrc=)[^>]*>(.*?)(?<!\\)</script>',
+                            text, re.S)
+        if not blocks:
+            FAIL.append('admin.html has no complete <script> block: its closing '
+                        'tag was consumed, so the CMS would not run at all')
+        elif text.count('article-body') < 2:
+            FAIL.append(f'admin.html carries {text.count("article-body")} article '
+                        f'template reference(s); it publishes with two')
+        else:
+            src = ROOT / 'research' / '.admin-check.js'
+            src.write_text('\n;\n'.join(blocks), encoding='utf-8')
+            r = subprocess.run(['node', '--check', str(src)],
+                               capture_output=True, text=True)
+            src.unlink(missing_ok=True)
+            if r.returncode == 127 or 'not found' in (r.stderr or ''):
+                print('  ..  CMS: node unavailable, syntax not checked')
+            elif r.returncode != 0:
+                FAIL.append('admin.html does not parse as JavaScript - the CMS '
+                            'would not run: '
+                            + (r.stderr or '').strip().splitlines()[-1:][0]
+                            if (r.stderr or '').strip() else 'syntax error')
+            else:
+                print(f'  ok  CMS: parses, {text.count("article-body")} article '
+                      f'template references')
+
     # 3. The dataset, and that it agrees with the register it came from.
     src = json.loads((ROOT / 'research' / 'dpp-suppliers.json').read_text(encoding='utf-8'))
     expected = len(src['suppliers'])
