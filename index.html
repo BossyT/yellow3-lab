@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><head>
+<head>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>yellow3 lab | AI, Digital Product Passports &amp; Emerging Technology</title>
@@ -489,6 +489,13 @@
 .hp3 .product-proof-point p{font-size:13px;color:#6a6f69}
 .hp3 .product-proof-frame{border:1px solid #bfc3be;background:#fff;padding:10px;box-shadow:0 18px 44px rgba(17,18,15,.05);overflow:hidden}
 .hp3 .product-proof-frame img{display:block;width:100%;height:auto}
+/* APPROVED DEVIATION - DPP proof crop, Option B, GPT 2026-08-14.
+   Presentation only: the source PNG is 1365x2048 and stays canonical and
+   untouched on disk. This shows y=0 to 1390 of it - top-aligned, full width,
+   no side crop, which is why the ratio keeps the source's own 1365 width.
+   object-fit:cover with object-position:top does the crop in the browser, so
+   there is no second derivative file to keep in step with the original. */
+.hp3 .product-proof-frame img{aspect-ratio:1365/1390;object-fit:cover;object-position:top}
 .hp3 .product-proof-caption{display:flex;justify-content:space-between;gap:20px;padding:12px 2px 0;font-size:11px;color:#747a74}
 .hp3 .product-proof-caption strong{color:#20231f}
 .hp3 .flagship{background:#fff}
@@ -586,7 +593,6 @@
   </nav>
 
 <main class="hp3">
-<main>
 <section class="hero">
 <div class="wrap hero-grid">
   <div>
@@ -654,7 +660,7 @@
       <div class="actions"><a class="btn" href="/platforms">Explore the DPP Buyer Platform →</a></div>
     </div>
     <figure style="margin:0">
-      <div class="product-proof-frame"><img src="/img/homepage/dpp-buyer-platform-stage4.png" alt="Real yellow3 DPP Buyer Platform evidence-based selection workspace" /></div>
+      <div class="product-proof-frame"><picture><source type="image/webp" srcset="/img/homepage/dpp-buyer-platform-stage4-420.webp 420w, /img/homepage/dpp-buyer-platform-stage4-720.webp 720w, /img/homepage/dpp-buyer-platform-stage4-1024.webp 1024w, /img/homepage/dpp-buyer-platform-stage4-1365.webp 1365w" sizes="(max-width: 800px) calc(100vw - 58px), (max-width: 1240px) 58vw, 680px" /><img src="/img/homepage/dpp-buyer-platform-stage4.png" width="1365" height="2048" loading="lazy" decoding="async" alt="Real yellow3 DPP Buyer Platform evidence-based selection workspace" /></picture></div>
       <figcaption class="product-proof-caption"><strong>Real Buyer Platform interface</strong><span>Evidence-based selection workspace from the current product build.</span></figcaption>
     </figure>
   </div>
@@ -681,7 +687,7 @@
       <div class="actions"><a class="btn" href="/research/model-adoption">Explore Model Adoption →</a></div>
     </div>
     <figure style="margin:0">
-      <div class="flagship-frame"><img src="/img/homepage/model-adoption-interface.png" alt="Real yellow3 Model Adoption instrument and model explorer screens" /></div>
+      <div class="flagship-frame"><picture><source type="image/webp" srcset="/img/homepage/model-adoption-interface-420.webp 420w, /img/homepage/model-adoption-interface-720.webp 720w, /img/homepage/model-adoption-interface-1024.webp 1024w, /img/homepage/model-adoption-interface-1365.webp 1365w" sizes="(max-width: 800px) calc(100vw - 58px), (max-width: 1240px) 58vw, 680px" /><img src="/img/homepage/model-adoption-interface.png" width="1693" height="929" loading="lazy" decoding="async" alt="Real yellow3 Model Adoption instrument and model explorer screens" /></picture></div>
       <figcaption class="flagship-caption"><strong>Real instrument interface</strong><span>Example capture. The live instrument updates weekly.</span></figcaption>
     </figure>
   </div>
@@ -756,7 +762,6 @@
   <div class="actions" style="justify-content:flex-end"><a class="btn">Explore platforms →</a></div>
 </div>
 </section>
-</main>
 </main>
 
 <footer class="site-footer">
