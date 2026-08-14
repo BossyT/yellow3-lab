@@ -194,6 +194,15 @@
 /* put the kicker behind a 67px nav. GPT approved 88px for this route on */
 /* 2026-08-14. Desktop is untouched - its 90px clears the 74.6px nav. */
 @media(max-width:760px){.ct1 .hero{padding-top:88px}}
+
+/* .eg p is the only paragraph in the package that declares no margin, and */
+/* the package has no global p reset, so the prototype rendered it with the */
+/* browser default 1em - 18px top and bottom at 18px type. The production */
+/* shell zeroes it through *{margin:0}, which cost this section exactly */
+/* 36px at every width. This is not compensating spacing: it is the */
+/* explicit declaration of a default the approved reference depends on. GPT */
+/* approved 2026-08-14. */
+.ct1 .eg p{margin:18px 0}
 /* <<< end approved /contact */
 </style>
 </head>

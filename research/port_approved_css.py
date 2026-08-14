@@ -70,6 +70,14 @@ PAGES = {
              "padding put the kicker behind a 67px nav. GPT approved 88px for "
              "this route on 2026-08-14. Desktop is untouched - its 90px clears "
              "the 74.6px nav."),
+            ("", ".eg p", "margin:18px 0",
+             ".eg p is the only paragraph in the package that declares no "
+             "margin, and the package has no global p reset, so the prototype "
+             "rendered it with the browser default 1em - 18px top and bottom at "
+             "18px type. The production shell zeroes it through *{margin:0}, "
+             "which cost this section exactly 36px at every width. This is not "
+             "compensating spacing: it is the explicit declaration of a default "
+             "the approved reference depends on. GPT approved 2026-08-14."),
         ],
     },
 }
@@ -125,6 +133,57 @@ def scope(selector, wrapper):
 
 def count_decls(body):
     return len([d for d in body.split(";") if d.strip()])
+
+
+# The yellow3 Design System Gate, added by GPT on 2026-08-14 after /contact's
+# company-identity section came up 36px short at every width.
+#
+# A prototype has no shell, so it renders with the browser's default margins. The
+# production shell opens with *, *::before, *::after { margin: 0; padding: 0 },
+# which takes them away. Any spacing the design left to a browser default is
+# therefore spacing that silently disappears in production - and it disappears as
+# a CONSTANT offset, which is easy to read as a padding mistake and hard to trace
+# back to a rule that was never written.
+#
+# The rule: a package must reset these elements inside its own scope and declare
+# the spacing it wants. This check reads the package, not our port, so it catches
+# the problem at intake rather than after a render comparison fails.
+DEFAULT_MARGIN_ELEMENTS = ("p", "ul", "ol", "figure", "blockquote", "dl")
+
+
+def design_system_faults(css, markup, cfg):
+    """Elements whose spacing the package leaves to a browser default."""
+    faults = []
+    covered = {sel.strip() for _, sel, _, _ in cfg["deviations"]}
+    for tag in DEFAULT_MARGIN_ELEMENTS:
+        if not re.search(r"<%s[\s>]" % tag, markup):
+            continue
+        reset = re.search(r"(?:^|[;}])\s*%s\s*\{[^}]*margin" % tag, css)
+        if reset:
+            continue
+        # No scope-level reset. Every selector targeting this element must then
+        # declare its own margin somewhere, or it falls back to the UA default.
+        #
+        # "Somewhere", not "in this rule": a media query that overrides only the
+        # font size of a selector whose base rule sets the margin is fine, and
+        # counting each rule separately reports it as a fault. The first version
+        # of this check did exactly that on .sc p.
+        declared, seen = set(), []
+        for m in re.finditer(r"([^{}]+)\{([^{}]*)\}", css):
+            sel, body = m.group(1).strip(), m.group(2)
+            for part in (p.strip() for p in sel.split(",")):
+                if not re.search(r"\b%s$" % tag, part):
+                    continue
+                seen.append(part)
+                if "margin" in body:
+                    declared.add(part)
+        for part in dict.fromkeys(seen):
+            if part in declared or part in covered:
+                continue
+            faults.append("%s has no margin and the package has no %s reset - "
+                          "it renders on a browser default the shell will remove"
+                          % (part, tag))
+    return faults
 
 
 def markers(name, wrapper):
@@ -202,6 +261,15 @@ def check_one(name, write):
     for needle in cfg["forbids"]:
         if needle in page:
             raise SystemExit("%s: still contains %s" % (cfg["target"], needle))
+
+    package = open(cfg["package"], encoding="utf-8").read()
+    faults = design_system_faults(extract_style(package), package, cfg)
+    if faults:
+        raise SystemExit("%s fails the design system gate:\n  %s\n"
+                         "Either the package declares the spacing, or the "
+                         "value goes in `deviations` with GPT's approval."
+                         % (name, "\n  ".join(faults)))
+
     print("%-9s matches    %3d declarations + %d approved deviation(s)"
           % (name, decls, devs))
 
