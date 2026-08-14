@@ -70,7 +70,7 @@ def main() -> int:
             'Product Passport capability. Compiled and maintained by yellow3 lab '
             'from public sources. Suppliers cannot pay to appear, to rank higher, '
             'or to change an assessment.'),
-        'publisher': 'yellow3 lab ApS, Copenhagen, Denmark',
+        'publisher': 'yellow3 ApS, Copenhagen, Denmark',
         'landing_page': LANDING,
         'licence': LICENCE,
         'licence_url': LICENCE_URL,

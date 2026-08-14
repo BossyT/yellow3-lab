@@ -265,7 +265,7 @@ SITE_FOOTER = _foot("""  <footer class="site-footer y3foot">
         </div>
       </div>
       <div class="foot-bottom">
-        <span class="copy">&copy; 2026 yellow3 lab ApS. All rights reserved.</span>
+        <span class="copy">&copy; 2026 yellow3 ApS. All rights reserved.</span>
         <div class="foot-legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div>
       </div>
     </div>
