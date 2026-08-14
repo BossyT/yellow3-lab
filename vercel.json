@@ -1,6 +1,6 @@
 {
   "cleanUrls": true,
-  "buildCommand": "node generate-sitemap.js",
+  "buildCommand": "python3 research/build_check.py && node generate-sitemap.js",
   "outputDirectory": ".",
   "redirects": [
     {

@@ -1,9 +1,9 @@
 # yellow3 lab
-> AI Research Lab - Copenhagen, Denmark
+> Emerging technology, measured and applied - Copenhagen, Denmark
 
 ## Overview
 
-yellow3 lab is an AI research lab based in Copenhagen, Denmark. Founded by Thomas Christian Melskens. We research and develop autonomous AI platforms.
+yellow3 lab uses emerging technology to make business less complicated. An independent research lab in Copenhagen, Denmark, founded by Thomas Christian Melskens. We measure what is actually happening in emerging technology and regulation, publish the numbers as live instruments, and build platforms where the research shows software can remove the complexity.
 
 ## What We Do
 

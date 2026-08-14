@@ -1557,3 +1557,18 @@ body { padding-top: 62px; }
   color: #5f666b;
 }
 .register-dataset a { color: #24282c; text-decoration: underline; }
+
+/* The search-facing descriptor under the H1, and the pointer to the official
+   registry. Both quiet: they orient a reader who arrived from a query, they do
+   not sell anything. */
+.hero-descriptor { margin: 10px 0 0; font-size: 17px; line-height: 1.5; color: #33373b; }
+.registry-pointer { margin: 14px 0 0; font-size: 13px; color: #5f666b; }
+.registry-pointer a { color: #24282c; text-decoration: underline; }
+
+/* The EU Registry explainer. Prose, in the register's own type: no new
+   components, no cards, nothing that would make an explanatory page look like
+   an instrument. */
+.registry-page { padding: 8px 0 64px; max-width: 760px; }
+.registry-page h2 { margin: 34px 0 10px; font-size: 22px; font-weight: 400; letter-spacing: -.02em; }
+.registry-page p { margin: 0 0 14px; font-size: 16px; line-height: 1.6; color: #24282c; }
+.registry-page a { color: #24282c; }
