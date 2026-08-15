@@ -128,6 +128,38 @@
     .map-sub { font-size: 12px; color: #8a8a93; margin: 4px 0 12px; }
     #worldmap { flex: 1; min-height: 0; display: flex; align-items: center; }
     #worldmap svg.wmap { width: 100%; height: auto; display: block; overflow: visible; }
+    /* Arc treatment, from GPT's arc_geometry_v1 starter CSS. One deviation,
+       recorded rather than folded in: vector-effect: non-scaling-stroke is NOT
+       applied. The handoff states these widths land at 1.0px down to 0.54px at
+       the ~0.3x render scale, which is only true if the stroke scales with the
+       viewBox; non-scaling-stroke would render them at 3.4px to 1.8px. The
+       stated pixel outcome is the authority. */
+    .arc-overlay { position: absolute; inset: 0; width: 100%; height: 100%;
+      pointer-events: none; mix-blend-mode: screen; }
+    .arc-bundle--us-asia { color: #8d44ff; }
+    .arc-bundle--us-europe { color: #3b82ff; }
+    .arc-bundle--europe-asia { color: #f4bd16; }
+    .arc-bundle .arc { stroke: currentColor; }
+    .arc { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .arc.s10 { stroke-width: 1.8; opacity: .08; }
+    .arc.s9  { stroke-width: 1.9; opacity: .11; }
+    .arc.s8  { stroke-width: 2.0; opacity: .15; }
+    .arc.s7  { stroke-width: 2.1; opacity: .19; }
+    .arc.s6  { stroke-width: 2.2; opacity: .24; }
+    .arc.s5  { stroke-width: 2.4; opacity: .30; }
+    .arc.s4  { stroke-width: 2.6; opacity: .36; }
+    .arc.s3  { stroke-width: 2.8; opacity: .44; }
+    .arc.s2  { stroke-width: 3.1; opacity: .52; }
+    .arc.s1  { stroke-width: 3.4; opacity: .62; }
+    .arc-pulse { fill: none; stroke: currentColor; stroke-width: 3.6;
+      stroke-linecap: round; stroke-dasharray: 10 34; opacity: .70;
+      filter: drop-shadow(0 0 4px currentColor); animation: arcPulse 4.8s linear infinite; }
+    @keyframes arcPulse { to { stroke-dashoffset: -176; } }
+    /* a filtered region keeps its own bundles and dims the rest to 10% - never
+       removes them, or the composition jumps */
+    .map-stage[data-region="us"] .arc-bundle:not([data-from="us"]):not([data-to="us"]),
+    .map-stage[data-region="europe"] .arc-bundle:not([data-from="europe"]):not([data-to="europe"]),
+    .map-stage[data-region="asia"] .arc-bundle:not([data-from="asia"]):not([data-to="asia"]) { opacity: .10; }
     .mk-marker { cursor: pointer; }
     .mk-marker circle.mk-hit { transition: opacity 0.2s; }
     .mk-marker:hover circle.mk-hit, .mk-marker:focus-visible circle.mk-hit { opacity: 0.88; }
@@ -174,9 +206,6 @@
     .map-stage .earth { position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: fill; display: block; }
     .map-stage .map-fx { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-    .fx-arc { fill: none; stroke-linecap: round; stroke-dasharray: 2 9;
-      animation: arcTravel 14s linear infinite; }
-    @keyframes arcTravel { to { stroke-dashoffset: -220; } }
     .mk-marker { cursor: pointer; }
     .mk-marker.is-dim { opacity: 0.3; }
     .mk-marker .mk-glow { animation: glowPulse 4.4s ease-in-out infinite; }
@@ -201,7 +230,7 @@
     .mk-card.above { transform: translate(-50%, -100%); flex-direction: column-reverse; }
 
     @media (prefers-reduced-motion: reduce) {
-      .fx-arc, .mk-marker .mk-glow { animation: none; }
+      .arc-pulse, .mk-marker .mk-glow { animation: none; }
     }
     @media (max-width: 620px) {
       .mk-card .mk-box i { font-size: 16px; }
@@ -652,29 +681,21 @@
                (LAT0 - lat) / (LAT0 - LAT1) * EARTH_H ];
     }
 
-    // Arc bundles between regions. Thomas's direction, 15 Aug: make it look
-    // like the reference. These are atmosphere, not measurement - the
-    // instrument holds no origin-to-destination data, and the caption under
-    // the title says so in as many words.
-    function arcs(from, to, color, n, dim){
-      var A = px(GEO[from][0], GEO[from][1]), B = px(GEO[to][0], GEO[to][1]);
-      var out = '', dx = B[0]-A[0], dy = B[1]-A[1];
-      var len = Math.sqrt(dx*dx + dy*dy) || 1;
-      var nx = -dy/len, ny = dx/len;                 // perpendicular
-      for(var i=0;i<n;i++){
-        var t = (i/(n-1)) - 0.5;                     // -0.5 .. 0.5 across the fan
-        var bow = len * (0.16 + 0.30*Math.abs(t)) * (t < 0 ? -1 : 1);
-        if(Math.abs(t) < 0.04) bow = len * 0.13;     // keep the centre strands taut
-        var mx = (A[0]+B[0])/2 + nx*bow, my = (A[1]+B[1])/2 + ny*bow - len*0.06;
-        var w = (1.6 + 2.2*(1 - Math.abs(t)*2)).toFixed(2);
-        var op = (dim ? 0.10 : (0.30 + 0.55*(1 - Math.abs(t)*2))).toFixed(2);
-        out += '<path class="fx-arc" d="M '+A[0].toFixed(1)+' '+A[1].toFixed(1)+
-               ' Q '+mx.toFixed(1)+' '+my.toFixed(1)+' '+B[0].toFixed(1)+' '+B[1].toFixed(1)+
-               '" stroke="'+color+'" stroke-width="'+w+'" opacity="'+op+'"'+
-               ' style="animation-delay:'+(i*0.42).toFixed(2)+'s"/>';
-      }
-      return out;
-    }
+    // Arc geometry: GPT's model_adoption_arc_geometry_v1, 15 August 2026,
+    // carried across verbatim - 26 strands across three bundles, every one
+    // starting and ending exactly on a node centre. Authored against this
+    // stage's own 2200 x 1117 viewBox, which is why the anchors line up with
+    // the lon/lat placement without a single fudge factor.
+    //
+    // My generated version is gone. It produced, in order: mirrored lenses
+    // from drawing both directions, strands clipped off the top from scaling
+    // the bow to chord length, and sub-pixel smoke from treating stroke-width
+    // as pixels. The handoff fixes all three by construction.
+    //
+    // The base strands are SOLID. Only the two innermost of each bundle are
+    // duplicated as a dashed pulse layer, so reduced-motion can stop the
+    // movement without removing the structure.
+    var ARC_SVG = "<g id=\"arcs-us-asia\" class=\"arc-bundle arc-bundle--us-asia\" data-from=\"us\" data-to=\"asia\"><path class=\"arc strand s10\" data-opacity=\"0.08\" data-width=\"1.8\" d=\"M228.8 329.515 C610 20 1480 12 1878.8 364.142\"/><path class=\"arc strand s9\"  data-opacity=\"0.11\" data-width=\"1.9\" d=\"M228.8 329.515 C600 34 1494 28 1878.8 364.142\"/><path class=\"arc strand s8\"  data-opacity=\"0.15\" data-width=\"2.0\" d=\"M228.8 329.515 C585 52 1510 46 1878.8 364.142\"/><path class=\"arc strand s7\"  data-opacity=\"0.19\" data-width=\"2.1\" d=\"M228.8 329.515 C570 72 1524 66 1878.8 364.142\"/><path class=\"arc strand s6\"  data-opacity=\"0.24\" data-width=\"2.2\" d=\"M228.8 329.515 C552 96 1536 88 1878.8 364.142\"/><path class=\"arc strand s5\"  data-opacity=\"0.30\" data-width=\"2.4\" d=\"M228.8 329.515 C535 122 1548 112 1878.8 364.142\"/><path class=\"arc strand s4\"  data-opacity=\"0.36\" data-width=\"2.6\" d=\"M228.8 329.515 C520 150 1560 138 1878.8 364.142\"/><path class=\"arc strand s3\"  data-opacity=\"0.44\" data-width=\"2.8\" d=\"M228.8 329.515 C505 180 1570 166 1878.8 364.142\"/><path class=\"arc strand s2\"  data-opacity=\"0.52\" data-width=\"3.1\" d=\"M228.8 329.515 C490 212 1580 196 1878.8 364.142\"/><path class=\"arc strand s1\"  data-opacity=\"0.62\" data-width=\"3.4\" d=\"M228.8 329.515 C474 244 1590 226 1878.8 364.142\"/><path class=\"arc-pulse\" d=\"M228.8 329.515 C490 212 1580 196 1878.8 364.142\"/><path class=\"arc-pulse\" d=\"M228.8 329.515 C474 244 1590 226 1878.8 364.142\"/></g><g id=\"arcs-us-europe\" class=\"arc-bundle arc-bundle--us-europe\" data-from=\"us\" data-to=\"europe\"><path class=\"arc strand s8\" data-opacity=\"0.12\" data-width=\"1.9\" d=\"M228.8 329.515 C388 72 820 48 1007.6 228.985\"/><path class=\"arc strand s7\" data-opacity=\"0.17\" data-width=\"2.0\" d=\"M228.8 329.515 C398 92 810 70 1007.6 228.985\"/><path class=\"arc strand s6\" data-opacity=\"0.23\" data-width=\"2.2\" d=\"M228.8 329.515 C410 116 800 94 1007.6 228.985\"/><path class=\"arc strand s5\" data-opacity=\"0.30\" data-width=\"2.4\" d=\"M228.8 329.515 C422 140 790 120 1007.6 228.985\"/><path class=\"arc strand s4\" data-opacity=\"0.38\" data-width=\"2.6\" d=\"M228.8 329.515 C436 166 778 146 1007.6 228.985\"/><path class=\"arc strand s3\" data-opacity=\"0.46\" data-width=\"2.8\" d=\"M228.8 329.515 C450 190 766 172 1007.6 228.985\"/><path class=\"arc strand s2\" data-opacity=\"0.54\" data-width=\"3.1\" d=\"M228.8 329.515 C466 216 752 196 1007.6 228.985\"/><path class=\"arc strand s1\" data-opacity=\"0.64\" data-width=\"3.4\" d=\"M228.8 329.515 C482 242 738 216 1007.6 228.985\"/><path class=\"arc-pulse\" d=\"M228.8 329.515 C466 216 752 196 1007.6 228.985\"/><path class=\"arc-pulse\" d=\"M228.8 329.515 C482 242 738 216 1007.6 228.985\"/></g><g id=\"arcs-europe-asia\" class=\"arc-bundle arc-bundle--europe-asia\" data-from=\"europe\" data-to=\"asia\"><path class=\"arc strand s8\" data-opacity=\"0.12\" data-width=\"1.9\" d=\"M1007.6 228.985 C1190 40 1650 48 1878.8 364.142\"/><path class=\"arc strand s7\" data-opacity=\"0.17\" data-width=\"2.0\" d=\"M1007.6 228.985 C1200 60 1642 66 1878.8 364.142\"/><path class=\"arc strand s6\" data-opacity=\"0.23\" data-width=\"2.2\" d=\"M1007.6 228.985 C1212 82 1634 86 1878.8 364.142\"/><path class=\"arc strand s5\" data-opacity=\"0.30\" data-width=\"2.4\" d=\"M1007.6 228.985 C1225 106 1626 108 1878.8 364.142\"/><path class=\"arc strand s4\" data-opacity=\"0.38\" data-width=\"2.6\" d=\"M1007.6 228.985 C1238 132 1618 132 1878.8 364.142\"/><path class=\"arc strand s3\" data-opacity=\"0.46\" data-width=\"2.8\" d=\"M1007.6 228.985 C1252 158 1610 158 1878.8 364.142\"/><path class=\"arc strand s2\" data-opacity=\"0.54\" data-width=\"3.1\" d=\"M1007.6 228.985 C1266 184 1602 186 1878.8 364.142\"/><path class=\"arc strand s1\" data-opacity=\"0.64\" data-width=\"3.4\" d=\"M1007.6 228.985 C1280 208 1594 216 1878.8 364.142\"/><path class=\"arc-pulse\" d=\"M1007.6 228.985 C1266 184 1602 186 1878.8 364.142\"/><path class=\"arc-pulse\" d=\"M1007.6 228.985 C1280 208 1594 216 1878.8 364.142\"/></g>";
 
     function renderMap(d){
       var byRegion = {}; d.share.forEach(function(s){ byRegion[s.region] = s; });
@@ -692,14 +713,7 @@
                 '<stop offset="1" stop-color="'+c+'" stop-opacity="0"/></radialGradient>';
       });
 
-      // arcs first, so the nodes sit on top of their own bundles
-      order.forEach(function(from){
-        var dim = (FILTER !== 'World' && FILTER !== from);
-        order.forEach(function(to){
-          if(from === to) return;
-          fx += arcs(from, to, REGION_DARK[from], 17, dim);
-        });
-      });
+
 
       order.forEach(function(rg){
         var s = byRegion[rg]; if(!s) return;
@@ -724,10 +738,11 @@
       });
 
       document.getElementById('worldmap').innerHTML =
-        '<div class="map-stage">' +
+        '<div class="map-stage" data-region="' + FILTER.toLowerCase() + '">' +
           '<img class="earth" src="' + BASE + '/earth-night.webp" alt="" ' +
             'srcset="' + BASE + '/earth-night-1200.webp 1200w, ' + BASE + '/earth-night.webp 2200w" ' +
             'sizes="(max-width: 880px) 100vw, 62vw" decoding="async" />' +
+          '<svg class="arc-overlay" viewBox="0 0 '+EARTH_W+' '+EARTH_H+'" preserveAspectRatio="none" aria-hidden="true">' + ARC_SVG + '</svg>' +
           '<svg class="map-fx" viewBox="0 0 '+EARTH_W+' '+EARTH_H+'" preserveAspectRatio="none" role="img" ' +
             'aria-label="World map of model origin. ' + esc(altParts.join('; ')) + '.">' +
             '<defs>'+defs+'</defs>' + fx +
