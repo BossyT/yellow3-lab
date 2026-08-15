@@ -234,6 +234,26 @@
 .ab1 .playline{width:82%}
 .ab1 .playline strong{font-size:27px}
 }
+
+/* The approved /about package reserved this surface and therefore contains */
+/* no rule for a video inside it. The asset handoff of 2026-08-15 says to */
+/* use the reserved box's dimensions and responsive behaviour exactly, so */
+/* the video fills the box rather than the box resizing to the video. */
+/* object-fit:contain because the box is 16/9 at desktop and 4/3 below */
+/* 800px while the supplied file is 1280x720 - contain preserves the aspect */
+/* ratio the handoff requires, and the box's own gradient shows in the */
+/* letterbox. z-index:1 matches what .playline used, so the reserved */
+/* decorations stay behind the content as before. */
+.ab1 .video-placeholder video{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;display:block}
+
+/* The yellow bar and the outline circle were the RESERVED state's ornament */
+/* - they dressed an empty box. At desktop the 16/9 film covers them, but */
+/* below 800px the box is 4/3, the film letterboxes inside it, and the */
+/* yellow bar reappears above the picture. Removing them is part of */
+/* replacing the reserved contents, not a redesign: the handoff forbids */
+/* INTRODUCING decoration, and this takes decoration away. Reported to */
+/* Thomas either way. */
+.ab1 .video-placeholder:before,.ab1 .video-placeholder:after{display:none}
 /* <<< end approved /about */
 </style>
 </head>
@@ -283,7 +303,10 @@
     <div class="video-shell">
       <div class="video-top"><span>Founder film</span><span>Video slot reserved</span></div>
       <div class="video-placeholder">
-        <div class="playline"><small>Thomas Melskens · Founder</small><strong>Why I built yellow3</strong><span>AI avatar film will be added here later. No autoplay.</span></div>
+        <video controls preload="metadata" playsinline
+               poster="/media/about/yellow3_about_founder_avatar_poster.webp">
+          <source src="/media/about/yellow3_about_founder_avatar_720p.mp4" type="video/mp4" />
+        </video>
       </div>
       <div class="video-meta"><div><strong>Founder explanation</strong><br><span>Company purpose, research discipline and human responsibility.</span></div><span>60–90 sec</span></div>
     </div>

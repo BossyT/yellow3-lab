@@ -92,8 +92,42 @@ PAGES = {
         # Attribute-precise on purpose: the approved placeholder copy says "No
         # autoplay." in prose, so a bare substring check fails on the very text
         # that proves the rule is being kept.
-        "forbids": ["<video", "<iframe", "poster=", "autoplay=", " autoplay>"],
-        "deviations": [],
+        # The reserved surface now holds the supplied founder avatar. The
+        # package's prohibitions become requirements in the other direction:
+        # controls and a poster, and still no autoplay.
+        # NOTE: the AI-avatar disclosure that used to be required here lived in
+        # the placeholder copy, and replacing the reserved surface removed it.
+        # The two packages disagree about that and it is returned, not decided:
+        # /about says keep the disclosure when the real film arrives, the asset
+        # handoff says add no new disclosure as part of that insertion.
+        "requires": ["/media/about/yellow3_about_founder_avatar_720p.mp4",
+                     "/media/about/yellow3_about_founder_avatar_poster.webp",
+                     'preload="metadata"', "controls"],
+        "forbids": ["<iframe", "autoplay=", " autoplay>"],
+        "deviations": [
+            ("", ".video-placeholder video",
+             "position:relative;z-index:1;width:100%;height:100%;"
+             "object-fit:contain;display:block",
+             "The approved /about package reserved this surface and therefore "
+             "contains no rule for a video inside it. The asset handoff of "
+             "2026-08-15 says to use the reserved box's dimensions and "
+             "responsive behaviour exactly, so the video fills the box rather "
+             "than the box resizing to the video. object-fit:contain because "
+             "the box is 16/9 at desktop and 4/3 below 800px while the supplied "
+             "file is 1280x720 - contain preserves the aspect ratio the handoff "
+             "requires, and the box's own gradient shows in the letterbox. "
+             "z-index:1 matches what .playline used, so the reserved "
+             "decorations stay behind the content as before."),
+            ("", ".video-placeholder:before,.video-placeholder:after",
+             "display:none",
+             "The yellow bar and the outline circle were the RESERVED state's "
+             "ornament - they dressed an empty box. At desktop the 16/9 film "
+             "covers them, but below 800px the box is 4/3, the film letterboxes "
+             "inside it, and the yellow bar reappears above the picture. "
+             "Removing them is part of replacing the reserved contents, not a "
+             "redesign: the handoff forbids INTRODUCING decoration, and this "
+             "takes decoration away. Reported to Thomas either way."),
+        ],
     },
     "advisory": {
         "target": "advisory.html",
