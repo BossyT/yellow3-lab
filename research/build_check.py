@@ -185,6 +185,19 @@ def main() -> int:
     if june:
         FAIL.append(f'{len(june)} page(s) are back on a June -v2 card, '
                     f'e.g. {june[0]} - run research/wire_og.py')
+    # The CMS builds its og:image by concatenation, so the literal tag never
+    # appears and the scan above cannot see it. Read its card URLs directly -
+    # this is exactly how a fallback pointing at insights.png, a file that
+    # never existed, reached production.
+    for f in (ROOT / 'admin.html',):
+        if not f.exists():
+            continue
+        for ref in re.findall(r'/og/cards/([A-Za-z0-9._-]+\.png)', f.read_text(encoding='utf-8')):
+            if not (cards / ref).exists():
+                missing.append(f'{f.name} -> cards/{ref}')
+    if missing:
+        FAIL.append(f'{len(missing)} social card reference(s) do not resolve, '
+                    f'e.g. {missing[-1]}')
     if not missing and not june:
         print(f'  ok  every social card resolves ({len(list(cards.glob("*.png")))} cards)')
 

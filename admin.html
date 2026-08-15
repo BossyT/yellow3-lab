@@ -1367,7 +1367,7 @@ function heroOgMetaHtml(slug, hero) {
     // next research/gen_og.py run gives the article its own framed card.
     const url = hero
         ? 'https://www.yellow3.io/insights/hero-' + slug + '.' + hero.ext
-        : 'https://www.yellow3.io/og/cards/insights.png';
+        : 'https://www.yellow3.io/og/cards/insights-index.png';
     const alt = hero ? escAttr(hero.alt) : 'yellow3 insights';
     return '<meta property="og:image" content="' + url + '">\n' +
            '    <meta property="og:image:alt" content="' + alt + '">\n' +
