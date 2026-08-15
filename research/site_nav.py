@@ -113,6 +113,53 @@ FOOT_PLATFORMS_COL = (
 FOOT_NAFFE = re.compile(r'<a href="/naffe">naffe\.ai</a>')
 FOOT_NAFFE_NEW = '<a href="https://naffe.ai/">naffe.ai</a>'
 
+# The Platforms column, corrected 2026-08-15 on GPT's IA ruling.
+#
+# The DPP Supplier Register moves OUT of Platforms: it is a public research
+# instrument, not a yellow3 product platform, and listing it as a platform
+# misclassified it against the frozen site architecture. It moves into the
+# Research column below.
+#
+# Software moves IN. Since a link labelled naffe.ai goes to naffe.ai, the
+# footer's naffe entry leaves the site entirely, and /software - the yellow3
+# page explaining why the company is building it - had no footer route at all.
+#
+# The DPP Buyer Platform stays out, for the reason recorded on 11 August: this
+# footer renders on all 191 supplier profile pages, and a commercial Digital
+# Product Passport product link on every page of an independent register works
+# against the independence the register is built on.
+FOOT_PLATFORMS_COLUMN = re.compile(
+    r'(<div class="foot-col">\s*<h4>Platforms</h4>\s*)'
+    r'<a href="https://naffe\.ai/">naffe\.ai</a>\s*'
+    r'<a href="/research/digital-product-passport/suppliers">DPP Supplier Register</a>\s*'
+    r'(<a href="/platforms">All platforms</a>)', re.S)
+FOOT_PLATFORMS_NEW = (
+    r'\1<a href="https://naffe.ai/">naffe.ai</a>\n'
+    r'          <a href="/software">Software</a>\n'
+    r'          \2')
+
+# ...and the register arrives in Research, where it belongs.
+#
+# NOT a wholesale rewrite of that column. It carries three deliberate variants -
+# the DPP family lists the method, the Model Adoption family lists the report -
+# and site_nav has always left it alone because that is contextual navigation
+# rather than architecture. The register is appended to whichever variant a page
+# already has, so the reclassification happens without flattening 635 pages into
+# one list.
+FOOT_RESEARCH_COLUMN = re.compile(
+    r'(<div class="foot-col">\s*<h4>Research</h4>(?:(?!</div>).)*?)(\s*</div>)', re.S)
+REGISTER_LINK = ('\n          <a href="/research/digital-product-passport/suppliers">'
+                 'DPP Supplier Register</a>')
+
+
+def add_register_to_research(text):
+    def one(m):
+        body = m.group(1)
+        if 'digital-product-passport/suppliers' in body:
+            return m.group(0)
+        return body + REGISTER_LINK + m.group(2)
+    return FOOT_RESEARCH_COLUMN.sub(one, text, count=1)
+
 FOOT_THINKING = re.compile(r'(<a href="/insights/"[^>]*>)Thinking(</a>)')
 
 # Advisory left the first column, so it joins the company links.
@@ -157,6 +204,8 @@ def sweep_footer(text):
     out = FOOT_THINKING.sub(r'\1Insights\2', out)
     out = FOOT_CONTACT.sub(FOOT_CONTACT_NEW, out)
     out = FOOT_NAFFE.sub(FOOT_NAFFE_NEW, out)
+    out = FOOT_PLATFORMS_COLUMN.sub(FOOT_PLATFORMS_NEW, out)
+    out = add_register_to_research(out)
     out = FOOT_IDENTITY.sub(FOOT_IDENTITY_NEW, out)
 
     def company(match):
@@ -223,6 +272,15 @@ def footer_faults(text):
         faults.append(f'footer Contact still points at {stale.group(1)}')
     if '<a href="/naffe">naffe.ai</a>' in text:
         faults.append('a link labelled naffe.ai still points at /naffe')
+    plat = re.search(r'<h4>Platforms</h4>((?:(?!</div>).)*)', text, re.S)
+    if plat:
+        if 'DPP Supplier Register' in plat.group(1):
+            faults.append('the register is still listed as a platform')
+        if '/software' not in plat.group(1):
+            faults.append('Software is missing from the Platforms column')
+    res = re.search(r'<h4>Research</h4>((?:(?!</div>).)*)', text, re.S)
+    if res and 'digital-product-passport/suppliers' not in res.group(1):
+        faults.append('the register is missing from the Research column')
     return faults
 
 

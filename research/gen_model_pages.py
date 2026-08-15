@@ -91,6 +91,7 @@ FOOTER = _foot("""  <footer class="site-footer">
           <a href="/research/model-adoption">yellow3 Model Intelligence</a>
           <a href="/research/model-adoption/reports">The Model Adoption Report</a>
           <a href="/research/eu-ai-act">EU AI Act</a>
+          <a href="/research/digital-product-passport/suppliers">DPP Supplier Register</a>
         </div>
         <div class="foot-col">
           <h4>Company</h4>
