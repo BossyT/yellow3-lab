@@ -104,6 +104,26 @@ def main() -> int:
                 print(f'  ok  CMS: parses, {text.count("article-body")} article '
                       f'template references')
 
+    # 2c. SEO / entity due diligence, as a standing gate.
+    #
+    # GPT 2026-08-15: this is a continuous system, not a one-off project.
+    # Generated pages, canonicals, templates, redirects and the sitemap can all
+    # drift independently, and every one of those drifts is invisible on any
+    # single page.
+    #
+    # seo_dd skips its sitemap checks when it cannot reach the live one, which
+    # is the case here: generate-sitemap.js runs AFTER this script in the build
+    # command, so the committed copy is a build behind. It still checks links,
+    # canonicals, metadata, social cards, entity wording and template drift.
+    r = subprocess.run([sys.executable, str(ROOT / 'research' / 'seo_dd.py'),
+                        '--check'], capture_output=True, text=True)
+    if r.returncode:
+        tail = [l for l in (r.stdout or '').splitlines() if l.startswith('!')]
+        FAIL.append('seo_dd found a fault that misleads a crawler:\n      '
+                    + '\n      '.join(tail or ['see python3 research/seo_dd.py']))
+    else:
+        print('  ok  seo: canonicals, links, social cards, entity, templates')
+
     # 3. The dataset, and that it agrees with the register it came from.
     src = json.loads((ROOT / 'research' / 'dpp-suppliers.json').read_text(encoding='utf-8'))
     expected = len(src['suppliers'])

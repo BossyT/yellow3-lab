@@ -153,17 +153,22 @@ def main():
     smap_paths = {u[len(HOST):] if u.startswith(HOST) else u for u in smap}
 
     # ---------------------------------------------------------- indexation
-    for rel, d in sorted(indexable.items()):
+    #
+    # Only when the LIVE sitemap was reachable. The committed sitemap.xml is
+    # build output and is regenerated after this script runs in the build
+    # command, so comparing against it reports pages as missing that the deploy
+    # will list. That false reading is what this whole file was corrected for.
+    for rel, d in (sorted(indexable.items()) if smap_live else []):
         if d["url"] not in smap_paths:
             findings["indexable page missing from the sitemap"].append(d["url"])
-    for rel, d in sorted(docs.items()):
+    for rel, d in (sorted(docs.items()) if smap_live else []):
         if d["noindex"] and d["url"] in smap_paths:
             findings["sitemap lists a noindex page"].append(d["url"])
-    for u in sorted(smap_paths):
+    for u in (sorted(smap_paths) if smap_live else []):
         if file_for(u) is None:
             note = " (a redirect source)" if u in redirects else ""
             findings["sitemap lists a URL that is not a page"].append(u + note)
-    dupes = [u for u, n in Counter(smap).items() if n > 1]
+    dupes = [u for u, n in Counter(smap).items() if n > 1] if smap_live else []
     for u in sorted(dupes):
         findings["sitemap lists the same URL twice"].append(u)
 
@@ -198,6 +203,18 @@ def main():
         if len(urls) > 1:
             findings["duplicate meta description"].append(
                 '"%s" on %d pages: %s' % (t[:50], len(urls), ", ".join(urls[:4])))
+
+    # ------------------------------------------------- social metadata
+    for rel, d in sorted(indexable.items()):
+        # Match the property exactly. A substring test passes on og:image:alt
+        # when og:image itself is absent, which is how the first version of
+        # this check reported a page as fine while its card had no image.
+        missing = [k for k in ("og:title", "og:description", "og:image",
+                               "twitter:card")
+                   if not re.search(r'(?:property|name)="%s"' % k, d["text"])]
+        if missing:
+            findings["incomplete social card"].append(
+                "%s: no %s" % (d["url"], ", ".join(missing)))
 
     # --------------------------------------------------------------- entity
     for rel, d in sorted(docs.items()):
@@ -308,6 +325,7 @@ def main():
     print()
 
     blocking = ("internal link goes nowhere", "invalid JSON-LD",
+                "incomplete social card",
                 "generator emits the bare host, against the 2026-07-30 policy",
                 "retired positioning still on a page",
                 "generator template carries retired positioning",

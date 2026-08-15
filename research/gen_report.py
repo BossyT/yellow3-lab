@@ -573,6 +573,15 @@ def render_archive(reports):
   <title>The Model Adoption Report - Archive | yellow3</title>
   <meta name="description" content="Every monthly Model Adoption Report from yellow3 - regional shifts, rankings, economics and Europe Watch." />
   <link rel="canonical" href="{HOST}{RBASE}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="yellow3 lab" />
+  <meta property="og:title" content="The Model Adoption Report - Archive | yellow3" />
+  <meta property="og:description" content="Every monthly Model Adoption Report from yellow3 - regional shifts, rankings, economics and Europe Watch." />
+  <meta property="og:url" content="{HOST}{RBASE}" />
+  <meta property="og:image" content="https://www.yellow3.io/og/og-homepage-v2.png" />
+  <meta property="og:image:alt" content="yellow3 lab" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.yellow3.io/og/og-homepage-v2.png" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="{RBASE}/report.css" />

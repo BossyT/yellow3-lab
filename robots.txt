@@ -1,5 +1,5 @@
 # yellow3 lab – https://www.yellow3.io
-# AI Research Lab, Copenhagen
+# yellow3.io crawler policy
 
 User-agent: *
 Allow: /

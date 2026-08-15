@@ -1353,10 +1353,18 @@ function articleBreadcrumbJsonLd(slug, title) {
 }
 
 function heroOgMetaHtml(slug, hero) {
-    if (!hero) return '';
-    const url = 'https://www.yellow3.io/insights/hero-' + slug + '.' + hero.ext;
+    // Every article gets a social card. Returning '' when there was no hero is
+    // why seven published articles shipped with no og:image and no
+    // twitter:card at all - the omission was in this one function rather than
+    // in any of the pages. GPT ruled on 2026-08-15: fall back to the company
+    // image, the same one /software and /contact already use, and never invent
+    // article-specific imagery.
+    const url = hero
+        ? 'https://www.yellow3.io/insights/hero-' + slug + '.' + hero.ext
+        : 'https://www.yellow3.io/og/og-homepage-v2.png';
+    const alt = hero ? escAttr(hero.alt) : 'yellow3 lab';
     return '<meta property="og:image" content="' + url + '">\n' +
-           '    <meta property="og:image:alt" content="' + escAttr(hero.alt) + '">\n' +
+           '    <meta property="og:image:alt" content="' + alt + '">\n' +
            '    <meta name="twitter:image" content="' + url + '">\n' +
            '    <meta name="twitter:card" content="summary_large_image">';
 }

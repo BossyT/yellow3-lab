@@ -3,17 +3,16 @@
 
 ## Overview
 
-yellow3 lab uses emerging technology to make business less complicated. An independent research lab in Copenhagen, Denmark, founded by Thomas Christian Melskens. We measure what is actually happening in emerging technology and regulation, publish the numbers as live instruments, and build platforms where the research shows software can remove the complexity.
+yellow3 lab is an AI and emerging-technology company based in Copenhagen, Denmark. We research, experiment with and build platforms designed to make business less complicated, with humans remaining responsible for the outcome. Founded by Thomas Christian Melskens. We measure what is actually happening in emerging technology and regulation, publish the numbers as live instruments, and build platforms where the research shows software can remove the complexity.
 
 ## What We Do
 
-yellow3 lab researches markets where important change is happening, publishes what it measures, and builds a platform when the research exposes a problem software can solve better. We focus on five research areas, the same five the site itself lists:
+yellow3 lab researches markets where important change is happening, publishes what it measures, and builds a platform when the research exposes a problem software can solve better. Current public research instruments include:
 
-- Outcome Architecture: designing systems that start with the end in mind.
-- Human-Direction AI: AI that amplifies human judgment, not replaces human thinking.
-- Autonomous Software: software that plans, decides, and executes with reliability.
-- Digital Product Passports: how regulation, product data, evidence and supplier capabilities are reshaping the market. https://www.yellow3.io/research/digital-product-passport
-- AI-native SMB Infrastructure: the next generation of infrastructure for small and mid-sized businesses. https://www.yellow3.io/research/model-adoption
+- Model Adoption: where routed AI demand is flowing, by model origin, updated weekly. https://www.yellow3.io/research/model-adoption
+- EU AI Act: what has actually become applicable or enforced, against what has been announced. https://www.yellow3.io/research/eu-ai-act
+- Digital Product Passport: whether the European DPP system is becoming real on schedule, on the regulator side and across industry readiness. https://www.yellow3.io/research/digital-product-passport
+- yellow3 DPP Supplier Register: an independent public dataset of organisations supplying Digital Product Passport capability. https://www.yellow3.io/research/digital-product-passport/suppliers
 
 The research is published as live instruments rather than opinion: original measurement, dated, with the method and the sources stated. https://www.yellow3.io/research
 
