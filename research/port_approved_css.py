@@ -107,15 +107,17 @@ PAGES = {
         "deviations": [
             ("", ".video-placeholder video",
              "position:relative;z-index:1;width:100%;height:100%;"
-             "object-fit:contain;display:block",
+             "object-fit:cover;object-position:center center;display:block",
              "The approved /about package reserved this surface and therefore "
              "contains no rule for a video inside it. The asset handoff of "
              "2026-08-15 says to use the reserved box's dimensions and "
              "responsive behaviour exactly, so the video fills the box rather "
-             "than the box resizing to the video. object-fit:contain because "
-             "the box is 16/9 at desktop and 4/3 below 800px while the supplied "
-             "file is 1280x720 - contain preserves the aspect ratio the handoff "
-             "requires, and the box's own gradient shows in the letterbox. "
+             "than the box resizing to the video. The box is 16/9 at desktop "
+             "and 4/3 below 800px while the file is 1280x720, so the two do "
+             "not agree on mobile. GPT ruled cover on 2026-08-15: at desktop "
+             "it makes no difference, and at mobile it fills the 4/3 frame by "
+             "cropping the sides, which the centred subject survives. A "
+             "designed media surface should not letterbox. "
              "z-index:1 matches what .playline used, so the reserved "
              "decorations stay behind the content as before."),
             ("", ".video-placeholder:before,.video-placeholder:after",

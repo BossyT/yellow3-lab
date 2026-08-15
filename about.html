@@ -238,13 +238,14 @@
 /* The approved /about package reserved this surface and therefore contains */
 /* no rule for a video inside it. The asset handoff of 2026-08-15 says to */
 /* use the reserved box's dimensions and responsive behaviour exactly, so */
-/* the video fills the box rather than the box resizing to the video. */
-/* object-fit:contain because the box is 16/9 at desktop and 4/3 below */
-/* 800px while the supplied file is 1280x720 - contain preserves the aspect */
-/* ratio the handoff requires, and the box's own gradient shows in the */
-/* letterbox. z-index:1 matches what .playline used, so the reserved */
-/* decorations stay behind the content as before. */
-.ab1 .video-placeholder video{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;display:block}
+/* the video fills the box rather than the box resizing to the video. The */
+/* box is 16/9 at desktop and 4/3 below 800px while the file is 1280x720, */
+/* so the two do not agree on mobile. GPT ruled cover on 2026-08-15: at */
+/* desktop it makes no difference, and at mobile it fills the 4/3 frame by */
+/* cropping the sides, which the centred subject survives. A designed media */
+/* surface should not letterbox. z-index:1 matches what .playline used, so */
+/* the reserved decorations stay behind the content as before. */
+.ab1 .video-placeholder video{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;object-position:center center;display:block}
 
 /* The yellow bar and the outline circle were the RESERVED state's ornament */
 /* - they dressed an empty box. At desktop the 16/9 film covers them, but */
@@ -301,14 +302,16 @@
       <p class="body">Sometimes the result is a platform. Sometimes it is an instrument, a dataset or an experiment that teaches us something valuable. The point is not to produce more technology. The point is to make difficult things easier to understand and do.</p>
     </div>
     <div class="video-shell">
-      <div class="video-top"><span>Founder film</span><span>Video slot reserved</span></div>
+      <div class="video-top"><span>Founder film</span><span>Thomas Melskens · Founder &amp; CEO</span></div>
       <div class="video-placeholder">
         <video controls preload="metadata" playsinline
                poster="/media/about/yellow3_about_founder_avatar_poster.webp">
           <source src="/media/about/yellow3_about_founder_avatar_720p.mp4" type="video/mp4" />
+          <track kind="captions" src="/media/about/yellow3_about_founder_avatar_captions.vtt"
+                 srclang="en" label="English" default />
         </video>
       </div>
-      <div class="video-meta"><div><strong>Founder explanation</strong><br><span>Company purpose, research discipline and human responsibility.</span></div><span>60–90 sec</span></div>
+      <div class="video-meta"><div><strong>Founder explanation</strong><br><span>Company purpose, research discipline and human responsibility.</span><br><span>AI avatar based on Thomas Melskens’ voice and likeness.</span></div></div>
     </div>
   </div>
   </section>
