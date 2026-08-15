@@ -1,25 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Work with yellow3 - Briefings & Advisory - yellow3 lab</title>
-  <meta name="description" content="Two ways to put yellow3 lab's research to work: Executive Briefings for leaders who need clarity, and Strategic Advisory for organisations navigating change. Independent, practitioner-led, from Copenhagen." />
+  <title>Advisory | yellow3 lab</title>
+  <meta name="description" content="Independent research and human judgment applied to consequential decisions." />
   <link rel="canonical" href="https://www.yellow3.io/advisory" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <style>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="yellow3 lab" />
+  <meta property="og:title" content="Advisory | yellow3 lab" />
+  <meta property="og:description" content="Independent research and human judgment applied to consequential decisions." />
+  <meta property="og:url" content="https://www.yellow3.io/advisory" />
+  <meta property="og:image" content="https://www.yellow3.io/og/og-advisory-v2.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="yellow3 lab Advisory" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:image" content="https://www.yellow3.io/og/og-advisory-v2.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://www.yellow3.io/advisory#webpage",
+    "url": "https://www.yellow3.io/advisory",
+    "name": "Advisory | yellow3 lab",
+    "description": "Independent research and human judgment applied to consequential decisions.",
+    "about": { "@id": "https://www.yellow3.io/#organization" },
+    "publisher": { "@id": "https://www.yellow3.io/#organization" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.yellow3.io/" },
+      { "@type": "ListItem", "position": 2, "name": "Advisory", "item": "https://www.yellow3.io/advisory" }
+    ]
+  }
+  </script>
+
+<style>
+
+/* The production shell, whole. Not filtered: a component depends on rules that
+   never mention it, and filtering this by selector name broke the homepage
+   twice. */
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --paper:#ffffff; --ink:#0e0e0e; --body:#4b4b4b; --muted:#8a8a8a; --line:#e7e6e2; --yellow:#ffe000; --panel:#f7f6f3; }
+    :root { --paper:#ffffff; --ink:#0e0e0e; --body:#4b4b4b; --muted:#8a8a8a; --line:#e7e6e2; --yellow:#ffe000; --panel:#f7f6f3; --live:#2E9D78; }
     html { scroll-behavior: smooth; }
     body { background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; font-weight: 400; line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
     img { display: block; max-width: 100%; }
     .inner { max-width: 1240px; margin: 0 auto; }
-    .hl { background: var(--yellow); color: var(--ink); padding: 0.02em 0.1em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 
     /* NAV */
     .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
     .brand { display: flex; align-items: baseline; gap: 7px; text-decoration: none; }
     .brand img { height: 21px; align-self: center; }
+    .brand .lab { font-weight: 600; font-size: 15px; color: var(--ink); letter-spacing: -0.01em; }
     .nav-mid { display: flex; gap: 32px; }
     .nav-mid a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #3a3a3a; text-decoration: none; font-weight: 500; padding-bottom: 3px; transition: color 0.2s; }
     .nav-mid a:hover { color: var(--ink); }
@@ -29,94 +70,11 @@
     .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
     .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
 
-    /* HERO */
-    .hero { padding: 150px 48px 72px; border-bottom: 1px solid var(--line); }
-    .hero-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 28px; }
-    .hero h1 { font-size: clamp(38px, 5.4vw, 72px); font-weight: 400; line-height: 1.04; letter-spacing: -0.055em; color: var(--ink); max-width: 980px; margin-bottom: 30px; }
-    .hero-sub { font-size: 18px; color: var(--body); max-width: 640px; line-height: 1.6; border-left: 3px solid var(--yellow); padding-left: 24px; }
-    .hero-nohype { margin-top: 30px; display: flex; gap: 10px 26px; flex-wrap: wrap; }
-    .hero-nohype span { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-    .hero-nohype span::before { content: "— "; color: var(--ink); }
-
-    /* PILLARS */
-    .pillars { padding: 96px 48px; border-bottom: 1px solid var(--line); }
-    .pillars-head { margin-bottom: 48px; }
-    .section-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-    .pillar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
-    .pillar { background: var(--paper); padding: 48px 44px; display: flex; flex-direction: column; }
-    .pillar .mode { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); font-weight: 700; margin-bottom: 18px; }
-    .pillar .mode::after { content: ""; display: block; width: 32px; height: 3px; background: var(--yellow); margin-top: 12px; }
-    .pillar h2 { font-size: clamp(26px, 3vw, 36px); font-weight: 400; letter-spacing: -0.05em; line-height: 1.1; color: var(--ink); margin-bottom: 14px; }
-    .pillar .who { font-size: 17px; color: var(--ink); font-weight: 600; margin-bottom: 16px; }
-    .pillar p { font-size: 15px; color: var(--body); line-height: 1.65; margin-bottom: 24px; }
-    .pillar .aud { font-size: 13px; color: var(--muted); line-height: 1.6; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--line); }
-    .pillar .tag { display: inline-block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 22px; }
-
-    /* OFFERINGS / RATE CARD */
-    .rates { padding: 96px 48px; border-bottom: 1px solid var(--line); background: var(--panel); }
-    .rates-head { margin-bottom: 40px; }
-    .rate-list { border-top: 1px solid var(--line); }
-    .rate-row { display: grid; grid-template-columns: 1.1fr 1.6fr auto; gap: 28px; align-items: center; padding: 26px 0; border-bottom: 1px solid var(--line); }
-    .rate-name { font-size: 19px; font-weight: 800; letter-spacing: -0.01em; color: var(--ink); }
-    .rate-name .fmt { display: block; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-top: 6px; }
-    .rate-desc { font-size: 15px; color: var(--body); line-height: 1.55; }
-    .rate-price { font-size: 22px; font-weight: 400; letter-spacing: -0.025em; color: var(--ink); display: flex; flex-direction: column; align-items: flex-end; white-space: nowrap; }
-    .rate-price .per { display: block; font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.04em; }
-    .rate-buy { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; background: var(--ink); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 11px 18px; text-decoration: none; transition: background 0.2s; }
-    .rate-buy:hover { background: #000; }
-    .rate-enq { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; background: #fff; color: var(--ink); border: 1px solid var(--ink); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 17px; text-decoration: none; transition: all 0.2s; }
-    .rate-enq:hover { background: var(--ink); color: #fff; }
-    .rate-enq span { color: var(--yellow); }
-    .rate-buy span { color: var(--yellow); }
-
-    /* RESEARCH PARTNERSHIP (featured, dark) */
-    .partner { background: #0e0e0e; color: #fff; padding: 96px 48px; }
-    .partner-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 72px; align-items: center; }
-    .partner-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); font-weight: 700; margin-bottom: 24px; }
-    .partner h2 { font-size: clamp(30px, 4vw, 48px); font-weight: 400; letter-spacing: -0.05em; line-height: 1.05; margin-bottom: 24px; }
-    .partner .quote { font-size: 19px; font-weight: 600; color: #fff; line-height: 1.4; margin-bottom: 18px; }
-    .partner p { font-size: 15px; color: rgba(255,255,255,0.62); line-height: 1.6; max-width: 440px; }
-    .partner-card { background: #161616; border: 1px solid #2a2a2a; border-radius: 8px; padding: 34px 32px; }
-    .partner-card .pp { font-size: 32px; font-weight: 400; letter-spacing: -0.025em; margin-bottom: 4px; }
-    .partner-card .pp span { font-size: 15px; font-weight: 600; color: rgba(255,255,255,0.5); }
-    .partner-card .pk { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); font-weight: 600; margin: 26px 0 16px; }
-    .partner-card ul { list-style: none; }
-    .partner-card li { font-size: 15px; color: rgba(255,255,255,0.85); padding: 11px 0 11px 22px; border-top: 1px solid #262626; position: relative; }
-    .partner-card li::before { content: ""; position: absolute; left: 0; top: 18px; width: 7px; height: 7px; background: var(--yellow); }
-    .partner-card a { display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; background: var(--yellow); color: var(--ink); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 24px; text-decoration: none; transition: background 0.2s; }
-    .partner-card a:hover { background: #ffd400; }
-
-    /* INSTITUTION / FUNNEL */
-    .loop { padding: 96px 48px; border-bottom: 1px solid var(--line); }
-    .loop-head { margin-bottom: 12px; }
-    .loop h2 { font-size: clamp(26px, 3vw, 38px); font-weight: 400; letter-spacing: -0.05em; line-height: 1.12; color: var(--ink); max-width: 720px; margin-bottom: 48px; }
-    .loop-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line); }
-    .loop-step { padding: 32px 26px 30px; border-right: 1px solid var(--line); position: relative; }
-    .loop-step:last-child { border-right: none; }
-    .loop-step .ln { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 16px; }
-    .loop-step h3 { font-size: 22px; font-weight: 400; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 10px; }
-    .loop-step h3 .arr { color: var(--yellow); }
-    .loop-step p { font-size: 14px; color: var(--body); line-height: 1.55; }
-    .loop-foot { margin-top: 28px; font-size: 16px; color: var(--ink); font-weight: 600; }
-
-    /* ABOUT */
-    .about { padding: 96px 48px; border-bottom: 1px solid var(--line); background: var(--panel); }
-    .about-grid { display: grid; grid-template-columns: 280px 1fr; gap: 72px; align-items: start; }
-    .about h2 { font-size: clamp(26px, 3vw, 38px); font-weight: 400; letter-spacing: -0.05em; line-height: 1.1; color: var(--ink); }
-    .about-body p { font-size: 18px; color: var(--body); line-height: 1.7; margin-bottom: 20px; }
-    .about-body p.emph { color: var(--ink); font-weight: 700; }
-    .about-body .signed { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
-    .about-body .signed strong { color: var(--ink); font-weight: 700; }
-
-    /* CTA */
-    .cta { background: var(--yellow); padding: 80px 48px; }
-    .cta-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; }
-    .cta-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(0,0,0,0.55); font-weight: 700; margin-bottom: 22px; }
-    .cta h2 { font-size: clamp(28px, 3.2vw, 46px); font-weight: 400; line-height: 1.08; letter-spacing: -0.05em; color: var(--ink); }
-    .cta-right { border-left: 1px solid rgba(0,0,0,0.18); padding-left: 48px; }
-    .cta-right p { font-size: 18px; color: var(--ink); margin-bottom: 26px; line-height: 1.45; }
-    .btn { display: inline-flex; align-items: center; gap: 12px; padding: 16px 28px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--ink); transition: background 0.2s; background: var(--ink); color: #fff; }
-    .btn:hover { background: #000; }
+    /* The old /research content rules - .hero, .panel, .instruments, .inst,
+       .st, .read-*, .open-link, .dataset, .ds-* - are gone. They styled the
+       page this route used to serve, nothing in the approved markup renders
+       them, and .hero collided head-on with the approved hero. Nav, footer and
+       the globals above them stay: they are the shell the package builds on. */
 
     /* FOOTER */
     .site-footer { background: #0e0e0e; color: #fff; padding: 72px 48px 36px; }
@@ -139,15 +97,6 @@
     .foot-legal a { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
     .foot-legal a:hover { color: #fff; }
 
-    /* REVEAL */
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    @media (max-width: 1000px) {
-      .pillar-grid, .loop-flow { grid-template-columns: 1fr; }
-      .loop-step { border-right: none; border-bottom: 1px solid var(--line); }
-      .loop-step:last-child { border-bottom: none; }
-    }
     @media (max-width: 880px) {
       .site-nav { padding: 14px 24px; }
       .nav-mid { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--line); flex-direction: column; gap: 0; padding: 12px 24px 20px; }
@@ -158,52 +107,160 @@
       .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
       .nav-toggle.open span:nth-child(2) { opacity: 0; }
       .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
-      .hero, .pillars, .rates, .partner, .loop, .about, .cta { padding-left: 24px; padding-right: 24px; }
-      .hero { padding-top: 120px; }
-      .partner-grid, .about-grid, .cta-grid { grid-template-columns: 1fr; gap: 40px; }
-      .rate-row { grid-template-columns: 1fr auto; gap: 6px 16px; }
-      .rate-desc { grid-column: 1 / -1; }
-      .cta-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(0,0,0,0.18); padding-top: 32px; }
       .foot-top { grid-template-columns: 1fr 1fr; gap: 32px; }
       .site-footer { padding: 56px 24px 32px; }
     }
     @media (max-width: 560px) { .foot-top { grid-template-columns: 1fr; } }
-  </style>
 
-  <!-- OG / Social sharing -->
-  <meta property="og:image" content="/og/og-advisory-v2.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="yellow3 lab" />
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:image" content="/og/og-advisory-v2.png" />
-  <meta property="og:title" content="Work with yellow3 - Briefings & Advisory" />
-  <meta property="og:description" content="Two ways to put yellow3 lab's research to work: Executive Briefings and Strategic Advisory." />
-  <meta property="og:url" content="https://www.yellow3.io/advisory" />
-  <meta property="twitter:title" content="Work with yellow3 - Briefings & Advisory" />
-  <meta property="twitter:description" content="Two ways to put yellow3 lab's research to work: Executive Briefings and Strategic Advisory." />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "yellow3 lab - Executive Briefings & Strategic Advisory",
-    "serviceType": "AI strategy briefings and advisory",
-    "provider": { "@type": "Organization", "name": "yellow3 lab", "url": "https://www.yellow3.io" },
-    "areaServed": "Global",
-    "offers": [
-      { "@type": "Offer", "name": "Executive Briefing", "price": "1500", "priceCurrency": "EUR" },
-      { "@type": "Offer", "name": "Board Briefing", "price": "3000", "priceCurrency": "EUR" },
-      { "@type": "Offer", "name": "Leadership Workshop", "price": "4500", "priceCurrency": "EUR" },
-      { "@type": "Offer", "name": "Strategic Advisory", "price": "2500", "priceCurrency": "EUR", "description": "From EUR 2,500 per month" },
-      { "@type": "Offer", "name": "Research Partnership", "price": "12000", "priceCurrency": "EUR", "description": "From EUR 12,000 per year" }
-    ]
-  }
-  </script>
+
+/* >>> APPROVED /advisory, scoped under .ad1 by research/port_approved_css.py. Do not hand-edit. */
+.ad1{--paper:#fff;--ink:#0a0a0a;--body:#242424;--muted:#6b6b6b;--line:#d8d8d8;--soft:#f4f4f1;--yellow:#ffe500;--max:1220px}
+.ad1 *{box-sizing:border-box}
+.ad1{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+.ad1{font-size:16px;line-height:1.45}
+.ad1 main{display:block}
+.ad1 h1,.ad1 h2,.ad1 h3,.ad1 p,.ad1 ul,.ad1 ol,.ad1 figure,.ad1 blockquote,.ad1 dl,.ad1 dd{margin:0}
+.ad1 ul,.ad1 ol{padding:0;list-style:none}
+.ad1 img{display:block;max-width:100%}
+.ad1 a{color:inherit;text-decoration:none}
+.ad1 button,.ad1 input,.ad1 textarea,.ad1 select{font:inherit}
+.ad1 .wrap{width:min(calc(100% - 64px),var(--max));margin:0 auto}
+.ad1 .kicker{font-size:12px;line-height:1;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+.ad1 .display{font-size:clamp(56px,6.1vw,88px);line-height:.93;letter-spacing:-.055em;font-weight:400;max-width:1100px}
+.ad1 .h2{font-size:clamp(38px,4.2vw,62px);line-height:.98;letter-spacing:-.05em;font-weight:400;max-width:980px}
+.ad1 .h3{font-size:28px;line-height:1.05;letter-spacing:-.03em;font-weight:400}
+.ad1 .lede{font-size:clamp(20px,2vw,28px);line-height:1.24;letter-spacing:-.025em;max-width:820px;color:var(--body)}
+.ad1 .body{font-size:17px;line-height:1.55;color:var(--body);max-width:720px}
+.ad1 .small{font-size:13px;line-height:1.45;color:var(--muted)}
+.ad1 .yellow-mark{display:inline;box-shadow:inset 0 -.34em 0 var(--yellow)}
+.ad1 .link{display:inline-block;font-size:15px;font-weight:700;border-bottom:1px solid var(--ink);padding-bottom:4px}
+.ad1 .link:hover{opacity:.68}
+.ad1 .link-yellow{display:inline-block;background:var(--yellow);padding:15px 18px;font-size:15px;font-weight:700}
+.ad1 .link-yellow:hover{filter:brightness(.97)}
+.ad1 .hero{padding:92px 0 88px}
+.ad1 .hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:32px;margin-bottom:104px}
+.ad1 .hero-note{text-align:right;max-width:270px}
+.ad1 .hero .display{margin-bottom:36px}
+.ad1 .hero-foot{display:grid;grid-template-columns:1.42fr .58fr;gap:72px;align-items:end}
+.ad1 .hero-cta{display:flex;justify-content:flex-end}
+.ad1 .decision-strip{background:var(--paper);color:var(--ink);padding:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ad1 .decision-strip .wrap{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:28px;align-items:start}
+.ad1 .decision-strip strong{font-size:17px;font-weight:700;max-width:320px}
+.ad1 .decision-strip .num{font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:8px}
+.ad1 .decision-strip p{font-size:14px;line-height:1.4;color:var(--body)}
+.ad1 .section{padding:112px 0}
+.ad1 .section-head{display:grid;grid-template-columns:.42fr 1.58fr;gap:72px;margin-bottom:72px}
+.ad1 .section-head .kicker{padding-top:10px}
+.ad1 .dpp-advisory{background:var(--soft)}
+.ad1 .dpp-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:84px;border-top:1px solid var(--ink);padding-top:34px}
+.ad1 .dpp-statement h3{font-size:34px;line-height:1.04;letter-spacing:-.035em;font-weight:400;max-width:520px;margin-bottom:20px}
+.ad1 .dpp-statement p{font-size:17px;line-height:1.55;color:var(--body);max-width:540px}
+.ad1 .dpp-details{display:grid;grid-template-columns:1fr 1fr;border-left:1px solid #c9c9c5}
+.ad1 .dpp-detail{padding:0 0 0 34px}
+.ad1 .dpp-detail + .dpp-detail{border-left:1px solid #c9c9c5;margin-left:34px}
+.ad1 .dpp-detail strong{display:block;font-size:15px;margin-bottom:18px}
+.ad1 .dpp-detail li{font-size:14px;line-height:1.5;color:var(--body);padding:8px 0}
+.ad1 .dpp-action{display:flex;justify-content:space-between;align-items:center;gap:34px;margin-top:52px;padding-top:22px;border-top:1px solid #c9c9c5}
+.ad1 .dpp-action p{font-size:13px;color:var(--muted);max-width:650px}
+.ad1 .eu-desk{padding:118px 0;background:var(--paper)}
+.ad1 .eu-desk-grid{display:grid;grid-template-columns:.42fr 1.58fr;gap:72px;align-items:start}
+.ad1 .eu-desk-main{max-width:990px}
+.ad1 .eu-status{display:inline-block;font-size:12px;line-height:1;letter-spacing:.12em;text-transform:uppercase;font-weight:700;background:var(--yellow);padding:9px 11px;margin-bottom:34px}
+.ad1 .eu-desk .h2{margin-bottom:30px;max-width:1040px}
+.ad1 .eu-desk .lede{max-width:850px}
+.ad1 .eu-promise{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);margin-top:62px}
+.ad1 .eu-promise article{padding:28px 30px 16px 0;border-right:1px solid var(--line);min-height:190px}
+.ad1 .eu-promise article + article{padding-left:30px}
+.ad1 .eu-promise article:last-child{border-right:0}
+.ad1 .eu-promise .n{font-size:11px;color:var(--muted);margin-bottom:44px}
+.ad1 .eu-promise strong{display:block;font-size:16px;margin-bottom:10px}
+.ad1 .eu-promise p{font-size:14px;line-height:1.5;color:var(--muted);max-width:290px}
+.ad1 .eu-note{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;line-height:1.5;color:var(--muted);max-width:850px}
+.ad1 .retainer{background:var(--ink);color:#fff}
+.ad1 .retainer .kicker,.ad1 .retainer .small{color:#9d9d9d}
+.ad1 .retainer .lede,.ad1 .retainer .body{color:#d8d8d8}
+.ad1 .retainer-head{display:grid;grid-template-columns:.42fr 1.58fr;gap:72px;margin-bottom:70px}
+.ad1 .retainer-title-row{display:grid;grid-template-columns:1.28fr .72fr;gap:72px;align-items:end}
+.ad1 .retainer-price{text-align:right;border-left:1px solid #3b3b3b;padding-left:42px}
+.ad1 .retainer-price .amount{font-size:34px;line-height:1;letter-spacing:-.035em;font-weight:400;margin-bottom:8px}
+.ad1 .retainer-price .term{font-size:13px;color:#a8a8a8}
+.ad1 .retainer-grid{border-top:1px solid #3b3b3b;display:grid;grid-template-columns:1fr 1fr 1fr}
+.ad1 .retainer-col{padding:28px 34px 36px 0;border-right:1px solid #3b3b3b}
+.ad1 .retainer-col + .retainer-col{padding-left:34px}
+.ad1 .retainer-col:last-child{border-right:0}
+.ad1 .retainer-col strong{font-size:16px;display:block;margin-bottom:16px}
+.ad1 .retainer-col li{font-size:14px;line-height:1.5;color:#c8c8c8;padding:7px 0}
+.ad1 .retainer-action{display:flex;justify-content:space-between;align-items:center;gap:32px;margin-top:38px;padding-top:24px;border-top:1px solid #3b3b3b}
+.ad1 .retainer-action p{font-size:13px;color:#9d9d9d;max-width:680px}
+.ad1 .retainer-action .link-yellow{color:var(--ink)}
+.ad1 .independence{background:var(--soft)}
+.ad1 .independence-grid{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--ink)}
+.ad1 .independence-grid div{padding:28px 30px 34px 0;border-right:1px solid #c9c9c5}
+.ad1 .independence-grid div + div{padding-left:30px}
+.ad1 .independence-grid div:last-child{border-right:0}
+.ad1 .independence-grid strong{font-size:16px;display:block;margin-bottom:10px}
+.ad1 .independence-grid p{font-size:14px;line-height:1.5;color:var(--muted)}
+.ad1 .proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.ad1 .proof-left .h2{margin:28px 0 26px}
+.ad1 .proof-links{border-top:1px solid var(--ink)}
+.ad1 .proof-link{display:grid;grid-template-columns:44px 1fr auto;gap:18px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+.ad1 .proof-link .n{font-size:11px;color:var(--muted)}
+.ad1 .proof-link strong{font-size:16px}
+.ad1 .proof-link span:last-child{font-size:19px}
+.ad1 .intake{background:var(--yellow);padding:96px 0}
+.ad1 .intake-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:80px;align-items:end}
+.ad1 .intake .h2{max-width:800px;margin-bottom:28px}
+.ad1 .intake .body{color:var(--ink)}
+.ad1 .intake-steps{border-top:1px solid rgba(0,0,0,.5)}
+.ad1 .intake-step{display:grid;grid-template-columns:42px 1fr;gap:16px;padding:19px 0;border-bottom:1px solid rgba(0,0,0,.25)}
+.ad1 .intake-step span:first-child{font-size:11px}
+.ad1 .intake-step strong{font-size:15px}
+.ad1 .intake-actions{margin-top:34px;display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.ad1 .intake-actions .primary{display:inline-block;background:var(--ink);color:#fff;padding:16px 20px;font-weight:700;font-size:15px}
+.ad1 .boundary{padding:52px 0}
+.ad1 .boundary .wrap{display:grid;grid-template-columns:.42fr 1.58fr;gap:72px}
+.ad1 .boundary p{font-size:14px;color:var(--muted);max-width:900px}
+.ad1 .boundary strong{color:var(--ink)}
+@media(max-width:760px){
+.ad1 .wrap{width:min(calc(100% - 36px),var(--max))}
+.ad1 .hero{padding:72px 0 64px}
+.ad1 .hero-top{margin-bottom:68px}
+.ad1 .hero-note{display:none}
+.ad1 .hero-foot{grid-template-columns:1fr;gap:34px}
+.ad1 .hero-cta{justify-content:flex-start}
+.ad1 .display{font-size:52px;line-height:.95}
+.ad1 .h2{font-size:40px;line-height:1}
+.ad1 .h3{font-size:25px}
+.ad1 .lede{font-size:21px}
+.ad1 .decision-strip .wrap{grid-template-columns:1fr;gap:22px}
+.ad1 .decision-strip strong{margin-bottom:4px;display:block}
+.ad1 .section,.ad1 .eu-desk{padding:82px 0}
+.ad1 .section-head,.ad1 .retainer-head,.ad1 .eu-desk-grid,.ad1 .boundary .wrap{grid-template-columns:1fr;gap:24px}
+.ad1 .section-head .kicker{padding-top:0}
+.ad1 .dpp-grid{grid-template-columns:1fr;gap:42px}
+.ad1 .dpp-details{grid-template-columns:1fr;border-left:0;border-top:1px solid #c9c9c5;padding-top:24px}
+.ad1 .dpp-detail,.ad1 .dpp-detail + .dpp-detail{padding:0;border-left:0;margin-left:0}
+.ad1 .dpp-detail + .dpp-detail{border-top:1px solid #c9c9c5;margin-top:24px;padding-top:24px}
+.ad1 .dpp-action{align-items:flex-start;flex-direction:column}
+.ad1 .eu-promise{grid-template-columns:1fr;margin-top:46px}
+.ad1 .eu-promise article,.ad1 .eu-promise article + article{padding:24px 0;border-right:0;border-bottom:1px solid var(--line);min-height:0}
+.ad1 .eu-promise .n{margin-bottom:24px}
+.ad1 .retainer-title-row{grid-template-columns:1fr;gap:36px}
+.ad1 .retainer-price{text-align:left;border-left:0;border-top:1px solid #3b3b3b;padding:28px 0 0}
+.ad1 .retainer-grid{grid-template-columns:1fr}
+.ad1 .retainer-col,.ad1 .retainer-col + .retainer-col{padding:24px 0;border-right:0;border-bottom:1px solid #3b3b3b}
+.ad1 .retainer-action{align-items:flex-start;flex-direction:column}
+.ad1 .independence-grid{grid-template-columns:1fr}
+.ad1 .independence-grid div,.ad1 .independence-grid div + .independence-grid div{padding:24px 0;border-right:0;border-bottom:1px solid #c9c9c5}
+.ad1 .proof-grid{grid-template-columns:1fr;gap:48px}
+.ad1 .intake{padding:76px 0}
+.ad1 .intake-grid{grid-template-columns:1fr;gap:44px}
+}
+/* <<< end approved /advisory */
+</style>
 </head>
 <body>
-
-  <nav class="site-nav">
+<nav class="site-nav">
     <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
     <div class="nav-mid" id="navMid">
       <a href="/research">Research</a>
@@ -213,167 +270,224 @@
       <a href="/about">About</a>
       <a href="/contact">Contact</a>
     </div>
-    <a href="#" onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;;return false;" class="nav-cta">Start a conversation <span>&#8594;</span></a>
+    <a href="#" onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;;return false;" class="nav-cta">Get in touch <span>&#8594;</span></a>
     <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
   </nav>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="inner reveal">
-      <div class="hero-eyebrow">Work with yellow3</div>
-      <h1>Understanding AI is no longer optional. Understanding it <span class="hl">correctly</span> is.</h1>
-      <p class="hero-sub">Most leadership teams are deciding from vendor decks, headlines, and second-hand opinion. yellow3 lab works from the other side - building, operating, and testing AI systems every day. Two ways to put that to work.</p>
-      <div class="hero-nohype">
-        <span>No hype</span>
-        <span>No vendor agenda</span>
-        <span>No recycled conference slides</span>
+<main class="ad1">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-top">
+        <div class="kicker">Advisory · yellow3 lab</div>
+        <div class="small hero-note">Independent research applied to consequential decisions.</div>
       </div>
-    </div>
-  </div>
-
-  <!-- TWO PILLARS -->
-  <section class="pillars">
-    <div class="inner">
-      <div class="pillars-head"><div class="section-label">Two ways in</div></div>
-      <div class="pillar-grid">
-        <div class="pillar reveal">
-          <div class="mode">Understand</div>
-          <span class="tag">Intellectual capital</span>
-          <h2>Executive Briefings</h2>
-          <div class="who">For leaders who need clarity before they make decisions.</div>
-          <p>90 minutes to half-day sessions on where AI really stands, autonomous software, Human-Direction AI, Outcome Architecture, Compute Sovereignty, and the future of AI-native organisations. Tailored to your organisation and your questions.</p>
-          <div class="aud">For CEOs, founders, boards, investors, and leadership teams.</div>
-        </div>
-        <div class="pillar reveal">
-          <div class="mode">Build</div>
-          <span class="tag">Practical engagement</span>
-          <h2>Strategic Advisory</h2>
-          <div class="who">For organisations actively navigating change.</div>
-          <p>Hands-on support: strategy and roadmaps, product direction, vendor evaluation, Digital Product Passport strategy, and AI implementation planning. We work alongside your team, not from the outside.</p>
-          <div class="aud">For companies pursuing AI initiatives, organisations facing regulatory change, and firms building products.</div>
+      <h1 class="display">Bring the evidence <span class="yellow-mark">into the room.</span></h1>
+      <div class="hero-foot">
+        <p class="lede">Technology can carry more of the work. Some decisions still need people who can challenge the evidence, make the trade-offs visible and stay independent of the outcome.</p>
+        <div class="hero-cta">
+          <a class="link-yellow" href="/contact">Bring us the decision →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- OFFERINGS -->
-  <section class="rates">
-    <div class="inner">
-      <div class="rates-head"><div class="section-label">The offerings</div></div>
-      <div class="rate-list">
-        <div class="rate-row reveal">
-          <div class="rate-name">Executive Briefing<span class="fmt">90 minutes</span></div>
-          <div class="rate-desc">A focused session for founders, executives, board members, and investors - tailored to your questions.</div>
-          <div class="rate-price">&euro;1,500<a class="rate-buy" href="https://buy.stripe.com/bJe3cx0rM1OcdiWanWawo02">Buy now <span>&#8594;</span></a></div>
+  <section class="decision-strip">
+    <div class="wrap">
+      <strong>Not time. A decision that can survive scrutiny.</strong>
+      <div><div class="num">01</div><p>Research before the room.</p></div>
+      <div><div class="num">02</div><p>Judgment in the room.</p></div>
+      <div><div class="num">03</div><p>A written record after.</p></div>
+    </div>
+  </section>
+
+  <section class="section dpp-advisory">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Digital Product Passports</div>
+        <div>
+          <h2 class="h2">For organisations that want a human-led route through the DPP programme.</h2>
+          <p class="body" style="margin-top:28px">Some buyers want to run the work themselves. Others want yellow3 directly involved when requirements, provider evidence, implementation choices and acceptance decisions need independent judgment.</p>
         </div>
-        <div class="rate-row reveal">
-          <div class="rate-name">Board Briefing<span class="fmt">2 hours</span></div>
-          <div class="rate-desc">For boards, investors, and ownership groups: market reality versus narrative, investment priorities, technology risk, readiness.</div>
-          <div class="rate-price">&euro;3,000<a class="rate-buy" href="https://buy.stripe.com/28E28t1vQfF21Ae67Gawo03">Buy now <span>&#8594;</span></a></div>
+      </div>
+
+      <div class="dpp-grid">
+        <div class="dpp-statement">
+          <h3>Human in the loop. Not another implementation team.</h3>
+          <p>yellow3 works on the buyer side. We help structure the decision, challenge evidence, support the buying and implementation process, and keep the record defensible. The selected provider still operates the Digital Product Passport.</p>
         </div>
-        <div class="rate-row reveal">
-          <div class="rate-name">Leadership Workshop<span class="fmt">Half day</span></div>
-          <div class="rate-desc">A shared understanding across the leadership team: research, discussion, demonstrations, and prioritisation.</div>
-          <div class="rate-price">&euro;4,500<a class="rate-buy" href="https://buy.stripe.com/8x2cN75M6eAYgv88fOawo04">Buy now <span>&#8594;</span></a></div>
+        <div class="dpp-details">
+          <div class="dpp-detail">
+            <strong>Where we step in</strong>
+            <ul>
+              <li>Scope and requirement decisions.</li>
+              <li>Provider evidence and shortlist challenge.</li>
+              <li>Material implementation choices and exceptions.</li>
+              <li>Independent review before acceptance.</li>
+            </ul>
+          </div>
+          <div class="dpp-detail">
+            <strong>What this is not</strong>
+            <ul>
+              <li>Permanent onsite support.</li>
+              <li>Routine project management.</li>
+              <li>DPP operation or publication.</li>
+              <li>A vendor-funded recommendation.</li>
+            </ul>
+          </div>
         </div>
-        <div class="rate-row reveal">
-          <div class="rate-name">Strategic Advisory<span class="fmt">Ongoing engagement</span></div>
-          <div class="rate-desc">Hands-on support on strategy, product direction, vendor evaluation, DPP strategy, and AI implementation.</div>
-          <div class="rate-price">&euro;2,500<span class="per">per month</span><a class="rate-enq" href="#" onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;+&#39;?subject=Strategic%20Advisory&#39;;return false;">Enquire <span>&#8594;</span></a></div>
-        </div>
-        <div class="rate-row reveal">
-          <div class="rate-name">Research Partnership<span class="fmt">Annual relationship</span></div>
-          <div class="rate-desc">Ongoing access to yellow3's thinking - briefings, research previews, and direct dialogue. See below.</div>
-          <div class="rate-price">&euro;12,000<span class="per">per year</span><a class="rate-enq" href="#partner">Become a partner <span>&#8594;</span></a></div>
-        </div>
+      </div>
+
+      <div class="dpp-action">
+        <p>Engagements are scoped around the buyer's programme and the judgment points where independent human involvement is actually useful.</p>
+        <a class="link" href="/contact">Discuss DPP Advisory →</a>
       </div>
     </div>
   </section>
 
-  <!-- RESEARCH PARTNERSHIP -->
-  <section class="partner" id="partner">
-    <div class="inner partner-grid">
-      <div class="reveal">
-        <div class="partner-label">Research Partnership</div>
-        <h2>A standing source of clarity, for the decisions that keep coming.</h2>
-        <p class="quote">An ongoing relationship for organisations navigating significant AI-related change.</p>
-        <p>Recurring access to the research, the frameworks, and the dialogue - without turning yellow3 into a consultancy. Every part of the relationship reinforces the others.</p>
-      </div>
-      <div class="partner-card reveal">
-        <div class="pp">From &euro;12,000<span> / year</span></div>
-        <div class="pk">Includes</div>
-        <ul>
-          <li>Quarterly executive briefings</li>
-          <li>Direct access for questions and discussion</li>
-          <li>Research previews and new frameworks</li>
-          <li>Priority access to sessions</li>
-          <li>Workshop discount</li>
-        </ul>
-        <a href="#" onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;+&#39;?subject=Research%20Partnership&#39;;return false;">Become a partner <span>&#8594;</span></a>
+  <section class="eu-desk">
+    <div class="wrap eu-desk-grid">
+      <div class="kicker">For companies outside the EU</div>
+      <div class="eu-desk-main">
+        <div class="eu-status">yellow3 EU Desk · Coming soon</div>
+        <h2 class="h2">A persistent European operating intelligence layer for companies outside the EU doing business in Europe.</h2>
+        <p class="lede">The first difficult European requirement should not restart the relationship from zero. EU Desk is being developed to keep a company-specific view of products, evidence, suppliers, systems, market routes and changing European requirements current over time.</p>
+
+        <div class="eu-promise">
+          <article>
+            <div class="n">01</div>
+            <strong>Start with the company.</strong>
+            <p>Understand which European requirements matter to the products and route to market, rather than handing clients a generic regulation library.</p>
+          </article>
+          <article>
+            <div class="n">02</div>
+            <strong>Keep the operating record current.</strong>
+            <p>Connect requirements to evidence, suppliers, systems and actions so the next European change starts from what is already known.</p>
+          </article>
+          <article>
+            <div class="n">03</div>
+            <strong>Bring judgment in when needed.</strong>
+            <p>Use technology for continuous work and people for ambiguity, consequential interpretation, recommendations and final decisions.</p>
+          </article>
+        </div>
+
+        <p class="eu-note">EU Desk is in development. No signup, pricing or current availability is being offered on this page.</p>
       </div>
     </div>
   </section>
 
-  <!-- THE INSTITUTION / LOOP -->
-  <section class="loop">
-    <div class="inner">
-      <div class="loop-head"><div class="section-label">Why this works</div></div>
-      <h2>One institution, not a consultancy. Every part reinforces the others.</h2>
-      <div class="loop-flow">
-        <div class="loop-step reveal">
-          <div class="ln">01</div>
-          <h3>Research <span class="arr">&#8594;</span></h3>
-          <p>Generates the insight - from live instruments and field work.</p>
-        </div>
-        <div class="loop-step reveal">
-          <div class="ln">02</div>
-          <h3>Briefings <span class="arr">&#8594;</span></h3>
-          <p>Distribute the insight to the leaders making decisions.</p>
-        </div>
-        <div class="loop-step reveal">
-          <div class="ln">03</div>
-          <h3>Advisory <span class="arr">&#8594;</span></h3>
-          <p>Applies the insight inside organisations, hands-on.</p>
-        </div>
-        <div class="loop-step reveal">
-          <div class="ln">04</div>
-          <h3>Companies</h3>
-          <p>Validate the insight against real users and markets - which feeds the research again.</p>
+  <section class="section retainer">
+    <div class="wrap">
+      <div class="retainer-head">
+        <div class="kicker">Strategic Advisory</div>
+        <div>
+          <div class="retainer-title-row">
+            <div>
+              <h2 class="h2">A standing independent advisor for the decisions that keep coming back.</h2>
+              <p class="lede" style="margin-top:28px">For organisations that regularly face consequential technology, AI or European operating decisions and want senior independent judgment available without adding another consultancy team.</p>
+            </div>
+            <div class="retainer-price">
+              <div class="amount">€5,000 / month</div>
+              <div class="term">3-month minimum · remote-first</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="loop-foot">Research informs practice. Practice informs research.</div>
-    </div>
-  </section>
 
-  <!-- ABOUT -->
-  <section class="about">
-    <div class="inner about-grid">
-      <h2 class="reveal">About yellow3 lab</h2>
-      <div class="about-body reveal">
-        <p>yellow3 lab is an independent research and venture lab based in Copenhagen. We research how humans work with increasingly autonomous systems, and how that relationship is reshaping software, organisations, markets, and society.</p>
-        <p>Alongside our research, we actively build AI-native products and companies. Research informs practice. Practice informs research.</p>
-        <p class="emph">This lets us discuss AI not as observers, but as practitioners - operating at the intersection of business leadership and real-world implementation.</p>
-        <div class="signed">Briefings and advisory are led by <strong>Thomas Chr. Melskens</strong>, founder of yellow3 lab. <a href="/about" style="color:var(--ink);text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:2px;text-underline-offset:3px;">More about yellow3 &#8594;</a></div>
+      <div class="retainer-grid">
+        <div class="retainer-col">
+          <strong>Standing access</strong>
+          <ul>
+            <li>One focused decision session each month.</li>
+            <li>Asynchronous access for material questions.</li>
+            <li>Priority response when something consequential changes.</li>
+          </ul>
+        </div>
+        <div class="retainer-col">
+          <strong>Evidence before opinion</strong>
+          <ul>
+            <li>Research and evidence preparation before decisions.</li>
+            <li>Challenge of assumptions, vendor claims and options.</li>
+            <li>Written records after material decisions.</li>
+          </ul>
+        </div>
+        <div class="retainer-col">
+          <strong>Deliberately bounded</strong>
+          <ul>
+            <li>No routine project management.</li>
+            <li>No implementation labour or embedded team role.</li>
+            <li>Onsite work and travel are scoped separately.</li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- CTA -->
-  <section class="cta" id="contact">
-    <div class="inner cta-grid">
-      <div class="reveal">
-        <div class="cta-label">Start a conversation</div>
-        <h2>Evaluating AI investments, preparing your team, or testing an idea against reality?</h2>
-      </div>
-      <div class="cta-right reveal">
-        <p>Whether you want to understand where AI really stands or put a hard question to someone who ships - let's talk.</p>
-        <a href="#" onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;;return false;" class="btn">Start a conversation <span>&#8594;</span></a>
+      <div class="retainer-action">
+        <p>The retainer buys continuing independent judgment and research capacity. It does not buy unlimited meetings, delivery labour or a permanent onsite resource.</p>
+        <a class="link-yellow" href="/contact">Discuss Strategic Advisory →</a>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
+  <section class="section independence">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Independence</div>
+        <div>
+          <h2 class="h2">Sometimes the useful answer is: <span class="yellow-mark">do not proceed yet.</span></h2>
+          <p class="body" style="margin-top:28px">Advisory is useful only if yellow3 is free to challenge the fashionable answer, the vendor answer and, when necessary, the client's preferred answer.</p>
+        </div>
+      </div>
+      <div class="independence-grid">
+        <div><strong>No vendor agenda.</strong><p>Technology recommendations are not paid placement.</p></div>
+        <div><strong>No implementation dependency.</strong><p>The advice does not need to manufacture a follow-on delivery project for yellow3.</p></div>
+        <div><strong>No purchased conclusion.</strong><p>Clients buy access to research and judgment, never control over the conclusion.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap proof-grid">
+      <div class="proof-left">
+        <div class="kicker">Why yellow3</div>
+        <h2 class="h2">The evidence is not borrowed for the meeting.</h2>
+        <p class="body">yellow3 researches emerging technology continuously and builds around the problems it studies. Advisory applies that evidence discipline to a client's decision without turning the research into a sales pitch.</p>
+      </div>
+      <div class="proof-links">
+        <a class="proof-link" href="/research"><span class="n">01</span><strong>Live research instruments</strong><span>→</span></a>
+        <a class="proof-link" href="/research/framework"><span class="n">02</span><strong>Research framework and evidence standards</strong><span>→</span></a>
+        <a class="proof-link" href="/research/digital-product-passport/suppliers"><span class="n">03</span><strong>yellow3 DPP Supplier Register</strong><span>→</span></a>
+        <a class="proof-link" href="/about"><span class="n">04</span><strong>How yellow3 works</strong><span>→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="intake">
+    <div class="wrap intake-grid">
+      <div>
+        <div class="kicker" style="margin-bottom:32px">Start with the situation</div>
+        <h2 class="h2">Tell us where human judgment is needed.</h2>
+        <p class="body">Bring the decision, the people accountable for it, when it has to be made and what is already known. We will tell you whether yellow3 is useful and what a bounded engagement should look like.</p>
+        <div class="intake-actions">
+          <a class="primary" href="/contact">Bring us the decision →</a>
+        </div>
+      </div>
+      <div class="intake-steps">
+        <div class="intake-step"><span>01</span><strong>The decision or programme</strong></div>
+        <div class="intake-step"><span>02</span><strong>Who is responsible</strong></div>
+        <div class="intake-step"><span>03</span><strong>When it has to be decided</strong></div>
+        <div class="intake-step"><span>04</span><strong>What is already known</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="boundary">
+    <div class="wrap">
+      <div class="kicker">Boundary</div>
+      <p><strong>Advisory is research and human judgment applied to consequential decisions.</strong> yellow3 is not a law firm, conformity assessment body, DPP operator or embedded implementation team. Humans remain responsible for the outcome.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
     <div class="inner">
       <div class="foot-top">
         <div class="foot-brand">
@@ -420,18 +534,5 @@
       </div>
     </div>
   </footer>
-
-  <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 50);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08 });
-    reveals.forEach(el => observer.observe(el));
-  </script>
 </body>
 </html>

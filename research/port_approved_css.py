@@ -95,6 +95,25 @@ PAGES = {
         "forbids": ["<video", "<iframe", "poster=", "autoplay=", " autoplay>"],
         "deviations": [],
     },
+    "advisory": {
+        "target": "advisory.html",
+        "wrapper": "ad1",
+        "package": (PKG + "/advisory/"
+                    "yellow3_advisory_v3.2_TERMINAL_HANDOFF_2026-08-15/reference/"
+                    "advisory_v3.2_APPROVED_REFERENCE.html"),
+        # The frozen commercial proposition, and the boundaries the package is
+        # explicit about. These are checked on the built page, not trusted.
+        "requires": ["5,000", "3-month minimum", "Coming soon",
+                     "Bring the evidence"],
+        # No Buyer Platform pitch belongs on /advisory, and none of the retired
+        # five-package ladder or its pricing.
+        "forbids": ["buyer.yellow3.io", "Executive Decision Briefing",
+                    "Board Decision Briefing", "Leadership Decision Workshop",
+                    "Research Partnership", "2,500", "Outcome Architecture",
+                    "Copenhagen AI Lab", "independent research lab",
+                    "yellow3 Advisory V3.1 Review"],
+        "deviations": [],
+    },
     "software": {
         "target": "software.html",
         "wrapper": "sw1",
@@ -199,7 +218,15 @@ def design_system_faults(css, markup, cfg):
     for tag in DEFAULT_MARGIN_ELEMENTS:
         if not re.search(r"<%s[\s>]" % tag, markup):
             continue
-        reset = re.search(r"(?:^|[;}])\s*%s\s*\{[^}]*margin" % tag, css)
+        # A scope-level reset counts however it is written. Requiring a bare
+        # `p{...}` rule missed `h1,h2,h3,p,ul,ol,figure,blockquote,dl,dd{margin:0}`
+        # - a selector LIST, which is how the /advisory package declared exactly
+        # the reset this gate exists to ask for. The check reported seven faults
+        # against a package that had done the right thing.
+        reset = any(
+            "margin" in m.group(2)
+            and any(part.strip() == tag for part in m.group(1).split(","))
+            for m in re.finditer(r"([^{}]+)\{([^{}]*)\}", css))
         if reset:
             continue
         # No scope-level reset. Every selector targeting this element must then

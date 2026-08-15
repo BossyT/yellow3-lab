@@ -44,6 +44,9 @@ NOT_PUBLIC = {"admin.html", "google4b600ad4155228a3.html"}
 
 # Positioning that has been retired by the current entity contracts. Each is
 # here because a package explicitly ruled it out, not because it reads oddly.
+# Files that hold the retired phrases because their job is to find them.
+GUARDS = {"site_nav.py", "seo_dd.py", "port_approved_css.py"}
+
 RETIRED = {
     "Copenhagen AI Lab": "retired company definition",
     "yellow3 lab ApS": "wrong legal entity - it is yellow3 ApS",
@@ -291,7 +294,12 @@ def main():
                     errors="ignore").read()
         for phrase, why in RETIRED.items():
             # site_nav.py holds these as search patterns, which is its job.
-            if name in ("site_nav.py", "seo_dd.py"):
+            # Guard files hold the retired phrases as the things they search
+            # FOR. site_nav.py sweeps them out of pages, port_approved_css.py
+            # forbids them in a built page, and this file reports them. None of
+            # the three is a template, and reading them as one turns every new
+            # guard into a build failure.
+            if name in GUARDS:
                 continue
             if phrase in text:
                 findings["generator template carries retired positioning"].append(
