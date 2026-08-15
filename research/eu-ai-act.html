@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EU AI Act enforcement - yellow3 Research</title>
-  <meta name="description" content="What is actually enforced versus what was announced. Tracking how far Europe has stood up the AI Act it wrote, and what has happened to anyone who broke it. A live yellow3 research instrument, updated weekly." />
+  <meta name="description" content="What is actually enforced versus what was announced. Tracking how far Europe has stood up the AI Act it wrote, and what has happened to anyone who broke it. A living yellow3 research record, updated when the regulatory record changes." />
   <link rel="canonical" href="https://www.yellow3.io/research/eu-ai-act" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/research/tokens.css" />
@@ -12,7 +12,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="yellow3 lab" />
   <meta property="og:title" content="EU AI Act enforcement - yellow3 Research" />
-  <meta property="og:description" content="What is actually enforced versus what was announced. A live yellow3 research instrument, updated weekly." />
+  <meta property="og:description" content="What is actually enforced versus what was announced. A living yellow3 research record, updated when the regulatory record changes." />
   <meta property="og:url" content="https://www.yellow3.io/research/eu-ai-act" />
   <meta property="og:image" content="https://www.yellow3.io/og/cards/research-eu-ai-act.png" />
   <meta property="og:image:width" content="1200" />
@@ -179,7 +179,7 @@
 
       <div class="titlerow">
         <h1 id="title">EU AI Act enforcement</h1>
-        <span class="badge" id="badge"><span class="dot"></span> Live</span>
+        <span class="badge" id="badge"><span class="dot"></span> <span id="badge-text">Living record</span></span>
       </div>
       <div class="refresh" id="refresh"></div>
       <p class="thesis" id="thesis"></p>
@@ -194,7 +194,7 @@
           <div class="pr"><div class="prn">Why it matters</div><p>It binds anyone who builds or deploys AI touching the EU, the duties phase in on fixed dates, and fines reach 7% of global turnover. <strong>It is law, not guidance.</strong></p></div>
           <div class="pr"><div class="prn">So what</div><p>If your organisation uses or sells AI in Europe, this is a compliance clock on the board's agenda - and the real question is whether the EU can enforce what it wrote.</p></div>
         </div>
-        <p class="primer-bridge">This instrument tracks how far the EU has actually stood the law up - designations, deadlines, fines - versus what it announced. <strong>Updated weekly.</strong></p>
+        <p class="primer-bridge">This instrument tracks how far the EU has actually stood the law up - designations, deadlines, fines - versus what it announced. <strong id="cadence-copy">Updated when the regulatory record changes.</strong></p>
       </div>
 
       <!-- What changed this week -->
@@ -360,7 +360,17 @@
       var i = d.instrument;
       document.getElementById('title').textContent = i.title;
       document.getElementById('thesis').textContent = i.thesis;
-      document.getElementById('refresh').textContent = i.refresh_note;
+      // Cadence copy is rendered from update_policy, never from hand-written
+      // words, so the page cannot claim one thing while the dataset says
+      // another. An event-driven instrument must show its last verified date.
+      var pol = d.update_policy || {};
+      var verified = pol.last_verified || i.as_of || '';
+      var vTxt = '';
+      try { vTxt = new Date(verified+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}); } catch(e){ vTxt = verified; }
+      document.getElementById('refresh').textContent =
+        (pol.label || i.refresh_note || '') + (vTxt ? ' · Last verified ' + vTxt : '');
+      if (pol.badge) document.getElementById('badge-text').textContent = pol.badge;
+      if (pol.label) document.getElementById('cadence-copy').textContent = pol.label;
       if (i.status !== 'live') document.getElementById('badge').style.background = 'var(--neutral-ink)';
       document.getElementById('changed').textContent = d.what_changed;
 

@@ -846,6 +846,20 @@ def main():
         "links": current_ed.get("links", {}),
     }
 
+    # The instrument declares its own update model, and the page renders its
+    # cadence copy from this rather than from hand-written words. Emitted here
+    # because this file is rewritten every run - a key merged into the JSON by
+    # hand would disappear at 06:30 UTC tomorrow.
+    data["update_policy"] = {
+        "model": "live",
+        "label": "Updated live.",
+        "badge": "Live",
+        "refresh_path": ".github/workflows/research-daily.yml",
+        "freshness_hours": 48,
+        "note": ("cron 30 6 * * * writes this file daily. The seven-day figure "
+                 "is the measurement window, not the refresh cadence."),
+    }
+
     with open(OUT, "w") as f:
         json.dump(data, f, indent=2)
 

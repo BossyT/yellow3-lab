@@ -451,13 +451,13 @@
     {
       "key": "biggest_mover",
       "label": "Biggest weekly mover",
-      "value": "#46 \u2192 #37",
+      "value": "#46 → #37",
       "detail": "Anthropic Claude 4.6 Opus"
     },
     {
       "key": "steepest_fall",
       "label": "Steepest fall",
-      "value": "#31 \u2192 #40",
+      "value": "#31 → #40",
       "detail": "xAI Grok 4.5"
     },
     {
@@ -593,5 +593,13 @@
       "example": "baai/bge-m3-20251117"
     }
   ],
-  "links": {}
+  "links": {},
+  "update_policy": {
+    "model": "live",
+    "label": "Updated live.",
+    "badge": "Live",
+    "refresh_path": ".github/workflows/research-daily.yml",
+    "freshness_hours": 48,
+    "note": "cron 30 6 * * * writes this file daily. The seven-day figure is the measurement window, not the refresh cadence."
+  }
 }

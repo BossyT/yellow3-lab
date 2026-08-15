@@ -264,7 +264,7 @@
     <div class="wrap">
       <div class="breadcrumb"><a href="/research">Research</a> &nbsp;/&nbsp; <span id="bc">Digital Product Passport</span></div>
       <div class="inst-status">
-        <span class="badge-live"><span class="dot"></span> <span id="badge-text">Live - Edition 01</span></span>
+        <span class="badge-live"><span class="dot"></span> <span id="badge-text">Living record · Edition 01</span></span>
         <span class="refresh" id="refresh">Loading…</span>
       </div>
       <h1 id="title">Digital Product Passport (DPP)</h1>
@@ -308,7 +308,7 @@
           <p>If you make, import or sell physical goods in Europe, this is a board-level deadline, not an IT project. The real question is whether you start the data foundation now or scramble later.</p>
         </div>
       </div>
-      <p class="primer-bridge">This instrument tracks whether the EU is delivering the DPP system on schedule - and whether industry is ready. <strong>Graded in public, updated weekly.</strong></p>
+      <p class="primer-bridge">This instrument tracks whether the EU is delivering the DPP system on schedule - and whether industry is ready. <strong id="cadence-copy">Graded in public, updated when the record changes.</strong></p>
     </div>
   </section>
 
@@ -492,8 +492,21 @@
       document.getElementById('thesis').textContent = d.thesis;
       var weekTxt = '';
       try { weekTxt = new Date(d.week_of+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}); } catch(e){ weekTxt = d.week_of; }
-      document.getElementById('refresh').textContent = 'Week of ' + weekTxt + ' · updated weekly';
-      document.getElementById('badge-text').textContent = 'Live - Edition ' + ('0'+(d.edition||1)).slice(-2);
+      // Cadence copy from update_policy, and the real last-verified date shown
+      // prominently. "Week of" stays because it dates the record itself.
+      var pol = d.update_policy || {};
+      var verified = pol.last_verified || d.week_of || '';
+      var vTxt = '';
+      try { vTxt = new Date(verified+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}); } catch(e){ vTxt = verified; }
+      // week_of and last_verified are the same date here, so printing both
+      // just says it twice. Lead with the verified date - that is the thing a
+      // reader needs to judge the age of the record.
+      document.getElementById('refresh').textContent =
+        (vTxt ? 'Last verified ' + vTxt : 'Week of ' + weekTxt) + ' · ' + (pol.label || '');
+      document.getElementById('badge-text').textContent =
+        (pol.badge || 'Living record') + ' · Edition ' + ('0'+(d.edition||1)).slice(-2);
+      if (pol.label) document.getElementById('cadence-copy').textContent =
+        'Graded in public, ' + pol.label.charAt(0).toLowerCase() + pol.label.slice(1);
 
       // scores
       document.getElementById('score-a').innerHTML = d.scores.regulator_delivery + '<span class="u">/100</span>';

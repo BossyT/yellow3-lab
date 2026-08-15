@@ -279,5 +279,12 @@
   "source": {
     "line": "Sources: Regulation (EU) 2024/1781 (ESPR); Implementing Regulation (EU) 2026/1778 (DPP Registry); European Commission DPP FAQ v1.0 (DG GROW); CEN-CENELEC JTC 24; EUR-Lex. Verified 20 July 2026.",
     "url": "https://eur-lex.europa.eu/eli/reg/2024/1781/oj"
+  },
+  "update_policy": {
+    "model": "event_driven",
+    "label": "Updated when the record changes.",
+    "badge": "Living record",
+    "last_verified": "2026-07-27",
+    "note": "Same policy as the EU AI Act instrument. Historical editions and their dates are untouched."
   }
 }

@@ -164,6 +164,19 @@ def main() -> int:
     else:
         print('  ok  no analytics anywhere')
 
+    # 5b. Every instrument declares and honours its update model.
+    #     Three instruments disagreed with themselves on 15 Aug 2026 - one said
+    #     weekly while a cron refreshed it daily, two promised weekly and were
+    #     eighteen days stale behind a "Live" badge. Nothing was checking.
+    r = subprocess.run([sys.executable, str(ROOT / 'research' / 'cadence_check.py')],
+                       capture_output=True, text=True)
+    if r.returncode:
+        FAIL.append('cadence check failed:\n      '
+                    + '\n      '.join(l.strip() for l in (r.stdout or '').splitlines()
+                                       if l.strip() and not l.strip().startswith('..')))
+    else:
+        print('  ok  instruments declare and honour their update model')
+
     # 6. Every page's social card exists, and no page has drifted back to a
     #    June card. The eleven -v2 files stay on disk as the historical
     #    boundary, so a page still pointing at one is a page a sweep missed.

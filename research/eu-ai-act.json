@@ -4,9 +4,9 @@
     "title": "EU AI Act enforcement",
     "status": "live",
     "thesis": "What is actually enforced versus what was announced. Tracking how far Europe has stood up the law it wrote, and what has happened to anyone who broke it.",
-    "refresh_note": "Updated weekly · last refresh 28 Jul 2026, 09:00 CET",
+    "refresh_note": "Updated when the regulatory record changes · last verified 28 Jul 2026, 09:00 CET",
     "as_of": "2026-07-28",
-    "cadence": "Wednesday"
+    "cadence": "event_driven"
   },
   "what_changed": "The delay is law. Regulation (EU) 2026/1744 was published in the Official Journal on 24 July and entered into force on 27 July, six days before the deadline it was racing. Article 50 transparency was not moved and applies from 2 August, alongside the Commission's first power to fine a general-purpose model provider. Fines issued stayed at zero.",
   "forward_call": {
@@ -234,5 +234,12 @@
   "methodology": {
     "note": "Designation status is yellow3's reading of the European Commission's consolidated list of notified authorities, cross-checked against the IAPP regulatory directory and the Future of Life Institute implementation timeline, as of the stated date. In-force dates reflect the AI Act as amended by the Digital Omnibus on AI, Regulation (EU) 2026/1744, published in the Official Journal on 24 July 2026 and in force since 27 July 2026. This tracks legal status and public enforcement actions, not compliance behaviour inside companies. A fine is counted only when a competent authority or the Commission has publicly confirmed it.",
     "source_line": "Sources: Official Journal, Regulation (EU) 2026/1744; European Commission AI Act Service Desk; artificialintelligenceact.eu (Future of Life Institute). As of 28 Jul 2026"
+  },
+  "update_policy": {
+    "model": "event_driven",
+    "label": "Updated when the regulatory record changes.",
+    "badge": "Living record",
+    "last_verified": "2026-07-28",
+    "note": "A regulation tracker should change when the evidence changes, not because Wednesday arrived. Frozen by Thomas 15 Aug 2026, replacing a weekly promise the instrument was not keeping."
   }
 }
