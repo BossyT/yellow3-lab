@@ -25,7 +25,13 @@ PAGES_DIR = os.path.join(HERE, "model-adoption")
 DATA_DIR = os.path.join(PAGES_DIR, "_data")
 MAIN_JSON = os.path.join(HERE, "model-adoption-data.json")
 
-HOST = "https://yellow3.io"          # build rewrites to www at deploy
+HOST = "https://www.yellow3.io"     # emit www at the source. The build
+                                    # still normalises hand-written pages,
+                                    # but a generator that relies on that
+                                    # ships a redirecting canonical between
+                                    # a regeneration and the next build -
+                                    # which is what happened to 187
+                                    # register profiles on 2026-07-30.
 BASE = "/research/model-adoption"
 
 # New model-research origin palette (aubergine / navy / ochre / graphite).
