@@ -112,12 +112,15 @@
 
     /* Map + regional share */
     .mapshare {
-      /* v2, 15 Aug 2026: one integrated DARK instrument inside the light page.
-         GPT's model_adoption_live_block_v2 freeze. Map 68-72% / rail 28-32%,
-         so the ratio moves from 1.35fr to 2.2fr - that is the freeze, not a
-         preference. */
-      display: grid; grid-template-columns: 2.2fr 1fr; gap: 0;
-      align-items: stretch; background: #08080a; border: 1px solid #1b1b20;
+      /* Full-width composition, Thomas 15 Aug: the map runs the whole content
+         width and the rail sits beneath it as a four-across strip. This
+         overrides the v3 freeze's desktop layout (map left, 330px rail right)
+         on his instruction - the map is the hero and a 672px column was not
+         letting it be one. The stage keeps its 2200/1117 aspect, so at full
+         width it renders roughly 1180px across and every fibre gets almost
+         twice the stroke it had in the column. */
+      display: grid; grid-template-columns: 1fr; gap: 0;
+      background: #08080a; border: 1px solid #1b1b20;
       border-radius: 14px; overflow: hidden; position: relative;
     }
     /* dark-panel region colours. The --r-* tokens are fills for the LIGHT
@@ -128,42 +131,14 @@
     .map-sub { font-size: 12px; color: #8a8a93; margin: 4px 0 12px; }
     #worldmap { flex: 1; min-height: 0; display: flex; align-items: center; }
     #worldmap svg.wmap { width: 100%; height: auto; display: block; overflow: visible; }
-    /* Arc treatment, from GPT's arc_geometry_v1 starter CSS. One deviation,
-       recorded rather than folded in: vector-effect: non-scaling-stroke is NOT
-       applied. The handoff states these widths land at 1.0px down to 0.54px at
-       the ~0.3x render scale, which is only true if the stroke scales with the
-       viewBox; non-scaling-stroke would render them at 3.4px to 1.8px. The
-       stated pixel outcome is the authority. */
-    .arc-overlay { position: absolute; inset: 0; width: 100%; height: 100%;
-      pointer-events: none; mix-blend-mode: screen; }
-    .arc-bundle--us-asia { color: #8d44ff; }
-    .arc-bundle--us-europe { color: #3b82ff; }
-    .arc-bundle--europe-asia { color: #f4bd16; }
-    .arc-bundle .arc { stroke: currentColor; }
-    .arc { fill: none; stroke-linecap: round; stroke-linejoin: round; }
-    .arc.s10 { stroke-width: 1.8; opacity: .08; }
-    .arc.s9  { stroke-width: 1.9; opacity: .11; }
-    .arc.s8  { stroke-width: 2.0; opacity: .15; }
-    .arc.s7  { stroke-width: 2.1; opacity: .19; }
-    .arc.s6  { stroke-width: 2.2; opacity: .24; }
-    .arc.s5  { stroke-width: 2.4; opacity: .30; }
-    .arc.s4  { stroke-width: 2.6; opacity: .36; }
-    .arc.s3  { stroke-width: 2.8; opacity: .44; }
-    .arc.s2  { stroke-width: 3.1; opacity: .52; }
-    .arc.s1  { stroke-width: 3.4; opacity: .62; }
-    .arc-pulse { fill: none; stroke: currentColor; stroke-width: 3.6;
-      stroke-linecap: round; stroke-dasharray: 10 34; opacity: .70;
-      filter: drop-shadow(0 0 4px currentColor); animation: arcPulse 4.8s linear infinite; }
-    @keyframes arcPulse { to { stroke-dashoffset: -176; } }
-    /* a filtered region keeps its own bundles and dims the rest to 10% - never
-       removes them, or the composition jumps */
-    .map-stage[data-region="us"] .arc-bundle:not([data-from="us"]):not([data-to="us"]),
-    .map-stage[data-region="europe"] .arc-bundle:not([data-from="europe"]):not([data-to="europe"]),
-    .map-stage[data-region="asia"] .arc-bundle:not([data-from="asia"]):not([data-to="asia"]) { opacity: .10; }
-    .mk-marker { cursor: pointer; }
+    /* The v3 overlay carries its own <defs><style>: gradients, glow filters,
+       pulse animation and the prefers-reduced-motion rule all travel with the
+       file. All this page has to do is position it over the earth. */
+    .model-adoption-network { position: absolute; inset: 0; width: 100%; height: 100%;
+      pointer-events: none; }
+    .model-adoption-network .node { pointer-events: auto; }
     .mk-marker circle.mk-hit { transition: opacity 0.2s; }
     .mk-marker:hover circle.mk-hit, .mk-marker:focus-visible circle.mk-hit { opacity: 0.88; }
-    .mk-marker:focus-visible { outline: none; }
     .mk-marker circle.mk-halo { pointer-events: none; }
     .mk-lab .mk-region { font-size: 12px; font-weight: 800; letter-spacing: 0.05em; }
     .mk-lab .mk-models { font-size: 10px; font-weight: 700; fill: #9a9aa2; letter-spacing: 0.06em; }
@@ -173,18 +148,19 @@
 
     /* the share rail - dark rows, colour carried on the edge rather than as a
        fill, so quantitative hierarchy comes from the map and the numbers */
-    .sharebox { display: flex; flex-direction: column; border: 0; border-left: 1px solid #1b1b20; background: #0d0d10; }
-    .sb-head { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: #8a8a93; padding: 16px 22px 10px; }
-    .sb-rows { flex: 1; display: flex; flex-direction: column; }
-    .sb-row { flex: 1; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px;
-      padding: 8px 20px; color: #f4f4f6; background: #121216; border-top: 1px solid #1b1b20;
-      border-left: 3px solid var(--sb-edge, #8a8a92); transition: opacity 0.25s;
-      /* min-height 0 so the rail follows the map's height rather than forcing
-         dead black space under it */
-      min-height: 0; }
-    .sb-row:first-child { border-top: 0; }
+    .sharebox { display: flex; flex-direction: column; border: 0;
+      border-top: 1px solid #1b1b20; background: #0d0d10; }
+    .sb-head { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 700; color: #8a8a93; padding: 14px 22px 10px; }
+    /* four across under the map rather than four stacked beside it */
+    .sb-rows { flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); }
+    .sb-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px;
+      padding: 12px 18px 16px; color: #f4f4f6; background: #121216;
+      border-left: 3px solid var(--sb-edge, #8a8a92); transition: opacity 0.25s; min-height: 0; }
+    .sb-row + .sb-row { border-left-width: 3px; }
     .sb-row.dim { opacity: 0.34; }
-    .sb-region { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: var(--sb-edge, #f4f4f6); }
+    .sb-region { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 700; color: var(--sb-edge, #f4f4f6); }
     .sb-pct { font-size: 27px; font-weight: 400; line-height: 1.05; letter-spacing: -0.03em; }
     .sb-models { font-size: 11px; color: #8a8a93; margin-top: 3px; }
     .sb-delta { font-size: 15px; font-weight: 700; white-space: nowrap; }
@@ -207,11 +183,7 @@
       object-fit: fill; display: block; }
     .map-stage .map-fx { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
     .mk-marker { cursor: pointer; }
-    .mk-marker.is-dim { opacity: 0.3; }
-    .mk-marker .mk-glow { animation: glowPulse 4.4s ease-in-out infinite; }
-    @keyframes glowPulse { 0%,100% { opacity: .78; } 50% { opacity: 1; } }
     .mk-marker:focus-visible { outline: none; }
-    .mk-marker:focus-visible .mk-hit { stroke: #fff; stroke-width: 2; }
 
     /* label cards - percentage-positioned so their type stays real CSS and
        stays legible however narrow the panel gets */
@@ -229,8 +201,19 @@
       letter-spacing: -0.02em; color: var(--c); margin-top: 2px; }
     .mk-card.above { transform: translate(-50%, -100%); flex-direction: column-reverse; }
 
+    /* v3 responsive: on mobile the 1.97:1 stage is too letterboxed to read, so
+       the visible crop becomes 1.58:1 by widening the map AND the overlay to
+       124% and centring both. They widen together, so the geometry is never
+       recalculated and the nodes stay on their coordinates. */
+    @media (max-width: 640px) {
+      .map-stage { aspect-ratio: 1.58 / 1; }
+      .map-stage .earth, .map-stage .model-adoption-network { width: 124%; left: -12%; }
+      .mk-card .mk-box i { font-size: 15px; }
+      .map-credit { font-size: 9px; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      .arc-pulse, .mk-marker .mk-glow { animation: none; }
+      .arc-pulse path { animation: none; }
     }
     @media (max-width: 620px) {
       .mk-card .mk-box i { font-size: 16px; }
@@ -346,6 +329,7 @@
       .inst-head { padding-top: 120px; }
       .record-pair { grid-template-columns: 1fr; }
       .mapshare { grid-template-columns: 1fr; }
+      .sb-rows { grid-template-columns: repeat(2, 1fr); }
       .trust-grid { grid-template-columns: 1fr; gap: 16px; }
       .foot-top { grid-template-columns: 1fr 1fr; gap: 32px; }
       .site-footer { padding: 56px 24px 32px; }
@@ -681,21 +665,51 @@
                (LAT0 - lat) / (LAT0 - LAT1) * EARTH_H ];
     }
 
-    // Arc geometry: GPT's model_adoption_arc_geometry_v1, 15 August 2026,
-    // carried across verbatim - 26 strands across three bundles, every one
-    // starting and ending exactly on a node centre. Authored against this
-    // stage's own 2200 x 1117 viewBox, which is why the anchors line up with
-    // the lon/lat placement without a single fudge factor.
+    // Arc + node overlay: GPT's model_adoption_live_v3, 15 August 2026.
+    // 56 fibres (28 US-Asia, 14 US-Europe, 14 Europe-Asia) rendered as 112
+    // glow/core pairs plus 17 staggered pulse paths, and the three geographic
+    // nodes. Authored geometry - never generated here, never recalculated from
+    // chord length. GPT's validate_geometry.py passes: every path converges
+    // exactly on the fixed anchors and no control point leaves the frame.
     //
-    // My generated version is gone. It produced, in order: mirrored lenses
-    // from drawing both directions, strands clipped off the top from scaling
-    // the bow to chord length, and sub-pixel smoke from treating stroke-width
-    // as pixels. The handoff fixes all three by construction.
-    //
-    // The base strands are SOLID. Only the two innermost of each bundle are
-    // duplicated as a dashed pulse layer, so reduced-motion can stop the
-    // movement without removing the structure.
-    var ARC_SVG = "<g id=\"arcs-us-asia\" class=\"arc-bundle arc-bundle--us-asia\" data-from=\"us\" data-to=\"asia\"><path class=\"arc strand s10\" data-opacity=\"0.08\" data-width=\"1.8\" d=\"M228.8 329.515 C610 20 1480 12 1878.8 364.142\"/><path class=\"arc strand s9\"  data-opacity=\"0.11\" data-width=\"1.9\" d=\"M228.8 329.515 C600 34 1494 28 1878.8 364.142\"/><path class=\"arc strand s8\"  data-opacity=\"0.15\" data-width=\"2.0\" d=\"M228.8 329.515 C585 52 1510 46 1878.8 364.142\"/><path class=\"arc strand s7\"  data-opacity=\"0.19\" data-width=\"2.1\" d=\"M228.8 329.515 C570 72 1524 66 1878.8 364.142\"/><path class=\"arc strand s6\"  data-opacity=\"0.24\" data-width=\"2.2\" d=\"M228.8 329.515 C552 96 1536 88 1878.8 364.142\"/><path class=\"arc strand s5\"  data-opacity=\"0.30\" data-width=\"2.4\" d=\"M228.8 329.515 C535 122 1548 112 1878.8 364.142\"/><path class=\"arc strand s4\"  data-opacity=\"0.36\" data-width=\"2.6\" d=\"M228.8 329.515 C520 150 1560 138 1878.8 364.142\"/><path class=\"arc strand s3\"  data-opacity=\"0.44\" data-width=\"2.8\" d=\"M228.8 329.515 C505 180 1570 166 1878.8 364.142\"/><path class=\"arc strand s2\"  data-opacity=\"0.52\" data-width=\"3.1\" d=\"M228.8 329.515 C490 212 1580 196 1878.8 364.142\"/><path class=\"arc strand s1\"  data-opacity=\"0.62\" data-width=\"3.4\" d=\"M228.8 329.515 C474 244 1590 226 1878.8 364.142\"/><path class=\"arc-pulse\" d=\"M228.8 329.515 C490 212 1580 196 1878.8 364.142\"/><path class=\"arc-pulse\" d=\"M228.8 329.515 C474 244 1590 226 1878.8 364.142\"/></g><g id=\"arcs-us-europe\" class=\"arc-bundle arc-bundle--us-europe\" data-from=\"us\" data-to=\"europe\"><path class=\"arc strand s8\" data-opacity=\"0.12\" data-width=\"1.9\" d=\"M228.8 329.515 C388 72 820 48 1007.6 228.985\"/><path class=\"arc strand s7\" data-opacity=\"0.17\" data-width=\"2.0\" d=\"M228.8 329.515 C398 92 810 70 1007.6 228.985\"/><path class=\"arc strand s6\" data-opacity=\"0.23\" data-width=\"2.2\" d=\"M228.8 329.515 C410 116 800 94 1007.6 228.985\"/><path class=\"arc strand s5\" data-opacity=\"0.30\" data-width=\"2.4\" d=\"M228.8 329.515 C422 140 790 120 1007.6 228.985\"/><path class=\"arc strand s4\" data-opacity=\"0.38\" data-width=\"2.6\" d=\"M228.8 329.515 C436 166 778 146 1007.6 228.985\"/><path class=\"arc strand s3\" data-opacity=\"0.46\" data-width=\"2.8\" d=\"M228.8 329.515 C450 190 766 172 1007.6 228.985\"/><path class=\"arc strand s2\" data-opacity=\"0.54\" data-width=\"3.1\" d=\"M228.8 329.515 C466 216 752 196 1007.6 228.985\"/><path class=\"arc strand s1\" data-opacity=\"0.64\" data-width=\"3.4\" d=\"M228.8 329.515 C482 242 738 216 1007.6 228.985\"/><path class=\"arc-pulse\" d=\"M228.8 329.515 C466 216 752 196 1007.6 228.985\"/><path class=\"arc-pulse\" d=\"M228.8 329.515 C482 242 738 216 1007.6 228.985\"/></g><g id=\"arcs-europe-asia\" class=\"arc-bundle arc-bundle--europe-asia\" data-from=\"europe\" data-to=\"asia\"><path class=\"arc strand s8\" data-opacity=\"0.12\" data-width=\"1.9\" d=\"M1007.6 228.985 C1190 40 1650 48 1878.8 364.142\"/><path class=\"arc strand s7\" data-opacity=\"0.17\" data-width=\"2.0\" d=\"M1007.6 228.985 C1200 60 1642 66 1878.8 364.142\"/><path class=\"arc strand s6\" data-opacity=\"0.23\" data-width=\"2.2\" d=\"M1007.6 228.985 C1212 82 1634 86 1878.8 364.142\"/><path class=\"arc strand s5\" data-opacity=\"0.30\" data-width=\"2.4\" d=\"M1007.6 228.985 C1225 106 1626 108 1878.8 364.142\"/><path class=\"arc strand s4\" data-opacity=\"0.38\" data-width=\"2.6\" d=\"M1007.6 228.985 C1238 132 1618 132 1878.8 364.142\"/><path class=\"arc strand s3\" data-opacity=\"0.46\" data-width=\"2.8\" d=\"M1007.6 228.985 C1252 158 1610 158 1878.8 364.142\"/><path class=\"arc strand s2\" data-opacity=\"0.54\" data-width=\"3.1\" d=\"M1007.6 228.985 C1266 184 1602 186 1878.8 364.142\"/><path class=\"arc strand s1\" data-opacity=\"0.64\" data-width=\"3.4\" d=\"M1007.6 228.985 C1280 208 1594 216 1878.8 364.142\"/><path class=\"arc-pulse\" d=\"M1007.6 228.985 C1266 184 1602 186 1878.8 364.142\"/><path class=\"arc-pulse\" d=\"M1007.6 228.985 C1280 208 1594 216 1878.8 364.142\"/></g>";
+    // The file styles itself: its <defs> carry the gradients, the glow filters,
+    // the pulse animation and the prefers-reduced-motion rule. It also carries
+    // its own <title>/<desc> stating the arcs are illustrative. Loaded rather
+    // than inlined so it stays cacheable and the page source stays readable.
+    var ARC_URL = BASE + '/arc-overlay-v3.svg', ARC_CACHE = null;
+
+    // v3 node intensity. The nodes are the data-bearing part of the overlay,
+    // so their radii come from the live snapshot every render.
+    function applyNodeShares(svg, byRegion){
+      ['us','europe','asia'].forEach(function(rg){
+        var name = rg === 'us' ? 'US' : rg.charAt(0).toUpperCase() + rg.slice(1);
+        var s = byRegion[name]; if(!s) return;
+        var node = svg.querySelector('.node[data-region="' + rg + '"]'); if(!node) return;
+        var core = 3 + 1.35 * Math.sqrt(Math.max(0, s.pct));
+        var set = function(sel, r){ var el = node.querySelector(sel); if(el) el.setAttribute('r', r.toFixed(2)); };
+        node.setAttribute('data-share', s.pct.toFixed(2));
+        set('.node-core', core);
+        set('.node-ring', core * 2.55);
+        set('.node-halo', 15 + 8 * Math.sqrt(Math.max(0, s.pct)));
+      });
+    }
+
+    // v3 filter behaviour: dim, never remove, so the composition cannot jump.
+    function applyArcFilter(svg, region){
+      var r = (region || 'World').toLowerCase();
+      svg.querySelectorAll('path[data-base-opacity]').forEach(function(path){
+        var base = Number(path.getAttribute('data-base-opacity')) || 1;
+        var factor = 1;
+        if(r !== 'world'){
+          factor = (r === 'other') ? 0.08
+                 : ((path.getAttribute('data-from') === r || path.getAttribute('data-to') === r) ? 1 : 0.10);
+        }
+        path.style.opacity = String(base * factor);
+      });
+      svg.querySelectorAll('.node').forEach(function(node){
+        node.style.opacity = (r === 'world' || node.getAttribute('data-region') === r) ? '1' : '0.30';
+      });
+    }
 
     function renderMap(d){
       var byRegion = {}; d.share.forEach(function(s){ byRegion[s.region] = s; });
@@ -703,53 +717,50 @@
       document.getElementById('map-alt').textContent = 'Model origin, counted over the top 30 routed models: ' + altParts.join('; ') + '.';
 
       var order = ['US','Europe','Asia'];
-      var defs = '', fx = '', labels = '';
-      order.forEach(function(rg){
-        var c = REGION_DARK[rg];
-        defs += '<radialGradient id="glow-'+rg+'">' +
-                '<stop offset="0" stop-color="'+c+'" stop-opacity="0.85"/>' +
-                '<stop offset="0.25" stop-color="'+c+'" stop-opacity="0.38"/>' +
-                '<stop offset="0.6" stop-color="'+c+'" stop-opacity="0.12"/>' +
-                '<stop offset="1" stop-color="'+c+'" stop-opacity="0"/></radialGradient>';
-      });
-
-
-
+      var labels = '';
       order.forEach(function(rg){
         var s = byRegion[rg]; if(!s) return;
         var c = REGION_DARK[rg], pt = px(GEO[rg][0], GEO[rg][1]);
         var dim = (FILTER !== 'World' && FILTER !== rg);
-        // radius still follows share, per the v2 freeze - Asia dominant, US
-        // second, Europe a findable pin - with a floor so Europe still glows.
-        var r = Math.max(11, Math.min(52, 11 + 5.2*Math.sqrt(s.pct)));
-        fx += '<g class="mk-marker'+(dim?' is-dim':'')+'" data-r="'+rg+'" tabindex="0" role="button"' +
-              ' aria-label="Filter to '+rg+', '+s.models+' models, '+s.pct.toFixed(2)+'% share">' +
-              '<circle class="mk-glow" cx="'+pt[0].toFixed(1)+'" cy="'+pt[1].toFixed(1)+'" r="'+(r*3.6).toFixed(1)+'" fill="url(#glow-'+rg+')"/>' +
-              '<circle class="mk-hit" cx="'+pt[0].toFixed(1)+'" cy="'+pt[1].toFixed(1)+'" r="'+r.toFixed(1)+'" fill="'+c+'"/>' +
-              '<circle class="mk-core" cx="'+pt[0].toFixed(1)+'" cy="'+pt[1].toFixed(1)+'" r="'+(r*0.42).toFixed(1)+'" fill="#fff" opacity="0.92"/>' +
-              '</g>';
-        // label card, positioned in percentages so its type stays real CSS
-        var above = false;
-        labels += '<div class="mk-card'+(above?' above':'')+(dim?' is-dim':'')+'" data-r="'+rg+'"' +
+        labels += '<div class="mk-card'+(dim?' is-dim':'')+'" data-r="'+rg+'"' +
                   ' style="left:'+(pt[0]/EARTH_W*100).toFixed(2)+'%;top:'+(pt[1]/EARTH_H*100).toFixed(2)+'%;--c:'+c+'">' +
                   '<span class="mk-stem"></span>' +
                   '<span class="mk-box"><b>'+esc(rg.toUpperCase())+'</b><i>'+s.pct.toFixed(2)+'%</i></span>' +
                   '</div>';
       });
 
-      document.getElementById('worldmap').innerHTML =
-        '<div class="map-stage" data-region="' + FILTER.toLowerCase() + '">' +
-          '<img class="earth" src="' + BASE + '/earth-night.webp" alt="" ' +
-            'srcset="' + BASE + '/earth-night-1200.webp 1200w, ' + BASE + '/earth-night.webp 2200w" ' +
-            'sizes="(max-width: 880px) 100vw, 62vw" decoding="async" />' +
-          '<svg class="arc-overlay" viewBox="0 0 '+EARTH_W+' '+EARTH_H+'" preserveAspectRatio="none" aria-hidden="true">' + ARC_SVG + '</svg>' +
-          '<svg class="map-fx" viewBox="0 0 '+EARTH_W+' '+EARTH_H+'" preserveAspectRatio="none" role="img" ' +
-            'aria-label="World map of model origin. ' + esc(altParts.join('; ')) + '.">' +
-            '<defs>'+defs+'</defs>' + fx +
-          '</svg>' + labels +
-        '</div>';
+      var box = document.getElementById('worldmap');
+      function mount(svgText){
+        box.innerHTML =
+          '<div class="map-stage">' +
+            '<img class="earth" src="' + BASE + '/earth-night.webp" alt="" ' +
+              'srcset="' + BASE + '/earth-night-1200.webp 1200w, ' + BASE + '/earth-night.webp 2200w" ' +
+              'sizes="100vw" decoding="async" />' +
+            svgText + labels +
+          '</div>';
+        var svg = box.querySelector('svg.model-adoption-network');
+        if(svg){
+          svg.setAttribute('preserveAspectRatio','none');
+          applyNodeShares(svg, byRegion);
+          applyArcFilter(svg, FILTER);
+          svg.querySelectorAll('.node').forEach(function(node){
+            node.style.cursor = 'pointer';
+            node.addEventListener('click', function(){
+              var rg = node.getAttribute('data-region');
+              setFilter(rg === 'us' ? 'US' : rg.charAt(0).toUpperCase() + rg.slice(1));
+            });
+          });
+        }
+      }
+      if(ARC_CACHE){ mount(ARC_CACHE); }
+      else {
+        mount('');
+        fetch(ARC_URL).then(function(r){ return r.text(); })
+          .then(function(t){ ARC_CACHE = t; mount(t); })
+          .catch(function(){ /* map and labels still render without the overlay */ });
+      }
 
-      Array.prototype.forEach.call(document.querySelectorAll('#worldmap .mk-marker, #worldmap .mk-card'), function(el){
+      Array.prototype.forEach.call(document.querySelectorAll('#worldmap .mk-card'), function(el){
         function go(){ setFilter(el.getAttribute('data-r')); }
         el.addEventListener('click', go);
         el.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
