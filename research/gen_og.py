@@ -113,7 +113,10 @@ def category_for(rel, page_html):
     if rel.startswith("research/digital-product-passport"):
         return "DIGITAL PRODUCT PASSPORT"
     if rel.startswith("research/model-adoption"):
-        return "MODEL ADOPTION · UPDATED WEEKLY"
+        # Corrected 15 Aug 2026: the pull is cron "30 6 * * *" - DAILY. The
+        # seven-day figure is the measurement WINDOW, not the refresh cadence,
+        # and the instrument labels itself live. 48 cards said otherwise.
+        return "MODEL ADOPTION · UPDATED LIVE"
     if rel.startswith("insights/"):
         m = re.search(r'class="[^"]*\btag\b[^"]*"[^>]*>([^<]{2,40})<', page_html)
         tag = clean(m.group(1)).upper() if m else ""
@@ -128,10 +131,6 @@ def proof_for(rel, page_html):
     contained, because cropping interface text to fill a box is exactly what
     the house rule on real interfaces forbids.
     """
-    if rel.startswith("insights/"):
-        m = re.search(r'og:image" content="[^"]*(/insights/hero-[^"]+)"', page_html)
-        if m:
-            return m.group(1), "cover"
     # A listing page has no visual of its own. /insights is a grid of article
     # cards, so taking the first image on it made the index card look like one
     # particular article - the closest thing in the set to inventing proof
@@ -139,6 +138,17 @@ def proof_for(rel, page_html):
     # homepage is not a listing and keeps its own product visual.
     if rel.endswith("/index.html"):
         return None, None
+
+    # An article's hero is found by PATH, never by reading og:image. Reading the
+    # tag made this generator non-idempotent: wire_og.py rewrites og:image to
+    # point at the generated card, so on the next run no article looked like it
+    # had a hero and all seventeen silently fell through to "contain" - the
+    # photograph letterboxed inside the panel instead of filling it. A generator
+    # must not depend on a tag that a later step overwrites.
+    if rel.startswith("insights/"):
+        m = re.search(r'"(/insights/hero-[^"]+)"', page_html)
+        if m and os.path.exists(os.path.join(ROOT, m.group(1).lstrip("/"))):
+            return m.group(1), "cover"
     body = page_html.split("</header>")[-1]
     for src in re.findall(r'<img[^>]+src="([^"]+)"', body):
         if "logo" in src.lower() or not src.startswith("/"):
