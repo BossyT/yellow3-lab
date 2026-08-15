@@ -1359,10 +1359,16 @@ function heroOgMetaHtml(slug, hero) {
     // in any of the pages. GPT ruled on 2026-08-15: fall back to the company
     // image, the same one /software and /contact already use, and never invent
     // article-specific imagery.
+    // Updated 2026-08-15: the fallback was og-homepage-v2.png, a June card
+    // carrying a company definition and a city label both since retired.
+    // Cards are now generated from research/og_frame.html, so the fallback is
+    // the Insights card, which is current by construction. An article with a
+    // hero keeps it here so the card is right the moment it publishes; the
+    // next research/gen_og.py run gives the article its own framed card.
     const url = hero
         ? 'https://www.yellow3.io/insights/hero-' + slug + '.' + hero.ext
-        : 'https://www.yellow3.io/og/og-homepage-v2.png';
-    const alt = hero ? escAttr(hero.alt) : 'yellow3 lab';
+        : 'https://www.yellow3.io/og/cards/insights.png';
+    const alt = hero ? escAttr(hero.alt) : 'yellow3 insights';
     return '<meta property="og:image" content="' + url + '">\n' +
            '    <meta property="og:image:alt" content="' + alt + '">\n' +
            '    <meta name="twitter:image" content="' + url + '">\n' +

@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1200,height=630">
+<meta name="robots" content="noindex">
+<title>yellow3 OG frame (template, not a page)</title>
+<!--
+  yellow3 OG MASTER FRAME v1.2
+  Design: GPT, frozen 2026-08-15. Ported mechanically from
+  yellow3_og_master_frame_v1.1.html with only the v1.2 rulings applied:
+
+    - headline band y=214..416, contents vertically centred (was top-aligned)
+    - headline size ladder 64/56/48/42, tracking -.055em at 64, -.05em below
+    - support size ladder 21/19/17, line-height 1.30
+    - standard fallback proof panel, copy and typesetting frozen
+    - page-side logo listener removed; research/gen_og.py enforces the brand
+      contract at the renderer instead, so no PNG is written unless the
+      canonical /logo.png resolves
+
+  Every other value is v1.1 unchanged. The proof panel keeps its exact v1.1
+  position: the v1.1 grid put it at left 64+665+61 = 790, top 156.
+
+  This file is a template. Do not open expecting a finished card.
+-->
+<style>
+:root{
+  --ink:#0c0c0c;
+  --muted:#696969;
+  --line:#d6d6d2;
+  --yellow:#ffe500;
+  --soft:#f6f6f3;
+}
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  width:1200px;
+  height:630px;
+  overflow:hidden;
+  background:#fff;
+  color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif;
+}
+.og{
+  position:relative;
+  width:1200px;
+  height:630px;
+  padding:46px 64px 0;
+}
+
+/*
+  BRAND CONTRACT
+  - This MUST resolve to the exact canonical production yellow3 logo.
+  - Do not recreate, trace, recolour, convert, substitute or generate it.
+  - Rendering must fail if /logo.png is unavailable.
+*/
+.logo{
+  display:block;
+  width:auto;
+  height:47px;
+  object-fit:contain;
+  object-position:left center;
+}
+
+.top-rule{
+  position:absolute;
+  left:64px;
+  right:64px;
+  top:126px;
+  border-top:1px solid var(--line);
+}
+.kicker{
+  position:absolute;
+  left:64px;
+  top:156px;
+  font-size:15px;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+.accent{
+  position:absolute;
+  left:64px;
+  top:184px;
+  width:76px;
+  height:6px;
+  background:var(--yellow);
+}
+
+/* v1.2 - fixed headline band, 1/2/3 lines centred inside it */
+.band{
+  position:absolute;
+  left:64px;
+  top:214px;
+  width:665px;
+  height:202px;
+  display:flex;
+  align-items:center;
+}
+h1{
+  margin:0;
+  max-width:665px;
+  font-weight:400;
+  line-height:.95;
+}
+h1.s64{font-size:64px;letter-spacing:-.055em}
+h1.s56{font-size:56px;letter-spacing:-.05em}
+h1.s48{font-size:48px;letter-spacing:-.05em}
+h1.s42{font-size:42px;letter-spacing:-.05em}
+
+.support-wrap{
+  position:absolute;
+  left:64px;
+  top:440px;
+  width:665px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+}
+.support{
+  max-width:640px;
+  font-weight:400;
+  line-height:1.30;
+}
+.support.t21{font-size:21px}
+.support.t19{font-size:19px}
+.support.t17{font-size:17px}
+
+.proof{
+  position:absolute;
+  left:790px;
+  top:156px;
+  width:346px;
+  height:344px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:var(--soft);
+}
+.proof img{
+  display:block;
+  width:100%;
+  height:100%;
+}
+.proof img.cover{object-fit:cover}
+.proof img.contain{object-fit:contain}
+
+/* standard fallback panel - copy and typesetting frozen by Thomas 2026-08-15 */
+.proof.fallback{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:34px 32px;
+}
+.fb-1{
+  font-size:34px;
+  line-height:1.12;
+  letter-spacing:-.035em;
+  font-weight:400;
+  color:var(--ink);
+}
+.fb-rule{
+  width:44px;
+  height:4px;
+  background:var(--yellow);
+  margin:20px 0 18px;
+}
+.fb-2{
+  font-size:17px;
+  line-height:1.30;
+  font-weight:400;
+  color:var(--muted);
+}
+
+.bottom{
+  position:absolute;
+  left:64px;
+  right:64px;
+  top:552px;
+  display:flex;
+  justify-content:flex-end;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:17px;
+}
+</style>
+</head>
+<body>
+<div class="og">
+  <img class="logo" src="/logo.png" alt="yellow3">
+
+  <div class="top-rule"></div>
+
+  <div class="kicker">{{CATEGORY}}</div>
+  <div class="accent"></div>
+
+  <div class="band">
+    <h1 class="{{TITLE_CLASS}}">{{TITLE}}</h1>
+  </div>
+
+  <div class="proof {{PROOF_CLASS}}">{{PROOF}}</div>
+
+  <div class="support-wrap">
+    <div class="support {{SUPPORT_CLASS}}">{{SUPPORT}}</div>
+  </div>
+
+  <div class="bottom">
+    <span>{{ROUTE}}</span>
+  </div>
+</div>
+</body>
+</html>

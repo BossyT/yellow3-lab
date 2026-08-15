@@ -28,6 +28,7 @@ yellow3 evidence and company-supplied statements are held in separate data and
 separate DOM, and a company submission can never write into the evidence layer.
 """
 
+import og_card
 import json, os, re, html, datetime, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -193,7 +194,7 @@ def page(title, desc, canonical, body, script="", og_extra=""):
   <meta property="og:url" content="{e(canonical)}" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="yellow3 lab" />
-  <meta property="og:image" content="https://www.yellow3.io/og/og-digital-product-passport-v2.png" />
+  <meta property="og:image" content="{og_card.url(canonical)}" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />{og_extra}

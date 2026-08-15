@@ -11,6 +11,7 @@ drafts so nothing unverified ships under yellow3's authority.
 Output: research/model-adoption/reports/<YYYY-MM>.html + an archive index.
 Standard library only. Reuses chrome/helpers from gen_model_pages.
 """
+import og_card
 import os
 import json
 import datetime as dt
@@ -520,7 +521,7 @@ def render_briefing(period, g):
   <meta property="og:title" content="{title} | yellow3" />
   <meta property="og:description" content="{desc}" />
   <meta property="og:url" content="{url}" />
-  <meta property="og:image" content="{HOST}/og/og-model-adoption-v2.png" />
+  <meta property="og:image" content="{og_card.url(url)}" />
   <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 </head>
 <body>''', NAV, f'''
@@ -578,10 +579,10 @@ def render_archive(reports):
   <meta property="og:title" content="The Model Adoption Report - Archive | yellow3" />
   <meta property="og:description" content="Every monthly Model Adoption Report from yellow3 - regional shifts, rankings, economics and Europe Watch." />
   <meta property="og:url" content="{HOST}{RBASE}" />
-  <meta property="og:image" content="https://www.yellow3.io/og/og-homepage-v2.png" />
+  <meta property="og:image" content="{og_card.url(HOST + RBASE)}" />
   <meta property="og:image:alt" content="yellow3 lab" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://www.yellow3.io/og/og-homepage-v2.png" />
+  <meta name="twitter:image" content="{og_card.url(HOST + RBASE)}" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="{RBASE}/report.css" />

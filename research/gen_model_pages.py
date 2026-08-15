@@ -13,6 +13,7 @@ Run standalone (uses whatever build.py last wrote):
     python3 research/gen_model_pages.py
 Or it is called at the end of build.py's run.
 """
+import og_card
 import os
 import re
 import sys
@@ -351,7 +352,7 @@ def head(m, provider, meta, updated_iso):
     title = f"{name} Adoption, Ranking and Market Share | yellow3"
     desc = (f"Track {name}'s global AI adoption, routed-token share, weekly ranking, "
             f"historical movement, milestones and primary sources. A live yellow3 research record.")
-    og_img = f"{HOST}/og/og-model-adoption-v2.png"
+    og_img = og_card.url(url)
     breadcrumb = {
         "@context": "https://schema.org", "@type": "BreadcrumbList",
         "itemListElement": [

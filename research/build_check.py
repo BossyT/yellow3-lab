@@ -164,6 +164,30 @@ def main() -> int:
     else:
         print('  ok  no analytics anywhere')
 
+    # 6. Every page's social card exists, and no page has drifted back to a
+    #    June card. The eleven -v2 files stay on disk as the historical
+    #    boundary, so a page still pointing at one is a page a sweep missed.
+    cards = ROOT / 'og' / 'cards'
+    missing, june = [], []
+    for f in ROOT.glob('**/*.html'):
+        if '.git' in f.parts or 'node_modules' in f.parts:
+            continue
+        text = f.read_text(encoding='utf-8', errors='ignore')
+        for m in re.finditer(r'og:image" content="[^"]*?/og/([^"]+)"', text):
+            ref = m.group(1)
+            if re.match(r'og-.*-v2\.png$', ref):
+                june.append(str(f.relative_to(ROOT)))
+            elif ref.startswith('cards/') and not (cards / ref[len('cards/'):]).exists():
+                missing.append(f'{f.relative_to(ROOT)} -> {ref}')
+    if missing:
+        FAIL.append(f'{len(missing)} page(s) point at a social card that does '
+                    f'not exist, e.g. {missing[0]} - run research/gen_og.py')
+    if june:
+        FAIL.append(f'{len(june)} page(s) are back on a June -v2 card, '
+                    f'e.g. {june[0]} - run research/wire_og.py')
+    if not missing and not june:
+        print(f'  ok  every social card resolves ({len(list(cards.glob("*.png")))} cards)')
+
     if FAIL:
         print('\nBUILD REFUSED\n')
         for f in FAIL:
