@@ -111,37 +111,61 @@
     .view-sub { font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 18px; }
 
     /* Map + regional share */
-    .mapshare { display: grid; grid-template-columns: 1.35fr 1fr; gap: 20px; align-items: stretch; }
-    .mapbox, .sharebox { border: 1px solid var(--line); }
-    .mapbox { padding: 22px 24px; display: flex; flex-direction: column; }
-    .map-h { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: var(--ink); }
-    .map-sub { font-size: 12px; color: var(--muted); margin: 4px 0 12px; }
+    .mapshare {
+      /* v2, 15 Aug 2026: one integrated DARK instrument inside the light page.
+         GPT's model_adoption_live_block_v2 freeze. Map 68-72% / rail 28-32%,
+         so the ratio moves from 1.35fr to 2.2fr - that is the freeze, not a
+         preference. */
+      display: grid; grid-template-columns: 2.2fr 1fr; gap: 0;
+      align-items: stretch; background: #08080a; border: 1px solid #1b1b20;
+      border-radius: 14px; overflow: hidden; position: relative;
+    }
+    /* dark-panel region colours. The --r-* tokens are fills for the LIGHT
+       layout and are far too dark to read on #08080a. */
+    .mapshare { --rd-asia:#a24bff; --rd-us:#2e7df6; --rd-europe:#ffc400; --rd-other:#8a8a92; }
+    .mapbox { padding: 22px 24px 18px; display: flex; flex-direction: column; border: 0; }
+    .map-h { font-size: 15px; letter-spacing: 0; text-transform: none; font-weight: 700; color: #f4f4f6; }
+    .map-sub { font-size: 12px; color: #8a8a93; margin: 4px 0 12px; }
     #worldmap { flex: 1; min-height: 0; display: flex; align-items: center; }
-    #worldmap svg.wmap { width: 100%; height: auto; display: block; }
+    #worldmap svg.wmap { width: 100%; height: auto; display: block; overflow: visible; }
     .mk-marker { cursor: pointer; }
     .mk-marker circle.mk-hit { transition: opacity 0.2s; }
     .mk-marker:hover circle.mk-hit, .mk-marker:focus-visible circle.mk-hit { opacity: 0.88; }
     .mk-marker:focus-visible { outline: none; }
-    .mk-lab .mk-region { font-size: 12px; font-weight: 800; fill: var(--ink); letter-spacing: 0.05em; }
-    .mk-lab .mk-models { font-size: 10px; font-weight: 700; fill: var(--mid); letter-spacing: 0.06em; }
-    .mk-lab .mk-pctlab { font-size: 11px; font-weight: 700; fill: var(--ink); }
-    .map-credit { font-size: 10px; color: #b9b6ae; margin-top: 8px; }
-    .map-credit a { color: #b9b6ae; }
+    .mk-marker circle.mk-halo { pointer-events: none; }
+    .mk-lab .mk-region { font-size: 12px; font-weight: 800; letter-spacing: 0.05em; }
+    .mk-lab .mk-models { font-size: 10px; font-weight: 700; fill: #9a9aa2; letter-spacing: 0.06em; }
+    .mk-lab .mk-pctlab { font-size: 13px; font-weight: 700; fill: #ffffff; }
+    .map-credit { font-size: 10px; color: #55555c; margin-top: 8px; }
+    .map-credit a { color: #55555c; }
 
-    /* Regional share blocks (colored) */
-    .sharebox { display: flex; flex-direction: column; }
-    .sb-head { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: var(--muted); padding: 16px 20px 10px; }
+    /* the share rail - dark rows, colour carried on the edge rather than as a
+       fill, so quantitative hierarchy comes from the map and the numbers */
+    .sharebox { display: flex; flex-direction: column; border: 0; border-left: 1px solid #1b1b20; background: #0d0d10; }
+    .sb-head { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: #8a8a93; padding: 22px 22px 12px; }
     .sb-rows { flex: 1; display: flex; flex-direction: column; }
-    .sb-row { flex: 1; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px; padding: 14px 20px; color: #fff; transition: opacity 0.25s; min-height: 66px; }
-    .sb-row.dim { opacity: 0.32; }
-    .sb-region { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; opacity: 0.92; }
-    .sb-pct { font-size: 26px; font-weight: 400; line-height: 1; letter-spacing: -0.025em; }
-    .sb-models { font-size: 11px; opacity: 0.8; margin-top: 3px; }
+    .sb-row { flex: 1; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px;
+      padding: 14px 20px; color: #f4f4f6; background: #121216; border-top: 1px solid #1b1b20;
+      border-left: 3px solid var(--sb-edge, #8a8a92); transition: opacity 0.25s; min-height: 66px; }
+    .sb-row:first-child { border-top: 0; }
+    .sb-row.dim { opacity: 0.34; }
+    .sb-region { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: var(--sb-edge, #f4f4f6); }
+    .sb-pct { font-size: 30px; font-weight: 400; line-height: 1.05; letter-spacing: -0.03em; }
+    .sb-models { font-size: 11px; color: #8a8a93; margin-top: 3px; }
     .sb-delta { font-size: 15px; font-weight: 700; white-space: nowrap; }
-    .sb-delta.sb-up { color: #46d091; } .sb-delta.sb-down { color: #ff7a63; } .sb-delta.sb-flat { color: rgba(255,255,255,0.7); }
-    .sb-row.sb-light { color: #4a3a00; }
-    .sb-row.sb-light .sb-region { color: #7a5c00; }
-    .sb-row.sb-light .sb-delta.sb-up { color: #1c7d50; } .sb-row.sb-light .sb-delta.sb-down { color: #b3402e; } .sb-row.sb-light .sb-delta.sb-flat { color: rgba(0,0,0,0.5); }
+    .sb-delta.sb-up { color: #46d091; } .sb-delta.sb-down { color: #ff7a63; } .sb-delta.sb-flat { color: #8a8a93; }
+
+    /* association lines: map node -> that region's OWN rail row. They are UI
+       association, never geography. Nothing connects one region to another. */
+    .assoc-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+    .assoc-layer path { fill: none; stroke-width: 1; stroke-dasharray: 3 7; opacity: 0.55;
+      animation: assocTravel 12s linear infinite; }
+    @keyframes assocTravel { to { stroke-dashoffset: -200; } }
+    @keyframes nodePulse { 0%,100% { opacity: .20; } 50% { opacity: .40; } }
+    .mk-marker circle.mk-halo { animation: nodePulse 4.2s ease-in-out infinite; }
+    @media (prefers-reduced-motion: reduce) {
+      .assoc-layer path, .mk-marker circle.mk-halo { animation: none; }
+    }
 
     /* Weekly summary line */
     .weekline { margin: 26px 0 8px; padding: 14px 18px; background: var(--panel); border-left: 3px solid var(--yellow); font-size: 14px; color: var(--body); }
@@ -319,7 +343,7 @@
       <div class="mapshare">
         <div class="mapbox">
           <div class="map-h">Where the top 30 models were built</div>
-          <div class="map-sub">Model origin, not user location</div>
+          <div class="map-sub">Model origin, not user location.</div>
           <div id="worldmap"></div>
           <p class="sr" id="map-alt"></p>
           <p class="map-credit">Base map: <a href="https://github.com/flekschas/simple-world-map" target="_blank" rel="noopener noreferrer">simple-world-map</a>, CC BY-SA 3.0.</p>
@@ -465,6 +489,9 @@
 
   <script>
     var REGION_VAR = { Asia: 'var(--r-asia)', Europe: 'var(--r-europe)', US: 'var(--r-us)', Other: 'var(--r-other)' };
+    // the same four regions on the dark instrument panel - the --r-* tokens are
+    // fills for the light layout and are unreadable on #08080a
+    var REGION_DARK = { Asia: '#a24bff', Europe: '#ffc400', US: '#2e7df6', Other: '#8a8a92' };
     var DATA = null, FILTER = 'World';  // set from URL after helpers are defined
 
     function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
@@ -526,6 +553,7 @@
       if(region === 'World') url.searchParams.delete('region'); else url.searchParams.set('region', region.toLowerCase());
       history.replaceState(null,'',url);
       renderFilters(DATA); renderMap(DATA); renderShareBox(DATA); renderWeekline(DATA); renderRanking(DATA);
+      requestAnimationFrame(drawAssoc);
     }
 
     function renderFilters(d){
@@ -579,21 +607,38 @@
         svg.setAttribute('class','wmap');
         svg.setAttribute('role','img');
         svg.setAttribute('aria-label','World map of model origin. ' + altParts.join('; ') + '.');
-        // landmass: solid light-grey base + subtle darker dot texture, so the
-        // continents read clearly (dense, like the reference) rather than faint.
-        var defs = document.createElementNS(NS,'defs');
-        defs.innerHTML = '<pattern id="wm-dots" width="5" height="5" patternUnits="userSpaceOnUse">' +
-          '<rect width="5" height="5" fill="#e6e3db"/>' +
-          '<circle cx="1.5" cy="1.5" r="1.15" fill="#c3bfb2"/></pattern>';
-        svg.insertBefore(defs, svg.firstChild);
+        // landmass on the dark panel: continents are context, not the subject,
+        // so they sit just above the panel ground and never compete with the
+        // nodes for attention.
         Array.prototype.forEach.call(svg.querySelectorAll('path'), function(p){
-          p.setAttribute('fill','url(#wm-dots)'); p.setAttribute('stroke','none');
+          p.setAttribute('fill','#191920'); p.setAttribute('stroke','#26262f');
+          p.setAttribute('stroke-width','0.5');
         });
+        // Halo gradients. A flat circle at one opacity reads as a solid disc -
+        // the thing the reference image was admired for is a falloff, so the
+        // halo is a radial gradient that fades to nothing at its edge.
+        var defs = document.createElementNS(NS,'defs');
+        defs.innerHTML = ['US','Asia','Europe','Other'].map(function(rg){
+          var c = REGION_DARK[rg];
+          // The core sits opaque over the middle 42% of the halo, so a gradient
+          // that peaks at offset 0 is invisible - all its brightness is behind
+          // the disc. The glow has to start where the core ends.
+          return '<radialGradient id="halo-'+rg+'">' +
+                 '<stop offset="0.40" stop-color="'+c+'" stop-opacity="0.50"/>' +
+                 '<stop offset="0.62" stop-color="'+c+'" stop-opacity="0.20"/>' +
+                 '<stop offset="1" stop-color="'+c+'" stop-opacity="0"/></radialGradient>';
+        }).join('');
+        svg.insertBefore(defs, svg.firstChild);
         // origin markers: leader line + solid circle (size = model count) + external label
         ['US','Asia','Europe'].forEach(function(region){
           var s = byRegion[region]; if(!s) return;
-          var m = MK[region]; var color = REGION_VAR[region];
-          var r = Math.max(7, Math.min(30, 7 + s.models*1.7));
+          var m = MK[region]; var color = REGION_DARK[region];
+          // Area-aware scaling driven by SHARE, per the v2 freeze. It was
+          // 7 + models*1.7, which sized Europe and Other identically at zero
+          // models and left share invisible. sqrt keeps AREA proportional to
+          // share; the +10 floor is the freeze's "small non-zero values must
+          // stay locatable", so Europe at 0.12% remains a findable pin.
+          var r = Math.max(4, Math.min(56, 10 + 5.5*Math.sqrt(s.pct)));
           var dim = (FILTER!=='World' && FILTER!==region);
           var lx = m.lab[0], ly = m.lab[1], above = (region==='Europe');
           var lineY2 = above ? ly + 4 : ly - 30;
@@ -601,12 +646,13 @@
           g.setAttribute('class','mk-marker'); g.setAttribute('tabindex','0'); g.setAttribute('role','button');
           g.setAttribute('aria-label','Filter to ' + region + ', ' + s.models + ' models, ' + s.pct.toFixed(2) + '% share');
           g.setAttribute('data-r', region); g.style.opacity = dim ? 0.4 : 1;
-          var lines = '<tspan class="mk-region" x="'+lx+'" y="'+ly+'">'+region.toUpperCase()+'</tspan>';
+          var lines = '<tspan class="mk-region" x="'+lx+'" y="'+ly+'" fill="'+color+'">'+region.toUpperCase()+'</tspan>';
           if(s.models>0){ lines += '<tspan class="mk-models" x="'+lx+'" dy="15">'+s.models+' MODEL'+(s.models===1?'':'S')+'</tspan>'; }
           lines += '<tspan class="mk-pctlab" x="'+lx+'" dy="15">'+(s.pct<1?'<1%':s.pct.toFixed(2)+'%')+'</tspan>';
           g.innerHTML =
-            '<line x1="'+m.c[0]+'" y1="'+m.c[1]+'" x2="'+lx+'" y2="'+lineY2+'" stroke="'+color+'" stroke-width="1" opacity="0.5"/>' +
-            '<circle class="mk-hit" cx="'+m.c[0]+'" cy="'+m.c[1]+'" r="'+r+'" fill="'+color+'" stroke="#fff" stroke-width="1.5"/>' +
+            '<line x1="'+m.c[0]+'" y1="'+m.c[1]+'" x2="'+lx+'" y2="'+lineY2+'" stroke="'+color+'" stroke-width="1" opacity="0.45"/>' +
+            '<circle class="mk-halo" cx="'+m.c[0]+'" cy="'+m.c[1]+'" r="'+(r*2.4)+'" fill="url(#halo-'+region+')"/>' +
+            '<circle class="mk-hit" cx="'+m.c[0]+'" cy="'+m.c[1]+'" r="'+r+'" fill="'+color+'" stroke="rgba(255,255,255,0.55)" stroke-width="1"/>' +
             '<text class="mk-lab" text-anchor="middle">'+lines+'</text>';
           function go(){ setFilter(region); }
           g.addEventListener('click', go);
@@ -614,10 +660,98 @@
           svg.appendChild(g);
         });
       }
-      if(WM_CACHE){ paint(WM_CACHE); return; }
-      fetch(WM_URL).then(function(r){ return r.text(); }).then(function(txt){ WM_CACHE = txt; paint(txt); })
+      if(WM_CACHE){ paint(WM_CACHE); requestAnimationFrame(drawAssoc); return; }
+      fetch(WM_URL).then(function(r){ return r.text(); })
+        .then(function(txt){ WM_CACHE = txt; paint(txt); requestAnimationFrame(drawAssoc); })
         .catch(function(){ box.innerHTML = '<p style="color:var(--mid);font-size:13px;padding:20px 0">'+esc(altParts.join('; '))+'</p>'; });
     }
+
+    // Association lines. The v2 freeze forbids anything that reads as
+    // region-to-region traffic, because the instrument holds no origin ->
+    // destination data. These run from a map node to THAT region's row in the
+    // rail and never touch another region's node.
+    //
+    // The prototype used fixed SVG coordinates. That cannot survive here: the
+    // markers are placed from live data inside a scaled map, and the rail rows
+    // move with content. So the geometry is measured at runtime and redrawn on
+    // resize. Below the 880px stacking breakpoint the rail sits under the map,
+    // the spatial mapping is obvious, and the lines are dropped - also the
+    // freeze.
+    function drawAssoc(){
+      var host = document.querySelector('.mapshare');
+      if(!host) return;
+      var layer = host.querySelector('.assoc-layer');
+      if(!layer){
+        layer = document.createElementNS('http://www.w3.org/2000/svg','svg');
+        layer.setAttribute('class','assoc-layer');
+        layer.setAttribute('aria-hidden','true');
+        host.appendChild(layer);
+      }
+      var box = host.getBoundingClientRect();
+      layer.setAttribute('viewBox','0 0 ' + box.width + ' ' + box.height);
+      if(window.innerWidth <= 880){ layer.innerHTML = ''; return; }
+      // every node's disc, so a line can be routed clear of the others
+      var discs = {};
+      ['US','Asia','Europe'].forEach(function(rg){
+        var c = host.querySelector('.mk-marker[data-r="' + rg + '"] circle.mk-hit');
+        if(!c) return;
+        var b = c.getBoundingClientRect();
+        discs[rg] = { x: b.left + b.width/2 - box.left,
+                      y: b.top + b.height/2 - box.top,
+                      r: b.width/2 };
+      });
+      function bez(x1,y1,cx1,cy1,cx2,cy2,x2,y2,t){
+        var u = 1-t;
+        return { x: u*u*u*x1 + 3*u*u*t*cx1 + 3*u*t*t*cx2 + t*t*t*x2,
+                 y: u*u*u*y1 + 3*u*u*t*cy1 + 3*u*t*t*cy2 + t*t*t*y2 };
+      }
+      // The freeze is explicit: a line must never touch or route through
+      // another region's node. A straight run from US to its rail row passes
+      // clean through Asia's disc, so each curve is tested against the other
+      // discs and lifted until it clears them.
+      function clears(x1,y1,cx1,cy1,cx2,cy2,x2,y2,self){
+        for(var t=0; t<=1.0001; t+=0.02){
+          var pt = bez(x1,y1,cx1,cy1,cx2,cy2,x2,y2,t);
+          for(var rg in discs){
+            if(rg === self) continue;
+            var d = discs[rg];
+            var dist = Math.sqrt((pt.x-d.x)*(pt.x-d.x) + (pt.y-d.y)*(pt.y-d.y));
+            if(dist < d.r + 14) return false;
+          }
+        }
+        return true;
+      }
+      var out = '';
+      ['US','Asia','Europe'].forEach(function(region){
+        var node = host.querySelector('.mk-marker[data-r="' + region + '"] circle.mk-hit');
+        var row  = host.querySelector('.sb-row[data-rail="' + region + '"]');
+        if(!node || !row) return;
+        var n = node.getBoundingClientRect(), r = row.getBoundingClientRect();
+        var x1 = n.left + n.width/2 - box.left, y1 = n.top + n.height/2 - box.top;
+        var x2 = r.left - box.left,             y2 = r.top + r.height/2 - box.top;
+        if(x2 <= x1) return;                      // never route backwards
+        var dx = (x2 - x1) * 0.45, lift = 0, ok = false, cy1, cy2;
+        var offsets = [0,-40,40,-80,80,-130,130,-190,190,-260,260];
+        for(var i=0; i<offsets.length; i++){
+          lift = offsets[i]; cy1 = y1 + lift; cy2 = y2 + lift*0.35;
+          if(clears(x1,y1,x1+dx,cy1,x2-dx,cy2,x2,y2,region)){ ok = true; break; }
+        }
+        if(!ok) return;   // no clean route: draw nothing rather than imply one
+        out += '<path d="M ' + x1.toFixed(1) + ' ' + y1.toFixed(1) +
+               ' C ' + (x1+dx).toFixed(1) + ' ' + cy1.toFixed(1) + ', ' +
+               (x2-dx).toFixed(1) + ' ' + cy2.toFixed(1) + ', ' +
+               x2.toFixed(1) + ' ' + y2.toFixed(1) + '" stroke="' +
+               (REGION_DARK[region]||'#8a8a92') + '"' +
+               // follow the page's existing dimming so a filtered view reads
+               // as one region rather than three competing threads
+               (FILTER !== 'World' && FILTER !== region ? ' opacity="0.12"' : '') + '/>';
+      });
+      layer.innerHTML = out;
+    }
+    var assocTimer = null;
+    window.addEventListener('resize', function(){
+      clearTimeout(assocTimer); assocTimer = setTimeout(drawAssoc, 120);
+    });
 
     function deltaPill(dpp){
       var cls = dpp > 0.04 ? 'up' : dpp < -0.04 ? 'down' : 'flat';
@@ -629,8 +763,11 @@
       var rows = d.share.slice().sort(function(a,b){ return b.pct - a.pct; });
       document.getElementById('sb-rows').innerHTML = rows.map(function(s){
         var dim = (FILTER !== 'World' && FILTER !== s.region);
-        var light = (s.region === 'Europe');  // vivid yellow block -> dark text
-        return '<div class="sb-row' + (dim?' dim':'') + (light?' sb-light':'') + '" style="background:' + (REGION_VAR[s.region]||'var(--r-other)') + '">' +
+        // v2: the row is dark and carries its region colour on the leading edge.
+        // Filling the row solid made Europe - 0.12% - the brightest object in
+        // the block, which is the inversion the freeze exists to stop.
+        return '<div class="sb-row' + (dim?' dim':'') + '" data-rail="' + esc(s.region) + '"' +
+          ' style="--sb-edge:' + (REGION_DARK[s.region]||'#8a8a92') + '">' +
           '<div><div class="sb-region">' + esc(s.region) + '</div><div class="sb-pct">' + s.pct.toFixed(2) + '%</div>' +
           '<div class="sb-models">' + s.models + ' model' + (s.models===1?'':'s') + ' in top 30</div></div>' +
           deltaPill(s.delta_pp) + '</div>';
@@ -739,6 +876,7 @@
         DATA = d;
         renderHeader(d); renderOnRecord(d);
         renderLiveBar(d); renderFilters(d); renderMap(d); renderShareBox(d); renderWeekline(d); renderRanking(d);
+        requestAnimationFrame(drawAssoc);
         renderRecords(d); renderEdition(d); renderTrust(d);
       })
       .catch(function(){ document.getElementById('err').style.display = 'block'; });
