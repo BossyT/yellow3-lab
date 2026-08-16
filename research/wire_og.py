@@ -32,8 +32,16 @@ def slug_for(rel):
     return re.sub(r"[^a-z0-9]+", "-", rel[:-len(".html")].lower()).strip("-")
 
 
+# Pages that publish a better card than the generator can make. The Top 10
+# archive points at that week's own edition card, which shows the actual
+# ranking; a generated card would replace it with the page's H1 on a frame.
+KEEPS_OWN_CARD = ("research/model-adoption/top10/",)
+
+
 def card_for(rel):
     """The card a page should carry, or None if it has no claim on one."""
+    if rel.startswith(KEEPS_OWN_CARD):
+        return None
     s = slug_for(rel)
     if os.path.exists(os.path.join(CARDS, s + ".png")):
         return s

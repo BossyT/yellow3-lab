@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Model adoption, live - yellow3 Model Intelligence</title>
-  <meta name="description" content="Where AI adoption actually sits, by region of origin, measured in real routed traffic, and how fast the lead changes. The live, free instrument in yellow3 Model Intelligence, updated live from OpenRouter routing data." />
-  <link rel="canonical" href="https://www.yellow3.io/research/model-adoption/live" />
+  <title>The AI Top 10 - archive | yellow3 Model Intelligence</title>
+  <meta name="description" content="The AI Top 10, a weekly ranked edition of the most-routed AI models, cut from yellow3&#x27;s live Model Adoption instrument. Archive of every edition with its measurement window." />
+  <link rel="canonical" href="https://www.yellow3.io/research/model-adoption/top10" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="/research/tokens.css" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="yellow3 lab" />
+  <meta property="og:title" content="The AI Top 10 - archive | yellow3 Model Intelligence" />
+  <meta property="og:description" content="The AI Top 10, a weekly ranked edition of the most-routed AI models, cut from yellow3&#x27;s live Model Adoption instrument. Archive of every edition with its measurement window." />
+  <meta property="og:url" content="https://www.yellow3.io/research/model-adoption/top10" />
+  <meta property="og:image" content="https://www.yellow3.io/research/model-adoption/top10/2026-33-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.yellow3.io/research/model-adoption/top10/2026-33-og.png" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -343,22 +352,34 @@
     }
     @media (max-width: 560px) { .records-grid { grid-template-columns: 1fr; } .foot-top { grid-template-columns: 1fr; } .sb-row { min-height: 58px; } }
   </style>
-
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="yellow3 lab" />
-  <meta property="og:title" content="Model adoption - yellow3 Research" />
-  <meta property="og:description" content="Where AI adoption actually sits, by region of origin, measured in real routed traffic. A live yellow3 research instrument." />
-  <meta property="og:url" content="https://www.yellow3.io/research/model-adoption/live" />
-  <meta property="og:image" content="https://www.yellow3.io/og/cards/research-model-adoption-live.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Model adoption - a live yellow3 research instrument" />
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:image" content="https://www.yellow3.io/og/cards/research-model-adoption-live.png" />
+  <style>
+    :root{--ink:#0c0c0c;--muted:#696969;--mid:#4a4a4a;--line:#e6e4dd;--yellow:#ffe500;--card:#fbfbf9}
+    *{box-sizing:border-box}
+    body{margin:0;background:#fff;color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+    .wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+    .head{padding:120px 0 32px;border-bottom:1px solid var(--line)}
+    .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+    .rule{display:block;width:64px;height:4px;background:var(--yellow);margin:12px 0 22px}
+    h1{font-size:64px;line-height:.98;letter-spacing:-.04em;font-weight:400;margin:0}
+    .lede{font-size:20px;color:var(--mid);max-width:60ch;margin:18px 0 0}
+    .meta{font-size:13px;color:var(--muted);margin-top:14px}
+    .eds{padding:40px 0 80px;display:flex;flex-direction:column;gap:34px}
+    .ed{display:grid;grid-template-columns:300px 1fr;gap:30px;align-items:start;
+      border-bottom:1px solid var(--line);padding-bottom:34px}
+    .ed:last-child{border-bottom:0}
+    .ed-img{display:block;border:1px solid var(--line);background:#08080a}
+    .ed-img img{display:block;width:100%;height:auto}
+    .ed-no{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+    .ed h2{font-size:28px;font-weight:400;letter-spacing:-.02em;margin:6px 0 10px}
+    .ed-lead{font-size:16px;margin:0 0 6px}
+    .ed-mover{font-size:14px;color:var(--muted);margin:0}
+    .ed-links{margin:14px 0 0;display:flex;gap:20px}
+    .ed-links a{font-size:14px;font-weight:700;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--yellow);padding-bottom:2px}
+    @media (max-width:760px){ .ed{grid-template-columns:1fr} h1{font-size:42px} .wrap{padding:0 24px} .head{padding-top:104px} }
+  </style>
 </head>
 <body>
-
-  <nav class="site-nav">
+<nav class="site-nav">
     <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
     <div class="nav-mid" id="navMid">
       <a href="/research" class="active">Research</a>
@@ -372,128 +393,38 @@
     <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
   </nav>
 
-  <!-- ===== INSTRUMENT HEADER ===== -->
-  <header class="inst-head">
+  <section class="head">
     <div class="wrap">
-      <div class="breadcrumb"><a href="/research">Research</a> &nbsp;/&nbsp; <span id="bc-title">Model adoption</span></div>
-      <div class="inst-status">
-        <span class="badge-live" id="badge"><span class="dot"></span> Live</span>
-        <span class="refresh" id="refresh">Loading latest refresh…</span>
-      </div>
-      <h1 id="title">Model adoption</h1>
-      <p class="inst-thesis" id="thesis"></p>
-    </div>
-  </header>
-
-  <div id="err" class="wrap"><span data-err-msg>The instrument data could not be loaded. Please try again shortly.</span></div>
-
-  <!-- ===== LIVE DATA VIEW (instrument-specific) ===== -->
-  <section class="section">
-    <div class="wrap">
-      <div class="live-bar" id="live-bar"></div>
-
-      <div class="section-label">Regional share of routed tokens, this week</div>
-      <div class="filters" id="filters" role="group" aria-label="Filter by region of origin"></div>
-
-      <div class="mapshare">
-        <div class="mapbox">
-          <div class="map-h">Where the top 30 models were built</div>
-          <div class="map-sub">Model origin, not user location.</div>
-          <div id="worldmap"></div>
-          <p class="sr" id="map-alt"></p>
-          <p class="map-credit">Base image: <a href="https://earthobservatory.nasa.gov/features/NightLights" target="_blank" rel="noopener noreferrer">NASA Earth Observatory</a>, Earth at Night 2012. Public domain. Arcs are illustrative, not measured routes.</p>
-        </div>
-        <div class="sharebox">
-          <div class="sb-head">Share of routed tokens</div>
-          <div class="sb-rows" id="sb-rows"></div>
-        </div>
-      </div>
-
-      <div class="weekline" id="weekline"></div>
-
-      <div class="ranking">
-        <div class="view-sub" id="lb-sub">Most-routed models</div>
-        <div class="rank-head" aria-hidden="true">
-          <span>Rank</span><span>Model / origin</span><span class="rh-share">Routed share</span><span class="rh-move">7D</span><span class="rh-explore">Explore</span>
-        </div>
-        <div id="ranking"></div>
-      </div>
+      <p class="eyebrow">yellow3 Model Intelligence</p>
+      <span class="rule"></span>
+      <h1>The AI Top 10</h1>
+      <p class="lede">A weekly ranked edition of the most-routed AI models, cut from
+        the live instrument. Each edition is a frozen snapshot of one seven-day
+        window, so the graphic and the instrument always agree for that week.</p>
+      <p class="meta">1 edition &middot; the instrument itself updates live</p>
     </div>
   </section>
 
-  <!-- ===== RECORD BOOK ===== -->
-  <section class="section">
-    <div class="wrap">
-      <div class="section-label">Record book</div>
-      <div class="records-grid" id="records"></div>
-      <p class="press-note">Media and press may use the data and graphics with clear attribution to yellow3.io.</p>
-    </div>
-  </section>
+  <div class="wrap">
+    <div class="eds">
+        <article class="ed">
+          <a class="ed-img" href="/research/model-adoption/top10/2026-33.png">
+            <img src="/research/model-adoption/top10/2026-33.png" alt="The AI Top 10, 8 August 2026 to 14 August 2026" loading="lazy" />
+          </a>
+          <div class="ed-body">
+            <div class="ed-no">Edition 2026-33</div>
+            <h2>8 August 2026 to 14 August 2026</h2>
+            <p class="ed-lead">DeepSeek V4 Flash (Jul 2026) 14.88% &middot; Tencent Hy3 14.75% &middot; OpenAI GPT 5.6 Luna 7.07%</p>
+            <p class="ed-mover">Biggest mover: Tencent Hy3 up 5.46 pp.</p>
+            <p class="ed-links">
+              <a href="/research/model-adoption/top10/2026-33.png">Open the graphic</a>
+              <a href="/research/model-adoption/live">See the instrument</a>
+            </p>
+          </div>
+        </article></div>
+  </div>
 
-  <!-- ===== 30-SECOND ON-RAMP (context, below the data) ===== -->
-  <section class="primer">
-    <div class="wrap">
-      <div class="primer-eyebrow">Model adoption in 30 seconds</div>
-      <div class="primer-grid">
-        <div class="pr"><div class="prn">What it is</div><p>A live read on where AI demand actually flows - by where the model was built (Asia, the US, Europe) - measured in real routed usage, not announcements or benchmarks.</p></div>
-        <div class="pr"><div class="prn">Why it matters</div><p>It is the clearest public signal of who is winning the AI race, and exactly how far behind Europe sits. <strong>The lead moves week to week</strong>, and most leaders are reading last year's map.</p></div>
-        <div class="pr"><div class="prn">So what</div><p>If you are deciding what to build on, who to depend on, or how exposed you are to one region's models, this is the map - not the press release.</p></div>
-      </div>
-      <p class="primer-bridge">This instrument tracks regional share of routed AI traffic and grades its own weekly call in public. <strong>Updated live.</strong></p>
-    </div>
-  </section>
-
-  <!-- ===== YELLOW3 ON THE RECORD ===== -->
-  <section class="section" id="sec-record">
-    <div class="wrap">
-      <div class="section-label">yellow3 on the record</div>
-      <div class="record-pair">
-        <div class="record-cell">
-          <div class="k">This week's call</div>
-          <div class="call" id="call-this"></div>
-          <div class="meta" id="call-this-meta"></div>
-        </div>
-        <div class="record-cell">
-          <div class="k">Last week's call, graded</div>
-          <div id="call-prior-grade"></div>
-          <div class="call" id="call-prior"></div>
-          <div class="meta" id="call-prior-meta"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== WEEKLY EDITION ===== -->
-  <section class="edition" id="sec-edition">
-    <div class="wrap">
-      <div class="edition-inner">
-        <div class="edition-eyebrow" id="ed-eyebrow"></div>
-        <h2 id="ed-title"></h2>
-        <div class="dek" id="ed-dek"></div>
-        <div class="edition-body" id="ed-body"></div>
-        <div class="crosslink" id="ed-crosslink"></div>
-        <div class="edition-byline" id="ed-byline"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== TRUST LAYER ===== -->
-  <section class="trust">
-    <div class="wrap">
-      <div class="trust-grid">
-        <h3>Methodology &amp; sources</h3>
-        <div>
-          <p class="pledge">We take positions only where the evidence supports them - and grade them in public.</p>
-          <p id="methodology"></p>
-          <p><a class="method-link" href="/research/framework">How we build research - the method &#8594;</a></p>
-          <div class="source-line" id="source-line"></div>
-          <div class="flag-note" id="flag-note"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="site-footer">
+<footer class="site-footer">
         <div class="inner">
             <div class="foot-top">
                 <div class="foot-brand">
@@ -541,408 +472,5 @@
             </div>
         </div>
     </footer>
-
-  <script>
-    var REGION_VAR = { Asia: 'var(--r-asia)', Europe: 'var(--r-europe)', US: 'var(--r-us)', Other: 'var(--r-other)' };
-    // the same four regions on the dark instrument panel - the --r-* tokens are
-    // fills for the light layout and are unreadable on #08080a
-    var REGION_DARK = { Asia: '#a24bff', Europe: '#ffc400', US: '#2e7df6', Other: '#8a8a92' };
-    var DATA = null, FILTER = 'World';  // set from URL after helpers are defined
-
-    function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
-    function deltaClass(d){ return d > 0.04 ? 'delta-up' : d < -0.04 ? 'delta-down' : 'delta-flat'; }
-    function deltaTxt(d){ var s = d > 0 ? '+' : ''; return s + d.toFixed(2) + ' pp'; }
-
-    function renderHeader(d){
-      document.getElementById('title').textContent = d.title;
-      document.getElementById('bc-title').textContent = d.title;
-      document.getElementById('thesis').textContent = d.thesis;
-      document.getElementById('refresh').textContent = 'Refreshed ' + d.refreshed_cet + ' · data as of ' + d.as_of_pretty;
-      if (d.status !== 'live') { document.getElementById('badge').style.color = 'var(--mid)'; }
-    }
-
-    function renderOnRecord(d){
-      var rec = document.getElementById('sec-record');
-      var t = (d.on_the_record && d.on_the_record.this_week) || {};
-      if (rec && !t.text) { rec.style.display = 'none'; return; }
-      if (rec) rec.style.display = '';
-      document.getElementById('call-this').textContent = '“' + t.text + '”';
-      document.getElementById('call-this-meta').textContent = t.resolves_on ? ('Resolves ' + t.resolves_on) : '';
-      var p = d.on_the_record.prior;
-      var gradeEl = document.getElementById('call-prior-grade');
-      var callEl = document.getElementById('call-prior');
-      var metaEl = document.getElementById('call-prior-meta');
-      if (!p || !p.text){
-        gradeEl.innerHTML = '<span class="grade pending">No prior call</span>';
-        callEl.textContent = (p && p.note) ? p.note : 'First edition - no prior call to grade yet.';
-        callEl.style.fontStyle = 'italic'; callEl.style.color = 'var(--mid)';
-        metaEl.textContent = '';
-      } else {
-        var g = (p.grade || 'pending').toLowerCase();
-        var label = g === 'correct' ? 'Graded correct' : g === 'wrong' ? 'Graded wrong' : 'Awaiting result';
-        gradeEl.innerHTML = '<span class="grade ' + g + '">' + label + '</span>';
-        callEl.textContent = '“' + p.text + '”';
-        metaEl.textContent = (p.note || '') + (p.number ? ('  ·  Edition ' + ('0'+p.number).slice(-2)) : '');
-      }
-    }
-
-    var BASE = '/research/model-adoption';
-    var WM_URL = BASE + '/world-map.svg';
-    // marker: {c:[circle x,y], lab:[label anchor x,y]} in the world-map.svg viewBox
-    var MK = {
-      US:     { c:[205,405], lab:[120,522] },
-      Asia:   { c:[650,398], lab:[706,522] },
-      Europe: { c:[458,352], lab:[452,282] }
-    };
-
-    function regionFromUrl(){
-      var p = (new URLSearchParams(location.search)).get('region');
-      if(!p) return 'World';
-      var map = {world:'World',asia:'Asia',europe:'Europe',us:'US',other:'Other'};
-      return map[p.toLowerCase()] || 'World';
-    }
-
-    function setFilter(region){
-      FILTER = region;
-      var url = new URL(location.href);
-      if(region === 'World') url.searchParams.delete('region'); else url.searchParams.set('region', region.toLowerCase());
-      history.replaceState(null,'',url);
-      renderFilters(DATA); renderMap(DATA); renderShareBox(DATA); renderWeekline(DATA); renderRanking(DATA);
-    }
-
-    function renderFilters(d){
-      var f = document.getElementById('filters');
-      var opts = ['World'].concat(d.regions);
-      f.innerHTML = opts.map(function(o){
-        return '<button class="filter' + (o===FILTER?' active':'') + '" data-f="' + esc(o) + '"' + (o===FILTER?' aria-pressed="true"':'') + '>' + esc(o) + '</button>';
-      }).join('');
-      Array.prototype.forEach.call(f.querySelectorAll('.filter'), function(b){
-        b.addEventListener('click', function(){ setFilter(b.getAttribute('data-f')); });
-      });
-    }
-
-    function nextRefresh(){
-      var now = new Date();
-      var next = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 6, 40, 0));
-      if(next <= now) next.setUTCDate(next.getUTCDate() + 1);
-      var hrs = Math.round((next - now) / 3600000);
-      return hrs <= 1 ? 'Next refresh within the hour' : 'Next refresh in ~' + hrs + 'h';
-    }
-
-    function renderLiveBar(d){
-      document.getElementById('live-bar').innerHTML =
-        '<span class="lb-live"><span class="dot"></span> Live</span>' +
-        '<span class="live-meta">Updated <b>' + esc(d.refreshed_cet) + '</b></span>' +
-        '<span class="live-sep">&bull;</span>' +
-        '<span class="live-meta">Data as of <b>' + esc(d.as_of_pretty) + '</b></span>' +
-        '<span class="live-sep">&bull;</span>' +
-        '<span class="live-meta">' + nextRefresh() + '</span>' +
-        '<span class="live-period"><label class="sr" for="period">Period</label>' +
-        '<select id="period"><option>Weekly</option></select></span>' +
-        '<span class="live-actions">' +
-          '<a class="live-brief" href="/research/model-adoption/briefing">This month\'s briefing <span>&#8594;</span></a>' +
-          '<a class="live-pro" href="/research/model-adoption">See plans <span>&#8594;</span></a>' +
-        '</span>';
-    }
-
-    // ---- the live map -----------------------------------------------------
-    // Base is NASA's Earth at Night (Black Marble, 2012), public domain, true
-    // equirectangular - so every node is placed from real longitude/latitude
-    // rather than from coordinates hand-fitted to one particular SVG.
-    //
-    // The stage is locked to the image's own aspect ratio, so the overlay
-    // viewBox maps 1:1 onto image pixels and nothing drifts when the panel
-    // resizes.
-    var EARTH_W = 2200, EARTH_H = 1117;     // asset pixels
-    // The window the asset was cropped to. Full world is 2.65:1, which forces a
-    // panel far shorter than the share rail and leaves dead black space under
-    // the map. 1.97:1 matches the rail's natural height and still carries North
-    // America, all of Europe and Africa, and East Asia.
-    var LON0 = -110, LON1 = 150, LAT0 = 76, LAT1 = -56;
-    var GEO = { US: [-83, 37], Europe: [9, 49], Asia: [112, 33] };
-    function px(lon, lat){
-      return [ (lon - LON0) / (LON1 - LON0) * EARTH_W,
-               (LAT0 - lat) / (LAT0 - LAT1) * EARTH_H ];
-    }
-
-    // Arc + node overlay: GPT's model_adoption_live_v3, 15 August 2026.
-    // 56 fibres (28 US-Asia, 14 US-Europe, 14 Europe-Asia) rendered as 112
-    // glow/core pairs plus 17 staggered pulse paths, and the three geographic
-    // nodes. Authored geometry - never generated here, never recalculated from
-    // chord length. GPT's validate_geometry.py passes: every path converges
-    // exactly on the fixed anchors and no control point leaves the frame.
-    //
-    // The file styles itself: its <defs> carry the gradients, the glow filters,
-    // the pulse animation and the prefers-reduced-motion rule. It also carries
-    // its own <title>/<desc> stating the arcs are illustrative. Loaded rather
-    // than inlined so it stays cacheable and the page source stays readable.
-    var ARC_URL = BASE + '/arc-overlay-v3.svg', ARC_CACHE = null;
-
-    // v3 node intensity. The nodes are the data-bearing part of the overlay,
-    // so their radii come from the live snapshot every render.
-    function applyNodeShares(svg, byRegion){
-      ['us','europe','asia'].forEach(function(rg){
-        var name = rg === 'us' ? 'US' : rg.charAt(0).toUpperCase() + rg.slice(1);
-        var s = byRegion[name]; if(!s) return;
-        var node = svg.querySelector('.node[data-region="' + rg + '"]'); if(!node) return;
-        var core = 3 + 1.35 * Math.sqrt(Math.max(0, s.pct));
-        var set = function(sel, r){ var el = node.querySelector(sel); if(el) el.setAttribute('r', r.toFixed(2)); };
-        node.setAttribute('data-share', s.pct.toFixed(2));
-        set('.node-core', core);
-        set('.node-ring', core * 2.55);
-        set('.node-halo', 15 + 8 * Math.sqrt(Math.max(0, s.pct)));
-      });
-    }
-
-    // v3 filter behaviour: dim, never remove, so the composition cannot jump.
-    function applyArcFilter(svg, region){
-      var r = (region || 'World').toLowerCase();
-      svg.querySelectorAll('path[data-base-opacity]').forEach(function(path){
-        var base = Number(path.getAttribute('data-base-opacity')) || 1;
-        var factor = 1;
-        if(r !== 'world'){
-          factor = (r === 'other') ? 0.08
-                 : ((path.getAttribute('data-from') === r || path.getAttribute('data-to') === r) ? 1 : 0.10);
-        }
-        path.style.opacity = String(base * factor);
-      });
-      svg.querySelectorAll('.node').forEach(function(node){
-        node.style.opacity = (r === 'world' || node.getAttribute('data-region') === r) ? '1' : '0.30';
-      });
-    }
-
-    function renderMap(d){
-      var byRegion = {}; d.share.forEach(function(s){ byRegion[s.region] = s; });
-      var altParts = d.share.map(function(s){ return s.region + ' ' + s.models + ' model' + (s.models===1?'':'s') + ' (' + s.pct.toFixed(2) + '% of routed tokens)'; });
-      document.getElementById('map-alt').textContent = 'Model origin, counted over the top 30 routed models: ' + altParts.join('; ') + '.';
-
-      var order = ['US','Europe','Asia'];
-      var labels = '';
-      order.forEach(function(rg){
-        var s = byRegion[rg]; if(!s) return;
-        var c = REGION_DARK[rg], pt = px(GEO[rg][0], GEO[rg][1]);
-        var dim = (FILTER !== 'World' && FILTER !== rg);
-        labels += '<div class="mk-card'+(dim?' is-dim':'')+'" data-r="'+rg+'"' +
-                  ' style="left:'+(pt[0]/EARTH_W*100).toFixed(2)+'%;top:'+(pt[1]/EARTH_H*100).toFixed(2)+'%;--c:'+c+'">' +
-                  '<span class="mk-stem"></span>' +
-                  '<span class="mk-box"><b>'+esc(rg.toUpperCase())+'</b><i>'+s.pct.toFixed(2)+'%</i></span>' +
-                  '</div>';
-      });
-
-      var box = document.getElementById('worldmap');
-      function mount(svgText){
-        box.innerHTML =
-          '<div class="map-stage">' +
-            '<img class="earth" src="' + BASE + '/earth-night.webp" alt="" ' +
-              'srcset="' + BASE + '/earth-night-1200.webp 1200w, ' + BASE + '/earth-night.webp 2200w" ' +
-              'sizes="100vw" decoding="async" />' +
-            svgText + labels +
-          '</div>';
-        var svg = box.querySelector('svg.model-adoption-network');
-        if(svg){
-          svg.setAttribute('preserveAspectRatio','none');
-          applyNodeShares(svg, byRegion);
-          applyArcFilter(svg, FILTER);
-          svg.querySelectorAll('.node').forEach(function(node){
-            node.style.cursor = 'pointer';
-            node.addEventListener('click', function(){
-              var rg = node.getAttribute('data-region');
-              setFilter(rg === 'us' ? 'US' : rg.charAt(0).toUpperCase() + rg.slice(1));
-            });
-          });
-        }
-      }
-      if(ARC_CACHE){ mount(ARC_CACHE); }
-      else {
-        mount('');
-        fetch(ARC_URL).then(function(r){ return r.text(); })
-          .then(function(t){ ARC_CACHE = t; mount(t); })
-          .catch(function(){ /* map and labels still render without the overlay */ });
-      }
-
-      Array.prototype.forEach.call(document.querySelectorAll('#worldmap .mk-card'), function(el){
-        function go(){ setFilter(el.getAttribute('data-r')); }
-        el.addEventListener('click', go);
-        el.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
-      });
-    }
-
-    function deltaPill(dpp){
-      var cls = dpp > 0.04 ? 'up' : dpp < -0.04 ? 'down' : 'flat';
-      var arr = dpp > 0.04 ? '&#9650; ' : dpp < -0.04 ? '&#9660; ' : '';
-      return '<span class="sb-delta sb-' + cls + '">' + arr + deltaTxt(dpp) + '</span>';
-    }
-
-    function renderShareBox(d){
-      var rows = d.share.slice().sort(function(a,b){ return b.pct - a.pct; });
-      document.getElementById('sb-rows').innerHTML = rows.map(function(s){
-        var dim = (FILTER !== 'World' && FILTER !== s.region);
-        // v2: the row is dark and carries its region colour on the leading edge.
-        // Filling the row solid made Europe - 0.12% - the brightest object in
-        // the block, which is the inversion the freeze exists to stop.
-        return '<div class="sb-row' + (dim?' dim':'') + '" data-rail="' + esc(s.region) + '"' +
-          ' style="--sb-edge:' + (REGION_DARK[s.region]||'#8a8a92') + '">' +
-          '<div><div class="sb-region">' + esc(s.region) + '</div><div class="sb-pct">' + s.pct.toFixed(2) + '%</div>' +
-          '<div class="sb-models">' + s.models + ' model' + (s.models===1?'':'s') + ' in top 30</div></div>' +
-          deltaPill(s.delta_pp) + '</div>';
-      }).join('');
-    }
-
-    function renderWeekline(d){
-      var by = {}; d.share.forEach(function(s){ by[s.region]=s; });
-      function span(dpp){ var c=dpp>0.04?'up':dpp<-0.04?'down':''; return '<span class="'+c+'">'+deltaTxt(dpp)+'</span>'; }
-      var lead = d.share.slice().sort(function(a,b){ return b.pct-a.pct; })[0];
-      var us = by['US'], eu = by['Europe'];
-      var bits = [];
-      if(lead){ bits.push('<b>'+lead.region+'</b> ' + (lead.delta_pp>0.04?'extends its lead ':lead.delta_pp<-0.04?'lead narrows ':'holds ') + span(lead.delta_pp)); }
-      if(us && us.region!==lead.region){ bits.push('US share ' + (us.delta_pp>=0?'rises ':'falls ') + span(us.delta_pp)); }
-      if(eu){ bits.push('Europe ' + (eu.pct<1?'remains below 1%':'at '+eu.pct.toFixed(2)+'%')); }
-      document.getElementById('weekline').innerHTML = '<b>This week</b> &middot; ' + bits.join(' &middot; ') + '.';
-    }
-
-    var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M8 16L16 8M16 8H9M16 8V15"/></svg>';
-
-    function moveCell(r){
-      if(r.new) return '<span class="rk-move new">NEW</span>';
-      var places = (r.prev_rank!=null) ? (r.prev_rank - r.rank) : 0;
-      if(places > 0) return '<span class="rk-move up">&#9650; '+places+'<span class="sr"> places up</span></span>';
-      if(places < 0) return '<span class="rk-move down">&#9660; '+Math.abs(places)+'<span class="sr"> places down</span></span>';
-      return '<span class="rk-move flat">&ndash;<span class="sr"> no change</span></span>';
-    }
-
-    function renderRanking(d){
-      var box = document.getElementById('ranking');
-      var rows = d.leaderboard.filter(function(r){ return FILTER === 'World' || r.region === FILTER; });
-      var maxPct = Math.max.apply(null, rows.map(function(r){ return r.pct; }).concat([1]));
-      document.getElementById('lb-sub').textContent = FILTER === 'World' ? 'Most-routed models' : 'Most-routed models built in ' + FILTER;
-      // biggest riser among the shown rows -> contextual label
-      var mover = null, best = 0;
-      rows.forEach(function(r){ if(r.prev_rank!=null){ var j=r.prev_rank-r.rank; if(j>best){best=j;mover=r;} } });
-      if(!rows.length){ box.innerHTML = '<p style="padding:22px 0;color:var(--mid)">No models from this region in the routed top tier this week.</p>'; return; }
-      box.innerHTML = rows.map(function(r){
-        var color = REGION_VAR[r.region] || 'var(--r-other)';
-        var ctx = '';
-        if(r.rank === 1) ctx = '<span class="rk-context">#1</span>';
-        else if(r.new) ctx = '<span class="rk-context">New entrant</span>';
-        else if(mover && r.slug === mover.slug && best >= 3) ctx = '<span class="rk-context">Biggest mover</span>';
-        var href = BASE + '/' + esc(r.slug);
-        return '<div class="rk-row">' +
-          '<div class="rk-rank">' + r.rank + '</div>' +
-          '<div class="rk-main"><div class="rk-name-row">' +
-            '<a class="rk-name" href="' + href + '">' + esc(r.name) + '</a>' +
-            '<span class="rk-region" style="--rc:' + color + '">' + esc(r.region) + '</span>' + ctx +
-          '</div></div>' +
-          '<div class="rk-share"><div class="rk-track"><div class="rk-fill" style="width:' + (100*r.pct/maxPct) + '%;background:' + color + '"></div></div><span class="rk-pct">' + r.pct.toFixed(2) + '%</span></div>' +
-          moveCell(r) +
-          '<a class="rk-explore" href="' + href + '" aria-label="Explore ' + esc(r.name) + '" title="Explore model">' + ARROW + '</a>' +
-        '</div>';
-      }).join('');
-    }
-
-    var REC_STATUS = { europe_high_water:'High-water mark', longest_reign:'All-time record', current_streak:'Current holder', biggest_mover:'Biggest this week', steepest_fall:'Steepest this week', new_entrants:'This week' };
-    function renderRecords(d){
-      var g = document.getElementById('records');
-      g.innerHTML = d.records.map(function(r){
-        var st = REC_STATUS[r.key] || '';
-        return '<div class="rec-card' + (r.europe ? ' europe' : '') + '">' +
-          '<div class="rec-k">' + esc(r.label) + '</div>' +
-          (st ? '<div class="rec-status">' + esc(st) + '</div>' : '') +
-          '<div class="rec-v">' + esc(r.value) + '</div>' +
-          '<div class="rec-d">' + esc(r.detail) + '</div>' +
-        '</div>';
-      }).join('');
-    }
-
-    function renderEdition(d){
-      var sec = document.getElementById('sec-edition');
-      var e = d.edition;
-      if (sec && (!e || e.status !== 'final')) { sec.style.display = 'none'; return; }
-      if (sec) sec.style.display = '';
-      var num = ('0' + e.number).slice(-2);
-      var dateTxt = new Date(e.date + 'T00:00:00').toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
-      document.getElementById('ed-eyebrow').innerHTML = 'Edition ' + num + ' · ' + dateTxt +
-        (e.status !== 'final' ? '<span class="edition-draft">draft</span>' : '');
-      document.getElementById('ed-title').textContent = e.title;
-      document.getElementById('ed-dek').textContent = e.dek || '';
-      document.getElementById('ed-body').innerHTML = (e.body || []).map(function(p){ return '<p>' + esc(p) + '</p>'; }).join('');
-      document.getElementById('ed-byline').textContent = 'By ' + (e.byline || 'Thomas Chr. Melskens');
-      var cl = document.getElementById('ed-crosslink');
-      if (d.links && d.links.insight){
-        cl.innerHTML = 'The argument in full: <a href="' + esc(d.links.insight.href) + '">' + esc(d.links.insight.label) + '</a>';
-      } else { cl.style.display = 'none'; }
-    }
-
-    function renderTrust(d){
-      document.getElementById('methodology').textContent = d.methodology;
-      document.getElementById('source-line').innerHTML = esc(d.source.line) +
-        ' &nbsp;<a href="' + esc(d.source.url) + '" target="_blank" rel="noopener">View source</a>';
-      var fn = document.getElementById('flag-note');
-      if (d.unmapped && d.unmapped.length){
-        fn.textContent = d.unmapped.length + ' model developer(s) are awaiting region classification and are counted as Other for now: ' +
-          d.unmapped.map(function(u){ return u.developer; }).join(', ') + '.';
-      } else { fn.style.display = 'none'; }
-    }
-
-    FILTER = regionFromUrl();
-    // A fault here used to be invisible twice over. Every render function ran
-    // inside one .then() behind a single .catch(), so an exception in ANY
-    // section told the visitor "the instrument data could not be loaded" -
-    // blaming the data for a rendering bug - and the whole instrument went
-    // blank because one part failed. Nothing was logged, so we only ever heard
-    // about it if someone happened to look at the page.
-    //
-    // Now: the fetch is retried, the two failure kinds are distinguished, each
-    // section fails alone, and every fault is announced loudly enough for
-    // research/instrument_health.py to catch it in CI.
-    function reportFault(kind, detail){
-      var box = document.getElementById('err');
-      if(box){
-        box.style.display = 'block';
-        var msg = box.querySelector('[data-err-msg]');
-        if(msg) msg.textContent = (kind === 'data')
-          ? 'The instrument data could not be loaded. Please try again shortly.'
-          : 'Part of this instrument could not be drawn. The figures shown are still the ones from the last data pull.';
-      }
-      // machine-readable, so a headless check can see it without any analytics
-      document.documentElement.setAttribute('data-instrument-fault', kind);
-      document.documentElement.setAttribute('data-instrument-fault-detail', String(detail).slice(0, 300));
-      try { console.error('[yellow3 instrument] ' + kind + ' fault:', detail); } catch(e){}
-    }
-
-    function loadData(attempt){
-      return fetch('/research/model-adoption-data.json', { cache: 'no-store' })
-        .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-        .catch(function(e){
-          // a deploy in flight can drop a single request; two quick retries
-          // cost nothing and remove the most likely transient failure
-          if(attempt < 2){
-            return new Promise(function(res){ setTimeout(res, 600 * (attempt + 1)); })
-              .then(function(){ return loadData(attempt + 1); });
-          }
-          throw e;
-        });
-    }
-
-    loadData(0)
-      .then(function(d){
-        DATA = d;
-        var sections = [
-          ['header', renderHeader], ['on-record', renderOnRecord], ['live-bar', renderLiveBar],
-          ['filters', renderFilters], ['map', renderMap], ['share-box', renderShareBox],
-          ['weekline', renderWeekline], ['ranking', renderRanking], ['records', renderRecords],
-          ['edition', renderEdition], ['trust', renderTrust]
-        ];
-        var broken = [];
-        sections.forEach(function(pair){
-          try { pair[1](d); }
-          catch(e){ broken.push(pair[0] + ': ' + (e && e.message ? e.message : e)); }
-        });
-        if(broken.length) reportFault('render', broken.join(' | '));
-      })
-      .catch(function(e){ reportFault('data', e && e.message ? e.message : e); });
-
-    var obs = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.06 });
-    document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
-  </script>
 </body>
 </html>

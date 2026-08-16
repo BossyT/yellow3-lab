@@ -1699,6 +1699,12 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://www.yellow3.io/research/model-adoption/top10/</loc>
+        <lastmod>2026-08-16</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://www.yellow3.io/research/model-adoption/x-ai-grok-4-5</loc>
         <lastmod>2026-08-15</lastmod>
         <changefreq>weekly</changefreq>

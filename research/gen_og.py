@@ -169,6 +169,9 @@ def collect():
             rel = os.path.relpath(os.path.join(base, f), ROOT)
             if rel in NOT_PUBLIC or rel.startswith("research/og_frame"):
                 continue
+            # the Top 10 archive ships its own edition card
+            if rel.startswith("research/model-adoption/top10/"):
+                continue
             s = open(os.path.join(base, f), encoding="utf-8", errors="ignore").read()
             if "noindex" in s:
                 continue

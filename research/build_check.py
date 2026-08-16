@@ -164,6 +164,19 @@ def main() -> int:
     else:
         print('  ok  no analytics anywhere')
 
+    # 5a. The instrument data still has the shape the pages read, and the
+    #     pages still draw. Catches an upstream schema change before a visitor
+    #     does. The render half needs a browser, so it self-skips on Vercel and
+    #     gives full coverage locally before a commit.
+    r = subprocess.run([sys.executable, str(ROOT / 'research' / 'instrument_health.py')],
+                       capture_output=True, text=True)
+    if r.returncode:
+        FAIL.append('instrument health failed:\n      '
+                    + '\n      '.join(l.strip() for l in (r.stdout or '').splitlines()
+                                       if l.strip() and not l.startswith('INSTRUMENT')))
+    else:
+        print('  ok  instrument data matches the contract the pages read')
+
     # 5b. Every instrument declares and honours its update model.
     #     Three instruments disagreed with themselves on 15 Aug 2026 - one said
     #     weekly while a cron refreshed it daily, two promised weekly and were

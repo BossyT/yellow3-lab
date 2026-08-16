@@ -4,11 +4,28 @@ name: Research - daily data pull
 # Model adoption instrument, and commits the result. The commit triggers a
 # Vercel redeploy. The OpenRouter key is read only from the repository secret
 # OPENROUTER_API_KEY and is never written to the repo.
+#
+# On Mondays it also cuts the weekly AI Top 10 edition. That runs HERE, in the
+# same job straight after the pull, rather than as a separate workflow on its
+# own schedule. Two reasons:
+#
+#   1. Ordering. A separate job at 07:00 CET would fire BEFORE this pull at
+#      06:30 UTC and snapshot the previous day's data. Nothing would look
+#      broken; the edition would just be a day stale, every week, silently.
+#   2. The cut time does not affect the content. The snapshot is derived from
+#      the seven-day window recorded in the dataset, not from the clock, so an
+#      edition cut at 08:35 CEST contains exactly what one cut at 07:00 would.
+#      What matters is that it runs after the data it describes.
 
 on:
   schedule:
     - cron: "30 6 * * *"   # 06:30 UTC daily (~07:30-08:30 Copenhagen)
-  workflow_dispatch: {}      # allows the first/manual run from the Actions tab
+  workflow_dispatch:         # allows a manual run from the Actions tab
+    inputs:
+      cut_top10:
+        description: "Also cut the weekly AI Top 10 edition"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -35,11 +52,27 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: python3 research/build.py
 
+      # Mondays only. The scripts are cheap and idempotent: the snapshot refuses
+      # to overwrite an edition that already exists, so a re-run cannot rewrite
+      # published numbers.
+      - name: Cut the weekly AI Top 10 edition
+        run: |
+          # Monday only. A manual run does NOT cut an edition unless asked,
+          # so debugging the data pull cannot publish a half-week edition.
+          if [ "$(date -u +%u)" != "1" ] && [ "${{ inputs.cut_top10 }}" != "true" ]; then
+            echo "Not Monday and cut_top10 not requested. Skipping the edition."
+            exit 0
+          fi
+          python3 research/top10_snapshot.py
+          python3 research/top10_render.py
+          python3 research/top10_archive.py
+
       - name: Commit and push if changed
         run: |
           git config user.name  "yellow3 research bot"
           git config user.email "research-bot@users.noreply.github.com"
           git add research/snapshots research/model-adoption-data.json research/editions.json research/model-adoption
+          git add research/model-adoption/top10
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
