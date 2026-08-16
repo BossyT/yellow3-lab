@@ -93,7 +93,10 @@ def write_report(s):
         "",
         f"- generated: {s['generated']}",
         f"- submissions in store: {s['total']}",
-        f"- queued, awaiting research: **{s['queued']}**",
+        f"- submissions still marked queued: {s['queued']}",
+        f"- of those, already in the register: {s.get('already_listed_not_closed', 0)}"
+        f"  (bookkeeping, not a company waiting)",
+        f"- genuinely awaiting research: **{s.get('awaiting_research', s['queued'])}**",
     ]
     if s["oldest_queued_days"] is not None:
         lines.append(f"- oldest queued: **{s['oldest_queued_days']} days**")
@@ -118,7 +121,7 @@ def read_report():
         line = line.strip()
         if line.startswith("- generated:"):
             out["generated"] = line.split(":", 1)[1].strip()
-        if line.startswith("- queued,"):
+        if line.startswith("- genuinely awaiting research:"):
             out["queued"] = int(line.rsplit("**", 2)[1])
         if line.startswith("- oldest queued:"):
             out["oldest"] = int(line.rsplit("**", 2)[1].split()[0])
@@ -143,7 +146,7 @@ def check():
         faults.append(f"the submission queue has not been checked for {age} days "
                       f"- the reporter has stopped and we are blind to it again")
     oldest = r.get("oldest")
-    if oldest is not None and oldest > STALE_SUBMISSION_DAYS:
+    if oldest is not None and r.get("queued", 0) > 0 and oldest > STALE_SUBMISSION_DAYS:
         faults.append(f"a company has been waiting {oldest} days for an answer it "
                       f"was promised on submission")
     if faults:

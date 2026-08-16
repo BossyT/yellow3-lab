@@ -17,7 +17,30 @@
 // never appear on a public list, and this response is public and gets committed
 // to the repo. Knowing WHICH company is a deliberate extra step: read the store.
 
+const fs = require('fs');
+const path = require('path');
 const blob = require('./_lib/blob');
+
+// The register's own domains, so a queued submission can be told apart from a
+// company that is already listed. Without this the count is misleading: a
+// submission whose status was never closed after the company was added reads
+// exactly like a company nobody has answered.
+function knownDomains() {
+  try {
+    const p = path.join(process.cwd(), 'research', 'dpp-suppliers.json');
+    const rows = JSON.parse(fs.readFileSync(p, 'utf8')).suppliers || [];
+    const set = new Set();
+    for (const r of rows) {
+      for (const d of [r.domain].concat(String(r.alias_domains || '').split(','))) {
+        const v = String(d || '').trim().toLowerCase().replace(/^www\./, '');
+        if (v) set.add(v);
+      }
+    }
+    return set;
+  } catch (e) {
+    return null;
+  }
+}
 
 const PREFIX = 'dpp/suggestions/';
 
@@ -36,9 +59,12 @@ module.exports = async (req, res) => {
   try {
     const now = Date.now();
     const blobs = await blob.list(PREFIX);
+    const known = knownDomains();
     const byStatus = {};
     const ages = [];
     let undated = 0;
+    let alreadyListed = 0;
+    let awaitingResearch = 0;
 
     for (const b of blobs) {
       const name = String(b.pathname || '');
@@ -52,6 +78,16 @@ module.exports = async (req, res) => {
       const status = String((item && item.status) || 'unreadable').toLowerCase();
       byStatus[status] = (byStatus[status] || 0) + 1;
       if (status !== 'queued') continue;
+      const dom = String((item && item.domain) || name.slice(PREFIX.length))
+        .replace(/\.json$/, '').trim().toLowerCase().replace(/^www\./, '');
+      const listed = known ? known.has(dom) : false;
+      if (listed) {
+        // In the register already. The submission's status was simply never
+        // closed - bookkeeping, not a company waiting for an answer.
+        alreadyListed += 1;
+        continue;
+      }
+      awaitingResearch += 1;
       const age = item && item.submitted_at ? days(item.submitted_at, now) : null;
       if (age === null) undated += 1;
       else ages.push(age);
@@ -62,6 +98,9 @@ module.exports = async (req, res) => {
       generated: new Date().toISOString().slice(0, 10),
       total: blobs.filter((b) => String(b.pathname || '').startsWith(PREFIX)).length,
       queued: byStatus.queued || 0,
+      awaiting_research: awaitingResearch,
+      already_listed_not_closed: alreadyListed,
+      register_read: known ? known.size : null,
       oldest_queued_days: ages.length ? Math.max.apply(null, ages) : null,
       undated_queued: undated,
       by_status: byStatus,
