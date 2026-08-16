@@ -74,4 +74,19 @@ async function putJson(pathname, obj) {
   return put(pathname, JSON.stringify(obj), 'application/json', 0);
 }
 
-module.exports = { put, putJson, getJson, getRaw, publicUrl };
+// List by prefix. Used to see how many submissions are waiting without
+// reading who they are - the intake runbook keeps unrecorded companies private,
+// so the queue is counted, never published.
+async function list(prefix, limit) {
+  const url = API + '?prefix=' + encodeURIComponent(prefix) +
+              '&limit=' + String(limit || 1000);
+  const res = await fetch(url, {
+    headers: { authorization: 'Bearer ' + token(), 'x-api-version': '7' },
+    cache: 'no-store',
+  });
+  if (!res.ok) throw new Error('blob list ' + res.status);
+  const body = await res.json();
+  return Array.isArray(body.blobs) ? body.blobs : [];
+}
+
+module.exports = { put, putJson, getJson, getRaw, publicUrl, list };

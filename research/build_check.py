@@ -177,6 +177,16 @@ def main() -> int:
     else:
         print('  ok  instrument data matches the contract the pages read')
 
+    # 5a2. Somebody is waiting on the other end of the submission queue.
+    r = subprocess.run([sys.executable, str(ROOT / 'research' / 'dpp_queue_report.py'),
+                        '--check'], capture_output=True, text=True)
+    if r.returncode:
+        FAIL.append('DPP submission queue:\n      '
+                    + '\n      '.join(l.strip() for l in (r.stdout or '').splitlines()
+                                       if l.strip() and not l.startswith('DPP SUBMISSION')))
+    else:
+        print((r.stdout or '').rstrip() or '  ok  submission queue')
+
     # 5b. Every instrument declares and honours its update model.
     #     Three instruments disagreed with themselves on 15 Aug 2026 - one said
     #     weekly while a cron refreshed it daily, two promised weekly and were
