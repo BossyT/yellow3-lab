@@ -522,6 +522,10 @@ def render_briefing(period, g):
   <meta property="og:description" content="{desc}" />
   <meta property="og:url" content="{url}" />
   <meta property="og:image" content="{og_card.url(url)}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="{og_card.url(url)}" />
   <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 </head>
 <body>''', NAV, f'''
