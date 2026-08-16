@@ -162,6 +162,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("payload")
     ap.add_argument("--apply", action="store_true", help="write the register")
+    ap.add_argument("--trust-quotes", action="store_true",
+                    help="skip fetching the cited pages. Offline tests only.")
     args = ap.parse_args()
 
     payload = json.load(open(args.payload, encoding="utf-8"))
@@ -175,6 +177,32 @@ def main():
             if d.strip():
                 known.add(d.strip().lower())
     keys = sorted(rows[0].keys())
+
+    # EVERY QUOTE IS FETCHED AND MATCHED BEFORE ANYTHING IS DECIDED.
+    #
+    # This module used to take on trust that a quote came from the URL beside
+    # it. A human reading a page and typing what it says is unlikely to invent a
+    # sentence. A pipeline is perfectly capable of it, at scale, and the whole
+    # value of this register is that a reader can check any claim. So the
+    # unverifiable evidence is stripped before assess() sees it, and the field
+    # simply goes unrecorded - which is the honest outcome and already how this
+    # file treats missing evidence.
+    #
+    # --trust-quotes exists only for offline tests. It is not for production and
+    # says so when used.
+    if not args.trust_quotes:
+        import dpp_evidence
+        for c in cands:
+            ok, findings = dpp_evidence.verify_candidate(c)
+            for field, good, how in findings:
+                if good:
+                    continue
+                print(f"  evidence dropped  {c.get('company','?')[:24]:26} "
+                      f"{field:22} {how}")
+                (c.get("evidence") or {}).pop(field, None)
+                (c.get("values") or {}).pop(field, None)
+    else:
+        print("  !! --trust-quotes: evidence NOT verified against the live pages")
 
     added, outcomes = [], []
     for c in cands:
