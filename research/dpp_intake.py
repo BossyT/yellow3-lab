@@ -150,7 +150,13 @@ def assess(cand, known_domains):
     et = str(vals.get("entity_type", "")).strip()
     row["entity_type"] = et if et in ENTITY_TYPES else "platform"
     if et and et not in ENTITY_TYPES:
-        reasons.append(f"entity_type '{et}' is not in the vocabulary; recorded as platform")
+        # Reasons are joined with "; " when the log line is written, so this one
+        # must not contain a "; " of its own or the audit line cannot be read
+        # back unambiguously. Prefixed so it can be found later: this coercion
+        # is the one place the intake records a value the evidence did not give
+        # it, and Thomas asked for it to be traceable in the log rather than
+        # changed.
+        reasons.append(f"entity_type coerced: '{et}' is not in the vocabulary, recorded as platform")
 
     secs = [s for s in (vals.get("sectors_list") or []) if s]
     row["sectors_list"] = secs

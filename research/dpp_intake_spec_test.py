@@ -123,6 +123,15 @@ def main():
           and any("not in the vocabulary" in r for r in why),
           str(row and row.get("entity_type")) + " / " + "; ".join(why))
 
+    # Thomas 2026-08-16: leave the coercion, but make sure it is logged. The log
+    # line is "date | domain | outcome | reasons joined with '; '", so a reason
+    # carrying its own "; " would split into fields that cannot be read back.
+    coercion = [r for r in why if "entity_type coerced" in r]
+    check("the coercion is written to the intake log under a findable prefix",
+          len(coercion) == 1, "; ".join(why))
+    check("the logged reason cannot break the log line into false fields",
+          bool(coercion) and "; " not in coercion[0], coercion[0] if coercion else "none")
+
     print("\nEVIDENCE VERIFICATION, the control added before unattended running\n")
 
     page = ("<html><body><p>Our platform generates Digital Product Passports "
