@@ -26,6 +26,22 @@ demonstration records in the handoff are presentation fixtures and are NOT used.
 The layer separation is structural, not stylistic: independently researched
 yellow3 evidence and company-supplied statements are held in separate data and
 separate DOM, and a company submission can never write into the evidence layer.
+
+DO NOT RUN THIS AND COMMIT WITHOUT RE-APPLYING THE SWEEPS. Checked 16 Aug 2026:
+regenerating rewrites 537 files and silently reverts three later corrections,
+because this generator has not been kept level with them.
+
+    the footer IA        reverts to "Work" and drops the /software link
+                         (corrected 15 Aug in research/site_nav.py, which sweeps
+                         pages AFTER generation - site_nav.py --apply only
+                         rewrites the nav, so the footer needs its sweep too)
+    prerendered blocks   stripped, taking the register from 24,210 readable
+                         characters to 0
+    Dataset JSON-LD      dropped from the supplier directory
+
+build_check catches the last two and refuses the build. It does NOT catch the
+footer, so that one would ship. Regenerate deliberately, then re-apply the
+sweeps and read build_check before committing.
 """
 
 import og_card
@@ -1724,7 +1740,8 @@ def directory_html(rows, counts, cap):
     # The most recent date any row was actually researched - not the build date.
     latest = max((r.get("source_date") or "" for r in rows), default="")
     try:
-        today = datetime.date.fromisoformat(latest).strftime("%-d %b")
+        # with the year: a bare "31 Jul" reads as current whatever year it is
+        today = datetime.date.fromisoformat(latest).strftime("%-d %b %Y")
     except Exception:
         today = latest or "-"
 

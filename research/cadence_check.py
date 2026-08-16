@@ -42,7 +42,15 @@ INSTRUMENTS = {
     "research/model-adoption-data.json": "research/model-adoption/live.html",
     "research/eu-ai-act.json": "research/eu-ai-act.html",
     "research/digital-product-passport.json": "research/digital-product-passport.html",
+    # The supplier register is the largest body of research on the site - 190
+    # organisations - and had no declared update model at all, so nothing was
+    # watching it age.
+    "research/dpp-suppliers.json": "research/digital-product-passport/suppliers.html",
 }
+
+# Datasets whose currency is COMPUTED from their own rows rather than declared.
+# Stronger than a stamped date, which can drift from the evidence it describes.
+DERIVED = {"research/dpp-suppliers.json": ("suppliers", "source_date")}
 
 VALID = {"live", "scheduled", "event_driven"}
 # a cadence word that appears in prose is a claim; these are the ones that have
@@ -58,8 +66,11 @@ def load(path):
         return json.load(fh)
 
 
-def dataset_date(data, policy):
+def dataset_date(data, policy, path=None):
     """The most recent date the instrument itself claims."""
+    if path in DERIVED:
+        field, key = DERIVED[path]
+        return max((r.get(key) or "" for r in data.get(field, [])), default="") or None
     for key in ("last_verified",):
         if policy.get(key):
             return policy[key]
@@ -89,7 +100,7 @@ def main():
             fail.append(f"{name}: update_policy has no label; the page renders "
                         f"its cadence copy from this field")
 
-        stamp = dataset_date(data, policy)
+        stamp = dataset_date(data, policy, ds)
         age = None
         if stamp:
             try:
@@ -122,7 +133,14 @@ def main():
 
         # 4. event_driven is never failed for age, but must show its last date
         if model == "event_driven":
-            if not policy.get("last_verified"):
+            if ds in DERIVED:
+                if not stamp:
+                    fail.append(f"{name}: no {DERIVED[ds][1]} on any row, so the "
+                                f"register cannot show how current it is")
+                else:
+                    note.append(f"{name}: event-driven, newest evidence {age}d old "
+                                f"({stamp}), derived from the rows")
+            elif not policy.get("last_verified"):
                 fail.append(f"{name}: model 'event_driven' must declare "
                             f"last_verified - a reader has no other way to judge "
                             f"the age of the record")
