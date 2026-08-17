@@ -944,5 +944,6 @@
     var obs = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.06 });
     document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
   </script>
+<script src="/consent.js" defer></script>
 </body>
 </html>

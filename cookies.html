@@ -93,6 +93,7 @@
     }
     @media (max-width: 560px) { .foot-top { grid-template-columns: 1fr; } }
   </style>
+<style>.consent-reopen{font-family:inherit;font-size:14px;font-weight:700;height:42px;padding:0 18px;border-radius:8px;border:1px solid #111;background:#fff;color:#111;cursor:pointer}</style>
 </head>
 <body>
 
@@ -184,7 +185,10 @@
     <p>Please note that blocking all cookies may affect the functionality of our website, particularly during the payment process.</p>
 
     <h2>6. Your consent</h2>
-    <p>By continuing to use yellow3.io, you consent to the use of the cookies described above. You may withdraw your consent at any time by adjusting your browser settings.</p>
+    <p>Every cookie listed above is strictly necessary: it is there to sign you in, to remember which organisation you are acting in, to process a payment, or to serve the site. Cookies of that kind do not require your consent, and we do not ask for it.</p>
+    <p>We set no analytics, advertising or cross-site tracking cookies. If that ever changes, nothing of the kind will be loaded until you have actively chosen to allow it &ndash; not by continuing to browse, not by scrolling, and not by closing a notice. Refusing will always be one click, in the same place and the same size as accepting.</p>
+    <p>You can review or change that choice at any time:</p>
+    <p><button type="button" data-y3-consent-reopen class="consent-reopen">Cookie choices</button></p>
 
     <h2>7. Contact</h2>
     <p>For questions about our use of cookies, <a href="#" onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;;return false;">email us</a>.</p>
@@ -242,5 +246,6 @@
         </div>
     </footer>
 
+<script src="/consent.js" defer></script>
 </body>
 </html>
