@@ -237,6 +237,52 @@ def main() -> int:
     if not missing and not june:
         print(f'  ok  every social card resolves ({len(list(cards.glob("*.png")))} cards)')
 
+    # 7. No control that looks like a link and is not one.
+    #
+    # ON 2026-08-17 A VISITOR EMAILED TO SAY THE HOMEPAGE BUTTONS DID NOT WORK.
+    # Four of them were anchors with no href attribute:
+    #
+    #     <a class="btn">Explore our platforms →</a>
+    #
+    # An <a> with no href is not a link. It takes the button styling, and it
+    # does nothing when clicked. Every destination existed and returned 200 the
+    # whole time; nothing pointed at them.
+    #
+    # WHY NOTHING CAUGHT IT. Every check in this repo, and seo_dd and site_audit
+    # too, asks whether a link points somewhere valid. An element with no href
+    # is not a link, so there was nothing to validate and nothing to report. The
+    # gap was not in the rules; it was in what counted as a subject.
+    #
+    # site_audit's dead-control check looks for href="#", which is the OTHER way
+    # to write a control that goes nowhere. This is the missing half, and it is
+    # here rather than there because site_audit is a tool somebody runs and this
+    # is the gate that runs on every deploy.
+    dead: list[str] = []
+    for path in sorted(ROOT.glob('*.html')) + sorted(ROOT.glob('*/*.html')):
+        rel = path.relative_to(ROOT).as_posix()
+        if rel in ('admin.html',):          # a program, not a page
+            continue
+        text = path.read_text(encoding='utf-8', errors='replace')
+        for m in re.finditer(r'<a\b(?![^>]*\bhref=)([^>]*)>(.*?)</a>', text, re.S):
+            attrs, inner = m.group(1), m.group(2)
+            # An anchor used purely as a scroll target carries a name or an id
+            # and no text. Only a control a visitor can SEE and press is a fault.
+            if 'name=' in attrs or 'onclick' in attrs:
+                continue
+            label = re.sub(r'<[^>]+>', '', inner)
+            label = ' '.join(label.split())
+            if not label:
+                continue
+            line = text[:m.start()].count('\n') + 1
+            dead.append(f'{rel}:{line}  "{label[:52]}"')
+
+    if dead:
+        FAIL.append('anchors with no href - these render as buttons and do '
+                    f'nothing when clicked ({len(dead)}):')
+        FAIL.extend('    ' + d for d in dead)
+    else:
+        print('  ok  no anchor renders as a control and goes nowhere')
+
     if FAIL:
         print('\nBUILD REFUSED\n')
         for f in FAIL:
