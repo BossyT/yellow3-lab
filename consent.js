@@ -37,8 +37,10 @@
  *       if (e.detail.analytics) { ...load it now... }
  *     });
  *
- * Nothing loads analytics today. When something does, it goes behind that call
- * and nowhere else.
+ * ANALYTICS LOADS AT THE BOTTOM OF THIS FILE, behind that call and nowhere
+ * else - GA4 on the public site, and only there. The buyer app loads its own
+ * tag through app/analytics.tsx against the same consent record, which is why
+ * the loader here checks the hostname before doing anything.
  */
 (function () {
   'use strict';
@@ -66,9 +68,47 @@
     }
   }
 
+  // REFUSING HAS TO REMOVE WHAT WAS ALREADY THERE.
+  //
+  // Analytics ran on yellow3.io before 14 August with no gate, and its cookies
+  // have a two-year lifetime - so a device that visited then still carries
+  // `_ga` and `_ga_K3JXMM2VG5` on `.yellow3.io` today. Found on a real device,
+  // not assumed. Consent that only governs the future leaves those in place and
+  // lets a visitor who has just said no keep being identified by them.
+  //
+  // Both hosts can write to `.yellow3.io`, so clearing from either clears for
+  // both. Every plausible domain and path is expired, because a cookie set on a
+  // different combination than the one guessed is a cookie that survives.
+  function clearAnalyticsCookies() {
+    var names = [];
+    var jar = String(document.cookie || '').split(';');
+    for (var i = 0; i < jar.length; i++) {
+      var n = jar[i].split('=')[0].trim();
+      if (n === '_ga' || n.indexOf('_ga_') === 0 || n === '_gid' || n.indexOf('_gac_') === 0) {
+        names.push(n);
+      }
+    }
+    if (!names.length) return;
+
+    var host = window.location.hostname;
+    var domains = ['', host, '.' + host];
+    var parts = host.split('.');
+    for (var d = 0; d < parts.length - 1; d++) {
+      domains.push('.' + parts.slice(d).join('.'));   // .buyer.yellow3.io, .yellow3.io, .io
+    }
+    var past = 'Thu, 01 Jan 1970 00:00:00 GMT';
+    for (var j = 0; j < names.length; j++) {
+      for (var k = 0; k < domains.length; k++) {
+        document.cookie = names[j] + '=; expires=' + past + '; path=/'
+          + (domains[k] ? '; domain=' + domains[k] : '');
+      }
+    }
+  }
+
   function write(analytics) {
     var record = { v: VERSION, analytics: !!analytics, at: new Date().toISOString() };
     try { window.localStorage.setItem(KEY, JSON.stringify(record)); } catch (e) { /* private mode */ }
+    if (!analytics) clearAnalyticsCookies();
     window.dispatchEvent(new CustomEvent('y3-consent-change', { detail: record }));
     return record;
   }
@@ -83,6 +123,59 @@
     record: read,
     reopen: function () { show(); },
   };
+
+  // ------------------------------------------------------------- analytics
+  //
+  // GA4 for the PUBLIC SITE ONLY, loaded here because this file is already on
+  // every public page and already knows the answer.
+  //
+  // WHY NOT A SWEEP. Adding a tag to 641 pages is exactly the transform that
+  // removed 657 lines from the CMS on 14 August. This script is already on
+  // 641 of the 643 html files; the two without it are admin.html - the CMS,
+  // which holds a GitHub token and must never be measured - and the Search
+  // Console verification token. Putting the loader here inherits that
+  // coverage, and admin.html stays excluded because it was never included.
+  //
+  // WHY THE HOSTNAME CHECK. This file is byte-identical on yellow3.io and on
+  // buyer.yellow3.io - check-consent.js fails the build if they drift. The
+  // buyer app loads its own tag through app/analytics.tsx, behind the same
+  // consent record and off its private routes. Without this check, a buyer
+  // page would load GA twice and every page_view would be counted twice.
+  //
+  // SAME MEASUREMENT ID AS BUYER, deliberately. yellow3.io -> buyer.yellow3.io
+  // is one journey, and two properties would make it two strangers.
+  var GA_ID = 'G-K3JXMM2VG5';
+  var loaded = false;
+
+  function isPublicSite() {
+    var h = location.hostname;
+    return h === 'yellow3.io' || h === 'www.yellow3.io';
+  }
+
+  function loadAnalytics() {
+    if (loaded || !isPublicSite()) return;
+    if (!window.y3Consent.granted('analytics')) return;
+    loaded = true;
+
+    window.dataLayer = window.dataLayer || [];
+    // Must be a real function declaration using `arguments` - gtag pushes the
+    // arguments object itself, and an arrow or a rest parameter changes the
+    // shape of what lands in dataLayer.
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', GA_ID);
+
+    var t = document.createElement('script');
+    t.async = true;
+    t.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(t);
+  }
+
+  loadAnalytics();
+  // Accepting mounts the tag immediately rather than on the next navigation.
+  window.addEventListener('y3-consent-change', function (e) {
+    if (e && e.detail && e.detail.analytics) loadAnalytics();
+  });
 
   // THE STYLES TRAVEL WITH THE SCRIPT, rather than living in a stylesheet.
   //
@@ -187,6 +280,10 @@
   }
 
   ready(function () {
+    // A standing refusal keeps clearing them. Somebody who declined last month
+    // and picked up an old cookie since should not have to decline again.
+    if (current && !current.analytics) clearAnalyticsCookies();
+
     if (!current && ASK_EVERYONE) show();
 
     // A standing way back in, wherever a page offers one.

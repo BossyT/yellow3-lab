@@ -153,16 +153,73 @@ def main() -> int:
         except Exception as e:
             FAIL.append(f'invalid JSON-LD on the supplier directory: {e}')
 
-    # 5. Analytics stays off until consent is designed.
-    back = [str(f.relative_to(ROOT)) for f in ROOT.glob('**/*.html')
-            if '.git' not in f.parts and 'node_modules' not in f.parts
-            and ('googletagmanager' in f.read_text(encoding='utf-8')
-                 or 'gtag(' in f.read_text(encoding='utf-8'))]
-    if back:
-        FAIL.append(f'Google Analytics is back on {len(back)} page(s), '
-                    f'e.g. {back[0]} - it stays off until consent is designed')
+    # 5. Analytics loads in ONE place, behind consent, and nowhere else.
+    #
+    # This rule used to be "no GA at all", which was right while consent was
+    # undesigned. Consent now exists and GA4 loads from consent.js, so the rule
+    # changes shape rather than relaxing - the same LOADING vs USING split that
+    # scripts/check-analytics.js makes in the buyer repo.
+    #
+    # IT ALSO HAD A HOLE, found while changing it: it globbed *.html only. A
+    # tag added from any .js file would have passed untouched, which is exactly
+    # how this change was made. Scripts are scanned now.
+    #
+    #   HTML         no GA, ever. A page carrying its own tag is a tag nobody
+    #                gated, and it is how a sweep would reintroduce one.
+    #   consent.js   the one permitted loader. Must check consent before it
+    #                loads, and must check the hostname, because this file is
+    #                byte-identical on buyer.yellow3.io where the Next app
+    #                loads its own tag - without that check every buyer
+    #                page_view would be counted twice.
+    #   other .js    refused.
+    GA = ('googletagmanager', 'gtag(')
+    LOADER = 'consent.js'
+
+    pages = [str(f.relative_to(ROOT)) for f in ROOT.glob('**/*.html')
+             if '.git' not in f.parts and 'node_modules' not in f.parts
+             and any(n in f.read_text(encoding='utf-8') for n in GA)]
+    if pages:
+        FAIL.append(f'Google Analytics is inline on {len(pages)} page(s), '
+                    f'e.g. {pages[0]} - the tag loads from {LOADER}, never from a page')
+
+    scripts = [str(f.relative_to(ROOT)) for f in ROOT.glob('**/*.js')
+               if '.git' not in f.parts and 'node_modules' not in f.parts
+               and f.name != LOADER
+               and any(n in f.read_text(encoding='utf-8') for n in GA)]
+    if scripts:
+        FAIL.append(f'Google Analytics loads from {scripts[0]} - it belongs in '
+                    f'{LOADER}, which is the only file that checks consent first')
+
+    loader = ROOT / LOADER
+    if not loader.exists():
+        FAIL.append(f'{LOADER} is missing - the consent gate and the tag both live there')
     else:
-        print('  ok  no analytics anywhere')
+        raw = loader.read_text(encoding='utf-8')
+        # STRIP COMMENTS BEFORE ASSERTING. The first version of this check
+        # passed while the guards were deleted, because consent.js documents
+        # its own API in a header comment - `window.y3Consent.granted(...)`
+        # and the hostname both appear in prose. A check satisfied by a comment
+        # describing the code is a check that cannot fail.
+        code = re.sub(r'/\*.*?\*/', '', raw, flags=re.S)
+        code = re.sub(r'^\s*//.*$', '', code, flags=re.M)
+        code = re.sub(r'^\s*\*.*$', '', code, flags=re.M)
+
+        if not any(n in code for n in GA):
+            print('  ok  no analytics anywhere (the tag is not loaded at all)')
+        else:
+            if "granted('analytics')" not in code:
+                FAIL.append(f'{LOADER} loads analytics without checking consent first')
+            # Not `'location.hostname' in code` - that string is also in the
+            # cookie-clearing helper, so it is true whether or not the tag is
+            # guarded. Count the guard itself: defined once, called at least
+            # once. Deleting the call drops it to one.
+            if code.count('isPublicSite') < 2:
+                FAIL.append(f'{LOADER} loads analytics without the isPublicSite() host '
+                            'guard - the same file ships on buyer.yellow3.io, which '
+                            'loads its own tag, so every page_view there would be '
+                            'counted twice')
+            if not FAIL:
+                print('  ok  analytics loads only from consent.js, behind consent')
 
     # 5a. The instrument data still has the shape the pages read, and the
     #     pages still draw. Catches an upstream schema change before a visitor
