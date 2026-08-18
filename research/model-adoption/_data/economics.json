@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-08-16",
+  "as_of": "2026-08-17",
   "workloads": {
     "coding-agent": {
       "label": "Coding agent",
@@ -301,8 +301,8 @@
       "uptime": null,
       "workload_cost": 435.0,
       "price_position": "Premium",
-      "adoption_trend": "flat",
-      "position_label": "Holding position",
+      "adoption_trend": "rising",
+      "position_label": "Premium leader",
       "price_history": [
         {
           "date": "2026-08-06",
@@ -548,7 +548,7 @@
       "knowledge_cutoff": null,
       "or_id": "deepseek/deepseek-v3.2",
       "or_url": "https://openrouter.ai/deepseek/deepseek-v3.2",
-      "uptime": 99.079,
+      "uptime": 99.33,
       "workload_cost": 21.48,
       "price_position": "Mid cost",
       "adoption_trend": "falling",
@@ -634,7 +634,7 @@
       "knowledge_cutoff": null,
       "or_id": "deepseek/deepseek-v4-flash-0731",
       "or_url": "https://openrouter.ai/deepseek/deepseek-v4-flash-0731",
-      "uptime": 97.659,
+      "uptime": 98.31,
       "workload_cost": 8.96,
       "price_position": "Low cost",
       "adoption_trend": "flat",
@@ -750,7 +750,7 @@
       "knowledge_cutoff": null,
       "or_id": "deepseek/deepseek-v4-pro-0813",
       "or_url": "https://openrouter.ai/deepseek/deepseek-v4-pro-0813",
-      "uptime": 99.51,
+      "uptime": 99.024,
       "workload_cost": 82.28,
       "price_position": "Premium",
       "adoption_trend": "flat",
@@ -939,8 +939,8 @@
       "uptime": null,
       "workload_cost": 4.2,
       "price_position": "Low cost",
-      "adoption_trend": "rising",
-      "position_label": "High-growth challenger",
+      "adoption_trend": "falling",
+      "position_label": "Value play",
       "price_history": [
         {
           "date": "2026-08-06",
@@ -1118,9 +1118,9 @@
       "or_url": "https://openrouter.ai/google/gemini-3.5-flash:batch",
       "uptime": null,
       "workload_cost": 72.75,
-      "price_position": "Mid cost",
+      "price_position": "Premium",
       "adoption_trend": "falling",
-      "position_label": "Losing ground",
+      "position_label": "Under pressure",
       "price_history": [
         {
           "date": "2026-08-06",
@@ -1209,8 +1209,8 @@
       "uptime": null,
       "workload_cost": 32.62,
       "price_position": "Mid cost",
-      "adoption_trend": "flat",
-      "position_label": "Holding position",
+      "adoption_trend": "rising",
+      "position_label": "Momentum builder",
       "price_history": [
         {
           "date": "2026-08-13",
@@ -1244,6 +1244,78 @@
           "in": 3.75e-07,
           "out": 1.875e-06,
           "cache_read": 3.75e-08,
+          "you": true
+        },
+        {
+          "slug": "deepseek-v4-flash",
+          "name": "DeepSeek V4 Flash",
+          "in": 1.4e-07,
+          "out": 2.8e-07,
+          "cache_read": 2.8e-08,
+          "you": false
+        },
+        {
+          "slug": "google-gemini-2-5-flash",
+          "name": "Google Gemini 2.5 Flash",
+          "in": 1.5e-07,
+          "out": 1.25e-06,
+          "cache_read": 3e-08,
+          "you": false
+        },
+        {
+          "slug": "anthropic-claude-sonnet-5",
+          "name": "Anthropic Claude Sonnet 5",
+          "in": 1e-06,
+          "out": 5e-06,
+          "cache_read": 1e-07,
+          "you": false
+        }
+      ]
+    },
+    "google-gemini-3-7-flash": {
+      "in": 1.875e-07,
+      "out": 9.375e-07,
+      "cache_read": 1.875e-08,
+      "cache_write": 2.08333333333333e-08,
+      "context": 1048576,
+      "modalities": [
+        "text",
+        "image",
+        "video",
+        "file",
+        "audio"
+      ],
+      "image_in": true,
+      "audio_in": true,
+      "video_in": true,
+      "tools": true,
+      "structured": true,
+      "reasoning": true,
+      "open_weight": false,
+      "free_tier": false,
+      "knowledge_cutoff": null,
+      "or_id": "google/gemini-3.7-flash:batch",
+      "or_url": "https://openrouter.ai/google/gemini-3.7-flash:batch",
+      "uptime": null,
+      "workload_cost": 16.31,
+      "price_position": "Mid cost",
+      "adoption_trend": "flat",
+      "position_label": "Holding position",
+      "price_history": [
+        {
+          "date": "2026-08-17",
+          "in": 1.875e-07,
+          "out": 9.375e-07,
+          "change_pct": null
+        }
+      ],
+      "compare": [
+        {
+          "slug": "google-gemini-3-7-flash",
+          "name": "Google Gemini 3.7 Flash",
+          "in": 1.875e-07,
+          "out": 9.375e-07,
+          "cache_read": 1.875e-08,
           "you": true
         },
         {
@@ -1384,7 +1456,7 @@
       "knowledge_cutoff": null,
       "or_id": "google/gemma-4-26b-a4b-it:free",
       "or_url": "https://openrouter.ai/google/gemma-4-26b-a4b-it:free",
-      "uptime": 98.503,
+      "uptime": 97.638,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -1454,11 +1526,11 @@
       "knowledge_cutoff": null,
       "or_id": "google/gemma-4-31b-it:free",
       "or_url": "https://openrouter.ai/google/gemma-4-31b-it:free",
-      "uptime": 99.872,
+      "uptime": 99.769,
       "workload_cost": 0.0,
       "price_position": "Low cost",
-      "adoption_trend": "rising",
-      "position_label": "High-growth challenger",
+      "adoption_trend": "falling",
+      "position_label": "Value play",
       "price_history": [
         {
           "date": "2026-07-12",
@@ -1515,14 +1587,14 @@
       "audio_in": false,
       "video_in": false,
       "tools": true,
-      "structured": false,
+      "structured": true,
       "reasoning": true,
       "open_weight": true,
       "free_tier": true,
       "knowledge_cutoff": null,
       "or_id": "inclusionai/ling-3.0-flash",
       "or_url": "https://openrouter.ai/inclusionai/ling-3.0-flash",
-      "uptime": 99.761,
+      "uptime": 99.503,
       "workload_cost": 1.55,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -1684,7 +1756,7 @@
       "knowledge_cutoff": "2024-04-30",
       "or_id": "mistralai/mistral-nemo",
       "or_url": "https://openrouter.ai/mistralai/mistral-nemo",
-      "uptime": 97.575,
+      "uptime": 97.078,
       "workload_cost": 2.2,
       "price_position": "Low cost",
       "adoption_trend": "rising",
@@ -1765,7 +1837,7 @@
       "knowledge_cutoff": null,
       "or_id": "moonshotai/kimi-k2.6",
       "or_url": "https://openrouter.ai/moonshotai/kimi-k2.6",
-      "uptime": 99.545,
+      "uptime": 98.112,
       "workload_cost": 79.7,
       "price_position": "Premium",
       "adoption_trend": "falling",
@@ -1901,7 +1973,7 @@
       "knowledge_cutoff": null,
       "or_id": "moonshotai/kimi-k3",
       "or_url": "https://openrouter.ai/moonshotai/kimi-k3",
-      "uptime": 98.039,
+      "uptime": 97.82,
       "workload_cost": 261.0,
       "price_position": "Premium",
       "adoption_trend": "falling",
@@ -1969,7 +2041,7 @@
       "knowledge_cutoff": null,
       "or_id": "nvidia/nemotron-3.5-lightning:free",
       "or_url": "https://openrouter.ai/nvidia/nemotron-3.5-lightning:free",
-      "uptime": 99.773,
+      "uptime": 99.782,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "flat",
@@ -2037,7 +2109,7 @@
       "knowledge_cutoff": null,
       "or_id": "nvidia/nemotron-3-super-120b-a12b:free",
       "or_url": "https://openrouter.ai/nvidia/nemotron-3-super-120b-a12b:free",
-      "uptime": 99.657,
+      "uptime": 99.659,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -2105,7 +2177,7 @@
       "knowledge_cutoff": null,
       "or_id": "nvidia/nemotron-3-ultra-550b-a55b:free",
       "or_url": "https://openrouter.ai/nvidia/nemotron-3-ultra-550b-a55b:free",
-      "uptime": 99.813,
+      "uptime": 99.824,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -2518,8 +2590,8 @@
       "uptime": null,
       "workload_cost": 9.7,
       "price_position": "Low cost",
-      "adoption_trend": "rising",
-      "position_label": "High-growth challenger",
+      "adoption_trend": "falling",
+      "position_label": "Value play",
       "price_history": [
         {
           "date": "2026-08-04",
@@ -2564,9 +2636,9 @@
       ]
     },
     "openai-gpt-5-6-sol": {
-      "in": 2.5e-06,
-      "out": 1.5e-05,
-      "cache_read": 2.5e-07,
+      "in": 1.25e-06,
+      "out": 7.5e-06,
+      "cache_read": 1.25e-07,
       "cache_write": null,
       "context": 1050000,
       "modalities": [
@@ -2586,11 +2658,17 @@
       "or_id": "openai/gpt-5.6-sol:batch",
       "or_url": "https://openrouter.ai/openai/gpt-5.6-sol:batch",
       "uptime": null,
-      "workload_cost": 242.5,
+      "workload_cost": 121.25,
       "price_position": "Premium",
-      "adoption_trend": "rising",
-      "position_label": "Premium leader",
+      "adoption_trend": "flat",
+      "position_label": "Holding position",
       "price_history": [
+        {
+          "date": "2026-08-17",
+          "in": 1.25e-06,
+          "out": 7.5e-06,
+          "change_pct": -50.0
+        },
         {
           "date": "2026-08-06",
           "in": 2.5e-06,
@@ -2608,9 +2686,9 @@
         {
           "slug": "openai-gpt-5-6-sol",
           "name": "OpenAI GPT 5.6 Sol",
-          "in": 2.5e-06,
-          "out": 1.5e-05,
-          "cache_read": 2.5e-07,
+          "in": 1.25e-06,
+          "out": 7.5e-06,
+          "cache_read": 1.25e-07,
           "you": true
         },
         {
@@ -2735,7 +2813,7 @@
       "knowledge_cutoff": "2024-06-30",
       "or_id": "openai/gpt-oss-120b",
       "or_url": "https://openrouter.ai/openai/gpt-oss-120b",
-      "uptime": 99.128,
+      "uptime": 97.299,
       "workload_cost": 4.7,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -2815,7 +2893,7 @@
       "knowledge_cutoff": null,
       "or_id": "poolside/laguna-s-2.1:free",
       "or_url": "https://openrouter.ai/poolside/laguna-s-2.1:free",
-      "uptime": 99.576,
+      "uptime": 99.817,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -2885,7 +2963,7 @@
       "knowledge_cutoff": null,
       "or_id": "stepfun/step-3.7-flash",
       "or_url": "https://openrouter.ai/stepfun/step-3.7-flash",
-      "uptime": 98.907,
+      "uptime": 99.181,
       "workload_cost": 20.3,
       "price_position": "Mid cost",
       "adoption_trend": "falling",
@@ -2953,7 +3031,7 @@
       "knowledge_cutoff": null,
       "or_id": "tencent/hy3",
       "or_url": "https://openrouter.ai/tencent/hy3",
-      "uptime": 99.641,
+      "uptime": 97.989,
       "workload_cost": 11.55,
       "price_position": "Mid cost",
       "adoption_trend": "flat",
@@ -3027,11 +3105,11 @@
       "knowledge_cutoff": null,
       "or_id": "tencent/hy3",
       "or_url": "https://openrouter.ai/tencent/hy3",
-      "uptime": 99.641,
+      "uptime": 97.989,
       "workload_cost": 11.55,
       "price_position": "Mid cost",
-      "adoption_trend": "falling",
-      "position_label": "Losing ground",
+      "adoption_trend": "flat",
+      "position_label": "Holding position",
       "price_history": [
         {
           "date": "2026-07-23",
@@ -3107,7 +3185,7 @@
       "knowledge_cutoff": null,
       "or_id": "tencent/hy3-preview",
       "or_url": "https://openrouter.ai/tencent/hy3-preview",
-      "uptime": 99.878,
+      "uptime": 99.875,
       "workload_cost": 15.6,
       "price_position": "Mid cost",
       "adoption_trend": "falling",
@@ -3183,7 +3261,7 @@
       "knowledge_cutoff": null,
       "or_id": "x-ai/grok-4.5",
       "or_url": "https://openrouter.ai/x-ai/grok-4.5",
-      "uptime": 99.95,
+      "uptime": 99.427,
       "workload_cost": 141.0,
       "price_position": "Premium",
       "adoption_trend": "falling",
@@ -3254,10 +3332,10 @@
       "knowledge_cutoff": null,
       "or_id": "xiaomi/mimo-v2.5",
       "or_url": "https://openrouter.ai/xiaomi/mimo-v2.5",
-      "uptime": 98.103,
+      "uptime": 97.217,
       "workload_cost": 7.2,
       "price_position": "Low cost",
-      "adoption_trend": "falling",
+      "adoption_trend": "flat",
       "position_label": "Value play",
       "price_history": [
         {
@@ -3328,11 +3406,11 @@
       "knowledge_cutoff": null,
       "or_id": "xiaomi/mimo-v2.5-pro",
       "or_url": "https://openrouter.ai/xiaomi/mimo-v2.5-pro",
-      "uptime": 99.123,
+      "uptime": 99.092,
       "workload_cost": 22.0,
       "price_position": "Mid cost",
-      "adoption_trend": "flat",
-      "position_label": "Holding position",
+      "adoption_trend": "falling",
+      "position_label": "Losing ground",
       "price_history": [
         {
           "date": "2026-07-12",
@@ -3396,11 +3474,11 @@
       "knowledge_cutoff": null,
       "or_id": "z-ai/glm-5",
       "or_url": "https://openrouter.ai/z-ai/glm-5",
-      "uptime": 99.667,
+      "uptime": 98.162,
       "workload_cost": 45.6,
       "price_position": "Mid cost",
-      "adoption_trend": "falling",
-      "position_label": "Losing ground",
+      "adoption_trend": "rising",
+      "position_label": "Momentum builder",
       "price_history": [
         {
           "date": "2026-08-14",
@@ -3494,11 +3572,11 @@
       "knowledge_cutoff": null,
       "or_id": "z-ai/glm-5.2:free",
       "or_url": "https://openrouter.ai/z-ai/glm-5.2:free",
-      "uptime": 52.863,
+      "uptime": 87.863,
       "workload_cost": 0.0,
       "price_position": "Low cost",
-      "adoption_trend": "rising",
-      "position_label": "High-growth challenger",
+      "adoption_trend": "flat",
+      "position_label": "Value play",
       "price_history": [
         {
           "date": "2026-08-16",
