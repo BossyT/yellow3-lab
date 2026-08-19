@@ -6,12 +6,12 @@ never appear on a public list, and this file is committed.
 
 Written by research/dpp_queue_report.py.
 
-- generated: 2026-08-18
+- generated: 2026-08-19
 - submissions in store: 3
 - submissions still marked queued: 3
 - of those, already in the register: 1  (bookkeeping, not a company waiting)
 - genuinely awaiting research: **2**
-- oldest queued: **20 days**
+- oldest queued: **21 days**
 
 | status | count |
 |---|---|
