@@ -7,13 +7,13 @@ never appear on a public list, and this file is committed.
 Written by research/dpp_queue_report.py.
 
 - generated: 2026-08-21
-- submissions in store: 3
-- submissions still marked queued: 3
+- submissions in store: 1
+- submissions still marked queued: 1
 - of those, already in the register: 1  (bookkeeping, not a company waiting)
-- genuinely awaiting research: **2**
-- oldest queued: **23 days**
+- of those, not a company (our own domain, or a reserved and unroutable one): 0
+- genuinely awaiting research: **0**
 
 | status | count |
 |---|---|
-| queued | 3 |
+| queued | 1 |
 
