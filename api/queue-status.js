@@ -21,6 +21,34 @@ const fs = require('fs');
 const path = require('path');
 const blob = require('./_lib/blob');
 
+// A domain that cannot be an external company waiting for an answer.
+//
+// WHY THIS EXISTS, and it is not a loosened threshold. On 21 August 2026 the
+// build had been refusing every deploy for three days because "a company has
+// been waiting 22 days". Read from the store, the three queued submissions
+// were: yellow3.io - OUR OWN domain, submitted as a test - a probe on
+// `a-company-not-in-register.test`, and treverum.com, which is already in the
+// register. So the count of companies waiting for an answer was two, and the
+// number of companies waiting for an answer was zero. Meanwhile production sat
+// on a three-day-old build showing a "Live" badge over 18 August data.
+//
+// The 21-day threshold is untouched. What changes is what counts as a company.
+// `.test`, `.example`, `.invalid` and `.localhost` are reserved by RFC 2606 and
+// RFC 6761 and are unroutable - nobody can receive a reply there - and our own
+// domain is us. Neither can ever be somebody waiting.
+//
+// COUNTED AND REPORTED, NEVER SILENTLY DROPPED. A submission excluded here
+// appears as `not_a_company` in the response, so a real company can never be
+// quietly discarded by a rule meant for fixtures.
+const RESERVED_TLDS = ['.test', '.example', '.invalid', '.localhost'];
+const OUR_DOMAINS = ['yellow3.io', 'buyer.yellow3.io', 'naffe.ai'];
+function notACompany(dom) {
+  if (OUR_DOMAINS.includes(dom)) return true;
+  if (OUR_DOMAINS.some((d) => dom.endsWith('.' + d))) return true;
+  if (RESERVED_TLDS.some((t) => dom.endsWith(t))) return true;
+  return ['example.com', 'example.net', 'example.org'].includes(dom);
+}
+
 // The register's own domains, so a queued submission can be told apart from a
 // company that is already listed. Without this the count is misleading: a
 // submission whose status was never closed after the company was added reads
@@ -64,6 +92,7 @@ module.exports = async (req, res) => {
     const ages = [];
     let undated = 0;
     let alreadyListed = 0;
+    let notCompany = 0;
     let awaitingResearch = 0;
 
     for (const b of blobs) {
@@ -80,6 +109,12 @@ module.exports = async (req, res) => {
       if (status !== 'queued') continue;
       const dom = String((item && item.domain) || name.slice(PREFIX.length))
         .replace(/\.json$/, '').trim().toLowerCase().replace(/^www\./, '');
+      if (notACompany(dom)) {
+        // Our own domain or a reserved, unroutable one. Not a company, so it
+        // cannot be a company waiting. Counted so it stays visible.
+        notCompany += 1;
+        continue;
+      }
       const listed = known ? known.has(dom) : false;
       if (listed) {
         // In the register already. The submission's status was simply never
@@ -100,6 +135,7 @@ module.exports = async (req, res) => {
       queued: byStatus.queued || 0,
       awaiting_research: awaitingResearch,
       already_listed_not_closed: alreadyListed,
+      not_a_company: notCompany,
       register_read: known ? known.size : null,
       oldest_queued_days: ages.length ? Math.max.apply(null, ages) : null,
       undated_queued: undated,

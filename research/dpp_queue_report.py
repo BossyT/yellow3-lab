@@ -96,6 +96,8 @@ def write_report(s):
         f"- submissions still marked queued: {s['queued']}",
         f"- of those, already in the register: {s.get('already_listed_not_closed', 0)}"
         f"  (bookkeeping, not a company waiting)",
+        f"- of those, not a company (our own domain, or a reserved and"
+        f" unroutable one): {s.get('not_a_company', 0)}",
         f"- genuinely awaiting research: **{s.get('awaiting_research', s['queued'])}**",
     ]
     if s["oldest_queued_days"] is not None:
