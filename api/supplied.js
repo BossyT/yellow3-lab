@@ -54,6 +54,14 @@ function text(v, max) {
     .slice(0, max);
 }
 
+// The domain of a work address, and nothing else. Returns '' rather than a
+// partial when the input is not an address, because half an identifier in a
+// public record is worse than none.
+function domainOf(email) {
+  const at = String(email || '').lastIndexOf('@');
+  return at > 0 ? String(email).slice(at + 1).toLowerCase() : '';
+}
+
 function httpsUrl(v) {
   const s = text(v, 300);
   if (!s) return '';
@@ -118,7 +126,16 @@ module.exports = async (req, res) => {
     logo_url: (current && current.logo_url) || '',
     licence: (current && current.licence) || null,
     updated_at: now,
-    updated_by: s.email || '',
+    // THE DOMAIN, NEVER THE PERSON. This record is served from the PUBLIC blob
+    // store, so `updated_by: s.email` published a named individual's work
+    // address - "sammy.williamson@..." - to anyone with the URL, for every
+    // company that has claimed a profile.
+    //
+    // The domain carries the whole audit property without the person. Claiming
+    // already REQUIRES a work email matching the domain that defines the row
+    // (api/claim.js), so "someone at rosellastreet.com did this" is exactly
+    // what the address proved, and the local part proved nothing extra.
+    updated_by_domain: domainOf(s.email),
     first_supplied_at: (current && current.first_supplied_at) || now,
   };
 
@@ -143,10 +160,18 @@ module.exports = async (req, res) => {
       const p = 'dpp/logos/' + sid + '.' + ext;
       await blob.put(p, buf, type, 300);
       rec.logo_path = p;
-      // the store is private, so the browser loads it through our own endpoint.
+      // the browser loads the logo through our own endpoint rather than a direct
+      // blob URL. NOTE, corrected 2026-08-21: this comment used to say "the
+      // store is private". It is not - dpp/supplied/ and dpp/suggestions/ are
+      // served to anyone with the URL, which is how a named individual's address
+      // came to be published. Verification standard rule 7: a permission and the
+      // comment defending it have to be checked together.
       // the stamp busts the CDN cache when a company replaces its mark.
       rec.logo_url = '/api/logo?id=' + encodeURIComponent(sid) + '&v=' + Date.now();
-      rec.licence = { granted_by: s.email || '', granted_at: now, warrant: 'owner_or_authorised' };
+      // Same rule as updated_by_domain above: the licence needs to show that a
+      // person AT THAT COMPANY granted display rights, not which person.
+      rec.licence = { granted_by_domain: domainOf(s.email), granted_at: now,
+                      warrant: 'owner_or_authorised' };
     } catch (e) {
       console.error(JSON.stringify({ evt: 'dpp_supplied', outcome: 'logo_store_failed', supplier: sid, error: String(e && e.message || e) }));
       return res.status(502).json({ ok: false, error: 'logo_store_failed' });
