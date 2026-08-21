@@ -1,0 +1,9 @@
+
+# Vercel CLI project link. Not secret, but this repo is public and a link
+# file is local machine state, not source.
+.vercel
+.env*
+
+# Working state, not source. CoWork and Terminal both use this for staging
+# files during a task; a public repo is not the place for it.
+scratchpad/
