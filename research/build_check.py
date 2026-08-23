@@ -325,6 +325,43 @@ def main() -> int:
             print(f'  ok  model origins: every charting developer above '
                   f'{FLOOR:.2f}% has a region')
 
+    # 2b5. The capability layer covers everyone the framework says it should.
+    #
+    # THE COVERAGE HALF ONLY, and deliberately: the citation re-fetch is 215
+    # requests to other people's servers and belongs in the weekly job
+    # (.github/workflows/research-weekly.yml), not on every deploy. This is the
+    # local, instant half.
+    #
+    # It exists because nothing was asking. Fourteen consultancies sat in the
+    # register with resolved websites and no capability checks; the framework's
+    # rule 5 exempts project consortia, standards bodies and not-a-supplier
+    # rows, and says nothing about consultancies. Whether they should be
+    # assessed is a research decision - but it should be a decision, not
+    # something nobody noticed for a month.
+    r = subprocess.run([sys.executable,
+                        str(ROOT / 'research' / 'dpp_capability_check.py')],
+                       capture_output=True, text=True)
+    lines = [l.strip() for l in (r.stdout or '').splitlines() if l.strip().startswith('!')]
+    coverage_faults = [l for l in lines if 'have no capability checks' in l
+                       or 'should not be assessed' in l]
+    # REPORTED, NOT BLOCKING, and that is the considered choice.
+    #
+    # Whether a consultancy should carry the ten checks is a RESEARCH decision
+    # nobody has taken. Blocking the deploy on it would stop every unrelated
+    # change until somebody rules - which is the three-day stall this repo has
+    # already paid for once, over a queue count that turned out to be a test
+    # submission. A deploy gate should refuse what is our fault and fixable now.
+    #
+    # The weekly job (.github/workflows/research-weekly.yml) DOES fail on this,
+    # loudly, which is the right cadence for a research gap: it cannot rot
+    # unnoticed for a month again, and it cannot hold the site hostage either.
+    if coverage_faults:
+        for line in coverage_faults:
+            print('  ..  capability layer: ' + line.lstrip('! ')
+                  + ' (research decision; the weekly check fails on this)')
+    else:
+        print('  ok  capability layer: every assessable row is assessed')
+
     # 2c. SEO / entity due diligence, as a standing gate.
     #
     # GPT 2026-08-15: this is a continuous system, not a one-off project.

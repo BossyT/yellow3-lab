@@ -1,0 +1,38 @@
+name: Research - weekly capability check
+
+# WHY WEEKLY, AND WHY IT WRITES NOTHING.
+#
+# The ten capability checks are research: a person opens a page and records what
+# it says. That cannot be automated without inventing findings, which is the
+# exact failure research/dpp_evidence.py exists to prevent. So this job never
+# produces a finding and never edits the layer.
+#
+# What it does is make the published layer defensible a month after it was
+# researched: every cited evidence_url is re-fetched, coverage is measured
+# against the framework's own rules, and the age of the newest research is
+# stated. A dead citation under a published claim about a named company is the
+# failure that matters, and until this existed nothing was watching for one -
+# the layer was generated on 2026-08-05 and never re-read.
+#
+# It fails loudly rather than filing a report nobody opens. A red run is the
+# signal that the register is claiming something it can no longer show.
+
+on:
+  schedule:
+    - cron: "0 7 * * 1"      # Mondays 07:00 UTC, after the daily pull
+  workflow_dispatch:
+
+jobs:
+  capability:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Coverage, staleness and every published citation
+        run: python3 research/dpp_capability_check.py --links --check
