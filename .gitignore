@@ -16,3 +16,7 @@ research/.media/
 # QA renders of an unpublished edition. They carry PREVIEW placeholders and must
 # never be reachable, globbed by build_check or walked by the sitemap.
 research/.preview/
+
+# macOS noise. It reached a public repo once.
+.DS_Store
+**/.DS_Store
