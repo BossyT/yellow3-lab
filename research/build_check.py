@@ -283,6 +283,48 @@ def main() -> int:
                     print('  ok  feed view: one inherited menu, one inherited '
                           'footer, palette scoped')
 
+    # 2b4. Every charting developer has a region somebody decided on.
+    #
+    # The region layer falls back to "Other" for a developer it does not know,
+    # and that fallback was silent: classify() collected the unmapped ones under
+    # a comment reading "flag, do not drop", and nothing ever read the flag.
+    # Upstage - Seoul - sat unmapped while Solar Pro4 charted at #25, so the
+    # published top 30 labelled a Korean model "Other" and 0.64pp of routed
+    # share sat outside Asia. It is not findable by eye: the fallback is silent,
+    # the total still sums to 100, and Other is a legitimate answer for some
+    # developers, so a wrong one looks identical to a right one.
+    #
+    # A developer under the floor is left alone deliberately - a long tail of
+    # one-off listings should not block a deploy over a rounding error.
+    origins = ROOT / 'research' / 'model-origins.json'
+    madata = ROOT / 'research' / 'model-adoption-data.json'
+    if origins.exists() and madata.exists():
+        layer = json.loads(origins.read_text(encoding='utf-8'))
+        known = set(layer.get('regions_by_developer') or {})
+        overrides = layer.get('model_overrides') or {}
+        rows = json.loads(madata.read_text(encoding='utf-8')).get('leaderboard') or []
+        FLOOR = 0.10          # percent of routed tokens
+        stray = {}
+        for r in rows:
+            model = r.get('model', '')
+            if model in overrides:
+                continue
+            dev = model.split('/')[0] if '/' in model else model
+            if dev and dev not in known:
+                stray[dev] = stray.get(dev, 0) + (r.get('pct') or 0)
+        material = {d: p for d, p in stray.items() if p >= FLOOR}
+        if material:
+            FAIL.append(
+                'model-origins.json has no region for '
+                + ', '.join(f'{d} ({p:.2f}% of routed tokens)'
+                            for d, p in sorted(material.items(), key=lambda kv: -kv[1]))
+                + ' - it is being published as "Other" by default. Add it to '
+                  'regions_by_developer with a developer_note, or record Other '
+                  'as the decision.')
+        else:
+            print(f'  ok  model origins: every charting developer above '
+                  f'{FLOOR:.2f}% has a region')
+
     # 2c. SEO / entity due diligence, as a standing gate.
     #
     # GPT 2026-08-15: this is a continuous system, not a one-off project.

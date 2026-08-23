@@ -2,7 +2,12 @@
   "version": "2026-06-03",
   "maintainer": "yellow3 lab",
   "principle": "Region reflects where the model developer is headquartered. Open-weight models are attributed to their original developer, not the host that serves them. 'Other' is the honest catch-all for everything that does not sit cleanly in Asia, Europe or the US (Canada, Israel, the UAE, undisclosed labs, and OpenRouter's own aggregated 'other' row).",
-  "regions": ["Asia", "Europe", "US", "Other"],
+  "regions": [
+    "Asia",
+    "Europe",
+    "US",
+    "Other"
+  ],
   "regions_by_developer": {
     "openai": "US",
     "anthropic": "US",
@@ -22,7 +27,10 @@
     "tencent": "Asia",
     "xiaomi": "Asia",
     "stepfun": "Asia",
-    "inclusionai": "Asia"
+    "inclusionai": "Asia",
+    "upstage": "Asia",
+    "cohere": "Other",
+    "stealth": "Other"
   },
   "model_overrides": {
     "other": "Other",
@@ -48,6 +56,9 @@
     "xiaomi": "Xiaomi (MiMo) - Beijing, China.",
     "stepfun": "StepFun - Shanghai, China.",
     "inclusionai": "inclusionAI / Ant Group - Hangzhou, China.",
-    "openrouter/owl-alpha": "A cloaked/stealth model served by OpenRouter for an undisclosed lab. Origin is not public, so it is classified 'Other' rather than guessed. Re-classify if the developer is revealed."
+    "openrouter/owl-alpha": "A cloaked/stealth model served by OpenRouter for an undisclosed lab. Origin is not public, so it is classified 'Other' rather than guessed. Re-classify if the developer is revealed.",
+    "upstage": "Upstage - Seoul, South Korea. Developer of the Solar family. Was unmapped until 2026-08-23 and therefore counted as Other, which put Solar Pro4 at #25 in the published top 30 under the wrong region and moved 0.64pp of routed share out of Asia.",
+    "cohere": "Cohere - Toronto, Canada. Other by the stated principle, which names Canada explicitly. Recorded so it reads as a decision rather than an omission.",
+    "stealth": "OpenRouter's cloaked/stealth listings. Origin is undisclosed by definition, and the principle names undisclosed labs as Other. Recorded so a large share does not sit in Other by accident."
   }
 }

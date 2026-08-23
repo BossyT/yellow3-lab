@@ -954,6 +954,32 @@ def main():
               + ", ".join(f"{d} (e.g. {ex})" for d, ex in unmapped.items()))
     print(f"wrote {OUT}")
 
+    # A DEVELOPER NOBODY HAS RULED ON IS NOT A SILENT "Other".
+    #
+    # classify() has always collected these - the comment on it reads "flag, do
+    # not drop" - but nothing ever read the flag, so the flag was not a flag.
+    # Upstage sat unmapped for as long as it had been charting, which counted
+    # Solar Pro4 as Other at #25 in the published top 30 and moved 0.64pp of
+    # routed share out of Asia. Nobody could have noticed: the fallback is
+    # silent, the number is plausible, and "Other" is a legitimate answer for
+    # some developers, so the output looks the same either way.
+    #
+    # Printed loudly, with the share at stake, because that is the number that
+    # decides whether it matters. research/build_check.py refuses the build
+    # when an unmapped developer carries real traffic.
+    if unmapped:
+        share_of = {}
+        for slug, tok in cmod.items():
+            dev = slug.split("/")[0] if "/" in slug else slug
+            if dev in unmapped:
+                share_of[dev] = share_of.get(dev, 0) + tok
+        print("\n  UNMAPPED DEVELOPERS - counted as Other until somebody rules:")
+        for dev, example in sorted(unmapped.items()):
+            pct = 100 * share_of.get(dev, 0) / ctot if ctot else 0
+            print(f"    {dev:<20} {pct:6.3f}% of routed tokens   e.g. {example}")
+        print("    Add each to regions_by_developer in research/model-origins.json,")
+        print("    with a developer_note saying where it is headquartered.\n")
+
 
 if __name__ == "__main__":
     main()

@@ -39,10 +39,10 @@
   "share": [
     {
       "region": "Asia",
-      "pct": 53.08,
-      "delta_pp": -5.59,
+      "pct": 53.72,
+      "delta_pp": -5.25,
       "delta_pp_4w": -8.06,
-      "models": 11
+      "models": 12
     },
     {
       "region": "Europe",
@@ -60,10 +60,10 @@
     },
     {
       "region": "Other",
-      "pct": 14.15,
-      "delta_pp": 7.09,
+      "pct": 13.51,
+      "delta_pp": 6.75,
       "delta_pp_4w": 6.12,
-      "models": 2
+      "models": 1
     }
   ],
   "leaderboard": [
@@ -368,7 +368,7 @@
       "name": "Upstage Solar Pro4",
       "slug": "upstage-solar-pro4",
       "developer": "upstage",
-      "region": "Other",
+      "region": "Asia",
       "pct": 0.64
     },
     {
