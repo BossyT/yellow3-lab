@@ -10,13 +10,28 @@ data. There is no second entry list to keep in step, and no production
 /feed-preview route - Lock 02 is explicit that the prototype's route was a
 design reference only.
 
+THE SHELL IS HERE ON AN OVERRIDE, NOT ON THE SPEC. 03-RSS-BROWSER-SPEC.md's
+"Visual boundary" says this presentation carries no yellow3 top menu, no footer
+and no logo, and two checks in 08-ACCEPTANCE-CHECKS.md pass by their absence.
+Thomas asked for the menu and the footer on 23 August 2026, naming this URL,
+after that boundary and both checks were put to him. GPT owns the design, so the
+change is recorded as an override awaiting ratification - here, in the generated
+file's own header, and in the deviation block - rather than written up as though
+it were the approved state. If GPT declines it, deleting {NAV}, {FOOTER} and the
+shell CSS from TEMPLATE restores the approved boundary exactly.
+
 WHY IT IS GENERATED. The stylesheet is the approved package stylesheet, carried
-in VERBATIM and whole. feed.xsl is a standalone document with no site shell to
-collide with, so unlike /insights/subscribe it needs no scoping - but it is
-subject to the same lesson research/port_approved_css.py was written for: a
-component depends on rules that never mention it, and a stylesheet filtered by
-eye loses the ones that look like somebody else's. Nothing here decides which
-rules the feed view needs. The package's CSS goes in as it stands.
+in whole and in source order. It is subject to the lesson
+research/port_approved_css.py was written for: a component depends on rules that
+never mention it, and a stylesheet filtered by eye loses the ones that look like
+somebody else's. Nothing here decides which rules the feed view needs.
+
+It IS scoped, under .fv1, and that became load-bearing the moment the shell
+arrived: the two stylesheets share a document and disagree about --ink, --line,
+--muted and --yellow, which the nav and footer read twenty-one times between
+them. See scoped_package_css(). Both the nav and the footer markup and the shell
+CSS are read out of insights/subscribe.html at generation time, so this page's
+menu and footer cannot drift away from the ones the rest of the site carries.
 
 FAILURE BEHAVIOUR. If this stylesheet fails to load or the browser does not
 apply XSLT, the XML is still served and still valid - the presentation is a
@@ -34,10 +49,77 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PACKAGE = os.path.join(ROOT, "research", "approved", "insights-subscribe.approved")
 TARGET = os.path.join(ROOT, "feed.xsl")
+SHELL_PAGE = os.path.join(ROOT, "insights", "subscribe.html")
+
+# The package stylesheet is scoped under this wrapper, exactly as
+# /insights/subscribe scopes it under .is1, and for the same reason - see
+# scoped_package_css() below.
+WRAPPER = "fv1"
+
+# The site shell's own measurements. .site-nav is position:fixed, so whatever
+# sits at the top of the document is painted over unless it is cleared.
+# Measured in headless Chrome on the built page, not assumed: 74.6px at desktop
+# (16px padding each side + a 41.6px CTA + a 1px border) and 67px below 880px,
+# where the padding drops to 14px and the CTA is display:none.
+NAV_DESKTOP = "74.6px"
+NAV_MOBILE = "67px"
+
+
+def _read(path):
+    return open(path, encoding="utf-8").read()
+
+
+def _xml_safe(markup):
+    """HTML markup -> markup an XML parser will accept.
+
+    XSLT is XML, and XML predefines only lt/gt/amp/apos/quot. `&copy;` in the
+    footer's copyright line is a perfectly good HTML entity and an undefined
+    entity error in XML, which would take the whole stylesheet down - and a
+    broken stylesheet on /feed.xml is a broken page for every human who opens
+    it. Numeric references mean the same thing to both.
+    """
+    named = {"&copy;": "&#169;", "&nbsp;": "&#160;", "&amp;": "&amp;",
+             "&mdash;": "&#8212;", "&ndash;": "&#8211;", "&rarr;": "&#8594;"}
+    for k, v in named.items():
+        markup = markup.replace(k, v)
+    left = re.findall(r"&(?!#\d+;|#x[0-9a-fA-F]+;|amp;|lt;|gt;|quot;|apos;)\w+;",
+                      markup)
+    if left:
+        raise SystemExit("shell markup carries HTML entities XML cannot parse: "
+                         + ", ".join(sorted(set(left))))
+    return markup
+
+
+def shell_css():
+    """The site shell's stylesheet, from the page that already carries it.
+
+    Read from insights/subscribe.html rather than retyped, so the menu and
+    footer on /feed.xml cannot drift away from the menu and footer everywhere
+    else. That page's shell block is itself a verbatim copy of
+    insights/index.html.
+    """
+    page = _read(SHELL_PAGE)
+    start = page.index("<style>") + len("<style>")
+    end = page.index("/* >>> APPROVED")
+    css = page[start:end].strip()
+    if ".site-nav" not in css or ".site-footer" not in css:
+        raise SystemExit("shell block in %s no longer holds the nav and footer"
+                         % SHELL_PAGE)
+    return css
+
+
+def shell_markup():
+    """The nav and the footer, lifted whole from the same page."""
+    page = _read(SHELL_PAGE)
+    nav = re.search(r'(<nav class="site-nav">.*?</nav>)', page, re.S)
+    foot = re.search(r'(<footer class="site-footer">.*?</footer>)', page, re.S)
+    if not nav or not foot:
+        raise SystemExit("could not find the nav and footer in %s" % SHELL_PAGE)
+    return _xml_safe(nav.group(1)), _xml_safe(foot.group(1))
 
 
 def package_css():
-    html = open(PACKAGE, encoding="utf-8").read()
+    html = _read(PACKAGE)
     m = re.search(r"<style>(.*?)</style>", html, re.S)
     if not m:
         raise SystemExit("no stylesheet block in the approved package")
@@ -48,6 +130,53 @@ def package_css():
         raise SystemExit("package CSS contains < or & - it cannot be inlined "
                          "into XSLT as text without escaping")
     return css
+
+
+def scoped_package_css():
+    """The package stylesheet, every selector prefixed with the wrapper.
+
+    WHY THIS IS NOT OPTIONAL NOW. While the feed view had no shell it was a
+    standalone document and the package CSS could sit at document level. With
+    the menu and footer on the page the two stylesheets share a document, and
+    they disagree about four tokens:
+
+        --ink     shell #0e0e0e   package #171717
+        --line    shell #e7e6e2   package #d5d7d7
+        --muted   shell #8a8a8a   package #6b6b6b
+        --yellow  shell #ffe000   package #ffe500
+
+    The nav and the footer read --ink, --line and --yellow twenty-one times
+    between them, so an unscoped package would repaint the CTA, every border
+    and the shell's yellow - which is exactly the "do not alter the existing
+    header or footer colour" half of Lock 01, and the site-wide yellow token
+    half of Lock 04. Scoping keeps the signal yellow on the feed content and
+    leaves the shell reading the site's own values.
+
+    The transform is research/port_approved_css.py's, imported rather than
+    reimplemented, so both surfaces scope the same stylesheet the same way and
+    the declaration count is asserted here too.
+    """
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from port_approved_css import split_rules, scope, count_decls
+
+    out, source, ported = [], 0, 0
+    for kind, prelude, body in split_rules(package_css()):
+        if kind == "rule":
+            source += count_decls(body)
+            ported += count_decls(body)
+            out.append("%s{%s}" % (scope(prelude, WRAPPER), body))
+        else:
+            out.append(prelude + "{")
+            for k2, sel2, body2 in split_rules(body):
+                if k2 != "rule":
+                    raise SystemExit("nested at-rule in %s" % prelude)
+                source += count_decls(body2)
+                ported += count_decls(body2)
+                out.append("%s{%s}" % (scope(sel2, WRAPPER), body2))
+            out.append("}")
+    if ported != source:
+        raise SystemExit("declaration count drifted: %d -> %d" % (source, ported))
+    return "\n".join(out)
 
 
 # Approved production deviations, emitted AFTER the package stylesheet and never
@@ -64,8 +193,24 @@ def package_css():
 # the approved appearance. This restores it. Returned to Thomas and GPT for
 # ratification with the v1.0 delivery, 23 August 2026.
 DEVIATIONS = """
-.feed-entries h2 a{text-decoration:none}
-.feed-entries .entry-arrow{text-decoration:none}
+.WRAP .feed-entries h2 a{text-decoration:none}
+.WRAP .feed-entries .entry-arrow{text-decoration:none}
+
+/* THE SHELL OVERRIDE, Thomas 23 August 2026, NOT YET RATIFIED BY GPT.
+   03-RSS-BROWSER-SPEC.md "Visual boundary" says this presentation has no
+   yellow3 top menu, no footer and no logo, and two checks in
+   08-ACCEPTANCE-CHECKS.md pass by their absence. Thomas asked for the menu and
+   the footer here, naming this URL, after the boundary and both checks were
+   put to him. GPT owns the design, so this is recorded as an override rather
+   than folded in as though it were the approved state.
+   The nav is position:fixed, so the feed view is moved out from under it. The
+   package's own 52px opening is preserved: the nav height is added to it,
+   never substituted for it, which is the same arithmetic /insights/subscribe
+   uses. Clearing on .feed-view rather than .feed-view-intro is deliberate -
+   the 7px signal rule is absolutely positioned at the top of the intro, so
+   padding the intro would leave the rule behind the menu. */
+.WRAP.feed-view{padding-top:NAV_DESKTOP}
+@media (max-width:880px){.WRAP.feed-view{padding-top:NAV_MOBILE}}
 """
 
 # The approved copy, 05-CONTENT-CONTRACT.md, "RSS browser presentation".
@@ -101,11 +246,16 @@ TEMPLATE = '''<?xml version="1.0" encoding="UTF-8"?>
   The approved browser presentation for the yellow3 Insights feed, v1.0.
 
   GENERATED by research/gen_feed_xsl.py. Do not hand-edit: the stylesheet below
-  is the approved package stylesheet, verbatim, and a hand edit here is a change
-  to an approved design that nothing would catch.
+  is the approved package stylesheet, and a hand edit here is a change to an
+  approved design that nothing would catch.
 
   This file only ever DECORATES /feed.xml. The feed is the canonical, valid RSS
   2.0 document at that address; feed readers never see any of this.
+
+  THE TOP MENU AND FOOTER ON THIS PAGE ARE AN OVERRIDE AWAITING RATIFICATION.
+  03-RSS-BROWSER-SPEC.md says this presentation has no menu, no footer and no
+  logo. Thomas asked for both on 23 August 2026 after being shown that
+  boundary. GPT owns the design and has not ruled on it yet.
 -->
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -142,15 +292,29 @@ TEMPLATE = '''<?xml version="1.0" encoding="UTF-8"?>
   <meta name="robots" content="noindex"/>
   <title><xsl:value-of select="rss/channel/title"/></title>
   <style>
+/* ---------------------------------------------------------------------- */
+/* THE SITE SHELL, read from insights/subscribe.html by                     */
+/* research/gen_feed_xsl.py and emitted unaltered. It stays at document     */
+/* level so the menu and the footer read the site's own tokens.             */
+/* ---------------------------------------------------------------------- */
+{SHELL_CSS}
+
+/* ---------------------------------------------------------------------- */
+/* THE APPROVED PACKAGE, every selector scoped under .{WRAPPER}. See        */
+/* scoped_package_css() for why this is load-bearing rather than tidy.      */
+/* ---------------------------------------------------------------------- */
 {CSS}
 
-/* Approved production deviation, appended after the package stylesheet.
-   See the DEVIATIONS note in research/gen_feed_xsl.py. */
+/* Production deviations, appended after the package stylesheet and never
+   folded into it. See the DEVIATIONS note in research/gen_feed_xsl.py. */
 {DEVIATIONS}
   </style>
 </head>
 <body>
-<main class="feed-view">
+
+{NAV}
+
+<main class="feed-view {WRAPPER}">
 
   <section class="feed-view-intro">
     <div class="signal-line" aria-hidden="true"></div>
@@ -205,6 +369,9 @@ TEMPLATE = '''<?xml version="1.0" encoding="UTF-8"?>
   </section>
 
 </main>
+
+{FOOTER}
+
 </body>
 </html>
 </xsl:template>
@@ -215,8 +382,15 @@ TEMPLATE = '''<?xml version="1.0" encoding="UTF-8"?>
 def build():
     return (TEMPLATE
             .replace("{MONTH_CHOOSE}", month_choose())
-            .replace("{CSS}", package_css())
-            .replace("{DEVIATIONS}", DEVIATIONS.strip())
+            .replace("{SHELL_CSS}", shell_css())
+            .replace("{CSS}", scoped_package_css())
+            .replace("{DEVIATIONS}", DEVIATIONS.strip()
+                     .replace(".WRAP", "." + WRAPPER)
+                     .replace("NAV_DESKTOP", NAV_DESKTOP)
+                     .replace("NAV_MOBILE", NAV_MOBILE))
+            .replace("{NAV}", shell_markup()[0])
+            .replace("{FOOTER}", shell_markup()[1])
+            .replace("{WRAPPER}", WRAPPER)
             .replace("{EYEBROW}", EYEBROW)
             .replace("{HEADLINE}", HEADLINE)
             .replace("{EXPLANATION}", EXPLANATION)
