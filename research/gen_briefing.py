@@ -913,8 +913,15 @@ def render_page(ed: dict, canonical: str, prev_ed, next_ed, latest: bool) -> str
     if not latest:
         title = (f'Digital Product Passport Weekly Briefing, '
                  f'{ed["publicationDateDisplay"]} | yellow3')
+    # The permanent route and the dated edition are the same content today, so a
+    # shared description makes them read as duplicates to a crawler - seo_dd
+    # flags exactly that. The archive edition names its own date instead.
     desc = ('Watch the weekly Digital Product Passport briefing from yellow3 Research '
             'Intelligence, covering regulatory, standards and implementation developments.')
+    if not latest:
+        desc = (f'The Digital Product Passport briefing for {ed["publicationDateDisplay"]} '
+                'from yellow3 Research Intelligence: what changed this week in '
+                'regulatory, deadline, implementation and standards developments.')
 
     video_ld = {
         '@context': 'https://schema.org',
