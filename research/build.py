@@ -216,9 +216,23 @@ def pretty_name(slug):
     if slug == "other":
         return "Other models (aggregated)"
     dev, parts, free = _model_parts(slug)
+    head = DEV_DISPLAY.get(dev, dev.capitalize() if dev else "")
+
+    # DO NOT SAY THE DEVELOPER TWICE. _model_parts drops a leading token only
+    # when it EXACTLY equals the developer slug, which catches
+    # deepseek/deepseek-v4-flash and misses mistralai/mistral-nemo - "mistral"
+    # is not "mistralai" - so that one renders as "Mistral Mistral Nemo".
+    # Nobody has seen it because Mistral has not charted in the published top
+    # 30; naming each region's leading model put it on the page.
+    #
+    # Fixed HERE and not in _model_parts, which model_slug also uses: that slug
+    # is deliberately frozen so a model's URL survives a display-name change,
+    # and stripping a token there would move live URLs.
+    if parts and head and parts[0].lower() == head.lower():
+        parts = parts[1:]
+
     label = " ".join(p.upper() if p in ("gpt", "glm", "vl", "oss", "moe", "ai")
                       else p.capitalize() for p in parts)
-    head = DEV_DISPLAY.get(dev, dev.capitalize() if dev else "")
     name = (head + " " + label).strip()
     return name + (" (free)" if free else "")
 
@@ -761,6 +775,29 @@ def main():
         region_counts[row["region"]] = region_counts.get(row["region"], 0) + 1
     for s in share:
         s["models"] = region_counts.get(s["region"], 0)
+
+    # THE LEADING MODEL BEHIND EACH REGION'S SHARE, ranked across everything
+    # measured rather than across the published top 30.
+    #
+    # Without it a region can read as though it has nothing. Europe carries
+    # 0.24% and no model on the board, so "0 of the top 30" is true and lands
+    # as "Europe has no models" - when what is actually true is that Europe has
+    # one, Mistral Nemo, and it sits at #47 of the 61 models measured. The
+    # first reading is the one a reader takes away, and it is wrong in the
+    # direction that matters most for this instrument.
+    #
+    # Named from the data, so it stays right when the model or the region
+    # changes, and absent when a region genuinely has nothing routed.
+    for s in share:
+        lead = next((slug for slug, _ in citems
+                     if classify(slug, dev_map, overrides, unmapped) == s["region"]), None)
+        if lead is None:
+            s.pop("lead", None)
+            continue
+        s["lead"] = {"name": pretty_name(lead),
+                     "rank": crk[lead],
+                     "of": len(citems),
+                     "pct": round(100 * cmod[lead] / ctot, 3) if ctot else 0.0}
 
     # per-model histories + registries (data foundation for the model pages)
     models = build_model_series(history, AGG_CTX)

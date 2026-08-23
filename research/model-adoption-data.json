@@ -42,28 +42,52 @@
       "pct": 53.72,
       "delta_pp": -5.25,
       "delta_pp_4w": -8.06,
-      "models": 12
+      "models": 12,
+      "lead": {
+        "name": "DeepSeek V4 Flash",
+        "rank": 1,
+        "of": 61,
+        "pct": 13.139
+      }
     },
     {
       "region": "Europe",
       "pct": 0.24,
       "delta_pp": 0.11,
       "delta_pp_4w": -0.0,
-      "models": 0
+      "models": 0,
+      "lead": {
+        "name": "Mistral Nemo",
+        "rank": 47,
+        "of": 61,
+        "pct": 0.243
+      }
     },
     {
       "region": "US",
       "pct": 32.53,
       "delta_pp": -1.61,
       "delta_pp_4w": 1.95,
-      "models": 17
+      "models": 17,
+      "lead": {
+        "name": "OpenAI GPT 5.6 Luna",
+        "rank": 7,
+        "of": 61,
+        "pct": 5.837
+      }
     },
     {
       "region": "Other",
       "pct": 13.51,
       "delta_pp": 6.75,
       "delta_pp_4w": 6.12,
-      "models": 1
+      "models": 1,
+      "lead": {
+        "name": "Stealth Ox Alpha",
+        "rank": 4,
+        "of": 61,
+        "pct": 7.373
+      }
     }
   ],
   "leaderboard": [

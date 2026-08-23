@@ -159,8 +159,22 @@ def model_adoption_blocks() -> dict:
     for s in data.get('share') or []:
         delta = s.get('delta_pp')
         move = '' if delta in (None, 0) else f' ({delta:+.2f}pp week on week)'
+        n = s.get('models') or 0
+        # "0 of the top 30 models" is true and reads as "this region has no
+        # models". Europe has one - Mistral Nemo - and it sits at #47 of the 61
+        # measured, which is a different statement and the accurate one. Where a
+        # region does hold the board, naming what leads it says more than the
+        # count does.
+        lead = s.get('lead') or {}
+        if lead.get('name') and lead.get('rank'):
+            led = (f' Led by {esc(lead["name"])}, ranked {esc(lead["rank"])} of '
+                   f'{esc(lead.get("of"))} models measured.')
+        else:
+            led = ''
+        board = (f'{esc(n)} of the top 30 models' if n
+                 else 'no model in the published top 30')
         rows.append(f'<li>{esc(s.get("region"))}: {esc(s.get("pct"))}% of routed '
-                    f'tokens{move}, {esc(s.get("models"))} of the top 30 models.</li>')
+                    f'tokens{move}, {board}.{led}</li>')
     # ALWAYS EMIT THE KEY, even with nothing to put in it. Returning fewer
     # keys leaves the PREVIOUS sweep's block sitting in the page, so a
     # collapsed data pull would keep serving last week's numbers under a "Live"
