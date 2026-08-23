@@ -269,6 +269,15 @@ def blockers(ed: dict) -> list[str]:
         out.append(f'{slug}: no media source')
     if unresolved(video.get('poster')):
         out.append(f'{slug}: no poster frame')
+    # The presenter name is rendered into the stage topline, and used to be
+    # checked nowhere. An edition whose video block was rebuilt by hand without
+    # it passed --check as PUBLISHABLE and then died with a KeyError halfway
+    # through rendering. A gate that reports an edition ready and then cannot
+    # render it is worse than no gate: it moves the failure from the checklist
+    # to the morning of publication. Found on a dry run of edition 002, before
+    # it could happen for real.
+    if unresolved(video.get('presenter')):
+        out.append(f'{slug}: no presenter name on the video block')
 
     duration = video.get('durationSeconds')
     if not isinstance(duration, (int, float)) or duration <= 0:

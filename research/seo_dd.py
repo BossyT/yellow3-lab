@@ -103,10 +103,30 @@ def load():
         title = re.search(r"<title[^>]*>(.*?)</title>", text, re.S)
         desc = re.search(r'<meta\s+name="description"\s+content="([^"]*)"', text)
         canon = re.search(r'<link\s+rel="canonical"\s+href="([^"]*)"', text)
+        # THE PAGE'S OWN CANONICAL IS ITS URL; the filename is the fallback.
+        # generate-sitemap.js submits the canonical, so deriving a different URL
+        # here makes this file disagree with the sitemap it audits - and it
+        # reported three healthy pages as "missing from the sitemap" the moment
+        # the two derivations diverged. The divergence is real and correct:
+        # weekly-briefing/index.html canonicalises to /weekly-briefing while its
+        # filename implies /weekly-briefing/, and insights/index.html
+        # canonicalises to /insights/ and matches. Reading the canonical is what
+        # makes both of those true at once.
+        canon_path = url_for(rel)
+        if canon:
+            href = canon.group(1).strip()
+            for prefix in (HOST, "https://yellow3.io"):
+                if href.startswith(prefix):
+                    href = href[len(prefix):]
+                    break
+            if href.startswith("/"):
+                canon_path = href
+
         docs[rel] = {
             "path": path,
             "text": text,
-            "url": url_for(rel),
+            "url": canon_path,
+            "derived_url": url_for(rel),
             "title": (title.group(1).strip() if title else None),
             "desc": (desc.group(1).strip() if desc else None),
             "canonical": (canon.group(1) if canon else None),
@@ -182,10 +202,17 @@ def main():
             continue
         if d["canonicals"] > 1:
             findings["more than one canonical tag"].append(d["url"])
-        want = HOST + d["url"]
+        # Compare against the URL the FILE is served at, not against d["url"] -
+        # d["url"] is now read from this very canonical, so comparing the two
+        # would be a check that cannot fail. The trailing slash is still
+        # normalised away on both sides, because cleanUrls serves a directory
+        # index at "/dir" and "/dir/" alike and a page may legitimately name
+        # either as its canonical. What this still catches is a canonical
+        # pointing at a DIFFERENT page, which is the fault worth having.
+        want = HOST + d["derived_url"]
         if d["canonical"].rstrip("/") != want.rstrip("/"):
             findings["canonical does not point at the page's own URL"].append(
-                "%s -> %s" % (d["url"], d["canonical"]))
+                "%s -> %s" % (d["derived_url"], d["canonical"]))
 
     # ------------------------------------------------------------- metadata
     titles, descs = defaultdict(list), defaultdict(list)

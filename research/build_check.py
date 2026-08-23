@@ -446,8 +446,17 @@ def main() -> int:
             elif ref.startswith('cards/') and not (cards / ref[len('cards/'):]).exists():
                 missing.append(f'{f.relative_to(ROOT)} -> {ref}')
     if missing:
+        # THE ADVICE USED TO BE "run research/gen_og.py" AND THAT DOES NOT FIX
+        # IT. gen_og.py renders into a build directory and stops - wiring is a
+        # separate step by design. So the operator runs exactly what they were
+        # told, sees "rendered 299/299" with no error, and the gate refuses
+        # again. Found on a dry run of briefing edition 002; the full sequence
+        # is research/briefing-publish-runbook.md.
         FAIL.append(f'{len(missing)} page(s) point at a social card that does '
-                    f'not exist, e.g. {missing[0]} - run research/gen_og.py')
+                    f'not exist, e.g. {missing[0]}\n'
+                    f'      run research/gen_og.py, THEN copy the card from '
+                    f'$OG_BUILD_DIR/out/ into og/cards/ - gen_og.py renders to '
+                    f'the build dir and does not write og/cards itself')
     if june:
         FAIL.append(f'{len(june)} page(s) are back on a June -v2 card, '
                     f'e.g. {june[0]} - run research/wire_og.py')
