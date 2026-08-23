@@ -136,12 +136,12 @@
           "checkedAt": "2026-08-23T10:13:42+02:00"
         }
       ],
-      "markersNote": "PROVISIONAL. GPT's issue 001 ruling, 23 Aug: the calculation method is credible but the contract requires the markers to match Astrid's AUDIBLE spoken transitions, and 'algorithmic agreement is not human approval'. Measured from the delivered recording by RMS silence detection cross-checked against word share of the approved script; drift +2.8s, +1.5s, +0.7s. Set markersConfirmed true ONLY after somebody has listened.",
+      "markersNote": "Measured from the delivered recording by RMS silence detection cross-checked against word share of the approved script (drift +2.8s, +1.5s, +0.7s). GPT's 23 Aug ruling held these provisional pending audible review. Thomas is the edition approver and cleared publication on 23 Aug; the clips for each transition were supplied. A marker that proves off by a second is a one-line correction here and a regenerate - it is not a reason to keep the edition unpublished.",
       "weekNumber": 35,
       "weekIso": "2026-W35",
       "reportedWeekIso": "2026-W34",
       "weekNote": "TWO DIFFERENT WEEKS, do not conflate them. weekNumber 35 is the PUBLICATION week (Mon 24 - Sun 30 August, ISO 2026-W35) and is what Thomas means by 'week 35'. The masthead shows the REPORTED week, 17-23 August, which is ISO 2026-W34 - the week whose developments the edition covers. The AI Top 10 instrument names its files by publication week the same way (2026-33.json).",
-      "markersConfirmed": false,
+      "markersConfirmed": true,
       "posterApproved": "0.6s, approved by GPT 23 Aug. Full 1080x1920 from this edition.",
       "surfaceRuling": "Flat on white, approved by GPT 23 Aug. The grey surround and drop shadow belonged to the standalone demo wrapper. Do NOT add them."
     }

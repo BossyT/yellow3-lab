@@ -930,6 +930,12 @@ def render_page(ed: dict, canonical: str, prev_ed, next_ed, latest: bool) -> str
                       'url': 'https://www.yellow3.io'},
     }
 
+    # The card name is the page's own path, which is what research/gen_og.py
+    # derives from every page in the site. index and each dated edition get
+    # their own card, so a shared edition link shows that edition.
+    card = ('research-digital-product-passport-weekly-briefing-'
+            + ('index' if latest else ed['slug']))
+
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -943,12 +949,12 @@ def render_page(ed: dict, canonical: str, prev_ed, next_ed, latest: bool) -> str
   <meta property="og:title" content="{e(title)}" />
   <meta property="og:description" content="{e(desc)}" />
   <meta property="og:url" content="{e(canonical)}" />
-  <meta property="og:image" content="{BASE}/og/cards/research-digital-product-passport-weekly-briefing.png" />
+  <meta property="og:image" content="{BASE}/og/cards/{card}.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@yellow3HQ" />
-  <meta name="twitter:image" content="{BASE}/og/cards/research-digital-product-passport-weekly-briefing.png" />
+  <meta name="twitter:image" content="{BASE}/og/cards/{card}.png" />
   <script type="application/ld+json">{json.dumps(video_ld, ensure_ascii=False)}</script>
   <style>
 {PAGE_CSS}
