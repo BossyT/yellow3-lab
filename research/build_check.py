@@ -160,13 +160,22 @@ def main() -> int:
                     'the feed is the whole point of the v1.0 handover')
     else:
         text = sub.read_text(encoding='utf-8')
-        # Copy that exists ONLY in the design prototype. The first is the
-        # prototype's rewritten issue 31 title - the live record says "The DPP
-        # Deadline You Already Missed" - so finding it here means the sample
-        # array came back. The second is the tertiary link 02-SUBSCRIBE-PAGE-SPEC
-        # says must not ship.
-        for phrase in ('The Digital Product Passport Deadline You Already Missed',
-                       'VIEW THE APPROVED BROWSER PRESENTATION'):
+        # Copy that exists ONLY in the design prototype.
+        #
+        # THIS LIST USED TO HOLD THE EXPANDED ISSUE 31 TITLE, and that stopped
+        # being a tell on 2026-08-23: GPT ruled in handover v1.1 that "The
+        # Digital Product Passport Deadline You Already Missed" IS the published
+        # title, so the string that once proved the prototype's sample array had
+        # come back now appears legitimately in the live record. Left in, it
+        # refused the build for doing exactly what the ruling asked.
+        #
+        # The load-bearing guard against sample entries was never this list
+        # anyway - it is gen_subscribe.py --check below, which proves every row
+        # on the page is the row feed.xml holds. A hardcoded sample cannot
+        # survive that. What stays here is the one string with no legitimate
+        # production reading: the prototype's tertiary link, which
+        # 02-SUBSCRIBE-PAGE-SPEC says must not ship.
+        for phrase in ('VIEW THE APPROVED BROWSER PRESENTATION',):
             if phrase in text:
                 FAIL.append(f'insights/subscribe.html still carries prototype '
                             f'content: "{phrase[:52]}"')
@@ -194,6 +203,79 @@ def main() -> int:
                         + (r.stdout or r.stderr).strip())
         else:
             print('  ok  subscribe: stylesheet matches the approved package')
+
+    # 2b3. The two acceptance checks that replaced the feed view's old
+    #      "no menu, no footer" boundary.
+    #
+    # GPT ratified the shell on /feed.xml as handover v1.1 on 2026-08-23,
+    # superseding 03-RSS-BROWSER-SPEC's visual boundary for that page only, and
+    # retired the two checks that used to pass by ABSENCE. Their replacements
+    # are:
+    #
+    #   the presentation renders exactly one EXISTING yellow3 top menu and one
+    #   EXISTING yellow3 footer
+    #
+    #   no substitute shell, duplicated shell or altered shell styling
+    #
+    # Both are asserted here rather than left to a reading, because "existing"
+    # is the whole condition. A hand-written menu that merely looks right would
+    # satisfy a screenshot and fail the ruling. So the markup on the feed view
+    # is compared against the markup insights/index.html actually carries -
+    # whitespace normalised, because the XSLT is indented differently, and
+    # entity normalised, because &copy; has to be numeric to survive XML.
+    shell_src = ROOT / 'insights' / 'index.html'
+    feed_xsl = ROOT / 'feed.xsl'
+    if not feed_xsl.exists():
+        FAIL.append('feed.xsl is missing - /feed.xml would serve raw XML to '
+                    'every human who opens it')
+    else:
+        xsl_text = feed_xsl.read_text(encoding='utf-8')
+        navs = xsl_text.count('<nav class="site-nav">')
+        foots = xsl_text.count('<footer class="site-footer">')
+        if navs != 1 or foots != 1:
+            FAIL.append(f'the RSS browser presentation carries {navs} top '
+                        f'menu(s) and {foots} footer(s); v1.1 requires exactly '
+                        f'one of each')
+        else:
+            def _norm(s):
+                return re.sub(r'\s+', ' ', s.replace('&#169;', '&copy;')).strip()
+
+            def _shell(text):
+                n = re.search(r'(<nav class="site-nav">.*?</nav>)', text, re.S)
+                f = re.search(r'(<footer class="site-footer">.*?</footer>)',
+                              text, re.S)
+                return (_norm(n.group(1)) if n else None,
+                        _norm(f.group(1)) if f else None)
+
+            want = _shell(shell_src.read_text(encoding='utf-8'))
+            got = _shell(xsl_text)
+            if want[0] is None or want[1] is None:
+                FAIL.append('insights/index.html no longer carries the shell '
+                            'this check reads as the reference')
+            elif got[0] != want[0]:
+                FAIL.append('the top menu on /feed.xml is not the site\'s own - '
+                            'it has been substituted or altered rather than '
+                            'inherited (v1.1 condition 1)')
+            elif got[1] != want[1]:
+                FAIL.append('the footer on /feed.xml is not the site\'s own - '
+                            'it has been substituted or altered rather than '
+                            'inherited (v1.1 condition 1)')
+            else:
+                # Condition 4: no package token may repaint the menu or footer.
+                # The package's own :root must never reach document level here;
+                # every one of its rules is scoped beneath .fv1.
+                stray = re.search(r'(?<![\w.-])(:root|html|body)\s*\{[^}]*--yellow\s*:\s*#ffe500',
+                                  xsl_text, re.I)
+                if stray:
+                    FAIL.append('the package palette has escaped .fv1 on '
+                                '/feed.xml - it would repaint the existing menu '
+                                'and footer (v1.1 condition 4)')
+                elif '--yellow: #ffe500' not in xsl_text:
+                    FAIL.append('signal yellow #FFE500 is missing from the feed '
+                                'presentation (v1.1 condition 3)')
+                else:
+                    print('  ok  feed view: one inherited menu, one inherited '
+                          'footer, palette scoped')
 
     # 2c. SEO / entity due diligence, as a standing gate.
     #

@@ -78,8 +78,8 @@ PAGES = {
              "site content, and that is what the clearance buys. The approved "
              "38px gap is preserved exactly - it is added to the nav height "
              "rather than replaced - so the composition below the menu is the "
-             "one that was approved. Returned to Thomas and GPT for "
-             "ratification with the v1.0 delivery, 23 August 2026."),
+             "one that was approved. RATIFIED by GPT, handover v1.1, "
+             "23 August 2026."),
             ("", ".latest-list h3 a",
              "text-decoration:none",
              "04-INTERACTIONS-AND-STATES.md: 'The latest-entry titles or rows "
@@ -90,7 +90,8 @@ PAGES = {
              "Production rows are real links to the canonical URL in the "
              "publication record, and this keeps them looking exactly like the "
              "approved titles. 02-SUBSCRIBE-PAGE-SPEC.md keeps them out of "
-             "cards; making them reachable does not put them in one."),
+             "cards; making them reachable does not put them in one. "
+             "RATIFIED by GPT, handover v1.1, 23 August 2026."),
             ("", ".visually-hidden",
              "position:absolute;width:1px;height:1px;margin:-1px;padding:0;"
              "overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0",
@@ -101,14 +102,15 @@ PAGES = {
              "focused on the button at that moment. This is the live region "
              "that carries the same two words the label does. It is an "
              "accessibility affordance the package requires in prose and has no "
-             "rule for, not a visual addition: it renders nothing."),
+             "rule for, not a visual addition: it renders nothing. RATIFIED "
+             "by GPT, handover v1.1, 23 August 2026."),
             ("@media (max-width:560px)", ".subscribe-hero",
              "padding-top:calc(26px + 67px)",
              "The same clearance at mobile, where the package opens at 26px "
              "and the shell's nav is 67px tall (padding drops to 14px each "
              "side below 880px). Same reasoning, same arithmetic, so the "
              "approved 26px gap survives under the menu rather than behind "
-             "it."),
+             "it. RATIFIED by GPT, handover v1.1, 23 August 2026."),
         ],
     },
     "research": {

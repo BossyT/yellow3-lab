@@ -9,10 +9,10 @@
   This file only ever DECORATES /feed.xml. The feed is the canonical, valid RSS
   2.0 document at that address; feed readers never see any of this.
 
-  THE TOP MENU AND FOOTER ON THIS PAGE ARE AN OVERRIDE AWAITING RATIFICATION.
-  03-RSS-BROWSER-SPEC.md says this presentation has no menu, no footer and no
-  logo. Thomas asked for both on 23 August 2026 after being shown that
-  boundary. GPT owns the design and has not ruled on it yet.
+  THE TOP MENU AND FOOTER ON THIS PAGE ARE A RATIFIED v1.1 OVERRIDE. v1.0 gave
+  this presentation no menu, no footer and no logo; GPT superseded that for the
+  feed view on 23 August 2026, keeping the shell's own tokens and the feed
+  presentation scoped beneath .fv1. See research/approved/insights-subscribe-v1.1.md.
 -->
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -324,21 +324,36 @@
 .fv1 .feed-entries h2 a{text-decoration:none}
 .fv1 .feed-entries .entry-arrow{text-decoration:none}
 
-/* THE SHELL OVERRIDE, Thomas 23 August 2026, NOT YET RATIFIED BY GPT.
-   03-RSS-BROWSER-SPEC.md "Visual boundary" says this presentation has no
-   yellow3 top menu, no footer and no logo, and two checks in
-   08-ACCEPTANCE-CHECKS.md pass by their absence. Thomas asked for the menu and
-   the footer here, naming this URL, after the boundary and both checks were
-   put to him. GPT owns the design, so this is recorded as an override rather
-   than folded in as though it were the approved state.
-   The nav is position:fixed, so the feed view is moved out from under it. The
-   package's own 52px opening is preserved: the nav height is added to it,
-   never substituted for it, which is the same arithmetic /insights/subscribe
-   uses. Clearing on .feed-view rather than .feed-view-intro is deliberate -
-   the 7px signal rule is absolutely positioned at the top of the intro, so
-   padding the intro would leave the rule behind the menu. */
-.fv1.feed-view{padding-top:74.6px}
-@media (max-width:880px){.fv1.feed-view{padding-top:67px}}
+/* THE SHELL ON THIS PAGE, RATIFIED. GPT, handover v1.1, 23 August 2026:
+   Thomas's instruction is approved as a v1.1 override that supersedes
+   03-RSS-BROWSER-SPEC.md's "Visual boundary" FOR THE FEED VIEW ONLY. The
+   existing yellow3 menu and footer stay, the shell keeps its own tokens, the
+   package stays scoped beneath .fv1, signal yellow stays #FFE500, and no
+   package token may repaint the menu or the footer. v1.0 is not rewritten -
+   the decision record is research/approved/insights-subscribe-v1.1.md.
+
+   THE OPENING, ruled in the same pass: the signal rule must not touch the menu
+   border. The feed view now opens with the subscription page's rhythm - 38px
+   of clear space under the menu at desktop and tablet, 26px under the mobile
+   menu - and the 7px rule follows that space.
+
+   The nav is position:fixed and is 74.6px tall above 880px, 67px below it,
+   where its padding drops and the CTA is display:none. The clear space is
+   ADDED to the nav height, never substituted for it. Three bands, because the
+   nav changes height at 880px and the clear space changes at 560px:
+
+       above 880px    74.6 + 38     desktop
+       561 - 880px    67   + 38     tablet, shorter nav, same clear space
+       to 560px       67   + 26     mobile
+
+   Cleared on .feed-view and not .feed-view-intro, deliberately: the rule is
+   absolutely positioned at the intro's top, so padding the intro would leave
+   the rule behind the menu instead of below it. All internal feed-view
+   geometry beneath the rule is untouched - the intro keeps its 52px opening,
+   so rule to eyebrow stays at 45px. */
+.fv1.feed-view{padding-top:calc(74.6px + 38px)}
+@media (max-width:880px){.fv1.feed-view{padding-top:calc(67px + 38px)}}
+@media (max-width:560px){.fv1.feed-view{padding-top:calc(67px + 26px)}}
   </style>
 </head>
 <body>
