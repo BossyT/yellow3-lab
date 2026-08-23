@@ -1,7 +1,7 @@
 {
   "instrument": "digital-product-passport",
   "format": "monday-briefing",
-  "note": "Authored source of truth for the Monday Briefing editions. The template is FROZEN (handover v1.1, DESIGN_LOCK 21 Aug 2026, runtime amendment 23 Aug 2026) and only the fields in this file change from one Monday to the next. research/gen_briefing.py reads this file and REFUSES to publish an edition whose issueNumber, researchNote, media duration, four timing markers, transcript or source records are unresolved. Sample timings and the 53-second reference recording are never a fallback.",
+  "note": "Authored source of truth for the Monday Briefing editions. The template is FROZEN (handover v1.1, DESIGN_LOCK 21 Aug 2026, runtime amendment 23 Aug 2026) and only the fields in this file change from one Monday to the next. research/gen_briefing.py reads this file and REFUSES to publish an edition whose issueNumber, researchNote, media duration, four timing markers, transcript or source records are unresolved. Sample timings and the 53-second reference recording are never a fallback. NUMBERING: the Monday Briefing is its OWN series starting at 001. It does not continue the /insights article numbering, which stood at 33 published when this format launched - the 034 in the approved prototype was sample copy borrowed from that series, not a shared counter. The research note number tracks the issue number.",
   "template": {
     "version": "1.1",
     "locked": "2026-08-21",
@@ -13,12 +13,12 @@
     {
       "slug": "2026-08-24",
       "status": "draft",
-      "issueNumber": null,
+      "issueNumber": "001",
       "weekLabel": "17-23 August 2026",
       "publicationDate": "2026-08-24",
       "publicationTime": "07:30 CET",
       "checkedAt": "2026-08-24T06:30:00+02:00",
-      "researchNote": null,
+      "researchNote": "001 / 2026",
       "video": {
         "src": "/media/briefing/astrid-2026-08-24.mp4",
         "poster": "/media/briefing/astrid-2026-08-24.jpg",
@@ -93,7 +93,11 @@
         "That is this week’s Digital Product Passport briefing from yellow3 Research Intelligence."
       ],
       "sources": [],
-      "markersNote": "Markers measured 23 Aug from the delivered recording (173.68s, sha256 98bf9849...). Method: RMS silence detection at 20ms, then for each section the pause whose speech RESUMES nearest that section's position by word share of the approved script. Drift from the word-share estimate: +2.8s, +1.5s, +0.7s. PENDING CONFIRMATION AGAINST ASTRID'S DELIVERY - nobody has listened to the audio yet."
+      "markersNote": "Markers measured 23 Aug from the delivered recording (173.68s, sha256 98bf9849...). Method: RMS silence detection at 20ms, then for each section the pause whose speech RESUMES nearest that section's position by word share of the approved script. Drift from the word-share estimate: +2.8s, +1.5s, +0.7s. PENDING CONFIRMATION AGAINST ASTRID'S DELIVERY - nobody has listened to the audio yet.",
+      "weekNumber": 35,
+      "weekIso": "2026-W35",
+      "reportedWeekIso": "2026-W34",
+      "weekNote": "TWO DIFFERENT WEEKS, do not conflate them. weekNumber 35 is the PUBLICATION week (Mon 24 - Sun 30 August, ISO 2026-W35) and is what Thomas means by 'week 35'. The masthead shows the REPORTED week, 17-23 August, which is ISO 2026-W34 - the week whose developments the edition covers. The AI Top 10 instrument names its files by publication week the same way (2026-33.json)."
     }
   ]
 }
