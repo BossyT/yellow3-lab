@@ -92,12 +92,58 @@
         "It is obtaining structured, verifiable and updateable evidence across the supply chain.",
         "That is this week’s Digital Product Passport briefing from yellow3 Research Intelligence."
       ],
-      "sources": [],
-      "markersNote": "Markers measured 23 Aug from the delivered recording (173.68s, sha256 98bf9849...). Method: RMS silence detection at 20ms, then for each section the pause whose speech RESUMES nearest that section's position by word share of the approved script. Drift from the word-share estimate: +2.8s, +1.5s, +0.7s. PENDING CONFIRMATION AGAINST ASTRID'S DELIVERY - nobody has listened to the audio yet.",
+      "sources": [
+        {
+          "ref": "01",
+          "publisher": "European Commission",
+          "title": "Guidance Document: Digital Batteries Passport - data points by category",
+          "url": "https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en?filename=Digital+Batteries+Passport+-+data+point+by+category.pdf",
+          "checkedAt": "2026-08-23T10:13:42+02:00"
+        },
+        {
+          "ref": "02A",
+          "publisher": "European Union",
+          "title": "Regulation (EU) 2023/1542 of the European Parliament and of the Council of 12 July 2023 concerning batteries and waste batteries, amending Directive 2008/98/EC and Regulation (EU) 2019/1020 and repealing Directive 2006/66/EC",
+          "url": "https://eur-lex.europa.eu/eli/reg/2023/1542/oj/eng",
+          "checkedAt": "2026-08-23T10:13:42+02:00"
+        },
+        {
+          "ref": "02B",
+          "publisher": "European Commission",
+          "title": "Batteries - definition of labelling requirements",
+          "url": "https://eur-lex.europa.eu/legal-content/EN/PIN/?uri=intcom%3AAres%282025%2911169592",
+          "checkedAt": "2026-08-23T10:13:42+02:00"
+        },
+        {
+          "ref": "03",
+          "publisher": "Global Battery Alliance",
+          "title": "2026 Battery Passport Operational Trials",
+          "url": "https://www.globalbattery.org/2026-battery-passport-pilots/",
+          "checkedAt": "2026-08-23T10:13:42+02:00"
+        },
+        {
+          "ref": "04A",
+          "publisher": "UNECE-UN/CEFACT",
+          "title": "UN/CEFACT Launches Digital Product Passport Public Review",
+          "url": "https://www.linkedin.com/posts/uncefact_uncefact-unece-digitalproductpassport-activity-7493212202959564801-ES5q",
+          "checkedAt": "2026-08-23T10:13:42+02:00"
+        },
+        {
+          "ref": "04B",
+          "publisher": "International Organization for Standardization",
+          "title": "ISO/AWI 25534-1 Digital product passport - Part 1: Overview and fundamental principles",
+          "url": "https://www.iso.org/standard/90652.html",
+          "checkedAt": "2026-08-23T10:13:42+02:00"
+        }
+      ],
+      "markersNote": "PROVISIONAL. GPT's issue 001 ruling, 23 Aug: the calculation method is credible but the contract requires the markers to match Astrid's AUDIBLE spoken transitions, and 'algorithmic agreement is not human approval'. Measured from the delivered recording by RMS silence detection cross-checked against word share of the approved script; drift +2.8s, +1.5s, +0.7s. Set markersConfirmed true ONLY after somebody has listened.",
       "weekNumber": 35,
       "weekIso": "2026-W35",
       "reportedWeekIso": "2026-W34",
-      "weekNote": "TWO DIFFERENT WEEKS, do not conflate them. weekNumber 35 is the PUBLICATION week (Mon 24 - Sun 30 August, ISO 2026-W35) and is what Thomas means by 'week 35'. The masthead shows the REPORTED week, 17-23 August, which is ISO 2026-W34 - the week whose developments the edition covers. The AI Top 10 instrument names its files by publication week the same way (2026-33.json)."
+      "weekNote": "TWO DIFFERENT WEEKS, do not conflate them. weekNumber 35 is the PUBLICATION week (Mon 24 - Sun 30 August, ISO 2026-W35) and is what Thomas means by 'week 35'. The masthead shows the REPORTED week, 17-23 August, which is ISO 2026-W34 - the week whose developments the edition covers. The AI Top 10 instrument names its files by publication week the same way (2026-33.json).",
+      "markersConfirmed": false,
+      "posterApproved": "0.6s, approved by GPT 23 Aug. Full 1080x1920 from this edition.",
+      "surfaceRuling": "Flat on white, approved by GPT 23 Aug. The grey surround and drop shadow belonged to the standalone demo wrapper. Do NOT add them."
     }
   ]
 }

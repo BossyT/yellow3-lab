@@ -212,6 +212,16 @@ def blockers(ed: dict) -> list[str]:
         if marks and marks[-1] >= duration:
             out.append(f'{slug}: last marker {marks[-1]}s is beyond the media duration {duration}s')
 
+    # A HUMAN MUST HAVE HEARD THE MARKERS. GPT's issue 001 ruling, 23 Aug 2026:
+    # "The calculation method is credible, but the contract requires the markers
+    # to match Astrid's audible spoken transitions... Do not convert algorithmic
+    # agreement into human approval." Four numeric markers that agree with a
+    # word-share estimate are a measurement, not an approval, and this gate
+    # exists so that distinction survives the week somebody is in a hurry.
+    if not ed.get('markersConfirmed'):
+        out.append(f'{slug}: timing markers are not confirmed - somebody has to LISTEN to '
+                   'the recording and set markersConfirmed. Measured is not approved.')
+
     transcript = ed.get('transcript') or []
     if not transcript or not any(str(p).strip() for p in transcript):
         out.append(f'{slug}: transcript is empty')
