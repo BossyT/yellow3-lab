@@ -9,6 +9,11 @@
       "permanent": false
     },
     {
+      "source": "/research/digital-product-passport/weekly-briefing/",
+      "destination": "/research/digital-product-passport",
+      "permanent": false
+    },
+    {
       "source": "/research/digital-product-passport/weekly-briefing/:date",
       "destination": "/research/digital-product-passport",
       "permanent": false
