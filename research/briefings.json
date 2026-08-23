@@ -22,8 +22,11 @@
       "video": {
         "src": null,
         "poster": null,
-        "durationSeconds": null,
-        "presenter": "Astrid"
+        "durationSeconds": 173.68,
+        "presenter": "Astrid",
+        "sourceFile": "MONDAY BRIEFING .mp4",
+        "sourceSha256": "98bf984927b5c1b5232fa3dc9dfb67816d552fb581b77e6118c992945da8a712",
+        "posterFrameSeconds": 0.6
       },
       "framing": {
         "lineOne": "Four developments.",
@@ -37,7 +40,7 @@
           "consequence": "The 71-point overview distinguishes launch requirements from conditional and later disclosures.",
           "markerLabel": "EU guidance",
           "markerValue": "21 AUG",
-          "startSeconds": null
+          "startSeconds": 0
         },
         {
           "number": "02",
@@ -46,7 +49,7 @@
           "consequence": "The implementing act is still pending, while 18 February 2027 remains fixed for the QR code and battery passport.",
           "markerLabel": "Labelling act",
           "markerValue": "PENDING",
-          "startSeconds": null
+          "startSeconds": 63.7
         },
         {
           "number": "03",
@@ -55,7 +58,7 @@
           "consequence": "Carbon data, governance and third-party verification remain difficult across upstream tiers.",
           "markerLabel": "GBA trials",
           "markerValue": "17 PARTNERSHIPS",
-          "startSeconds": null
+          "startSeconds": 101.0
         },
         {
           "number": "04",
@@ -64,7 +67,7 @@
           "consequence": "P1143 and ISO 25534-1 may influence international trust, governance and interoperability.",
           "markerLabel": "Public review",
           "markerValue": "12 OCT",
-          "startSeconds": null
+          "startSeconds": 128.2
         }
       ],
       "transcript": [
@@ -88,7 +91,8 @@
         "It is obtaining structured, verifiable and updateable evidence across the supply chain.",
         "That is this week’s Digital Product Passport briefing from yellow3 Research Intelligence."
       ],
-      "sources": []
+      "sources": [],
+      "markersNote": "Markers measured 23 Aug from the delivered recording (173.68s, sha256 98bf9849...). Method: RMS silence detection at 20ms, then for each section the pause whose speech RESUMES nearest that section's position by word share of the approved script. Drift from the word-share estimate: +2.8s, +1.5s, +0.7s. PENDING CONFIRMATION AGAINST ASTRID'S DELIVERY - nobody has listened to the audio yet."
     }
   ]
 }
