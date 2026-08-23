@@ -20,13 +20,14 @@
       "checkedAt": "2026-08-24T06:30:00+02:00",
       "researchNote": null,
       "video": {
-        "src": null,
-        "poster": null,
+        "src": "/media/briefing/astrid-2026-08-24.mp4",
+        "poster": "/media/briefing/astrid-2026-08-24.jpg",
         "durationSeconds": 173.68,
         "presenter": "Astrid",
         "sourceFile": "MONDAY BRIEFING .mp4",
         "sourceSha256": "98bf984927b5c1b5232fa3dc9dfb67816d552fb581b77e6118c992945da8a712",
-        "posterFrameSeconds": 0.6
+        "posterFrameSeconds": 0.6,
+        "deliverySize": "39.1 MB at 1890 kbit/s, 1080x1920, audio copied from the master"
       },
       "framing": {
         "lineOne": "Four developments.",
