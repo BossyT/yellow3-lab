@@ -30,7 +30,22 @@ WHAT WAS ADAPTED, AND WHY IT CHANGES NO PIXEL OF THE APPROVED RENDER:
                    would add over 1.5 GB a year to a public git repository, and
                    05-ROUTE-AND-INTEGRATION leaves delivery to production.
 
-THE ONE OPEN DESIGN QUESTION IS FLAGGED, NOT DECIDED. See DEVIATIONS below.
+THE BLACK STORY-NAVIGATION STRIP IS GONE, by design correction of 23 Aug 2026.
+
+The frame used to end with a four-cell black strip under the story panel -
+REGULATORY 01, DEADLINES 01, IMPLEMENTATION 01, STANDARDS 01. GPT removed it
+completely: no replacement component, border, spacer or navigation control, and
+the earlier suggestion to extend Astrid's stage to meet it is superseded. The
+presenter height is unchanged.
+
+It cost nothing structurally, which is worth recording so that nobody later
+re-derives it as something missing. The two columns were ALREADY level - stage
+510 + transport 50 on the left, intro 100 + story list 460 on the right - and
+the strip hung below the right column only, on a 400px left margin matching the
+presenter width. So removing it leaves the transport bar and story row 04
+sharing the baseline they already shared, and the evidence footer moves up to
+meet the frame with its existing spacing. Measured after: baseline delta 0 at
+1440 and 1024, and no gap where the strip was at any width.
 
 WHAT THIS REFUSES TO PUBLISH. 04-WEEKLY-CONTENT-CONTRACT makes these blocking,
 and 07-QA-ACCEPTANCE makes shipping any of them an immediate rejection:
@@ -365,7 +380,6 @@ BRIEFING_CSS = """
     .briefing .date-label,
     .briefing .story-meta,
     .briefing .story-marker > span,
-    .briefing .signal-cell span,
     .briefing .footer-meta span {
       font-size: 11px;
       font-weight: 700;
@@ -569,26 +583,6 @@ BRIEFING_CSS = """
     .briefing .story-marker > span { display: block; color: var(--b-grey); font-size: 8px; letter-spacing: 0.08em; }
     .briefing .story-marker strong { display: block; margin-top: 16px; font-size: 12px; }
 
-    .briefing .signal-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      margin-left: 400px;
-      background: var(--black);
-      color: #fff;
-    }
-    .briefing .signal-cell {
-      min-height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 0 20px;
-      border-left: 1px solid #4a4a4a;
-    }
-    .briefing .signal-cell:first-child { border-left: 0; }
-    .briefing .signal-cell span { color: #b7b7b7; font-size: 8px; }
-    .briefing .signal-cell strong { color: var(--yellow); font-size: 18px; }
-
     .briefing .evidence-footer {
       min-height: 94px;
       display: flex;
@@ -611,7 +605,6 @@ BRIEFING_CSS = """
       .briefing .briefing-grid { grid-template-columns: 330px minmax(0, 1fr); }
       .briefing .video-stage { height: 470px; }
       .briefing .story-list { height: 420px; }
-      .briefing .signal-strip { margin-left: 330px; }
       .briefing .story-row { grid-template-columns: minmax(0, 1fr) 86px; gap: 14px; padding-inline: 20px; }
       .briefing .story-detail { font-size: 12px; }
       .briefing .sound-button { display: none; }
@@ -629,9 +622,6 @@ BRIEFING_CSS = """
       .briefing .story-list { height: auto; display: block; }
       .briefing .story-row { min-height: 132px; grid-template-columns: minmax(0, 1fr) 72px; padding: 18px; }
       .briefing .story-headline { font-size: 17px; }
-      .briefing .signal-strip { grid-template-columns: repeat(2, 1fr); margin-left: 0; }
-      .briefing .signal-cell:nth-child(3) { border-left: 0; border-top: 1px solid #4a4a4a; }
-      .briefing .signal-cell:nth-child(4) { border-top: 1px solid #4a4a4a; }
       .briefing .evidence-footer { align-items: flex-start; flex-direction: column; padding: 22px 18px; }
       .briefing .footer-meta { text-align: left; }
     }
@@ -845,13 +835,6 @@ def render_briefing(ed: dict) -> str:
               </span>
             </button>""")
 
-    cells = []
-    for s in ed['stories']:
-        cells.append(f"""          <div class="signal-cell">
-            <span>{e(s['category'].upper())}</span>
-            <strong>01</strong>
-          </div>""")
-
     return f"""  <section class="briefing" aria-label="yellow3 Research Intelligence Monday briefing">
     <div class="yellow-signal" aria-hidden="true"></div>
 
@@ -909,10 +892,6 @@ def render_briefing(ed: dict) -> str:
 {chr(10).join(stories_html)}
         </div>
       </section>
-    </div>
-
-    <div class="signal-strip" aria-label="Briefing categories">
-{chr(10).join(cells)}
     </div>
 
     <footer class="evidence-footer">

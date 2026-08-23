@@ -150,7 +150,6 @@
     .briefing .date-label,
     .briefing .story-meta,
     .briefing .story-marker > span,
-    .briefing .signal-cell span,
     .briefing .footer-meta span {
       font-size: 11px;
       font-weight: 700;
@@ -354,26 +353,6 @@
     .briefing .story-marker > span { display: block; color: var(--b-grey); font-size: 8px; letter-spacing: 0.08em; }
     .briefing .story-marker strong { display: block; margin-top: 16px; font-size: 12px; }
 
-    .briefing .signal-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      margin-left: 400px;
-      background: var(--black);
-      color: #fff;
-    }
-    .briefing .signal-cell {
-      min-height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 0 20px;
-      border-left: 1px solid #4a4a4a;
-    }
-    .briefing .signal-cell:first-child { border-left: 0; }
-    .briefing .signal-cell span { color: #b7b7b7; font-size: 8px; }
-    .briefing .signal-cell strong { color: var(--yellow); font-size: 18px; }
-
     .briefing .evidence-footer {
       min-height: 94px;
       display: flex;
@@ -396,7 +375,6 @@
       .briefing .briefing-grid { grid-template-columns: 330px minmax(0, 1fr); }
       .briefing .video-stage { height: 470px; }
       .briefing .story-list { height: 420px; }
-      .briefing .signal-strip { margin-left: 330px; }
       .briefing .story-row { grid-template-columns: minmax(0, 1fr) 86px; gap: 14px; padding-inline: 20px; }
       .briefing .story-detail { font-size: 12px; }
       .briefing .sound-button { display: none; }
@@ -414,9 +392,6 @@
       .briefing .story-list { height: auto; display: block; }
       .briefing .story-row { min-height: 132px; grid-template-columns: minmax(0, 1fr) 72px; padding: 18px; }
       .briefing .story-headline { font-size: 17px; }
-      .briefing .signal-strip { grid-template-columns: repeat(2, 1fr); margin-left: 0; }
-      .briefing .signal-cell:nth-child(3) { border-left: 0; border-top: 1px solid #4a4a4a; }
-      .briefing .signal-cell:nth-child(4) { border-top: 1px solid #4a4a4a; }
       .briefing .evidence-footer { align-items: flex-start; flex-direction: column; padding: 22px 18px; }
       .briefing .footer-meta { text-align: left; }
     }
@@ -584,25 +559,6 @@
             </button>
         </div>
       </section>
-    </div>
-
-    <div class="signal-strip" aria-label="Briefing categories">
-          <div class="signal-cell">
-            <span>REGULATORY</span>
-            <strong>01</strong>
-          </div>
-          <div class="signal-cell">
-            <span>DEADLINES</span>
-            <strong>01</strong>
-          </div>
-          <div class="signal-cell">
-            <span>IMPLEMENTATION</span>
-            <strong>01</strong>
-          </div>
-          <div class="signal-cell">
-            <span>STANDARDS</span>
-            <strong>01</strong>
-          </div>
     </div>
 
     <footer class="evidence-footer">
