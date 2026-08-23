@@ -223,6 +223,65 @@ def pretty_name(slug):
     return name + (" (free)" if free else "")
 
 
+MONTHS_SHORT = ("Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+
+
+def release_label(permaslug):
+    """The dated build in a permaslug, as '31 Jul 2026', or None.
+
+    Only a full YYYYMMDD is used. A 6-digit or 2-digit fragment is too
+    ambiguous to print next to a number somebody may quote.
+    """
+    for part in reversed(permaslug.split("/")[-1].split("-")):
+        if part.isdigit() and len(part) == 8 and part.startswith("20"):
+            y, m, d = int(part[:4]), int(part[4:6]), int(part[6:])
+            if 1 <= m <= 12 and 1 <= d <= 31:
+                return f"{d} {MONTHS_SHORT[m - 1]} {y}"
+    return None
+
+
+def disambiguate(rows):
+    """Make two dated builds of one model tell themselves apart.
+
+    WHY THIS IS NEEDED. model_slug() deliberately strips the date suffix so a
+    model's URL stays put when the provider ships a new dated build - the
+    docstring calls it frozen, and that is right. It works perfectly while only
+    one build of a model is in the top 30. When two chart at once, both rows
+    collapse to the same name AND the same slug, and the instrument publishes
+    the same model twice at two different shares with nothing to tell them
+    apart. On 23 Aug 2026 that was four rows:
+
+        #1  DeepSeek V4 Flash 13.14%     #5  DeepSeek V4 Flash 5.98%
+        #10 DeepSeek V4 Pro    2.12%     #18 DeepSeek V4 Pro   1.16%
+
+    It had been live since 12 August and read as a bug in an instrument whose
+    whole claim is measured, sourced numbers.
+
+    ONLY THE DISPLAY NAME CHANGES. The slug is left alone, so no URL moves and
+    nothing that is already indexed breaks; both builds keep pointing at the
+    model's page, which is what the frozen-slug policy intends. No number is
+    touched - the two builds are separate upstream and stay separate here,
+    because merging what the source treats as distinct would be us editing the
+    measurement.
+    """
+    by_slug = {}
+    for r in rows:
+        by_slug.setdefault(r["slug"], []).append(r)
+    for group in by_slug.values():
+        if len(group) < 2:
+            continue
+        labels = [release_label(r["model"]) for r in group]
+        # Only qualify when every colliding row can say WHICH build it is.
+        # A half-labelled pair is worse than an unlabelled one: it implies the
+        # unlabelled row is the canonical model rather than another build.
+        if not all(labels) or len(set(labels)) != len(labels):
+            continue
+        for r, label in zip(group, labels):
+            r["name"] = f'{r["name"]} ({label})'
+            r["release"] = label
+
+
 def model_slug(slug):
     """Stable URL slug for a model permaslug, frozen even if the display name
     changes. e.g. xiaomi/mimo-v2.5-20260422 -> xiaomi-mimo-v2-5;
@@ -690,6 +749,8 @@ def main():
             "region": classify(slug, dev_map, overrides, unmapped),
             "pct": round(100 * tok / ctot, 2),
         })
+
+    disambiguate(leaderboard)
 
     records = build_records(history, dev_map, overrides, unmapped)
 

@@ -73,11 +73,12 @@
       "move": "flat",
       "new": false,
       "model": "deepseek/deepseek-v4-flash-20260731",
-      "name": "DeepSeek V4 Flash",
+      "name": "DeepSeek V4 Flash (31 Jul 2026)",
       "slug": "deepseek-v4-flash",
       "developer": "DeepSeek",
       "region": "Asia",
-      "pct": 13.14
+      "pct": 13.14,
+      "release": "31 Jul 2026"
     },
     {
       "rank": 2,
@@ -121,11 +122,12 @@
       "move": "down",
       "new": false,
       "model": "deepseek/deepseek-v4-flash-20260423",
-      "name": "DeepSeek V4 Flash",
+      "name": "DeepSeek V4 Flash (23 Apr 2026)",
       "slug": "deepseek-v4-flash",
       "developer": "DeepSeek",
       "region": "Asia",
-      "pct": 5.98
+      "pct": 5.98,
+      "release": "23 Apr 2026"
     },
     {
       "rank": 6,
@@ -181,11 +183,12 @@
       "move": "down",
       "new": false,
       "model": "deepseek/deepseek-v4-pro-20260423",
-      "name": "DeepSeek V4 Pro",
+      "name": "DeepSeek V4 Pro (23 Apr 2026)",
       "slug": "deepseek-v4-pro",
       "developer": "DeepSeek",
       "region": "Asia",
-      "pct": 2.12
+      "pct": 2.12,
+      "release": "23 Apr 2026"
     },
     {
       "rank": 11,
@@ -277,11 +280,12 @@
       "move": "up",
       "new": false,
       "model": "deepseek/deepseek-v4-pro-20260813",
-      "name": "DeepSeek V4 Pro",
+      "name": "DeepSeek V4 Pro (13 Aug 2026)",
       "slug": "deepseek-v4-pro",
       "developer": "DeepSeek",
       "region": "Asia",
-      "pct": 1.16
+      "pct": 1.16,
+      "release": "13 Aug 2026"
     },
     {
       "rank": 19,
@@ -451,13 +455,13 @@
     {
       "key": "biggest_mover",
       "label": "Biggest weekly mover",
-      "value": "#32 \u2192 #23",
+      "value": "#32 → #23",
       "detail": "OpenAI GPT OSS 120b"
     },
     {
       "key": "steepest_fall",
       "label": "Steepest fall",
-      "value": "#14 \u2192 #47",
+      "value": "#14 → #47",
       "detail": "Google Gemini 3.6 Flash"
     },
     {

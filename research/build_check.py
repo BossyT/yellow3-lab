@@ -52,6 +52,12 @@ def main() -> int:
          'supplier directory rows'),
         ('research/digital-product-passport.html', 300, 'DPP instrument'),
         ('research/eu-ai-act.html', 300, 'EU AI Act instrument'),
+        # Added 2026-08-23. This page was never covered and had NO prerendered
+        # content at all: with JavaScript off it was 1,925 characters of
+        # navigation whose only sentence was "The instrument data could not be
+        # loaded". Floor set far below the ~2,500 it now carries, so ordinary
+        # movement in the rankings never trips it and a collapse always does.
+        ('research/model-adoption/live.html', 800, 'model adoption instrument'),
     ]
     for rel, floor, what in checks:
         p = ROOT / rel

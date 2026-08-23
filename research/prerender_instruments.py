@@ -121,6 +121,82 @@ def replace_block(page: str, anchor: str, block: str) -> str:
     # back, so adding one each run grew the file by a blank line every sweep.
     return page.replace(anchor, f'{anchor}{o}\n{block}\n{c}\n', 1)
 
+# --------------------------------------------------- the model-adoption view
+def model_adoption_blocks() -> dict:
+    """The live instrument's substance: the regional split and the ranking.
+
+    THIS PAGE WAS THE LOUDEST CASE OF THE PROBLEM IN THE HEADER ABOVE, and it
+    was never covered here. With JavaScript off,
+    /research/model-adoption/live was 1,925 characters of navigation carrying
+    exactly one sentence of content:
+
+        "The instrument data could not be loaded. Please try again shortly."
+
+    That is #err, which is display:none, so no reader ever saw it - but it is
+    what Google's non-JS pass and every LLM text extractor read. No rankings,
+    no shares, no model names, no data date, no attribution. The page most
+    likely to be quoted on where AI demand is flowing was telling machines the
+    instrument had failed.
+
+    No prose is invented here: every figure, name and date is read straight out
+    of model-adoption-data.json, and the blocks sit in the containers the
+    script overwrites, so a normal visit is unchanged.
+    """
+    data = json.loads((ROOT / 'research' / 'model-adoption-data.json')
+                      .read_text(encoding='utf-8'))
+    out = {}
+
+    src = data.get('source') or {}
+    asof = esc(data.get('as_of_pretty') or data.get('as_of'))
+    win = (data.get('window') or {}).get('current') or []
+    window = f' Measured over {esc(win[0])} to {esc(win[1])}.' if len(win) == 2 else ''
+    out['live-bar'] = (
+        f'<p class="prerendered-note">Data as of {asof}.{window} '
+        f'Source: {esc(src.get("name", ""))}'
+        + (f' ({esc(src.get("url"))})' if src.get('url') else '') + '.</p>')
+
+    rows = []
+    for s in data.get('share') or []:
+        delta = s.get('delta_pp')
+        move = '' if delta in (None, 0) else f' ({delta:+.2f}pp week on week)'
+        rows.append(f'<li>{esc(s.get("region"))}: {esc(s.get("pct"))}% of routed '
+                    f'tokens{move}, {esc(s.get("models"))} of the top 30 models.</li>')
+    # ALWAYS EMIT THE KEY, even with nothing to put in it. Returning fewer
+    # keys leaves the PREVIOUS sweep's block sitting in the page, so a
+    # collapsed data pull would keep serving last week's numbers under a "Live"
+    # badge and build_check's readable-character floor would score them as
+    # healthy. Emitting an empty block clears the stale content and lets the
+    # floor fail, which is the behaviour the gate exists for.
+    out['sb-rows'] = ('<p class="prerendered-note">Regional share of routed '
+                      'tokens, by where the model was built.</p><ul>'
+                      + ''.join(rows) + '</ul>') if rows else ''
+
+    lb = []
+    for r in (data.get('leaderboard') or [])[:30]:
+        lb.append(f'<li>{esc(r.get("rank"))}. {esc(r.get("name"))} '
+                  f'({esc(r.get("developer"))}, {esc(r.get("region"))}) - '
+                  f'{esc(r.get("pct"))}% of routed tokens.</li>')
+    out['ranking'] = ('<p class="prerendered-note">Most-routed models, '
+                      f'{asof}.</p><ol>' + ''.join(lb) + '</ol>') if lb else ''
+    return out
+
+
+def refresh_line() -> str:
+    """The header's refresh text, from the same data the script reads."""
+    data = json.loads((ROOT / 'research' / 'model-adoption-data.json')
+                      .read_text(encoding='utf-8'))
+    when = data.get('refreshed_cet')
+    asof = data.get('as_of_pretty') or data.get('as_of')
+    if not (when or asof):
+        return ''
+    parts = []
+    if when:
+        parts.append(f'Refreshed {esc(when)}')
+    if asof:
+        parts.append(f'data as of {esc(asof)}')
+    return ' &middot; '.join(parts)
+
+
 # ------------------------------------------------ the DPP instrument's signals
 def dpp_blocks() -> dict:
     """
@@ -200,6 +276,38 @@ def main() -> int:
         wrote3.append(element_id)
     if wrote3:
         changed.append((p3, page3, 'sections: ' + ', '.join(wrote3)))
+
+    # 4. the model-adoption instrument. Same containers the script overwrites,
+    #    so a normal visit is unchanged and a crawler stops being told the
+    #    instrument failed.
+    p4 = ROOT / 'research' / 'model-adoption' / 'live.html'
+    if not p4.exists():
+        print('  model-adoption: live.html is missing, skipped')
+    else:
+        page4 = p4.read_text(encoding='utf-8')
+        wrote4 = []
+        for element_id, block in model_adoption_blocks().items():
+            m4 = re.search(rf'<[a-z]+[^>]*\bid="{element_id}"[^>]*>', page4)
+            if not m4:
+                print(f'  model-adoption: no #{element_id} container, skipped')
+                continue
+            page4 = replace_block(page4, m4.group(0), block)
+            wrote4.append(element_id)
+        # #refresh is a TEXT placeholder, not an empty container, so it is
+        # rewritten in place rather than filled. Left alone it told a crawler
+        # "Loading latest refresh..." on a page whose data had been sitting in
+        # the repo since 07:09 that morning. A human still gets the script's
+        # value a moment later; on a slow connection they now see the last
+        # known refresh instead of a spinner's worth of nothing.
+        refreshed = refresh_line()
+        if refreshed:
+            page4, n4 = re.subn(
+                r'(<span class="refresh" id="refresh">).*?(</span>)',
+                lambda m: m.group(1) + refreshed + m.group(2), page4, count=1, flags=re.S)
+            if n4:
+                wrote4.append('refresh')
+        if wrote4:
+            changed.append((p4, page4, 'sections: ' + ', '.join(wrote4)))
 
     for path, content, what in changed:
         print(f'  {path.relative_to(ROOT)}: {what}'

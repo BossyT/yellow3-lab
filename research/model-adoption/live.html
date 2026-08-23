@@ -378,19 +378,27 @@
       <div class="breadcrumb"><a href="/research">Research</a> &nbsp;/&nbsp; <span id="bc-title">Model adoption</span></div>
       <div class="inst-status">
         <span class="badge-live" id="badge"><span class="dot"></span> Live</span>
-        <span class="refresh" id="refresh">Loading latest refresh…</span>
+        <span class="refresh" id="refresh">Refreshed 23 Aug 2026, 09:09 CET &middot; data as of 22 August 2026</span>
       </div>
       <h1 id="title">Model adoption</h1>
       <p class="inst-thesis" id="thesis"></p>
     </div>
   </header>
 
-  <div id="err" class="wrap"><span data-err-msg>The instrument data could not be loaded. Please try again shortly.</span></div>
+  <!-- The message is written by reportFault(), which is the only thing that
+       ever shows this box. Carrying the sentence statically as well put "The
+       instrument data could not be loaded" into the HTML of a perfectly
+       healthy page: no reader could see it, #err being display:none, but every
+       crawler and text extractor read it as the page's content. -->
+  <div id="err" class="wrap"><span data-err-msg></span></div>
 
   <!-- ===== LIVE DATA VIEW (instrument-specific) ===== -->
   <section class="section">
     <div class="wrap">
-      <div class="live-bar" id="live-bar"></div>
+      <div class="live-bar" id="live-bar"><!-- prerendered:div-class-live-bar-id-live-bar -->
+<p class="prerendered-note">Data as of 22 August 2026. Measured over 2026-08-16 to 2026-08-22. Source: OpenRouter (https://openrouter.ai/rankings).</p>
+<!-- /prerendered:div-class-live-bar-id-live-bar -->
+</div>
 
       <div class="section-label">Regional share of routed tokens, this week</div>
       <div class="filters" id="filters" role="group" aria-label="Filter by region of origin"></div>
@@ -405,7 +413,10 @@
         </div>
         <div class="sharebox">
           <div class="sb-head">Share of routed tokens</div>
-          <div class="sb-rows" id="sb-rows"></div>
+          <div class="sb-rows" id="sb-rows"><!-- prerendered:div-class-sb-rows-id-sb-rows -->
+<p class="prerendered-note">Regional share of routed tokens, by where the model was built.</p><ul><li>Asia: 53.08% of routed tokens (-5.59pp week on week), 11 of the top 30 models.</li><li>Europe: 0.24% of routed tokens (+0.11pp week on week), 0 of the top 30 models.</li><li>US: 32.53% of routed tokens (-1.61pp week on week), 17 of the top 30 models.</li><li>Other: 14.15% of routed tokens (+7.09pp week on week), 2 of the top 30 models.</li></ul>
+<!-- /prerendered:div-class-sb-rows-id-sb-rows -->
+</div>
         </div>
       </div>
 
@@ -416,7 +427,10 @@
         <div class="rank-head" aria-hidden="true">
           <span>Rank</span><span>Model / origin</span><span class="rh-share">Routed share</span><span class="rh-move">7D</span><span class="rh-explore">Explore</span>
         </div>
-        <div id="ranking"></div>
+        <div id="ranking"><!-- prerendered:div-id-ranking -->
+<p class="prerendered-note">Most-routed models, 22 August 2026.</p><ol><li>1. DeepSeek V4 Flash (31 Jul 2026) (DeepSeek, Asia) - 13.14% of routed tokens.</li><li>2. Xiaomi Mimo V2.5 (Xiaomi, Asia) - 10.31% of routed tokens.</li><li>3. Tencent Hy3 (Tencent, Asia) - 9.67% of routed tokens.</li><li>4. Stealth Ox Alpha (stealth, Other) - 7.37% of routed tokens.</li><li>5. DeepSeek V4 Flash (23 Apr 2026) (DeepSeek, Asia) - 5.98% of routed tokens.</li><li>6. OpenAI GPT 5.6 Luna (OpenAI, US) - 5.84% of routed tokens.</li><li>7. NVIDIA Nemotron 3 Ultra 550b A55b (free) (NVIDIA, US) - 4.99% of routed tokens.</li><li>8. Z.ai GLM 5.2 (Z.ai, Asia) - 4.05% of routed tokens.</li><li>9. Anthropic Claude Opus 5 (Anthropic, US) - 2.35% of routed tokens.</li><li>10. DeepSeek V4 Pro (23 Apr 2026) (DeepSeek, Asia) - 2.12% of routed tokens.</li><li>11. MiniMax M3 (MiniMax, Asia) - 1.95% of routed tokens.</li><li>12. Poolside Laguna S 2.1 (free) (Poolside, US) - 1.86% of routed tokens.</li><li>13. Google Gemini 3.7 Flash (Google, US) - 1.78% of routed tokens.</li><li>14. Google Gemini 3.6 Flash (Google, US) - 1.67% of routed tokens.</li><li>15. Moonshot Kimi K3 (Moonshot, Asia) - 1.47% of routed tokens.</li><li>16. OpenAI GPT 5.6 Sol (OpenAI, US) - 1.39% of routed tokens.</li><li>17. Anthropic Claude Sonnet 5 (Anthropic, US) - 1.21% of routed tokens.</li><li>18. DeepSeek V4 Pro (13 Aug 2026) (DeepSeek, Asia) - 1.16% of routed tokens.</li><li>19. NVIDIA Nemotron 3.5 Lightning (free) (NVIDIA, US) - 1.04% of routed tokens.</li><li>20. Google Gemini 3 Flash Preview (Google, US) - 0.97% of routed tokens.</li><li>21. OpenAI GPT 5.6 Terra (OpenAI, US) - 0.84% of routed tokens.</li><li>22. Google Gemini 2.5 Flash Lite (Google, US) - 0.81% of routed tokens.</li><li>23. Anthropic Claude 4.6 Sonnet (Anthropic, US) - 0.78% of routed tokens.</li><li>24. StepFun Step 3.7 Flash (StepFun, Asia) - 0.69% of routed tokens.</li><li>25. Upstage Solar Pro4 (upstage, Other) - 0.64% of routed tokens.</li><li>26. Xiaomi Mimo V2.5 Pro (Xiaomi, Asia) - 0.61% of routed tokens.</li><li>27. OpenAI GPT OSS 120b (OpenAI, US) - 0.58% of routed tokens.</li><li>28. xAI Grok 4.6 (xAI, US) - 0.57% of routed tokens.</li><li>29. OpenAI GPT 5.6 Luna Pro (OpenAI, US) - 0.55% of routed tokens.</li><li>30. Google Gemini 2.5 Flash (Google, US) - 0.5% of routed tokens.</li></ol>
+<!-- /prerendered:div-id-ranking -->
+</div>
       </div>
     </div>
   </section>
