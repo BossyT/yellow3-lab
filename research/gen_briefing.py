@@ -943,7 +943,13 @@ def render_record(ed: dict, prev_ed: dict | None, next_ed: dict | None) -> str:
     if next_ed:
         nav_parts.append(f'<a href="{ROUTE}/{e(next_ed["slug"])}">{e(next_ed["weekLabelDisplay"])} &#8594;</a>')
     else:
-        nav_parts.append(f'<a href="{ROUTE}">Latest edition &#8594;</a>')
+        # The newest edition. This used to link to the permanent route, which
+        # under GPT's option E now 307s straight back to this very page - a
+        # link that returns you to where you already are. Point 5 of the ruling
+        # puts edition navigation on dated canonical URLs, and there is no
+        # newer dated URL to point at, so it reads as a label. Same treatment
+        # the earliest edition already gets at the other end of the nav.
+        nav_parts.append('<span class="spacer">Latest edition</span>')
 
     return f"""  <div class="briefing-wrap">
     <section class="edition-record" aria-label="Edition record">
@@ -1121,6 +1127,73 @@ def prepare(ed: dict) -> dict:
     return ed
 
 
+# The pages that carry a "latest briefing" entry point. GPT's ruling, point 5:
+# research listings, edition navigation, archive links and social-sharing links
+# point directly at dated canonical URLs. Only evergreen marketing, bookmarks
+# and manually shared "latest" links use the shortcut. These two are listings,
+# so they follow the newest edition and are rewritten on every publish.
+ENTRY_POINTS = ('research.html', 'research/digital-product-passport.html')
+
+
+def redirect_to(slug: str) -> bool:
+    """Point the permanent shortcut at the newest edition. True if it changed.
+
+    A 307 and not a 308: the target is expected to change every Monday, and a
+    permanent redirect is the one thing a browser and a crawler both cache hard.
+    Publishing edition 003 behind a cached 308 to edition 002 would be a fault
+    nobody could see from this repo.
+
+    BOTH FORMS ARE COVERED. cleanUrls served this route at "/weekly-briefing"
+    and "/weekly-briefing/" alike while an index.html existed here; with the
+    file gone the trailing-slash form has nothing to serve and would 404. That
+    exact trailing-slash gap already bit this route once, on 2026-08-23, when a
+    withdrawal covered two of the three ways in.
+    """
+    path = ROOT / 'vercel.json'
+    conf = json.loads(path.read_text(encoding='utf-8'))
+    redirects = conf.setdefault('redirects', [])
+    target = f'{ROUTE}/{slug}'
+
+    wanted = [{'source': ROUTE, 'destination': target, 'permanent': False},
+              {'source': ROUTE + '/', 'destination': target, 'permanent': False}]
+    before = json.dumps(redirects, sort_keys=True)
+
+    for rule in wanted:
+        for existing in redirects:
+            if existing.get('source') == rule['source']:
+                existing.update(rule)
+                break
+        else:
+            # Ahead of the dated-edition rules, which are more specific but
+            # cannot match this path anyway; order is kept stable for review.
+            redirects.insert(0, rule)
+
+    if json.dumps(redirects, sort_keys=True) == before:
+        return False
+    path.write_text(json.dumps(conf, indent=2, ensure_ascii=False) + '\n',
+                    encoding='utf-8')
+    return True
+
+
+def point_entries_at(slug: str) -> bool:
+    """Rewrite the listing entry points to the newest dated edition."""
+    target = f'{ROUTE}/{slug}'
+    changed = False
+    for rel in ENTRY_POINTS:
+        p = ROOT / rel
+        if not p.exists():
+            continue
+        text = p.read_text(encoding='utf-8')
+        # Only an href to the series route or to a dated edition of it. Nothing
+        # else on these pages is touched.
+        new = re.sub(r'href="' + re.escape(ROUTE) + r'(?:/\d{4}-\d{2}-\d{2})?"',
+                     f'href="{target}"', text)
+        if new != text:
+            p.write_text(new, encoding='utf-8')
+            changed = True
+    return changed
+
+
 def main() -> int:
     args = set(sys.argv[1:])
     check_only = '--check' in args
@@ -1199,10 +1272,30 @@ def main() -> int:
         print(f'  wrote  {path.relative_to(ROOT)}')
 
     latest = ready[-1]
-    (OUT_DIR / 'index.html').write_text(
-        render_page(latest, BASE + ROUTE, ready[-2] if len(ready) > 1 else None, None, True),
-        encoding='utf-8')
-    print(f'  wrote  {(OUT_DIR / "index.html").relative_to(ROOT)}  (latest: {latest["slug"]})')
+
+    # THE PERMANENT ROUTE SERVES NO HTML. GPT's ruling of 23 Aug 2026, option E:
+    # the dated editions are the documents and the permanent route is a
+    # human-facing shortcut to the newest one, as a 307. It used to be a second
+    # copy of the latest edition - 99.85% identical visible text to its own
+    # dated URL, differing only by ", 24 August 2026" in one heading - and two
+    # self-canonical copies of one document is a duplicate we were choosing to
+    # keep. An index.html left over from before that ruling is removed, because
+    # a stale file here would silently out-rank the redirect.
+    stale = OUT_DIR / 'index.html'
+    if stale.exists():
+        stale.unlink()
+        print(f'  removed  {stale.relative_to(ROOT)}  (the route is a redirect now)')
+
+    if redirect_to(latest['slug']):
+        print(f'  wrote  vercel.json  307 {ROUTE} -> {ROUTE}/{latest["slug"]}')
+    else:
+        print(f'  ok     vercel.json  307 already points at {latest["slug"]}')
+
+    if point_entries_at(latest['slug']):
+        print(f'  wrote  entry points now link straight to {latest["slug"]}')
+    else:
+        print('  ok     entry points already link to the newest edition')
+
     return 0
 
 

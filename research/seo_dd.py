@@ -187,10 +187,31 @@ def main():
     for rel, d in (sorted(docs.items()) if smap_live else []):
         if d["noindex"] and d["url"] in smap_paths:
             findings["sitemap lists a noindex page"].append(d["url"])
+    # A URL in the sitemap with no file behind it is two different faults, and
+    # only one of them should stop a deploy.
+    #
+    # NO FILE AND NO REDIRECT is a 404 advertised to Google. Blocking, as it was.
+    #
+    # NO FILE BUT A DECLARED REDIRECT is the ordinary, transient state of
+    # REPLACING A PAGE WITH A REDIRECT, and blocking it creates a deadlock this
+    # repo has already paid for once. The live sitemap is a build behind - it is
+    # fetched here, and generate-sitemap.js only runs afterwards - so the commit
+    # that deletes the page and adds the redirect is judged against a sitemap
+    # that still lists the page. build_check fails, Vercel refuses the deploy,
+    # and production keeps serving the very build you are trying to replace.
+    # The withdrawal of 2026-08-23 had to be staged across two deploys to get
+    # around exactly this.
+    #
+    # A crawler reaching that URL is not misled: it gets a redirect to a real
+    # page, and the entry disappears from the sitemap on the next build. So it
+    # is reported, and it does not block. The distinction is the point - the
+    # check is not being weakened, it is being told which of the two it found.
     for u in (sorted(smap_paths) if smap_live else []):
         if file_for(u) is None:
-            note = " (a redirect source)" if u in redirects else ""
-            findings["sitemap lists a URL that is not a page"].append(u + note)
+            if u in redirects:
+                findings["sitemap lists a redirect, and drops it next build"].append(u)
+            else:
+                findings["sitemap lists a URL that is not a page"].append(u)
     dupes = [u for u, n in Counter(smap).items() if n > 1] if smap_live else []
     for u in sorted(dupes):
         findings["sitemap lists the same URL twice"].append(u)
