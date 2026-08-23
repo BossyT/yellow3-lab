@@ -59,6 +59,7 @@ production fallback".
 
 from __future__ import annotations
 
+import datetime as dt
 import html
 import json
 import pathlib
@@ -83,70 +84,93 @@ SAMPLE_MARKERS = [0, 14, 27, 41]
 # these after generation and is the authority if they ever drift.
 # ---------------------------------------------------------------------------
 
-SITE_NAV = """  <nav class="site-nav">
-    <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
-    <div class="nav-mid" id="navMid">
-      <a href="/research" class="active">Research</a>
-      <a href="/platforms">Platforms</a>
-      <a href="/insights/">Insights</a>
-      <a href="/advisory">Advisory</a>
-      <a href="/about">About</a>
-      <a href="/contact">Contact</a>
-    </div>
-    <a href="/advisory" class="nav-cta">Work with us <span>&#8594;</span></a>
-    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
-  </nav>
-"""
+# ---------------------------------------------------------------------------
+# THE SITE SHELL IS TAKEN FROM /research, NEVER WRITTEN HERE.
+#
+# The first build copied the header and footer out of the Digital Product
+# Passport hub page, which carries an OLDER shell, and then styled them by hand.
+# The result differed from the rest of the site in ways nobody authorised:
+#
+#     footer background   #ffffff instead of #0e0e0e, with dark text
+#     header CTA          "Work with us" -> /advisory, instead of "Get in touch"
+#     footer Research     "The method" inserted, "EU AI Act" dropped
+#
+# GPT's correction order, 23 Aug: reuse the shared shell, do not copy, recreate
+# or locally restyle it. This site is static HTML with no include mechanism, so
+# "reuse" means the generator READS research.html on every run and takes the
+# nav, the footer and the shell CSS out of it verbatim. Drift is then not
+# something a check has to notice - it cannot happen, because there is only one
+# copy and it is read at build time.
+#
+# If research.html is restyled tomorrow, this page follows on the next generate.
 
-SITE_FOOTER = """  <footer class="site-footer">
-    <div class="inner">
-      <div class="foot-top">
-        <div class="foot-brand">
-          <img src="/logo.png" alt="yellow3" />
-          <div class="fb-lab">yellow3 lab</div>
-          <p>We use emerging technology to make business less complicated.</p>
-        </div>
-        <div class="foot-col">
-          <h4>Platforms</h4>
-          <a href="https://naffe.ai/">naffe.ai</a>
-          <a href="/software">Software</a>
-          <a href="/platforms">All platforms</a>
-        </div>
-        <div class="foot-col">
-          <h4>Research</h4>
-          <a href="/research">Research areas</a>
-          <a href="/research/framework">The method</a>
-          <a href="/research/model-adoption">Model adoption</a>
-          <a href="/research/digital-product-passport/suppliers">DPP Supplier Register</a>
-        </div>
-        <div class="foot-col">
-          <h4>Company</h4>
-          <a href="/about">About</a>
-          <a href="/advisory">Advisory</a>
-          <a href="/insights/">Insights</a>
-          <a href="/contact">Contact</a>
-        </div>
-        <div class="foot-contact">
-          <h4>Get in touch</h4>
-          <a href="#" onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;;return false;" class="mail">Email us</a>
-          <div class="loc">Copenhagen, Denmark</div>
-          <div class="foot-social">
-            <a href="https://www.linkedin.com/company/yellow3" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-            <a href="https://x.com/yellow3HQ" target="_blank" rel="noopener" aria-label="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-          </div>
-        </div>
-      </div>
-      <div class="foot-bottom">
-        <span class="copy">&copy; 2026 yellow3 ApS. All rights reserved.</span>
-        <div class="foot-legal">
-          <a href="/privacy">Privacy</a>
-          <a href="/terms">Terms</a>
-          <a href="/cookies">Cookies</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-"""
+SHELL_PAGE = ROOT / 'research.html'
+
+# Every selector that belongs to the shell rather than to an instrument. A rule
+# is kept when its selector list mentions one of these; everything else in
+# research.html stays behind, because this page is not that page.
+SHELL_SELECTORS = (
+    # The universal reset belongs to the shell too. Leaving it out left the
+    # browser's default 8px body margin in place, and the frame sat inset by
+    # 8px at 390 and 320 instead of full bleed - a visible deviation from the
+    # approved mobile treatment that the footer comparison could not see,
+    # because it only looked at the footer.
+    '*', ':root', 'html', 'body', 'img', '.site-nav', '.brand', '.nav-mid', '.nav-cta',
+    '.nav-toggle', '.site-footer', '.foot-top', '.foot-brand', '.fb-lab',
+    '.foot-col', '.foot-contact', '.foot-social', '.foot-bottom', '.foot-legal',
+    '.inner',
+)
+
+
+def _rules(css: str):
+    """Yield (selector, body) for top-level rules, and (@media ..., inner) blocks."""
+    i, n = 0, len(css)
+    while i < n:
+        brace = css.find('{', i)
+        if brace == -1:
+            return
+        sel = css[i:brace].strip()
+        depth, j = 1, brace + 1
+        while j < n and depth:
+            if css[j] == '{':
+                depth += 1
+            elif css[j] == '}':
+                depth -= 1
+            j += 1
+        yield sel, css[brace + 1:j - 1]
+        i = j
+
+
+def _wanted(selector: str) -> bool:
+    parts = [p.strip() for p in selector.split(',')]
+    return any(any(tok in p for tok in SHELL_SELECTORS) for p in parts)
+
+
+def shell() -> tuple[str, str, str]:
+    """(nav markup, footer markup, shell css) lifted from /research."""
+    page = SHELL_PAGE.read_text(encoding='utf-8')
+
+    nav = re.search(r'<nav class="site-nav".*?</nav>', page, re.S)
+    foot = re.search(r'<footer class="site-footer".*?</footer>', page, re.S)
+    style = re.search(r'<style>(.*?)</style>', page, re.S)
+    if not (nav and foot and style):
+        raise SystemExit('could not read the shell out of research.html - it has '
+                         'changed shape, and this page must not invent one.')
+
+    out: list[str] = []
+    for sel, body in _rules(style.group(1)):
+        if sel.startswith('@media'):
+            inner = [f'    {s} {{{b}}}' for s, b in _rules(body) if _wanted(s)]
+            if inner:
+                out.append(f'    {sel} {{\n' + '\n'.join(inner) + '\n    }')
+        elif sel.startswith('@'):
+            continue
+        elif _wanted(sel):
+            out.append(f'    {sel} {{{body}}}')
+
+    return ('  ' + nav.group(0).strip() + '\n',
+            '  ' + foot.group(0).strip() + '\n',
+            '\n'.join(out))
 
 
 def e(value: str) -> str:
@@ -181,6 +205,37 @@ def blockers(ed: dict) -> list[str]:
         out.append(f'{slug}: issueNumber is unresolved')
     if unresolved(ed.get('researchNote')):
         out.append(f'{slug}: researchNote is unresolved')
+
+    # NO FUTURE EVIDENCE TIMESTAMP. The first build published
+    # "CHECKED 24 AUG 2026 06:30 CET" while the source records said 23 August -
+    # a PLANNED publication time standing in for an evidence time, and in the
+    # future at the moment it deployed. An instrument whose whole claim is that
+    # the evidence was checked cannot date that check tomorrow.
+    checked = ed.get('checkedAt')
+    if unresolved(checked):
+        out.append(f'{slug}: checkedAt is unset. It must be a real completed check, '
+                   'ISO 8601 with offset - never a planned publication time.')
+    else:
+        try:
+            when = dt.datetime.fromisoformat(str(checked))
+        except ValueError:
+            out.append(f'{slug}: checkedAt is not ISO 8601 with an offset: {checked!r}')
+        else:
+            if when.tzinfo is None:
+                out.append(f'{slug}: checkedAt has no UTC offset: {checked!r}')
+            elif when > dt.datetime.now(dt.timezone.utc):
+                out.append(f'{slug}: checkedAt {checked} is in the FUTURE. That is a '
+                           'planned time, not a completed check.')
+            else:
+                for i, src in enumerate(ed.get('sources') or [], 1):
+                    try:
+                        sw = dt.datetime.fromisoformat(str(src.get('checkedAt')))
+                    except (ValueError, TypeError):
+                        continue
+                    if sw > when + dt.timedelta(minutes=1):
+                        out.append(f'{slug}: source {i} was checked {src["checkedAt"]}, '
+                                   f'AFTER the edition\'s own checkedAt {checked} - the '
+                                   'footer and the source records disagree.')
 
     video = ed.get('video') or {}
     if unresolved(video.get('src')):
@@ -591,24 +646,24 @@ BRIEFING_CSS = """
     .edition-record { max-width: 1360px; margin: 0 auto; padding: 64px 0 20px; }
     @media (max-width: 760px) { .edition-record { padding: 44px 18px 20px; } .briefing-page .breadcrumb { padding: 0 18px; } }
     .edition-record .rec-head { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 22px; }
-    .edition-cols { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 56px; align-items: start; }
-    .transcript h2, .sources h2 { font-size: 22px; font-weight: 400; letter-spacing: -0.02em; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
-    .transcript p { font-size: 16px; line-height: 1.7; color: var(--body); margin-bottom: 16px; }
-    .sources ol { list-style: none; counter-reset: src; }
-    .sources li { counter-increment: src; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
-    .sources li::before { content: counter(src, decimal-leading-zero); display: block; font-size: 10px; letter-spacing: 0.14em; color: var(--muted); font-weight: 700; margin-bottom: 6px; }
-    .sources .src-pub { display: block; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 5px; }
-    .sources a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
-    .sources a:hover { border-bottom-color: var(--ink); }
-    .sources .src-checked { display: block; margin-top: 6px; font-size: 11px; color: var(--muted); }
-    .correction { margin-top: 32px; padding: 18px 22px; border-left: 3px solid var(--yellow); background: var(--panel); font-size: 14px; color: var(--body); }
-    .edition-nav { display: flex; justify-content: space-between; gap: 24px; margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
-    .edition-nav a { color: var(--ink); text-decoration: none; }
-    .edition-nav a:hover { color: var(--muted); }
-    .edition-nav .spacer { color: var(--muted); }
+    .edition-record .edition-cols { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+    .edition-record .transcript h2, .edition-record .sources h2 { font-size: 22px; font-weight: 400; letter-spacing: -0.02em; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .edition-record .transcript p { font-size: 16px; line-height: 1.7; color: var(--body); margin-bottom: 16px; }
+    .edition-record .sources ol { list-style: none; counter-reset: src; }
+    .edition-record .sources li { counter-increment: src; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+    .edition-record .sources li::before { content: counter(src, decimal-leading-zero); display: block; font-size: 10px; letter-spacing: 0.14em; color: var(--muted); font-weight: 700; margin-bottom: 6px; }
+    .edition-record .sources .src-pub { display: block; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 5px; }
+    .edition-record .sources a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .edition-record .sources a:hover { border-bottom-color: var(--ink); }
+    .edition-record .sources .src-checked { display: block; margin-top: 6px; font-size: 11px; color: var(--muted); }
+    .edition-record .correction { margin-top: 32px; padding: 18px 22px; border-left: 3px solid var(--yellow); background: var(--panel); font-size: 14px; color: var(--body); }
+    .edition-record .edition-nav { display: flex; justify-content: space-between; gap: 24px; margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; }
+    .edition-record .edition-nav a { color: var(--ink); text-decoration: none; }
+    .edition-record .edition-nav a:hover { color: var(--muted); }
+    .edition-record .edition-nav .spacer { color: var(--muted); }
 
     @media (max-width: 900px) {
-      .edition-cols { grid-template-columns: 1fr; gap: 44px; }
+      .edition-record .edition-cols { grid-template-columns: 1fr; gap: 44px; }
       .edition-record { padding-top: 44px; }
     }
 """
@@ -787,7 +842,7 @@ def render_briefing(ed: dict) -> str:
         <p class="issue">MONDAY BRIEFING &middot; {e(ed['issueNumber'])}</p>
       </div>
       <div class="date-block">
-        <p class="date-label">THIS WEEK</p>
+        <p class="date-label">WEEK COVERED</p>
         <p class="date-value">{e(ed['weekLabelDisplay'])}</p>
       </div>
     </header>
@@ -883,7 +938,7 @@ def render_record(ed: dict, prev_ed: dict | None, next_ed: dict | None) -> str:
     else:
         nav_parts.append(f'<a href="{ROUTE}">Latest edition &#8594;</a>')
 
-    return f"""  <div class="wrap">
+    return f"""  <div class="briefing-wrap">
     <section class="edition-record" aria-label="Edition record">
       <p class="rec-head">Edition record &middot; {e(ed['publicationDateDisplay'])}</p>
       <div class="edition-cols">
@@ -940,6 +995,7 @@ def render_page(ed: dict, canonical: str, prev_ed, next_ed, latest: bool) -> str
     # The card name is the page's own path, which is what research/gen_og.py
     # derives from every page in the site. index and each dated edition get
     # their own card, so a shared edition link shows that edition.
+    nav, foot, shell_css = shell()
     card = ('research-digital-product-passport-weekly-briefing-'
             + ('index' if latest else ed['slug']))
 
@@ -964,21 +1020,20 @@ def render_page(ed: dict, canonical: str, prev_ed, next_ed, latest: bool) -> str
   <meta name="twitter:image" content="{BASE}/og/cards/{card}.png" />
   <script type="application/ld+json">{json.dumps(video_ld, ensure_ascii=False)}</script>
   <style>
+{shell_css}
 {PAGE_CSS}
 {BRIEFING_CSS}
   </style>
 </head>
 <body>
-{SITE_NAV}
-  <main class="briefing-page">
-    <div class="wrap">
+{nav}  <main class="briefing-page">
+    <div class="briefing-wrap">
       <p class="breadcrumb"><a href="/research">Research</a> / <a href="/research/digital-product-passport">Digital Product Passport</a> / Weekly Briefing</p>
     </div>
 {render_briefing(ed)}
 {render_record(ed, prev_ed, next_ed)}
   </main>
-{SITE_FOOTER}
-  <script src="/consent.js" defer></script>
+{foot}  <script src="/consent.js" defer></script>
   <script>
 {PLAYER_JS}
   </script>
@@ -990,62 +1045,18 @@ def render_page(ed: dict, canonical: str, prev_ed, next_ed, latest: bool) -> str
 # The site page frame: nav, footer, wrap and tokens, matching the other
 # research pages. Kept separate from BRIEFING_CSS so the locked block can be
 # replaced wholesale when a new design handover arrives.
-PAGE_CSS = """    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --paper:#ffffff; --ink:#0e0e0e; --body:#4b4b4b; --muted:#8a8a8a; --mid:#8a8a8a;
-      --line:#e7e6e2; --yellow:#ffe000; --panel:#f7f6f3;
-    }
-    body { background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; font-weight: 400; line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
-    img { display:block; max-width:100%; }
-    a { color: inherit; }
-
-    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
-    .brand { display: flex; align-items: baseline; gap: 7px; text-decoration: none; }
-    .brand img { height: 21px; align-self: center; }
-    .nav-mid { display: flex; gap: 32px; }
-    .nav-mid a { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: #3a3a3a; text-decoration: none; font-weight: 500; padding-bottom: 3px; transition: color 0.2s; }
-    .nav-mid a:hover { color: var(--ink); }
-    .nav-mid a.active { border-bottom: 2px solid var(--ink); color: var(--ink); }
-    .nav-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: #fff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 20px; text-decoration: none; transition: background 0.2s; }
-    .nav-cta:hover { background: #000; }
-    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
-    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
-
+PAGE_CSS = """    /* Page-level rules for the briefing route ONLY.
+       The header, the footer and every global (body, a, img, *, :root) come
+       from research.html via shell() and are not written here. Nothing in this
+       block may touch .site-nav, .site-footer, .foot-*, .nav-* or .brand. */
     .briefing-page { padding: 116px 28px 0; }
-    .wrap { width: min(1360px, 100%); margin: 0 auto; }
-    .breadcrumb { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 26px; }
-    .breadcrumb a { color: var(--muted); text-decoration: none; }
-    .breadcrumb a:hover { color: var(--ink); }
-
-    .site-footer { margin-top: 90px; border-top: 1px solid var(--line); background: var(--paper); }
-    .site-footer .inner { max-width: 1360px; margin: 0 auto; padding: 64px 48px 34px; }
-    .foot-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr 1.2fr; gap: 40px; }
-    .foot-brand img { height: 20px; margin-bottom: 12px; }
-    .fb-lab { font-size: 13px; font-weight: 700; margin-bottom: 10px; }
-    .foot-brand p { font-size: 13px; color: var(--body); max-width: 260px; }
-    .foot-col h4, .foot-contact h4 { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 16px; }
-    .foot-col a, .foot-contact a { display: block; font-size: 14px; color: var(--body); text-decoration: none; margin-bottom: 10px; }
-    .foot-col a:hover, .foot-contact a:hover { color: var(--ink); }
-    .foot-contact .loc { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
-    .foot-social { display: flex; gap: 14px; }
-    .foot-social a { color: var(--body); }
-    .foot-social a:hover { color: var(--ink); }
-    .foot-bottom { display: flex; justify-content: space-between; gap: 20px; margin-top: 46px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); }
-    .foot-legal { display: flex; gap: 20px; }
-    .foot-legal a { color: var(--muted); text-decoration: none; }
-    .foot-legal a:hover { color: var(--ink); }
-
+    .briefing-wrap { width: min(1360px, 100%); margin: 0 auto; }
+    .briefing-page .breadcrumb { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 26px; }
+    .briefing-page .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .briefing-page .breadcrumb a:hover { color: var(--ink); }
     @media (max-width: 900px) {
-      .site-nav { padding: 14px 20px; }
-      .nav-mid { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; padding: 12px 20px 18px; background: #fff; border-bottom: 1px solid var(--line); }
-      .nav-mid.open { display: flex; }
-      .nav-mid a { padding: 11px 0; }
-      .nav-toggle { display: block; }
-      .nav-cta { display: none; }
       .briefing-page { padding: 92px 0 0; }
-      .site-footer .inner { padding: 44px 18px 26px; }
-      .foot-top { grid-template-columns: 1fr 1fr; gap: 30px; }
-      .foot-bottom { flex-direction: column; }
+      .briefing-page .breadcrumb { padding: 0 18px; }
     }
 """
 
