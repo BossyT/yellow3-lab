@@ -1,0 +1,94 @@
+{
+  "instrument": "digital-product-passport",
+  "format": "monday-briefing",
+  "note": "Authored source of truth for the Monday Briefing editions. The template is FROZEN (handover v1.1, DESIGN_LOCK 21 Aug 2026, runtime amendment 23 Aug 2026) and only the fields in this file change from one Monday to the next. research/gen_briefing.py reads this file and REFUSES to publish an edition whose issueNumber, researchNote, media duration, four timing markers, transcript or source records are unresolved. Sample timings and the 53-second reference recording are never a fallback.",
+  "template": {
+    "version": "1.1",
+    "locked": "2026-08-21",
+    "amended": "2026-08-23",
+    "designOwner": "ChatGPT, Head of Design",
+    "approvedBy": "Thomas Christian Melskens"
+  },
+  "editions": [
+    {
+      "slug": "2026-08-24",
+      "status": "draft",
+      "issueNumber": null,
+      "weekLabel": "17-23 August 2026",
+      "publicationDate": "2026-08-24",
+      "publicationTime": "07:30 CET",
+      "checkedAt": "2026-08-24T06:30:00+02:00",
+      "researchNote": null,
+      "video": {
+        "src": null,
+        "poster": null,
+        "durationSeconds": null,
+        "presenter": "Astrid"
+      },
+      "framing": {
+        "lineOne": "Four developments.",
+        "lineTwo": "One clear conclusion."
+      },
+      "stories": [
+        {
+          "number": "01",
+          "category": "Regulatory",
+          "headline": "Commission guidance clarifies battery passport data",
+          "consequence": "The 71-point overview distinguishes launch requirements from conditional and later disclosures.",
+          "markerLabel": "EU guidance",
+          "markerValue": "21 AUG",
+          "startSeconds": null
+        },
+        {
+          "number": "02",
+          "category": "Deadlines",
+          "headline": "General battery labelling did not automatically begin on 18 August",
+          "consequence": "The implementing act is still pending, while 18 February 2027 remains fixed for the QR code and battery passport.",
+          "markerLabel": "Labelling act",
+          "markerValue": "PENDING",
+          "startSeconds": null
+        },
+        {
+          "number": "03",
+          "category": "Implementation",
+          "headline": "Operational trials expose supplier-evidence gaps",
+          "consequence": "Carbon data, governance and third-party verification remain difficult across upstream tiers.",
+          "markerLabel": "GBA trials",
+          "markerValue": "17 PARTNERSHIPS",
+          "startSeconds": null
+        },
+        {
+          "number": "04",
+          "category": "Standards",
+          "headline": "UN/CEFACT opens review of a global passport framework",
+          "consequence": "P1143 and ISO 25534-1 may influence international trust, governance and interoperability.",
+          "markerLabel": "Public review",
+          "markerValue": "12 OCT",
+          "startSeconds": null
+        }
+      ],
+      "transcript": [
+        "This is the yellow3 Digital Product Passport briefing for Monday, 24 August 2026.",
+        "The main development comes from the European Commission. On Friday, it published updated guidance for the Digital Product Passport required for electric-vehicle batteries, e-bike and e-scooter batteries, and industrial batteries above two kilowatt-hours.",
+        "The document brings 71 data points into one structured overview. But that number needs context. It does not mean every company must complete 71 fields on day one. Each data point is classified as mandatory, optional, conditional, or not required when the passport rules begin in February 2027.",
+        "The update also clarifies that some information comes later. Responsible-sourcing reporting is not required at the February launch, while recycled-content disclosures depend on further EU rules.",
+        "The Commission is equally clear that this is guidance. It does not introduce new legal requirements and should not be treated as an authoritative interpretation of the Regulation.",
+        "A second point matters because the market is already misreading the calendar.",
+        "The general battery-labelling requirements were widely associated with 18 August 2026. But the Regulation says those requirements apply on that date, or 18 months after the relevant implementing act enters into force, whichever is later.",
+        "That implementing act is still pending. Therefore, the general labelling requirements did not automatically begin last week.",
+        "The QR code and Digital Product Passport deadline is different. For electric-vehicle batteries, e-bike and e-scooter batteries, and industrial batteries above two kilowatt-hours, 18 February 2027 remains the fixed date.",
+        "Industry trials are also exposing the real implementation challenge.",
+        "The Global Battery Alliance has 17 supply-chain partnerships participating in its operational trials. The cell manufacturers involved account for 80 percent of global production.",
+        "Their work is focused on supplier data, carbon-footprint calculations, data governance and third-party verification. In at least one trial, primary carbon data did not yet reach the mining tier.",
+        "That is where implementation becomes difficult.",
+        "One additional development is on our strategic radar. UN/CEFACT has opened the public review of project P1143, a global Digital Product Passport framework linked to ISO 25534, Part One.",
+        "The consultation runs until 12 October. It is not new EU legislation, and the review opened earlier in August, but it may influence how trust, governance and interoperability are handled internationally.",
+        "The conclusion this week is simple.",
+        "The European requirements are becoming clearer. Global standardisation is moving forward. And the real bottleneck is no longer creating a QR code.",
+        "It is obtaining structured, verifiable and updateable evidence across the supply chain.",
+        "That is this week’s Digital Product Passport briefing from yellow3 Research Intelligence."
+      ],
+      "sources": []
+    }
+  ]
+}
