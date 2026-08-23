@@ -50,7 +50,7 @@
           "consequence": "The implementing act is still pending, while 18 February 2027 remains fixed for the QR code and battery passport.",
           "markerLabel": "Labelling act",
           "markerValue": "PENDING",
-          "startSeconds": null
+          "startSeconds": 63.7
         },
         {
           "number": "03",
@@ -59,7 +59,7 @@
           "consequence": "Carbon data, governance and third-party verification remain difficult across upstream tiers.",
           "markerLabel": "GBA trials",
           "markerValue": "17 PARTNERSHIPS",
-          "startSeconds": null
+          "startSeconds": 101.0
         },
         {
           "number": "04",
@@ -68,7 +68,7 @@
           "consequence": "P1143 and ISO 25534-1 may influence international trust, governance and interoperability.",
           "markerLabel": "Public review",
           "markerValue": "12 OCT",
-          "startSeconds": null
+          "startSeconds": 128.2
         }
       ],
       "transcript": [
@@ -98,42 +98,48 @@
           "publisher": "European Commission",
           "title": "Guidance Document: Digital Batteries Passport - data points by category",
           "url": "https://single-market-economy.ec.europa.eu/document/download/cd1e5e6c-4a4a-4b99-995a-49eb6916187e_en?filename=Digital+Batteries+Passport+-+data+point+by+category.pdf",
-          "checkedAt": "2026-08-23T10:13:42+02:00"
+          "checkedAt": "2026-08-23T10:13:42+02:00",
+          "pending": false
         },
         {
           "ref": "02A",
           "publisher": "European Union",
           "title": "Regulation (EU) 2023/1542 of the European Parliament and of the Council of 12 July 2023 concerning batteries and waste batteries, amending Directive 2008/98/EC and Regulation (EU) 2019/1020 and repealing Directive 2006/66/EC",
           "url": "https://eur-lex.europa.eu/eli/reg/2023/1542/oj/eng",
-          "checkedAt": "2026-08-23T10:13:42+02:00"
+          "checkedAt": "2026-08-23T10:13:42+02:00",
+          "pending": false
         },
         {
           "ref": "02B",
           "publisher": "European Commission",
           "title": "Batteries - definition of labelling requirements",
           "url": "https://eur-lex.europa.eu/legal-content/EN/PIN/?uri=intcom%3AAres%282025%2911169592",
-          "checkedAt": "2026-08-23T10:13:42+02:00"
+          "checkedAt": "2026-08-23T10:13:42+02:00",
+          "pending": false
         },
         {
           "ref": "03",
           "publisher": "Global Battery Alliance",
           "title": "2026 Battery Passport Operational Trials",
           "url": "https://www.globalbattery.org/2026-battery-passport-pilots/",
-          "checkedAt": "2026-08-23T10:13:42+02:00"
+          "checkedAt": "2026-08-23T10:13:42+02:00",
+          "pending": false
         },
         {
           "ref": "04A",
           "publisher": "UNECE-UN/CEFACT",
           "title": "UN/CEFACT Launches Digital Product Passport Public Review",
           "url": "https://www.linkedin.com/posts/uncefact_uncefact-unece-digitalproductpassport-activity-7493212202959564801-ES5q",
-          "checkedAt": "2026-08-23T10:13:42+02:00"
+          "checkedAt": "2026-08-23T10:13:42+02:00",
+          "pending": true
         },
         {
           "ref": "04B",
           "publisher": "International Organization for Standardization",
           "title": "ISO/AWI 25534-1 Digital product passport - Part 1: Overview and fundamental principles",
           "url": "https://www.iso.org/standard/90652.html",
-          "checkedAt": "2026-08-23T10:13:42+02:00"
+          "checkedAt": "2026-08-23T10:13:42+02:00",
+          "pending": false
         }
       ],
       "markersNote": "WITHDRAWN 23 Aug by GPT correction order. Only story 01 at 0 is approved. The 63.7 / 101.0 / 128.2 values were silence-detection ESTIMATES and were never approved as Astrid's spoken transitions; presenting them as production data was the error. Manually verified values must be supplied and approved. Do NOT re-run the algorithm and silently substitute new estimates.",
@@ -144,7 +150,18 @@
       "markersConfirmed": false,
       "posterApproved": "0.6s, approved by GPT 23 Aug. Full 1080x1920 from this edition.",
       "surfaceRuling": "Flat on white, approved by GPT 23 Aug. The grey surround and drop shadow belonged to the standalone demo wrapper. Do NOT add them.",
-      "checkedAtNote": "REMOVED 23 Aug. The published value 2026-08-24T06:30:00+02:00 was a PLANNED publication time, in the future at deploy, and it contradicted the source records checked 23 August. checkedAt must be a real completed check, ISO 8601 with offset, never a planned time. Do not invent a replacement."
+      "checkedAtNote": "REMOVED 23 Aug. The published value 2026-08-24T06:30:00+02:00 was a PLANNED publication time, in the future at deploy, and it contradicted the source records checked 23 August. checkedAt must be a real completed check, ISO 8601 with offset, never a planned time. Do not invent a replacement.",
+      "publishApproval": {
+        "approvedBy": "ChatGPT, Head of Design, relayed by Thomas",
+        "date": "2026-08-23",
+        "order": "PUBLISH ISSUE 001 NOW",
+        "terms": "Publish with the provisional timing markers so the player works. Do NOT fabricate an evidence timestamp. Do NOT claim the unresolved source is verified. Show the evidence state as pending where necessary.",
+        "carriesUnresolved": [
+          "timing markers 02/03/04 not audibly confirmed",
+          "checkedAt has no completed evidence check",
+          "source 04A is an announcement, not the direct public-review document"
+        ]
+      }
     }
   ]
 }
