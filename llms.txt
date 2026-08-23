@@ -13,6 +13,7 @@ yellow3 lab researches markets where important change is happening, publishes wh
 - EU AI Act: what has actually become applicable or enforced, against what has been announced. https://www.yellow3.io/research/eu-ai-act
 - Digital Product Passport: whether the European DPP system is becoming real on schedule, on the regulator side and across industry readiness. https://www.yellow3.io/research/digital-product-passport
 - yellow3 DPP Supplier Register: an independent public dataset of organisations supplying Digital Product Passport capability. https://www.yellow3.io/research/digital-product-passport/suppliers
+- Monday Briefing: a weekly Digital Product Passport briefing covering regulatory, deadline, implementation and standards developments, published every Monday with a full transcript and dated, checked sources. https://www.yellow3.io/research/digital-product-passport/weekly-briefing
 
 The research is published as live instruments rather than opinion: original measurement, dated, with the method and the sources stated. https://www.yellow3.io/research
 
@@ -40,7 +41,7 @@ Summary: Europe created a €5 billion fund to counter foreign dominance in scal
 URL: https://www.yellow3.io/insights/europes-deadlines-are-firm-the-rulebook-is-not
 Summary: EU packaging rules reveal a bigger regulatory problem: fixed deadlines, evolving specifications, and a critical lesson for Digital Product Passport providers.
 
-### The DPP Deadline You Already Missed (August 2026)
+### The Digital Product Passport Deadline You Already Missed (August 2026)
 URL: https://www.yellow3.io/insights/the-dpp-deadline-you-already-missed
 Summary: The EU's Digital Product Passport isn't one deadline. A destruction ban has applied since July, and battery, detergent and toy dates are already locked in law.
 
@@ -173,5 +174,6 @@ Summary: The shift from tools that assist to software that acts. What autonomous
 - Website: https://www.yellow3.io
 - Platforms: https://www.yellow3.io/platforms
 - Insights: https://www.yellow3.io/insights
-- Contact form: https://www.yellow3.io/#contact
+- Monday Briefing: https://www.yellow3.io/research/digital-product-passport/weekly-briefing
+- Contact form: https://www.yellow3.io/contact
 - Location: Copenhagen, Denmark

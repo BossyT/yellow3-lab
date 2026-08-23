@@ -976,18 +976,51 @@ def render_page(ed: dict, canonical: str, prev_ed, next_ed, latest: bool) -> str
                 'from yellow3 Research Intelligence: what changed this week in '
                 'regulatory, deadline, implementation and standards developments.')
 
+    # STRUCTURED-DATA URLS ARE ABSOLUTE, and that is not cosmetic.
+    #
+    # thumbnailUrl and contentUrl shipped as site-root paths - /media/briefing/
+    # ... - which read correctly to a human and are worthless to Google. The
+    # video structured-data requirements ask for a fully qualified URL, and a
+    # relative one makes the page ineligible for video rich results and for
+    # Google Video indexing: the crawler has no base to resolve it against
+    # inside a JSON-LD blob. The page was otherwise perfectly indexable, which
+    # is exactly why nothing caught it - every human check passed.
+    #
+    # abs_url() is applied to every URL that goes into the graph, so a future
+    # field cannot reintroduce the same fault by being written the obvious way.
+    def abs_url(u: str) -> str:
+        return u if u.startswith('http') else BASE + u
+
     video_ld = {
         '@context': 'https://schema.org',
         '@type': 'VideoObject',
         'name': f'Digital Product Passport Weekly Briefing, {ed["publicationDateDisplay"]}',
         'description': desc,
-        'thumbnailUrl': [v['poster']],
+        'thumbnailUrl': [abs_url(v['poster'])],
         'uploadDate': ed['publicationDate'],
         'duration': iso8601(v['durationSeconds']),
-        'contentUrl': v['src'],
+        'contentUrl': abs_url(v['src']),
         'transcript': '\n\n'.join(ed['transcript']),
         'publisher': {'@type': 'Organization', 'name': 'yellow3',
-                      'url': 'https://www.yellow3.io'},
+                      'url': BASE},
+    }
+
+    # The breadcrumb the page already draws, in a form a crawler can read.
+    # RESEARCH / DIGITAL PRODUCT PASSPORT / WEEKLY BRIEFING is rendered as text
+    # at the top of every edition; without this it is decoration to Google and
+    # the page's place in the site has to be inferred from the URL.
+    crumbs = [('Research', f'{BASE}/research'),
+              ('Digital Product Passport', f'{BASE}/research/digital-product-passport'),
+              ('Weekly Briefing', BASE + ROUTE)]
+    if not latest:
+        crumbs.append((ed['publicationDateDisplay'], f'{BASE}{ROUTE}/{ed["slug"]}'))
+    breadcrumb_ld = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+            {'@type': 'ListItem', 'position': i + 1, 'name': n, 'item': u}
+            for i, (n, u) in enumerate(crumbs)
+        ],
     }
 
     # The card name is the page's own path, which is what research/gen_og.py
@@ -1017,6 +1050,7 @@ def render_page(ed: dict, canonical: str, prev_ed, next_ed, latest: bool) -> str
   <meta name="twitter:site" content="@yellow3HQ" />
   <meta name="twitter:image" content="{BASE}/og/cards/{card}.png" />
   <script type="application/ld+json">{json.dumps(video_ld, ensure_ascii=False)}</script>
+  <script type="application/ld+json">{json.dumps(breadcrumb_ld, ensure_ascii=False)}</script>
   <style>
 {shell_css}
 {PAGE_CSS}

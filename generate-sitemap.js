@@ -70,13 +70,42 @@ function fileToUrl(file) {
   return url;
 }
 
+// THE SITEMAP ADVERTISES WHAT THE PAGE ITSELF CLAIMS, not what its filename
+// implies. Those are not always the same, and where they differ Search Console
+// reports the submitted URL as "Alternate page with proper canonical tag" and
+// declines to index it - a page that is perfectly healthy, quietly not indexed.
+//
+// It happened on the Monday Briefing. The file is
+// weekly-briefing/index.html, so the derivation above produced
+// /weekly-briefing/ with a trailing slash, while the page canonicalises to
+// /weekly-briefing without one and every internal link points at the no-slash
+// form. Deriving directory indexes as "/dir/" is right for /insights/, whose
+// canonical carries the slash - so the rule was never wrong in general, only
+// wrong for a page whose canonical disagrees with it.
+//
+// Reading the canonical makes the sitemap agree with the page by construction
+// rather than by coincidence, for every page, including ones added later.
+function canonicalUrl(file, derived) {
+  try {
+    const head = fs.readFileSync(path.join(root, file), 'utf8').slice(0, 12000);
+    const m = head.match(/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["']/i);
+    if (!m) return derived;
+    const href = m[1].trim().replace(/^https?:\/\/(www\.)?yellow3\.io/i, '');
+    // Only ever an on-site path. A canonical pointing somewhere else is a
+    // different fault, and this is not the place to act on it.
+    return href.startsWith('/') ? href : derived;
+  } catch {
+    return derived;
+  }
+}
+
 const root = __dirname;
 const allFiles = getHtmlFiles(root).sort();
 const noIndexed = allFiles.filter(isNoIndex);
 const files = allFiles.filter(f => !noIndexed.includes(f));
 
 const urls = files.map(file => {
-  const urlPath = fileToUrl(file);
+  const urlPath = canonicalUrl(file, fileToUrl(file));
   return {
     loc: DOMAIN + urlPath,
     lastmod: getLastMod(file),
