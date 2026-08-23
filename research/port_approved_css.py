@@ -38,6 +38,79 @@ PKG = ("/private/tmp/claude-501/-Users-tcm/"
        "955bf7f5-bb89-4855-831f-fad554739c52/scratchpad")
 
 PAGES = {
+    # The one package kept INSIDE the repo. Every entry above/below points at a
+    # session scratchpad that no longer exists, so their --check cannot read the
+    # package and the design system gate cannot run on them. The Insights
+    # subscribe package is committed at research/approved/ instead, so this
+    # port stays verifiable for as long as the page ships.
+    "insights-subscribe": {
+        "target": "insights/subscribe.html",
+        "wrapper": "is1",
+        "package": os.path.join(HERE, "approved", "insights-subscribe.approved"),
+        # The frozen copy contract, 05-CONTENT-CONTRACT.md, checked on the built
+        # page rather than trusted. The feed address is the whole point of the
+        # route, and the three actions are the approved interaction set.
+        "requires": ["Follow the work,", "not the noise.",
+                     "https://www.yellow3.io/feed.xml",
+                     "COPY FEED ADDRESS", "OPEN RSS FEED",
+                     "VIEW ALL INSIGHTS", "Chronological by design.",
+                     "Direct publishing, without another platform."],
+        # 02-SUBSCRIBE-PAGE-SPEC.md: the prototype's tertiary link points at the
+        # design reference route and "must not appear in production because the
+        # browser presentation lives at /feed.xml". Lock 02 says there is no
+        # production /feed-preview. Lock 06 forbids the standalone abbreviation
+        # in public copy, and Lock 07 forbids the prototype's sample issues.
+        "forbids": ["/feed-preview", "PLACEHOLDER",
+                    "Layout placeholder, not approved content"],
+        "deviations": [
+            ("", ".subscribe-hero",
+             "padding-top:calc(38px + 74.6px)",
+             "THE ONE PRODUCTION DEVIATION ON THIS ROUTE, and it is Lock 01 "
+             "compliance rather than a design change. The approved package has "
+             "no shell, so its hero opens 38px from the top of the document. "
+             "The production shell's .site-nav is position:fixed and 74.6px "
+             "tall, so it is painted OVER the first 74.6px of any page that "
+             "does not clear it - the breadcrumb and the 7px signal rule would "
+             "both sit behind the menu. Every other page on this site clears "
+             "the same nav the same way: /insights/ opens at 150px, the "
+             "article template at 150px. Lock 01 requires the existing shell "
+             "to surround this page exactly as it surrounds other approved "
+             "site content, and that is what the clearance buys. The approved "
+             "38px gap is preserved exactly - it is added to the nav height "
+             "rather than replaced - so the composition below the menu is the "
+             "one that was approved. Returned to Thomas and GPT for "
+             "ratification with the v1.0 delivery, 23 August 2026."),
+            ("", ".latest-list h3 a",
+             "text-decoration:none",
+             "04-INTERACTIONS-AND-STATES.md: 'The latest-entry titles or rows "
+             "link to their canonical article URLs.' The package's three rows "
+             "are layout placeholders and are not links, so it has no rule for "
+             "an anchor inside an entry title - the package's only anchor rule "
+             "is a{color:inherit}, which leaves the UA underline in place. "
+             "Production rows are real links to the canonical URL in the "
+             "publication record, and this keeps them looking exactly like the "
+             "approved titles. 02-SUBSCRIBE-PAGE-SPEC.md keeps them out of "
+             "cards; making them reachable does not put them in one."),
+            ("", ".visually-hidden",
+             "position:absolute;width:1px;height:1px;margin:-1px;padding:0;"
+             "overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0",
+             "04-INTERACTIONS-AND-STATES.md requires the copy success to be "
+             "announced to assistive technology, and forbids a modal and a "
+             "toast. The approved package swaps the button label, which is the "
+             "correct visual state and is silent to a screen reader that is not "
+             "focused on the button at that moment. This is the live region "
+             "that carries the same two words the label does. It is an "
+             "accessibility affordance the package requires in prose and has no "
+             "rule for, not a visual addition: it renders nothing."),
+            ("@media (max-width:560px)", ".subscribe-hero",
+             "padding-top:calc(26px + 67px)",
+             "The same clearance at mobile, where the package opens at 26px "
+             "and the shell's nav is 67px tall (padding drops to 14px each "
+             "side below 880px). Same reasoning, same arithmetic, so the "
+             "approved 26px gap survives under the menu rather than behind "
+             "it."),
+        ],
+    },
     "research": {
         "target": "research.html",
         "wrapper": "rs1",

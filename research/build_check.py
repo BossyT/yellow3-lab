@@ -38,6 +38,12 @@ def main() -> int:
     #    timestamp on it.
     run('prerender_instruments.py', '--apply')
     run('dpp_dataset_export.py')
+    # The Insights subscription experience, approved v1.0, 23 Aug 2026. The
+    # three latest entries on /insights/subscribe are rebuilt from feed.xml on
+    # every deploy for the same reason the instruments are: the moment they are
+    # allowed to go stale they become a list that says "latest" and is not.
+    run('gen_subscribe.py')
+    run('gen_feed_xsl.py')
 
     # 2. Assert the output. Thresholds are deliberately far below current values
     #    so ordinary movement never trips them, and a collapse always does.
@@ -103,6 +109,91 @@ def main() -> int:
             else:
                 print(f'  ok  CMS: parses, {text.count("article-body")} article '
                       f'template references')
+
+    # 2b2. The feed is still a feed, and the subscription page is still live.
+    #
+    # /feed.xml carries a human presentation now (feed.xsl, applied by the
+    # browser). The whole design depends on that being a LAYER: a reader asking
+    # for the feed must still get valid RSS 2.0, and if the stylesheet ever
+    # failed to load the XML would still be there. So the things worth asserting
+    # are the ones that would silently stop being true - the feed parsing as
+    # RSS, its items keeping the fields a subscriber needs, the stylesheet
+    # reference surviving, and the page's "latest" list actually being latest.
+    #
+    # And the one thing a copy-paste would reintroduce: the prototype's sample
+    # issues. Lock 07 forbids them shipping, so they are named here rather than
+    # trusted to have been deleted.
+    feed = ROOT / 'feed.xml'
+    if not feed.exists():
+        FAIL.append('feed.xml is missing - it is the canonical RSS address')
+    else:
+        raw = feed.read_text(encoding='utf-8')
+        try:
+            import xml.etree.ElementTree as ET
+            channel = ET.parse(feed).getroot().find('channel')
+        except Exception as e:
+            channel = None
+            FAIL.append(f'feed.xml does not parse as XML: {e} - every reader '
+                        f'subscribed to it is now getting nothing')
+        if '<?xml-stylesheet' not in raw or 'feed.xsl' not in raw:
+            FAIL.append('feed.xml has lost its stylesheet reference - the '
+                        'browser presentation is gone and humans get raw XML')
+        if channel is not None:
+            items = channel.findall('item')
+            bad = [i for i in items
+                   if not (i.findtext('title') or '').strip()
+                   or not (i.findtext('link') or '').startswith('https://')
+                   or not (i.findtext('guid') or '').strip()
+                   or not (i.findtext('pubDate') or '').strip()]
+            if not items:
+                FAIL.append('feed.xml has no items at all')
+            elif bad:
+                FAIL.append(f'{len(bad)} feed item(s) are missing a title, an '
+                            f'absolute https link, a guid or a pubDate, '
+                            f'e.g. "{(bad[0].findtext("title") or "")[:48]}"')
+            else:
+                print(f'  ok  feed: {len(items)} items, RSS 2.0, styled for browsers')
+
+    sub = ROOT / 'insights' / 'subscribe.html'
+    if not sub.exists():
+        FAIL.append('insights/subscribe.html is missing - the human route into '
+                    'the feed is the whole point of the v1.0 handover')
+    else:
+        text = sub.read_text(encoding='utf-8')
+        # Copy that exists ONLY in the design prototype. The first is the
+        # prototype's rewritten issue 31 title - the live record says "The DPP
+        # Deadline You Already Missed" - so finding it here means the sample
+        # array came back. The second is the tertiary link 02-SUBSCRIBE-PAGE-SPEC
+        # says must not ship.
+        for phrase in ('The Digital Product Passport Deadline You Already Missed',
+                       'VIEW THE APPROVED BROWSER PRESENTATION'):
+            if phrase in text:
+                FAIL.append(f'insights/subscribe.html still carries prototype '
+                            f'content: "{phrase[:52]}"')
+        if '/feed-preview' in text:
+            FAIL.append('insights/subscribe.html links to /feed-preview - Lock '
+                        '02: that route exists only in the design prototype')
+        r = subprocess.run([sys.executable, str(ROOT / 'research' / 'gen_subscribe.py'),
+                            '--check'], capture_output=True, text=True)
+        if r.returncode:
+            FAIL.append('the subscribe page\'s latest entries are stale:\n      '
+                        + (r.stdout or r.stderr).strip())
+        else:
+            print((r.stdout or '').rstrip())
+        r = subprocess.run([sys.executable, str(ROOT / 'research' / 'gen_feed_xsl.py'),
+                            '--check'], capture_output=True, text=True)
+        if r.returncode:
+            FAIL.append('feed.xsl has drifted from the approved package:\n      '
+                        + (r.stdout or r.stderr).strip())
+        else:
+            print((r.stdout or '').rstrip())
+        r = subprocess.run([sys.executable, str(ROOT / 'research' / 'port_approved_css.py'),
+                            'insights-subscribe'], capture_output=True, text=True)
+        if r.returncode:
+            FAIL.append('the approved subscribe stylesheet has drifted:\n      '
+                        + (r.stdout or r.stderr).strip())
+        else:
+            print('  ok  subscribe: stylesheet matches the approved package')
 
     # 2c. SEO / entity due diligence, as a standing gate.
     #
