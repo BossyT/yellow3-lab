@@ -380,7 +380,7 @@ def render_report(period, g):
   <main class="rpt">
     <div class="rwrap">
       <nav class="crumb"><a href="/research">Research</a> <span>/</span>
-        <a href="{BASE}">Model adoption</a> <span>/</span>
+        <a href="{BASE}">AI model adoption</a> <span>/</span>
         <a href="{RBASE}">Reports</a> <span>/</span>
         <span aria-current="page">{esc(g["month"])}</span></nav>
 
@@ -532,7 +532,7 @@ def render_briefing(period, g):
   <main class="rpt">
     <div class="rwrap">
       <nav class="crumb"><a href="/research">Research</a> <span>/</span>
-        <a href="{BASE}">Model adoption</a> <span>/</span>
+        <a href="{BASE}">AI model adoption</a> <span>/</span>
         <span aria-current="page">Briefing</span></nav>
 
       <header class="cover">
@@ -595,7 +595,7 @@ def render_archive(reports):
 {NAV}
   <main class="rpt"><div class="rwrap">
     <nav class="crumb"><a href="/research">Research</a> <span>/</span>
-      <a href="{BASE}">Model adoption</a> <span>/</span><span aria-current="page">Reports</span></nav>
+      <a href="{BASE}">AI model adoption</a> <span>/</span><span aria-current="page">Reports</span></nav>
     <header class="cover"><div class="cover-eyebrow">yellow3 Model Intelligence</div>
       <h1>The Model Adoption Report</h1>
       <p class="cover-sub">A monthly intelligence report on where AI demand actually flows - by region of

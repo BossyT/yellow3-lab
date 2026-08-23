@@ -1,6 +1,6 @@
 {
   "instrument": "model-adoption",
-  "title": "Model adoption",
+  "title": "AI model adoption",
   "thesis": "See which AI models the world is actually using, where they were built, and how the balance is changing. The live chart updates as new routed traffic is recorded, so rankings and regional shares can shift at any time. Return regularly to follow the movement.",
   "status": "live",
   "as_of": "2026-08-22",

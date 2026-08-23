@@ -141,7 +141,7 @@ FOOT_PLATFORMS_NEW = (
 # ...and the register arrives in Research, where it belongs.
 #
 # NOT a wholesale rewrite of that column. It carries three deliberate variants -
-# the DPP family lists the method, the Model Adoption family lists the report -
+# the DPP family lists the method, the AI Model Adoption family lists the report -
 # and site_nav has always left it alone because that is contextual navigation
 # rather than architecture. The register is appended to whichever variant a page
 # already has, so the reclassification happens without flattening 635 pages into

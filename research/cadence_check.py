@@ -3,7 +3,7 @@
 Every research instrument must declare how it is updated, and prove it.
 
 WHY THIS EXISTS. On 15 August 2026 three instruments disagreed with themselves.
-Model Adoption said "updated weekly" while a cron job refreshed it daily. The
+AI Model Adoption said "updated weekly" while a cron job refreshed it daily. The
 EU AI Act and Digital Product Passport instruments promised weekly and had not
 been touched for eighteen days - two missed editions each - while still showing
 a "Live" badge. Nothing was checking, so nothing said anything. The EU AI Act

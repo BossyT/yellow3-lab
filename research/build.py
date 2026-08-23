@@ -913,7 +913,7 @@ def main():
 
     data = {
         "instrument": "model-adoption",
-        "title": "Model adoption",
+        "title": "AI model adoption",
         "thesis": THESIS,
         "status": "live",
         "as_of": as_of,

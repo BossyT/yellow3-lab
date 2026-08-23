@@ -316,7 +316,7 @@ def sources_section(m, provider, meta):
                        ("repository_url", "Official repository")):
         if meta.get(key):
             links.append(f'<li><a href="{esc(meta[key])}" target="_blank" rel="noopener noreferrer">{esc(label)} &#8599;</a> <span class="src-primary">primary</span></li>')
-    links.append(f'<li><a href="{BASE}#methodology">yellow3 Model Adoption methodology</a></li>')
+    links.append(f'<li><a href="{BASE}#methodology">yellow3 AI Model Adoption methodology</a></li>')
     links.append('<li><a href="https://openrouter.ai/rankings" target="_blank" rel="noopener noreferrer">OpenRouter routing rankings (routed-traffic source) &#8599;</a></li>')
     return "".join(links)
 
@@ -357,7 +357,7 @@ def head(m, provider, meta, updated_iso):
         "@context": "https://schema.org", "@type": "BreadcrumbList",
         "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Research", "item": f"{HOST}/research"},
-            {"@type": "ListItem", "position": 2, "name": "Model adoption", "item": f"{HOST}{BASE}"},
+            {"@type": "ListItem", "position": 2, "name": "AI model adoption", "item": f"{HOST}{BASE}"},
             {"@type": "ListItem", "position": 3, "name": name, "item": url},
         ],
     }
@@ -622,7 +622,7 @@ def render_page(m, provider, meta, models_by_slug, page_slugs, site, econ=None):
     <div class="wrap">
       <nav class="crumb" aria-label="Breadcrumb">
         <a href="/research">Research</a> <span>/</span>
-        <a href="{BASE}">Model adoption</a> <span>/</span>
+        <a href="{BASE}">AI model adoption</a> <span>/</span>
         <span aria-current="page">{name}</span>
       </nav>
 

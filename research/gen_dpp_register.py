@@ -265,7 +265,7 @@ SITE_FOOTER = _foot("""  <footer class="site-footer y3foot">
           <h4>Research</h4>
           <a href="/research">Research areas</a>
           <a href="/research/framework">The method</a>
-          <a href="/research/model-adoption">Model adoption</a>
+          <a href="/research/model-adoption">AI model adoption</a>
           <a href="/research/digital-product-passport/suppliers">DPP Supplier Register</a>
         </div>
         <div class="foot-col">

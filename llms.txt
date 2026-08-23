@@ -9,7 +9,7 @@ yellow3 lab is an AI and emerging-technology company based in Copenhagen, Denmar
 
 yellow3 lab researches markets where important change is happening, publishes what it measures, and builds a platform when the research exposes a problem software can solve better. Current public research instruments include:
 
-- Model Adoption: where routed AI demand is flowing, by model origin, updated weekly. https://www.yellow3.io/research/model-adoption
+- AI Model Adoption: where routed AI demand is flowing, by model origin, updated weekly. https://www.yellow3.io/research/model-adoption
 - EU AI Act: what has actually become applicable or enforced, against what has been announced. https://www.yellow3.io/research/eu-ai-act
 - Digital Product Passport: whether the European DPP system is becoming real on schedule, on the regulator side and across industry readiness. https://www.yellow3.io/research/digital-product-passport
 - yellow3 DPP Supplier Register: an independent public dataset of organisations supplying Digital Product Passport capability. https://www.yellow3.io/research/digital-product-passport/suppliers

@@ -40,7 +40,7 @@ def shell():
     s = open(SIBLING, encoding="utf-8").read()
     # The SITE nav, not the instrument's page header. <header> on live.html is
     # that page's own hero and carries its H1 - lifting it gave the archive two
-    # H1s, "Model adoption" above "The AI Top 10".
+    # H1s, "AI model adoption" above "The AI Top 10".
     head = re.search(r'(<nav[^>]*class="site-nav".*?</nav>)', s, re.S)
     foot = re.search(r"(<footer.*?</footer>)", s, re.S)
     # The nav and footer carry no styles of their own - those live in the page's
@@ -92,7 +92,7 @@ def main():
 
     latest = snaps[0]
     desc = ("The AI Top 10, a weekly ranked edition of the most-routed AI models, "
-            "cut from yellow3's live Model Adoption instrument. Archive of every "
+            "cut from yellow3's live AI Model Adoption instrument. Archive of every "
             "edition with its measurement window.")
 
     page = """<!DOCTYPE html>

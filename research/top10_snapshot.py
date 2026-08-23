@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Freeze one week of the Model Adoption instrument into a snapshot the AI Top 10
+Freeze one week of the AI Model Adoption instrument into a snapshot the AI Top 10
 graphic is rendered from.
 
 THE POINT OF PERSISTING IT. The graphic and the live page must never disagree.

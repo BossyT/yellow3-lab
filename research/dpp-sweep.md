@@ -1,7 +1,7 @@
 # DPP instrument - weekly sweep runbook
 
 The Digital Product Passport instrument is labelled **"Live · updated weekly"**.
-This is the routine that makes that true. Unlike Model adoption (a clean
+This is the routine that makes that true. Unlike AI model adoption (a clean
 OpenRouter API, fully automated), the DPP sources are regulatory web pages that
 need reading and judgement, so the sweep is an **agent- or human-run routine**
 with a deterministic helper, not a silent cron. A clean candidate to hand to a
