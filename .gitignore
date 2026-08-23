@@ -7,3 +7,12 @@
 # Working state, not source. CoWork and Terminal both use this for staging
 # files during a task; a public repo is not the place for it.
 scratchpad/
+
+# Monday Briefing working files. The delivery encode is ~75 MB per edition and
+# belongs in the Blob store, never in a public git repository - 33 MB of master
+# plus a delivery copy every Monday is well over a gigabyte a year. The original
+# recording is archived outside the repo and its sha256 is in briefings.json.
+research/.media/
+# QA renders of an unpublished edition. They carry PREVIEW placeholders and must
+# never be reachable, globbed by build_check or walked by the sitemap.
+research/.preview/
