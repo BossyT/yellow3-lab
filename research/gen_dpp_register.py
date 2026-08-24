@@ -1206,7 +1206,7 @@ def edit_html(r, counts):
                 <span><span id="edTagCount">0</span> / 8</span>
               </div>
               <div class="tag-entry" id="edTagEntry">
-                <input id="edSectors" placeholder="Add a sector" />
+                <input id="edSectors" placeholder="Add a sector" maxlength="48" />
               </div>
               <small>Press enter to add. Select a tag to remove it.</small>
             </div>

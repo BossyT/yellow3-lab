@@ -62,6 +62,27 @@ function domainOf(email) {
   return at > 0 ? String(email).slice(at + 1).toLowerCase() : '';
 }
 
+// DISPLAY TEXT, WHICH MUST NEVER BE PUBLISHED MID-WORD.
+//
+// `text` hard-slices, which is correct for a URL and wrong for a label a person
+// typed. On 2026-08-24 Repass saved the sector "Consumer goods wholesales &
+// retail" - 33 characters against a 30 cap - and the register published
+// "Consumer goods wholesales & re" on their public profile, under their own
+// name, in the layer marked as supplied by them. The editor input carried no
+// length limit either, so nothing told them it had happened.
+//
+// Cut at the last word boundary instead. A single word longer than the whole
+// allowance still gets a hard cut - there is nowhere else to break it - but the
+// common case now ends on a word. The cap still exists: this is about how it
+// truncates, not whether it does.
+function label(v, max) {
+  const s = text(v, max + 1);          // one over the cap, so overflow is visible
+  if (s.length <= max) return s;
+  const cut = s.slice(0, max);
+  const sp = cut.lastIndexOf(' ');
+  return (sp > max / 2 ? cut.slice(0, sp) : cut).trim();
+}
+
 function httpsUrl(v) {
   const s = text(v, 300);
   if (!s) return '';
@@ -118,10 +139,12 @@ module.exports = async (req, res) => {
   const now = new Date().toISOString().slice(0, 10);
   const rec = {
     supplier_id: sid,
-    description: text(body.description, 160),
+    description: label(body.description, 160),
     contact_url: httpsUrl(body.contact_url),
+    // 48, not 30. A real sector label - "Consumer goods wholesales & retail" -
+    // is 33 characters and did not fit. Eight of these is still bounded.
     sectors: Array.isArray(body.sectors)
-      ? body.sectors.map(t => text(t, 30)).filter(Boolean).slice(0, 8) : [],
+      ? body.sectors.map(t => label(t, 48)).filter(Boolean).slice(0, 8) : [],
     logo_path: (current && current.logo_path) || '',
     logo_url: (current && current.logo_url) || '',
     licence: (current && current.licence) || null,
