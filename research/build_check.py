@@ -372,6 +372,70 @@ def main() -> int:
     else:
         print('  ok  capability layer: every assessable row is assessed')
 
+    # 2b6. No public object records a person.
+    #
+    # THIS IS THE SECOND TIME. CLAUDE.md documents the first: four companies'
+    # claimants had their work addresses published because dpp/supplied/ and
+    # dpp/suggestions/ are served to anyone with the URL. api/supplied.js was
+    # corrected to record `granted_by_domain: domainOf(s.email)` - the domain
+    # carries the whole audit property, a person at that company asked, and the
+    # local part proves nothing extra. The correction was never carried across
+    # to api/suggest.js, whose queued record kept `email: email`, and on
+    # 2026-08-24 a named individual's work address was again publicly readable
+    # at the suggestions URL - found while running that company's intake.
+    #
+    # Fixed twice is not fixed. This is the guard.
+    #
+    # WHAT IT CHECKS, and what it cannot. It is LEXICAL, not semantic: in any
+    # api/*.js that writes to Blob, a field named `email` may appear only
+    # wrapped in domainOf(), or in a note() line - Vercel runtime logs are
+    # internal and access-controlled, and the operator needs the address there
+    # to answer the submitter. Anything else is a personal address heading for
+    # an object we serve to the world. It cannot see a rename or an address
+    # reached through a variable, so it is a floor, not a proof.
+    api_dir = ROOT / 'api'
+    exposed = []
+    for f in sorted(api_dir.glob('*.js')):
+        src = f.read_text(encoding='utf-8')
+        if 'blob.put' not in src:
+            continue                      # writes nothing public, nothing to leak
+        # Blank out every note(...) call before scanning, keeping the line count
+        # so reported line numbers stay true. A note() spans lines when its
+        # fields wrap, so testing "is note( on this line" misses the tail - the
+        # first draft of this gate did exactly that and passed a wrapped one.
+        masked = list(src)
+        k = 0
+        while True:
+            k = src.find('note(', k)
+            if k < 0:
+                break
+            depth, m = 0, k + 4
+            while m < len(src):
+                if src[m] == '(':
+                    depth += 1
+                elif src[m] == ')':
+                    depth -= 1
+                    if depth == 0:
+                        break
+                m += 1
+            for q in range(k, min(m + 1, len(src))):
+                if masked[q] != '\n':
+                    masked[q] = ' '
+            k = m + 1
+        for n, line in enumerate(''.join(masked).splitlines(), 1):
+            if not re.search(r'\bemail\s*:', line):
+                continue
+            if 'domainOf(' in line:
+                continue
+            exposed.append(f'{f.name}:{n}  {line.strip()[:72]}')
+    if exposed:
+        FAIL.append('a personal address is written into a public object:\n      '
+                    + '\n      '.join(exposed)
+                    + '\n      record domainOf(email), not the address'
+                      ' - see api/supplied.js')
+    else:
+        print('  ok  public objects: no writer records a personal address')
+
     # 2c. SEO / entity due diligence, as a standing gate.
     #
     # GPT 2026-08-15: this is a continuous system, not a one-off project.

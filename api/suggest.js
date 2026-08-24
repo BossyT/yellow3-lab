@@ -156,7 +156,14 @@ module.exports = async (req, res) => {
   // New to us. Queue it as research, and say plainly that a submission is not a
   // listing. Deduped by domain: submitting twice updates one record.
   const now = new Date().toISOString().slice(0, 10);
-  const rec = { domain: dom, company: name, email: email, submitted_at: now, status: 'queued' };
+  // NO ADDRESS IN THIS RECORD. dpp/suggestions/ is served to anyone with the
+  // URL, so everything written here is public. `dom` above IS domainOf(email),
+  // which carries the whole audit property - a person at that company asked to
+  // be listed. The local part proves nothing extra and is a named individual.
+  // This is the same correction already made in api/supplied.js, whose comment
+  // names this path as public; it was not carried across at the time.
+  // The address still reaches a human: the NOTIFY mail below sends it.
+  const rec = { domain: dom, company: name, submitted_at: now, status: 'queued' };
   try {
     const prev = await blob.getJson('dpp/suggestions/' + dom + '.json');
     if (prev && prev.submitted_at) rec.submitted_at = prev.submitted_at;
