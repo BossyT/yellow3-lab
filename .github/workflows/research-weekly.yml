@@ -14,8 +14,22 @@ name: Research - weekly capability check
 # failure that matters, and until this existed nothing was watching for one -
 # the layer was generated on 2026-08-05 and never re-read.
 #
-# It fails loudly rather than filing a report nobody opens. A red run is the
-# signal that the register is claiming something it can no longer show.
+# WHAT MAKES IT GO RED, and why the list is short. The first run, 24 Aug 2026,
+# went red for three reasons and two of them were noise:
+#
+#   - 14 consultancies unassessed. That is an open RESEARCH decision, not a
+#     defect. Failing on it every Monday until somebody rules would teach
+#     everyone to ignore the mail.
+#   - "research is 19 days old". That threshold was invented in this repo: the
+#     register declares event_driven and the capability layer declares no
+#     cadence at all. "Run a check weekly" meant run the CHECK weekly, not
+#     re-do a manual research batch weekly.
+#   - two fabacus.com citations returning 500. Its ROOT DOMAIN was 500 too -
+#     the site was down, the pages were not gone.
+#
+# Red is now reserved for what is ours and fixable: a cited page has GONE
+# (4xx), or the layer carries findings the framework exempts. Everything else
+# is reported in the run output and does not fail.
 
 on:
   schedule:

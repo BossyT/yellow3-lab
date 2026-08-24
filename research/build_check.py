@@ -341,8 +341,16 @@ def main() -> int:
     r = subprocess.run([sys.executable,
                         str(ROOT / 'research' / 'dpp_capability_check.py')],
                        capture_output=True, text=True)
-    lines = [l.strip() for l in (r.stdout or '').splitlines() if l.strip().startswith('!')]
-    coverage_faults = [l for l in lines if 'have no capability checks' in l
+    # BOTH PREFIXES, and that is not belt-and-braces. dpp_capability_check was
+    # retuned on 2026-08-24 so a coverage gap prints under "REPORTED, not
+    # failing" with a '..' prefix instead of '!'. This parser keyed on '!'
+    # alone and so reported "every assessable row is assessed" while fourteen
+    # were not - a check that had quietly stopped checking and said the
+    # opposite. Read both, and key on the sentence rather than the decoration.
+    lines = [l.strip() for l in (r.stdout or '').splitlines()
+             if l.strip().startswith('!') or l.strip().startswith('..')]
+    coverage_faults = [l.lstrip('!. ') for l in lines
+                       if 'have no capability checks' in l
                        or 'should not be assessed' in l]
     # REPORTED, NOT BLOCKING, and that is the considered choice.
     #
@@ -352,13 +360,15 @@ def main() -> int:
     # already paid for once, over a queue count that turned out to be a test
     # submission. A deploy gate should refuse what is our fault and fixable now.
     #
-    # The weekly job (.github/workflows/research-weekly.yml) DOES fail on this,
-    # loudly, which is the right cadence for a research gap: it cannot rot
-    # unnoticed for a month again, and it cannot hold the site hostage either.
+    # The weekly job reports it every Monday in its run output. It does not go
+    # red on it either: the first run went red on this and on an invented
+    # freshness threshold, and a job that is red every week for an unmade
+    # decision is a job everybody learns to ignore. Red is reserved there for a
+    # cited page that has GONE.
     if coverage_faults:
         for line in coverage_faults:
-            print('  ..  capability layer: ' + line.lstrip('! ')
-                  + ' (research decision; the weekly check fails on this)')
+            print('  ..  capability layer: ' + line
+                  + ' (open research decision; reported weekly, fails neither)')
     else:
         print('  ok  capability layer: every assessable row is assessed')
 
