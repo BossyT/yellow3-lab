@@ -13,7 +13,7 @@
     "commercial_suppliers": 172,
     "countries": 33,
     "countries_primary_sourced": 33,
-    "verified": 144,
+    "verified": 145,
     "with_disclosed_funding": 16
   },
   "field_notes": {
@@ -46,7 +46,8 @@
       "confidence": "unverified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "360-smart-connect",
@@ -72,7 +73,8 @@
       "confidence": "verified",
       "sectors_list": [
         "construction"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "3e-exchange",
@@ -102,7 +104,8 @@
         "construction",
         "electronics",
         "chemicals"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "accentis-cis",
@@ -126,7 +129,8 @@
       "source": "official company website",
       "source_date": "2026-07-28",
       "confidence": "claimed",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "alias_domains": "",
@@ -150,7 +154,8 @@
       "source_date": "2026-07-29",
       "status": "active",
       "total_disclosed_funding": "",
-      "website": "https://www.aidgent.io"
+      "website": "https://www.aidgent.io",
+      "country_source_type": ""
     },
     {
       "id": "aleverum-global",
@@ -179,7 +184,8 @@
         "electronics",
         "batteries",
         "construction"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "alternew",
@@ -205,7 +211,8 @@
       "confidence": "claimed",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "arianee",
@@ -234,7 +241,8 @@
         "textiles",
         "electronics",
         "furniture"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "aroundata-consulting",
@@ -258,7 +266,8 @@
       "source": "official company website",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "atma",
@@ -286,7 +295,8 @@
         "batteries",
         "textiles",
         "electronics"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "authena",
@@ -312,7 +322,8 @@
       "confidence": "verified",
       "sectors_list": [
         "food"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "avl",
@@ -339,7 +350,8 @@
       "sectors_list": [
         "batteries",
         "automotive"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "aware",
@@ -365,7 +377,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "batteriepasswerk",
@@ -391,7 +404,8 @@
       "confidence": "verified",
       "sectors_list": [
         "batteries"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "battery-pass-consortium",
@@ -417,7 +431,8 @@
       "confidence": "claimed",
       "sectors_list": [
         "batteries"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "bcome",
@@ -443,7 +458,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "benelog-gmbh-co-kg",
@@ -474,7 +490,8 @@
         "construction",
         "food",
         "chemicals"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "beopass",
@@ -500,7 +517,8 @@
       "confidence": "claimed",
       "sectors_list": [
         "batteries"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "billon-group",
@@ -524,7 +542,8 @@
       "source": "official company website; Companies House; CORDIS",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": "official_register"
     },
     {
       "id": "biniworld-innovations-private-limited",
@@ -548,7 +567,8 @@
       "source": "official company website",
       "source_date": "2026-07-28",
       "confidence": "claimed",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "blue-room-innovation",
@@ -576,7 +596,8 @@
         "textiles",
         "construction",
         "electronics"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "care-id",
@@ -602,7 +623,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "caruma",
@@ -628,7 +650,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "catena-x",
@@ -655,7 +678,8 @@
       "sectors_list": [
         "automotive",
         "batteries"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "certilogo",
@@ -681,7 +705,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "checkpoint-systems",
@@ -707,7 +732,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "chemius",
@@ -733,7 +759,8 @@
       "confidence": "verified",
       "sectors_list": [
         "chemicals"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "circthread",
@@ -761,7 +788,8 @@
         "electronics",
         "batteries",
         "home appliances"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "circudata",
@@ -792,7 +820,8 @@
         "electronics",
         "furniture",
         "chemicals"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "circuland",
@@ -822,7 +851,8 @@
         "tyres",
         "furniture",
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "circular",
@@ -848,7 +878,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "circularise",
@@ -881,7 +912,8 @@
         "metals",
         "electronics",
         "construction"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "circularpass-easytrack",
@@ -909,7 +941,8 @@
         "textiles",
         "construction",
         "electronics"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "circulor",
@@ -936,7 +969,8 @@
       "sectors_list": [
         "batteries",
         "automotive"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "cirpass",
@@ -964,7 +998,8 @@
         "electronics",
         "batteries",
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "cirpass2",
@@ -993,7 +1028,8 @@
         "electronics",
         "tyres",
         "construction"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "cirtag-ab",
@@ -1020,7 +1056,8 @@
       "sectors_list": [
         "electronics",
         "batteries"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "clothing-connected",
@@ -1046,7 +1083,8 @@
       "confidence": "claimed",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "cobuilder",
@@ -1072,7 +1110,8 @@
       "confidence": "verified",
       "sectors_list": [
         "construction"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "concular",
@@ -1098,7 +1137,8 @@
       "confidence": "verified",
       "sectors_list": [
         "construction"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "containergrid",
@@ -1127,7 +1167,8 @@
         "batteries",
         "electronics",
         "construction"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "crystalchain",
@@ -1153,7 +1194,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "cycle-platform",
@@ -1179,7 +1221,8 @@
       "confidence": "claimed",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "cyrcid",
@@ -1205,7 +1248,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "dataart",
@@ -1231,7 +1275,8 @@
       "confidence": "verified",
       "sectors_list": [
         "automotive"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "deeplai",
@@ -1259,7 +1304,8 @@
         "textiles",
         "furniture",
         "electronics"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "deloitte-consulting-gmbh",
@@ -1283,7 +1329,8 @@
       "source": "official company website and privacy notice",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": "company_legal_notice"
     },
     {
       "alias_domains": "",
@@ -1310,7 +1357,8 @@
       "source_date": "2026-07-28",
       "status": "active",
       "total_disclosed_funding": "",
-      "website": "https://deply.it"
+      "website": "https://deply.it",
+      "country_source_type": ""
     },
     {
       "id": "digipilpass",
@@ -1336,7 +1384,8 @@
       "confidence": "claimed",
       "sectors_list": [
         "batteries"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "digipropass",
@@ -1362,7 +1411,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "distinkt",
@@ -1386,7 +1436,8 @@
       "source": "official company website and privacy policy",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "dnv",
@@ -1414,7 +1465,8 @@
         "batteries",
         "textiles",
         "electronics"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "dpp-hero",
@@ -1440,7 +1492,8 @@
       "confidence": "verified",
       "sectors_list": [
         "batteries"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "dpp-services",
@@ -1464,7 +1517,8 @@
       "source": "identity research; no primary source found",
       "source_date": "2026-07-28",
       "confidence": "unverified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "dpp-studio-by-ez-lab",
@@ -1494,7 +1548,8 @@
         "cosmetics",
         "furniture",
         "electronics"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "dpp-pro",
@@ -1518,7 +1573,8 @@
       "alias_domains": "",
       "sectors_list": [],
       "sectors": "",
-      "confidence": "claimed"
+      "confidence": "claimed",
+      "country_source_type": ""
     },
     {
       "id": "dpp4-0",
@@ -1544,7 +1600,8 @@
       "confidence": "claimed",
       "sectors_list": [
         "electronics"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "dppit",
@@ -1568,7 +1625,8 @@
       "source": "official product website",
       "source_date": "2026-07-28",
       "confidence": "claimed",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "dppmanager-com",
@@ -1592,7 +1650,8 @@
       "source": "official company website",
       "source_date": "2026-07-28",
       "confidence": "claimed",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "dppskop",
@@ -1621,7 +1680,8 @@
         "textiles",
         "electronics",
         "furniture"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "duepas",
@@ -1648,7 +1708,8 @@
       "sectors_list": [
         "electronics",
         "batteries"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "e-circular-aps",
@@ -1672,7 +1733,8 @@
       "source": "official company website and EU Funding & Tenders Portal",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "echo-prm-gmbh",
@@ -1696,7 +1758,8 @@
       "source": "official website and imprint",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "eclass-e-v",
@@ -1720,7 +1783,8 @@
       "alias_domains": "",
       "sectors_list": [],
       "sectors": "",
-      "confidence": "verified"
+      "confidence": "verified",
+      "country_source_type": ""
     },
     {
       "id": "ecoviator",
@@ -1744,7 +1808,8 @@
       "source": "official website and imprint",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "emblem",
@@ -1771,7 +1836,8 @@
       "sectors_list": [
         "textiles",
         "furniture"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "emidat",
@@ -1797,7 +1863,8 @@
       "confidence": "verified",
       "sectors_list": [
         "construction"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "energy-web",
@@ -1821,7 +1888,8 @@
       "source": "official website, privacy policy, and official publisher channel",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "enseso-d-o-o",
@@ -1847,7 +1915,8 @@
       "confidence": "verified",
       "sectors_list": [
         "food"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "eon",
@@ -1873,7 +1942,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "esgnext",
@@ -1902,7 +1972,8 @@
         "textiles",
         "electronics",
         "furniture"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "eviden",
@@ -1926,7 +1997,8 @@
       "source": "official Eviden website and Atos Group product announcement",
       "source_date": "2026-07-28",
       "confidence": "claimed",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "fabacus",
@@ -1950,7 +2022,8 @@
       "source": "official website and Companies House",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": "official_register"
     },
     {
       "id": "fairlymade",
@@ -1976,7 +2049,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "family-labs-pty-ltd",
@@ -2000,7 +2074,8 @@
       "source": "official product website and privacy policy",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "fluxy-one",
@@ -2031,7 +2106,8 @@
         "tyres",
         "furniture",
         "food"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "foodtraze",
@@ -2057,7 +2133,8 @@
       "confidence": "claimed",
       "sectors_list": [
         "food"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "fraunhofer-iosb",
@@ -2081,7 +2158,8 @@
       "source": "official institute website, contractual terms, and Fraunhofer publication",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "global-battery-alliance",
@@ -2107,7 +2185,8 @@
       "confidence": "verified",
       "sectors_list": [
         "batteries"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "go-trace",
@@ -2133,7 +2212,8 @@
         "textiles"
       ],
       "sectors": "textiles",
-      "confidence": "verified"
+      "confidence": "verified",
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "goods-tag",
@@ -2164,7 +2244,8 @@
         "electronics",
         "construction",
         "chemicals"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "goodsid",
@@ -2188,7 +2269,8 @@
       "source": "official website and embedded legal notice",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "green-story",
@@ -2214,7 +2296,8 @@
       "confidence": "claimed",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "greenable-gmbh",
@@ -2238,7 +2321,8 @@
       "source": "official website, imprint, and company funding statement",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "greenstitch-technologies-private-limited",
@@ -2264,7 +2348,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "gs1",
@@ -2288,7 +2373,8 @@
       "source": "official GS1 standards page and terms of use",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "hala",
@@ -2314,7 +2400,8 @@
       "confidence": "claimed",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "harbour-ai",
@@ -2338,7 +2425,8 @@
       "source": "official company website, CRO Gazette, and Enterprise Ireland",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": "official_register"
     },
     {
       "id": "ibm",
@@ -2362,7 +2450,8 @@
       "source": "official IBM product page and SEC filing",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "industryapps",
@@ -2386,7 +2475,8 @@
       "source": "official company website, contact page, and privacy policy",
       "source_date": "2026-07-28",
       "confidence": "claimed",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "innopay",
@@ -2410,7 +2500,8 @@
       "source": "official Oliver Wyman website and acquisition release",
       "source_date": "2026-07-28",
       "confidence": "claimed",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "inriver",
@@ -2434,7 +2525,8 @@
       "source": "official company website, contact page, and investment release",
       "source_date": "2026-07-28",
       "confidence": "claimed",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "iota-foundation",
@@ -2458,7 +2550,8 @@
       "source": "official IOTA website, privacy policy, and DPP project article",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "ipoint-systems",
@@ -2485,7 +2578,8 @@
       "sectors_list": [
         "electronics",
         "automotive"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "ixalab-2026",
@@ -2511,7 +2605,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "k4security-co-ltd",
@@ -2535,7 +2630,8 @@
       "source": "official company and product websites, plus official partner release",
       "source_date": "2026-07-28",
       "confidence": "claimed",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "kelpai",
@@ -2563,7 +2659,8 @@
         "textiles",
         "furniture",
         "construction"
-      ]
+      ],
+      "country_source_type": "official_register"
     },
     {
       "id": "kerion-x-core",
@@ -2587,7 +2684,8 @@
       "source": "digital-product-passport.pro directory; primary-source verification pass",
       "source_date": "2026-07-28",
       "confidence": "unverified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "kevla-gmbh",
@@ -2611,7 +2709,8 @@
       "source": "official company legal notice and Kiwa press release",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "kezzler",
@@ -2638,7 +2737,8 @@
       "sectors_list": [
         "batteries",
         "textiles"
-      ]
+      ],
+      "country_source_type": "official_register"
     },
     {
       "id": "kinset",
@@ -2669,7 +2769,8 @@
         "electronics",
         "chemicals",
         "general"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "kolla",
@@ -2693,7 +2794,8 @@
       "source": "official company website and privacy policy",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "kurz-digital",
@@ -2724,7 +2826,8 @@
         "tyres",
         "furniture",
         "electronics"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "laava-id",
@@ -2754,7 +2857,8 @@
         "batteries",
         "construction",
         "automotive"
-      ]
+      ],
+      "country_source_type": "official_register"
     },
     {
       "id": "landbell-h2-compliance",
@@ -2781,7 +2885,8 @@
       "sectors_list": [
         "textiles",
         "chemicals"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "alias_domains": "",
@@ -2807,7 +2912,8 @@
       "source_date": "2026-07-29",
       "status": "active",
       "total_disclosed_funding": "",
-      "website": "https://www.lingon.io"
+      "website": "https://www.lingon.io",
+      "country_source_type": ""
     },
     {
       "id": "luxima",
@@ -2836,7 +2942,8 @@
         "tyres",
         "furniture",
         "construction"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "lw3-private-limited",
@@ -2862,7 +2969,8 @@
       "confidence": "claimed",
       "sectors_list": [
         "batteries"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "lyondellbasell",
@@ -2888,7 +2996,8 @@
       "confidence": "unverified",
       "sectors_list": [
         "chemicals"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "madaster",
@@ -2914,7 +3023,8 @@
       "confidence": "verified",
       "sectors_list": [
         "construction"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "magellan-tx-dpp",
@@ -2940,7 +3050,8 @@
       "confidence": "unverified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "meatec",
@@ -2968,7 +3079,8 @@
         "batteries",
         "textiles",
         "electronics"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "merloop",
@@ -2992,7 +3104,8 @@
       "source": "official product website and privacy policy",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "miceliodata",
@@ -3018,7 +3131,8 @@
       "confidence": "claimed",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "minespider",
@@ -3044,7 +3158,8 @@
       "confidence": "verified",
       "sectors_list": [
         "batteries"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "mobillor-technologies-b-v",
@@ -3071,7 +3186,8 @@
       "sectors_list": [
         "electronics",
         "automotive"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "monxolo-ltd",
@@ -3095,7 +3211,8 @@
       "source": "official company website and Companies House",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": "official_register"
     },
     {
       "id": "msp-ag",
@@ -3119,7 +3236,8 @@
       "source": "official company website and privacy policy",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "myproductpassport",
@@ -3148,7 +3266,8 @@
         "textiles",
         "electronics",
         "construction"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "nam-viet-group-solutions-jsc",
@@ -3172,7 +3291,8 @@
       "source": "official company website",
       "source_date": "2026-07-28",
       "confidence": "claimed",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "narravero",
@@ -3199,7 +3319,8 @@
       "sectors_list": [
         "textiles",
         "furniture"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "neocondo",
@@ -3225,7 +3346,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": "official_register"
     },
     {
       "id": "objective-partner-ag",
@@ -3251,7 +3373,8 @@
       "confidence": "verified",
       "sectors_list": [
         "batteries"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "ootentik",
@@ -3277,7 +3400,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": "official_register"
     },
     {
       "id": "open-dpp-gmbh",
@@ -3304,7 +3428,8 @@
       "sectors_list": [
         "textiles",
         "tyres"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "opendpp-uab",
@@ -3332,7 +3457,8 @@
         "textiles",
         "electronics",
         "batteries"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "optel",
@@ -3358,7 +3484,8 @@
       "confidence": "verified",
       "sectors_list": [
         "batteries"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "oracle",
@@ -3382,7 +3509,8 @@
       "source": "official Oracle website and SEC filing",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "originpass",
@@ -3413,7 +3541,8 @@
         "electronics",
         "chemicals",
         "general"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "origovero",
@@ -3441,7 +3570,8 @@
         "batteries",
         "textiles",
         "furniture"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "origyn",
@@ -3467,7 +3597,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "orijin-plus",
@@ -3493,7 +3624,8 @@
       "confidence": "verified",
       "sectors_list": [
         "food"
-      ]
+      ],
+      "country_source_type": "official_register"
     },
     {
       "id": "osapiens",
@@ -3520,7 +3652,8 @@
       "sectors_list": [
         "food",
         "automotive"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "otokod-technologies-dppvisa",
@@ -3544,7 +3677,8 @@
       "source": "official DPPVisa and Otokod websites and Otokod legal notice",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "ovido",
@@ -3572,7 +3706,8 @@
         "batteries",
         "textiles",
         "electronics"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "autonms",
@@ -3604,7 +3739,8 @@
         "construction",
         "electronics",
         "chemicals"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "passportlab",
@@ -3632,7 +3768,8 @@
         "electronics",
         "batteries",
         "construction"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "peftrust",
@@ -3658,7 +3795,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "plasafe",
@@ -3686,7 +3824,8 @@
         "batteries",
         "textiles",
         "tyres"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "polytag-limited",
@@ -3710,7 +3849,8 @@
       "source": "official product website, Companies House, and funding release",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": "official_register"
     },
     {
       "id": "primafelicitas",
@@ -3734,7 +3874,8 @@
       "source": "official company website and Companies House",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": "official_register"
     },
     {
       "id": "product-dna",
@@ -3758,7 +3899,8 @@
       "source": "official company website",
       "source_date": "2026-07-28",
       "confidence": "claimed",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "protag-as",
@@ -3786,7 +3928,8 @@
         "batteries",
         "construction",
         "electronics"
-      ]
+      ],
+      "country_source_type": "official_register"
     },
     {
       "id": "provenant",
@@ -3813,7 +3956,8 @@
       "sectors_list": [
         "textiles",
         "furniture"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "psqr",
@@ -3843,7 +3987,8 @@
         "electronics",
         "construction",
         "chemicals"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "qliktag-software-inc",
@@ -3867,7 +4012,8 @@
       "source": "official company website and privacy policy",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "quifactum",
@@ -3893,7 +4039,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "r-cycle",
@@ -3919,7 +4066,8 @@
       "confidence": "verified",
       "sectors_list": [
         "general"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "ramboll",
@@ -3943,7 +4091,8 @@
       "source": "official company website, privacy notice, and annual report",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "realign",
@@ -3969,7 +4118,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "regilient",
@@ -3995,7 +4145,8 @@
       "confidence": "unverified",
       "sectors_list": [
         "electronics"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "renoon",
@@ -4021,7 +4172,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "repass",
@@ -4049,7 +4201,8 @@
         "food"
       ],
       "sectors": "textiles,furniture,food",
-      "confidence": "claimed"
+      "confidence": "verified",
+      "country_source_type": "official_register"
     },
     {
       "id": "retraced",
@@ -4075,7 +4228,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "alias_domains": "",
@@ -4101,7 +4255,8 @@
       "source_date": "2026-07-29",
       "status": "active",
       "total_disclosed_funding": "",
-      "website": "https://www.rosellastreet.com"
+      "website": "https://www.rosellastreet.com",
+      "country_source_type": ""
     },
     {
       "id": "sacred-valley-tech",
@@ -4127,7 +4282,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "sap",
@@ -4151,7 +4307,8 @@
       "source": "official integrated report and product documentation",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "scantrust",
@@ -4181,7 +4338,8 @@
         "tyres",
         "electronics",
         "construction"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "seamless-source",
@@ -4207,7 +4365,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "selinko",
@@ -4231,7 +4390,8 @@
       "source": "government business register and official corporate acquisition release",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": "official_register"
     },
     {
       "id": "siemens",
@@ -4257,7 +4417,8 @@
       "confidence": "verified",
       "sectors_list": [
         "batteries"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "smart-drs",
@@ -4290,7 +4451,8 @@
         "construction",
         "electronics",
         "chemicals"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "sourcemap",
@@ -4316,7 +4478,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "spherity",
@@ -4344,7 +4507,8 @@
         "batteries",
         "textiles",
         "electronics"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "sqanit",
@@ -4368,7 +4532,8 @@
       "source": "official company website and imprint",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "stefano-cipriani-studio",
@@ -4394,7 +4559,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "syncforce",
@@ -4418,7 +4584,8 @@
       "source": "official company website and privacy policy",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "t-systems",
@@ -4442,7 +4609,8 @@
       "source": "official corporate website and imprint",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "tappr",
@@ -4468,7 +4636,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "temera",
@@ -4495,7 +4664,8 @@
       "sectors_list": [
         "textiles",
         "cosmetics"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "terra-matters-gie",
@@ -4521,7 +4691,8 @@
       "confidence": "verified",
       "sectors_list": [
         "general"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "tex-tracer",
@@ -4547,7 +4718,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "textilegenesis",
@@ -4573,7 +4745,8 @@
       "confidence": "claimed",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "tieback",
@@ -4601,7 +4774,8 @@
         "textiles",
         "electronics",
         "food"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "tilkal",
@@ -4625,7 +4799,8 @@
       "source": "French government business register and official product website",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": "official_register"
     },
     {
       "id": "traceable-digital",
@@ -4656,7 +4831,8 @@
         "electronics",
         "construction",
         "furniture"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "traced-systems",
@@ -4683,7 +4859,8 @@
       "sectors_list": [
         "textiles",
         "batteries"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "tracelia",
@@ -4709,7 +4886,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "trackvision-ai-ltd",
@@ -4733,7 +4911,8 @@
       "source": "UK Companies House and official product website",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": "official_register"
     },
     {
       "id": "transpareo-ag",
@@ -4763,7 +4942,8 @@
         "batteries",
         "construction",
         "cosmetics"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "treverum",
@@ -4792,7 +4972,8 @@
         "chemicals"
       ],
       "sectors": "textiles,batteries,furniture,chemicals",
-      "confidence": "claimed"
+      "confidence": "claimed",
+      "country_source_type": ""
     },
     {
       "id": "trustrace",
@@ -4818,7 +4999,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "twintag",
@@ -4842,7 +5024,8 @@
       "source": "official product website and privacy policy",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "undo",
@@ -4866,7 +5049,8 @@
       "source": "official product website and terms of use",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "unisot",
@@ -4894,7 +5078,8 @@
         "textiles",
         "construction",
         "food"
-      ]
+      ],
+      "country_source_type": "official_register"
     },
     {
       "id": "unopim",
@@ -4918,7 +5103,8 @@
       "source": "official UnoPIM and operator websites",
       "source_date": "2026-07-28",
       "confidence": "claimed",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "vechain",
@@ -4942,7 +5128,8 @@
       "source": "official MiCAR legal white paper and network website",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     },
     {
       "id": "wetrack",
@@ -4968,7 +5155,8 @@
       "confidence": "verified",
       "sectors_list": [
         "textiles"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "wiseside",
@@ -4994,7 +5182,8 @@
       "confidence": "verified",
       "sectors_list": [
         "food"
-      ]
+      ],
+      "country_source_type": ""
     },
     {
       "id": "worldline",
@@ -5024,7 +5213,8 @@
         "food",
         "automotive",
         "cosmetics"
-      ]
+      ],
+      "country_source_type": "company_legal_notice"
     },
     {
       "id": "zeropact",
@@ -5048,7 +5238,8 @@
       "source": "Portuguese Industrial Property Bulletin and official company funding and product pages",
       "source_date": "2026-07-28",
       "confidence": "verified",
-      "sectors_list": []
+      "sectors_list": [],
+      "country_source_type": ""
     }
   ]
 }

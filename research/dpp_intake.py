@@ -40,6 +40,60 @@ LOG = os.path.join(HERE, "dpp-intake-log.md")
 
 MIN_QUOTE = 25  # a quote shorter than this is not evidence, it is a label
 
+# WHAT CAN CARRY `verified`. RULING OF 2026-08-24, which widened this.
+#
+# `verified` answers ONE question: is the location established by a qualifying
+# legal-identity source? There are two kinds, and they are equal:
+#
+#   1. an official state or statutory BUSINESS REGISTER, or
+#   2. the company's own imprint, legal notice or registration-details page.
+#
+# `claimed`    the company states the location somewhere, but no qualifying
+#              source establishes it.
+# `unverified` neither a qualifying legal source nor a specific company claim.
+#
+# There is deliberately NO third grade. Evidence STRENGTH and evidence
+# PROVENANCE are different questions: the grade answers whether the fact is
+# established, and `country_source_type` on the row records how. A register
+# entry is stronger than a self-published imprint - the state recording a legal
+# seat versus a company asserting one - and that difference stays visible in
+# the record rather than being smuggled into the grade.
+#
+# WHY IT CHANGED. Recording Repasdo AS exposed the gap: the only source
+# establishing its seat was Brønnøysundregistrene, which matched no imprint-
+# shaped URL and so graded `claimed`, while Kezzler, ProTag and UNISOT sat at
+# `verified` on identical Brønnøysund evidence because they were graded by
+# hand. The rule was inverted - a government register scoring below a company's
+# own page - and the register disagreed with itself on the same evidence.
+#
+# A REGISTER QUALIFIES ONLY WHEN all four hold, which is why this is a list of
+# known registrars and not a pattern:
+#   - it is operated by a government or legally authorised registry
+#   - the record can be matched to the legal entity behind the supplier
+#   - the location is recorded as the registered office, legal seat or
+#     registered business address
+#   - the record is current and publicly inspectable
+#
+# So an IP or trademark bulletin does NOT qualify, however governmental: it
+# registers a mark, not a company's seat. Nor does a procurement supplier list.
+#
+# HEADQUARTERS HERE MEANS THE REGISTERED LEGAL SEAT. A register does not prove
+# where the staff sit. Where a current register and a company legal notice
+# disagree, the register controls and the discrepancy is recorded.
+OFFICIAL_REGISTERS = (
+    "find-and-update.company-information.service.gov.uk",  # UK Companies House
+    "virksomhet.brreg.no",                                 # Brønnøysund, Norway
+    "abr.business.gov.au",                                 # Australian Business Register
+    "cro.ie",                                              # Companies Registration Office, Ireland
+    "handelsregister.de",                                  # Handelsregister, Germany
+    "unternehmensregister.de",                             # Unternehmensregister, Germany
+    "kvk.nl",                                              # KVK, Netherlands
+    "data.brreg.no",                                       # Brønnøysund open data
+    "annuaire-entreprises.data.gouv.fr",                   # France
+    "data.inpi.fr",                                        # RNE, France
+    "bizfileonline.sos.ca.gov",                            # California SoS
+    "opencorporates.com/companies",                        # mirrors a registrar record
+)
 # a source that can carry `verified`: the company stating its own legal identity
 # `verified` means the company stated its own LEGAL IDENTITY on a page whose
 # purpose is to state it. A contact page saying "Munich, Germany" is the company
@@ -49,6 +103,22 @@ LEGAL_HINTS = ("imprint", "impressum", "legal-notice", "mentions-legales",
                "registration", "company-details", "legal")
 # real pages, but they establish location or policy, never legal identity
 WEAK_HINTS = ("privacy", "terms", "about", "contact")
+
+
+def source_kind(url):
+    """How the location was established, or '' if nothing qualifying.
+
+    Returned verbatim onto the row as country_source_type, because the grade
+    says WHETHER the fact is established and this says HOW.
+    """
+    low = (url or "").lower()
+    if any(h in low for h in OFFICIAL_REGISTERS):
+        return "official_register"
+    if any(h in low for h in LEGAL_HINTS) and not (
+            any(w in low for w in WEAK_HINTS) and
+            not any(h in low for h in ("imprint", "impressum", "mentions-legales"))):
+        return "company_legal_notice"
+    return ""
 
 # fields the agent may set, and whether each one needs its own evidence
 EVIDENCED = ("hq_city", "hq_country", "ownership", "founded_year",
@@ -154,6 +224,7 @@ def assess(cand, known_domains):
            "evidence_url": dpp["url"], "source": "official company website",
            "source_date": datetime.date.today().isoformat(), "status": "active",
            "entity_type": "", "hq_city": "", "hq_country": "", "country_source": "",
+           "country_source_type": "",
            "ownership": "", "founded_year": "", "funding_stage": "",
            "funding_source": "", "last_funding_date": "",
            "total_disclosed_funding": "", "alias_domains": "",
@@ -184,14 +255,13 @@ def assess(cand, known_domains):
     if row["hq_country"]:
         src = (ev.get("hq_country") or {}).get("url", "")
         row["country_source"] = src
-        low = src.lower()
-        legal = any(h in low for h in LEGAL_HINTS) and not (
-            any(w in low for w in WEAK_HINTS) and
-            not any(h in low for h in ("imprint", "impressum", "mentions-legales")))
-        row["confidence"] = "verified" if legal else "claimed"
-        if not legal:
-            reasons.append("confidence held at claimed: the source is not a legal "
-                           "or registration statement")
+        kind = source_kind(src)
+        row["country_source_type"] = kind
+        row["confidence"] = "verified" if kind else "claimed"
+        if not kind:
+            reasons.append("confidence held at claimed: no qualifying legal-identity "
+                           "source - neither an official business register nor a "
+                           "company legal-identity page")
     else:
         row["country_source"] = "not_found " + row["source_date"]
         reasons.append("headquarters not publicly established")
