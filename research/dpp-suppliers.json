@@ -822,7 +822,7 @@
    "hq_country": "Germany",
    "hq_city": "Berlin",
    "country_source": "https://circular.fashion/downloads/Circular_Design_Standard_v6.0.pdf",
-   "entity_type": "platform",
+   "entity_type": "consultancy",
    "sectors": "textiles",
    "founded_year": "",
    "ownership": "",
@@ -831,9 +831,9 @@
    "last_funding_date": "",
    "funding_source": "not_found 2026-07-28",
    "status": "active",
-   "evidence_url": "https://circular.fashion/downloads/Circular_Design_Standard_v6.0.pdf",
-   "source": "official company publication",
-   "source_date": "2026-07-28",
+   "evidence_url": "https://circular.fashion/en/consultancy/index.html",
+   "source": "official company website, consultancy page, re-read 24 Aug 2026",
+   "source_date": "2026-08-24",
    "confidence": "verified",
    "sectors_list": [
     "textiles"
