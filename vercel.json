@@ -4,16 +4,6 @@
   "outputDirectory": ".",
   "redirects": [
     {
-      "source": "/research/digital-product-passport/weekly-briefing/",
-      "destination": "/research/digital-product-passport/weekly-briefing/2026-08-24",
-      "permanent": false
-    },
-    {
-      "source": "/research/digital-product-passport/weekly-briefing",
-      "destination": "/research/digital-product-passport/weekly-briefing/2026-08-24",
-      "permanent": false
-    },
-    {
       "source": "/:path*",
       "has": [
         {
@@ -797,6 +787,11 @@
     {
       "source": "/research/digital-product-passport/renoon",
       "destination": "/research/digital-product-passport/suppliers/renoon",
+      "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/repass",
+      "destination": "/research/digital-product-passport/suppliers/repass",
       "permanent": true
     },
     {

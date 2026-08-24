@@ -64,6 +64,50 @@ def slug(name):
     return re.sub(r"-{2,}", "-", s) or "unnamed"
 
 
+# A national register publishes its country in its own language. The register
+# here records country names in English, so a verbatim quote from the most
+# authoritative source there is - a government business register - could not
+# support the value it proves. Recording Repasdo AS on 2026-08-24 produced a
+# row with hq_city "Moelv" and NO COUNTRY, cited to a page that says "Norge".
+#
+# This is a translation, not an inference. Each entry is one country's own name
+# for itself, and it is consulted ONLY for hq_country. Nothing here guesses a
+# country from a domain ending, a corporate suffix or a phone prefix - that
+# remains forbidden and is a different thing entirely.
+COUNTRY_ENDONYMS = {
+    "norway": ("norge", "noreg"),
+    "germany": ("deutschland",),
+    "spain": ("espana", "espa\u00f1a"),
+    "italy": ("italia",),
+    "france": ("france",),
+    "netherlands": ("nederland",),
+    "sweden": ("sverige",),
+    "denmark": ("danmark",),
+    "finland": ("suomi",),
+    "austria": ("osterreich", "\u00f6sterreich"),
+    "belgium": ("belgie", "belgi\u00eb", "belgique"),
+    "switzerland": ("schweiz", "suisse", "svizzera"),
+    "portugal": ("portugal",),
+    "poland": ("polska",),
+    "czechia": ("cesko", "\u010desko", "czech republic"),
+    "greece": ("ellada", "hellas"),
+    "hungary": ("magyarorszag", "magyarorsz\u00e1g"),
+    "estonia": ("eesti",),
+    "latvia": ("latvija",),
+    "lithuania": ("lietuva",),
+    "slovenia": ("slovenija",),
+    "slovakia": ("slovensko",),
+    "croatia": ("hrvatska",),
+    "romania": ("romania", "rom\u00e2nia"),
+    "iceland": ("island",),
+    "ireland": ("eire", "\u00e9ire"),
+    "turkey": ("turkiye", "t\u00fcrkiye"),
+    "japan": ("nippon", "nihon"),
+    "china": ("zhongguo",),
+    "south korea": ("hanguk", "republic of korea"),
+}
+
+
 def quotes_support(value, quote):
     """The quote has to actually contain the thing being claimed.
 
@@ -126,7 +170,12 @@ def assess(cand, known_domains):
         if not url or len(quote) < MIN_QUOTE:
             reasons.append(f"{field} dropped: no source and quote")
             continue
-        if not quotes_support(value, quote):
+        supported = quotes_support(value, quote)
+        if not supported and field == "hq_country":
+            # see COUNTRY_ENDONYMS: a register writing "Norge" is still Norway
+            supported = any(a in quote.lower()
+                            for a in COUNTRY_ENDONYMS.get(value.lower(), ()))
+        if not supported:
             reasons.append(f"{field} dropped: the quote does not support the value")
             continue
         row[field] = value

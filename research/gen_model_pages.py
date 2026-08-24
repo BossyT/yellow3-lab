@@ -699,6 +699,12 @@ def render_page(m, provider, meta, models_by_slug, page_slugs, site, econ=None):
 {FOOTER}
 {econ_js}
   <script src="{BASE}/model.js" defer></script>
+  <!-- yellow3 is an EU entity, so consent applies wherever the visitor is.
+       This tag was missing from all 41 pages this generator writes until
+       24 Aug 2026 - research/consent_sweep.py swept the site on 21 Aug and
+       these were regenerated without it afterwards. Same defect as
+       gen_dpp_register.py had: a sweep fixes pages, not the generator. -->
+  <script src="/consent.js" defer></script>
 </body>
 </html>''')
     return "\n".join(parts)

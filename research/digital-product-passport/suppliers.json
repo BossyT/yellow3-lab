@@ -7,10 +7,10 @@
   "licence_url": "https://creativecommons.org/licenses/by/4.0/",
   "citation": "yellow3 lab, DPP Supplier Register, https://www.yellow3.io/research/digital-product-passport/suppliers, data generated 2026-07-28, accessed YYYY-MM-DD",
   "generated": "2026-07-28",
-  "record_count": 190,
+  "record_count": 191,
   "counts": {
-    "organisations": 190,
-    "commercial_suppliers": 171,
+    "organisations": 191,
+    "commercial_suppliers": 172,
     "countries": 33,
     "countries_primary_sourced": 33,
     "verified": 144,
@@ -4022,6 +4022,34 @@
       "sectors_list": [
         "textiles"
       ]
+    },
+    {
+      "id": "repass",
+      "name": "Repass",
+      "domain": "repass.io",
+      "website": "https://repass.io",
+      "evidence_url": "https://repass.io/",
+      "source": "official company website and Brønnøysund Register",
+      "source_date": "2026-08-24",
+      "status": "active",
+      "entity_type": "platform",
+      "hq_city": "Moelv",
+      "hq_country": "Norway",
+      "country_source": "https://virksomhet.brreg.no/en/oppslag/enheter/926934716",
+      "ownership": "",
+      "founded_year": "",
+      "funding_stage": "",
+      "funding_source": "",
+      "last_funding_date": "",
+      "total_disclosed_funding": "",
+      "alias_domains": "",
+      "sectors_list": [
+        "textiles",
+        "furniture",
+        "food"
+      ],
+      "sectors": "textiles,furniture,food",
+      "confidence": "claimed"
     },
     {
       "id": "retraced",

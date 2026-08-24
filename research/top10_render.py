@@ -176,7 +176,9 @@ h1{font-size:%(h1)dpx;line-height:.94;letter-spacing:-.035em;font-weight:400}
   <div class="rows">%(rows)s</div>
   %(blocks)s
   <p class="foot"><b>Data:</b> %(source)s &middot; %(url)s%(methodline)s</p>
-</div></body></html>""" % {
+</div>
+  <script src="/consent.js" defer></script>
+</body></html>""" % {
         "W": 1080 if variant == "portrait" else 1200,
         "H": 1620 if variant == "portrait" else 630,
         "INK": INK, "GOLD": GOLD,

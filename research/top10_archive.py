@@ -161,6 +161,9 @@ def main():
   </div>
 
 %(footer)s
+  <!-- EU entity: consent applies wherever the visitor is. Added at the
+       source 24 Aug 2026 - a sweep fixes pages, not the generator. -->
+  <script src="/consent.js" defer></script>
 </body>
 </html>
 """ % {"desc": esc(desc), "canonical": CANONICAL, "host": HOST,

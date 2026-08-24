@@ -372,6 +372,33 @@ def main() -> int:
     else:
         print('  ok  capability layer: every assessable row is assessed')
 
+    # 2b7. Every page actually carries the consent tag.
+    #
+    # THE HOLE THIS CLOSES. Section 5 below asserts that analytics loads ONLY
+    # from consent.js and nowhere else - a real rule, but it is satisfied
+    # perfectly by a page with no consent.js at all. On 2026-08-24, 583 pages
+    # were in exactly that state: consent_sweep.py had put the tag on every
+    # page on 21 Aug, and five generators that had never carried it in their
+    # templates then wrote those pages again without it. Nothing noticed,
+    # because nothing was looking for presence - only for misuse.
+    #
+    # yellow3 is an EU entity, so consent applies wherever the visitor is.
+    # The generators carry the tag now; this is what tells us if one stops.
+    r = subprocess.run([sys.executable, str(ROOT / 'research' / 'consent_sweep.py')],
+                       capture_output=True, text=True)
+    missing = [l.split(None, 1)[1].strip()
+               for l in (r.stdout or '').splitlines() if l.strip().startswith('missing')]
+    if missing:
+        FAIL.append(f'{len(missing)} page(s) do not carry the consent tag:\n      '
+                    + '\n      '.join(missing[:8])
+                    + ('\n      ...' if len(missing) > 8 else '')
+                    + '\n      fix the GENERATOR, then regenerate'
+                      ' - consent_sweep.py --apply only fixes the pages')
+    else:
+        summary = next((l.strip() for l in (r.stdout or '').splitlines()
+                        if l.strip().startswith('consent:')), 'consent: every page')
+        print('  ok  ' + summary)
+
     # 2b6. No public object records a person.
     #
     # THIS IS THE SECOND TIME. CLAUDE.md documents the first: four companies'

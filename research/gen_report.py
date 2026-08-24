@@ -426,6 +426,9 @@ def render_report(period, g):
         document.getElementById('rgate-out').hidden = false;
       }});
   </script>
+  <!-- EU entity: consent applies wherever the visitor is. Added at the
+       source 24 Aug 2026 - a sweep fixes pages, not the generator. -->
+  <script src="/consent.js" defer></script>
 </body>
 </html>''']
     return "\n".join(parts)
@@ -559,6 +562,10 @@ def render_briefing(period, g):
     </div>
   </main>
 {FOOTER}
+  <!-- EU entity: consent applies wherever the visitor is. Added at the
+       source 24 Aug 2026 - consent_sweep.py swept pages on 21 Aug, but a
+       sweep does not fix a generator, so regeneration dropped it again. -->
+  <script src="/consent.js" defer></script>
 </body>
 </html>''']
     return "\n".join(parts)
@@ -604,6 +611,10 @@ def render_archive(reports):
     <div class="arch">{items}</div>
   </div></main>
 {FOOTER}
+  <!-- EU entity: consent applies wherever the visitor is. Added at the
+       source 24 Aug 2026 - consent_sweep.py swept pages on 21 Aug, but a
+       sweep does not fix a generator, so regeneration dropped it again. -->
+  <script src="/consent.js" defer></script>
 </body>
 </html>'''
 
