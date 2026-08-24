@@ -1,12 +1,12 @@
 {
  "layer": "capability",
  "framework": "capability-framework.md",
- "generated": "2026-08-05",
+ "generated": "2026-08-24",
  "suppliers_assessed": 153,
  "checks_run": 1530,
  "totals": {
-  "not_found": 1208,
-  "company_states": 278,
+  "not_found": 1209,
+  "company_states": 277,
   "verified": 44
  },
  "results": [
@@ -2676,11 +2676,11 @@
    "supplier_id": "circular",
    "check_id": "c06",
    "check_name": "Regulatory pace",
-   "state": "company_states",
-   "evidence_url": "https://circular.fashion/en/software/brands.html",
+   "state": "not_found",
+   "evidence_url": "",
    "artifact": "",
-   "checked_date": "2026-07-30",
-   "note": "The supplier says its software criteria are updated as regulations evolve, but publishes no instrument-naming release or schema change."
+   "checked_date": "2026-08-24",
+   "note": "WITHDRAWN 24 Aug 2026. The finding rested on circular.fashion/en/software/brands.html, which now returns 404 - and so does the whole /en/software/ section, while the root serves 200. The site now presents circular.fashion as a change agency offering the Circular Design Standard and consultancy, with no software section at all. The remaining pages were read: the only versioning published is the standard's own \"CDS Version 6\", which is not a software release cadence. Nothing live supports the claim, so it is not carried."
   },
   {
    "supplier_id": "circular",
@@ -10399,10 +10399,10 @@
    "check_id": "c07",
    "check_name": "EU DPP Registry",
    "state": "company_states",
-   "evidence_url": "https://opendpp-node.eu/eu-dpp-registry",
+   "evidence_url": "https://opendpp-node.eu/registry",
    "artifact": "",
-   "checked_date": "2026-07-30",
-   "note": "OpenDPP describes registry readiness, but no actual registration or completed test-environment integration dated after 20 July 2026 was found."
+   "checked_date": "2026-08-24",
+   "note": "OpenDPP describes registry readiness, but no actual registration or completed test-environment integration dated after 20 July 2026 was found. Re-read 24 Aug 2026: the cited page had been renamed from /eu-dpp-registry to /registry and the finding is unchanged - it validates the Article 13 pointer record against the CIRPASS-2 MOCK registry's schema, which is readiness, not a registration."
   },
   {
    "supplier_id": "opendpp-uab",
