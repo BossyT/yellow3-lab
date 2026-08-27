@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-08-25",
+  "as_of": "2026-08-26",
   "workloads": {
     "coding-agent": {
       "label": "Coding agent",
@@ -77,9 +77,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -165,9 +165,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -253,9 +253,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -341,9 +341,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -417,9 +417,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -505,9 +505,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -548,7 +548,7 @@
       "knowledge_cutoff": null,
       "or_id": "deepseek/deepseek-v3.2",
       "or_url": "https://openrouter.ai/deepseek/deepseek-v3.2",
-      "uptime": 98.572,
+      "uptime": 98.72,
       "workload_cost": 20.7,
       "price_position": "Mid cost",
       "adoption_trend": "rising",
@@ -597,9 +597,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -621,9 +621,9 @@
       ]
     },
     "deepseek-v4-flash": {
-      "in": 6e-08,
-      "out": 1.2e-07,
-      "cache_read": 1.2e-08,
+      "in": 5e-08,
+      "out": 1e-07,
+      "cache_read": 1e-08,
       "cache_write": null,
       "context": 1310720,
       "modalities": [
@@ -640,12 +640,18 @@
       "knowledge_cutoff": null,
       "or_id": "deepseek/deepseek-v4-flash-0731",
       "or_url": "https://openrouter.ai/deepseek/deepseek-v4-flash-0731",
-      "uptime": 98.737,
-      "workload_cost": 3.84,
+      "uptime": 99.396,
+      "workload_cost": 3.2,
       "price_position": "Low cost",
       "adoption_trend": "falling",
       "position_label": "Value play",
       "price_history": [
+        {
+          "date": "2026-08-26",
+          "in": 5e-08,
+          "out": 1e-07,
+          "change_pct": -16.7
+        },
         {
           "date": "2026-08-25",
           "in": 6e-08,
@@ -723,9 +729,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": true
         },
         {
@@ -774,7 +780,7 @@
       "knowledge_cutoff": null,
       "or_id": "deepseek/deepseek-v4-pro-0813",
       "or_url": "https://openrouter.ai/deepseek/deepseek-v4-pro-0813",
-      "uptime": 99.794,
+      "uptime": 99.454,
       "workload_cost": 69.94,
       "price_position": "Mid cost",
       "adoption_trend": "falling",
@@ -835,9 +841,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -885,8 +891,8 @@
       "uptime": null,
       "workload_cost": 19.1,
       "price_position": "Mid cost",
-      "adoption_trend": "falling",
-      "position_label": "Losing ground",
+      "adoption_trend": "flat",
+      "position_label": "Holding position",
       "price_history": [
         {
           "date": "2026-08-06",
@@ -925,9 +931,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -1015,9 +1021,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -1105,9 +1111,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -1155,8 +1161,8 @@
       "uptime": null,
       "workload_cost": 72.75,
       "price_position": "Premium",
-      "adoption_trend": "falling",
-      "position_label": "Under pressure",
+      "adoption_trend": "rising",
+      "position_label": "Premium leader",
       "price_history": [
         {
           "date": "2026-08-06",
@@ -1195,9 +1201,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -1285,9 +1291,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -1357,9 +1363,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -1447,9 +1453,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -1492,7 +1498,7 @@
       "knowledge_cutoff": null,
       "or_id": "google/gemma-4-26b-a4b-it:free",
       "or_url": "https://openrouter.ai/google/gemma-4-26b-a4b-it:free",
-      "uptime": 99.754,
+      "uptime": 99.473,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -1517,9 +1523,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -1562,7 +1568,7 @@
       "knowledge_cutoff": null,
       "or_id": "google/gemma-4-31b-it:free",
       "or_url": "https://openrouter.ai/google/gemma-4-31b-it:free",
-      "uptime": 99.807,
+      "uptime": 99.5,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -1587,9 +1593,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -1630,7 +1636,7 @@
       "knowledge_cutoff": null,
       "or_id": "inclusionai/ling-3.0-flash",
       "or_url": "https://openrouter.ai/inclusionai/ling-3.0-flash",
-      "uptime": 99.975,
+      "uptime": 99.956,
       "workload_cost": 1.55,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -1661,9 +1667,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -1706,10 +1712,10 @@
       "knowledge_cutoff": null,
       "or_id": "minimax/minimax-m3:free",
       "or_url": "https://openrouter.ai/minimax/minimax-m3:free",
-      "uptime": 99.904,
+      "uptime": 99.856,
       "workload_cost": 0.0,
       "price_position": "Low cost",
-      "adoption_trend": "flat",
+      "adoption_trend": "falling",
       "position_label": "Value play",
       "price_history": [
         {
@@ -1761,9 +1767,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -1804,7 +1810,7 @@
       "knowledge_cutoff": "2024-04-30",
       "or_id": "mistralai/mistral-nemo",
       "or_url": "https://openrouter.ai/mistralai/mistral-nemo",
-      "uptime": 97.558,
+      "uptime": 96.129,
       "workload_cost": 2.2,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -1841,9 +1847,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -1885,11 +1891,11 @@
       "knowledge_cutoff": null,
       "or_id": "moonshotai/kimi-k2.6",
       "or_url": "https://openrouter.ai/moonshotai/kimi-k2.6",
-      "uptime": 99.413,
+      "uptime": 99.378,
       "workload_cost": 79.7,
       "price_position": "Premium",
-      "adoption_trend": "rising",
-      "position_label": "Premium leader",
+      "adoption_trend": "flat",
+      "position_label": "Holding position",
       "price_history": [
         {
           "date": "2026-08-22",
@@ -1988,9 +1994,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -2033,7 +2039,7 @@
       "knowledge_cutoff": null,
       "or_id": "moonshotai/kimi-k3",
       "or_url": "https://openrouter.ai/moonshotai/kimi-k3",
-      "uptime": 97.992,
+      "uptime": 98.108,
       "workload_cost": 261.0,
       "price_position": "Premium",
       "adoption_trend": "falling",
@@ -2058,9 +2064,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -2101,7 +2107,7 @@
       "knowledge_cutoff": null,
       "or_id": "nvidia/nemotron-3.5-lightning:free",
       "or_url": "https://openrouter.ai/nvidia/nemotron-3.5-lightning:free",
-      "uptime": 99.747,
+      "uptime": 98.499,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "rising",
@@ -2126,9 +2132,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -2169,7 +2175,7 @@
       "knowledge_cutoff": null,
       "or_id": "nvidia/nemotron-3-super-120b-a12b:free",
       "or_url": "https://openrouter.ai/nvidia/nemotron-3-super-120b-a12b:free",
-      "uptime": 99.545,
+      "uptime": 99.631,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "flat",
@@ -2194,9 +2200,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -2237,7 +2243,7 @@
       "knowledge_cutoff": null,
       "or_id": "nvidia/nemotron-3-ultra-550b-a55b:free",
       "or_url": "https://openrouter.ai/nvidia/nemotron-3-ultra-550b-a55b:free",
-      "uptime": 99.404,
+      "uptime": 98.707,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "rising",
@@ -2262,9 +2268,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -2310,8 +2316,8 @@
       "uptime": null,
       "workload_cost": 7.88,
       "price_position": "Mid cost",
-      "adoption_trend": "flat",
-      "position_label": "Holding position",
+      "adoption_trend": "falling",
+      "position_label": "Losing ground",
       "price_history": [
         {
           "date": "2026-08-06",
@@ -2338,9 +2344,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -2426,9 +2432,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -2514,9 +2520,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -2602,9 +2608,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -2672,9 +2678,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -2760,9 +2766,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -2836,9 +2842,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -2879,11 +2885,11 @@
       "knowledge_cutoff": "2024-06-30",
       "or_id": "openai/gpt-oss-120b",
       "or_url": "https://openrouter.ai/openai/gpt-oss-120b",
-      "uptime": 99.652,
+      "uptime": 99.603,
       "workload_cost": 5.4,
       "price_position": "Low cost",
-      "adoption_trend": "flat",
-      "position_label": "Value play",
+      "adoption_trend": "rising",
+      "position_label": "High-growth challenger",
       "price_history": [
         {
           "date": "2026-08-22",
@@ -2922,9 +2928,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -2965,10 +2971,10 @@
       "knowledge_cutoff": null,
       "or_id": "poolside/laguna-s-2.1:free",
       "or_url": "https://openrouter.ai/poolside/laguna-s-2.1:free",
-      "uptime": 99.454,
+      "uptime": 99.989,
       "workload_cost": 0.0,
       "price_position": "Low cost",
-      "adoption_trend": "flat",
+      "adoption_trend": "falling",
       "position_label": "Value play",
       "price_history": [
         {
@@ -2990,79 +2996,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
-          "you": false
-        },
-        {
-          "slug": "google-gemini-2-5-flash",
-          "name": "Google Gemini 2.5 Flash",
-          "in": 1.5e-07,
-          "out": 1.25e-06,
-          "cache_read": 3e-08,
-          "you": false
-        },
-        {
-          "slug": "anthropic-claude-sonnet-5",
-          "name": "Anthropic Claude Sonnet 5",
-          "in": 1e-06,
-          "out": 5e-06,
-          "cache_read": 1e-07,
-          "you": false
-        }
-      ]
-    },
-    "stealth-ox-alpha": {
-      "in": 0.0,
-      "out": 0.0,
-      "cache_read": null,
-      "cache_write": null,
-      "context": 1048576,
-      "modalities": [
-        "text",
-        "image",
-        "video"
-      ],
-      "image_in": true,
-      "audio_in": false,
-      "video_in": true,
-      "tools": true,
-      "structured": false,
-      "reasoning": true,
-      "open_weight": false,
-      "free_tier": false,
-      "knowledge_cutoff": null,
-      "or_id": "stealth/ox-alpha",
-      "or_url": "https://openrouter.ai/stealth/ox-alpha",
-      "uptime": 99.996,
-      "workload_cost": 0.0,
-      "price_position": "Low cost",
-      "adoption_trend": "flat",
-      "position_label": "Value play",
-      "price_history": [
-        {
-          "date": "2026-08-21",
-          "in": 0.0,
-          "out": 0.0,
-          "change_pct": null
-        }
-      ],
-      "compare": [
-        {
-          "slug": "stealth-ox-alpha",
-          "name": "Stealth Ox Alpha",
-          "in": 0.0,
-          "out": 0.0,
-          "cache_read": null,
-          "you": true
-        },
-        {
-          "slug": "deepseek-v4-flash",
-          "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -3105,7 +3041,7 @@
       "knowledge_cutoff": null,
       "or_id": "stepfun/step-3.7-flash",
       "or_url": "https://openrouter.ai/stepfun/step-3.7-flash",
-      "uptime": 99.735,
+      "uptime": 99.216,
       "workload_cost": 20.3,
       "price_position": "Mid cost",
       "adoption_trend": "falling",
@@ -3130,9 +3066,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -3154,9 +3090,9 @@
       ]
     },
     "tencent-hy3": {
-      "in": 1.32e-07,
-      "out": 5.28e-07,
-      "cache_read": 3.3e-08,
+      "in": 8.25e-08,
+      "out": 3.3e-07,
+      "cache_read": 2.0625e-08,
       "cache_write": null,
       "context": 262144,
       "modalities": [
@@ -3173,12 +3109,18 @@
       "knowledge_cutoff": null,
       "or_id": "tencent/hy3",
       "or_url": "https://openrouter.ai/tencent/hy3",
-      "uptime": 99.674,
-      "workload_cost": 11.55,
-      "price_position": "Mid cost",
+      "uptime": 98.364,
+      "workload_cost": 7.22,
+      "price_position": "Low cost",
       "adoption_trend": "falling",
-      "position_label": "Losing ground",
+      "position_label": "Value play",
       "price_history": [
+        {
+          "date": "2026-08-26",
+          "in": 8.25e-08,
+          "out": 3.3e-07,
+          "change_pct": -37.5
+        },
         {
           "date": "2026-07-23",
           "in": 1.32e-07,
@@ -3196,17 +3138,17 @@
         {
           "slug": "tencent-hy3",
           "name": "Tencent Hy3",
-          "in": 1.32e-07,
-          "out": 5.28e-07,
-          "cache_read": 3.3e-08,
+          "in": 8.25e-08,
+          "out": 3.3e-07,
+          "cache_read": 2.0625e-08,
           "you": true
         },
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -3228,9 +3170,9 @@
       ]
     },
     "tencent-hy3-free": {
-      "in": 1.32e-07,
-      "out": 5.28e-07,
-      "cache_read": 3.3e-08,
+      "in": 8.25e-08,
+      "out": 3.3e-07,
+      "cache_read": 2.0625e-08,
       "cache_write": null,
       "context": 262144,
       "modalities": [
@@ -3247,12 +3189,18 @@
       "knowledge_cutoff": null,
       "or_id": "tencent/hy3",
       "or_url": "https://openrouter.ai/tencent/hy3",
-      "uptime": 99.674,
-      "workload_cost": 11.55,
-      "price_position": "Mid cost",
-      "adoption_trend": "flat",
-      "position_label": "Holding position",
+      "uptime": 98.364,
+      "workload_cost": 7.22,
+      "price_position": "Low cost",
+      "adoption_trend": "falling",
+      "position_label": "Value play",
       "price_history": [
+        {
+          "date": "2026-08-26",
+          "in": 8.25e-08,
+          "out": 3.3e-07,
+          "change_pct": -37.5
+        },
         {
           "date": "2026-07-23",
           "in": 1.32e-07,
@@ -3276,17 +3224,17 @@
         {
           "slug": "tencent-hy3-free",
           "name": "Tencent Hy3 (free)",
-          "in": 1.32e-07,
-          "out": 5.28e-07,
-          "cache_read": 3.3e-08,
+          "in": 8.25e-08,
+          "out": 3.3e-07,
+          "cache_read": 2.0625e-08,
           "you": true
         },
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -3327,7 +3275,7 @@
       "knowledge_cutoff": null,
       "or_id": "tencent/hy3-preview",
       "or_url": "https://openrouter.ai/tencent/hy3-preview",
-      "uptime": 100,
+      "uptime": 99.995,
       "workload_cost": 15.6,
       "price_position": "Mid cost",
       "adoption_trend": "falling",
@@ -3358,9 +3306,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -3401,7 +3349,7 @@
       "knowledge_cutoff": null,
       "or_id": "upstage/solar-pro4",
       "or_url": "https://openrouter.ai/upstage/solar-pro4",
-      "uptime": 99.993,
+      "uptime": 99.29,
       "workload_cost": 2.52,
       "price_position": "Low cost",
       "adoption_trend": "rising",
@@ -3426,9 +3374,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -3471,7 +3419,7 @@
       "knowledge_cutoff": null,
       "or_id": "x-ai/grok-4.5",
       "or_url": "https://openrouter.ai/x-ai/grok-4.5",
-      "uptime": 99.834,
+      "uptime": 98.944,
       "workload_cost": 141.0,
       "price_position": "Premium",
       "adoption_trend": "falling",
@@ -3496,9 +3444,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -3541,11 +3489,11 @@
       "knowledge_cutoff": null,
       "or_id": "x-ai/grok-4.6",
       "or_url": "https://openrouter.ai/x-ai/grok-4.6",
-      "uptime": 99.92,
+      "uptime": 99.787,
       "workload_cost": 155.0,
       "price_position": "Premium",
-      "adoption_trend": "rising",
-      "position_label": "Premium leader",
+      "adoption_trend": "flat",
+      "position_label": "Holding position",
       "price_history": [
         {
           "date": "2026-08-19",
@@ -3566,9 +3514,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -3612,11 +3560,11 @@
       "knowledge_cutoff": null,
       "or_id": "xiaomi/mimo-v2.5",
       "or_url": "https://openrouter.ai/xiaomi/mimo-v2.5",
-      "uptime": 97.391,
+      "uptime": 98.729,
       "workload_cost": 7.2,
       "price_position": "Low cost",
-      "adoption_trend": "rising",
-      "position_label": "High-growth challenger",
+      "adoption_trend": "flat",
+      "position_label": "Value play",
       "price_history": [
         {
           "date": "2026-07-14",
@@ -3643,9 +3591,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -3686,11 +3634,11 @@
       "knowledge_cutoff": null,
       "or_id": "xiaomi/mimo-v2.5-pro",
       "or_url": "https://openrouter.ai/xiaomi/mimo-v2.5-pro",
-      "uptime": 98.514,
+      "uptime": 98.385,
       "workload_cost": 22.0,
       "price_position": "Mid cost",
-      "adoption_trend": "rising",
-      "position_label": "Momentum builder",
+      "adoption_trend": "falling",
+      "position_label": "Losing ground",
       "price_history": [
         {
           "date": "2026-07-12",
@@ -3711,9 +3659,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -3754,11 +3702,11 @@
       "knowledge_cutoff": null,
       "or_id": "z-ai/glm-5",
       "or_url": "https://openrouter.ai/z-ai/glm-5",
-      "uptime": 99.895,
+      "uptime": 99.905,
       "workload_cost": 45.6,
       "price_position": "Mid cost",
-      "adoption_trend": "falling",
-      "position_label": "Losing ground",
+      "adoption_trend": "flat",
+      "position_label": "Holding position",
       "price_history": [
         {
           "date": "2026-08-14",
@@ -3809,9 +3757,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -3852,7 +3800,7 @@
       "knowledge_cutoff": null,
       "or_id": "z-ai/glm-5.2:free",
       "or_url": "https://openrouter.ai/z-ai/glm-5.2:free",
-      "uptime": 99.596,
+      "uptime": 99.722,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -4021,9 +3969,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
@@ -4067,8 +4015,8 @@
       "uptime": 99.999,
       "workload_cost": 104.2,
       "price_position": "Premium",
-      "adoption_trend": "flat",
-      "position_label": "Holding position",
+      "adoption_trend": "rising",
+      "position_label": "Premium leader",
       "price_history": [
         {
           "date": "2026-08-23",
@@ -4089,9 +4037,9 @@
         {
           "slug": "deepseek-v4-flash",
           "name": "DeepSeek V4 Flash",
-          "in": 6e-08,
-          "out": 1.2e-07,
-          "cache_read": 1.2e-08,
+          "in": 5e-08,
+          "out": 1e-07,
+          "cache_read": 1e-08,
           "you": false
         },
         {
