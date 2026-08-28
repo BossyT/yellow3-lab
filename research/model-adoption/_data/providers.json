@@ -268,5 +268,25 @@
     "logo_path": null,
     "logo_source_url": null,
     "logo_verified_at": null
+  },
+  "dots-studio": {
+    "slug": "dots-studio",
+    "name": "Dots-studio",
+    "region": "Other",
+    "country": "",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
+  },
+  "thinkingmachines": {
+    "slug": "thinkingmachines",
+    "name": "Thinkingmachines",
+    "region": "Other",
+    "country": "",
+    "official_url": null,
+    "logo_path": null,
+    "logo_source_url": null,
+    "logo_verified_at": null
   }
 }

@@ -19,6 +19,7 @@
   "google-gemma-4-31b-it",
   "inclusionai-ling-3-0-flash-free",
   "minimax-m3",
+  "minimax-m3-free",
   "mistralai-mistral-nemo",
   "moonshotai-kimi-k2-6",
   "moonshotai-kimi-k3",
@@ -48,5 +49,6 @@
   "xiaomi-mimo-v2-5-pro",
   "z-ai-glm-5",
   "z-ai-glm-5-2",
-  "z-ai-glm-5-3"
+  "z-ai-glm-5-3",
+  "z-ai-glm-5-3-flash"
 ]
