@@ -49,13 +49,13 @@ python3 research/gen_briefing.py --check
 # 2. write the pages. English to /research/..., Spanish to /es/research/...
 python3 research/gen_briefing.py
 
-# 3. render the social cards
+# 3. render the social cards. OG_BUILD_DIR MUST BE OUTSIDE THE REPO — see below.
+export OG_BUILD_DIR="$HOME/.cache/yellow3-og"
 python3 research/gen_og.py
 
 # 4. THE STEP THAT IS EASY TO MISS — see below. One card per language.
 cp "$OG_BUILD_DIR/out/research-digital-product-passport-weekly-briefing-YYYY-MM-DD.png" og/cards/
 cp "$OG_BUILD_DIR/out/es-research-digital-product-passport-weekly-briefing-YYYY-MM-DD.png" og/cards/
-cp "$OG_BUILD_DIR/out/research-digital-product-passport-weekly-briefing-index.png" og/cards/
 
 # 5. the gate. This IS the Vercel build command.
 python3 research/build_check.py
@@ -98,6 +98,21 @@ copy the new card, and the refreshed `-index` card, into `og/cards/`.
 longer exists; `gen_og.py` recreates it, so the cards do get written — just
 somewhere you would not think to look. **Set `OG_BUILD_DIR` yourself** so you
 know where they landed.
+
+**Set it OUTSIDE the repo.** On 30 August it was pointed at `./scratchpad/og-002`,
+which is git-ignored and therefore looked harmless. It is not: the build directory
+holds ~32 staging HTML pages, and `build_check` globs the working tree rather than
+the commit, so the page count jumped from 653 to 687 and the gate was counting
+files that will never deploy. Nothing failed, which is the problem — the numbers the
+gate reports are the ones you would use to spot a real change. `$HOME/.cache` or
+`/tmp` keeps it out of the tree.
+
+**There is no `-index` card any more.** The old step 4 copied
+`...-weekly-briefing-index.png` alongside the dated card. Since the permanent route
+became a 307 it serves no HTML, so `gen_og.py` never renders that card and the `cp`
+fails with *No such file or directory* — in the middle of a run whose last line still
+says `build checks passed`, because nothing references the card either. Harmless, and
+exactly the kind of failure that gets copied forward for months.
 
 A failing gate is not a warning. Vercel keeps serving the previous build and the
 site looks fine from outside. That is how three days of stale deploys happened
