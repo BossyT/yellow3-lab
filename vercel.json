@@ -4,6 +4,16 @@
   "outputDirectory": ".",
   "redirects": [
     {
+      "source": "/research/digital-product-passport/weekly-briefing/",
+      "destination": "/research/digital-product-passport/weekly-briefing/2026-08-24",
+      "permanent": false
+    },
+    {
+      "source": "/research/digital-product-passport/weekly-briefing",
+      "destination": "/research/digital-product-passport/weekly-briefing/2026-08-24",
+      "permanent": false
+    },
+    {
       "source": "/:path*",
       "has": [
         {

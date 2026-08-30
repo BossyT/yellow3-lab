@@ -1,7 +1,7 @@
 {
   "instrument": "digital-product-passport",
   "format": "monday-briefing",
-  "note": "Authored source of truth for the Monday Briefing editions. The template is FROZEN (handover v1.1, DESIGN_LOCK 21 Aug 2026, runtime amendment 23 Aug 2026) and only the fields in this file change from one Monday to the next. research/gen_briefing.py reads this file and REFUSES to publish an edition whose issueNumber, researchNote, media duration, four timing markers, transcript or source records are unresolved. Sample timings and the 53-second reference recording are never a fallback. NUMBERING: the Monday Briefing is its OWN series starting at 001. It does not continue the /insights article numbering, which stood at 33 published when this format launched - the 034 in the approved prototype was sample copy borrowed from that series, not a shared counter. The research note number tracks the issue number.",
+  "note": "Authored source of truth for the Monday Briefing editions. The template is FROZEN (handover v1.1, DESIGN_LOCK 21 Aug 2026, runtime amendment 23 Aug 2026) and only the fields in this file change from one Monday to the next. research/gen_briefing.py reads this file and REFUSES to publish an edition whose issueNumber, researchNote, media duration, four timing markers, transcript or source records are unresolved. Sample timings and the 53-second reference recording are never a fallback. NUMBERING: the Monday Briefing is its OWN series starting at 001. It does not continue the /insights article numbering, which stood at 33 published when this format launched - the 034 in the approved prototype was sample copy borrowed from that series, not a shared counter. The research note number tracks the issue number. LOCALE, ruled by GPT 30 Aug 2026: an edition is identified by locale PLUS publicationDate, never date alone. The unprefixed route is always English and /es/ is always Spanish; there is no redirect by browser language and no language selector in the frozen frame. Editions written before that ruling carry no locale field and are read as English. MEDIA SHAPE: video.width and video.height are measured by research/briefing_media.py and refused if the file is not portrait - the stage is portrait at every breakpoint with object-fit: contain locked, and a landscape file publishes as a band across an empty stage. The deploy gate has no ffprobe, so the measurement is carried in this file rather than taken at build time.",
   "template": {
     "version": "1.1",
     "locked": "2026-08-21",
@@ -12,6 +12,7 @@
   "editions": [
     {
       "slug": "2026-08-24",
+      "locale": "en",
       "status": "draft",
       "issueNumber": "001",
       "weekLabel": "17-23 August 2026",
@@ -23,6 +24,8 @@
         "src": "/media/briefing/astrid-2026-08-24.mp4",
         "poster": "/media/briefing/astrid-2026-08-24.jpg",
         "durationSeconds": 173.68,
+        "width": 1080,
+        "height": 1920,
         "presenter": "Astrid",
         "sourceFile": "MONDAY BRIEFING .mp4",
         "sourceSha256": "98bf984927b5c1b5232fa3dc9dfb67816d552fb581b77e6118c992945da8a712",
@@ -162,6 +165,158 @@
           "source 04A is an announcement, not the direct public-review document"
         ]
       }
+    },
+    {
+      "slug": "2026-08-31",
+      "locale": "en",
+      "status": "draft",
+      "issueNumber": "002",
+      "weekLabel": "24-30 August 2026",
+      "publicationDate": "2026-08-31",
+      "publicationTime": "07:30 CEST",
+      "checkedAt": "2026-08-30T12:00:00+02:00",
+      "researchNote": "002 / 2026",
+      "headline": "Who pays after the sale?",
+      "seo": {
+        "title": "Who pays after the sale? | Digital Product Passport Weekly Briefing",
+        "description": "Textile waste fees, unsold-stock rules and the EU Registry are turning Digital Product Passport data into financial infrastructure."
+      },
+      "video": {
+        "src": "/media/briefing/bianca-2026-08-31-en.mp4",
+        "poster": "/media/briefing/bianca-2026-08-31-en.jpg",
+        "durationSeconds": 169.772,
+        "isoDuration": "PT2M49.772S",
+        "width": 720,
+        "height": 1280,
+        "presenter": "Bianca",
+        "sourceFile": "bianca-2026-08-31-original.mp4",
+        "sourceSha256": "6e9010196564031271da7b1843b31d337c5656fb756ad977b75e772db4b2c5de",
+        "posterSource": "supplied and approved with the issue-002 package, byte-identical to assets/bianca-2026-08-31-poster.jpg. Not the 0.6s frame grab.",
+        "deliverySize": "45.2 MB at 2235 kbit/s, 720x1280, audio copied from the master",
+        "shapeNote": "720x1280 full-frame portrait, approved in package v1.1 as the mediaCorrection replacing the rejected 1280x720 landscape export. Below the 1080x1920 the 30 Aug ruling first asked for; the later package approves this file."
+      },
+      "framing": {
+        "lineOne": "One development. Four connected facts.",
+        "lineTwo": "One clear conclusion."
+      },
+      "stories": [
+        {
+          "number": "01",
+          "category": "Systemic risk",
+          "headline": "Less than 1% of textile waste becomes new textile",
+          "consequence": "Scaling textile-to-textile recycling to 15% by 2035 is estimated to require €8-11 billion in capital.",
+          "markerLabel": "BCG / ReHubs",
+          "markerValue": "<1%",
+          "startSeconds": 0
+        },
+        {
+          "number": "02",
+          "category": "Producer cost",
+          "headline": "EU textile responsibility schemes are due by April 2028",
+          "consequence": "Producers will finance collection, sorting, reuse and recycling, with fees linked to ecodesign performance.",
+          "markerLabel": "EU law",
+          "markerValue": "17 APR 2028",
+          "startSeconds": 47.9
+        },
+        {
+          "number": "03",
+          "category": "Unsold stock",
+          "headline": "Destroying unsold clothing and footwear is now prohibited",
+          "consequence": "The ban applies to large companies; standardised disclosure of discarded unsold products starts in February 2027.",
+          "markerLabel": "ESPR",
+          "markerValue": "IN FORCE",
+          "startSeconds": 78.1
+        },
+        {
+          "number": "04",
+          "category": "Verification",
+          "headline": "Registering a passport does not verify its product claims",
+          "consequence": "A registered passport can prove existence, but the responsible business still owns the accuracy and evidence.",
+          "markerLabel": "EU Registry",
+          "markerValue": "LIVE",
+          "startSeconds": 97.1
+        }
+      ],
+      "transcript": [
+        "Good morning.",
+        "This week, fashion's Digital Product Passport story stopped being about a QR code.",
+        "It became about who pays for a product after it has been sold.",
+        "Four developments. One clear conclusion.",
+        "First, a new analysis published by Reuters shows the scale of the problem.",
+        "Less than one percent of textile waste is currently recycled into new textiles, while global textile waste is expected to increase by more than forty percent by 2035.",
+        "According to modelling by ReHubs and Boston Consulting Group, Europe may need between eight and eleven billion euros in capital investment to reach just fifteen percent textile-to-textile recycling by 2035.",
+        "The technology is developing. The economic system around it is not ready.",
+        "Second, European Union law requires every Member State to establish an Extended Producer Responsibility scheme for textiles and footwear by the 17th of April 2028.",
+        "Producers will finance the collection, sorting, reuse and recycling of the products they place on each national market.",
+        "Their contributions will be based on product weight and, where appropriate, quantity. The fees will then be adjusted using relevant ecodesign requirements.",
+        "In other words, product sustainability data is beginning to have a direct financial value.",
+        "Third, the prohibition on destroying unsold clothing and footwear already applies to large companies.",
+        "From February 2027, businesses must also use a standard European format to disclose the unsold products they discard.",
+        "What happens to a product after production can no longer remain invisible.",
+        "Fourth, the European Digital Product Passport Registry is now live and undergoing testing before the first mandatory battery passports arrive in February 2027.",
+        "Businesses can register product identifiers through the Registry interface or connect directly through its API.",
+        "But registration is not the same as verification.",
+        "A registration record can prove that a passport exists. It cannot prove that every environmental, material or recycling claim inside the passport is true.",
+        "The business placing the product on the market still owns that responsibility.",
+        "And that brings us to this week's conclusion.",
+        "The Digital Product Passport is becoming the information layer connecting product design, compliance, waste fees, sorting and recycling.",
+        "Businesses that treat it as a webpage or QR code added at the end will have started in the wrong place.",
+        "The real work begins with the product data, where it comes from, what evidence supports it, who is responsible for it, and how it stays accurate.",
+        "The question is no longer:",
+        "\"Who can generate our passport?\"",
+        "The question is:",
+        "\"Can we prove our product well enough for the systems now forming around it?\"",
+        "That is this week's Digital Product Passport briefing from yellow3 Research Intelligence."
+      ],
+      "sources": [
+        {
+          "ref": "01",
+          "publisher": "Reuters",
+          "title": "Europe stitches together plan to close the loop in the fashion industry",
+          "url": "https://www.reuters.com/sustainability/boards-policy-regulation/europe-stitches-together-plan-close-loop-fashion-industry--ecmii-2026-08-24/",
+          "checkedAt": "2026-08-30T12:00:00+02:00",
+          "pending": false
+        },
+        {
+          "ref": "02",
+          "publisher": "Boston Consulting Group and ReHubs",
+          "title": "Advancing Textile Circularity in Europe: The Case for System-Level Scale-Up",
+          "url": "https://www.bcg.com/publications/2026/france-advancing-textile-circularity-in-europe-the-case-for-system-level-scale-up",
+          "checkedAt": "2026-08-30T12:00:00+02:00",
+          "pending": false
+        },
+        {
+          "ref": "03",
+          "publisher": "European Union",
+          "title": "Directive (EU) 2025/1892 amending Directive 2008/98/EC on waste",
+          "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=OJ:L_202501892",
+          "checkedAt": "2026-08-30T12:00:00+02:00",
+          "pending": false
+        },
+        {
+          "ref": "04",
+          "publisher": "European Commission",
+          "title": "New EU rules to stop the destruction of unsold clothes and shoes",
+          "url": "https://environment.ec.europa.eu/news/new-eu-rules-stop-destruction-unsold-clothes-and-shoes-2026-02-09_en",
+          "checkedAt": "2026-08-30T12:00:00+02:00",
+          "pending": false
+        },
+        {
+          "ref": "05",
+          "publisher": "European Commission",
+          "title": "The Digital Product Passport Registry is now live",
+          "url": "https://single-market-economy.ec.europa.eu/news/digital-product-passport-registry-now-live-2026-07-20_en",
+          "checkedAt": "2026-08-30T12:00:00+02:00",
+          "pending": false
+        }
+      ],
+      "evidenceNote": "The statement that registration does not verify every underlying product claim is an inference from the Registry's defined role. The Registry registers identifiers and associated metadata and supplies proof of registration. The responsible economic operator remains accountable for the accuracy and evidence behind the product data.",
+      "weekNumber": 36,
+      "weekIso": "2026-W36",
+      "reportedWeekIso": "2026-W35",
+      "weekNote": "TWO DIFFERENT WEEKS, do not conflate them. weekNumber 36 is the PUBLICATION week (Mon 31 Aug - Sun 6 Sep 2026). The edition REPORTS 2026-W35, 24-30 August, which is weekLabel.",
+      "markersConfirmed": false,
+      "markersNote": "Editorial markers supplied by GPT in the issue-002 package [0, 47.9, 78.1, 97.1]. The brief requires them confirmed against production playback before publication. Not yet listened to."
     }
   ]
 }

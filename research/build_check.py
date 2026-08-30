@@ -708,6 +708,65 @@ def main() -> int:
     else:
         print('  ok  no anchor renders as a control and goes nowhere')
 
+    # 8. The Monday Briefing media is portrait, and it is actually there.
+    #
+    # ADDED 30 AUGUST 2026, ON GPT'S RULING, after a landscape 1280x720
+    # recording was delivered for edition 002 and would have published.
+    #
+    # WHY NOTHING CAUGHT IT. research/briefing_media.py checked duration,
+    # resolution stability and that the audio was bit-for-bit identical - every
+    # question you would ask about whether a file had been degraded, and none
+    # about whether it was the right SHAPE. This gate never looked at the video
+    # at all. The stage is portrait at every breakpoint (400x510, 330x470, and
+    # full width by min(124vw, 570px)) with object-fit: contain part of the
+    # design lock, so a 16:9 file renders as a band across the middle with
+    # 55-60% of the stage empty, and the topline and play control - pinned to
+    # the stage edges - sit over background rather than over the presenter.
+    # There is no encode that fixes it. It is the wrong shape, not a bad
+    # bitrate, and the first anyone would have known is seeing it live.
+    #
+    # THE MEASUREMENT IS NOT TAKEN HERE. Vercel builds this repo with python
+    # and no ffmpeg, so a gate that shelled out to ffprobe would fail the build
+    # for a missing binary and be deleted the same morning. briefing_media.py
+    # measures once, at the point the delivery file is made, and records
+    # video.width and video.height into research/briefings.json. This reads
+    # that record. An edition is only checked once its page exists, because an
+    # unrendered draft cannot deploy.
+    briefings = ROOT / 'research' / 'briefings.json'
+    if briefings.exists():
+        doc = json.loads(briefings.read_text(encoding='utf-8'))
+        shape: list[str] = []
+        for ed in doc.get('editions', []):
+            locale = str(ed.get('locale') or 'en').strip().lower()
+            slug = ed.get('slug', '?')
+            prefix = '' if locale == 'en' else f'{locale}/'
+            page = (ROOT / f'{prefix}research/digital-product-passport/'
+                           f'weekly-briefing/{slug}.html')
+            if not page.exists():
+                continue
+            name = f'{locale}/{slug}'
+            v = ed.get('video') or {}
+            w, h = v.get('width'), v.get('height')
+            if not isinstance(w, int) or not isinstance(h, int) or w <= 0 or h <= 0:
+                shape.append(f'{name}: no measured video.width/video.height - run '
+                             'research/briefing_media.py, which records them')
+            elif h <= w:
+                kind = 'square' if h == w else 'landscape'
+                shape.append(f'{name}: media is {w}x{h}, which is {kind}. The briefing '
+                             'stage is portrait and object-fit: contain is locked, so '
+                             'this publishes as a band across an empty stage.')
+            for field in ('src', 'poster'):
+                ref = str(v.get(field) or '')
+                if ref.startswith('/') and not (ROOT / ref.lstrip('/')).exists():
+                    shape.append(f'{name}: video.{field} points at {ref}, which is not '
+                                 'in the repo - the briefing media is served from '
+                                 '/media/briefing/, not from blob storage.')
+        if shape:
+            FAIL.append(f'briefing media ({len(shape)}):')
+            FAIL.extend('    ' + line for line in shape)
+        else:
+            print('  ok  briefing media is portrait and present')
+
     if FAIL:
         print('\nBUILD REFUSED\n')
         for f in FAIL:

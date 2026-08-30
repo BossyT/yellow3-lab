@@ -83,10 +83,77 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = ROOT / 'research' / 'briefings.json'
-OUT_DIR = ROOT / 'research' / 'digital-product-passport' / 'weekly-briefing'
+# Output lives under the locale's own route; see out_dir_for(). There is no
+# single OUT_DIR any more - that constant was the shape of the bug where two
+# languages published to one directory.
 PREVIEW_DIR = ROOT / 'research' / '.preview'
 BASE = 'https://www.yellow3.io'
 ROUTE = '/research/digital-product-passport/weekly-briefing'
+
+# ---------------------------------------------------------------------------
+# LOCALE. GPT's ruling of 30 August 2026.
+#
+# Edition identity is locale PLUS publication date, never date alone. Two
+# recordings of one Monday are two separate indexable documents and must not
+# collide on a route, a media filename, a social card or the newest-edition
+# resolution.
+#
+#   the unprefixed route is ALWAYS English      /research/.../weekly-briefing
+#   the /es/ route is ALWAYS Spanish         /es/research/.../weekly-briefing
+#
+# No automatic redirect by browser language, and no language selector inside
+# the frozen briefing frame - both are explicitly ruled out. A reader reaches
+# the Spanish edition by following a Spanish link or an hreflang alternate,
+# which is why the reciprocal alternates below are not decoration.
+# ---------------------------------------------------------------------------
+
+LOCALES = ('en', 'es')
+DEFAULT_LOCALE = 'en'
+LOCALE_PREFIX = {'en': '', 'es': '/es'}
+
+
+def locale_of(ed: dict) -> str:
+    """Editions written before the ruling carry no locale and are English."""
+    return (ed.get('locale') or DEFAULT_LOCALE).strip().lower()
+
+
+def route_for(locale: str) -> str:
+    return LOCALE_PREFIX[locale] + ROUTE
+
+
+def out_dir_for(locale: str) -> pathlib.Path:
+    return ROOT / route_for(locale).lstrip('/')
+
+
+# Dates are DERIVED values, so they are rendered in the page's own language.
+# Authored copy is not translated here - it comes from research/briefings.json
+# and from the shared site shell, and inventing Spanish for it is design work,
+# not integration. strftime is deliberately not used for Spanish: it would
+# depend on the locale of whichever machine ran the build.
+ES_MONTHS = ('enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio',
+             'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre')
+ES_MONTHS_ABBR = ('ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago',
+                  'sep', 'oct', 'nov', 'dic')
+ES_WEEKDAYS = ('lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado',
+               'domingo')
+
+# The two accessibility labels, per language. GPT's ruling of 30 August 2026,
+# point 3: they take the presenter from the edition record and follow the page
+# language. They used to be fixed text reading "Astrid", which became simply
+# wrong the moment a second presenter recorded an edition - and wrong in the
+# one place no sighted reviewer would ever catch it.
+A11Y = {
+    'en': {
+        'section': '{presenter} video briefing',
+        'video': ('{presenter} presents the Digital Product Passport briefing '
+                  'for {date}'),
+    },
+    'es': {
+        'section': 'Informe en vídeo presentado por {presenter}',
+        'video': ('{presenter} presenta el informe sobre el Pasaporte Digital '
+                  'de Producto del {date}'),
+    },
+}
 
 # The reference recording shipped for player testing. Never an edition value.
 SAMPLE_DURATION = 53.527
@@ -211,7 +278,13 @@ def iso8601(seconds: float) -> str:
 def blockers(ed: dict) -> list[str]:
     """Everything that must be resolved before this edition can be published."""
     out: list[str] = []
-    slug = ed.get('slug', '?')
+    # Editions are named locale/date in every message, because two recordings
+    # of one Monday now share a publication date and "2026-08-31 is blocked"
+    # would not say which one.
+    loc = str(ed.get('locale') or DEFAULT_LOCALE).strip().lower()
+    slug = f'{loc}/{ed.get("slug", "?")}'
+    if loc not in LOCALES:
+        out.append(f'{slug}: locale {loc!r} is not one of {", ".join(LOCALES)}')
 
     def unresolved(v) -> bool:
         return v is None or (isinstance(v, str) and v.strip().upper() in ('', 'TBC'))
@@ -278,6 +351,32 @@ def blockers(ed: dict) -> list[str]:
     # it could happen for real.
     if unresolved(video.get('presenter')):
         out.append(f'{slug}: no presenter name on the video block')
+
+    # THE SHAPE IS PART OF THE DESIGN LOCK, AND IT IS CHECKED FROM THE DATA.
+    # GPT's ruling of 30 August 2026, after a landscape 1280x720 recording was
+    # delivered for edition 002. The stage is portrait at every breakpoint with
+    # object-fit: contain locked, so a landscape file publishes as a band across
+    # the middle of an empty stage. Nothing caught it: briefing_media.py checked
+    # duration, resolution stability and audio identity, and build_check.py has
+    # never looked at the video at all.
+    #
+    # The measurement is taken once, by research/briefing_media.py, and carried
+    # here in the data. It is not probed at build time on purpose - Vercel runs
+    # this gate with python alone and no ffmpeg, and a gate that needs a binary
+    # the builder does not have is a gate that gets deleted the first time it
+    # blocks a deploy.
+    width, height = video.get('width'), video.get('height')
+    if not isinstance(width, int) or not isinstance(height, int) \
+            or width <= 0 or height <= 0:
+        out.append(f'{slug}: video.width and video.height must be measured from the '
+                   'delivery file. research/briefing_media.py prints the block to paste; '
+                   'the deploy gate cannot run ffprobe and will not take this on trust.')
+    elif height <= width:
+        shape = 'square' if height == width else 'landscape'
+        out.append(f'{slug}: the media is {width}x{height}, which is {shape}. The briefing '
+                   'stage is portrait at every breakpoint and object-fit: contain is part '
+                   'of the design lock, so this would publish as a band across an empty '
+                   'stage. Re-export portrait from the same recording.')
 
     duration = video.get('durationSeconds')
     if not isinstance(duration, (int, float)) or duration <= 0:
@@ -821,6 +920,16 @@ PLAYER_JS = r"""
 def render_briefing(ed: dict) -> str:
     """The locked frame. Nothing here varies except edition content."""
     v = ed['video']
+    # ACCESSIBILITY LABELS FOLLOW THE PRESENTER AND THE PAGE LANGUAGE.
+    # Until 30 August 2026 both were fixed text reading "Astrid". The visible
+    # topline had always read the presenter field correctly, so a second
+    # presenter would have been announced by the right name on screen and the
+    # wrong one to a screen reader - the single place a sighted reviewer cannot
+    # see the fault.
+    lab = A11Y.get(ed.get('locale', DEFAULT_LOCALE), A11Y[DEFAULT_LOCALE])
+    section_label = lab['section'].format(presenter=v['presenter'])
+    video_label = lab['video'].format(presenter=v['presenter'],
+                                      date=ed['publicationDateDisplay'])
     # The evidence line is earned, not printed by default.
     if ed.get('checkedDisplay'):
         statement = 'Evidence checked before publication.'
@@ -859,11 +968,11 @@ def render_briefing(ed: dict) -> str:
     </header>
 
     <div class="briefing-grid">
-      <section class="presenter" aria-label="Astrid video briefing">
+      <section class="presenter" aria-label="{e(section_label)}">
         <div class="video-stage">
           <video class="astrid-video" src="{e(v['src'])}" poster="{e(v['poster'])}"
                  preload="metadata" playsinline
-                 aria-label="Astrid presents the Digital Product Passport briefing for {e(ed['publicationDateDisplay'])}"></video>
+                 aria-label="{e(video_label)}"></video>
           <div class="video-topline">
             <span>{e(topline_left)}</span>
             <span>{e(v['presenter'].upper())} &middot; <span class="topline-total">--:--</span></span>
@@ -892,7 +1001,7 @@ def render_briefing(ed: dict) -> str:
         <div class="stories-intro">
           <div>
             <p class="section-kicker">DIGITAL PRODUCT PASSPORT</p>
-            <p class="briefing-title">What changed this week.</p>
+            <p class="briefing-title">{e(ed.get('headline') or 'What changed this week.')}</p>
           </div>
           <p class="intro-note">{e(ed['framing']['lineOne'])}<br /><strong>{e(ed['framing']['lineTwo'])}</strong></p>
         </div>
@@ -929,19 +1038,35 @@ def render_record(ed: dict, prev_ed: dict | None, next_ed: dict | None) -> str:
               <span class="src-checked">{('PENDING - announcement only, not the direct public-review document' if s.get('pending') else 'Checked ' + e(s['checkedDisplay']))}</span>
             </li>""")
 
+    # AN EVIDENCE NOTE IS NOT A CORRECTION. Issue 002 states that "registering
+    # a passport does not verify its product claims" is an INFERENCE from the
+    # Registry's defined role rather than something the Registry says, and the
+    # brief requires that distinction to survive to the page. Rendering it in
+    # the correction slot would have labelled it "Correction 30 August", which
+    # says the opposite: that something published was wrong.
+    evidence_note = ''
+    if ed.get('evidenceNote'):
+        evidence_note = ('\n            <li class="src-note">'
+                         f'{e(ed["evidenceNote"])}</li>')
+
     correction = ''
     if ed.get('correction'):
         c = ed['correction']
         correction = (f'\n        <div class="correction"><strong>Correction '
                       f'{e(c["date"])}.</strong> {e(c["note"])}</div>')
 
+    # THE ARCHIVE NAVIGATION STAYS INSIDE ITS OWN LANGUAGE. Using the bare
+    # ROUTE here sent a reader on the Spanish page to the English archive,
+    # which is the sort of thing that reads fine in a diff and is obvious the
+    # moment somebody clicks it.
+    route = route_for(ed.get('locale', DEFAULT_LOCALE))
     nav_parts = []
     if prev_ed:
-        nav_parts.append(f'<a href="{ROUTE}/{e(prev_ed["slug"])}">&#8592; {e(prev_ed["weekLabelDisplay"])}</a>')
+        nav_parts.append(f'<a href="{route}/{e(prev_ed["slug"])}">&#8592; {e(prev_ed["weekLabelDisplay"])}</a>')
     else:
         nav_parts.append('<span class="spacer">Earliest edition</span>')
     if next_ed:
-        nav_parts.append(f'<a href="{ROUTE}/{e(next_ed["slug"])}">{e(next_ed["weekLabelDisplay"])} &#8594;</a>')
+        nav_parts.append(f'<a href="{route}/{e(next_ed["slug"])}">{e(next_ed["weekLabelDisplay"])} &#8594;</a>')
     else:
         # The newest edition. This used to link to the permanent route, which
         # under GPT's option E now 307s straight back to this very page - a
@@ -963,7 +1088,7 @@ def render_record(ed: dict, prev_ed: dict | None, next_ed: dict | None) -> str:
           <h2>{'Sources' if any(x.get('pending') for x in ed['sources']) else 'Verified sources'}</h2>
           <ol>
 {chr(10).join(sources)}
-          </ol>
+          </ol>{evidence_note}
         </div>
       </div>
       <nav class="edition-nav" aria-label="Edition archive">
@@ -975,12 +1100,22 @@ def render_record(ed: dict, prev_ed: dict | None, next_ed: dict | None) -> str:
 """
 
 
-def render_page(ed: dict, canonical: str, prev_ed, next_ed, latest: bool) -> str:
+def render_page(ed: dict, canonical: str, prev_ed, next_ed, latest: bool,
+                alternates: dict | None = None) -> str:
     v = ed['video']
+    loc = ed.get('locale', DEFAULT_LOCALE)
+    alternates = alternates or {}
+    # THE EDITION MAY CARRY ITS OWN SEO STRINGS, and when it does they win.
+    # Issue 002 arrived with an approved title and description written for the
+    # week's story rather than derived from its date. The generated forms stay
+    # as the fallback so an edition that supplies nothing still gets sensible,
+    # non-duplicate metadata.
+    seo = ed.get('seo') or {}
     title = 'Digital Product Passport Weekly Briefing | yellow3'
     if not latest:
         title = (f'Digital Product Passport Weekly Briefing, '
                  f'{ed["publicationDateDisplay"]} | yellow3')
+    title = seo.get('title') or title
     # The permanent route and the dated edition are the same content today, so a
     # shared description makes them read as duplicates to a crawler - seo_dd
     # flags exactly that. The archive edition names its own date instead.
@@ -990,6 +1125,7 @@ def render_page(ed: dict, canonical: str, prev_ed, next_ed, latest: bool) -> str
         desc = (f'The Digital Product Passport briefing for {ed["publicationDateDisplay"]} '
                 'from yellow3 Research Intelligence: what changed this week in '
                 'regulatory, deadline, implementation and standards developments.')
+    desc = seo.get('description') or desc
 
     # STRUCTURED-DATA URLS ARE ABSOLUTE, and that is not cosmetic.
     #
@@ -1013,9 +1149,13 @@ def render_page(ed: dict, canonical: str, prev_ed, next_ed, latest: bool) -> str
         'description': desc,
         'thumbnailUrl': [abs_url(v['poster'])],
         'uploadDate': ed['publicationDate'],
-        'duration': iso8601(v['durationSeconds']),
+        # Issue 002 supplies PT2M49.772S. iso8601() rounds to whole seconds,
+        # which is correct for a value it derives itself but would silently
+        # contradict an edition that states its own.
+        'duration': v.get('isoDuration') or iso8601(v['durationSeconds']),
         'contentUrl': abs_url(v['src']),
         'transcript': '\n\n'.join(ed['transcript']),
+        'inLanguage': loc,
         'publisher': {'@type': 'Organization', 'name': 'yellow3',
                       'url': BASE},
     }
@@ -1026,9 +1166,10 @@ def render_page(ed: dict, canonical: str, prev_ed, next_ed, latest: bool) -> str
     # the page's place in the site has to be inferred from the URL.
     crumbs = [('Research', f'{BASE}/research'),
               ('Digital Product Passport', f'{BASE}/research/digital-product-passport'),
-              ('Weekly Briefing', BASE + ROUTE)]
+              ('Weekly Briefing', BASE + route_for(loc))]
     if not latest:
-        crumbs.append((ed['publicationDateDisplay'], f'{BASE}{ROUTE}/{ed["slug"]}'))
+        crumbs.append((ed['publicationDateDisplay'],
+                       f'{BASE}{route_for(loc)}/{ed["slug"]}'))
     breadcrumb_ld = {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
@@ -1042,18 +1183,42 @@ def render_page(ed: dict, canonical: str, prev_ed, next_ed, latest: bool) -> str
     # derives from every page in the site. index and each dated edition get
     # their own card, so a shared edition link shows that edition.
     nav, foot, shell_css = shell()
-    card = ('research-digital-product-passport-weekly-briefing-'
-            + ('index' if latest else ed['slug']))
+    # THE CARD NAME IS THE PAGE'S OWN PATH, slugified exactly as research/
+    # gen_og.py slugifies it when it walks the site. Deriving it any other way
+    # is how a page ends up pointing at a card nobody rendered, which the build
+    # gate refuses. The locale prefix is part of the path, so the English and
+    # Spanish editions of one Monday get different cards - which is the point,
+    # since a shared link should show the edition that was shared.
+    card_path = f'{route_for(loc).lstrip("/")}/{"index" if latest else ed["slug"]}'
+    card = re.sub(r'[^a-z0-9]+', '-', card_path.lower()).strip('-')
+
+    # RECIPROCAL LANGUAGE ALTERNATES. GPT's ruling of 30 August 2026: matching
+    # dated editions point at each other, and the English dated edition is
+    # x-default. Only editions that actually exist are linked - an hreflang to
+    # a URL that 404s is worse than no hreflang, because it tells a crawler the
+    # translation is there.
+    # A page with no translation gets no alternates. A self-referential
+    # hreflang on a document that has no counterpart tells a crawler a
+    # translation exists, which is the opposite of true.
+    alt_lines = ''
+    if not latest and len(alternates) > 1:
+        for alt_loc in LOCALES:
+            if alt_loc in alternates:
+                alt_lines += (f'  <link rel="alternate" hreflang="{alt_loc}" '
+                              f'href="{e(alternates[alt_loc])}" />\n')
+        if DEFAULT_LOCALE in alternates:
+            alt_lines += ('  <link rel="alternate" hreflang="x-default" '
+                          f'href="{e(alternates[DEFAULT_LOCALE])}" />\n')
 
     return f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="{loc}">
 <head>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{e(title)}</title>
   <meta name="description" content="{e(desc)}" />
   <link rel="canonical" href="{e(canonical)}" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+{alt_lines}  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="video.other" />
   <meta property="og:title" content="{e(title)}" />
   <meta property="og:description" content="{e(desc)}" />
@@ -1109,21 +1274,43 @@ PAGE_CSS = """    /* Page-level rules for the briefing route ONLY.
 
 
 def prepare(ed: dict) -> dict:
-    """Derived display values. Nothing here invents content."""
+    """Derived display values. Nothing here invents content.
+
+    Dates render in the edition's own language. Everything else on the page is
+    authored - it comes from research/briefings.json or the shared site shell -
+    and is reproduced exactly as written.
+    """
     import datetime as dt
     ed = dict(ed)
+    loc = locale_of(ed)
+    ed['locale'] = loc
     d = dt.date.fromisoformat(ed['publicationDate'])
-    ed['publicationDateDisplay'] = d.strftime('%-d %B %Y')
-    ed['toplineLabel'] = d.strftime('%A · %-d %b').upper()
+
+    def long_date(day: dt.date) -> str:
+        if loc == 'es':
+            return f'{day.day} de {ES_MONTHS[day.month - 1]} de {day.year}'
+        return day.strftime('%-d %B %Y')
+
+    def short_stamp(when: dt.datetime) -> str:
+        if loc == 'es':
+            return (f'{when.day} {ES_MONTHS_ABBR[when.month - 1]} {when.year} · '
+                    f'{when:%H:%M}').upper() + ' CET'
+        return when.strftime('%-d %b %Y · %H:%M').upper() + ' CET'
+
+    ed['publicationDateDisplay'] = long_date(d)
+    if loc == 'es':
+        ed['toplineLabel'] = (f'{ES_WEEKDAYS[d.weekday()]} · {d.day} '
+                              f'{ES_MONTHS_ABBR[d.month - 1]}').upper()
+    else:
+        ed['toplineLabel'] = d.strftime('%A · %-d %b').upper()
     ed['weekLabelDisplay'] = ed['weekLabel'].upper()
     if ed.get('checkedAt'):
-        checked = dt.datetime.fromisoformat(ed['checkedAt'])
-        ed['checkedDisplay'] = checked.strftime('%-d %b %Y · %H:%M').upper() + ' CET'
+        ed['checkedDisplay'] = short_stamp(dt.datetime.fromisoformat(ed['checkedAt']))
     else:
         ed['checkedDisplay'] = None
     for s in ed.get('sources', []):
         c = dt.datetime.fromisoformat(s['checkedAt'])
-        s['checkedDisplay'] = c.strftime('%-d %B %Y')
+        s['checkedDisplay'] = long_date(c.date())
     return ed
 
 
@@ -1135,8 +1322,15 @@ def prepare(ed: dict) -> dict:
 ENTRY_POINTS = ('research.html', 'research/digital-product-passport.html')
 
 
-def redirect_to(slug: str) -> bool:
-    """Point the permanent shortcut at the newest edition. True if it changed.
+def redirect_to(locale: str, slug: str) -> bool:
+    """Point that language's permanent shortcut at its newest edition.
+
+    ONE SHORTCUT PER LANGUAGE. GPT's ruling of 30 August 2026: the unprefixed
+    route is always English and /es/ is always Spanish, and neither resolves by
+    browser language. So each locale gets its own pair of rules and they never
+    cross.
+
+    True if it changed.
 
     A 307 and not a 308: the target is expected to change every Monday, and a
     permanent redirect is the one thing a browser and a crawler both cache hard.
@@ -1152,10 +1346,11 @@ def redirect_to(slug: str) -> bool:
     path = ROOT / 'vercel.json'
     conf = json.loads(path.read_text(encoding='utf-8'))
     redirects = conf.setdefault('redirects', [])
-    target = f'{ROUTE}/{slug}'
+    route = route_for(locale)
+    target = f'{route}/{slug}'
 
-    wanted = [{'source': ROUTE, 'destination': target, 'permanent': False},
-              {'source': ROUTE + '/', 'destination': target, 'permanent': False}]
+    wanted = [{'source': route, 'destination': target, 'permanent': False},
+              {'source': route + '/', 'destination': target, 'permanent': False}]
     before = json.dumps(redirects, sort_keys=True)
 
     for rule in wanted:
@@ -1176,7 +1371,13 @@ def redirect_to(slug: str) -> bool:
 
 
 def point_entries_at(slug: str) -> bool:
-    """Rewrite the listing entry points to the newest dated edition."""
+    """Rewrite the listing entry points to the newest dated ENGLISH edition.
+
+    research.html and the instrument page are English pages, and no language
+    selector is permitted inside the frozen briefing frame, so nothing here
+    ever points at /es/. A reader reaches the Spanish edition by an hreflang
+    alternate or a Spanish link, never by these listings changing under them.
+    """
     target = f'{ROUTE}/{slug}'
     changed = False
     for rel in ENTRY_POINTS:
@@ -1214,7 +1415,8 @@ def main() -> int:
             preview = True
 
     doc = json.loads(data.read_text(encoding='utf-8'))
-    editions = sorted(doc['editions'], key=lambda x: x['slug'])
+    editions = sorted(doc['editions'],
+                      key=lambda x: (x['slug'], locale_of(x)))
 
     publishable, blocked = [], []
     for ed in editions:
@@ -1242,7 +1444,8 @@ def main() -> int:
             if s['startSeconds'] is None:
                 s['startSeconds'] = 0
         (out_dir / 'weekly-briefing.html').write_text(
-            render_page(ed, BASE + ROUTE, None, None, True), encoding='utf-8')
+            render_page(ed, BASE + route_for(ed['locale']), None, None, True),
+            encoding='utf-8')
         print(f'  preview  {out_dir / "weekly-briefing.html"}')
         print('  NOT PUBLISHABLE - preview only, values marked PREVIEW are not content.')
         return 0
@@ -1261,17 +1464,39 @@ def main() -> int:
         print(f'  ok  {len(publishable)} edition(s) publishable, {len(blocked)} blocked')
         return 0
 
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
     ready = [prepare(ed) for ed, _ in publishable]
-    for i, ed in enumerate(ready):
-        prev_ed = ready[i - 1] if i > 0 else None
-        next_ed = ready[i + 1] if i + 1 < len(ready) else None
-        path = OUT_DIR / f'{ed["slug"]}.html'
-        path.write_text(render_page(ed, f'{BASE}{ROUTE}/{ed["slug"]}', prev_ed, next_ed, False),
-                        encoding='utf-8')
-        print(f'  wrote  {path.relative_to(ROOT)}')
 
-    latest = ready[-1]
+    # EDITION IDENTITY IS LOCALE PLUS DATE. Each language is its own series:
+    # its own archive, its own previous/next navigation, its own newest
+    # edition and its own permanent shortcut. They meet only at the hreflang
+    # alternates, which is the one place they are supposed to meet.
+    by_locale: dict[str, list] = {}
+    for ed in ready:
+        by_locale.setdefault(ed['locale'], []).append(ed)
+
+    # Matching dated editions, for the reciprocal alternates. Built across all
+    # languages first, because an edition cannot link to a translation that
+    # has not been collected yet.
+    alternates: dict[str, dict[str, str]] = {}
+    for ed in ready:
+        alternates.setdefault(ed['slug'], {})[ed['locale']] = \
+            f'{BASE}{route_for(ed["locale"])}/{ed["slug"]}'
+
+    for locale in LOCALES:
+        group = by_locale.get(locale)
+        if not group:
+            continue
+        out = out_dir_for(locale)
+        out.mkdir(parents=True, exist_ok=True)
+        for i, ed in enumerate(group):
+            prev_ed = group[i - 1] if i > 0 else None
+            next_ed = group[i + 1] if i + 1 < len(group) else None
+            path = out / f'{ed["slug"]}.html'
+            path.write_text(
+                render_page(ed, f'{BASE}{route_for(locale)}/{ed["slug"]}',
+                            prev_ed, next_ed, False, alternates.get(ed['slug'])),
+                encoding='utf-8')
+            print(f'  wrote  {path.relative_to(ROOT)}')
 
     # THE PERMANENT ROUTE SERVES NO HTML. GPT's ruling of 23 Aug 2026, option E:
     # the dated editions are the documents and the permanent route is a
@@ -1281,20 +1506,25 @@ def main() -> int:
     # self-canonical copies of one document is a duplicate we were choosing to
     # keep. An index.html left over from before that ruling is removed, because
     # a stale file here would silently out-rank the redirect.
-    stale = OUT_DIR / 'index.html'
-    if stale.exists():
-        stale.unlink()
-        print(f'  removed  {stale.relative_to(ROOT)}  (the route is a redirect now)')
+        stale = out / 'index.html'
+        if stale.exists():
+            stale.unlink()
+            print(f'  removed  {stale.relative_to(ROOT)}  (the route is a redirect now)')
 
-    if redirect_to(latest['slug']):
-        print(f'  wrote  vercel.json  307 {ROUTE} -> {ROUTE}/{latest["slug"]}')
-    else:
-        print(f'  ok     vercel.json  307 already points at {latest["slug"]}')
+        newest = group[-1]
+        route = route_for(locale)
+        if redirect_to(locale, newest['slug']):
+            print(f'  wrote  vercel.json  307 {route} -> {route}/{newest["slug"]}')
+        else:
+            print(f'  ok     vercel.json  307 {route} already points at {newest["slug"]}')
 
-    if point_entries_at(latest['slug']):
-        print(f'  wrote  entry points now link straight to {latest["slug"]}')
-    else:
-        print('  ok     entry points already link to the newest edition')
+    # The listings are English pages and follow the English series only.
+    if by_locale.get(DEFAULT_LOCALE):
+        newest_en = by_locale[DEFAULT_LOCALE][-1]['slug']
+        if point_entries_at(newest_en):
+            print(f'  wrote  entry points now link straight to {newest_en}')
+        else:
+            print('  ok     entry points already link to the newest edition')
 
     return 0
 

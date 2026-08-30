@@ -422,7 +422,12 @@ def serve():
     and the repo stays clean.
     """
     os.makedirs(BUILD, exist_ok=True)
-    for asset in ("logo.png", "img", "insights", "og", "research"):
+    # "es" is here because the Spanish briefing editions live under /es/ and
+    # are screenshotted at their real path. Without the symlink the local
+    # server cannot serve the page at all, the shot fails, no card is written,
+    # and the build gate then refuses a page that points at a card nobody
+    # rendered - three steps away from the actual cause.
+    for asset in ("logo.png", "img", "insights", "og", "research", "es"):
         link = os.path.join(BUILD, asset)
         if not os.path.lexists(link):
             os.symlink(os.path.join(ROOT, asset), link)
