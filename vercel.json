@@ -2,6 +2,29 @@
   "cleanUrls": true,
   "buildCommand": "python3 research/build_check.py && node generate-sitemap.js",
   "outputDirectory": ".",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+        }
+      ]
+    }
+  ],
   "redirects": [
     {
       "source": "/research/digital-product-passport/weekly-briefing/",
