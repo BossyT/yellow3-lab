@@ -72,6 +72,26 @@ DECLARED_CADENCE_DAYS = None
 UA = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 '
       '(KHTML, like Gecko) Chrome/126.0 Safari/537.36')
 
+# THE ONLY CODES THAT SAY THE PAGE IS NOT THERE.
+#
+# This set is what turns the weekly job red, so it has to mean exactly what it
+# says. 404 and 410 are the server asserting absence. Every other 4xx is the
+# server refusing THIS CLIENT, which is a different sentence and not one we can
+# fix by editing the register.
+#
+# It used to be "any 4xx that is not 403 or 429", and on 31 August 2026 that
+# failed the job on a live page. The Worldline citation returned 406 from the
+# GitHub runner and the report read "the page is gone, not merely unreachable".
+# MEASURED the same morning: with this module's own UA the page returns 200 and
+# serves the article; only curl's default UA gets 406, and the runner is
+# refused on top of that because it fetches from a datacentre range. Nothing
+# about the citation had changed.
+#
+# The module's own docstring is the argument for keeping this narrow: "A
+# citation checker whose false positives look exactly like its true positives
+# is worse than no checker: it trains you to skim the output."
+GONE_CODES = (404, 410)
+
 
 def load():
     reg = json.loads(REGISTER.read_text(encoding='utf-8'))['suppliers']
@@ -148,10 +168,12 @@ def fetch(url):
         if second != code:
             code = second
 
-    # 403/429 is very often bot protection rather than a dead page. Reported,
-    # never counted as broken - the register was bitten once by calling an ISO
-    # page dead when a human browser loads it fine.
-    note = 'bot protection?' if code in (403, 429) else ''
+    # A 4xx that is not 404/410 is very often bot protection or content
+    # negotiation rather than a dead page. Reported, never counted as broken -
+    # the register was bitten once by calling an ISO page dead when a human
+    # browser loads it fine, and again on 31 Aug 2026 by a 406 on a live page.
+    note = ('refused this client?' if 400 <= code < 500 and code not in GONE_CODES
+            else '')
     return url, code, note
 
 
@@ -218,19 +240,20 @@ def main():
     if args.links:
         results = check_links(cap)
         bad = [(u, c, n) for u, c, n in results if c == 0 or c >= 400]
-        soft = [x for x in bad if x[1] in (403, 429)]
+        soft = [x for x in bad if 400 <= x[1] < 500 and x[1] not in GONE_CODES]
         # A 5xx or a connection failure means the HOST is failing right now. It
         # does not establish that the evidence was removed, and we cannot fix
         # somebody else's outage. fabacus.com returned 500 on both citations
         # AND on its own root domain the morning this was written - the site
         # was down, the pages were not gone.
         unreachable = [x for x in bad if x[1] == 0 or x[1] >= 500]
-        # Only a 4xx that is not bot protection says the page itself is gone.
-        hard = [x for x in bad if 400 <= x[1] < 500 and x[1] not in (403, 429)]
+        # Only a code that ASSERTS ABSENCE says the page itself is gone.
+        hard = [x for x in bad if x[1] in GONE_CODES]
         print(f'  citations re-fetched           {len(results)}')
         print(f'  resolved                       {len(results) - len(bad)}')
         if soft:
-            print(f'  refused a scripted fetch       {len(soft)} (likely bot protection)')
+            print(f'  refused a scripted fetch       {len(soft)} '
+                  '(bot protection or content negotiation; the page is not gone)')
             for u, c, _ in soft[:8]:
                 print(f'     {c}  {u}')
         if unreachable:
