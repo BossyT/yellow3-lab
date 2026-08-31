@@ -1,0 +1,242 @@
+{
+  "edition": "2026-35",
+  "window": {
+    "start": "2026-08-24",
+    "end": "2026-08-30",
+    "label": "24 August 2026 to 30 August 2026"
+  },
+  "generated_utc": "2026-08-31T14:16:04Z",
+  "as_of": "2026-08-30",
+  "source": "OpenRouter routing data, analysed by yellow3",
+  "url": "yellow3.io/research/model-adoption/live",
+  "methodology": "Share of routed tokens over the seven days shown. Change is against the mean of the prior seven days. Models below 0.1 percent of routed tokens are excluded.",
+  "rows": [
+    {
+      "rank": 1,
+      "prev_rank": 2,
+      "move": "up",
+      "new": false,
+      "name": "Stealth Ox Alpha",
+      "developer": "stealth",
+      "slug": "stealth-ox-alpha",
+      "region": "Other",
+      "country": "Other",
+      "pct": 13.88,
+      "delta_pp": 1.623,
+      "spark": [
+        32.3087,
+        30.637,
+        21.6921
+      ]
+    },
+    {
+      "rank": 2,
+      "prev_rank": 1,
+      "move": "down",
+      "new": false,
+      "name": "DeepSeek V4 Flash (31 Jul 2026)",
+      "developer": "DeepSeek",
+      "slug": "deepseek-v4-flash",
+      "region": "Asia",
+      "country": "China",
+      "pct": 10.89,
+      "delta_pp": -1.637,
+      "spark": [
+        9.3225,
+        9.4306,
+        13.0507,
+        12.6689,
+        10.6212,
+        10.3914,
+        10.8134
+      ]
+    },
+    {
+      "rank": 3,
+      "prev_rank": 3,
+      "move": "flat",
+      "new": false,
+      "name": "Xiaomi Mimo V2.5",
+      "developer": "Xiaomi",
+      "slug": "xiaomi-mimo-v2-5",
+      "region": "Asia",
+      "country": "China",
+      "pct": 8.09,
+      "delta_pp": -2.735,
+      "spark": [
+        8.7688,
+        7.4205,
+        8.4908,
+        12.1636,
+        10.4395,
+        4.0448,
+        4.0189
+      ]
+    },
+    {
+      "rank": 4,
+      "prev_rank": 6,
+      "move": "up",
+      "new": false,
+      "name": "OpenAI GPT 5.6 Luna",
+      "developer": "OpenAI",
+      "slug": "openai-gpt-5-6-luna",
+      "region": "US",
+      "country": "United States",
+      "pct": 6.9,
+      "delta_pp": 1.901,
+      "spark": [
+        3.341,
+        3.8565,
+        4.0862,
+        9.1694,
+        11.2481,
+        8.5195,
+        10.7229
+      ]
+    },
+    {
+      "rank": 5,
+      "prev_rank": 4,
+      "move": "down",
+      "new": false,
+      "name": "Tencent Hy3",
+      "developer": "Tencent",
+      "slug": "tencent-hy3",
+      "region": "Asia",
+      "country": "China",
+      "pct": 5.89,
+      "delta_pp": -3.072,
+      "spark": [
+        5.839,
+        5.4903,
+        5.615,
+        7.0159,
+        6.3705,
+        5.2945,
+        5.6211
+      ]
+    },
+    {
+      "rank": 6,
+      "prev_rank": null,
+      "move": "new",
+      "new": true,
+      "name": "Z.ai GLM 5.3 Flash",
+      "developer": "Z.ai",
+      "slug": "z-ai-glm-5-3-flash",
+      "region": "Asia",
+      "country": "China",
+      "pct": 5.45,
+      "delta_pp": null,
+      "spark": [
+        1.9568,
+        8.7416,
+        10.2984,
+        10.0192,
+        11.5428
+      ]
+    },
+    {
+      "rank": 7,
+      "prev_rank": 7,
+      "move": "flat",
+      "new": false,
+      "name": "NVIDIA Nemotron 3 Ultra 550b A55b (free)",
+      "developer": "NVIDIA",
+      "slug": "nvidia-nemotron-3-ultra-550b-a55b-free",
+      "region": "US",
+      "country": "United States",
+      "pct": 4.71,
+      "delta_pp": -0.342,
+      "spark": [
+        4.8719,
+        4.1979,
+        4.1582,
+        5.1562,
+        4.9629,
+        5.8734,
+        4.0322
+      ]
+    },
+    {
+      "rank": 8,
+      "prev_rank": 5,
+      "move": "down",
+      "new": false,
+      "name": "DeepSeek V4 Flash (23 Apr 2026)",
+      "developer": "DeepSeek",
+      "slug": "deepseek-v4-flash",
+      "region": "Asia",
+      "country": "China",
+      "pct": 4.6,
+      "delta_pp": -1.23,
+      "spark": [
+        4.389,
+        4.1633,
+        4.2441,
+        4.9678,
+        4.7066,
+        5.023,
+        5.0649
+      ]
+    },
+    {
+      "rank": 9,
+      "prev_rank": 10,
+      "move": "up",
+      "new": false,
+      "name": "Google Gemini 3.7 Flash",
+      "developer": "Google",
+      "slug": "google-gemini-3-7-flash",
+      "region": "US",
+      "country": "United States",
+      "pct": 3.49,
+      "delta_pp": 1.445,
+      "spark": [
+        2.2668,
+        4.1819,
+        6.3906,
+        3.8833,
+        2.3392,
+        2.5866,
+        1.9539
+      ]
+    },
+    {
+      "rank": 10,
+      "prev_rank": null,
+      "move": "new",
+      "new": true,
+      "name": "Tencent Hy4 Preview",
+      "developer": "Tencent",
+      "slug": "tencent-hy4-preview",
+      "region": "Asia",
+      "country": "China",
+      "pct": 2.71,
+      "delta_pp": null,
+      "spark": [
+        2.4065,
+        11.6545,
+        8.7361
+      ]
+    }
+  ],
+  "excluded_below_threshold": 0,
+  "totals": {
+    "models_tracked": 30,
+    "routed_tokens_day": 13313595769103.0,
+    "top_region": "Asia",
+    "top_region_pct": 51.81
+  },
+  "biggest_mover": {
+    "name": "Tencent Hy3",
+    "delta_pp": -3.072,
+    "rank": 5
+  },
+  "call": {
+    "this_week": "Asia holds above 55 percent of routed tokens next Wednesday, and the top five models remain Chinese-built.",
+    "last_week": "Asia stays ahead of the US in routed share next Wednesday, and Europe stays below one percent.",
+    "last_week_grade": "correct"
+  }
+}
