@@ -315,8 +315,8 @@
       "weekIso": "2026-W36",
       "reportedWeekIso": "2026-W35",
       "weekNote": "TWO DIFFERENT WEEKS, do not conflate them. weekNumber 36 is the PUBLICATION week (Mon 31 Aug - Sun 6 Sep 2026). The edition REPORTS 2026-W35, 24-30 August, which is weekLabel.",
-      "markersConfirmed": false,
-      "markersNote": "Editorial markers [0, 47.9, 78.1, 97.1] supplied by GPT in the issue-002 package v1.1 and approved by Thomas on 30 August 2026. markersConfirmed stays false because no listening pass was recorded; the approval below is what releases that gate.",
+      "markersConfirmed": true,
+      "markersNote": "Editorial markers [0, 47.9, 78.1, 97.1] supplied by GPT in the issue-002 package v1.1, approved by Thomas on 30 August 2026 and CONFIRMED by him against the recording on 31 August. markersConfirmed was held false overnight because no listening pass had been recorded - the publishApproval below is what released the gate for the 31 August publication. The human check has now happened, so the flag says so directly and the approval is kept as the record of how it actually shipped.",
       "publishApproval": {
         "approvedBy": "Thomas Christian Melskens",
         "date": "2026-08-30",
