@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-08-30",
+  "as_of": "2026-08-31",
   "workloads": {
     "coding-agent": {
       "label": "Coding agent",
@@ -521,9 +521,9 @@
         {
           "slug": "openai-gpt-5-5",
           "name": "OpenAI GPT 5.5",
-          "in": 5e-06,
-          "out": 3e-05,
-          "cache_read": 5e-07,
+          "in": 2.5e-06,
+          "out": 1.5e-05,
+          "cache_read": 2.5e-07,
           "you": false
         }
       ]
@@ -548,11 +548,11 @@
       "knowledge_cutoff": null,
       "or_id": "deepseek/deepseek-v3.2",
       "or_url": "https://openrouter.ai/deepseek/deepseek-v3.2",
-      "uptime": 99.422,
+      "uptime": 99.252,
       "workload_cost": 21.48,
       "price_position": "Mid cost",
-      "adoption_trend": "flat",
-      "position_label": "Holding position",
+      "adoption_trend": "rising",
+      "position_label": "Momentum builder",
       "price_history": [
         {
           "date": "2026-08-27",
@@ -649,8 +649,8 @@
       "uptime": null,
       "workload_cost": 9.1,
       "price_position": "Low cost",
-      "adoption_trend": "falling",
-      "position_label": "Value play",
+      "adoption_trend": "rising",
+      "position_label": "High-growth challenger",
       "price_history": [
         {
           "date": "2026-08-28",
@@ -771,9 +771,9 @@
         {
           "slug": "openai-gpt-5-5",
           "name": "OpenAI GPT 5.5",
-          "in": 5e-06,
-          "out": 3e-05,
-          "cache_read": 5e-07,
+          "in": 2.5e-06,
+          "out": 1.5e-05,
+          "cache_read": 2.5e-07,
           "you": false
         }
       ]
@@ -921,8 +921,8 @@
       "uptime": null,
       "workload_cost": 19.1,
       "price_position": "Mid cost",
-      "adoption_trend": "falling",
-      "position_label": "Losing ground",
+      "adoption_trend": "rising",
+      "position_label": "Momentum builder",
       "price_history": [
         {
           "date": "2026-08-06",
@@ -977,9 +977,9 @@
         {
           "slug": "openai-gpt-5-5",
           "name": "OpenAI GPT 5.5",
-          "in": 5e-06,
-          "out": 3e-05,
-          "cache_read": 5e-07,
+          "in": 2.5e-06,
+          "out": 1.5e-05,
+          "cache_read": 2.5e-07,
           "you": false
         }
       ]
@@ -1011,7 +1011,7 @@
       "uptime": null,
       "workload_cost": 4.2,
       "price_position": "Low cost",
-      "adoption_trend": "flat",
+      "adoption_trend": "falling",
       "position_label": "Value play",
       "price_history": [
         {
@@ -1371,8 +1371,8 @@
       "uptime": null,
       "workload_cost": 16.31,
       "price_position": "Mid cost",
-      "adoption_trend": "rising",
-      "position_label": "Momentum builder",
+      "adoption_trend": "falling",
+      "position_label": "Losing ground",
       "price_history": [
         {
           "date": "2026-08-17",
@@ -1528,7 +1528,7 @@
       "knowledge_cutoff": null,
       "or_id": "google/gemma-4-26b-a4b-it:free",
       "or_url": "https://openrouter.ai/google/gemma-4-26b-a4b-it:free",
-      "uptime": 99.501,
+      "uptime": 99.764,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -1598,7 +1598,7 @@
       "knowledge_cutoff": null,
       "or_id": "google/gemma-4-31b-it:free",
       "or_url": "https://openrouter.ai/google/gemma-4-31b-it:free",
-      "uptime": 99.694,
+      "uptime": 99.828,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -1666,7 +1666,7 @@
       "knowledge_cutoff": null,
       "or_id": "inclusionai/ling-3.0-flash",
       "or_url": "https://openrouter.ai/inclusionai/ling-3.0-flash",
-      "uptime": 97.496,
+      "uptime": 97.212,
       "workload_cost": 1.55,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -1742,7 +1742,7 @@
       "knowledge_cutoff": null,
       "or_id": "minimax/minimax-m3:free",
       "or_url": "https://openrouter.ai/minimax/minimax-m3:free",
-      "uptime": 99.337,
+      "uptime": 99.377,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -1842,7 +1842,7 @@
       "knowledge_cutoff": null,
       "or_id": "minimax/minimax-m3:free",
       "or_url": "https://openrouter.ai/minimax/minimax-m3:free",
-      "uptime": 99.337,
+      "uptime": 99.377,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "flat",
@@ -1910,10 +1910,10 @@
       "knowledge_cutoff": "2024-04-30",
       "or_id": "mistralai/mistral-nemo",
       "or_url": "https://openrouter.ai/mistralai/mistral-nemo",
-      "uptime": 86.969,
+      "uptime": 86.031,
       "workload_cost": 2.2,
       "price_position": "Low cost",
-      "adoption_trend": "falling",
+      "adoption_trend": "flat",
       "position_label": "Value play",
       "price_history": [
         {
@@ -1991,7 +1991,7 @@
       "knowledge_cutoff": null,
       "or_id": "moonshotai/kimi-k2.6",
       "or_url": "https://openrouter.ai/moonshotai/kimi-k2.6",
-      "uptime": 99.213,
+      "uptime": 98.794,
       "workload_cost": 79.7,
       "price_position": "Premium",
       "adoption_trend": "falling",
@@ -2142,8 +2142,8 @@
       "uptime": null,
       "workload_cost": 261.0,
       "price_position": "Premium",
-      "adoption_trend": "falling",
-      "position_label": "Under pressure",
+      "adoption_trend": "flat",
+      "position_label": "Holding position",
       "price_history": [
         {
           "date": "2026-07-19",
@@ -2207,7 +2207,7 @@
       "knowledge_cutoff": null,
       "or_id": "nvidia/nemotron-3.5-lightning:free",
       "or_url": "https://openrouter.ai/nvidia/nemotron-3.5-lightning:free",
-      "uptime": 99.458,
+      "uptime": 99.306,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -2275,7 +2275,7 @@
       "knowledge_cutoff": null,
       "or_id": "nvidia/nemotron-3-super-120b-a12b:free",
       "or_url": "https://openrouter.ai/nvidia/nemotron-3-super-120b-a12b:free",
-      "uptime": 95.865,
+      "uptime": 93.646,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "rising",
@@ -2343,10 +2343,10 @@
       "knowledge_cutoff": null,
       "or_id": "nvidia/nemotron-3-ultra-550b-a55b:free",
       "or_url": "https://openrouter.ai/nvidia/nemotron-3-ultra-550b-a55b:free",
-      "uptime": 98.007,
+      "uptime": 98.372,
       "workload_cost": 0.0,
       "price_position": "Low cost",
-      "adoption_trend": "flat",
+      "adoption_trend": "falling",
       "position_label": "Value play",
       "price_history": [
         {
@@ -2392,9 +2392,9 @@
       ]
     },
     "openai-gpt-4o-mini": {
-      "in": 1.5e-07,
-      "out": 6e-07,
-      "cache_read": 7.5e-08,
+      "in": 7.5e-08,
+      "out": 3e-07,
+      "cache_read": 3.75e-08,
       "cache_write": null,
       "context": 128000,
       "modalities": [
@@ -2411,14 +2411,20 @@
       "open_weight": false,
       "free_tier": false,
       "knowledge_cutoff": "2023-10-31",
-      "or_id": "openai/gpt-4o-mini",
-      "or_url": "https://openrouter.ai/openai/gpt-4o-mini",
-      "uptime": 99.96,
-      "workload_cost": 15.75,
-      "price_position": "Mid cost",
+      "or_id": "openai/gpt-4o-mini:batch",
+      "or_url": "https://openrouter.ai/openai/gpt-4o-mini:batch",
+      "uptime": null,
+      "workload_cost": 7.88,
+      "price_position": "Low cost",
       "adoption_trend": "falling",
-      "position_label": "Losing ground",
+      "position_label": "Value play",
       "price_history": [
+        {
+          "date": "2026-08-31",
+          "in": 7.5e-08,
+          "out": 3e-07,
+          "change_pct": -50.0
+        },
         {
           "date": "2026-08-27",
           "in": 1.5e-07,
@@ -2442,9 +2448,9 @@
         {
           "slug": "openai-gpt-4o-mini",
           "name": "OpenAI GPT 4o Mini",
-          "in": 1.5e-07,
-          "out": 6e-07,
-          "cache_read": 7.5e-08,
+          "in": 7.5e-08,
+          "out": 3e-07,
+          "cache_read": 3.75e-08,
           "you": true
         },
         {
@@ -2474,9 +2480,9 @@
       ]
     },
     "openai-gpt-5-4": {
-      "in": 2.5e-06,
-      "out": 1.5e-05,
-      "cache_read": 2.5e-07,
+      "in": 1.25e-06,
+      "out": 7.5e-06,
+      "cache_read": 1.25e-07,
       "cache_write": null,
       "context": 1050000,
       "modalities": [
@@ -2493,14 +2499,20 @@
       "open_weight": false,
       "free_tier": false,
       "knowledge_cutoff": null,
-      "or_id": "openai/gpt-5.4",
-      "or_url": "https://openrouter.ai/openai/gpt-5.4",
-      "uptime": 98.793,
-      "workload_cost": 242.5,
+      "or_id": "openai/gpt-5.4:batch",
+      "or_url": "https://openrouter.ai/openai/gpt-5.4:batch",
+      "uptime": null,
+      "workload_cost": 121.25,
       "price_position": "Premium",
       "adoption_trend": "falling",
       "position_label": "Under pressure",
       "price_history": [
+        {
+          "date": "2026-08-31",
+          "in": 1.25e-06,
+          "out": 7.5e-06,
+          "change_pct": -50.0
+        },
         {
           "date": "2026-08-27",
           "in": 2.5e-06,
@@ -2536,9 +2548,9 @@
         {
           "slug": "openai-gpt-5-4",
           "name": "OpenAI GPT 5.4",
-          "in": 2.5e-06,
-          "out": 1.5e-05,
-          "cache_read": 2.5e-07,
+          "in": 1.25e-06,
+          "out": 7.5e-06,
+          "cache_read": 1.25e-07,
           "you": true
         },
         {
@@ -2568,9 +2580,9 @@
       ]
     },
     "openai-gpt-5-5": {
-      "in": 5e-06,
-      "out": 3e-05,
-      "cache_read": 5e-07,
+      "in": 2.5e-06,
+      "out": 1.5e-05,
+      "cache_read": 2.5e-07,
       "cache_write": null,
       "context": 1050000,
       "modalities": [
@@ -2587,14 +2599,20 @@
       "open_weight": false,
       "free_tier": false,
       "knowledge_cutoff": "2025-12-01",
-      "or_id": "openai/gpt-5.5",
-      "or_url": "https://openrouter.ai/openai/gpt-5.5",
-      "uptime": 99.706,
-      "workload_cost": 485.0,
+      "or_id": "openai/gpt-5.5:batch",
+      "or_url": "https://openrouter.ai/openai/gpt-5.5:batch",
+      "uptime": null,
+      "workload_cost": 242.5,
       "price_position": "Premium",
       "adoption_trend": "falling",
       "position_label": "Under pressure",
       "price_history": [
+        {
+          "date": "2026-08-31",
+          "in": 2.5e-06,
+          "out": 1.5e-05,
+          "change_pct": -50.0
+        },
         {
           "date": "2026-08-27",
           "in": 5e-06,
@@ -2630,9 +2648,9 @@
         {
           "slug": "openai-gpt-5-5",
           "name": "OpenAI GPT 5.5",
-          "in": 5e-06,
-          "out": 3e-05,
-          "cache_read": 5e-07,
+          "in": 2.5e-06,
+          "out": 1.5e-05,
+          "cache_read": 2.5e-07,
           "you": true
         },
         {
@@ -2662,10 +2680,10 @@
       ]
     },
     "openai-gpt-5-6-luna": {
-      "in": 2e-07,
-      "out": 1.2e-06,
-      "cache_read": 2e-08,
-      "cache_write": 2.5e-07,
+      "in": 1e-07,
+      "out": 6e-07,
+      "cache_read": 1e-08,
+      "cache_write": null,
       "context": 1050000,
       "modalities": [
         "file",
@@ -2681,14 +2699,20 @@
       "open_weight": false,
       "free_tier": false,
       "knowledge_cutoff": "2026-02-16",
-      "or_id": "openai/gpt-5.6-luna",
-      "or_url": "https://openrouter.ai/openai/gpt-5.6-luna",
-      "uptime": 99.926,
-      "workload_cost": 19.4,
-      "price_position": "Mid cost",
+      "or_id": "openai/gpt-5.6-luna:batch",
+      "or_url": "https://openrouter.ai/openai/gpt-5.6-luna:batch",
+      "uptime": null,
+      "workload_cost": 9.7,
+      "price_position": "Low cost",
       "adoption_trend": "rising",
-      "position_label": "Momentum builder",
+      "position_label": "High-growth challenger",
       "price_history": [
+        {
+          "date": "2026-08-31",
+          "in": 1e-07,
+          "out": 6e-07,
+          "change_pct": -50.0
+        },
         {
           "date": "2026-08-27",
           "in": 2e-07,
@@ -2724,9 +2748,9 @@
         {
           "slug": "openai-gpt-5-6-luna",
           "name": "OpenAI GPT 5.6 Luna",
-          "in": 2e-07,
-          "out": 1.2e-06,
-          "cache_read": 2e-08,
+          "in": 1e-07,
+          "out": 6e-07,
+          "cache_read": 1e-08,
           "you": true
         },
         {
@@ -2756,10 +2780,10 @@
       ]
     },
     "openai-gpt-5-6-luna-pro": {
-      "in": 2e-07,
-      "out": 1.2e-06,
-      "cache_read": 2e-08,
-      "cache_write": 2.5e-07,
+      "in": 1e-07,
+      "out": 6e-07,
+      "cache_read": 1e-08,
+      "cache_write": null,
       "context": 1050000,
       "modalities": [
         "file",
@@ -2775,14 +2799,20 @@
       "open_weight": false,
       "free_tier": false,
       "knowledge_cutoff": "2026-02-16",
-      "or_id": "openai/gpt-5.6-luna-pro",
-      "or_url": "https://openrouter.ai/openai/gpt-5.6-luna-pro",
-      "uptime": 99.972,
-      "workload_cost": 19.4,
-      "price_position": "Mid cost",
+      "or_id": "openai/gpt-5.6-luna-pro:batch",
+      "or_url": "https://openrouter.ai/openai/gpt-5.6-luna-pro:batch",
+      "uptime": null,
+      "workload_cost": 9.7,
+      "price_position": "Low cost",
       "adoption_trend": "falling",
-      "position_label": "Losing ground",
+      "position_label": "Value play",
       "price_history": [
+        {
+          "date": "2026-08-31",
+          "in": 1e-07,
+          "out": 6e-07,
+          "change_pct": -50.0
+        },
         {
           "date": "2026-08-27",
           "in": 2e-07,
@@ -2800,9 +2830,9 @@
         {
           "slug": "openai-gpt-5-6-luna-pro",
           "name": "OpenAI GPT 5.6 Luna Pro",
-          "in": 2e-07,
-          "out": 1.2e-06,
-          "cache_read": 2e-08,
+          "in": 1e-07,
+          "out": 6e-07,
+          "cache_read": 1e-08,
           "you": true
         },
         {
@@ -2832,10 +2862,10 @@
       ]
     },
     "openai-gpt-5-6-sol": {
-      "in": 2e-06,
-      "out": 1e-05,
-      "cache_read": 2e-07,
-      "cache_write": 2.5e-06,
+      "in": 1e-06,
+      "out": 5e-06,
+      "cache_read": 1e-07,
+      "cache_write": 1.25e-06,
       "context": 1050000,
       "modalities": [
         "file",
@@ -2851,14 +2881,20 @@
       "open_weight": false,
       "free_tier": false,
       "knowledge_cutoff": "2026-02-16",
-      "or_id": "openai/gpt-5.6-sol",
-      "or_url": "https://openrouter.ai/openai/gpt-5.6-sol",
-      "uptime": 99.745,
-      "workload_cost": 174.0,
+      "or_id": "openai/gpt-5.6-sol:batch",
+      "or_url": "https://openrouter.ai/openai/gpt-5.6-sol:batch",
+      "uptime": null,
+      "workload_cost": 87.0,
       "price_position": "Premium",
       "adoption_trend": "rising",
       "position_label": "Premium leader",
       "price_history": [
+        {
+          "date": "2026-08-31",
+          "in": 1e-06,
+          "out": 5e-06,
+          "change_pct": -50.0
+        },
         {
           "date": "2026-08-27",
           "in": 2e-06,
@@ -2894,9 +2930,9 @@
         {
           "slug": "openai-gpt-5-6-sol",
           "name": "OpenAI GPT 5.6 Sol",
-          "in": 2e-06,
-          "out": 1e-05,
-          "cache_read": 2e-07,
+          "in": 1e-06,
+          "out": 5e-06,
+          "cache_read": 1e-07,
           "you": true
         },
         {
@@ -2926,10 +2962,10 @@
       ]
     },
     "openai-gpt-5-6-terra": {
-      "in": 2e-06,
-      "out": 1.2e-05,
-      "cache_read": 2e-07,
-      "cache_write": 2.5e-06,
+      "in": 1e-06,
+      "out": 6e-06,
+      "cache_read": 1e-07,
+      "cache_write": null,
       "context": 1050000,
       "modalities": [
         "file",
@@ -2945,14 +2981,20 @@
       "open_weight": false,
       "free_tier": false,
       "knowledge_cutoff": "2026-02-16",
-      "or_id": "openai/gpt-5.6-terra",
-      "or_url": "https://openrouter.ai/openai/gpt-5.6-terra",
-      "uptime": 100,
-      "workload_cost": 194.0,
+      "or_id": "openai/gpt-5.6-terra:batch",
+      "or_url": "https://openrouter.ai/openai/gpt-5.6-terra:batch",
+      "uptime": null,
+      "workload_cost": 97.0,
       "price_position": "Premium",
       "adoption_trend": "falling",
       "position_label": "Under pressure",
       "price_history": [
+        {
+          "date": "2026-08-31",
+          "in": 1e-06,
+          "out": 6e-06,
+          "change_pct": -50.0
+        },
         {
           "date": "2026-08-27",
           "in": 2e-06,
@@ -2976,9 +3018,9 @@
         {
           "slug": "openai-gpt-5-6-terra",
           "name": "OpenAI GPT 5.6 Terra",
-          "in": 2e-06,
-          "out": 1.2e-05,
-          "cache_read": 2e-07,
+          "in": 1e-06,
+          "out": 6e-06,
+          "cache_read": 1e-07,
           "you": true
         },
         {
@@ -3119,7 +3161,7 @@
       "knowledge_cutoff": null,
       "or_id": "poolside/laguna-s-2.1:free",
       "or_url": "https://openrouter.ai/poolside/laguna-s-2.1:free",
-      "uptime": 99.981,
+      "uptime": 99.99,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -3189,7 +3231,7 @@
       "knowledge_cutoff": null,
       "or_id": "stepfun/step-3.7-flash",
       "or_url": "https://openrouter.ai/stepfun/step-3.7-flash",
-      "uptime": 99.111,
+      "uptime": 99.329,
       "workload_cost": 20.3,
       "price_position": "Mid cost",
       "adoption_trend": "falling",
@@ -3257,11 +3299,11 @@
       "knowledge_cutoff": null,
       "or_id": "tencent/hy3",
       "or_url": "https://openrouter.ai/tencent/hy3",
-      "uptime": 99.845,
+      "uptime": 99.895,
       "workload_cost": 11.55,
-      "price_position": "Low cost",
+      "price_position": "Mid cost",
       "adoption_trend": "falling",
-      "position_label": "Value play",
+      "position_label": "Losing ground",
       "price_history": [
         {
           "date": "2026-08-28",
@@ -3343,11 +3385,11 @@
       "knowledge_cutoff": null,
       "or_id": "tencent/hy3",
       "or_url": "https://openrouter.ai/tencent/hy3",
-      "uptime": 99.845,
+      "uptime": 99.895,
       "workload_cost": 11.55,
-      "price_position": "Low cost",
-      "adoption_trend": "falling",
-      "position_label": "Value play",
+      "price_position": "Mid cost",
+      "adoption_trend": "flat",
+      "position_label": "Holding position",
       "price_history": [
         {
           "date": "2026-08-28",
@@ -3435,7 +3477,7 @@
       "knowledge_cutoff": null,
       "or_id": "tencent/hy3-preview",
       "or_url": "https://openrouter.ai/tencent/hy3-preview",
-      "uptime": 99.99,
+      "uptime": 99.985,
       "workload_cost": 15.6,
       "price_position": "Mid cost",
       "adoption_trend": "falling",
@@ -3509,7 +3551,7 @@
       "knowledge_cutoff": null,
       "or_id": "tencent/hy4-preview",
       "or_url": "https://openrouter.ai/tencent/hy4-preview",
-      "uptime": 99.999,
+      "uptime": 100.0,
       "workload_cost": 52.97,
       "price_position": "Mid cost",
       "adoption_trend": "flat",
@@ -3577,7 +3619,7 @@
       "knowledge_cutoff": null,
       "or_id": "upstage/solar-pro4",
       "or_url": "https://openrouter.ai/upstage/solar-pro4",
-      "uptime": 98.787,
+      "uptime": 99.961,
       "workload_cost": 2.52,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -3647,7 +3689,7 @@
       "knowledge_cutoff": null,
       "or_id": "x-ai/grok-4.5",
       "or_url": "https://openrouter.ai/x-ai/grok-4.5",
-      "uptime": 99.343,
+      "uptime": 99.582,
       "workload_cost": 141.0,
       "price_position": "Premium",
       "adoption_trend": "falling",
@@ -3717,7 +3759,7 @@
       "knowledge_cutoff": null,
       "or_id": "x-ai/grok-4.6",
       "or_url": "https://openrouter.ai/x-ai/grok-4.6",
-      "uptime": 99.944,
+      "uptime": 99.81,
       "workload_cost": 155.0,
       "price_position": "Premium",
       "adoption_trend": "falling",
@@ -3788,10 +3830,10 @@
       "knowledge_cutoff": null,
       "or_id": "xiaomi/mimo-v2.5",
       "or_url": "https://openrouter.ai/xiaomi/mimo-v2.5",
-      "uptime": 98.026,
+      "uptime": 97.122,
       "workload_cost": 7.2,
       "price_position": "Low cost",
-      "adoption_trend": "flat",
+      "adoption_trend": "falling",
       "position_label": "Value play",
       "price_history": [
         {
@@ -3862,7 +3904,7 @@
       "knowledge_cutoff": null,
       "or_id": "xiaomi/mimo-v2.5-pro",
       "or_url": "https://openrouter.ai/xiaomi/mimo-v2.5-pro",
-      "uptime": 96.493,
+      "uptime": 95.897,
       "workload_cost": 22.0,
       "price_position": "Mid cost",
       "adoption_trend": "falling",
@@ -3930,11 +3972,11 @@
       "knowledge_cutoff": null,
       "or_id": "z-ai/glm-5",
       "or_url": "https://openrouter.ai/z-ai/glm-5",
-      "uptime": 99.93,
+      "uptime": 99.904,
       "workload_cost": 45.6,
       "price_position": "Mid cost",
-      "adoption_trend": "falling",
-      "position_label": "Losing ground",
+      "adoption_trend": "rising",
+      "position_label": "Momentum builder",
       "price_history": [
         {
           "date": "2026-08-14",
@@ -4028,7 +4070,7 @@
       "knowledge_cutoff": null,
       "or_id": "z-ai/glm-5.2:free",
       "or_url": "https://openrouter.ai/z-ai/glm-5.2:free",
-      "uptime": 99.991,
+      "uptime": 94.358,
       "workload_cost": 0.0,
       "price_position": "Low cost",
       "adoption_trend": "falling",
@@ -4240,7 +4282,7 @@
       "knowledge_cutoff": null,
       "or_id": "z-ai/glm-5.3",
       "or_url": "https://openrouter.ai/z-ai/glm-5.3",
-      "uptime": 99.486,
+      "uptime": 99.385,
       "workload_cost": 104.2,
       "price_position": "Premium",
       "adoption_trend": "rising",
