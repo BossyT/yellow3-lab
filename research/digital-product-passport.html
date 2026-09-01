@@ -219,7 +219,233 @@
       .site-footer { padding: 56px 24px 32px; }
     }
     @media (max-width: 560px) { .foot-top { grid-template-columns: 1fr; } }
-  </style>
+  
+
+/* ---------------------------------------------------------------------------
+   APPROVED HOMEPAGE V3, ported class-for-class from
+   APPROVED_HOMEPAGE_CONTENT_V3.html. Every selector is scoped under .hp3: the
+   package styles bare names - .section, .wrap, h1, .btn - and so does the rest
+   of this site. Values are the approved values; the scoping is the only change.
+   --------------------------------------------------------------------------- */
+.hp3 {
+  --ink:#11120f; --muted:#666b67; --line:#d9dcd8; --soft:#f2f3f0;
+  --yellow:#ffd500; --cream:#fffdf2;
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+  background: #fff;
+}
+.hp3 *, .hp3 *::before, .hp3 *::after { box-sizing: border-box; }
+.hp3 a { color: inherit; text-decoration: none; }
+.hp3 img { max-width: 100%; }
+.hp3 body{font-size:16px;line-height:1.45}
+.hp3 a{color:inherit;text-decoration:none}
+.hp3 body{font-size:16px;line-height:1.45}
+.hp3 a{color:inherit;text-decoration:none}
+.hp3 .wrap{max-width:1240px;margin:0 auto;padding:0 38px}
+.hp3 .section{padding:110px 0;border-top:1px solid var(--line)}
+.hp3 .hero{padding:92px 0 108px;border-top:0}
+.hp3 .kicker{font-size:11px;line-height:1.2;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#737872;margin-bottom:28px}
+.hp3 h1, .hp3 h2, .hp3 h3{margin:0;font-weight:400}
+.hp3 h1{font-size:88px;line-height:.96;letter-spacing:-.055em;max-width:880px}
+.hp3 h2{font-size:58px;line-height:1;letter-spacing:-.05em;max-width:850px}
+.hp3 h3{font-size:30px;line-height:1.05;letter-spacing:-.03em}
+.hp3 p{margin:0}
+.hp3 .hero-grid{display:grid;grid-template-columns:2fr 1fr;gap:96px;align-items:end}
+.hp3 .hero-copy{max-width:760px;margin-top:34px;font-size:20px;line-height:1.38;color:#343733}
+.hp3 .hero-principle{max-width:730px;margin-top:26px;padding-top:20px;border-top:1px solid var(--ink);font-size:16px;line-height:1.4;font-weight:700}
+.hp3 .actions{display:flex;gap:24px;margin-top:34px;align-items:center}
+.hp3 .btn{display:inline-block;padding:15px 19px;background:var(--ink);color:white;font-size:13px;font-weight:700;letter-spacing:.01em}
+.hp3 .link{font-size:13px;font-weight:700;border-bottom:1px solid var(--ink);padding-bottom:4px}
+.hp3 .index{border-top:2px solid var(--ink)}
+.hp3 .index-head{padding:13px 0 18px;font-size:11px;letter-spacing:.18em;font-weight:700;color:#666;text-transform:uppercase}
+.hp3 .index-row{display:grid;grid-template-columns:42px 1fr;gap:12px;padding:18px 0;border-top:1px solid var(--line);align-items:start}
+.hp3 .index-num{font-size:12px;color:#858a84}
+.hp3 .index-title{font-size:20px;letter-spacing:-.02em}
+.hp3 .index-sub{font-size:13px;color:#70756f;margin-top:4px}
+.hp3 .yellow-rule{width:76px;height:8px;background:var(--yellow);margin-bottom:26px}
+.hp3 .split-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-bottom:70px;align-items:start}
+.hp3 .lede{font-size:20px;line-height:1.4;color:#454944;max-width:550px}
+.hp3 .method-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink)}
+.hp3 .method{padding:28px 36px 36px 0;border-right:1px solid var(--line);min-height:240px}
+.hp3 .method:nth-child(2){padding-left:36px}
+.hp3 .method:nth-child(3){padding-left:36px;border-right:0}
+.hp3 .num{font-size:12px;color:#8a8e88;margin-bottom:50px}
+.hp3 .method h3{margin-bottom:18px}
+.hp3 .method p{color:#60645e;max-width:300px}
+.hp3 .soft{background:var(--soft)}
+.hp3 .work-list{margin-top:60px;border-top:1px solid var(--ink)}
+.hp3 .work-row{display:grid;grid-template-columns:70px 1.05fr 1.1fr .75fr;gap:32px;padding:34px 0;border-bottom:1px solid #cfd2ce;align-items:start}
+.hp3 .work-n{font-size:12px;color:#868a84}
+.hp3 .work-title{font-size:31px;line-height:1.03;letter-spacing:-.035em}
+.hp3 .work-why{font-size:18px;line-height:1.35}
+.hp3 .work-links{font-size:13px;line-height:1.9;font-weight:700}
+.hp3 .work-links span{display:block;border-bottom:1px solid #b8bbb7;padding-bottom:6px;margin-bottom:6px}
+.hp3 .evidence-head{display:grid;grid-template-columns:1.2fr .8fr;gap:80px;align-items:end}
+.hp3 .evidence-head p{font-size:18px;color:#545852;max-width:480px}
+.hp3 .evidence-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:60px;border-top:1px solid var(--ink)}
+.hp3 .evidence-item{padding:28px 28px 32px 0;border-right:1px solid var(--line);min-height:270px}
+.hp3 .evidence-item:nth-child(2){padding-left:28px}
+.hp3 .evidence-item:nth-child(3){padding-left:28px;border-right:0}
+.hp3 .metric{font-size:56px;line-height:1;letter-spacing:-.055em;margin:28px 0 18px}
+.hp3 .evidence-item h3{font-size:24px;margin-bottom:10px}
+.hp3 .evidence-item p{color:#666b65;font-size:14px;max-width:310px}
+.hp3 .product-proof{background:#fff}
+.hp3 .product-proof-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:72px;align-items:start;margin-top:56px}
+.hp3 .product-proof-copy{padding-top:8px}
+.hp3 .product-proof-title{font-size:48px;line-height:1.01;letter-spacing:-.045em;margin:12px 0 22px;font-weight:400}
+.hp3 .product-proof-lede{font-size:19px;line-height:1.48;color:#4e534e;max-width:470px}
+.hp3 .product-proof-points{margin-top:34px;border-top:1px solid var(--ink)}
+.hp3 .product-proof-point{display:grid;grid-template-columns:34px 1fr;gap:16px;padding:17px 0;border-bottom:1px solid var(--line)}
+.hp3 .product-proof-point b{font-size:11px;color:#858a84}
+.hp3 .product-proof-point strong{font-size:15px;display:block;margin-bottom:4px}
+.hp3 .product-proof-point p{font-size:13px;color:#6a6f69}
+.hp3 .product-proof-frame{border:1px solid #bfc3be;background:#fff;padding:10px;box-shadow:0 18px 44px rgba(17,18,15,.05);overflow:hidden}
+.hp3 .product-proof-frame img{display:block;width:100%;height:auto}
+/* APPROVED DEVIATION - DPP proof crop, Option B, GPT 2026-08-14.
+   Presentation only: the source PNG is 1365x2048 and stays canonical and
+   untouched on disk. This shows y=0 to 1390 of it - top-aligned, full width,
+   no side crop, which is why the ratio keeps the source's own 1365 width.
+   object-fit:cover with object-position:top does the crop in the browser, so
+   there is no second derivative file to keep in step with the original. */
+.hp3 .product-proof-frame img{aspect-ratio:1365/1390;object-fit:cover;object-position:top}
+.hp3 .product-proof-caption{display:flex;justify-content:space-between;gap:20px;padding:12px 2px 0;font-size:11px;color:#747a74}
+.hp3 .product-proof-caption strong{color:#20231f}
+.hp3 .flagship{background:#fff}
+.hp3 .flagship-grid{display:grid;grid-template-columns:.76fr 1.24fr;gap:72px;align-items:start;margin-top:56px}
+.hp3 .flagship-copy{padding-top:8px}
+.hp3 .flagship-title{font-size:48px;line-height:1.01;letter-spacing:-.045em;margin:12px 0 22px;font-weight:400}
+.hp3 .flagship-lede{font-size:19px;line-height:1.48;color:#4e534e;max-width:470px}
+.hp3 .flagship-points{margin-top:34px;border-top:1px solid var(--ink)}
+.hp3 .flagship-point{display:grid;grid-template-columns:34px 1fr;gap:16px;padding:17px 0;border-bottom:1px solid var(--line)}
+.hp3 .flagship-point b{font-size:11px;color:#858a84}
+.hp3 .flagship-point strong{font-size:15px;display:block;margin-bottom:4px}
+.hp3 .flagship-point p{font-size:13px;color:#6a6f69}
+.hp3 .flagship-frame{border:1px solid #bfc3be;background:#fff;padding:10px;box-shadow:0 18px 44px rgba(17,18,15,.05)}
+.hp3 .flagship-frame img{display:block;width:100%;height:auto}
+.hp3 .flagship-caption{display:flex;justify-content:space-between;gap:20px;padding:12px 2px 0;font-size:11px;color:#747a74}
+.hp3 .flagship-caption strong{color:#20231f}
+.hp3 .instrument-strip{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);margin-top:64px}
+.hp3 .instrument{padding:24px 28px 26px 0;border-right:1px solid var(--line)}
+.hp3 .instrument:nth-child(2){padding-left:28px}
+.hp3 .instrument:nth-child(3){padding-left:28px;border-right:0}
+.hp3 .instrument .num{margin-bottom:28px}
+.hp3 .instrument h3{font-size:23px;margin-bottom:10px}
+.hp3 .instrument p{font-size:13px;color:#666b65;max-width:315px}
+.hp3 .instrument a{font-size:12px;font-weight:700;display:inline-block;margin-top:18px;border-bottom:1px solid var(--ink);padding-bottom:3px}
+.hp3 .black{background:#11120f;color:#fff;border-top:0}
+.hp3 .black .kicker{color:#b9bdb7}
+.hp3 .black h2{max-width:950px}
+.hp3 .black .bigline{font-size:27px;line-height:1.25;margin-top:44px;max-width:870px;color:#e5e7e3}
+.hp3 .black .bigline strong{color:var(--yellow);font-weight:400}
+.hp3 .principles{display:grid;grid-template-columns:repeat(3,1fr);margin-top:70px;border-top:1px solid #383b37}
+.hp3 .principle{padding:28px 32px 20px 0;border-right:1px solid #333632;min-height:245px}
+.hp3 .principle:nth-child(2){padding-left:32px}
+.hp3 .principle:nth-child(3){padding-left:32px;border-right:0}
+.hp3 .principle .num{color:#777d76;margin-bottom:42px}
+.hp3 .principle h3{font-size:24px;margin-bottom:12px}
+.hp3 .principle p{color:#bfc3bc;font-size:14px;line-height:1.5}
+.hp3 .lower-grid{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:start}
+.hp3 .statement{font-size:28px;line-height:1.18;letter-spacing:-.025em;margin-top:34px;max-width:520px}
+.hp3 .detail{font-size:17px;color:#565b55;line-height:1.55;margin-top:26px;max-width:520px}
+.hp3 .rule-list{border-top:1px solid var(--ink);margin-top:8px}
+.hp3 .rule{display:grid;grid-template-columns:34px 1fr;gap:18px;padding:20px 0;border-bottom:1px solid var(--line)}
+.hp3 .rule b{font-size:12px}
+.hp3 .rule strong{font-size:17px;display:block;margin-bottom:5px}
+.hp3 .rule p{font-size:13px;color:#6b7069}
+.hp3 .future{background:var(--cream)}
+.hp3 .quote{font-size:46px;line-height:1.03;letter-spacing:-.045em;max-width:980px;margin-top:34px}
+.hp3 .quote span{background:linear-gradient(transparent 65%, var(--yellow) 0)}
+.hp3 .future-grid{display:grid;grid-template-columns:1fr 1fr;gap:90px;margin-top:62px}
+.hp3 .future-grid p{font-size:17px;line-height:1.55;color:#565b55}
+.hp3 .insight-list{margin-top:56px;border-top:1px solid var(--ink)}
+.hp3 .insight{display:grid;grid-template-columns:105px 1fr 150px;gap:24px;padding:22px 0;border-bottom:1px solid var(--line);align-items:center}
+.hp3 .issue{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#777}
+.hp3 .insight-title{font-size:22px;letter-spacing:-.02em}
+.hp3 .read{font-size:12px;text-align:right;font-weight:700}
+.hp3 .final{padding:100px 0;background:#11120f;color:white}
+.hp3 .final-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:80px;align-items:end}
+.hp3 .final h2{font-size:60px;max-width:850px}
+.hp3 .final p{margin-top:24px;font-size:18px;color:#c7cbc5;max-width:650px}
+.hp3 .final .btn{background:var(--yellow);color:#11120f;padding:16px 20px}
+@media(max-width:800px){
+.hp3 .wrap{padding:0 22px}
+.hp3 .hero-grid, .hp3 .split-intro, .hp3 .evidence-head, .hp3 .lower-grid, .hp3 .future-grid, .hp3 .final-grid, .hp3 .flagship-grid, .hp3 .product-proof-grid{grid-template-columns:1fr}
+.hp3 .hero-grid{gap:55px}
+.hp3 h1{font-size:52px}
+.hp3 h2{font-size:42px}
+.hp3 .method-grid, .hp3 .evidence-grid, .hp3 .principles, .hp3 .instrument-strip{grid-template-columns:1fr}
+.hp3 .method, .hp3 .method:nth-child(2), .hp3 .method:nth-child(3), .hp3 .evidence-item, .hp3 .evidence-item:nth-child(2), .hp3 .evidence-item:nth-child(3), .hp3 .principle, .hp3 .principle:nth-child(2), .hp3 .principle:nth-child(3){padding:26px 0;border-right:0;border-bottom:1px solid var(--line)}
+.hp3 .instrument, .hp3 .instrument:nth-child(2), .hp3 .instrument:nth-child(3){padding:24px 0;border-right:0;border-bottom:1px solid var(--line)}
+.hp3 .flagship-title, .hp3 .product-proof-title{font-size:38px}
+.hp3 .flagship-grid, .hp3 .product-proof-grid{gap:40px}
+.hp3 .flagship-frame, .hp3 .product-proof-frame{padding:6px}
+.hp3 .flagship-caption, .hp3 .product-proof-caption{display:block;line-height:1.45}
+.hp3 .work-row{grid-template-columns:44px 1fr}
+.hp3 .work-why, .hp3 .work-links{grid-column:2}
+.hp3 .quote{font-size:35px}
+.hp3 .insight{grid-template-columns:90px 1fr}
+.hp3 .read{display:none}
+.hp3 .section{padding:78px 0}
+}
+
+
+/* ---------------------------------------------------------------------------
+   DPP HUB additions to the approved V3 system, 1 September 2026.
+   Only what the homepage does not already provide: the cream briefing surface,
+   the latest-edition card, the archive list, the yellow final action, and the
+   black-band link treatment. Everything else reuses .hp3 class-for-class.
+   --------------------------------------------------------------------------- */
+.hp3 .cream{background:var(--cream)}
+.hp3 .btn-yellow{background:var(--yellow);color:var(--ink)}
+.hp3 .btn-yellow:hover{background:#f0c800}
+.hp3 .btn:hover{background:#000}
+.hp3 .link:hover{border-bottom-width:2px;padding-bottom:3px}
+.hp3 .black .link{border-bottom-color:#fff;color:#fff}
+.hp3 .black .lede,.hp3 .black .hero-copy{color:#bfc3bc}
+.hp3 .black .kicker{color:#9aa09a}
+.hp3 .black .track{border-top:1px solid #383b37}
+.hp3 .track-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:56px;border-top:1px solid #383b37}
+.hp3 .track{padding:34px 40px 10px 0}
+.hp3 .track:nth-child(2){padding-left:40px;border-left:1px solid #383b37}
+.hp3 .track h3{margin:14px 0 16px}
+.hp3 .track p{color:#bfc3bc;max-width:460px;margin-bottom:24px}
+.hp3 .track-label{font-size:11px;letter-spacing:.18em;font-weight:700;text-transform:uppercase;color:#9aa09a}
+.hp3 .brief-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:72px;margin-top:60px;align-items:start}
+.hp3 .brief-card{position:relative;background:#fff;border:1px solid var(--line);border-left:9px solid var(--yellow);padding:34px 38px 32px;display:block}
+.hp3 .brief-meta{font-size:11px;letter-spacing:.18em;font-weight:700;text-transform:uppercase;color:#737872}
+.hp3 .brief-title{font-size:30px;line-height:1.06;letter-spacing:-.03em;margin:20px 0 16px;max-width:420px}
+.hp3 .brief-deck{color:#5b605a;max-width:430px;margin-bottom:26px}
+.hp3 .brief-play{position:absolute;top:32px;right:34px;width:56px;height:56px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center}
+.hp3 .brief-play::after{content:"";border-left:15px solid #fff;border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+.hp3 .arch-head{font-size:11px;letter-spacing:.18em;font-weight:700;text-transform:uppercase;color:#737872;padding-bottom:14px;border-bottom:1px solid var(--ink)}
+.hp3 .arch{border-top:0;list-style:none;margin:0;padding:0}
+.hp3 .arch-row{display:grid;grid-template-columns:44px 1fr 24px;gap:14px;padding:20px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.hp3 .arch-n{font-size:12px;color:#858a84}
+.hp3 .arch-d{font-size:19px;letter-spacing:-.02em}
+.hp3 .arch-s{font-size:13px;color:#70756f;margin-top:3px}
+.hp3 .arch-go{text-align:right;font-size:15px}
+.hp3 .index-row:hover .index-title,.hp3 .insight:hover .insight-title,.hp3 .arch-row:hover .arch-d{text-decoration:underline}
+.hp3 a:focus-visible,.hp3 button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.hp3 .black a:focus-visible{outline-color:#ffd500}
+.hp3 .rules-3{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;border-top:1px solid var(--ink);padding-top:22px;margin-top:52px}
+.hp3 .rule-n{font-size:12px;color:#858a84;margin-bottom:10px}
+.hp3 .rule-t{font-size:14px;font-weight:700;line-height:1.35}
+.hp3 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(prefers-reduced-motion:reduce){.hp3 *{transition:none!important;animation:none!important}}
+@media(max-width:800px){
+  .hp3 .track-grid{grid-template-columns:1fr}
+  .hp3 .track:nth-child(2){padding-left:0;border-left:0;border-top:1px solid #383b37}
+  .hp3 .brief-grid{grid-template-columns:1fr;gap:44px}
+  .hp3 .brief-card{padding:26px 24px 24px}
+  .hp3 .brief-play{position:static;margin-bottom:18px}
+  .hp3 .brief-title{font-size:26px}
+  .hp3 .rules-3{grid-template-columns:1fr;gap:22px}
+  .hp3 .arch-row{grid-template-columns:38px 1fr 20px}
+}
+
+</style>
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="yellow3 lab" />
@@ -244,8 +470,7 @@
   </script>
 </head>
 <body>
-
-  <nav class="site-nav">
+<nav class="site-nav">
     <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
     <div class="nav-mid" id="navMid">
       <a href="/research">Research</a>
@@ -259,67 +484,192 @@
     <a href="/advisory" class="nav-cta">Work with us <span>&#8594;</span></a>
     <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
   </nav>
+  <main>
+  <div class="hp3">
 
-  <!-- HEADER -->
-  <header class="inst-head">
+  <!-- 01 HERO -->
+  <section class="hero" id="overview">
     <div class="wrap">
-      <div class="breadcrumb"><a href="/research">Research</a> &nbsp;/&nbsp; <span id="bc">Digital Product Passport</span></div>
-      <div class="inst-status">
-        <span class="badge-live"><span class="dot"></span> <span id="badge-text">Living record · Edition 01</span></span>
-        <span class="refresh" id="refresh">Loading…</span>
-      </div>
-      <h1 id="title">Digital Product Passport (DPP)</h1>
-      <p class="inst-thesis" id="thesis"><!-- prerendered:p-class-inst-thesis-id-thesis -->
-<p class="prerendered-note"><strong>Is the EU Digital Product Passport becoming real on schedule - on the regulator&#x27;s side, and on industry&#x27;s side?</strong></p>
-<!-- /prerendered:p-class-inst-thesis-id-thesis -->
-</p>
-
-      <div class="hero-two">
-        <a class="ht" href="/research/digital-product-passport/weekly-briefing/2026-08-31">
-          <div class="ht-k">Monday Briefing</div>
-          <div class="ht-n"><b>This week</b> in the Digital Product Passport</div>
-          <div class="ht-p">The week's material developments, presented by Astrid, with the operational consequence of each one and every source listed underneath.</div>
-          <span class="btn btn-dark">Watch the briefing <span class="arr">&#8594;</span></span>
-        </a>
-        <a class="ht" href="/research/digital-product-passport/suppliers">
-          <div class="ht-k">The supplier register</div>
-          <div class="ht-n"><b id="htOrgs">191</b> organisations &middot; <b id="htComm">172</b> commercial suppliers &middot; <b id="htCountries">33</b> countries</div>
-          <div class="ht-p">Who actually supplies Digital Product Passports, with the source behind every fact and the date it was checked.</div>
-          <span class="btn btn-dark">Open the register <span class="arr">&#8594;</span></span>
-        </a>
-        <a class="ht" href="/research/digital-product-passport/suppliers#method">
-          <div class="ht-k">Capability evidence</div>
-          <div class="ht-n"><b>0 of 12</b> can show a registered passport</div>
-          <div class="ht-p">Ten checks against the twelve best-known suppliers. Eight days after the EU registry went live, none can show a passport in it.</div>
-          <span class="btn btn-outline">See what was checked <span class="arr">&#8594;</span></span>
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- PRIMER -->
-  <section class="primer">
-    <div class="wrap">
-      <div class="primer-eyebrow">DPP in 30 seconds</div>
-      <div class="primer-grid">
-        <div class="pr">
-          <div class="prn">What it is</div>
-          <p>A Digital Product Passport is a digital record attached to a physical product - its materials, origin, repairability, recyclability and compliance - readable from a QR code or chip. The EU is making it law.</p>
+      <div class="hero-grid">
+        <div>
+          <div class="yellow-rule" aria-hidden="true"></div>
+          <p class="kicker">Digital Product Passport</p>
+          <h1>Digital Product Passport.</h1>
+          <p class="hero-copy">Everything yellow3 has built and learned for organisations that make, import or sell physical products in Europe. Track the rules, inspect the supplier market, understand the evidence, and run the buyer-side programme.</p>
+          <p class="hero-principle">yellow3 does not operate the passports. The selected provider does. The buyer stays in control.</p>
+          <div class="actions">
+            <a class="btn" href="https://buyer.yellow3.io/start/free">Start free readiness &#8594;</a>
+            <a class="link" href="#research">Explore independent research &#8594;</a>
+          </div>
         </div>
-        <div class="pr">
-          <div class="prn">Why it matters</div>
-          <p>Under the Ecodesign for Sustainable Products Regulation, most products sold in the EU will need one. The deadlines are phased and already in law, and the data layer behind a passport takes 12 to 18 months to build. <strong>No passport, no sale.</strong></p>
-        </div>
-        <div class="pr">
-          <div class="prn">So what</div>
-          <p>If you make, import or sell physical goods in Europe, this is a board-level deadline, not an IT project. The real question is whether you start the data foundation now or scramble later.</p>
-        </div>
+        <nav class="index" aria-label="Start here">
+          <div class="index-head">Start here</div>
+          <a class="index-row" href="https://buyer.yellow3.io/">
+            <span class="index-num">01</span>
+            <span><span class="index-title">Run the programme</span><span class="index-sub">Digital Product Passport Buyer Platform</span></span>
+          </a>
+          <a class="index-row" href="/research/digital-product-passport/suppliers">
+            <span class="index-num">02</span>
+            <span><span class="index-title">Explore the supplier market</span><span class="index-sub">Independent Supplier Register</span></span>
+          </a>
+          <a class="index-row" href="/research/digital-product-passport/eu-dpp-registry">
+            <span class="index-num">03</span>
+            <span><span class="index-title">Track regulation</span><span class="index-sub">EU registry and delivery record</span></span>
+          </a>
+          <a class="index-row" href="#briefing">
+            <span class="index-num">04</span>
+            <span><span class="index-title">Watch the weekly briefing</span><span class="index-sub">Latest edition and complete archive</span></span>
+          </a>
+        </nav>
       </div>
-      <p class="primer-bridge">This instrument tracks whether the EU is delivering the DPP system on schedule - and whether industry is ready. <strong id="cadence-copy">Graded in public, updated when the record changes.</strong></p>
+      <p class="sr-only" id="bc">Digital Product Passport</p>
     </div>
   </section>
 
-  <!-- SCOREBOARD -->
+  <!-- 02 THIRTY SECONDS -->
+  <section class="section soft">
+    <div class="wrap">
+      <p class="kicker">Digital Product Passport in 30 seconds</p>
+      <div class="split-intro">
+        <h2>Know what is changing.<br>Know what to do next.</h2>
+        <p class="lede">The passport is the visible endpoint. The real work is the data, evidence, providers and decisions behind it.</p>
+      </div>
+      <div class="method-grid">
+        <div class="method">
+          <div class="num">01</div>
+          <h3>What it is</h3>
+          <p>A digital record attached to a physical product, covering materials, origin, repairability, recyclability and compliance.</p>
+        </div>
+        <div class="method">
+          <div class="num">02</div>
+          <h3>Why it matters</h3>
+          <p>The European Union is making it law for most physical products. The deadlines are phased. The data work starts much earlier.</p>
+        </div>
+        <div class="method">
+          <div class="num">03</div>
+          <h3>What to do</h3>
+          <p>Establish scope and product facts, define requirements, inspect provider evidence, then run implementation as one programme.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 BUYER PLATFORM -->
+  <section class="section" id="buyer-platform">
+    <div class="wrap">
+      <p class="kicker">Product in practice</p>
+      <div class="evidence-head">
+        <h2>Run the programme.<br>Keep the evidence behind every decision.</h2>
+        <p class="lede">The Buyer Platform turns regulation, product facts, supplier evidence and implementation work into one programme the buyer can explain and defend.</p>
+      </div>
+      <div class="product-proof-grid">
+        <div class="product-proof-copy">
+          <p class="kicker" style="margin-bottom:14px">Digital Product Passport Buyer Platform / Live product</p>
+          <h3 class="product-proof-title">Plan it. Buy it.<br>Implement it. Prove it.</h3>
+          <p class="product-proof-lede">yellow3 works for the buyer. The selected provider operates the passports. The evidence stays visible while the decision and implementation move forward.</p>
+          <div class="product-proof-points">
+            <div class="product-proof-point"><span class="num">01</span><span><strong>Strategy and readiness</strong><br>Scope, ownership, systems, data and gaps.</span></div>
+            <div class="product-proof-point"><span class="num">02</span><span><strong>Capability architecture</strong><br>Requirements before provider comparison.</span></div>
+            <div class="product-proof-point"><span class="num">03</span><span><strong>Evidence-based selection</strong><br>Demonstrated, stated and not established stay separate.</span></div>
+            <div class="product-proof-point"><span class="num">04</span><span><strong>Structured procurement</strong><br>Conditions, gates, evidence and decision records.</span></div>
+          </div>
+          <div class="actions">
+            <a class="btn" href="https://buyer.yellow3.io/start/free">Start free readiness &#8594;</a>
+            <a class="link" href="https://buyer.yellow3.io/start">See the platform &#8594;</a>
+          </div>
+        </div>
+        <div>
+          <div class="product-proof-frame">
+            <picture><source type="image/webp" srcset="/img/homepage/dpp-buyer-platform-stage4-420.webp 420w, /img/homepage/dpp-buyer-platform-stage4-720.webp 720w, /img/homepage/dpp-buyer-platform-stage4-1024.webp 1024w, /img/homepage/dpp-buyer-platform-stage4-1365.webp 1365w" sizes="(max-width: 800px) calc(100vw - 58px), (max-width: 1240px) 58vw, 680px" /><img src="/img/homepage/dpp-buyer-platform-stage4.png" width="1365" height="2048" loading="lazy" decoding="async" alt="Real yellow3 Digital Product Passport Buyer Platform evidence-based selection workspace" /></picture>
+          </div>
+          <div class="product-proof-caption">
+            <span><strong>Real Buyer Platform interface</strong></span>
+            <span>Evidence-based selection workspace from the current product build.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 INDEPENDENT PUBLIC RESEARCH -->
+  <section class="section soft" id="research">
+    <div class="wrap">
+      <p class="kicker">Independent public research</p>
+      <div class="evidence-head">
+        <h2>Inspect the market<br>before you buy.</h2>
+        <p class="lede">Public evidence remains separate from the commercial platform. Suppliers cannot pay to rank higher or change a finding.</p>
+      </div>
+      <div class="evidence-grid">
+        <div class="evidence-item">
+          <p class="kicker" style="margin:0">01 / Supplier market</p>
+          <div class="metric"><span id="htOrgs">191</span></div>
+          <h3>Supplier Register</h3>
+          <p><span id="htComm">172</span> commercial suppliers across <span id="htCountries">33</span> countries, with the source behind every fact and the date it was checked.</p>
+          <p style="margin-top:22px"><a class="link" href="/research/digital-product-passport/suppliers">Explore the Supplier Register &#8594;</a></p>
+        </div>
+        <div class="evidence-item">
+          <p class="kicker" style="margin:0">02 / Regulation tracker</p>
+          <div class="metric">LIVE</div>
+          <h3>EU registry record</h3>
+          <p>Follow the European Union registry, delivery milestones and what has actually become operational.</p>
+          <p style="margin-top:22px"><a class="link" href="/research/digital-product-passport/eu-dpp-registry">Open the EU registry record &#8594;</a></p>
+        </div>
+        <div class="evidence-item" style="border-right:0">
+          <p class="kicker" style="margin:0">03 / Supplier evidence</p>
+          <div class="metric">0 / 12</div>
+          <h3>Capability evidence</h3>
+          <p>See what leading suppliers can demonstrate, what they state, and what remains not established.</p>
+          <p style="margin-top:22px"><a class="link" href="/research/digital-product-passport/suppliers#method">Inspect the capability checks &#8594;</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 LIVE DELIVERY RECORD -->
+  <section class="section black" id="delivery-record">
+    <div class="wrap">
+      <p class="kicker">Live delivery record</p>
+      <h2>Is Europe delivering the system<br>on the dates it promised?</h2>
+      <p class="lede" style="margin-top:30px">A dated public record of regulator delivery and industry readiness. Calls are falsifiable, graded only when due, and never rewritten after the fact.</p>
+      <!-- The instrument's own cadence line. The script writes to #cadence-copy
+           unguarded, so losing this element throws and takes the whole
+           instrument down with it. -->
+      <p class="lede" style="margin-top:14px"><strong id="cadence-copy"></strong></p>
+      <!-- The instrument's own thesis and live status, visible and with the
+           instrument. They were briefly in an sr-only block in the hero, which
+           would have shown real content to crawlers and not to readers. -->
+      <div class="lede" id="thesis" style="margin-top:26px"><!-- prerendered:div-class-lede-id-thesis-style-margin-top-26px -->
+<p class="prerendered-note"><strong>Is the EU Digital Product Passport becoming real on schedule - on the regulator&#x27;s side, and on industry&#x27;s side?</strong></p>
+<!-- /prerendered:div-class-lede-id-thesis-style-margin-top-26px -->
+</div>
+      <p class="track-label" style="margin-top:22px"><span id="badge-text"></span> &middot; <span id="refresh"></span></p>
+      <div class="track-grid">
+        <div class="track">
+          <p class="track-label">Track A</p>
+          <h3>Regulator delivery</h3>
+          <p>Is the European Union shipping the system it promised, on the dates it promised? Milestones are scored only when due.</p>
+          <a class="link" href="#delivery-detail">Open the live record &#8594;</a>
+        </div>
+        <div class="track">
+          <p class="track-label">Track B / Provisional</p>
+          <h3>Industry readiness</h3>
+          <p>A transparent basket of public readiness signals, kept visibly provisional until stronger buyer-side evidence replaces it.</p>
+          <a class="link" href="#delivery-detail">See the evidence behind the signal &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div><!-- /hp3 -->
+
+  <!-- ===================================================================
+       THE EXISTING LIVE INSTRUMENT, PRESERVED.
+       Kept outside .hp3 deliberately: its own stylesheet carries the
+       evidence-state colours, the provisional labelling and the failure
+       state, and 01_DESIGN_RULING.md ruling 6 says its logic, evidence
+       model and states must not be rewritten for presentation.
+       =================================================================== -->
+  <div id="delivery-detail">
+
   <div class="board">
     <div class="wrap">
       <div class="board-grid">
@@ -353,8 +703,8 @@
     </div>
   </div>
 
-  <!-- TRACK A -->
-  <section class="section">
+  
+<section class="section">
     <div class="wrap">
       <div class="section-label">Track A</div>
       <div class="section-h">Regulator delivery</div>
@@ -365,8 +715,8 @@
     </div>
   </section>
 
-  <!-- TRACK B -->
-  <section class="section">
+  
+<section class="section">
     <div class="wrap">
       <div class="section-label">Track B</div>
       <div class="section-h">Industry readiness <span class="prov">Provisional</span></div>
@@ -391,8 +741,8 @@
     </div>
   </section>
 
-  <!-- CALLS -->
-  <section class="section">
+  
+<section class="section">
     <div class="wrap">
       <div class="section-label">Calls</div>
       <div class="section-h">On the record, graded in public</div>
@@ -404,23 +754,128 @@
     </div>
   </section>
 
-  <!-- TRUST -->
-  <section class="trust">
+  
+  </div>
+
+  <div class="hp3">
+
+  <!-- 06 MONDAY BRIEFING -->
+  <section class="section cream" id="briefing">
     <div class="wrap">
-      <div class="trust-grid">
-        <h3>Method &amp; sources</h3>
+      <p class="kicker">Monday Briefing</p>
+      <div class="evidence-head">
+        <h2>The week in Digital<br>Product Passports,<br>without the noise.</h2>
+        <p class="lede">Watch the latest edition, then browse the complete dated archive. Every source sits under the briefing.</p>
+      </div>
+      <div class="brief-grid">
+        <!-- briefing-latest:start -->
+        <a class="brief-card" href="/research/digital-product-passport/weekly-briefing/2026-08-31">
+          <span class="brief-play" aria-hidden="true"></span>
+          <span class="brief-meta">Latest edition / 31 August 2026</span>
+          <span class="brief-title">Who pays after the sale?</span>
+          <span class="brief-deck">One development. Four connected facts. One clear conclusion.</span>
+          <span class="link">Watch Who pays after the sale? &#8594;</span>
+        </a>
+            <!-- briefing-latest:end -->
         <div>
-          <p class="pledge">We take positions only where the evidence supports them - and grade them in public.</p>
-          <p id="methodology"></p>
-          <p><a class="method-link" href="/research/framework">How we build research - the method &#8594;</a></p>
-          <div class="source-line" id="source-line"></div>
+          <p class="arch-head">Briefing archive</p>
+          <ul class="arch">
+            <!-- briefing-archive:start -->
+          <li><a class="arch-row" href="/research/digital-product-passport/weekly-briefing/2026-08-31">
+            <span class="arch-n">002</span>
+            <span><span class="arch-d">31 August 2026</span><span class="arch-s">Latest edition</span></span>
+            <span class="arch-go" aria-hidden="true">&#8594;</span>
+          </a></li>
+          <li><a class="arch-row" href="/research/digital-product-passport/weekly-briefing/2026-08-24">
+            <span class="arch-n">001</span>
+            <span><span class="arch-d">24 August 2026</span><span class="arch-s">Issue 001</span></span>
+            <span class="arch-go" aria-hidden="true">&#8594;</span>
+          </a></li>
+            <!-- briefing-archive:end -->
+          </ul>
+          <p style="margin-top:26px"><a class="link" href="/research/digital-product-passport/weekly-briefing">View the complete archive &#8594;</a></p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
+  <!-- 07 INSIGHTS -->
+  <section class="section" id="insights">
+    <div class="wrap">
+      <p class="kicker">Digital Product Passport insights</p>
+      <div class="evidence-head">
+        <h2>The analysis behind<br>the programme.</h2>
+        <p class="lede">Substantial reads on deadlines, standards, leadership decisions and the work that starts before the passport becomes visible.</p>
+      </div>
+      <ul class="insight-list" style="list-style:none;padding:0">
+          <li><a class="insight" href="/insights/the-dpp-deadline-you-already-missed">
+            <span class="kicker" style="margin:0">Deadlines</span>
+            <span class="insight-title">The Digital Product Passport Deadline You Already Missed</span>
+            <span class="read">Read &#8594;</span>
+          </a></li>
+          <li><a class="insight" href="/insights/dpp-global-executive-report-2026">
+            <span class="kicker" style="margin:0">Executive</span>
+            <span class="insight-title">The DPP Report Executives Actually Need</span>
+            <span class="read">Read &#8594;</span>
+          </a></li>
+          <li><a class="insight" href="/insights/europes-deadlines-are-firm-the-rulebook-is-not">
+            <span class="kicker" style="margin:0">Regulation</span>
+            <span class="insight-title">Europe's Deadlines Are Firm. The Rulebook Is Not.</span>
+            <span class="read">Read &#8594;</span>
+          </a></li>
+          <li><a class="insight" href="/insights/gs1-federation-dpp">
+            <span class="kicker" style="margin:0">Reference</span>
+            <span class="insight-title">GS1 is not one organisation</span>
+            <span class="read">Read &#8594;</span>
+          </a></li>
+          <li><a class="insight" href="/insights/the-autopilots-will-not-build-themselves">
+            <span class="kicker" style="margin:0">Implementation</span>
+            <span class="insight-title">The autopilots will not build themselves</span>
+            <span class="read">Read &#8594;</span>
+          </a></li>
+      </ul>
+      <p style="margin-top:34px"><a class="link" href="/insights/">View all Digital Product Passport insights &#8594;</a></p>
+    </div>
+  </section>
+
+  <!-- 08 METHOD AND COMMERCIAL BOUNDARY -->
+  <section class="section soft" id="method">
+    <div class="wrap">
+      <p class="kicker">Method and commercial boundary</p>
+      <div class="evidence-head">
+        <h2>Research earns the trust.<br>The product does<br>the work.</h2>
+        <div>
+          <p class="lede">The Supplier Register is independent public research. The Buyer Platform is a paid buyer-side product. The hub shows both, and keeps the boundary explicit.</p>
+          <p class="lede" id="methodology" style="margin-top:18px"></p>
+        </div>
+      </div>
+      <div class="rules-3">
+        <div><div class="rule-n">01</div><div class="rule-t">Every public finding stays sourced and dated.</div></div>
+        <div><div class="rule-n">02</div><div class="rule-t">Supplier claims never become yellow3 evidence.</div></div>
+        <div><div class="rule-n">03</div><div class="rule-t">No paid ranking, priority or verification.</div></div>
+      </div>
+      <p style="margin-top:40px"><a class="link" href="/research/framework">Read the research method &#8594;</a></p>
+      <div class="source-line" id="source-line" style="margin-top:26px;font-size:13px;color:#70756f"></div>
+    </div>
+  </section>
+
+  <!-- 09 FINAL PRODUCT ACTION -->
+  <section class="final" id="start">
+    <div class="wrap">
+      <div class="final-grid">
+        <div>
+          <p class="kicker">Digital Product Passport Buyer Platform</p>
+          <h2>Ready to turn the evidence<br>into a programme?</h2>
+          <p class="lede" style="margin-top:26px;color:#bfc3bc">Start with readiness. Know what applies before you choose what to buy.</p>
+        </div>
+        <div><a class="btn btn-yellow" href="https://buyer.yellow3.io/start/free">Start free readiness &#8594;</a></div>
+      </div>
+    </div>
+  </section>
+
+  </div><!-- /hp3 -->
+  </main>
+<footer class="site-footer">
     <div class="inner">
       <div class="foot-top">
         <div class="foot-brand">
@@ -468,8 +923,8 @@
       </div>
     </div>
   </footer>
-
-  <script>
+  <script src="/consent.js" defer></script>
+<script>
     var CHIP = {
       delivered_on_time: ['green','On time'], delivered_late: ['amber','Delivered late'],
       slipped: ['amber','Slipped'], missed: ['red','Missed'],
@@ -494,7 +949,11 @@
     }
 
     function render(d){
-      document.getElementById('title').textContent = d.name || 'Digital Product Passport (DPP)';
+      // The page H1 is approved hub copy and is no longer the instrument's
+      // title, so this write is optional. It stayed unguarded and silently
+      // replaced "Digital Product Passport." with the instrument's own name.
+      var titleEl = document.getElementById('title');
+      if (titleEl) titleEl.textContent = d.name || 'Digital Product Passport (DPP)';
       document.getElementById('bc').textContent = 'Digital Product Passport';
       document.getElementById('thesis').textContent = d.thesis;
       var weekTxt = '';
@@ -609,6 +1068,5 @@
   }).catch(function(){});
 })();
 </script>
-<script src="/consent.js" defer></script>
 </body>
 </html>

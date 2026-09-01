@@ -1336,7 +1336,13 @@ def prepare(ed: dict) -> dict:
 # point directly at dated canonical URLs. Only evergreen marketing, bookmarks
 # and manually shared "latest" links use the shortcut. These two are listings,
 # so they follow the newest edition and are rewritten on every publish.
-ENTRY_POINTS = ('research.html', 'research/digital-product-passport.html')
+# THE HUB IS NO LONGER SWEPT HERE. It was, while its only briefing link was a
+# single "latest edition" pointer. Since the 1 Sep 2026 redesign it carries the
+# latest card AND the dated archive AND a link to the archive route, and this
+# sweep rewrites ANY briefing href - including "View the complete archive",
+# which it turned into a link to one dated edition. sync_hub() below owns the
+# hub's briefing content now and keeps it current from the same source.
+ENTRY_POINTS = ('research.html',)
 
 
 def redirect_to(locale: str, slug: str) -> bool:
@@ -1410,6 +1416,76 @@ def point_entries_at(slug: str) -> bool:
             p.write_text(new, encoding='utf-8')
             changed = True
     return changed
+
+
+# ---------------------------------------------------------------------------
+# THE HUB CARRIES THE BRIEFING, AND IT MUST NOT BE A SECOND HAND-KEPT LIST.
+#
+# The Digital Product Passport hub shows the latest edition and the complete
+# archive. 04_ROUTE_AND_DATA_MAP.md is explicit that it is "generated from the
+# same existing briefing source, not maintained as a second manual list on the
+# hub", and the QA checklist requires the latest edition to change on its own
+# when a new one is published.
+#
+# So it is written here, from this file's own editions, between markers - the
+# same shape research/prerender_instruments.py uses. A hub that lost its markers
+# is reported rather than silently skipped, because a briefing archive that
+# quietly stops updating looks exactly like one that has no new editions.
+# ---------------------------------------------------------------------------
+
+HUB = ROOT / 'research' / 'digital-product-passport.html'
+
+
+def sync_hub(ready: list) -> str:
+    """Rewrite the hub's latest card and archive from the editions we just published."""
+    if not HUB.exists():
+        return 'no hub page'
+    eds = [e for e in ready if e.get('locale', DEFAULT_LOCALE) == DEFAULT_LOCALE]
+    if not eds:
+        return 'no English edition'
+    eds = sorted(eds, key=lambda e: e['slug'], reverse=True)
+    latest = eds[0]
+
+    rows = []
+    for ed in eds:
+        sub = 'Latest edition' if ed is latest else f'Issue {ed["issueNumber"]}'
+        rows.append(
+            f'          <li><a class="arch-row" href="{ROUTE}/{ed["slug"]}">\n'
+            f'            <span class="arch-n">{e(ed["issueNumber"])}</span>\n'
+            f'            <span><span class="arch-d">{e(ed["publicationDateDisplay"])}</span>'
+            f'<span class="arch-s">{e(sub)}</span></span>\n'
+            f'            <span class="arch-go" aria-hidden="true">&#8594;</span>\n'
+            f'          </a></li>')
+    archive = '\n'.join(rows)
+
+    headline = latest.get('headline') or 'This week in the Digital Product Passport.'
+    card = (
+        f'        <a class="brief-card" href="{ROUTE}/{latest["slug"]}">\n'
+        f'          <span class="brief-play" aria-hidden="true"></span>\n'
+        f'          <span class="brief-meta">Latest edition / {e(latest["publicationDateDisplay"])}</span>\n'
+        f'          <span class="brief-title">{e(headline)}</span>\n'
+        f'          <span class="brief-deck">{e(latest["framing"]["lineOne"])} '
+        f'{e(latest["framing"]["lineTwo"])}</span>\n'
+        f'          <span class="link">Watch {e(headline)} &#8594;</span>\n'
+        f'        </a>')
+
+    text = HUB.read_text(encoding='utf-8')
+    before = text
+    missing = []
+    for name, block in (('briefing-latest', card), ('briefing-archive', archive)):
+        open_m, close_m = f'<!-- {name}:start -->', f'<!-- {name}:end -->'
+        if open_m not in text or close_m not in text:
+            missing.append(name)
+            continue
+        head, rest = text.split(open_m, 1)
+        _, tail = rest.split(close_m, 1)
+        text = head + open_m + '\n' + block + '\n            ' + close_m + tail
+    if missing:
+        return 'MARKERS MISSING: ' + ', '.join(missing)
+    if text == before:
+        return 'already current'
+    HUB.write_text(text, encoding='utf-8')
+    return f'updated: latest {latest["slug"]}, {len(eds)} edition(s) in the archive'
 
 
 def main() -> int:
@@ -1534,6 +1610,9 @@ def main() -> int:
             print(f'  wrote  vercel.json  307 {route} -> {route}/{newest["slug"]}')
         else:
             print(f'  ok     vercel.json  307 {route} already points at {newest["slug"]}')
+
+    hub = sync_hub(ready)
+    print(f'  {"ok    " if "updated" not in hub else "wrote "} hub briefing block: {hub}')
 
     # The listings are English pages and follow the English series only.
     if by_locale.get(DEFAULT_LOCALE):
