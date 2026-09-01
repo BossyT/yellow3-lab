@@ -381,7 +381,7 @@
     #y3-model-live-visual h1, #y3-model-live-visual h2, #y3-model-live-visual h3 { font-weight:400; }
     #y3-model-live-visual a { color:inherit; text-decoration:none; }
     #y3-model-live-visual button { font:inherit; }
-    #y3-model-live-visual .y3-wrap { max-width:960px; margin:0 auto; padding:0 34px; }
+    #y3-model-live-visual .y3-wrap { max-width:1240px; margin:0 auto; padding:0 34px; }
     #y3-model-live-visual .y3-hero { padding:76px 0 88px; }
     #y3-model-live-visual .y3-breadcrumb { margin-bottom:54px; color:#777c76; font-size:11px; }
     #y3-model-live-visual .y3-breadcrumb strong { color:var(--y3-ink); font-weight:400; }
@@ -579,7 +579,7 @@
     <div class="y3-wrap">
       <div class="y3-breadcrumb"><a href="/research">Research</a> &nbsp;/&nbsp; <strong id="bc-title">AI model adoption</strong></div>
       <div class="y3-yellow-rule"></div>
-      <div class="y3-kicker">Model Adoption / <span id="cadence-kicker">Live data</span></div>
+      <div class="y3-kicker">Model Adoption / <span id="cadence-kicker">Updated live</span></div>
       <div class="y3-hero-grid">
         <div>
           <h1 id="title">Where AI demand is actually flowing.</h1>
@@ -592,7 +592,7 @@
                destination this page has always used: /research/framework. -->
           <div class="y3-actions">
             <a class="y3-button" href="#model-chart">View the live ranking &#8594;</a>
-            <a class="y3-text-link" href="/research/framework">Read the methodology &#8594;</a>
+            <a class="y3-text-link" href="/research/framework">Read the research framework &#8594;</a>
           </div>
         </div>
         <div class="y3-signal" id="hero-signal"></div>
@@ -615,6 +615,19 @@
 <p class="prerendered-note">Data as of 31 August 2026. Measured over 2026-08-25 to 2026-08-31. Source: OpenRouter (https://openrouter.ai/rankings).</p>
 <!-- /prerendered:div-id-live-bar-hidden -->
 </div>
+  </section>
+
+  <!-- "AI model adoption in 30 seconds". KEPT and positioned here by GPT's
+       ruling of 1 Sep 2026: its omission from the nine-section hierarchy was
+       an oversight. Sits after the live status rail and before the map. -->
+  <section class="y3-section y3-primer-hold">
+    <div class="y3-wrap">
+      <div class="primer-eyebrow">AI model adoption in 30 seconds</div>
+      <div class="primer-grid">
+        <div class="pr"><div class="prn">What it is</div><p>A live read on where AI demand actually flows - by where the model was built (Asia, the US, Europe) - measured in real routed usage, not announcements or benchmarks.</p></div>
+        <div class="pr"><div class="prn">Why it matters</div><p>It is the clearest public signal of who is winning the AI race, and exactly how far behind Europe sits. <strong>The lead moves week to week</strong>, and most leaders are reading last year's map.</p></div>
+        <div class="pr"><div class="prn">So what</div><p>If you are deciding what to build on, who to depend on, or how exposed you are to one region's models, this is the map - not the press release.</p></div>
+      </div>
   </section>
 
   <!-- 03 ORIGIN MAP AND FILTERS -->
@@ -669,17 +682,6 @@
     </div>
   </section>
 
-  <!-- RETAINED: production copy that the approved nine-section hierarchy does
-       not list. Kept restyled rather than deleted, and flagged to GPT. -->
-  <section class="y3-section y3-primer-hold">
-    <div class="y3-wrap">
-      <div class="primer-eyebrow">AI model adoption in 30 seconds</div>
-      <div class="primer-grid">
-        <div class="pr"><div class="prn">What it is</div><p>A live read on where AI demand actually flows - by where the model was built (Asia, the US, Europe) - measured in real routed usage, not announcements or benchmarks.</p></div>
-        <div class="pr"><div class="prn">Why it matters</div><p>It is the clearest public signal of who is winning the AI race, and exactly how far behind Europe sits. <strong>The lead moves week to week</strong>, and most leaders are reading last year's map.</p></div>
-        <div class="pr"><div class="prn">So what</div><p>If you are deciding what to build on, who to depend on, or how exposed you are to one region's models, this is the map - not the press release.</p></div>
-      </div>
-  </section>
 
   <!-- 06 WEEKLY CALLS -->
   <section class="y3-section y3-black" id="sec-record">
@@ -728,7 +730,7 @@
         <div id="methodology"></div>
         <p class="y3-source" id="source-line"></p>
         <p id="flag-note"></p>
-        <p><a class="y3-text-link" href="/research/framework">Read the methodology &#8594;</a></p>
+        <p><a class="y3-text-link" href="/research/framework">Read the research framework &#8594;</a></p>
       </div>
     </div>
   </section>
@@ -843,9 +845,12 @@
         }).join('');
     }
     function renderHeader(d){
-      document.getElementById('title').textContent = d.title;
+      // THE H1 AND HERO COPY ARE APPROVED DESIGN COPY, not instrument fields.
+      // These three writes silently replaced "Where AI demand is actually
+      // flowing." with the instrument's own title on load - the same fault the
+      // DPP hub had. The breadcrumb still takes the instrument name, because
+      // that is what a breadcrumb is for.
       document.getElementById('bc-title').textContent = d.title;
-      document.getElementById('thesis').textContent = d.thesis;
       document.getElementById('refresh').textContent = 'Refreshed ' + d.refreshed_cet + ' · data as of ' + d.as_of_pretty;
       if (d.status !== 'live') { document.getElementById('badge').style.color = 'var(--mid)'; }
     }
