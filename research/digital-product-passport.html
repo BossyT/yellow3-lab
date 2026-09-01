@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Digital Product Passport (DPP) - yellow3 Research</title>
-  <meta name="description" content="Is the EU Digital Product Passport becoming real on schedule - on the regulator's side, and on industry's side? A live yellow3 research instrument tracking DPP delivery against the deadlines the regulation set, with calls graded in public." />
+  <title>Digital Product Passport | Buyer Platform, Supplier Research and EU Tracking - yellow3</title>
+  <meta name="description" content="Run your Digital Product Passport programme, inspect 191 suppliers, track EU delivery, and access yellow3 briefings, evidence and buyer-side tools." />
   <link rel="canonical" href="https://www.yellow3.io/research/digital-product-passport" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <style>
@@ -398,6 +398,20 @@
    black-band link treatment. Everything else reuses .hp3 class-for-class.
    --------------------------------------------------------------------------- */
 .hp3 .cream{background:var(--cream)}
+/* THE ROWS ARE BUILT FROM NESTED SPANS so the whole row can be one anchor -
+   no nested links, per 05_RESPONSIVE_INTERACTIONS_ACCESSIBILITY.md. A span is
+   inline, so without this the title and its subtitle render as one run of
+   text: "Run the programmeDigital Product Passport Buyer Platform". Found in
+   production review, 1 Sep 2026. */
+.hp3 .index-title,
+.hp3 .index-sub,
+.hp3 .brief-meta,
+.hp3 .brief-title,
+.hp3 .brief-deck,
+.hp3 .brief-card .link,
+.hp3 .arch-d,
+.hp3 .arch-s{display:block}
+.hp3 .brief-card .link{display:inline-block;margin-top:4px}
 .hp3 .btn-yellow{background:var(--yellow);color:var(--ink)}
 .hp3 .btn-yellow:hover{background:#f0c800}
 .hp3 .btn:hover{background:#000}
@@ -449,8 +463,8 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="yellow3 lab" />
-  <meta property="og:title" content="Digital Product Passport (DPP) - yellow3 Research" />
-  <meta property="og:description" content="Is the EU Digital Product Passport becoming real on schedule? A live instrument tracking DPP delivery against the deadlines the regulation set, calls graded in public." />
+  <meta property="og:title" content="Digital Product Passport | Buyer Platform, Supplier Research and EU Tracking - yellow3" />
+  <meta property="og:description" content="Run your Digital Product Passport programme, inspect 191 suppliers, track EU delivery, and access yellow3 briefings, evidence and buyer-side tools." />
   <meta property="og:url" content="https://www.yellow3.io/research/digital-product-passport" />
   <meta property="og:image" content="https://www.yellow3.io/og/cards/research-digital-product-passport.png" />
   <meta property="og:image:width" content="1200" />
@@ -482,7 +496,7 @@
       <a href="/contact">Contact</a>
     </div>
     <a href="/advisory" class="nav-cta">Work with us <span>&#8594;</span></a>
-    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" onclick="var o=this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open');this.setAttribute('aria-expanded',o)"><span></span><span></span><span></span></button>
   </nav>
   <main>
   <div class="hp3">
@@ -725,19 +739,6 @@
 <ul class="prerendered-signals"><li><strong>Active DPP pilots across value chains</strong> 13 pilots: textiles, EEE, construction, tyres. <small>2026-06-24</small></li><li><strong>Public DPP solutions / vendors live</strong> 167 commercial suppliers with a sourced identity, counted in the yellow3 DPP Supplier Register: 183 organisations mapped across 32 countries, less 8 flagged not-a-supplier, 5 EU projects and 3 standards bodies. The earlier figure of 15 was a market-mapping estimate, not a count. Availability of suppliers, not their capability - the ten capability checks are being carried out supplier by supplier and are not yet reflected here. <small>2026-07-28</small></li><li><strong>GS1 Digital Link adoption proxy</strong> GS1 Sunrise 2027 - the 2D / Digital Link migration most DPP carriers ride on - is in pilot across 48 countries representing 88% of world GDP. <small>2026-06-24</small></li><li><strong>Implementable standards (published as EN)</strong> Of the 8 JTC 24 areas, how many are stable enough to build against today. <small>2026-06-24</small></li></ul>
 <!-- /prerendered:div-id-signals -->
 </div>
-
-      <a href="/research/digital-product-passport/suppliers" class="reg-promo">
-        <div class="rp-l">
-          <div class="rp-label">The supply side</div>
-          <div class="rp-h">The DPP supplier register</div>
-          <div class="rp-p">Every organisation we can find supplying Digital Product Passport capability, with the source behind each fact and the date we checked it. Built because the published picture of this market is mostly marketing.</div>
-        </div>
-        <div class="rp-r">
-          <div class="rp-n" id="regCount">191</div>
-          <div class="rp-c">organisations mapped<br><span id="regDetail">172 commercial suppliers, 33 countries</span></div>
-          <div class="rp-go">Open the register &#8594;</div>
-        </div>
-      </a>
     </div>
   </section>
 

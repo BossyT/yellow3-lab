@@ -163,7 +163,7 @@
       <a href="/contact">Contact</a>
     </div>
     <a href="#" onclick="window.location.href=&#39;mailto:&#39;+&#39;hello&#39;+String.fromCharCode(64)+&#39;yellow3.io&#39;;return false;" class="nav-cta">Get in touch <span>&#8594;</span></a>
-    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" onclick="var o=this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open');this.setAttribute('aria-expanded',o)"><span></span><span></span><span></span></button>
   </nav>
 
   <main class="miwrap">

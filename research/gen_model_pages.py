@@ -70,7 +70,7 @@ NAV = """  <nav class="site-nav">
     <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
     <div class="nav-mid" id="navMid">""" + _nav(active="/research") + """</div>
     <a href="#" onclick="window.location.href='mailto:'+'hello'+String.fromCharCode(64)+'yellow3.io';return false;" class="nav-cta">Get in touch <span>&#8594;</span></a>
-    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" onclick="var o=this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open');this.setAttribute('aria-expanded',o)"><span></span><span></span><span></span></button>
   </nav>"""
 
 FOOTER = _foot("""  <footer class="site-footer">

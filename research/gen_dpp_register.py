@@ -269,7 +269,7 @@ SITE_NAV = """  <nav class="site-nav y3nav">
     <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
     <div class="nav-mid" id="navMid">""" + _nav(active="/research") + """</div>
     <a href="/advisory" class="nav-cta y3cta">Work with us <span>&#8594;</span></a>
-    <button class="nav-toggle" aria-label="Menu" onclick="this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open')"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" onclick="var o=this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open');this.setAttribute('aria-expanded',o)"><span></span><span></span><span></span></button>
   </nav>
 """
 
@@ -2266,8 +2266,11 @@ def main():
         (os.path.join(ROOT, "research.html"), "rsOrgs", counts["organisations"]),
         (os.path.join(ROOT, "research.html"), "rsComm", counts["commercial_suppliers"]),
         (os.path.join(ROOT, "research.html"), "rsCountries", counts["countries"]),
-        (os.path.join(HERE, "digital-product-passport.html"), "regCount", counts["organisations"]),
-        (os.path.join(HERE, "digital-product-passport.html"), "regDetail", detail),
+        # regCount / regDetail retired 1 Sep 2026 with the hub redesign. The old
+        # Track B carried a second Supplier Register promo panel quoting the same
+        # three totals again; the redesign gives the register its own section.
+        # The hub still quotes the totals through htOrgs / htComm / htCountries
+        # below, so the drift guard still covers every number the page shows.
         (os.path.join(HERE, "digital-product-passport.html"), "htOrgs", counts["organisations"]),
         (os.path.join(HERE, "digital-product-passport.html"), "htComm", counts["commercial_suppliers"]),
         (os.path.join(HERE, "digital-product-passport.html"), "htCountries", counts["countries"]),
