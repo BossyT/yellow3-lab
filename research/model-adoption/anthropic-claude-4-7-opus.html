@@ -38,49 +38,69 @@
     <a href="#" onclick="window.location.href='mailto:'+'hello'+String.fromCharCode(64)+'yellow3.io';return false;" class="nav-cta">Get in touch <span>&#8594;</span></a>
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false" onclick="var o=this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open');this.setAttribute('aria-expanded',o)"><span></span><span></span><span></span></button>
   </nav>
-  <main class="mx">
-    <div class="wrap">
-      <nav class="crumb" aria-label="Breadcrumb">
+  <div id="y3-model-record-redesign">
+    <div class="y3r-wrap">
+      <nav class="y3r-breadcrumb" aria-label="Breadcrumb">
         <a href="/research">Research</a> <span>/</span>
         <a href="/research/model-adoption">AI model adoption</a> <span>/</span>
-        <span aria-current="page">Anthropic Claude 4.7 Opus</span>
+        <strong aria-current="page">Anthropic Claude 4.7 Opus</strong>
       </nav>
-
-      <header class="mx-head">
-        <div class="mx-head-main">
-          <span class="ptile"><img src="/research/model-adoption/logos/anthropic.svg" alt="Anthropic logo" /></span>
+    </div>
+  <section class="y3r-hero">
+    <div class="y3r-wrap">
+      <div class="y3r-hero-head">
+        <div class="y3r-provider">
+          <span class="y3r-logo"><img src="/img/model-adoption/provider-logos/anthropic.svg" alt="Anthropic logo" width="32" height="32"></span>
           <div>
-            <div class="mx-provider">Model provider</div>
+            <div class="y3r-eyebrow">Model provider / Anthropic</div>
             <h1>Anthropic Claude 4.7 Opus</h1>
-            <div class="mx-meta">Built by Anthropic &middot; US &middot; United States &middot; First tracked 4 May 2026 &middot; Pricing verified 31 Aug 2026</div>
+            <p class="y3r-meta">US &middot; United States &middot; First tracked 4 May 2026 &middot; Pricing verified 31 Aug 2026</p>
           </div>
         </div>
-        <div class="mx-head-links"><span class="official official-none">Official model page not yet on record</span><a class="official official-pricing" href="https://openrouter.ai/anthropic/claude-opus-4.7:batch" target="_blank" rel="noopener noreferrer">Official pricing <span>&#8599;</span></a></div>
-      </header>
-
-      <section class="status-strip" aria-label="Current status">
-        <div class="ss"><span class="ss-v">#56</span><span class="ss-l">Global rank</span></div>
-        <div class="ss"><span class="ss-v">0.04%</span><span class="ss-l">Routed share</span></div>
-        <div class="ss"><span class="ss-v"><span class="mv mv-down" style="color:#b3402e">&#9660; 16<span class="sr">places down</span></span></span><span class="ss-l">This week</span></div>
-        <div class="ss"><span class="ss-v">17 weeks ranked</span><span class="ss-l">Streak</span></div>
-        <div class="ss"><span class="ss-v">#3</span><span class="ss-l">Peak rank</span></div>
-        <div class="ss"><span class="ss-v ss-price">Premium</span><span class="ss-l">Price position</span></div>
-      </section>
-
-      <section class="mx-sec">
-        <div class="sec-label">Model economics</div>
+        <div class="y3r-official"><p>Official model page not yet on record</p><a class="y3r-link" href="https://openrouter.ai/anthropic/claude-opus-4.7:batch" target="_blank" rel="noopener noreferrer">Official pricing &#8599;</a></div>
+      </div>
+      <div class="y3r-signal" aria-label="Current Anthropic Claude 4.7 Opus adoption signal">
+        <div class="y3r-primary-signal">
+          <span class="y3r-signal-label">Global rank</span>
+          <div class="y3r-rank">#56</div>
+          <p class="y3r-rank-context">Ranked 56 of the tracked routed-model set.</p>
+        </div>
+        <div class="y3r-secondary-signals">
+          <div class="y3r-stat"><span class="y3r-stat-value">0.04%</span><span class="y3r-stat-label">Routed share</span></div>
+          <div class="y3r-stat"><span class="y3r-stat-value y3r-down">&#9660; 16</span><span class="y3r-stat-label">Place this week</span></div>
+          <div class="y3r-stat"><span class="y3r-stat-value">17 weeks</span><span class="y3r-stat-label">Ranked &middot; 0 in top 3</span></div>
+          <div class="y3r-stat"><span class="y3r-stat-value">Premium</span><span class="y3r-stat-label">Price position</span></div>
+        </div>
+      </div>
+      <div class="y3r-freshness"><strong>Live model record</strong><span>Trailing seven days ending 31 Aug 2026 &middot; refreshed daily</span></div>
+    </div>
+  </section>
+    <section class="y3r-section y3r-soft" id="read">
+      <div class="y3r-wrap">
+        <div class="y3r-section-head">
+          <div><div class="y3r-kicker">The current read</div><h2>What the record shows today.</h2></div>
+          <p class="y3r-lede">The page leads with what has been observed, then separates price, capability and history so a buyer can see both the signal and its limits.</p>
+        </div>
+        <div class="y3r-readout">
+          <div class="y3r-readout-item"><span class="y3r-readout-label">Adoption</span><div class="y3r-readout-value">-5.10 percentage points</div><p class="y3r-readout-copy">Routed share moved from 5.14% to 0.04% across 17 tracked weeks.</p></div>
+          <div class="y3r-readout-item"><span class="y3r-readout-label">Economics</span><div class="y3r-readout-value">$2.50 in &middot; $12.50 out</div><p class="y3r-readout-copy">Per one million tokens. Cached input is listed at $0.25.</p></div>
+          <div class="y3r-readout-item"><span class="y3r-readout-label">Operating fit</span><div class="y3r-readout-value">1M context</div><p class="y3r-readout-copy">Reasoning, tool calling and structured output are supported.</p></div>
+        </div>
+      </div>
+    </section>
+    <section class="y3r-section" id="economics">
+      <div class="y3r-wrap">
+        <div class="y3r-section-head">
+          <div><div class="y3r-kicker">Model economics</div><h2>Published price, translated into a workload.</h2></div>
+          <p class="y3r-lede">Live per-token pricing via OpenRouter, verified 31 Aug 2026. Batch and long-context tiers are not published in the feed, so they are omitted rather than estimated.</p>
+        </div>
         <div class="etiles"><div class="etile"><div class="et-l">Input</div><div class="et-v">$2.50</div><div class="et-s">/ 1M tokens</div></div><div class="etile"><div class="et-l">Output</div><div class="et-v">$12.50</div><div class="et-s">/ 1M tokens</div></div><div class="etile"><div class="et-l">Cached input</div><div class="et-v">$0.25</div><div class="et-s">/ 1M tokens</div></div><div class="etile"><div class="et-l">Free tier</div><div class="et-v"><span class="et-na">&mdash;</span></div><div class="et-s">on OpenRouter</div></div><div class="etile"><div class="et-l">Context window</div><div class="et-v">1M</div><div class="et-s">tokens</div></div><div class="etile"><div class="et-l">Weights</div><div class="et-v">Proprietary</div><div class="et-s">license basis</div></div></div>
-        <p class="src-note">Live per-token pricing via OpenRouter, verified 31 Aug 2026. Batch and long-context tiers are not published in the feed, so they are omitted rather than estimated.</p>
-      </section>
-
-      <section class="mx-sec">
-        <div class="sec-label">What would it cost you?</div>
         <div class="calc" id="calc">
   <div class="calc-panel">
-    <div class="wl-tabs" role="tablist" aria-label="Workload preset">
-      <button class="wl-tab" data-wl="customer-support">Customer support</button>
-      <button class="wl-tab" data-wl="document-analysis">Document analysis</button>
-      <button class="wl-tab active" data-wl="coding-agent">Coding agent</button>
+    <div class="wl-tabs" role="group" aria-label="Workload preset">
+      <button type="button" class="wl-tab" data-wl="customer-support" aria-pressed="false">Customer support</button>
+      <button type="button" class="wl-tab" data-wl="document-analysis" aria-pressed="false">Document analysis</button>
+      <button type="button" class="wl-tab active" data-wl="coding-agent" aria-pressed="true">Coding agent</button>
     </div>
     <div class="calc-fields">
       <label class="cf">Monthly tasks<input type="number" id="c-tasks" min="0" step="100"></label>
@@ -100,15 +120,16 @@
   </div>
 </div>
 <p class="calc-note">An estimate from published per-token pricing and your assumptions. Actual costs vary by provider and usage tier.</p>
-      </section>
-
-      <section class="mx-sec">
-        <div class="sec-label">Compare the same workload</div>
+        <div class="y3r-subhead">Compare the same workload</div>
         <div class="compare" id="compare"><div class="cmp-row" data-slug="anthropic-claude-4-7-opus"><span class="cmp-name cmp-you">Anthropic Claude 4.7 Opus (You)</span><span class="cmp-bar"><span class="cmp-fill cmp-fill-you"></span></span><span class="cmp-val">$0</span></div><div class="cmp-row" data-slug="deepseek-v4-flash"><span class="cmp-name">DeepSeek V4 Flash</span><span class="cmp-bar"><span class="cmp-fill"></span></span><span class="cmp-val">$0</span></div><div class="cmp-row" data-slug="google-gemini-2-5-flash"><span class="cmp-name">Google Gemini 2.5 Flash</span><span class="cmp-bar"><span class="cmp-fill"></span></span><span class="cmp-val">$0</span></div><div class="cmp-row" data-slug="anthropic-claude-sonnet-5"><span class="cmp-name">Anthropic Claude Sonnet 5</span><span class="cmp-bar"><span class="cmp-fill"></span></span><span class="cmp-val">$0</span></div></div><p class="calc-note">Same workload as the calculator above, at each model's current price. Monthly USD.</p>
-      </section>
-      <section class="mx-sec">
-        <div class="sec-label">Price and adoption</div>
-        <p class="sec-sub">Routed-token share over time. A price line joins it as real changes are recorded.</p>
+      </div>
+    </section>
+    <section class="y3r-section y3r-soft" id="adoption">
+      <div class="y3r-wrap">
+        <div class="y3r-section-head">
+          <div><div class="y3r-kicker">Price and adoption</div><h2>Every point is an observed week.</h2></div>
+          <p class="y3r-lede">Routed-token share over time, with no interpolation presented as evidence. A price line joins it as real changes are recorded.</p>
+        </div>
         <div class="chart-wrap">
   <svg viewBox="0 0 720 300" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Weekly routed share over time. The underlying figures are in the rank history table below.">
     <g class="grids"><line x1="46" y1="260.0" x2="700" y2="260.0" class="grid" /><text x="38" y="264.0" class="yl">0%</text><line x1="46" y1="201.0" x2="700" y2="201.0" class="grid" /><text x="38" y="205.0" class="yl">2%</text><line x1="46" y1="142.0" x2="700" y2="142.0" class="grid" /><text x="38" y="146.0" class="yl">4%</text><line x1="46" y1="83.0" x2="700" y2="83.0" class="grid" /><text x="38" y="87.0" class="yl">6%</text><line x1="46" y1="24.0" x2="700" y2="24.0" class="grid" /><text x="38" y="28.0" class="yl">8%</text></g>
@@ -120,27 +141,32 @@
   <div class="chart-span">All 17 tracked weeks &middot; 11 May to 31 Aug. Longer periods open as the record grows.</div>
 </div>
         <div class="pos-box"><div class="pos-h">Price-to-adoption position</div><div class="pos-label">Under pressure</div><p class="pos-sub">Premium &middot; adoption falling. Observed relationship, not proof of causation.</p></div>
-      </section>
-
-      <section class="mx-sec two-col">
-        <div>
-          <div class="sec-label">Speed &amp; reliability</div>
-          <p class="sec-sub">Availability monitoring is derived from OpenRouter provider uptime; it refreshes with the daily build. Latency and throughput are not exposed by the data source, so we do not report them rather than estimate.</p>
+      </div>
+    </section>
+    <section class="y3r-section" id="profile">
+      <div class="y3r-wrap">
+        <div class="y3r-section-head">
+          <div><div class="y3r-kicker">Operating profile</div><h2>What it supports, and what remains undisclosed.</h2></div>
+          <p class="y3r-lede">Verified support, explicit non-support and missing disclosure read differently on purpose. A blank is never made to look like a negative finding.</p>
         </div>
-        <div>
-          <div class="sec-label">Capabilities</div>
-          <table class="cap-table"><tbody><tr><td>Context window</td><td>1M</td></tr><tr><td>Reasoning</td><td><span class="cap-yes">&#10003;</span> Supported</td></tr><tr><td>Tool calling</td><td><span class="cap-yes">&#10003;</span> Supported</td></tr><tr><td>Structured output</td><td><span class="cap-yes">&#10003;</span> Supported</td></tr><tr><td>Image input</td><td><span class="cap-yes">&#10003;</span> Supported</td></tr><tr><td>Audio input</td><td><span class="cap-no">&mdash;</span> Not supported</td></tr><tr><td>Video input</td><td><span class="cap-no">&mdash;</span> Not supported</td></tr><tr><td>Open weights</td><td><span class="cap-no">&mdash;</span> Proprietary</td></tr><tr><td>API availability</td><td><span class="cap-yes">&#10003;</span> Yes</td></tr><tr><td>Commercial license</td><td>Verify terms with the provider</td></tr></tbody></table>
+        <div class="y3r-profile-grid">
+          <div>
+            <div class="y3r-subhead">Capabilities</div>
+            <table class="cap-table"><tbody><tr><td>Context window</td><td>1M</td></tr><tr><td>Reasoning</td><td><span class="cap-yes">&#10003;</span> Supported</td></tr><tr><td>Tool calling</td><td><span class="cap-yes">&#10003;</span> Supported</td></tr><tr><td>Structured output</td><td><span class="cap-yes">&#10003;</span> Supported</td></tr><tr><td>Image input</td><td><span class="cap-yes">&#10003;</span> Supported</td></tr><tr><td>Audio input</td><td><span class="cap-no">&mdash;</span> Not supported</td></tr><tr><td>Video input</td><td><span class="cap-no">&mdash;</span> Not supported</td></tr><tr><td>Open weights</td><td><span class="cap-no">&mdash;</span> Proprietary</td></tr><tr><td>API availability</td><td><span class="cap-yes">&#10003;</span> Yes</td></tr><tr><td>Commercial license</td><td>Verify terms with the provider</td></tr></tbody></table>
+          </div>
+          <div>
+            <div class="y3r-subhead">Model facts</div>
+            <dl class="glance"><div class="glance-head">Observed by yellow3</div><div class="glance-row"><dt>Current rank</dt><dd>#56</dd></div><div class="glance-row"><dt>Peak rank</dt><dd>#3</dd></div><div class="glance-row"><dt>Routed share</dt><dd>0.04%</dd></div><div class="glance-row"><dt>Peak share</dt><dd>7.19%</dd></div><div class="glance-row"><dt>Weeks ranked</dt><dd>17</dd></div><div class="glance-row"><dt>First tracked</dt><dd>4 May 2026</dd></div><div class="glance-row"><dt>Region of origin</dt><dd>US &middot; United States</dd></div><div class="glance-head">Model facts</div><div class="glance-row"><dt>Provider</dt><dd>Anthropic</dd></div><div class="glance-row"><dt>Model family</dt><dd class="undisclosed">Not publicly disclosed</dd></div><div class="glance-row"><dt>Release date</dt><dd class="undisclosed">Not publicly disclosed</dd></div><div class="glance-row"><dt>Type</dt><dd>Multimodal (text + image)</dd></div><div class="glance-row"><dt>Modalities</dt><dd>text, image, file</dd></div><div class="glance-row"><dt>Context window</dt><dd>1M tokens</dd></div><div class="glance-row"><dt>Weights</dt><dd>Proprietary</dd></div><div class="glance-row"><dt>License</dt><dd class="undisclosed">Not publicly disclosed</dd></div></dl>
+            <p class="sec-sub">Availability monitoring is derived from OpenRouter provider uptime; it refreshes with the daily build. Latency and throughput are not exposed by the data source, so we do not report them rather than estimate.</p>
+          </div>
         </div>
-      </section>
-
-      <section class="mx-sec two-col">
-        <div>
-          <div class="sec-label">At a glance</div>
-          <dl class="glance"><div class="glance-head">Observed by yellow3</div><div class="glance-row"><dt>Current rank</dt><dd>#56</dd></div><div class="glance-row"><dt>Peak rank</dt><dd>#3</dd></div><div class="glance-row"><dt>Routed share</dt><dd>0.04%</dd></div><div class="glance-row"><dt>Peak share</dt><dd>7.19%</dd></div><div class="glance-row"><dt>Weeks ranked</dt><dd>17</dd></div><div class="glance-row"><dt>First tracked</dt><dd>4 May 2026</dd></div><div class="glance-row"><dt>Region of origin</dt><dd>US &middot; United States</dd></div><div class="glance-head">Model facts</div><div class="glance-row"><dt>Provider</dt><dd>Anthropic</dd></div><div class="glance-row"><dt>Model family</dt><dd class="undisclosed">Not publicly disclosed</dd></div><div class="glance-row"><dt>Release date</dt><dd class="undisclosed">Not publicly disclosed</dd></div><div class="glance-row"><dt>Type</dt><dd>Multimodal (text + image)</dd></div><div class="glance-row"><dt>Modalities</dt><dd>text, image, file</dd></div><div class="glance-row"><dt>Context window</dt><dd>1M tokens</dd></div><div class="glance-row"><dt>Weights</dt><dd>Proprietary</dd></div><div class="glance-row"><dt>License</dt><dd class="undisclosed">Not publicly disclosed</dd></div></dl>
-        </div>
-        <div>
-          <div class="sec-label">Why it is moving</div>
-          <div class="analysis-block">
+      </div>
+    </section>
+    <section class="y3r-section y3r-analysis" id="analysis">
+      <div class="y3r-wrap">
+        <div class="y3r-analysis-grid">
+          <div><div class="y3r-kicker">Why it is moving</div><h2>Observed first. Interpreted only when sourced.</h2></div>
+          <div class="y3r-analysis-copy"><div class="analysis-block">
       <div class="ab-label ab-observed">Observed data</div>
       <p>In the week ending 31 Aug 2026, Anthropic Claude 4.7 Opus fell 16 places to #56 with 0.04% of routed tokens and a peak rank of #3. Over 17 tracked weeks its routed share has moved from 5.14% to 0.04% (-5.10 pp).</p>
     </div>
@@ -149,44 +175,64 @@
       <p class="pending">A sourced weekly interpretation of what is driving this model's routing
       is added as the record accumulates. yellow3 does not publish a reason for movement
       unless the routed-traffic data or a cited source supports it.</p>
-    </div>
+    </div></div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="mx-sec">
-        <div class="sec-label">Rank history</div>
-        <div class="table-scroll">
-          <table class="rank-history">
+    <section class="y3r-section" id="history">
+      <div class="y3r-wrap">
+        <div class="y3r-section-head">
+          <div><div class="y3r-kicker">History and evidence</div><h2>The record behind the headline.</h2></div>
+          <p class="y3r-lede">The current position stays connected to every observed week, price change and milestone.</p>
+        </div>
+        <div class="y3r-table-scroll">
+          <table class="y3r-table rank-history">
+            <caption class="y3r-visually-hidden">Weekly rank and routed-share history for Anthropic Claude 4.7 Opus</caption>
             <thead><tr><th>Week ending</th><th>Rank</th><th>Routed share</th><th>&Delta; share</th><th>Movement</th><th>Region rank</th><th>Status</th></tr></thead>
             <tbody><tr><td>31 Aug 2026</td><td class="num">#56</td><td class="num">0.04%</td><td class="num">-0.25</td><td><span class="mv mv-down" style="color:#b3402e">&#9660; 16<span class="sr">places down</span></span></td><td class="num">#28</td><td><span class="stat stat-ranked">ranked</span></td></tr><tr><td>24 Aug 2026</td><td class="num">#40</td><td class="num">0.29%</td><td class="num">-0.38</td><td><span class="mv mv-down" style="color:#b3402e">&#9660; 14<span class="sr">places down</span></span></td><td class="num">#24</td><td><span class="stat stat-ranked">ranked</span></td></tr><tr><td>17 Aug 2026</td><td class="num">#26</td><td class="num">0.67%</td><td class="num">+0.23</td><td><span class="mv mv-up" style="color:#2E9D78">&#9650; 7<span class="sr">places up</span></span></td><td class="num">#16</td><td><span class="stat stat-ranked">ranked</span></td></tr><tr><td>10 Aug 2026</td><td class="num">#33</td><td class="num">0.45%</td><td class="num">+0.14</td><td><span class="mv mv-up" style="color:#2E9D78">&#9650; 8<span class="sr">places up</span></span></td><td class="num">#21</td><td><span class="stat stat-ranked">ranked</span></td></tr><tr><td>3 Aug 2026</td><td class="num">#41</td><td class="num">0.31%</td><td class="num">-0.91</td><td><span class="mv mv-down" style="color:#b3402e">&#9660; 27<span class="sr">places down</span></span></td><td class="num">#27</td><td><span class="stat stat-ranked">ranked</span></td></tr><tr><td>27 Jul 2026</td><td class="num">#14</td><td class="num">1.22%</td><td class="num">-2.10</td><td><span class="mv mv-down" style="color:#b3402e">&#9660; 6<span class="sr">places down</span></span></td><td class="num">#6</td><td><span class="stat stat-ranked">ranked</span></td></tr><tr><td>20 Jul 2026</td><td class="num">#8</td><td class="num">3.33%</td><td class="num">-0.67</td><td><span class="mv mv-flat" style="color:#9a9a95">&ndash;<span class="sr">no change</span></span></td><td class="num">#2</td><td><span class="stat stat-ranked">ranked</span></td></tr><tr><td>13 Jul 2026</td><td class="num">#8</td><td class="num">3.99%</td><td class="num">-0.97</td><td><span class="mv mv-down" style="color:#b3402e">&#9660; 1<span class="sr">places down</span></span></td><td class="num">#2</td><td><span class="stat stat-ranked">ranked</span></td></tr><tr><td>6 Jul 2026</td><td class="num">#7</td><td class="num">4.97%</td><td class="num">+0.21</td><td><span class="mv mv-down" style="color:#b3402e">&#9660; 1<span class="sr">places down</span></span></td><td class="num">#1</td><td><span class="stat stat-ranked">ranked</span></td></tr><tr><td>29 Jun 2026</td><td class="num">#6</td><td class="num">4.76%</td><td class="num">-0.43</td><td><span class="mv mv-up" style="color:#2E9D78">&#9650; 1<span class="sr">places up</span></span></td><td class="num">#1</td><td><span class="stat stat-ranked">ranked</span></td></tr><tr><td>22 Jun 2026</td><td class="num">#7</td><td class="num">5.19%</td><td class="num">-0.46</td><td><span class="mv mv-down" style="color:#b3402e">&#9660; 2<span class="sr">places down</span></span></td><td class="num">#1</td><td><span class="stat stat-ranked">ranked</span></td></tr><tr><td>15 Jun 2026</td><td class="num">#5</td><td class="num">5.65%</td><td class="num">+1.69</td><td><span class="mv mv-up" style="color:#2E9D78">&#9650; 3<span class="sr">places up</span></span></td><td class="num">#1</td><td><span class="stat stat-ranked">ranked</span></td></tr><tr><td>8 Jun 2026</td><td class="num">#8</td><td class="num">3.96%</td><td class="num">-2.86</td><td><span class="mv mv-down" style="color:#b3402e">&#9660; 5<span class="sr">places down</span></span></td><td class="num">#2</td><td><span class="stat stat-ranked">ranked</span></td></tr><tr><td>1 Jun 2026</td><td class="num">#3</td><td class="num">6.83%</td><td class="num">-0.36</td><td><span class="mv mv-flat" style="color:#9a9a95">&ndash;<span class="sr">no change</span></span></td><td class="num">#1</td><td><span class="stat stat-ranked">ranked</span></td></tr><tr><td>25 May 2026</td><td class="num">#3</td><td class="num">7.19%</td><td class="num">+1.69</td><td><span class="mv mv-up" style="color:#2E9D78">&#9650; 1<span class="sr">places up</span></span></td><td class="num">#1</td><td><span class="stat stat-ranked">ranked</span></td></tr><tr><td>18 May 2026</td><td class="num">#4</td><td class="num">5.50%</td><td class="num">+0.37</td><td><span class="mv mv-flat" style="color:#9a9a95">&ndash;<span class="sr">no change</span></span></td><td class="num">#2</td><td><span class="stat stat-ranked">ranked</span></td></tr><tr><td>11 May 2026</td><td class="num">#4</td><td class="num">5.14%</td><td class="num">&ndash;</td><td><span class="mv mv-new">NEW</span></td><td class="num">#2</td><td><span class="stat stat-new">NEW</span></td></tr></tbody>
           </table>
         </div>
-      </section>
-
-      <section class="mx-sec">
-        <div class="sec-label">Price history</div>
-        <div class="table-scroll"><table class="rank-history"><thead><tr><th>Date</th><th>Input / 1M</th><th>Output / 1M</th><th>Change</th><th>Source</th></tr></thead><tbody><tr><td>6 Aug 2026</td><td class="num">$2.50</td><td class="num">$12.50</td><td><span class="ph-down">&#9660; 50%</span></td><td>OpenRouter listed price</td></tr><tr><td>31 Jul 2026</td><td class="num">$5.00</td><td class="num">$25.00</td><td><span class="ph-up">&#9650; 100%</span></td><td>OpenRouter listed price</td></tr><tr><td>28 Jul 2026</td><td class="num">$2.50</td><td class="num">$12.50</td><td><span class="ph-down">&#9660; 50%</span></td><td>OpenRouter listed price</td></tr><tr><td>12 Jul 2026</td><td class="num">$5.00</td><td class="num">$25.00</td><td><span class="ph-flat">&mdash;</span></td><td>OpenRouter listed price</td></tr></tbody></table></div>
-      </section>
-      <section class="mx-sec">
-        <div class="sec-label">Milestones</div>
-        <ul class="milestones"><li class="ms"><span class="ms-date">4 May 2026</span><span class="ms-title">First tracked</span><span class="ms-src">Derived from yellow3 routed-traffic data</span></li><li class="ms"><span class="ms-date">11 May 2026</span><span class="ms-title">Entered top 20</span><span class="ms-src">Derived from yellow3 routed-traffic data</span></li><li class="ms"><span class="ms-date">11 May 2026</span><span class="ms-title">Entered top 10</span><span class="ms-src">Derived from yellow3 routed-traffic data</span></li><li class="ms"><span class="ms-date">25 May 2026</span><span class="ms-title">Entered top 3</span><span class="ms-src">Derived from yellow3 routed-traffic data</span></li><li class="ms"><span class="ms-date">25 May 2026</span><span class="ms-title">Peak routed share <span class="ms-val">7.19%</span></span><span class="ms-src">Derived from yellow3 routed-traffic data</span></li><li class="ms"><span class="ms-date">3 Aug 2026</span><span class="ms-title">Biggest weekly fall <span class="ms-val">-27 places</span></span><span class="ms-src">Derived from yellow3 routed-traffic data</span></li><li class="ms"><span class="ms-date">10 Aug 2026</span><span class="ms-title">Biggest weekly rise <span class="ms-val">+8 places</span></span><span class="ms-src">Derived from yellow3 routed-traffic data</span></li></ul>
-      </section>
-
-      <section class="mx-sec two-col">
-        <div>
-          <div class="sec-label">Sources &amp; methodology</div>
-          <ul class="sources"><li><a href="/research/model-adoption#methodology">yellow3 AI Model Adoption methodology</a></li><li><a href="https://openrouter.ai/rankings" target="_blank" rel="noopener noreferrer">OpenRouter routing rankings (routed-traffic source) &#8599;</a></li></ul>
-          <p class="src-note">Region reflects where the model's developer is headquartered.
-          Figures are OpenRouter routing traffic, aggregated over a trailing seven days -
-          developer routing behaviour, not the whole market.</p>
+        <div class="y3r-history-grid">
+          <div><div class="y3r-subhead">Price history</div><div class="table-scroll"><table class="rank-history"><thead><tr><th>Date</th><th>Input / 1M</th><th>Output / 1M</th><th>Change</th><th>Source</th></tr></thead><tbody><tr><td>6 Aug 2026</td><td class="num">$2.50</td><td class="num">$12.50</td><td><span class="ph-down">&#9660; 50%</span></td><td>OpenRouter listed price</td></tr><tr><td>31 Jul 2026</td><td class="num">$5.00</td><td class="num">$25.00</td><td><span class="ph-up">&#9650; 100%</span></td><td>OpenRouter listed price</td></tr><tr><td>28 Jul 2026</td><td class="num">$2.50</td><td class="num">$12.50</td><td><span class="ph-down">&#9660; 50%</span></td><td>OpenRouter listed price</td></tr><tr><td>12 Jul 2026</td><td class="num">$5.00</td><td class="num">$25.00</td><td><span class="ph-flat">&mdash;</span></td><td>OpenRouter listed price</td></tr></tbody></table></div></div>
+          <div>
+            <div class="y3r-subhead">Milestones</div>
+            <ul class="milestones"><li class="ms"><span class="ms-date">4 May 2026</span><span class="ms-title">First tracked</span><span class="ms-src">Derived from yellow3 routed-traffic data</span></li><li class="ms"><span class="ms-date">11 May 2026</span><span class="ms-title">Entered top 20</span><span class="ms-src">Derived from yellow3 routed-traffic data</span></li><li class="ms"><span class="ms-date">11 May 2026</span><span class="ms-title">Entered top 10</span><span class="ms-src">Derived from yellow3 routed-traffic data</span></li><li class="ms"><span class="ms-date">25 May 2026</span><span class="ms-title">Entered top 3</span><span class="ms-src">Derived from yellow3 routed-traffic data</span></li><li class="ms"><span class="ms-date">25 May 2026</span><span class="ms-title">Peak routed share <span class="ms-val">7.19%</span></span><span class="ms-src">Derived from yellow3 routed-traffic data</span></li><li class="ms"><span class="ms-date">3 Aug 2026</span><span class="ms-title">Biggest weekly fall <span class="ms-val">-27 places</span></span><span class="ms-src">Derived from yellow3 routed-traffic data</span></li><li class="ms"><span class="ms-date">10 Aug 2026</span><span class="ms-title">Biggest weekly rise <span class="ms-val">+8 places</span></span><span class="ms-src">Derived from yellow3 routed-traffic data</span></li></ul>
+          </div>
         </div>
-        <div>
-          <div class="sec-label">Explore other models</div>
+      </div>
+    </section>
+
+    <section class="y3r-section y3r-soft" id="sources">
+      <div class="y3r-wrap">
+        <div class="y3r-section-head">
+          <div><div class="y3r-kicker">Sources and methodology</div><h2>Every claim keeps its route back to evidence.</h2></div>
+          <div>
+            <ul class="sources"><li><a href="/research/model-adoption#methodology">yellow3 AI Model Adoption methodology</a></li><li><a href="https://openrouter.ai/rankings" target="_blank" rel="noopener noreferrer">OpenRouter routing rankings (routed-traffic source) &#8599;</a></li></ul>
+            <p class="y3r-note">Region reflects where the model's developer is headquartered.
+            Figures are OpenRouter routing traffic, aggregated over a trailing seven days -
+            developer routing behaviour, not the whole market.</p>
+            <p><a class="y3r-link" href="/research/framework">Read the research framework &#8594;</a></p>
+          </div>
+        </div>
+        <div class="y3r-explore">
+          <div class="y3r-subhead">Explore other models</div>
           <div class="explore-other"><div class="xo-row"><span class="xo-h">From Anthropic</span><span><a href="/research/model-adoption/anthropic-claude-4-6-sonnet">Anthropic Claude 4.6 Sonnet</a> &middot; <a href="/research/model-adoption/anthropic-claude-4-8-opus">Anthropic Claude 4.8 Opus</a> &middot; <a href="/research/model-adoption/anthropic-claude-5-fable">Anthropic Claude 5 Fable</a></span></div><div class="xo-row"><span class="xo-h">From US</span><span><a href="/research/model-adoption/google-gemini-2-5-flash">Google Gemini 2.5 Flash</a> &middot; <a href="/research/model-adoption/google-gemini-2-5-flash-lite">Google Gemini 2.5 Flash Lite</a> &middot; <a href="/research/model-adoption/google-gemini-3-1-flash-lite">Google Gemini 3.1 Flash Lite</a></span></div><div class="xo-row"><span class="xo-h">Nearby in the ranking</span><span><a href="/research/model-adoption/moonshotai-kimi-k2-6">Moonshot Kimi K2.6</a> &middot; <a href="/research/model-adoption/openai-gpt-5-5">OpenAI GPT 5.5</a> &middot; <a href="/research/model-adoption/anthropic-claude-5-fable">Anthropic Claude 5 Fable</a> &middot; <a href="/research/model-adoption/openai-gpt-4o-mini">OpenAI GPT 4o Mini</a></span></div></div>
         </div>
-      </section>
-    </div>
-  </main>
+      </div>
+    </section>
+
+    <section class="y3r-final">
+      <div class="y3r-wrap y3r-final-grid">
+        <div>
+          <div class="y3r-kicker">Public research / Paid intelligence</div>
+          <h2>Follow the model, not the launch cycle.</h2>
+          <p>The public record shows today's evidence. yellow3 Model Intelligence adds longer history, watchlists, alerts, comparisons and decision reporting.</p>
+        </div>
+        <a class="y3r-button" href="/research/model-adoption">Explore Model Intelligence &#8594;</a>
+      </div>
+    </section>
+  </div>
   <footer class="site-footer">
     <div class="inner">
       <div class="foot-top">
@@ -233,11 +279,7 @@
   </footer>
 <script>window.__ECON={"you": {"in": 2.5e-06, "out": 1.25e-05, "cache_read": 2.5e-07}, "compare": [{"slug": "anthropic-claude-4-7-opus", "name": "Anthropic Claude 4.7 Opus", "in": 2.5e-06, "out": 1.25e-05, "cache_read": 2.5e-07, "you": true}, {"slug": "deepseek-v4-flash", "name": "DeepSeek V4 Flash", "in": 1.4e-07, "out": 2.8e-07, "cache_read": 3e-08, "you": false}, {"slug": "google-gemini-2-5-flash", "name": "Google Gemini 2.5 Flash", "in": 1.5e-07, "out": 1.25e-06, "cache_read": 3e-08, "you": false}, {"slug": "anthropic-claude-sonnet-5", "name": "Anthropic Claude Sonnet 5", "in": 1e-06, "out": 5e-06, "cache_read": 1e-07, "you": false}], "workloads": {"coding-agent": {"label": "Coding agent", "tasks": 1000, "inp": 100000, "outp": 10000, "cached": 0.7}, "customer-support": {"label": "Customer support", "tasks": 50000, "inp": 2000, "outp": 500, "cached": 0.3}, "document-analysis": {"label": "Document analysis", "tasks": 5000, "inp": 50000, "outp": 2000, "cached": 0.2}}};</script>
   <script src="/research/model-adoption/model.js" defer></script>
-  <!-- yellow3 is an EU entity, so consent applies wherever the visitor is.
-       This tag was missing from all 41 pages this generator writes until
-       24 Aug 2026 - research/consent_sweep.py swept the site on 21 Aug and
-       these were regenerated without it afterwards. Same defect as
-       gen_dpp_register.py had: a sweep fixes pages, not the generator. -->
+  <!-- yellow3 is an EU entity, so consent applies wherever the visitor is. -->
   <script src="/consent.js" defer></script>
 </body>
 </html>

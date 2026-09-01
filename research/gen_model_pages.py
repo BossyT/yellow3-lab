@@ -448,10 +448,10 @@ def econ_tiles(e):
 def calculator_html(e):
     return '''<div class="calc" id="calc">
   <div class="calc-panel">
-    <div class="wl-tabs" role="tablist" aria-label="Workload preset">
-      <button class="wl-tab" data-wl="customer-support">Customer support</button>
-      <button class="wl-tab" data-wl="document-analysis">Document analysis</button>
-      <button class="wl-tab active" data-wl="coding-agent">Coding agent</button>
+    <div class="wl-tabs" role="group" aria-label="Workload preset">
+      <button type="button" class="wl-tab" data-wl="customer-support" aria-pressed="false">Customer support</button>
+      <button type="button" class="wl-tab" data-wl="document-analysis" aria-pressed="false">Document analysis</button>
+      <button type="button" class="wl-tab active" data-wl="coding-agent" aria-pressed="true">Coding agent</button>
     </div>
     <div class="calc-fields">
       <label class="cf">Monthly tasks<input type="number" id="c-tasks" min="0" step="100"></label>
@@ -557,6 +557,172 @@ def econ_script(e):
     return f'<script>window.__ECON={json.dumps(payload)};</script>'
 
 
+
+# ---------------------------------------------------------------------------
+# THE APPROVED INDIVIDUAL MODEL RECORD, v1 (1 September 2026).
+#
+# One data-driven template for every canonical slug - the package is explicit
+# that the DeepSeek page is a reference instance, not a page to copy. Markup is
+# scoped under #y3-model-record-redesign so the approved stylesheet applies
+# verbatim and cannot reach the shared nav and footer this generator emits.
+#
+# Every value below comes from the production feed. Where a field is absent the
+# record says which KIND of absence it is - not disclosed, not on record, or
+# explicitly unsupported - because the data contract forbids turning missing
+# data into a negative finding.
+# ---------------------------------------------------------------------------
+
+LOGO_DIR = "/img/model-adoption/provider-logos/"
+LOGO_MAP = {"deepseek": "deepseek", "openai": "openai", "z.ai": "z-ai", "zai": "z-ai",
+            "xiaomi": "xiaomi", "tencent": "tencent", "nvidia": "nvidia",
+            "google": "google", "minimax": "minimax", "moonshot": "moonshot",
+            "anthropic": "anthropic", "poolside": "poolside", "upstage": "upstage"}
+
+NOT_DISCLOSED = "Not publicly disclosed"
+NOT_ON_RECORD = "Not yet on record"
+
+
+def logo_for(developer):
+    return LOGO_MAP.get(str(developer or "").strip().lower())
+
+
+def r_logo(m, provider):
+    """Identity logo. Meaningful alt here - the record names the provider once."""
+    key = logo_for(m.get("provider_name") or provider.get("name"))
+    if not key:
+        return '<span class="y3r-logo y3r-logo-none" aria-hidden="true">?</span>'
+    name = esc(m.get("provider_name") or "")
+    return (f'<span class="y3r-logo"><img src="{LOGO_DIR}{key}.svg" '
+            f'alt="{name} logo" width="32" height="32"></span>')
+
+
+def r_move(change):
+    """Movement carries a symbol and a number, never colour alone."""
+    if change is None:
+        return '<span class="y3r-stat-value">New</span>'
+    if change > 0:
+        return f'<span class="y3r-stat-value y3r-up">&#9650; {change}</span>'
+    if change < 0:
+        return f'<span class="y3r-stat-value y3r-down">&#9660; {abs(change)}</span>'
+    return '<span class="y3r-stat-value">&ndash; Held</span>'
+
+
+def r_hero(m, provider, meta, e, updated):
+    cur = m["current"]
+    rank = cur.get("global_rank")
+    origin = " &middot; ".join([x for x in [esc(m.get("region")), esc(m.get("country"))] if x])
+    verified = f' &middot; Pricing verified {esc(D(updated))}' if (e and e.get("or_url")) else ""
+    official = meta.get("official_url") or provider.get("official_url")
+    off = (f'<a class="y3r-link" href="{esc(official)}" target="_blank" rel="noopener noreferrer">'
+           f'Official model page &#8599;</a>'
+           if official else f'<p>Official model page {NOT_ON_RECORD.lower()}</p>')
+    pricing = (f'<a class="y3r-link" href="{esc(e["or_url"])}" target="_blank" '
+               f'rel="noopener noreferrer">Official pricing &#8599;</a>'
+               if e and e.get("or_url") else "")
+    ctx = ("Current leader across the tracked routed-model set." if rank == 1
+           else f'Ranked {esc(rank)} of the tracked routed-model set.')
+    top3 = f'Ranked &middot; {esc(m.get("weeks_top3") or 0)} in top 3'
+    price_stat = (f'<div class="y3r-stat"><span class="y3r-stat-value">{esc(e["price_position"])}</span>'
+                  f'<span class="y3r-stat-label">Price position</span></div>'
+                  if e and e.get("price_position") else "")
+    return f'''  <section class="y3r-hero">
+    <div class="y3r-wrap">
+      <div class="y3r-hero-head">
+        <div class="y3r-provider">
+          {r_logo(m, provider)}
+          <div>
+            <div class="y3r-eyebrow">Model provider / {esc(m.get("provider_name"))}</div>
+            <h1>{esc(m["name"])}</h1>
+            <p class="y3r-meta">{origin} &middot; First tracked {esc(D(m["first_tracked"]))}{verified}</p>
+          </div>
+        </div>
+        <div class="y3r-official">{off}{pricing}</div>
+      </div>
+      <div class="y3r-signal" aria-label="Current {esc(m["name"])} adoption signal">
+        <div class="y3r-primary-signal">
+          <span class="y3r-signal-label">Global rank</span>
+          <div class="y3r-rank">#{esc(rank)}</div>
+          <p class="y3r-rank-context">{ctx}</p>
+        </div>
+        <div class="y3r-secondary-signals">
+          <div class="y3r-stat"><span class="y3r-stat-value">{cur.get("routed_share", 0):.2f}%</span><span class="y3r-stat-label">Routed share</span></div>
+          <div class="y3r-stat">{r_move(cur.get("rank_change"))}<span class="y3r-stat-label">Place this week</span></div>
+          <div class="y3r-stat"><span class="y3r-stat-value">{esc(m.get("weeks_ranked"))} weeks</span><span class="y3r-stat-label">{top3}</span></div>
+          {price_stat}
+        </div>
+      </div>
+      <div class="y3r-freshness"><strong>Live model record</strong><span>Trailing seven days ending {esc(D(updated))} &middot; refreshed daily</span></div>
+    </div>
+  </section>'''
+
+
+
+def r_current_read(m, e):
+    """The three evidence-led columns. Values only - no qualitative claim is
+    generated to fill a column, per the data contract. Each figure already
+    appears elsewhere in the record; this section groups them."""
+    cur = m["current"]
+    weeks = m.get("weeks_ranked") or 0
+    series = m.get("series") or []
+
+    if len(series) >= 2:
+        first, now = series[0]["routed_share"], series[-1]["routed_share"]
+        adoption_v = f"{now - first:+.2f} percentage points"
+        adoption_c = (f"Routed share moved from {first:.2f}% to {now:.2f}% "
+                      f"across {len(series)} tracked weeks.")
+    else:
+        adoption_v = f"{cur['routed_share']:.2f}% routed share"
+        adoption_c = "Movement needs a second observation before it can be reported."
+
+    if e and e.get("in") is not None and e.get("out") is not None:
+        econ_v = f"{fmt_price(e['in'])} in &middot; {fmt_price(e['out'])} out"
+        cached = fmt_price(e.get("cache_read"))
+        econ_c = ("Per one million tokens. Cached input is listed at " + cached + "."
+                  if cached else
+                  "Per one million tokens. Cached input is " + NOT_DISCLOSED.lower() + ".")
+    else:
+        econ_v, econ_c = NOT_ON_RECORD, "No pricing source is recorded for this model."
+
+    bits = []
+    if e and e.get("context"):
+        c = e["context"]
+        bits.append(f"{c // 1_000_000}M context" if c >= 1_000_000 else f"{c // 1000}K context")
+    if e and e.get("open_weight"):
+        bits.append("open weights")
+    fit_v = " &middot; ".join(bits) if bits else NOT_DISCLOSED
+    caps = [n for n, k in (("Reasoning", "reasoning"), ("tool calling", "tools"),
+                           ("structured output", "structured")) if e and e.get(k)]
+    if len(caps) > 1:
+        fit_c = ", ".join(caps[:-1]) + " and " + caps[-1] + " are supported."
+    elif caps:
+        fit_c = caps[0] + " is supported."
+    else:
+        fit_c = "Supported capabilities are " + NOT_DISCLOSED.lower() + "."
+
+    return f'''    <section class="y3r-section y3r-soft" id="read">
+      <div class="y3r-wrap">
+        <div class="y3r-section-head">
+          <div><div class="y3r-kicker">The current read</div><h2>What the record shows today.</h2></div>
+          <p class="y3r-lede">The page leads with what has been observed, then separates price, capability and history so a buyer can see both the signal and its limits.</p>
+        </div>
+        <div class="y3r-readout">
+          <div class="y3r-readout-item"><span class="y3r-readout-label">Adoption</span><div class="y3r-readout-value">{adoption_v}</div><p class="y3r-readout-copy">{adoption_c}</p></div>
+          <div class="y3r-readout-item"><span class="y3r-readout-label">Economics</span><div class="y3r-readout-value">{econ_v}</div><p class="y3r-readout-copy">{econ_c}</p></div>
+          <div class="y3r-readout-item"><span class="y3r-readout-label">Operating fit</span><div class="y3r-readout-value">{fit_v}</div><p class="y3r-readout-copy">{fit_c}</p></div>
+        </div>
+      </div>
+    </section>'''
+
+
+def fmt_price(v):
+    """Per-million price from a per-token figure. None stays None - the data
+    contract forbids showing zero in place of a missing price."""
+    if v is None:
+        return None
+    mm = v * 1_000_000
+    return ("$%.3f" % mm).rstrip("0").rstrip(".") if mm < 1 else "$%.2f" % mm
+
+
 def render_page(m, provider, meta, models_by_slug, page_slugs, site, econ=None):
     updated = site["as_of"]
     cur = m["current"]
@@ -577,33 +743,37 @@ def render_page(m, provider, meta, models_by_slug, page_slugs, site, econ=None):
         if e.get("price_position"):
             ss_price = (f'<div class="ss"><span class="ss-v ss-price">{esc(e["price_position"])}</span>'
                         f'<span class="ss-l">Price position</span></div>')
-        sec_econ = f'''
-      <section class="mx-sec">
-        <div class="sec-label">Model economics</div>
+        sec_econ = f'''    <section class="y3r-section" id="economics">
+      <div class="y3r-wrap">
+        <div class="y3r-section-head">
+          <div><div class="y3r-kicker">Model economics</div><h2>Published price, translated into a workload.</h2></div>
+          <p class="y3r-lede">Live per-token pricing via OpenRouter, verified {esc(D(updated))}. Batch and long-context tiers are not published in the feed, so they are omitted rather than estimated.</p>
+        </div>
         <div class="etiles">{econ_tiles(e)}</div>
-        <p class="src-note">Live per-token pricing via OpenRouter, verified {esc(D(updated))}. Batch and long-context tiers are not published in the feed, so they are omitted rather than estimated.</p>
-      </section>
-
-      <section class="mx-sec">
-        <div class="sec-label">What would it cost you?</div>
         {calculator_html(e)}
-      </section>
-
-      <section class="mx-sec">
-        <div class="sec-label">Compare the same workload</div>
+        <div class="y3r-subhead">Compare the same workload</div>
         {compare_html(e)}
-      </section>'''
-        sec_speed_caps = f'''
-      <section class="mx-sec two-col">
-        <div>
-          <div class="sec-label">Speed &amp; reliability</div>
-          {speed_html(e)}
+      </div>
+    </section>'''
+        sec_speed_caps = f'''    <section class="y3r-section" id="profile">
+      <div class="y3r-wrap">
+        <div class="y3r-section-head">
+          <div><div class="y3r-kicker">Operating profile</div><h2>What it supports, and what remains undisclosed.</h2></div>
+          <p class="y3r-lede">Verified support, explicit non-support and missing disclosure read differently on purpose. A blank is never made to look like a negative finding.</p>
         </div>
-        <div>
-          <div class="sec-label">Capabilities</div>
-          {capabilities_html(e)}
+        <div class="y3r-profile-grid">
+          <div>
+            <div class="y3r-subhead">Capabilities</div>
+            {capabilities_html(e)}
+          </div>
+          <div>
+            <div class="y3r-subhead">Model facts</div>
+            <dl class="glance">{at_a_glance(m, provider, meta)}</dl>
+            {speed_html(e)}
+          </div>
         </div>
-      </section>'''
+      </div>
+    </section>'''
         sec_price_hist = f'''
       <section class="mx-sec">
         <div class="sec-label">Price history</div>
@@ -617,93 +787,97 @@ def render_page(m, provider, meta, models_by_slug, page_slugs, site, econ=None):
         e["_workloads"] = site.get("workloads", {})
         econ_js = econ_script(e)
 
+    price_hist_inner = ('<div class="y3r-subhead">Price history</div>'
+                        + price_history_html(e)) if e else ""
     parts = [head(m, provider, meta, updated), NAV]
-    parts.append(f'''  <main class="mx">
-    <div class="wrap">
-      <nav class="crumb" aria-label="Breadcrumb">
+    parts.append(f'''  <div id="y3-model-record-redesign">
+    <div class="y3r-wrap">
+      <nav class="y3r-breadcrumb" aria-label="Breadcrumb">
         <a href="/research">Research</a> <span>/</span>
         <a href="{BASE}">AI model adoption</a> <span>/</span>
-        <span aria-current="page">{name}</span>
+        <strong aria-current="page">{name}</strong>
       </nav>
-
-      <header class="mx-head">
-        <div class="mx-head-main">
-          {provider_tile(provider)}
-          <div>
-            <div class="mx-provider">Model provider</div>
-            <h1>{name}</h1>
-            <div class="mx-meta">Built by {esc(m["provider_name"])} &middot; {origin} &middot; First tracked {esc(D(m["first_tracked"]))}{pricing_meta}</div>
-          </div>
-        </div>
-        <div class="mx-head-links">{official_link}{pricing_link}</div>
-      </header>
-
-      <section class="status-strip" aria-label="Current status">
-        <div class="ss"><span class="ss-v">#{cur["global_rank"]}</span><span class="ss-l">Global rank</span></div>
-        <div class="ss"><span class="ss-v">{cur["routed_share"]:.2f}%</span><span class="ss-l">Routed share</span></div>
-        <div class="ss"><span class="ss-v">{movement_cell(cur["rank_change"])}</span><span class="ss-l">This week</span></div>
-        <div class="ss"><span class="ss-v">{streak_text(m)}</span><span class="ss-l">Streak</span></div>
-        <div class="ss"><span class="ss-v">#{m["peak_rank"]}</span><span class="ss-l">Peak rank</span></div>
-        {ss_price}
-      </section>
+    </div>
+{r_hero(m, provider, meta, e, updated)}
+{r_current_read(m, e)}
 {sec_econ}
-      <section class="mx-sec">
-        <div class="sec-label">Price and adoption</div>
-        <p class="sec-sub">Routed-token share over time. A price line joins it as real changes are recorded.</p>
+    <section class="y3r-section y3r-soft" id="adoption">
+      <div class="y3r-wrap">
+        <div class="y3r-section-head">
+          <div><div class="y3r-kicker">Price and adoption</div><h2>Every point is an observed week.</h2></div>
+          <p class="y3r-lede">Routed-token share over time, with no interpolation presented as evidence. A price line joins it as real changes are recorded.</p>
+        </div>
         {adoption_chart(m["series"])}
         {pos_box}
-      </section>
+      </div>
+    </section>
 {sec_speed_caps}
-
-      <section class="mx-sec two-col">
-        <div>
-          <div class="sec-label">At a glance</div>
-          <dl class="glance">{at_a_glance(m, provider, meta)}</dl>
+    <section class="y3r-section y3r-analysis" id="analysis">
+      <div class="y3r-wrap">
+        <div class="y3r-analysis-grid">
+          <div><div class="y3r-kicker">Why it is moving</div><h2>Observed first. Interpreted only when sourced.</h2></div>
+          <div class="y3r-analysis-copy">{why_moving(m)}</div>
         </div>
-        <div>
-          <div class="sec-label">Why it is moving</div>
-          {why_moving(m)}
-        </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="mx-sec">
-        <div class="sec-label">Rank history</div>
-        <div class="table-scroll">
-          <table class="rank-history">
+    <section class="y3r-section" id="history">
+      <div class="y3r-wrap">
+        <div class="y3r-section-head">
+          <div><div class="y3r-kicker">History and evidence</div><h2>The record behind the headline.</h2></div>
+          <p class="y3r-lede">The current position stays connected to every observed week, price change and milestone.</p>
+        </div>
+        <div class="y3r-table-scroll">
+          <table class="y3r-table rank-history">
+            <caption class="y3r-visually-hidden">Weekly rank and routed-share history for {name}</caption>
             <thead><tr><th>Week ending</th><th>Rank</th><th>Routed share</th><th>&Delta; share</th><th>Movement</th><th>Region rank</th><th>Status</th></tr></thead>
             <tbody>{rank_history_rows(m["series"])}</tbody>
           </table>
         </div>
-      </section>
-{sec_price_hist}
-      <section class="mx-sec">
-        <div class="sec-label">Milestones</div>
-        <ul class="milestones">{milestones_list(m)}</ul>
-      </section>
-
-      <section class="mx-sec two-col">
-        <div>
-          <div class="sec-label">Sources &amp; methodology</div>
-          <ul class="sources">{sources_section(m, provider, meta)}</ul>
-          <p class="src-note">Region reflects where the model's developer is headquartered.
-          Figures are OpenRouter routing traffic, aggregated over a trailing seven days -
-          developer routing behaviour, not the whole market.</p>
+        <div class="y3r-history-grid">
+          <div>{price_hist_inner}</div>
+          <div>
+            <div class="y3r-subhead">Milestones</div>
+            <ul class="milestones">{milestones_list(m)}</ul>
+          </div>
         </div>
-        <div>
-          <div class="sec-label">Explore other models</div>
+      </div>
+    </section>
+
+    <section class="y3r-section y3r-soft" id="sources">
+      <div class="y3r-wrap">
+        <div class="y3r-section-head">
+          <div><div class="y3r-kicker">Sources and methodology</div><h2>Every claim keeps its route back to evidence.</h2></div>
+          <div>
+            <ul class="sources">{sources_section(m, provider, meta)}</ul>
+            <p class="y3r-note">Region reflects where the model's developer is headquartered.
+            Figures are OpenRouter routing traffic, aggregated over a trailing seven days -
+            developer routing behaviour, not the whole market.</p>
+            <p><a class="y3r-link" href="/research/framework">Read the research framework &#8594;</a></p>
+          </div>
+        </div>
+        <div class="y3r-explore">
+          <div class="y3r-subhead">Explore other models</div>
           <div class="explore-other">{explore_other(m, models_by_slug, page_slugs)}</div>
         </div>
-      </section>
-    </div>
-  </main>
+      </div>
+    </section>
+
+    <section class="y3r-final">
+      <div class="y3r-wrap y3r-final-grid">
+        <div>
+          <div class="y3r-kicker">Public research / Paid intelligence</div>
+          <h2>Follow the model, not the launch cycle.</h2>
+          <p>The public record shows today's evidence. yellow3 Model Intelligence adds longer history, watchlists, alerts, comparisons and decision reporting.</p>
+        </div>
+        <a class="y3r-button" href="{BASE}">Explore Model Intelligence &#8594;</a>
+      </div>
+    </section>
+  </div>
 {FOOTER}
 {econ_js}
   <script src="{BASE}/model.js" defer></script>
-  <!-- yellow3 is an EU entity, so consent applies wherever the visitor is.
-       This tag was missing from all 41 pages this generator writes until
-       24 Aug 2026 - research/consent_sweep.py swept the site on 21 Aug and
-       these were regenerated without it afterwards. Same defect as
-       gen_dpp_register.py had: a sweep fixes pages, not the generator. -->
+  <!-- yellow3 is an EU entity, so consent applies wherever the visitor is. -->
   <script src="/consent.js" defer></script>
 </body>
 </html>''')
@@ -883,6 +1057,239 @@ img{display:block;max-width:100%}a{color:inherit}
 .ph-up{color:var(--up);font-weight:700}.ph-down{color:var(--up);font-weight:700}.ph-flat{color:var(--muted)}
 @media(max-width:860px){.etiles{grid-template-columns:repeat(3,1fr)}.calc{grid-template-columns:1fr}.calc-panel{border-right:none;border-bottom:1px solid var(--line)}.cmp-row{grid-template-columns:120px 1fr 70px;gap:10px}}
 @media(max-width:520px){.etiles{grid-template-columns:repeat(2,1fr)}.calc-fields{grid-template-columns:1fr}.speed-strip{grid-template-columns:1fr}}
+
+/* =====================================================================
+   APPROVED INDIVIDUAL MODEL RECORD, v1 (1 September 2026).
+   Pasted verbatim from the handoff and left scoped under its own
+   #y3-model-record-redesign root, exactly as the package ships it. That
+   scope is why it cannot collide with the rules above, which still style
+   the shared nav and footer this generator emits.
+   ===================================================================== */
+
+    #y3-model-record-redesign {
+      --y3r-ink:#11120f;
+      --y3r-muted:#696e68;
+      --y3r-line:#d9dcd7;
+      --y3r-soft:#f3f4f1;
+      --y3r-cream:#fffdf2;
+      --y3r-yellow:#ffd500;
+      --y3r-purple:#5c1a73;
+      --y3r-green:#277b60;
+      --y3r-red:#a34234;
+      width:100%;
+      overflow:hidden;
+      background:#fff;
+      color:var(--y3r-ink);
+      font-family:Arial,Helvetica,sans-serif;
+      font-size:16px;
+      line-height:1.45;
+      -webkit-font-smoothing:antialiased;
+    }
+    #y3-model-record-redesign *, #y3-model-record-redesign *::before, #y3-model-record-redesign *::after { box-sizing:border-box; }
+    #y3-model-record-redesign h1, #y3-model-record-redesign h2, #y3-model-record-redesign h3, #y3-model-record-redesign p { margin:0; }
+    #y3-model-record-redesign h1, #y3-model-record-redesign h2, #y3-model-record-redesign h3 { font-weight:400; }
+    #y3-model-record-redesign a { color:inherit; text-decoration:none; }
+    #y3-model-record-redesign button, #y3-model-record-redesign input { font:inherit; }
+    #y3-model-record-redesign .y3r-wrap { max-width:1020px; margin:0 auto; padding:0 34px; }
+    #y3-model-record-redesign .y3r-breadcrumb { padding:35px 0 0; color:#777c76; font-size:11px; letter-spacing:.02em; }
+    #y3-model-record-redesign .y3r-breadcrumb strong { color:var(--y3r-ink); font-weight:400; }
+    #y3-model-record-redesign .y3r-hero { padding:50px 0 78px; }
+    #y3-model-record-redesign .y3r-hero-head { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:50px; align-items:end; padding-bottom:31px; border-bottom:1px solid var(--y3r-ink); }
+    #y3-model-record-redesign .y3r-provider { display:flex; gap:19px; align-items:center; min-width:0; }
+    #y3-model-record-redesign .y3r-logo { display:flex; width:64px; height:64px; flex:0 0 auto; align-items:center; justify-content:center; border:1px solid var(--y3r-line); }
+    #y3-model-record-redesign .y3r-logo img { display:block; width:44px; height:44px; object-fit:contain; }
+    #y3-model-record-redesign .y3r-eyebrow { color:#777c76; font-size:10px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; }
+    #y3-model-record-redesign h1 { margin-top:7px; font-size:52px; line-height:.98; letter-spacing:-.052em; }
+    #y3-model-record-redesign .y3r-meta { margin-top:12px; color:#555a55; font-size:12px; }
+    #y3-model-record-redesign .y3r-official { max-width:210px; text-align:right; }
+    #y3-model-record-redesign .y3r-official p { color:#858984; font-size:11px; }
+    #y3-model-record-redesign .y3r-link { display:inline-block; min-height:34px; margin-top:8px; padding-top:7px; border-bottom:1px solid var(--y3r-ink); font-size:11px; font-weight:500; letter-spacing:.06em; text-transform:uppercase; }
+    #y3-model-record-redesign .y3r-signal { display:grid; grid-template-columns:1.16fr 1.84fr; margin-top:31px; border-top:1px solid var(--y3r-ink); border-left:1px solid var(--y3r-line); }
+    #y3-model-record-redesign .y3r-primary-signal { position:relative; min-height:246px; padding:30px 31px 28px; border-right:1px solid var(--y3r-line); border-bottom:1px solid var(--y3r-line); background:var(--y3r-ink); color:#fff; }
+    #y3-model-record-redesign .y3r-primary-signal::before { content:""; position:absolute; left:0; right:0; top:0; height:7px; background:var(--y3r-yellow); }
+    #y3-model-record-redesign .y3r-signal-label { color:#aeb2ad; font-size:10px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; }
+    #y3-model-record-redesign .y3r-rank { margin-top:28px; font-size:104px; line-height:.78; letter-spacing:-.075em; }
+    #y3-model-record-redesign .y3r-rank-context { margin-top:27px; color:#d0d3ce; font-size:12px; }
+    #y3-model-record-redesign .y3r-secondary-signals { display:grid; grid-template-columns:1fr 1fr; }
+    #y3-model-record-redesign .y3r-stat { min-height:123px; padding:25px 25px 22px; border-right:1px solid var(--y3r-line); border-bottom:1px solid var(--y3r-line); }
+    #y3-model-record-redesign .y3r-stat-value { display:block; font-size:30px; line-height:1; letter-spacing:-.045em; }
+    #y3-model-record-redesign .y3r-stat-value.y3r-up { color:var(--y3r-green); }
+    #y3-model-record-redesign .y3r-stat-label { display:block; margin-top:13px; color:#777c76; font-size:9px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; }
+    #y3-model-record-redesign .y3r-freshness { display:flex; justify-content:space-between; gap:24px; padding-top:17px; color:#777c76; font-size:11px; }
+    #y3-model-record-redesign .y3r-freshness strong { color:var(--y3r-ink); font-weight:500; }
+    #y3-model-record-redesign .y3r-section { padding:84px 0; border-top:1px solid var(--y3r-line); }
+    #y3-model-record-redesign .y3r-soft { background:var(--y3r-soft); }
+    #y3-model-record-redesign .y3r-section-head { display:grid; grid-template-columns:1fr 1fr; gap:62px; align-items:end; margin-bottom:46px; }
+    #y3-model-record-redesign .y3r-kicker { margin-bottom:18px; color:#737872; font-size:10px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; }
+    #y3-model-record-redesign h2 { max-width:670px; font-size:46px; line-height:1; letter-spacing:-.05em; }
+    #y3-model-record-redesign .y3r-lede { max-width:440px; color:#555a55; font-size:16px; line-height:1.5; }
+    #y3-model-record-redesign .y3r-readout { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--y3r-ink); }
+    #y3-model-record-redesign .y3r-readout-item { min-height:188px; padding:25px 28px 27px 0; border-right:1px solid #cfd2ce; border-bottom:1px solid #cfd2ce; }
+    #y3-model-record-redesign .y3r-readout-item + .y3r-readout-item { padding-left:28px; }
+    #y3-model-record-redesign .y3r-readout-item:last-child { border-right:0; }
+    #y3-model-record-redesign .y3r-readout-label { color:#777c76; font-size:9px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; }
+    #y3-model-record-redesign .y3r-readout-value { margin-top:23px; font-size:27px; line-height:1.08; letter-spacing:-.035em; }
+    #y3-model-record-redesign .y3r-readout-copy { margin-top:12px; color:#666b66; font-size:12px; line-height:1.5; }
+    #y3-model-record-redesign .y3r-economics { display:grid; grid-template-columns:.92fr 1.08fr; border-top:1px solid var(--y3r-ink); }
+    #y3-model-record-redesign .y3r-price-ledger { display:grid; grid-template-columns:1fr 1fr; align-content:start; border-left:1px solid var(--y3r-line); }
+    #y3-model-record-redesign .y3r-price-cell { min-height:132px; padding:22px 20px; border-right:1px solid var(--y3r-line); border-bottom:1px solid var(--y3r-line); }
+    #y3-model-record-redesign .y3r-price-label { color:#777c76; font-size:9px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; }
+    #y3-model-record-redesign .y3r-price-value { display:block; margin-top:18px; font-size:27px; line-height:1; letter-spacing:-.04em; }
+    #y3-model-record-redesign .y3r-price-unit { display:block; margin-top:7px; color:#858984; font-size:10px; }
+    #y3-model-record-redesign .y3r-calculator { border-right:1px solid var(--y3r-line); border-bottom:1px solid var(--y3r-line); }
+    #y3-model-record-redesign .y3r-scenarios { display:grid; grid-template-columns:repeat(3,1fr); border-bottom:1px solid var(--y3r-line); }
+    #y3-model-record-redesign .y3r-scenario { min-height:48px; padding:0 12px; border:0; border-right:1px solid var(--y3r-line); background:#fff; color:#555a55; cursor:pointer; font-size:10px; font-weight:500; letter-spacing:.05em; text-transform:uppercase; }
+    #y3-model-record-redesign .y3r-scenario:last-child { border-right:0; }
+    #y3-model-record-redesign .y3r-scenario[aria-pressed="true"] { background:var(--y3r-ink); color:#fff; }
+    #y3-model-record-redesign .y3r-calc-body { display:grid; grid-template-columns:1fr .8fr; min-height:348px; }
+    #y3-model-record-redesign .y3r-fields { display:grid; grid-template-columns:1fr 1fr; gap:18px; align-content:start; padding:24px; border-right:1px solid var(--y3r-line); }
+    #y3-model-record-redesign .y3r-field { display:block; }
+    #y3-model-record-redesign .y3r-field.y3r-wide { grid-column:1 / -1; }
+    #y3-model-record-redesign .y3r-field span { display:block; margin-bottom:7px; color:#777c76; font-size:9px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
+    #y3-model-record-redesign .y3r-field input[type="number"] { width:100%; height:43px; padding:0 11px; border:1px solid var(--y3r-line); border-radius:0; background:#fff; color:var(--y3r-ink); font-size:14px; }
+    #y3-model-record-redesign .y3r-range-head { display:flex; justify-content:space-between; gap:16px; align-items:center; }
+    #y3-model-record-redesign .y3r-field input[type="range"] { width:100%; accent-color:var(--y3r-purple); }
+    #y3-model-record-redesign .y3r-result { padding:25px 23px; background:var(--y3r-cream); }
+    #y3-model-record-redesign .y3r-result-label { color:#777c76; font-size:9px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; }
+    #y3-model-record-redesign .y3r-total { margin-top:18px; color:var(--y3r-purple); font-size:43px; line-height:1; letter-spacing:-.05em; }
+    #y3-model-record-redesign .y3r-breakdown { margin-top:25px; border-top:1px solid #d8d7cc; }
+    #y3-model-record-redesign .y3r-breakdown-row { display:flex; justify-content:space-between; gap:20px; padding:10px 0; border-bottom:1px solid #e2e0d5; color:#555a55; font-size:11px; }
+    #y3-model-record-redesign .y3r-task-cost { margin-top:18px; color:var(--y3r-purple); font-size:12px; font-weight:500; }
+    #y3-model-record-redesign .y3r-note { margin-top:14px; color:#777c76; font-size:11px; line-height:1.5; }
+    #y3-model-record-redesign .y3r-compare { margin-top:42px; border-top:1px solid var(--y3r-ink); }
+    #y3-model-record-redesign .y3r-compare-row { display:grid; grid-template-columns:230px 1fr 72px; gap:20px; align-items:center; min-height:51px; border-bottom:1px solid var(--y3r-line); }
+    #y3-model-record-redesign .y3r-compare-name { font-size:12px; }
+    #y3-model-record-redesign .y3r-compare-name strong { color:var(--y3r-purple); font-weight:500; }
+    #y3-model-record-redesign .y3r-compare-track { height:7px; background:#e8e9e6; }
+    #y3-model-record-redesign .y3r-compare-fill { display:block; height:100%; background:#3a3c39; }
+    #y3-model-record-redesign .y3r-compare-fill.y3r-you { background:var(--y3r-purple); }
+    #y3-model-record-redesign .y3r-compare-value { text-align:right; font-size:12px; font-weight:500; }
+    #y3-model-record-redesign .y3r-chart-frame { border-top:1px solid var(--y3r-ink); border-bottom:1px solid var(--y3r-line); }
+    #y3-model-record-redesign .y3r-chart-head { display:flex; justify-content:space-between; gap:32px; align-items:end; padding:22px 0 12px; }
+    #y3-model-record-redesign .y3r-chart-head strong { font-size:16px; font-weight:500; }
+    #y3-model-record-redesign .y3r-chart-head span { color:#777c76; font-size:11px; }
+    #y3-model-record-redesign .y3r-chart { display:block; width:100%; height:auto; min-height:260px; }
+    #y3-model-record-redesign .y3r-chart text { font-family:Arial,Helvetica,sans-serif; }
+    #y3-model-record-redesign .y3r-chart-summary { display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid var(--y3r-line); }
+    #y3-model-record-redesign .y3r-chart-summary > div { min-height:120px; padding:22px 24px 22px 0; border-right:1px solid var(--y3r-line); }
+    #y3-model-record-redesign .y3r-chart-summary > div:last-child { padding-left:24px; border-right:0; }
+    #y3-model-record-redesign .y3r-summary-label { color:#777c76; font-size:9px; font-weight:500; letter-spacing:.13em; text-transform:uppercase; }
+    #y3-model-record-redesign .y3r-summary-value { margin-top:13px; font-size:23px; line-height:1.1; letter-spacing:-.03em; }
+    #y3-model-record-redesign .y3r-summary-copy { margin-top:8px; color:#777c76; font-size:11px; }
+    #y3-model-record-redesign .y3r-profile-grid { display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--y3r-ink); }
+    #y3-model-record-redesign .y3r-profile-col { border-right:1px solid var(--y3r-line); }
+    #y3-model-record-redesign .y3r-profile-col:last-child { border-right:0; }
+    #y3-model-record-redesign .y3r-profile-title { min-height:64px; padding:21px 24px; border-bottom:1px solid var(--y3r-line); font-size:17px; font-weight:500; }
+    #y3-model-record-redesign .y3r-fact { display:grid; grid-template-columns:1fr 1fr; gap:22px; min-height:54px; padding:15px 24px; border-bottom:1px solid var(--y3r-line); font-size:12px; }
+    #y3-model-record-redesign .y3r-fact span:first-child { color:#777c76; }
+    #y3-model-record-redesign .y3r-yes { color:var(--y3r-green); font-weight:500; }
+    #y3-model-record-redesign .y3r-no { color:#777c76; }
+    #y3-model-record-redesign .y3r-analysis { background:var(--y3r-ink); color:#fff; }
+    #y3-model-record-redesign .y3r-analysis .y3r-kicker { color:#aeb2ad; }
+    #y3-model-record-redesign .y3r-analysis-grid { display:grid; grid-template-columns:.72fr 1.28fr; gap:70px; align-items:start; }
+    #y3-model-record-redesign .y3r-analysis h2 { max-width:340px; }
+    #y3-model-record-redesign .y3r-analysis-copy { padding-top:4px; }
+    #y3-model-record-redesign .y3r-analysis-copy blockquote { margin:0; padding:0 0 30px; border-bottom:1px solid #3d403c; font-size:25px; font-weight:400; line-height:1.34; letter-spacing:-.025em; }
+    #y3-model-record-redesign .y3r-analysis-copy p { margin-top:25px; color:#c3c7c1; font-size:14px; line-height:1.6; }
+    #y3-model-record-redesign .y3r-analysis-copy strong { color:#fff; font-weight:500; }
+    #y3-model-record-redesign .y3r-table-wrap { overflow-x:auto; }
+    #y3-model-record-redesign table { width:100%; border-collapse:collapse; text-align:left; }
+    #y3-model-record-redesign th { padding:12px 12px 12px 0; border-bottom:1px solid var(--y3r-ink); color:#777c76; font-size:9px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; white-space:nowrap; }
+    #y3-model-record-redesign td { padding:16px 12px 16px 0; border-bottom:1px solid var(--y3r-line); font-size:12px; vertical-align:top; }
+    #y3-model-record-redesign .y3r-movement-up { color:var(--y3r-green); font-weight:500; }
+    #y3-model-record-redesign .y3r-movement-down { color:var(--y3r-red); font-weight:500; }
+    #y3-model-record-redesign .y3r-status { font-size:9px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
+    #y3-model-record-redesign .y3r-history-grid { display:grid; grid-template-columns:1fr 1fr; gap:54px; margin-top:65px; }
+    #y3-model-record-redesign .y3r-subhead { display:flex; justify-content:space-between; gap:20px; align-items:end; margin-bottom:18px; padding-bottom:12px; border-bottom:1px solid var(--y3r-ink); }
+    #y3-model-record-redesign .y3r-subhead h3 { font-size:23px; line-height:1.1; letter-spacing:-.03em; }
+    #y3-model-record-redesign .y3r-subhead span { color:#777c76; font-size:10px; }
+    #y3-model-record-redesign .y3r-price-event { display:grid; grid-template-columns:84px 1fr auto; gap:14px; padding:13px 0; border-bottom:1px solid var(--y3r-line); align-items:baseline; font-size:11px; }
+    #y3-model-record-redesign .y3r-price-event time { color:#777c76; }
+    #y3-model-record-redesign .y3r-price-event strong { font-weight:500; }
+    #y3-model-record-redesign details { margin-top:14px; }
+    #y3-model-record-redesign summary { min-height:44px; padding-top:12px; cursor:pointer; font-size:11px; font-weight:500; }
+    #y3-model-record-redesign .y3r-more-prices { border-top:1px solid var(--y3r-line); }
+    #y3-model-record-redesign .y3r-milestones { display:grid; grid-template-columns:repeat(4,1fr); margin-top:42px; border-top:1px solid var(--y3r-ink); }
+    #y3-model-record-redesign .y3r-milestone { min-height:160px; padding:21px 19px 22px 0; border-right:1px solid var(--y3r-line); border-bottom:1px solid var(--y3r-line); }
+    #y3-model-record-redesign .y3r-milestone:nth-child(4n+2), #y3-model-record-redesign .y3r-milestone:nth-child(4n+3), #y3-model-record-redesign .y3r-milestone:nth-child(4n+4) { padding-left:19px; }
+    #y3-model-record-redesign .y3r-milestone:nth-child(4n) { border-right:0; }
+    #y3-model-record-redesign .y3r-milestone time { color:#777c76; font-size:9px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
+    #y3-model-record-redesign .y3r-milestone strong { display:block; margin-top:22px; font-size:16px; font-weight:500; line-height:1.25; }
+    #y3-model-record-redesign .y3r-milestone span { display:block; margin-top:9px; color:#858984; font-size:10px; }
+    #y3-model-record-redesign .y3r-source-grid { display:grid; grid-template-columns:.8fr 1.2fr; gap:66px; }
+    #y3-model-record-redesign .y3r-source-links a { display:block; min-height:47px; padding:14px 0; border-top:1px solid var(--y3r-line); font-size:12px; }
+    #y3-model-record-redesign .y3r-source-links a:last-child { border-bottom:1px solid var(--y3r-line); }
+    #y3-model-record-redesign .y3r-source-copy { color:#555a55; font-size:14px; line-height:1.6; }
+    #y3-model-record-redesign .y3r-explore { margin-top:66px; }
+    #y3-model-record-redesign .y3r-explore-grid { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--y3r-ink); }
+    #y3-model-record-redesign .y3r-explore-group { min-height:150px; padding:22px 23px 22px 0; border-right:1px solid var(--y3r-line); border-bottom:1px solid var(--y3r-line); }
+    #y3-model-record-redesign .y3r-explore-group + .y3r-explore-group { padding-left:23px; }
+    #y3-model-record-redesign .y3r-explore-group:last-child { border-right:0; }
+    #y3-model-record-redesign .y3r-explore-label { color:#777c76; font-size:9px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; }
+    #y3-model-record-redesign .y3r-explore-group a { display:block; margin-top:10px; font-size:12px; }
+    #y3-model-record-redesign .y3r-final { padding:69px 0; background:var(--y3r-ink); color:#fff; }
+    #y3-model-record-redesign .y3r-final-grid { display:grid; grid-template-columns:1.25fr .75fr; gap:70px; align-items:end; }
+    #y3-model-record-redesign .y3r-final .y3r-kicker { color:#aeb2ad; }
+    #y3-model-record-redesign .y3r-final h2 { max-width:620px; }
+    #y3-model-record-redesign .y3r-final p { max-width:560px; margin-top:18px; color:#c5c9c3; font-size:14px; }
+    #y3-model-record-redesign .y3r-action { display:inline-flex; min-height:46px; padding:0 18px; align-items:center; justify-content:center; background:var(--y3r-yellow); color:var(--y3r-ink); font-size:11px; font-weight:500; }
+    #y3-model-record-redesign .y3r-sr { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    @media(max-width:760px) {
+      #y3-model-record-redesign .y3r-wrap { padding:0 22px; }
+      #y3-model-record-redesign .y3r-hero-head, #y3-model-record-redesign .y3r-section-head, #y3-model-record-redesign .y3r-economics, #y3-model-record-redesign .y3r-analysis-grid, #y3-model-record-redesign .y3r-source-grid, #y3-model-record-redesign .y3r-final-grid { grid-template-columns:1fr; }
+      #y3-model-record-redesign .y3r-hero-head { gap:24px; align-items:start; }
+      #y3-model-record-redesign .y3r-official { max-width:none; text-align:left; }
+      #y3-model-record-redesign h1 { font-size:43px; }
+      #y3-model-record-redesign h2 { font-size:37px; }
+      #y3-model-record-redesign .y3r-signal { grid-template-columns:1fr; }
+      #y3-model-record-redesign .y3r-primary-signal { min-height:210px; }
+      #y3-model-record-redesign .y3r-rank { font-size:86px; }
+      #y3-model-record-redesign .y3r-section-head { gap:22px; }
+      #y3-model-record-redesign .y3r-readout { grid-template-columns:1fr; }
+      #y3-model-record-redesign .y3r-readout-item, #y3-model-record-redesign .y3r-readout-item + .y3r-readout-item { min-height:0; padding:22px 0; border-right:0; }
+      #y3-model-record-redesign .y3r-calc-body { grid-template-columns:1fr; }
+      #y3-model-record-redesign .y3r-fields { border-right:0; border-bottom:1px solid var(--y3r-line); }
+      #y3-model-record-redesign .y3r-profile-grid { grid-template-columns:1fr; }
+      #y3-model-record-redesign .y3r-profile-col { border-right:0; }
+      #y3-model-record-redesign .y3r-history-grid { grid-template-columns:1fr; gap:54px; }
+      #y3-model-record-redesign .y3r-milestones { grid-template-columns:1fr 1fr; }
+      #y3-model-record-redesign .y3r-milestone:nth-child(n) { padding:21px 18px; }
+      #y3-model-record-redesign .y3r-milestone:nth-child(2n) { border-right:0; }
+      #y3-model-record-redesign .y3r-explore-grid { grid-template-columns:1fr; }
+      #y3-model-record-redesign .y3r-explore-group, #y3-model-record-redesign .y3r-explore-group + .y3r-explore-group { min-height:0; padding:20px 0; border-right:0; }
+    }
+    @media(max-width:480px) {
+      #y3-model-record-redesign .y3r-breadcrumb { padding-top:24px; }
+      #y3-model-record-redesign .y3r-hero { padding:38px 0 58px; }
+      #y3-model-record-redesign .y3r-section { padding:66px 0; }
+      #y3-model-record-redesign .y3r-provider { align-items:flex-start; }
+      #y3-model-record-redesign .y3r-logo { width:54px; height:54px; }
+      #y3-model-record-redesign .y3r-logo img { width:38px; height:38px; }
+      #y3-model-record-redesign h1 { font-size:36px; }
+      #y3-model-record-redesign .y3r-meta { line-height:1.6; }
+      #y3-model-record-redesign .y3r-secondary-signals { grid-template-columns:1fr; }
+      #y3-model-record-redesign .y3r-stat { min-height:100px; }
+      #y3-model-record-redesign .y3r-freshness { display:block; }
+      #y3-model-record-redesign .y3r-freshness span { display:block; margin-top:4px; }
+      #y3-model-record-redesign .y3r-price-ledger { grid-template-columns:1fr; }
+      #y3-model-record-redesign .y3r-scenarios { grid-template-columns:1fr; }
+      #y3-model-record-redesign .y3r-scenario { border-right:0; border-bottom:1px solid var(--y3r-line); }
+      #y3-model-record-redesign .y3r-fields { grid-template-columns:1fr; }
+      #y3-model-record-redesign .y3r-field.y3r-wide { grid-column:auto; }
+      #y3-model-record-redesign .y3r-compare-row { grid-template-columns:1fr auto; gap:8px; padding:13px 0; }
+      #y3-model-record-redesign .y3r-compare-track { grid-column:1 / -1; grid-row:2; }
+      #y3-model-record-redesign .y3r-compare-value { grid-column:2; grid-row:1; }
+      #y3-model-record-redesign .y3r-chart-head { display:block; }
+      #y3-model-record-redesign .y3r-chart-head span { display:block; margin-top:5px; }
+      #y3-model-record-redesign .y3r-chart { min-height:210px; }
+      #y3-model-record-redesign .y3r-chart-summary { grid-template-columns:1fr; }
+      #y3-model-record-redesign .y3r-chart-summary > div, #y3-model-record-redesign .y3r-chart-summary > div:last-child { min-height:0; padding:20px 0; border-right:0; border-bottom:1px solid var(--y3r-line); }
+      #y3-model-record-redesign .y3r-fact { grid-template-columns:1fr; gap:4px; }
+      #y3-model-record-redesign .y3r-analysis-copy blockquote { font-size:21px; }
+      #y3-model-record-redesign .y3r-milestones { grid-template-columns:1fr; }
+      #y3-model-record-redesign .y3r-milestone:nth-child(n) { min-height:0; padding:20px 0; border-right:0; }
+    }
+  
 """
 
 
