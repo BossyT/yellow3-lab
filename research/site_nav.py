@@ -29,6 +29,17 @@ import sys
 # places and break the brand rule everywhere the CSS does not reach.
 NAV_ITEMS = [
     ("/research", "Research"),
+    # Digital Product Passport restored as a top-level item, 1 September 2026,
+    # on Thomas's instruction. This REVERSES the 2026-08-11 approval that
+    # removed the standalone `DPP` item, and it is not the same item: that one
+    # was labelled `DPP`, this one is named in full.
+    #
+    # The measurement behind it: 197 of the 304 indexable pages - 65% of the
+    # site - are under /research/digital-product-passport, and none of it was
+    # reachable from the menu except through `Research`. The register was
+    # reported as hard to find, and it was two levels down behind a label that
+    # does not say what it holds.
+    ("/research/digital-product-passport", "Digital Product Passport"),
     ("/platforms", "Platforms"),
     ("/insights/", "Insights"),
     ("/advisory", "Advisory"),
@@ -298,6 +309,23 @@ def sweep(root, apply_changes):
         # A page whose active item was removed moves to where it now belongs;
         # one whose item survived keeps it; one with none stays with none.
         active = ACTIVE_MOVED.get(active, active)
+
+        # A PAGE INSIDE A SECTION HIGHLIGHTS THAT SECTION. Added 1 Sep 2026
+        # with the Digital Product Passport item.
+        #
+        # The rule above preserves whatever a page already said, which was
+        # right while every DPP page legitimately sat under Research. With a
+        # DPP item in the menu it stops being right: all 197 of them still
+        # carried active="/research", so following the new menu item landed
+        # you on a Digital Product Passport page with RESEARCH underlined.
+        # That reads as a broken menu rather than a deep page.
+        #
+        # Derived from the file's own path rather than from a list, so a page
+        # added next Monday inherits it without anyone remembering to.
+        rel = os.path.relpath(path, root).replace(os.sep, "/")
+        if rel.startswith("research/digital-product-passport"):
+            active = "/research/digital-product-passport"
+
         if active not in [href for href, _ in NAV_ITEMS]:
             active = None
 

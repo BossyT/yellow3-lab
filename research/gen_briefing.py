@@ -250,7 +250,24 @@ def shell() -> tuple[str, str, str]:
         elif _wanted(sel):
             out.append(f'    {sel} {{{body}}}')
 
-    return ('  ' + nav.group(0).strip() + '\n',
+    # THE BRIEFING IS A DIGITAL PRODUCT PASSPORT PAGE, so it highlights that
+    # menu item. Added 1 Sep 2026 with the DPP nav item.
+    #
+    # The nav is lifted from research.html, which marks RESEARCH active because
+    # that is what research.html is. Inheriting it published every edition with
+    # the wrong item underlined until research/site_nav.py --apply happened to
+    # run afterwards - an ordering dependency that works right up until the
+    # Monday somebody publishes and stops. Corrected here, at the point the
+    # markup is produced, so the order stops mattering.
+    nav_markup = nav.group(0).strip()
+    nav_markup = nav_markup.replace(' class="active"', '')
+    # The SECTION, not this route: the menu item is the Digital Product
+    # Passport hub and the briefing lives under it.
+    section = ROUTE.rsplit('/', 1)[0]
+    nav_markup = nav_markup.replace(
+        f'<a href="{section}"', f'<a href="{section}" class="active"', 1)
+
+    return ('  ' + nav_markup + '\n',
             '  ' + foot.group(0).strip() + '\n',
             '\n'.join(out))
 
