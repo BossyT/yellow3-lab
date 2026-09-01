@@ -60,7 +60,10 @@ PORT = int(os.environ.get("HEALTH_PORT", "8791"))
 CONTRACT = {
     "research/model-adoption-data.json": {
         "page": "research/model-adoption/live.html",
-        "min_rendered": {"sb-row": 4, "node": 3},
+        # y3-share replaced sb-row in the v2 redesign, 1 Sep 2026. The
+        # threshold and the property are unchanged - four regions must
+        # actually draw - only the class the rail renders with moved.
+        "min_rendered": {"y3-share": 4, "node": 3},
         "fields": {
             "share": "the regional share rail and the map nodes",
             "leaderboard": "the ranked model table",

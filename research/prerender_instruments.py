@@ -185,13 +185,63 @@ def model_adoption_blocks() -> dict:
                       'tokens, by where the model was built.</p><ul>'
                       + ''.join(rows) + '</ul>') if rows else ''
 
-    lb = []
-    for r in (data.get('leaderboard') or [])[:30]:
-        lb.append(f'<li>{esc(r.get("rank"))}. {esc(r.get("name"))} '
-                  f'({esc(r.get("developer"))}, {esc(r.get("region"))}) - '
-                  f'{esc(r.get("pct"))}% of routed tokens.</li>')
-    out['ranking'] = ('<p class="prerendered-note">Most-routed models, '
-                      f'{asof}.</p><ol>' + ''.join(lb) + '</ol>') if lb else ''
+    # THE NO-JAVASCRIPT BASELINE IS THE APPROVED CARD, not a list.
+    #
+    # The v2 handoff is explicit: "The server-rendered page must expose the full
+    # 30-card list and internal links without requiring JavaScript." This block
+    # is what a crawler and a reader without JS actually get, so it emits the
+    # same anchors, the same routes and the same facts the script renders - and
+    # the script overwrites it on a normal visit, so nothing is drawn twice.
+    #
+    # Only the twelve supplied provider marks are used. A developer this map
+    # does not know renders the neutral mark, which is the truthful answer for
+    # a stealth model rather than an invented logo.
+    LOGO_DIR = '/img/model-adoption/provider-logos/'
+    LOGO_MAP = {'deepseek': 'deepseek', 'openai': 'openai', 'z.ai': 'z-ai', 'zai': 'z-ai',
+                'xiaomi': 'xiaomi', 'tencent': 'tencent', 'nvidia': 'nvidia',
+                'google': 'google', 'minimax': 'minimax', 'moonshot': 'moonshot',
+                'anthropic': 'anthropic', 'poolside': 'poolside', 'upstage': 'upstage'}
+    REGION_LABEL = {'US': 'United States'}
+    rows30 = (data.get('leaderboard') or [])[:30]
+    top = max([r.get('pct') or 0 for r in rows30] + [1])
+    cards = []
+    for r in rows30:
+        key = str(r.get('developer') or '').strip().lower()
+        asset = LOGO_MAP.get(key)
+        logo = (f'<img src="{LOGO_DIR}{asset}.svg" alt="" width="32" height="32">'
+                if asset else '?')
+        prev, rank = r.get('prev_rank'), r.get('rank')
+        if r.get('new') or prev is None:
+            move = '<span class="y3-card-move y3-new">New</span>'
+        elif prev - rank > 0:
+            move = f'<span class="y3-card-move y3-up">&#9650; {prev - rank}</span>'
+        elif prev - rank < 0:
+            move = f'<span class="y3-card-move y3-down">&#9660; {rank - prev}</span>'
+        else:
+            move = '<span class="y3-card-move">&ndash; Unchanged</span>'
+        region = REGION_LABEL.get(r.get('region'), r.get('region'))
+        width = round((r.get('pct') or 0) / top * 100, 1)
+        cards.append(
+            f'<a class="y3-model-card{" is-leader" if rank == 1 else ""}" '
+            f'href="/research/model-adoption/{esc(r.get("slug"))}" '
+            f'aria-label="Open {esc(r.get("name"))} model record">'
+            f'<span class="y3-card-top"><span class="y3-card-rank">Rank {esc(rank)}</span>'
+            f'{move}</span>'
+            f'<span class="y3-model-id"><span class="y3-model-logo'
+            f'{"" if asset else " is-undisclosed"}">{logo}</span>'
+            f'<span><span class="y3-card-name">{esc(r.get("name"))}</span>'
+            f'<span class="y3-card-meta">{esc(r.get("developer"))} / {esc(region)}</span>'
+            f'</span></span>'
+            f'<span class="y3-card-signal"><span>'
+            f'<span class="y3-card-share">{esc(r.get("pct"))}%</span>'
+            f'<span class="y3-card-share-label">Routed share</span></span>'
+            f'<span class="y3-card-open">Open model record &#8594;</span></span>'
+            f'<span class="y3-track"><span class="y3-fill" style="width:{width}%"></span></span>'
+            f'</a>')
+    out['ranking'] = ''.join(cards)
+    out['lb-sub'] = (f'{len(rows30)} model cards ranked by routed share for the seven '
+                     f'days ending {asof}. Open any card for its economics, '
+                     f'capabilities, history and evidence.') if rows30 else ''
     return out
 
 
