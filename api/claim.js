@@ -13,7 +13,9 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { domainOf, isEmail, sign } = require('./_lib/util');
+const claimlock = require('./_lib/claimlock');
 
 const PUBLIC_MAILBOXES = new Set([
   'gmail.com', 'googlemail.com', 'outlook.com', 'hotmail.com', 'live.com',
@@ -72,6 +74,45 @@ function note(outcome, fields, failed) {
   const line = JSON.stringify(Object.assign({ evt: 'dpp_claim', outcome }, fields || {}));
   if (failed) console.error(line); else console.log(line);
 }
+
+
+// ---------------------------------------------------------------------------
+// REPEAT CLAIMS
+//
+// TreVerum claimed on 30 July and again on 17 August. Nothing had failed; the
+// first email arrived. They told us plainly why: "we weren't certain the first
+// one had gone through, so we redid it just to be safe". The page cannot
+// resolve that, and must not - saying "sent" would confirm a domain match and
+// turn this form into a way to enumerate who works where.
+//
+// The email can. It is the one channel where the identity is already
+// established, so it can say "you already have a live link" without telling
+// anyone anything they did not already know.
+//
+// WHAT IS STORED, AND WHY IT LOOKS LIKE THIS. The blob store is PUBLIC. A record
+// of "this address claimed this company" is exactly the kind of object the
+// register must never publish, so nothing identifying is written: the pathname
+// is an HMAC of (supplier, email) under AUTH_SECRET, and the body holds only
+// timestamps and a count. Found by URL, it names nobody. No claims table -
+// there is deliberately no account, queue or claim state in this design.
+function lockKey(sid, email, secret) {
+  return crypto.createHmac('sha256', String(secret))
+    .update(sid + '|' + email).digest('hex');
+}
+
+// "14:32 UTC on 3 September 2026" - unambiguous to a reader in any timezone,
+// which a bare clock time is not.
+function untilText(ms) {
+  const d = new Date(ms);
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+    'August', 'September', 'October', 'November', 'December'];
+  const hh = String(d.getUTCHours()).padStart(2, '0');
+  const mm = String(d.getUTCMinutes()).padStart(2, '0');
+  return hh + ':' + mm + ' UTC on ' + d.getUTCDate() + ' ' +
+    months[d.getUTCMonth()] + ' ' + d.getUTCFullYear();
+}
+
+const ORDINAL = { 2: 'second', 3: 'third', 4: 'fourth', 5: 'fifth' };
 
 const shell = inner =>
   '<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;max-width:520px;margin:0 auto;color:#0e0e0e">'
@@ -164,6 +205,45 @@ module.exports = async (req, res) => {
   const token = sign({ k: 'dpp', sid: row.id, email: email, x: Date.now() + LINK_TTL_MS }, process.env.AUTH_SECRET);
   const link = SITE + '/api/claim-verify?t=' + encodeURIComponent(token);
 
+  // Is a link from an earlier claim still live? Never fatal: if the store
+  // cannot be read the claimant simply gets the ordinary email, which is the
+  // behaviour that existed before this check.
+  const now = Date.now();
+  const lk = lockKey(row.id, email, process.env.AUTH_SECRET);
+  let live = null;
+  try {
+    live = await claimlock.read(lk, now);
+  } catch (e) {
+    note('claim_lock_unreadable', { supplier: row.id, error: String(e && e.message || e) }, true);
+  }
+
+  // The FIRST link's issue time and expiry are what the notice reports, so they
+  // are preserved across repeats rather than refreshed.
+  const record = live
+    ? { i: live.i, x: live.x, n: (live.n || 1) + 1 }
+    : { i: now, x: now + LINK_TTL_MS, n: 1 };
+  try {
+    await claimlock.write(lk, record);
+  } catch (e) {
+    note('claim_lock_unwritable', { supplier: row.id, error: String(e && e.message || e) }, true);
+  }
+
+  let repeatNotice = '';
+  if (live) {
+    const mins = Math.max(1, Math.round((now - live.i) / 60000));
+    const which = ORDINAL[record.n] || 'latest';
+    // Counted, so the rate is measurable. A high rate means the page copy in
+    // 3a is not doing its job and the wording needs another pass.
+    note('repeat_claim', {
+      supplier: row.id, email: email, claim_number: record.n,
+      minutes_since_first: mins, first_expires: new Date(live.x).toISOString(),
+    });
+    repeatNotice = p('<b>You already have a working link.</b> This is the ' + which
+      + ' link we have sent you for ' + row.name + ' in the last ' + mins + ' minute'
+      + (mins === 1 ? '' : 's') + '. The first is still valid until ' + untilText(live.x)
+      + '. Either will work; you do not need to claim again.');
+  }
+
   // Us first, in its own try. It used to share one try/catch with the claimant
   // mail, in sequence, so an address our sender rejected also took out the
   // internal notification: the claim vanished twice over.
@@ -189,6 +269,7 @@ module.exports = async (req, res) => {
     await send(KEY, SENDER, email, 'Your claim on the yellow3 DPP Supplier Register',
       shell(
         '<h1 style="font-size:20px;font-weight:800;letter-spacing:-0.02em;margin:0 0 12px">Claim confirmed for ' + row.name + '</h1>'
+        + repeatNotice
         + p('We verified that you wrote from <b>' + dom + '</b>, the domain on record for this profile, so the claim is confirmed.')
         + p('The button below opens your profile editor. Add your logo, a one-line description, '
           + 'a contact link and your sectors. It publishes immediately, in its own layer, marked '

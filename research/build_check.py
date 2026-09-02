@@ -420,9 +420,15 @@ def main() -> int:
     # to answer the submitter. Anything else is a personal address heading for
     # an object we serve to the world. It cannot see a rename or an address
     # reached through a variable, so it is a floor, not a proof.
+    #
+    # rglob, not glob: api/_lib/ was never scanned, so a helper that wrote to
+    # Blob was invisible to this gate. api/_lib/claimlock.js is exactly such a
+    # helper, added 2 September 2026, and the blind spot was found by moving
+    # that write out of api/claim.js to satisfy this rule honestly rather than
+    # by loosening it.
     api_dir = ROOT / 'api'
     exposed = []
-    for f in sorted(api_dir.glob('*.js')):
+    for f in sorted(api_dir.rglob('*.js')):
         src = f.read_text(encoding='utf-8')
         if 'blob.put' not in src:
             continue                      # writes nothing public, nothing to leak
@@ -454,7 +460,7 @@ def main() -> int:
                 continue
             if 'domainOf(' in line:
                 continue
-            exposed.append(f'{f.name}:{n}  {line.strip()[:72]}')
+            exposed.append(f'{f.relative_to(api_dir)}:{n}  {line.strip()[:72]}')
     if exposed:
         FAIL.append('a personal address is written into a public object:\n      '
                     + '\n      '.join(exposed)

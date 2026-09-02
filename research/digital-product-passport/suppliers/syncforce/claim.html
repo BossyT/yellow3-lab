@@ -62,8 +62,10 @@
           <div class="success" role="status" id="claimSuccess" hidden>
             <span class="success-icon">&#10003;</span>
             <div>
-              <p class="success-title" id="successTitle">Work email received</p>
+              <p class="success-title" id="successTitle">Request received</p>
               <p id="successBody"></p>
+              <p id="successHelp"></p>
+              <p id="successNext"></p>
             </div>
           </div>
 
@@ -169,6 +171,7 @@
   var f=document.getElementById('claimForm'), i=document.getElementById('work-email'),
       wrap=document.getElementById('inputWrap'), err=document.getElementById('claimError'),
       ok=document.getElementById('claimSuccess'), okBody=document.getElementById('successBody'),
+      help=document.getElementById('successHelp'), next=document.getElementById('successNext'),
       id=document.body.dataset.supplier, noDomain=!!document.body.dataset.nodomain;
 
   function fail(t){ err.hidden=false; err.textContent=t; wrap.classList.add('has-error'); }
@@ -186,20 +189,52 @@
     fetch('/api/claim',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({email:email,supplier:id})})
       .then(function(){
-        okBody.textContent = noDomain
-          ? 'We will verify it by hand, record the domain, and be in touch.'
-          : 'If ' + domain + ' is the domain on record for this company, a link to the '
-            + 'Company Information Editor is on its way. If it is not, nothing was sent.';
+        // GPT's copy of 2 September 2026, replacing a sentence that ended on the
+        // ambiguity and handed it to the reader. Three properties are load-bearing
+        // and must survive any edit here:
+        //   1. STILL CONDITIONAL. It must never confirm that a domain matched.
+        //      api/claim.js answers {ok:true} to every claim for the same reason:
+        //      otherwise this form is a way to test who works where, one address
+        //      at a time, against 191 organisations.
+        //   2. A TIME BOUND. "On its way" with no duration is exactly what left
+        //      TreVerum unsure enough to claim twice, on 30 July and 17 August.
+        //   3. ONE HUMAN ROUTE OUT OF BOTH BRANCHES, inside the success state
+        //      rather than below it, so neither outcome is a dead end.
+        if (noDomain) {
+          okBody.textContent = 'We will verify it by hand, record the domain, and be in touch.';
+          help.textContent = '';
+          next.textContent = '';
+        } else {
+          okBody.textContent = 'If ' + domain + ' is the domain on record for this company, '
+            + 'we have sent a link to the Company Information Editor. It usually arrives within '
+            + 'one minute. If you do not see it after five minutes, check your spam folder.';
+          // Assembled, not written. Every other appearance of this address on the
+          // site is built at runtime so it is not sitting in the HTML for a
+          // harvester, and the copy above must not be the one exception.
+          help.innerHTML = 'If no email arrives, whether because delivery was delayed or '
+            + domain + ' is not the domain on record, email '
+            + '<a href="#" id="successMail">hello' + String.fromCharCode(64) + 'yellow3.io</a>'
+            + ' and we will help you access the editor.';
+          next.textContent = 'The link opens the Company Information Editor, where you can review '
+            + 'and update the company information. The public profile will not change until you '
+            + 'submit the information there.';
+          var m = document.getElementById('successMail');
+          if (m) m.addEventListener('click', mailSupport);
+        }
         f.hidden=true; ok.hidden=false;
       })
       .catch(function(){ fail('Something went wrong. Please try again.'); });
   });
 
-  document.getElementById('claimSupport').addEventListener('click',function(ev){
-    ev.preventDefault();
+  // One builder for both routes in and out of the success state. The address is
+  // assembled rather than written, same as everywhere else on the site, so it is
+  // not sitting in the HTML for a scraper.
+  function mailSupport(ev){
+    if (ev) ev.preventDefault();
     window.location.href='mailto:'+'hello'+String.fromCharCode(64)+'yellow3.io'
       +'?subject='+encodeURIComponent('DPP Supplier Register claim: '+document.title.split(' - ')[0]);
-  });
+  }
+  document.getElementById('claimSupport').addEventListener('click', mailSupport);
 })();
 </script>
 
