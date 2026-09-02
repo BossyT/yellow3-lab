@@ -44,7 +44,7 @@
         <div class="title-block">
           <p class="eyebrow">SUPPLIER CLAIM</p>
           <h1 id="claim-title">Claim Eviden</h1>
-          <p class="lede">Confirm that you represent Eviden using your company email. If the domain matches our research record, access is granted immediately.</p>
+          <p class="lede">Confirm that you represent Eviden using your company email. If the domain matches our research record, we will email you a link to the Company Information Editor.</p>
         </div>
 
         <section class="claim-card">
@@ -188,7 +188,19 @@
     // test is deliberately not the gate.
     fetch('/api/claim',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({email:email,supplier:id})})
-      .then(function(){
+      .then(function(r){
+        // BLOCKER 1, GPT's live review of 2 September 2026. This used to ignore
+        // the response entirely, so a 429 or a 500 rendered "Request received"
+        // over a request the server never processed - the single worst thing
+        // this page can do, because the claimant then waits for an email that
+        // is never coming.
+        //
+        // The check is on the transport only. It must never branch on anything
+        // the server said about the address or the domain, because the response
+        // is deliberately identical for matched, unmatched, first and repeat
+        // claims, and reading it would rebuild the enumeration oracle that
+        // api/claim.js exists to prevent.
+        if (!r.ok) throw new Error('http ' + r.status);
         // GPT's copy of 2 September 2026, replacing a sentence that ended on the
         // ambiguity and handed it to the reader. Three properties are load-bearing
         // and must survive any edit here:
@@ -201,9 +213,15 @@
         //   3. ONE HUMAN ROUTE OUT OF BOTH BRANCHES, inside the success state
         //      rather than below it, so neither outcome is a dead end.
         if (noDomain) {
-          okBody.textContent = 'We will verify it by hand, record the domain, and be in touch.';
-          help.textContent = '';
-          next.textContent = '';
+          okBody.textContent = 'Because no domain exists on the research record, we need to '
+            + 'verify this request by hand. We will email you within one working day.';
+          help.innerHTML = 'If you do not hear from us by then, email '
+            + '<a href="#" id="successMail">hello' + String.fromCharCode(64) + 'yellow3.io</a>'
+            + ' and we will help you complete the claim.';
+          next.textContent = 'Nothing on the public profile changes until we have verified the '
+            + 'company domain and you submit the company information in the editor.';
+          var mn = document.getElementById('successMail');
+          if (mn) mn.addEventListener('click', mailSupport);
         } else {
           okBody.textContent = 'If ' + domain + ' is the domain on record for this company, '
             + 'we have sent a link to the Company Information Editor. It usually arrives within '

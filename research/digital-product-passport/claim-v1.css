@@ -84,7 +84,12 @@
 
 .dpp-claim .error{margin:10px 0 0;color:#9f3027;font-size:12px;font-weight:700}
 
-.dpp-claim .success{display:flex;gap:15px;align-items:center;padding:20px;background:#eef4eb;border:1px solid #c7d5c0}
+/* The confirmation grew from one sentence to four paragraphs on 2 September
+   2026. Centring put the tick beside the middle of the block and the
+   paragraphs ran together with no separation. */
+.dpp-claim .success{display:flex;gap:15px;align-items:flex-start;padding:20px;background:#eef4eb;border:1px solid #c7d5c0}
+.dpp-claim .success p + p{margin-top:8px}
+.dpp-claim .success p:empty{display:none}
 
 .dpp-claim .success-icon{display:grid;place-items:center;flex:0 0 34px;height:34px;border-radius:50%;background:#33562c;color:#fff}
 

@@ -693,24 +693,34 @@ def claim_html(r, counts):
     name = r["name"]
     dom = r["domain"]
 
-    # 5 commercial rows have no domain on record. The approved card shows the
+    # A few commercial rows have no domain on record (4 today, it moves). The card shows the
     # domain and the state beside it; with nothing on record it says so rather
     # than promising a check we cannot run.
     if dom:
         domain_line = (f'<p class="domain"><span class="domain-dot"></span>{e(dom)}</p>')
         domain_state = "DOMAIN ON RECORD"
         field_help = f"It must end in @{e(dom)}"
+        form_note = "No account setup and no manual approval when the domain matches."
+        assure_h = "Immediate domain check"
+        assure_p = ("We match your work email to the company domain already recorded "
+                    "in the register.")
         placeholder = f"you@{e(dom)}"
         lede = (f"Confirm that you represent {e(name)} using your company email. If the domain "
-                f"matches our research record, access is granted immediately.")
+                f"matches our research record, we will email you a link to the Company "
+                f"Information Editor.")
     else:
         domain_line = '<p class="domain"><span class="domain-dot no-domain"></span>No domain recorded yet</p>'
         domain_state = "NO DOMAIN ON RECORD"
         field_help = "Use your company email, not a personal mailbox"
+        # Everything on a no-domain page used to promise an automatic check the
+        # page itself says cannot happen. GPT, 2 September 2026.
+        form_note = "We will reply within one working day."
+        assure_h = "Manual domain verification"
+        assure_p = "We verify the company email against public evidence before granting access."
         placeholder = "you@yourcompany.com"
-        lede = (f"We have no domain on record for {e(name)} yet, so this claim cannot be "
-                f"confirmed automatically. Send your company email and it reaches us directly: "
-                f"we verify it by hand and record the domain.")
+        lede = (f"We have no domain on record for {e(name)}, so the claim cannot be "
+                f"confirmed automatically. Submit your company email and we will verify "
+                f"the domain by hand.")
 
     body = f"""{SITE_NAV}<main class="dpp-claim">
   <div class="page-shell">
@@ -755,14 +765,14 @@ def claim_html(r, counts):
               </div>
               <button type="submit">Claim this profile <span>&#8594;</span></button>
             </div>
-            <p class="privacy-note">No account setup and no manual approval when the domain matches.</p>
+            <p class="privacy-note">{form_note}</p>
             <p class="error" role="alert" id="claimError" hidden></p>
           </form>
         </section>
 
         <div class="assurance-grid">
-          <article><span class="number">01</span><h3>Immediate domain check</h3>
-            <p>We match your work email to the company domain already recorded in the register.</p></article>
+          <article><span class="number">01</span><h3>{assure_h}</h3>
+            <p>{assure_p}</p></article>
           <article><span class="number">02</span><h3>Your layer stays labelled</h3>
             <p>Anything you add appears separately as company-supplied information, with its own date.</p></article>
           <article><span class="number">03</span><h3>Our research stays ours</h3>
@@ -825,7 +835,19 @@ def claim_html(r, counts):
     // test is deliberately not the gate.
     fetch('/api/claim',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({email:email,supplier:id})})
-      .then(function(){
+      .then(function(r){
+        // BLOCKER 1, GPT's live review of 2 September 2026. This used to ignore
+        // the response entirely, so a 429 or a 500 rendered "Request received"
+        // over a request the server never processed - the single worst thing
+        // this page can do, because the claimant then waits for an email that
+        // is never coming.
+        //
+        // The check is on the transport only. It must never branch on anything
+        // the server said about the address or the domain, because the response
+        // is deliberately identical for matched, unmatched, first and repeat
+        // claims, and reading it would rebuild the enumeration oracle that
+        // api/claim.js exists to prevent.
+        if (!r.ok) throw new Error('http ' + r.status);
         // GPT's copy of 2 September 2026, replacing a sentence that ended on the
         // ambiguity and handed it to the reader. Three properties are load-bearing
         // and must survive any edit here:
@@ -838,9 +860,15 @@ def claim_html(r, counts):
         //   3. ONE HUMAN ROUTE OUT OF BOTH BRANCHES, inside the success state
         //      rather than below it, so neither outcome is a dead end.
         if (noDomain) {
-          okBody.textContent = 'We will verify it by hand, record the domain, and be in touch.';
-          help.textContent = '';
-          next.textContent = '';
+          okBody.textContent = 'Because no domain exists on the research record, we need to '
+            + 'verify this request by hand. We will email you within one working day.';
+          help.innerHTML = 'If you do not hear from us by then, email '
+            + '<a href="#" id="successMail">hello' + String.fromCharCode(64) + 'yellow3.io</a>'
+            + ' and we will help you complete the claim.';
+          next.textContent = 'Nothing on the public profile changes until we have verified the '
+            + 'company domain and you submit the company information in the editor.';
+          var mn = document.getElementById('successMail');
+          if (mn) mn.addEventListener('click', mailSupport);
         } else {
           okBody.textContent = 'If ' + domain + ' is the domain on record for this company, '
             + 'we have sent a link to the Company Information Editor. It usually arrives within '
