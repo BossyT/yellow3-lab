@@ -1081,6 +1081,26 @@
       "source": "/research/digital-product-passport/texpo-srl-deply",
       "destination": "/research/digital-product-passport/suppliers/deply",
       "permanent": true
+    },
+    {
+      "source": "/research/digital-product-passport/suppliers/dpp-services/claim",
+      "destination": "/research/digital-product-passport/suppliers/dpp-services",
+      "permanent": false
+    },
+    {
+      "source": "/research/digital-product-passport/suppliers/emblem/claim",
+      "destination": "/research/digital-product-passport/suppliers/emblem",
+      "permanent": false
+    },
+    {
+      "source": "/research/digital-product-passport/suppliers/kerion-x-core/claim",
+      "destination": "/research/digital-product-passport/suppliers/kerion-x-core",
+      "permanent": false
+    },
+    {
+      "source": "/research/digital-product-passport/suppliers/magellan-tx-dpp/claim",
+      "destination": "/research/digital-product-passport/suppliers/magellan-tx-dpp",
+      "permanent": false
     }
   ]
 }

@@ -349,6 +349,26 @@ def profile_html(r, counts, cap):
     layer cannot alter a single researched field."""
     results = cap.get(r["id"], {})
     nc = r["entity_type"] in NON_COMMERCIAL
+    # A ROW WITH NO DOMAIN CANNOT BE CLAIMED, and must not offer to be.
+    #
+    # api/claim.js states the design: "The register's join key IS the domain, so
+    # a work email at that domain proves the person belongs to the company. No
+    # accounts, no moderation queue... Nobody at yellow3 is in the loop." With no
+    # domain there is nothing to match against, so the only possible resolver is
+    # a person - and research/dpp-intake-runbook.md opens by forbidding exactly
+    # that: "with no human in the loop. A human does not process anything."
+    #
+    # These pages promised a human anyway, in the old copy ("we verify it by hand
+    # and record the domain") and in the replacement drafted on 2 September 2026.
+    # Thomas ruled the promise out; GPT withdrew the copy. Neither can ship, so
+    # the OFFER goes rather than the wording - there is no honest wording for a
+    # claim that cannot be decided.
+    #
+    # The rows affected have no domain because yellow3 never established who they
+    # are: one has no name, one records "no primary source found", the rest are
+    # directory listings the runbook forbids as sources. The footer already
+    # carries "Suggest a correction", which is the honest route for them.
+    claimable = not nc and bool((r.get("domain") or "").strip())
     kind, curl, cdate = source_state(r["country_source"])
     # A date on this page means a human looked on that date. Never today's date:
     # rebuilding the site is not research, and stamping the build date here would
@@ -471,6 +491,8 @@ def profile_html(r, counts, cap):
         </section>"""
 
     claim_href = f"/research/digital-product-passport/suppliers/{e(sid)}/claim"
+    claim_cta = (f'<a class="claim-button" href="{claim_href}">Claim this profile &#8594;</a>'
+                 if claimable else "")
     company_tab = "" if nc else (
         f'<button type="button" class="company-tab" data-tab="company">'
         f'<span>02</span> Supplied by {e(name)}</button>')
@@ -484,13 +506,13 @@ def profile_html(r, counts, cap):
               <p>This layer is reserved for information provided directly by {e(name)}. It
               never changes yellow3 lab's independent research.</p>
             </div>
-            <a class="claim-button" href="{claim_href}">Claim this profile &#8594;</a>
+            {claim_cta}
           </div>
         </section>"""
 
     src_cell = (f'<a href="{e(r["evidence_url"])}" target="_blank" rel="noopener">{e(r["source"])} &#8599;</a>'
                 if r["evidence_url"] else e(r["source"]) or "Not recorded")
-    claim_foot = "" if nc else f'<a href="{claim_href}">Claim this profile &#8599;</a>'
+    claim_foot = f'<a href="{claim_href}">Claim this profile &#8599;</a>' if claimable else ""
 
     body = f"""{SITE_NAV}<main class="dpp-profile">
   <div class="page-shell">
@@ -696,32 +718,21 @@ def claim_html(r, counts):
     # A few commercial rows have no domain on record (4 today, it moves). The card shows the
     # domain and the state beside it; with nothing on record it says so rather
     # than promising a check we cannot run.
-    if dom:
-        domain_line = (f'<p class="domain"><span class="domain-dot"></span>{e(dom)}</p>')
-        domain_state = "DOMAIN ON RECORD"
-        field_help = f"It must end in @{e(dom)}"
-        form_note = "No account setup and no manual approval when the domain matches."
-        assure_h = "Immediate domain check"
-        assure_p = ("We match your work email to the company domain already recorded "
-                    "in the register.")
-        placeholder = f"you@{e(dom)}"
-        lede = (f"Confirm that you represent {e(name)} using your company email. If the domain "
-                f"matches our research record, we will email you a link to the Company "
-                f"Information Editor.")
-    else:
-        domain_line = '<p class="domain"><span class="domain-dot no-domain"></span>No domain recorded yet</p>'
-        domain_state = "NO DOMAIN ON RECORD"
-        field_help = "Use your company email, not a personal mailbox"
-        # Everything on a no-domain page used to promise an automatic check the
-        # page itself says cannot happen. GPT, 2 September 2026.
-        form_note = "No account setup and no manual approval when the domain matches."
-        assure_h = "Immediate domain check"
-        assure_p = ("We match your work email to the company domain already recorded "
-                    "in the register.")
-        placeholder = "you@yourcompany.com"
-        lede = (f"We have no domain on record for {e(name)} yet, so this claim cannot be "
-                f"confirmed automatically. Send your company email and it reaches us directly: "
-                f"we verify it by hand and record the domain.")
+    # A claim page is only generated for a row WITH a domain - see the
+    # claimable gate in profile_html. Without one there is nothing to match a
+    # work email against, and the runbook forbids a human deciding it instead.
+    assert dom, f"claim page requested for {r['id']}, which has no domain on record"
+    domain_line = (f'<p class="domain"><span class="domain-dot"></span>{e(dom)}</p>')
+    domain_state = "DOMAIN ON RECORD"
+    field_help = f"It must end in @{e(dom)}"
+    placeholder = f"you@{e(dom)}"
+    form_note = "No account setup and no manual approval when the domain matches."
+    assure_h = "Immediate domain check"
+    assure_p = ("We match your work email to the company domain already recorded "
+                "in the register.")
+    lede = (f"Confirm that you represent {e(name)} using your company email. If the domain "
+            f"matches our research record, we will email you a link to the Company "
+            f"Information Editor.")
 
     body = f"""{SITE_NAV}<main class="dpp-claim">
   <div class="page-shell">
@@ -820,7 +831,7 @@ def claim_html(r, counts):
       wrap=document.getElementById('inputWrap'), err=document.getElementById('claimError'),
       ok=document.getElementById('claimSuccess'), okBody=document.getElementById('successBody'),
       help=document.getElementById('successHelp'), next=document.getElementById('successNext'),
-      id=document.body.dataset.supplier, noDomain=!!document.body.dataset.nodomain;
+      id=document.body.dataset.supplier;
 
   function fail(t){ err.hidden=false; err.textContent=t; wrap.classList.add('has-error'); }
   function clear(){ err.hidden=true; wrap.classList.remove('has-error'); }
@@ -860,20 +871,11 @@ def claim_html(r, counts):
         //      TreVerum unsure enough to claim twice, on 30 July and 17 August.
         //   3. ONE HUMAN ROUTE OUT OF BOTH BRANCHES, inside the success state
         //      rather than below it, so neither outcome is a dead end.
-        if (noDomain) {
-          // HELD, 2 September 2026. GPT's approved copy for this branch promised
-          // manual verification; Thomas ruled that nothing is manually verified
-          // because it breaks the register's standing promise. The copy this
-          // replaced promised the same thing ("we verify it by hand and record
-          // the domain"), so reverting is not a fix either - the contradiction
-          // predates both. The five rows with no domain have no company
-          // identity on record at all (one has no name; one records "no primary
-          // source found"), which is why nothing here can be automatic.
-          // Awaiting a ruling on whether these rows should offer a claim at all.
-          okBody.textContent = 'We will verify it by hand, record the domain, and be in touch.';
-          help.textContent = '';
-          next.textContent = '';
-        } else {
+        // One branch only. A claim page exists solely for a row with a domain,
+        // because the domain is the only thing that can settle a claim without a
+        // person in the loop. See profile_html for why the alternative was
+        // removed rather than reworded.
+        {
           okBody.textContent = 'If ' + domain + ' is the domain on record for this company, '
             + 'we have sent a link to the Company Information Editor. It usually arrives within '
             + 'one minute. If you do not see it after five minutes, check your spam folder.';
@@ -916,8 +918,8 @@ def claim_html(r, counts):
         '<link rel="stylesheet" href="/research/digital-product-passport/register.css" />',
         '<link rel="stylesheet" href="/research/digital-product-passport/register.css" />\n'
         '  <link rel="stylesheet" href="/research/digital-product-passport/claim-v1.css" />')
-    nod = '' if dom else ' data-nodomain="1"'
-    out = out.replace("<body>", f'<body data-supplier="{e(sid)}"{nod}>')
+
+    out = out.replace("<body>", f'<body data-supplier="{e(sid)}">')
     # a company action, not research - keep it out of the index
     return out.replace('<meta property="og:type" content="website" />',
                        '<meta property="og:type" content="website" />\n  <meta name="robots" content="noindex,follow" />')
@@ -2168,7 +2170,7 @@ RETIRED = {
 }
 
 
-def write_redirects(ids):
+def write_redirects(ids, unclaimable=()):
     """The old profile URLs are indexed. Move them with explicit 308s.
 
     A wildcard on /research/digital-product-passport/:id would also swallow
@@ -2204,6 +2206,14 @@ def write_redirects(ids):
         moved.append({"source": f"/research/digital-product-passport/{old_id}",
                       "destination": f"/research/digital-product-passport/suppliers/{new_id}",
                       "permanent": True})
+    # A row that lost its claim page keeps its claim URL working, pointing at the
+    # profile. Those URLs were live until 2 September 2026 and may be bookmarked
+    # or in an intake letter; a 404 would be a worse answer than the profile.
+    for i in sorted(unclaimable):
+        moved.append({"source": f"/research/digital-product-passport/suppliers/{i}/claim",
+                      "destination": f"/research/digital-product-passport/suppliers/{i}",
+                      "permanent": False})
+
     conf["redirects"] = keep + moved
     with open(VERCEL, "w", encoding="utf-8") as fh:
         json.dump(conf, fh, indent=2)
@@ -2226,7 +2236,7 @@ def main():
         with open(os.path.join(OUT, f"{r['id']}.html"), "w", encoding="utf-8") as fh:
             fh.write(profile_html(r, counts, cap))
         profiles += 1
-        if r["entity_type"] not in NON_COMMERCIAL:
+        if r["entity_type"] not in NON_COMMERCIAL and (r.get("domain") or "").strip():
             d = os.path.join(OUT, r["id"])
             os.makedirs(d, exist_ok=True)
             with open(os.path.join(d, "claim.html"), "w", encoding="utf-8") as fh:
@@ -2263,7 +2273,9 @@ def main():
     # GONE, not rows that changed type.
     non_commercial = {r["id"] for r in rows if r["entity_type"] in NON_COMMERCIAL}
     wrong = 0
-    for sid in non_commercial:
+    unclaimable = set(non_commercial) | {r["id"] for r in rows
+                                         if not (r.get("domain") or "").strip()}
+    for sid in unclaimable:
         d = os.path.join(OUT, sid)
         if not os.path.isdir(d):
             continue
@@ -2272,7 +2284,7 @@ def main():
             if os.path.exists(f):
                 os.remove(f); wrong += 1
     if wrong:
-        print(f"removed claim/edit pages for non-commercial rows {wrong:3d}")
+        print(f"removed claim/edit pages for unclaimable rows      {wrong:3d}")
 
     # retire the old flat profile pages now that they redirect
     old = 0
@@ -2361,7 +2373,10 @@ def main():
         json.dump(doc, open(src_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         print(f"stored counts refreshed      {was} -> {counts['organisations']} organisations")
 
-    n = write_redirects([r["id"] for r in rows])
+    n = write_redirects(
+        [r["id"] for r in rows],
+        [r["id"] for r in rows
+         if r["entity_type"] not in NON_COMMERCIAL and not (r.get("domain") or "").strip()])
 
     print(f"/suppliers                     1 page")
     print(f"/suppliers/add                 1 page")

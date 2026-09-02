@@ -172,7 +172,7 @@
       wrap=document.getElementById('inputWrap'), err=document.getElementById('claimError'),
       ok=document.getElementById('claimSuccess'), okBody=document.getElementById('successBody'),
       help=document.getElementById('successHelp'), next=document.getElementById('successNext'),
-      id=document.body.dataset.supplier, noDomain=!!document.body.dataset.nodomain;
+      id=document.body.dataset.supplier;
 
   function fail(t){ err.hidden=false; err.textContent=t; wrap.classList.add('has-error'); }
   function clear(){ err.hidden=true; wrap.classList.remove('has-error'); }
@@ -212,20 +212,11 @@
         //      TreVerum unsure enough to claim twice, on 30 July and 17 August.
         //   3. ONE HUMAN ROUTE OUT OF BOTH BRANCHES, inside the success state
         //      rather than below it, so neither outcome is a dead end.
-        if (noDomain) {
-          // HELD, 2 September 2026. GPT's approved copy for this branch promised
-          // manual verification; Thomas ruled that nothing is manually verified
-          // because it breaks the register's standing promise. The copy this
-          // replaced promised the same thing ("we verify it by hand and record
-          // the domain"), so reverting is not a fix either - the contradiction
-          // predates both. The five rows with no domain have no company
-          // identity on record at all (one has no name; one records "no primary
-          // source found"), which is why nothing here can be automatic.
-          // Awaiting a ruling on whether these rows should offer a claim at all.
-          okBody.textContent = 'We will verify it by hand, record the domain, and be in touch.';
-          help.textContent = '';
-          next.textContent = '';
-        } else {
+        // One branch only. A claim page exists solely for a row with a domain,
+        // because the domain is the only thing that can settle a claim without a
+        // person in the loop. See profile_html for why the alternative was
+        // removed rather than reworded.
+        {
           okBody.textContent = 'If ' + domain + ' is the domain on record for this company, '
             + 'we have sent a link to the Company Information Editor. It usually arrives within '
             + 'one minute. If you do not see it after five minutes, check your spam folder.';
