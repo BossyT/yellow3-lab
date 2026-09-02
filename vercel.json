@@ -58,6 +58,56 @@
       "permanent": true
     },
     {
+      "source": "/nfc-tags",
+      "destination": "/research/digital-product-passport",
+      "permanent": true
+    },
+    {
+      "source": "/digitalproductpassport",
+      "destination": "/research/digital-product-passport",
+      "permanent": true
+    },
+    {
+      "source": "/digital-product-passport-furniture",
+      "destination": "/research/digital-product-passport",
+      "permanent": true
+    },
+    {
+      "source": "/products",
+      "destination": "/platforms",
+      "permanent": true
+    },
+    {
+      "source": "/privacypolicy",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/terms-of-use",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/post/:slug*",
+      "destination": "/insights",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/insights",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:slug*",
+      "destination": "/insights",
+      "permanent": true
+    },
+    {
+      "source": "/industries-categories/:slug*",
+      "destination": "/research",
+      "permanent": true
+    },
+    {
       "source": "/insights/europes-ai-slumber",
       "destination": "/insights/europe-ai-slumber",
       "permanent": true

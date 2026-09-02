@@ -95,10 +95,25 @@ company sold NFC-enabled passports:
 /masterclass            (this one already redirects to /advisory)
 ```
 
-None of the first seven exists in the repo and none has a redirect in
-vercel.json, so with cleanUrls they return 404. Whatever inbound links those
-pages earned are wasted, and the search result under the brand name still
-describes yellow3 as a passport vendor. A third-party data broker lists the
+None of the first seven exists in the repo and, until 2 September, none had a
+redirect in vercel.json. Cowork's check on 2 September found the paths return
+404 on the Vercel deployment URL but 200 on www.yellow3.io, serving the retired
+Wix site, which would mean every path the old site ever had is still reachable
+under the brand. That mechanism is not confirmed from the repository: DNS for
+www points at Vercel, the project holds the domain, and vercel.json has no
+rewrites. Confirm with the response headers before assuming an extra origin:
+
+```
+curl -sI https://www.yellow3.io/nfc-tags | grep -iE '^(HTTP|server|x-vercel|x-wix)'
+curl -sI https://yellow3-orcin.vercel.app/nfc-tags | grep -iE '^(HTTP|server)'
+```
+
+Either way the fix is the same and is now on this branch: ten 301s in
+vercel.json, including two catch-alls for `/post/` and
+`/industries-categories/` and one for `/blog/`, so the project answers every
+legacy path itself. Whatever inbound links those pages earned are recovered
+once this deploys, and the brand search result stops describing yellow3 as a
+passport vendor once Google recrawls. A third-party data broker lists the
 company as founded 2023 in the Netherlands, and Google Business Profile still
 carries the retired "yellow3 Inc" entity. The Organization JSON-LD on the
 homepage has an empty sameAs array, so nothing on the site tells a crawler
@@ -345,11 +360,11 @@ Every task names its tool, its output, and what "done" looks like. Tasks 1 to
 
 | # | Task | Tool | Output | Done when |
 |---|---|---|---|---|
-| 1 | Enable Vercel Web Analytics on project `yellow3`. Vercel's analytics is cookieless; check it against the consent policy in consent.js and, if it must be gated, load the script from consent.js like GA was meant to be. | Vercel dashboard, repo | Analytics on, decision recorded | Pageviews visible for the register and the readiness CTA |
+| 1 | Enable Vercel Web Analytics on project `yellow3` and load its script only from consent.js, behind consent. This is not optional: build_check.py asserts "analytics loads only from consent.js", and that script is the Vercel build command, so a tag dropped straight into a page fails the build and production silently keeps the last good deploy. | Vercel dashboard, repo | Analytics on, behind consent | Pageviews visible for the register and the readiness CTA after consent |
 | 2 | Export Google Search Console: last 90 days, pages and queries, plus the coverage report | Search Console | `research/seo/gsc-2026-09-02.csv` | Top 50 pages by clicks known |
 | 3 | Export Ahrefs Site Explorer for yellow3.io: referring domains, "Best by links", "Broken backlinks", and Content Explorer unlinked mentions | Ahrefs | One spreadsheet, four tabs | Every URL that ever earned a link is listed with its status |
-| 4 | Live-check the legacy URLs (`curl -sI`) and write the 301 map, including every broken-backlink URL from task 3. Add to vercel.json, run `python3 research/build_check.py`, then `python3 research/seo_dd.py --check`, commit, push, verify on production. | Repo | Redirect commit | Each legacy URL returns 301 to a live page on www.yellow3.io |
-| 5 | Entity clean-up: Google Business Profile, Crunchbase, LinkedIn company page, the data-broker listing; draft the sameAs list for the homepage JSON-LD and send to GPT as a request | Browser, repo | Checklist with status | No public listing says Inc, Netherlands or 2023 |
+| 4 | Ten legacy 301s are written, gated and pushed on this branch (see 1.5). Remaining: merge, then verify each on production, and add a redirect for every further URL the Ahrefs broken-backlink export in task 3 turns up. | Repo | Redirects live | Each legacy URL returns 301 to a live page on www.yellow3.io |
+| 5 | Entity clean-up: Google Business Profile, Crunchbase, LinkedIn company page, the data-broker listing; draft the sameAs list for the homepage JSON-LD and send to GPT as a request. Blocked on one decision from Thomas first: the privacy notice places yellow3 ApS in Hørsholm, the site and this plan say Copenhagen. The registered address (CVR 44954087) belongs in the legal pages and the business listings; "Copenhagen" can stay as the narrative location only if the two are never presented as the same fact. | Browser, repo | Checklist with status | No public listing says Inc, Netherlands or 2023, and every listing carries the same address |
 | 6 | Write and send the supplier "profile live" email to the six companies that already claimed; draft the paragraph for the claim-confirmation email and the editor, and send it to GPT for a ruling | Gmail, repo | Six emails sent, one copy request | Replies logged |
 | 7 | Reply to the 4 August correction letter and propose a call this week. Prepare by reading the company's row in `research/dpp-capability.json` against the sources the letter lists. | Gmail | Reply sent | Call booked |
 | 8 | Deposit the dataset on Zenodo (CC BY 4.0, related identifier = register URL); publish the same files to a public GitHub repository and to Hugging Face Datasets with the licence and canonical URL in the README | Zenodo, GitHub, Hugging Face | Three URLs, one DOI | DOI resolves; each README links to the register |
