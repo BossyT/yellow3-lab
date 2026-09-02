@@ -660,7 +660,15 @@ def r_hero(m, provider, meta, e, updated):
 def r_current_read(m, e):
     """The three evidence-led columns. Values only - no qualitative claim is
     generated to fill a column, per the data contract. Each figure already
-    appears elsewhere in the record; this section groups them."""
+    appears elsewhere in the record; this section groups them.
+
+    THE HEADING IS ONE NEUTRAL SENTENCE FOR ALL 53 RECORDS, ratified by GPT on
+    1 September 2026: "What the evidence shows today." The approved visual
+    carried bespoke prose written for the reference model, which is true of it
+    and false of most of the rest. No rank-based branching and no headline
+    variants in v1 - that would be an unapproved qualitative-claim generator.
+    The three columns below carry the model-specific facts, and "Why it is
+    moving" remains the place for evidence-bound interpretation."""
     cur = m["current"]
     weeks = m.get("weeks_ranked") or 0
     series = m.get("series") or []
@@ -702,7 +710,7 @@ def r_current_read(m, e):
     return f'''    <section class="y3r-section y3r-soft" id="read">
       <div class="y3r-wrap">
         <div class="y3r-section-head">
-          <div><div class="y3r-kicker">The current read</div><h2>What the record shows today.</h2></div>
+          <div><div class="y3r-kicker">The current read</div><h2>What the evidence shows today.</h2></div>
           <p class="y3r-lede">The page leads with what has been observed, then separates price, capability and history so a buyer can see both the signal and its limits.</p>
         </div>
         <div class="y3r-readout">
