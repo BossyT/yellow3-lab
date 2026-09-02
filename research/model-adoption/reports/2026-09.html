@@ -1,21 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Model Adoption Report - Archive | yellow3</title>
-  <meta name="description" content="Every monthly Model Adoption Report from yellow3 - regional shifts, rankings, economics and Europe Watch." />
-  <link rel="canonical" href="https://www.yellow3.io/research/model-adoption/reports" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="yellow3 lab" />
-  <meta property="og:title" content="The Model Adoption Report - Archive | yellow3" />
-  <meta property="og:description" content="Every monthly Model Adoption Report from yellow3 - regional shifts, rankings, economics and Europe Watch." />
-  <meta property="og:url" content="https://www.yellow3.io/research/model-adoption/reports" />
-  <meta property="og:image" content="https://www.yellow3.io/og/cards/research-model-adoption.png" />
-  <meta property="og:image:alt" content="yellow3 lab" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://www.yellow3.io/og/cards/research-model-adoption.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>The Model Adoption Report &mdash; September 2026 | yellow3</title>
+  <meta name="description" content="The September 2026 Model Adoption Report - the monthly intelligence edition for yellow3 Model Intelligence subscribers." />
+  <link rel="canonical" href="https://www.yellow3.io/research/model-adoption/reports/2026-09" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="/research/model-adoption/reports/report.css" />
 </head>
 <body>
@@ -33,16 +25,43 @@
     <a href="#" onclick="window.location.href='mailto:'+'hello'+String.fromCharCode(64)+'yellow3.io';return false;" class="nav-cta">Get in touch <span>&#8594;</span></a>
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false" onclick="var o=this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open');this.setAttribute('aria-expanded',o)"><span></span><span></span><span></span></button>
   </nav>
-  <main class="rpt"><div class="rwrap">
-    <nav class="crumb"><a href="/research">Research</a> <span>/</span>
-      <a href="/research/model-adoption">AI model adoption</a> <span>/</span><span aria-current="page">Reports</span></nav>
-    <header class="cover"><div class="cover-eyebrow">yellow3 Model Intelligence</div>
-      <h1>The Model Adoption Report</h1>
-      <p class="cover-sub">A monthly intelligence report on where AI demand actually flows - by region of
-      origin, by model, and by the economics beneath. New edition every month.</p>
-      <p class="arch-brief"><a href="/research/model-adoption/briefing">New here? Read this month's free briefing &#8594;</a></p></header>
-    <div class="arch"><div class="arch-item"><span class="arch-m">September 2026</span><span class="arch-t">The Model Adoption Report</span><span class="arch-d">Published 1 Sep 2026</span><div class="arch-acts"><a href="/research/model-adoption/reports/2026-09">Open the report &#8594;</a></div></div><div class="arch-item"><span class="arch-m">August 2026</span><span class="arch-t">The Model Adoption Report</span><span class="arch-d">Published 1 Sep 2026</span><div class="arch-acts"><a href="/research/model-adoption/reports/2026-08">Open the report &#8594;</a></div></div><div class="arch-item"><span class="arch-m">July 2026</span><span class="arch-t">The Model Adoption Report</span><span class="arch-d">Published 1 Sep 2026</span><div class="arch-acts"><a href="/research/model-adoption/reports/2026-07">Open the report &#8594;</a></div></div></div>
-  </div></main>
+
+  <main class="rpt">
+    <div class="rwrap">
+      <nav class="crumb"><a href="/research">Research</a> <span>/</span>
+        <a href="/research/model-adoption">AI model adoption</a> <span>/</span>
+        <a href="/research/model-adoption/reports">Reports</a> <span>/</span>
+        <span aria-current="page">September 2026</span></nav>
+
+      <div id="rgate-check" class="rgate-check">Checking your access&hellip;</div>
+
+      <div id="rgate-out" hidden>
+        <header class="cover">
+          <div class="cover-eyebrow">yellow3 Model Intelligence &middot; Monthly Report</div>
+          <h1>The Model Adoption Report</h1>
+          <div class="cover-month">September 2026</div>
+          <p class="cover-sub">This edition is for Professional subscribers. Read the free monthly briefing
+          for the headline market read, or see the plans to unlock the full report.</p>
+          <div class="cover-dl"><a href="/research/model-adoption">See plans &#8594;</a></div>
+          <p class="rgate-alt"><a href="/research/model-adoption/briefing">Read the free briefing</a> &middot;
+            <a href="/research/model-adoption/login">Sign in</a></p>
+        </header>
+      </div>
+
+      <div id="rgate-in" hidden>
+        <header class="cover">
+          <div class="cover-eyebrow">yellow3 Model Intelligence &middot; Monthly Report</div>
+          <h1>The Model Adoption Report</h1>
+          <div class="cover-month">September 2026</div>
+          <p class="cover-sub">Published 1 Sep 2026. Read it below, or download the PDF.</p>
+          <div class="cover-dl"><a href="/api/report" download>Download the PDF &#8595;</a></div>
+        </header>
+        <object class="pdfview" data="/api/report" type="application/pdf">
+          <p class="fine">Your browser can&rsquo;t show the PDF inline. <a href="/api/report">Open the report &#8594;</a></p>
+        </object>
+      </div>
+    </div>
+  </main>
   <footer class="site-footer">
     <div class="inner">
       <div class="foot-top">
@@ -87,9 +106,20 @@
       </div>
     </div>
   </footer>
+  <script>
+    fetch('/api/me', { credentials: 'same-origin', cache: 'no-store' })
+      .then(function(r){ return r.json(); })
+      .then(function(me){
+        document.getElementById('rgate-check').hidden = true;
+        document.getElementById(me && me.authed ? 'rgate-in' : 'rgate-out').hidden = false;
+      })
+      .catch(function(){
+        document.getElementById('rgate-check').hidden = true;
+        document.getElementById('rgate-out').hidden = false;
+      });
+  </script>
   <!-- EU entity: consent applies wherever the visitor is. Added at the
-       source 24 Aug 2026 - consent_sweep.py swept pages on 21 Aug, but a
-       sweep does not fix a generator, so regeneration dropped it again. -->
+       source 24 Aug 2026 - a sweep fixes pages, not the generator. -->
   <script src="/consent.js" defer></script>
 </body>
 </html>
