@@ -105,6 +105,10 @@ module.exports = async (req, res) => {
       // Email is always collected by Checkout.
       'name_collection[individual][enabled]': 'true',
       'name_collection[business][enabled]': 'true',
+      // {CHECKOUT_SESSION_ID} is Stripe's own placeholder: it substitutes the
+      // real id on redirect, so the confirmation page can verify the purchase
+      // server-side instead of trusting anything in the URL.
+      success_url: SITE + '/advisory/confirmation?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: SITE + '/advisory',
       'metadata[offer]': offer,
       'metadata[source]': 'advisory',

@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Advisory | yellow3 lab</title>
-  <meta name="description" content="Independent research and human judgment applied to consequential decisions." />
-  <link rel="canonical" href="https://www.yellow3.io/advisory" />
+  <title>Purchase confirmed | yellow3 lab</title>
+  <meta name="description" content="Confirmation of a completed yellow3 advisory purchase." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://www.yellow3.io/advisory/confirmation" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="yellow3 lab" />
-  <meta property="og:title" content="Advisory | yellow3 lab" />
-  <meta property="og:description" content="Independent research and human judgment applied to consequential decisions." />
-  <meta property="og:url" content="https://www.yellow3.io/advisory" />
+  <meta property="og:title" content="Purchase confirmed | yellow3 lab" />
+  <meta property="og:description" content="Confirmation of a completed yellow3 advisory purchase." />
+  <meta property="og:url" content="https://www.yellow3.io/advisory/confirmation" />
   <meta property="og:image" content="https://www.yellow3.io/og/cards/advisory.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -24,10 +25,10 @@
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "@id": "https://www.yellow3.io/advisory#webpage",
-    "url": "https://www.yellow3.io/advisory",
-    "name": "Advisory | yellow3 lab",
-    "description": "Independent research and human judgment applied to consequential decisions.",
+    "@id": "https://www.yellow3.io/advisory/confirmation#webpage",
+    "url": "https://www.yellow3.io/advisory/confirmation",
+    "name": "Purchase confirmed | yellow3 lab",
+    "description": "Confirmation of a completed yellow3 advisory purchase.",
     "about": { "@id": "https://www.yellow3.io/#organization" },
     "publisher": { "@id": "https://www.yellow3.io/#organization" }
   }
@@ -38,7 +39,7 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.yellow3.io/" },
-      { "@type": "ListItem", "position": 2, "name": "Advisory", "item": "https://www.yellow3.io/advisory" }
+      { "@type": "ListItem", "position": 2, "name": "Advisory", "item": "https://www.yellow3.io/advisory/confirmation" }
     ]
   }
   </script>
@@ -274,9 +275,29 @@
 .ad1 .intake-grid{grid-template-columns:1fr;gap:44px}
 }
 /* <<< end approved /advisory */
+
+/* Purchase confirmation. Reuses .ad1 wholesale; only the receipt block is new. */
+.ad1 .confirm{padding:132px 0 96px}
+.ad1 .confirm .kicker{color:var(--body);margin-bottom:26px}
+.ad1 .confirm h1{font-size:clamp(38px,4.2vw,62px);line-height:.98;letter-spacing:-.05em;font-weight:400;max-width:900px}
+.ad1 .confirm .lede{margin-top:26px}
+.ad1 .receipt{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 40px;border-top:1px solid var(--ink);border-bottom:1px solid var(--line);margin-top:52px;padding:26px 0}
+.ad1 .receipt div span{display:block;font-size:12px;line-height:1;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--muted);margin-bottom:12px}
+.ad1 .receipt div strong{display:block;font-size:19px;font-weight:400;letter-spacing:-.02em}
+.ad1 .next{margin-top:72px;display:grid;grid-template-columns:.42fr 1.58fr;gap:72px}
+.ad1 .next h2{font-size:28px;line-height:1.06;letter-spacing:-.03em;font-weight:400}
+.ad1 .next p{font-size:17px;line-height:1.55;color:var(--body);max-width:640px}
+.ad1 .next p + p{margin-top:18px}
+.ad1 .next-actions{margin-top:34px}
+@media(max-width:760px){
+.ad1 .confirm{padding:104px 0 72px}
+.ad1 .receipt{grid-template-columns:1fr;gap:24px}
+.ad1 .next{display:block}
+.ad1 .next h2{margin-bottom:20px}
+}
 </style>
 </head>
-<body>
+</head>
 <nav class="site-nav">
     <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
     <div class="nav-mid" id="navMid">
@@ -292,257 +313,29 @@
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false" onclick="var o=this.classList.toggle('open');document.getElementById('navMid').classList.toggle('open');this.setAttribute('aria-expanded',o)"><span></span><span></span><span></span></button>
   </nav>
 
+
 <main class="ad1">
-  <section class="hero">
+  <section class="confirm">
     <div class="wrap">
-      <div class="hero-top">
-        <div class="kicker">Advisory · yellow3 lab</div>
-        <div class="small hero-note">Independent research applied to consequential decisions.</div>
-      </div>
-      <h1 class="display">Bring the evidence <span class="yellow-mark">into the room.</span></h1>
-      <div class="hero-foot">
-        <p class="lede">Technology can carry more of the work. Some decisions still need people who can challenge the evidence, make the trade-offs visible and stay independent of the outcome.</p>
-        <div class="hero-cta">
-          <a class="link-yellow" href="/contact">Bring us the decision →</a>
-        </div>
-      </div>
-    </div>
-  </section>
+      <div class="kicker" id="c-kicker" hidden>Payment confirmed</div>
+      <h1 id="c-title">Checking your payment&hellip;</h1>
+      <p class="lede" id="c-lede">One moment while yellow3 confirms this purchase with Stripe.</p>
 
-  <section class="decision-strip">
-    <div class="wrap">
-      <strong>Not time. A decision that can survive scrutiny.</strong>
-      <div><div class="num">01</div><p>Research before the room.</p></div>
-      <div><div class="num">02</div><p>Judgment in the room.</p></div>
-      <div><div class="num">03</div><p>A written record after.</p></div>
-    </div>
-  </section>
+      <div class="receipt" id="c-receipt" hidden>
+        <div><span>Purchase</span><strong id="c-offer">&mdash;</strong></div>
+        <div><span>Paid</span><strong id="c-amount">&mdash;</strong></div>
+        <div><span>Business</span><strong id="c-business">&mdash;</strong></div>
+      </div>
 
-  <section class="section dpp-advisory">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="kicker">Digital Product Passports</div>
+      <div class="next" id="c-next-block" hidden>
+        <h2>What happens next</h2>
         <div>
-          <h2 class="h2">For organisations that want a human-led route through the Digital Product Passport programme.</h2>
-          <p class="body" style="margin-top:28px">Some buyers want to run the work themselves. Others want yellow3 directly involved when requirements, provider evidence, implementation choices and acceptance decisions need independent judgment.</p>
+          <div id="c-next"></div>
+          <h2 style="margin-top:52px">Nothing else is required here.</h2>
+          <p style="margin-top:20px">yellow3 will use the name, business and email supplied at checkout. If you have not heard from us by the end of the next working day, contact yellow3 and include the email used for the purchase.</p>
+          <div class="next-actions"><a class="link" href="/contact">Contact yellow3 &rarr;</a></div>
         </div>
       </div>
-
-      <div class="dpp-grid">
-        <div class="dpp-statement">
-          <h3>Human in the loop. Not another implementation team.</h3>
-          <p>yellow3 works on the buyer side. We help structure the decision, challenge evidence, support the buying and implementation process, and keep the record defensible. The selected provider still operates the Digital Product Passport.</p>
-        </div>
-        <div class="dpp-details">
-          <div class="dpp-detail">
-            <strong>Where we step in</strong>
-            <ul>
-              <li>Scope and requirement decisions.</li>
-              <li>Provider evidence and shortlist challenge.</li>
-              <li>Material implementation choices and exceptions.</li>
-              <li>Independent review before acceptance.</li>
-            </ul>
-          </div>
-          <div class="dpp-detail">
-            <strong>What this is not</strong>
-            <ul>
-              <li>Permanent onsite support.</li>
-              <li>Routine project management.</li>
-              <li>Digital Product Passport operation or publication.</li>
-              <li>A vendor-funded recommendation.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="offer">
-        <div class="kicker">Available now</div>
-        <div class="offer-body">
-          <h3>Digital Product Passport Market Readiness</h3>
-          <div class="offer-price">€4,900 · ten working days from completed intake <span class="vat">· excluding VAT</span></div>
-          <p>An independent review of where your products stand against Digital Product Passport obligations with established dates. You receive a written readiness review and a working entry in the Buyer Platform.</p>
-          <a class="link-yellow" href="https://buy.stripe.com/7sY3cxa2m0K892G8fOawo09">Start the readiness review →</a>
-        </div>
-      </div>
-
-      <div class="dpp-action">
-        <p>Engagements are scoped around the buyer's programme and the judgment points where independent human involvement is actually useful.</p>
-        <a class="link" href="/contact">Discuss Digital Product Passport Advisory →</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="eu-desk">
-    <div class="wrap eu-desk-grid">
-      <div class="kicker">For companies outside the EU</div>
-      <div class="eu-desk-main">
-        <div class="eu-status">yellow3 EU Desk · Coming soon</div>
-        <h2 class="h2">A persistent European operating intelligence layer for companies outside the EU doing business in Europe.</h2>
-        <p class="lede">The first difficult European requirement should not restart the relationship from zero. EU Desk is being developed to keep a company-specific view of products, evidence, suppliers, systems, market routes and changing European requirements current over time.</p>
-
-        <div class="eu-promise">
-          <article>
-            <div class="n">01</div>
-            <strong>Start with the company.</strong>
-            <p>Understand which European requirements matter to the products and route to market, rather than handing clients a generic regulation library.</p>
-          </article>
-          <article>
-            <div class="n">02</div>
-            <strong>Keep the operating record current.</strong>
-            <p>Connect requirements to evidence, suppliers, systems and actions so the next European change starts from what is already known.</p>
-          </article>
-          <article>
-            <div class="n">03</div>
-            <strong>Bring judgment in when needed.</strong>
-            <p>Use technology for continuous work and people for ambiguity, consequential interpretation, recommendations and final decisions.</p>
-          </article>
-        </div>
-
-        <p class="eu-note">The persistent EU Desk service is in development. Digital Product Passport Market Readiness is available now as a fixed-scope engagement.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section retainer">
-    <div class="wrap">
-      <div class="retainer-head">
-        <div class="kicker">Strategic Advisory</div>
-        <div>
-          <div class="retainer-title-row">
-            <div>
-              <h2 class="h2">A standing independent advisor for the decisions that keep coming back.</h2>
-              <p class="lede" style="margin-top:28px">For organisations that regularly face consequential technology, AI or European operating decisions and want senior independent judgment available without adding another consultancy team.</p>
-            </div>
-            <div class="retainer-price">
-              <div class="amount">€5,000 / month</div>
-              <div class="term">3-month minimum · remote-first</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="retainer-grid">
-        <div class="retainer-col">
-          <strong>Standing access</strong>
-          <ul>
-            <li>One focused decision session each month.</li>
-            <li>Asynchronous access for material questions.</li>
-            <li>Priority response when something consequential changes.</li>
-          </ul>
-        </div>
-        <div class="retainer-col">
-          <strong>Evidence before opinion</strong>
-          <ul>
-            <li>Research and evidence preparation before decisions.</li>
-            <li>Challenge of assumptions, vendor claims and options.</li>
-            <li>Written records after material decisions.</li>
-          </ul>
-        </div>
-        <div class="retainer-col">
-          <strong>Deliberately bounded</strong>
-          <ul>
-            <li>No routine project management.</li>
-            <li>No implementation labour or embedded team role.</li>
-            <li>Onsite work and travel are scoped separately.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="retainer-action">
-        <p>The retainer buys continuing independent judgment and research capacity. It does not buy unlimited meetings, delivery labour or a permanent onsite resource.</p>
-        <a class="link-yellow" href="/contact">Discuss Strategic Advisory →</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section briefings">
-    <div class="wrap">
-      <h2 class="h2">Briefings and working sessions</h2>
-      <div class="offers">
-        <div class="offer">
-          <h3>Advisory Session</h3>
-          <div class="offer-price">€490 <span class="vat">· excluding VAT</span></div>
-          <p>Bring one defined question. Test it against the available evidence and make the next decision explicit.</p>
-          <a class="link-yellow" href="https://buy.stripe.com/dRm00l6Qa3WkbaO8fOawo00">Book an Advisory Session →</a>
-        </div>
-        <div class="offer">
-          <h3>Executive Briefing</h3>
-          <div class="offer-price">90 minutes · €1,500 <span class="vat">· excluding VAT</span></div>
-          <p>A focused briefing for the executives responsible for a consequential technology, artificial intelligence or European market decision.</p>
-          <a class="link-yellow" href="https://buy.stripe.com/bJe3cx0rM1OcdiWanWawo02">Book an Executive Briefing →</a>
-        </div>
-        <div class="offer">
-          <h3>Board Briefing</h3>
-          <div class="offer-price">2 hours · €3,000 <span class="vat">· excluding VAT</span></div>
-          <p>A board-level briefing on the evidence, material uncertainties and decisions that require ownership.</p>
-          <a class="link-yellow" href="https://buy.stripe.com/28E28t1vQfF21Ae67Gawo03">Book a Board Briefing →</a>
-        </div>
-        <div class="offer">
-          <h3>Leadership Workshop</h3>
-          <div class="offer-price">Half day · €4,500 <span class="vat">· excluding VAT</span></div>
-          <p>A working session that makes assumptions, trade-offs and accountabilities visible before a direction is chosen.</p>
-          <a class="link-yellow" href="https://buy.stripe.com/8x2cN75M6eAYgv88fOawo04">Book a Leadership Workshop →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section independence">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="kicker">Independence</div>
-        <div>
-          <h2 class="h2">Sometimes the useful answer is: <span class="yellow-mark">do not proceed yet.</span></h2>
-          <p class="body" style="margin-top:28px">Advisory is useful only if yellow3 is free to challenge the fashionable answer, the vendor answer and, when necessary, the client's preferred answer.</p>
-        </div>
-      </div>
-      <div class="independence-grid">
-        <div><strong>No vendor agenda.</strong><p>Technology recommendations are not paid placement.</p></div>
-        <div><strong>No implementation dependency.</strong><p>The advice does not need to manufacture a follow-on delivery project for yellow3.</p></div>
-        <div><strong>No purchased conclusion.</strong><p>Clients buy access to research and judgment, never control over the conclusion.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap proof-grid">
-      <div class="proof-left">
-        <div class="kicker">Why yellow3</div>
-        <h2 class="h2">The evidence is not borrowed for the meeting.</h2>
-        <p class="body">yellow3 researches emerging technology continuously and builds around the problems it studies. Advisory applies that evidence discipline to a client's decision without turning the research into a sales pitch.</p>
-      </div>
-      <div class="proof-links">
-        <a class="proof-link" href="/research"><span class="n">01</span><strong>Live research instruments</strong><span>→</span></a>
-        <a class="proof-link" href="/research/framework"><span class="n">02</span><strong>Research framework and evidence standards</strong><span>→</span></a>
-        <a class="proof-link" href="/research/digital-product-passport/suppliers"><span class="n">03</span><strong>yellow3 DPP Supplier Register</strong><span>→</span></a>
-        <a class="proof-link" href="/about"><span class="n">04</span><strong>How yellow3 works</strong><span>→</span></a>
-      </div>
-    </div>
-  </section>
-
-  <section class="intake">
-    <div class="wrap intake-grid">
-      <div>
-        <div class="kicker" style="margin-bottom:32px">Start with the situation</div>
-        <h2 class="h2">Tell us where human judgment is needed.</h2>
-        <p class="body">Bring the decision, the people accountable for it, when it has to be made and what is already known. We will tell you whether yellow3 is useful and what a bounded engagement should look like.</p>
-        <div class="intake-actions">
-          <a class="primary" href="/contact">Bring us the decision →</a>
-        </div>
-      </div>
-      <div class="intake-steps">
-        <div class="intake-step"><span>01</span><strong>The decision or programme</strong></div>
-        <div class="intake-step"><span>02</span><strong>Who is responsible</strong></div>
-        <div class="intake-step"><span>03</span><strong>When it has to be decided</strong></div>
-        <div class="intake-step"><span>04</span><strong>What is already known</strong></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="boundary">
-    <div class="wrap">
-      <div class="kicker">Boundary</div>
-      <p><strong>Advisory is research and human judgment applied to consequential decisions.</strong> yellow3 is not a law firm, conformity assessment body, Digital Product Passport operator or embedded implementation team. Humans remain responsible for the outcome.</p>
     </div>
   </section>
 </main>
@@ -595,6 +388,83 @@
       </div>
     </div>
   </footer>
+
+<script>
+// The page arrives claiming NOTHING. Every visible fact - that the payment
+// succeeded, what was bought, what was paid - comes from /api/purchase, which
+// reads the Checkout Session server-side and only reports a session Stripe
+// says is paid. Ruled by GPT on 2 September 2026: display "Payment confirmed"
+// only after Stripe reports the session as paid, and derive the offer, amount
+// and customer details from the verified session, never from editable URL text.
+(function () {
+  // Offer-specific "What happens next", GPT's copy of 2 September 2026.
+  // A slug missing from this map renders nothing rather than something invented.
+  var NEXT = {
+    'market-readiness': [
+      'Within one working day, yellow3 will email you with the information needed to begin. Your ten-working-day review begins when the requested company and product information is complete.',
+      'You will receive a written readiness review and a working entry in the Buyer Platform.'
+    ],
+    'advisory-session': [
+      'Within one working day, yellow3 will email you to arrange the session and ask for the single decision or question you want to examine.',
+      'Sending it in advance lets the session begin with the issue itself.'
+    ],
+    // NOTE: GPT sent this text for BOTH Executive Briefing and Board Briefing,
+    // word for word, and it says "two-hour" while her locked /advisory copy
+    // prices Executive Briefing at "90 minutes". Implemented exactly as sent.
+    // The contradiction is reported to Thomas, not resolved here.
+    'executive-briefing': [
+      'Within one working day, yellow3 will email you to arrange the two-hour briefing and request the board context, the decision in scope, the participants and any relevant existing material.'
+    ],
+    'board-briefing': [
+      'Within one working day, yellow3 will email you to arrange the two-hour briefing and request the board context, the decision in scope, the participants and any relevant existing material.'
+    ],
+    'leadership-workshop': [
+      'Within one working day, yellow3 will email you to arrange the half-day workshop and confirm the decision in scope, participants, preferred dates and any material that should shape the session.'
+    ]
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+  function txt(id, v) { var e = $(id); if (e && v) e.textContent = v; }
+
+  // Not a confirmation. Says only what is true when Stripe cannot be reached.
+  function unverified() {
+    txt('c-title', 'We could not confirm this payment automatically.');
+    txt('c-lede', 'If your payment completed, Stripe has sent a receipt to the email address you used. Contact yellow3 with that email address and it will be resolved.');
+  }
+
+  var sid = new URLSearchParams(location.search).get('session_id') || '';
+  if (!/^cs_[A-Za-z0-9_]+$/.test(sid)) { unverified(); return; }
+
+  fetch('/api/purchase?session_id=' + encodeURIComponent(sid))
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      if (!d || !d.paid) { unverified(); return; }
+
+      $('c-kicker').hidden = false;
+      txt('c-title', (d.offer_name ? d.offer_name : 'Your purchase') + ' is confirmed.');
+      txt('c-lede', 'Your payment was successful. Stripe will send the receipt to '
+                    + (d.email || 'the email address you used at checkout') + '.');
+
+      txt('c-offer', d.offer_name);
+      txt('c-amount', d.amount);       // already formatted EUR 4,900 by the server
+      txt('c-business', d.business);
+      $('c-receipt').hidden = false;
+
+      var lines = NEXT[d.offer];
+      if (lines && lines.length) {
+        var box = $('c-next');
+        lines.forEach(function (line) {
+          var el = document.createElement('p');
+          el.textContent = line;
+          box.appendChild(el);
+        });
+      }
+      $('c-next-block').hidden = false;
+    })
+    .catch(unverified);
+})();
+</script>
 <script src="/consent.js" defer></script>
+</body>
 </body>
 </html>
