@@ -317,9 +317,10 @@
 <main class="ad1">
   <section class="confirm">
     <div class="wrap">
-      <div class="kicker" id="c-kicker" hidden>Payment confirmed</div>
-      <h1 id="c-title">Checking your payment&hellip;</h1>
-      <p class="lede" id="c-lede">One moment while yellow3 confirms this purchase with Stripe.</p>
+      <div class="kicker" id="c-kicker">Payment status</div>
+      <h1 id="c-title">We could not verify this payment yet.</h1>
+      <p class="lede" id="c-lede">Your payment has not been confirmed on this page. If Stripe sent you a receipt, do not try to pay again. Contact yellow3 using the email address from checkout and include the receipt number so the payment can be checked.</p>
+      <div class="next-actions" id="c-unverified-cta"><a class="link" href="/contact">Contact yellow3 &rarr;</a></div>
 
       <div class="receipt" id="c-receipt" hidden>
         <div><span>Purchase</span><strong id="c-offer">&mdash;</strong></div>
@@ -408,12 +409,8 @@
       'Within one working day, yellow3 will email you to arrange the session and ask for the single decision or question you want to examine.',
       'Sending it in advance lets the session begin with the issue itself.'
     ],
-    // NOTE: GPT sent this text for BOTH Executive Briefing and Board Briefing,
-    // word for word, and it says "two-hour" while her locked /advisory copy
-    // prices Executive Briefing at "90 minutes". Implemented exactly as sent.
-    // The contradiction is reported to Thomas, not resolved here.
     'executive-briefing': [
-      'Within one working day, yellow3 will email you to arrange the two-hour briefing and request the board context, the decision in scope, the participants and any relevant existing material.'
+      'Within one working day, yellow3 will email you to arrange the 90-minute briefing and ask who will attend, the decision they are responsible for and any existing material that should be reviewed beforehand.'
     ],
     'board-briefing': [
       'Within one working day, yellow3 will email you to arrange the two-hour briefing and request the board context, the decision in scope, the participants and any relevant existing material.'
@@ -426,21 +423,30 @@
   var $ = function (id) { return document.getElementById(id); };
   function txt(id, v) { var e = $(id); if (e && v) e.textContent = v; }
 
-  // Not a confirmation. Says only what is true when Stripe cannot be reached.
-  function unverified() {
-    txt('c-title', 'We could not confirm this payment automatically.');
-    txt('c-lede', 'If your payment completed, Stripe has sent a receipt to the email address you used. Contact yellow3 with that email address and it will be resolved.');
-  }
+  // The unverified state is what the HTML already says, so there is nothing to
+  // do on failure. Leaving it alone is the safe path: every way this can go
+  // wrong ends with the page GPT wrote for exactly that case.
+  function unverified() { /* the page already says it */ }
 
   var sid = new URLSearchParams(location.search).get('session_id') || '';
-  if (!/^cs_[A-Za-z0-9_]+$/.test(sid)) { unverified(); return; }
+  if (!/^cs_[A-Za-z0-9_]+$/.test(sid)) return;
+
+  // A plausible session id is present, so a lookup is about to happen. Say that
+  // rather than flashing "could not verify" at a buyer whose payment worked.
+  txt('c-title', 'Checking your payment\u2026');
+  txt('c-lede', 'One moment while yellow3 confirms this purchase with Stripe.');
+  var revert = function () {
+    txt('c-title', 'We could not verify this payment yet.');
+    txt('c-lede', 'Your payment has not been confirmed on this page. If Stripe sent you a receipt, do not try to pay again. Contact yellow3 using the email address from checkout and include the receipt number so the payment can be checked.');
+  };
 
   fetch('/api/purchase?session_id=' + encodeURIComponent(sid))
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (d) {
-      if (!d || !d.paid) { unverified(); return; }
+      if (!d || !d.paid) { revert(); return; }
 
-      $('c-kicker').hidden = false;
+      $('c-kicker').textContent = 'Payment confirmed';
+      $('c-unverified-cta').hidden = true;
       txt('c-title', (d.offer_name ? d.offer_name : 'Your purchase') + ' is confirmed.');
       txt('c-lede', 'Your payment was successful. Stripe will send the receipt to '
                     + (d.email || 'the email address you used at checkout') + '.');
@@ -461,7 +467,7 @@
       }
       $('c-next-block').hidden = false;
     })
-    .catch(unverified);
+    .catch(revert);
 })();
 </script>
 <script src="/consent.js" defer></script>
