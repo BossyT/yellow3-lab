@@ -2170,6 +2170,27 @@ RETIRED = {
 }
 
 
+# Rows withdrawn from the register entirely. Unlike RETIRED there is no successor
+# to point at, so these land on the register index: the id was published, and a
+# 404 is still a worse answer than a page that explains what the register is.
+#
+# Withdrawn 2026-09-02, ruled by Thomas. All five were recorded from sources the
+# intake runbook forbids - "Never a directory, never an aggregator" - and none
+# carried a domain, which is the register's join key. One had no company name at
+# all; one recorded "identity research; no primary source found". The precedent
+# for an unsourceable row is PassPer, 30 July 2026, which was KEPT and corrected
+# because it had a domain: "the row was always the supplier at passper.eu. The
+# name was the guess." These had no such anchor, so there was nothing to correct
+# them back to.
+WITHDRAWN = (
+    "unnamed-durable-rfid-and-secured-qr-for-textile",  # no name, no domain, directory listing
+    "dpp-services",                                     # "no primary source found"
+    "emblem",                                           # dppindex.eu listing only
+    "kerion-x-core",                                    # directory listing only
+    "magellan-tx-dpp",                                  # directory listing only
+)
+
+
 def write_redirects(ids, unclaimable=()):
     """The old profile URLs are indexed. Move them with explicit 308s.
 
@@ -2191,8 +2212,14 @@ def write_redirects(ids, unclaimable=()):
     # the honest test of ownership. A stale supplier redirect still gets
     # dropped and rewritten; a sibling route owned by another generator
     # survives.
+    # startswith, not "contains .../suppliers/". A WITHDRAWN row redirects to the
+    # register INDEX, which has no trailing slash, so a contains-test did not
+    # recognise it as ours: the rule was kept AND re-added, adding 15 duplicate
+    # redirects to vercel.json on every single run. Found 2 September 2026 by
+    # running the generator twice and counting, which is now a test.
+    OWNED = "/research/digital-product-passport/suppliers"
     keep = [r for r in conf.get("redirects", [])
-            if "/research/digital-product-passport/suppliers/" not in r.get("destination", "")
+            if not r.get("destination", "").startswith(OWNED)
             or r["source"].endswith("/pro")]
     moved = [{"source": f"/research/digital-product-passport/{i}",
               "destination": f"/research/digital-product-passport/suppliers/{i}",
@@ -2213,6 +2240,15 @@ def write_redirects(ids, unclaimable=()):
         moved.append({"source": f"/research/digital-product-passport/suppliers/{i}/claim",
                       "destination": f"/research/digital-product-passport/suppliers/{i}",
                       "permanent": False})
+
+    # Withdrawn rows: the profile, the flat legacy path, and the claim page.
+    for i in sorted(WITHDRAWN):
+        for src in (f"/research/digital-product-passport/suppliers/{i}",
+                    f"/research/digital-product-passport/suppliers/{i}/claim",
+                    f"/research/digital-product-passport/{i}"):
+            moved.append({"source": src,
+                          "destination": "/research/digital-product-passport/suppliers",
+                          "permanent": False})
 
     conf["redirects"] = keep + moved
     with open(VERCEL, "w", encoding="utf-8") as fh:

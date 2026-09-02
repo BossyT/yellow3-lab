@@ -388,11 +388,6 @@
       "permanent": true
     },
     {
-      "source": "/research/digital-product-passport/dpp-services",
-      "destination": "/research/digital-product-passport/suppliers/dpp-services",
-      "permanent": true
-    },
-    {
       "source": "/research/digital-product-passport/dpp-studio-by-ez-lab",
       "destination": "/research/digital-product-passport/suppliers/dpp-studio-by-ez-lab",
       "permanent": true
@@ -440,11 +435,6 @@
     {
       "source": "/research/digital-product-passport/ecoviator",
       "destination": "/research/digital-product-passport/suppliers/ecoviator",
-      "permanent": true
-    },
-    {
-      "source": "/research/digital-product-passport/emblem",
-      "destination": "/research/digital-product-passport/suppliers/emblem",
       "permanent": true
     },
     {
@@ -603,11 +593,6 @@
       "permanent": true
     },
     {
-      "source": "/research/digital-product-passport/kerion-x-core",
-      "destination": "/research/digital-product-passport/suppliers/kerion-x-core",
-      "permanent": true
-    },
-    {
       "source": "/research/digital-product-passport/kevla-gmbh",
       "destination": "/research/digital-product-passport/suppliers/kevla-gmbh",
       "permanent": true
@@ -665,11 +650,6 @@
     {
       "source": "/research/digital-product-passport/madaster",
       "destination": "/research/digital-product-passport/suppliers/madaster",
-      "permanent": true
-    },
-    {
-      "source": "/research/digital-product-passport/magellan-tx-dpp",
-      "destination": "/research/digital-product-passport/suppliers/magellan-tx-dpp",
       "permanent": true
     },
     {
@@ -1038,11 +1018,6 @@
       "permanent": true
     },
     {
-      "source": "/research/digital-product-passport/unnamed-durable-rfid-and-secured-qr-for-textile",
-      "destination": "/research/digital-product-passport/suppliers/unnamed-durable-rfid-and-secured-qr-for-textile",
-      "permanent": true
-    },
-    {
       "source": "/research/digital-product-passport/unopim",
       "destination": "/research/digital-product-passport/suppliers/unopim",
       "permanent": true
@@ -1083,23 +1058,78 @@
       "permanent": true
     },
     {
+      "source": "/research/digital-product-passport/suppliers/dpp-services",
+      "destination": "/research/digital-product-passport/suppliers",
+      "permanent": false
+    },
+    {
       "source": "/research/digital-product-passport/suppliers/dpp-services/claim",
-      "destination": "/research/digital-product-passport/suppliers/dpp-services",
+      "destination": "/research/digital-product-passport/suppliers",
+      "permanent": false
+    },
+    {
+      "source": "/research/digital-product-passport/dpp-services",
+      "destination": "/research/digital-product-passport/suppliers",
+      "permanent": false
+    },
+    {
+      "source": "/research/digital-product-passport/suppliers/emblem",
+      "destination": "/research/digital-product-passport/suppliers",
       "permanent": false
     },
     {
       "source": "/research/digital-product-passport/suppliers/emblem/claim",
-      "destination": "/research/digital-product-passport/suppliers/emblem",
+      "destination": "/research/digital-product-passport/suppliers",
+      "permanent": false
+    },
+    {
+      "source": "/research/digital-product-passport/emblem",
+      "destination": "/research/digital-product-passport/suppliers",
+      "permanent": false
+    },
+    {
+      "source": "/research/digital-product-passport/suppliers/kerion-x-core",
+      "destination": "/research/digital-product-passport/suppliers",
       "permanent": false
     },
     {
       "source": "/research/digital-product-passport/suppliers/kerion-x-core/claim",
-      "destination": "/research/digital-product-passport/suppliers/kerion-x-core",
+      "destination": "/research/digital-product-passport/suppliers",
+      "permanent": false
+    },
+    {
+      "source": "/research/digital-product-passport/kerion-x-core",
+      "destination": "/research/digital-product-passport/suppliers",
+      "permanent": false
+    },
+    {
+      "source": "/research/digital-product-passport/suppliers/magellan-tx-dpp",
+      "destination": "/research/digital-product-passport/suppliers",
       "permanent": false
     },
     {
       "source": "/research/digital-product-passport/suppliers/magellan-tx-dpp/claim",
-      "destination": "/research/digital-product-passport/suppliers/magellan-tx-dpp",
+      "destination": "/research/digital-product-passport/suppliers",
+      "permanent": false
+    },
+    {
+      "source": "/research/digital-product-passport/magellan-tx-dpp",
+      "destination": "/research/digital-product-passport/suppliers",
+      "permanent": false
+    },
+    {
+      "source": "/research/digital-product-passport/suppliers/unnamed-durable-rfid-and-secured-qr-for-textile",
+      "destination": "/research/digital-product-passport/suppliers",
+      "permanent": false
+    },
+    {
+      "source": "/research/digital-product-passport/suppliers/unnamed-durable-rfid-and-secured-qr-for-textile/claim",
+      "destination": "/research/digital-product-passport/suppliers",
+      "permanent": false
+    },
+    {
+      "source": "/research/digital-product-passport/unnamed-durable-rfid-and-secured-qr-for-textile",
+      "destination": "/research/digital-product-passport/suppliers",
       "permanent": false
     }
   ]

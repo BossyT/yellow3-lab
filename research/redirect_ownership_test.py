@@ -117,8 +117,14 @@ def main():
              "permanent": True}
     unrelated = {"source": "/old-thing", "destination": "/new-thing",
                  "permanent": True}
+    # A withdrawn row points at the register INDEX, which has no trailing slash.
+    # A contains-test on ".../suppliers/" misses it, so the rule survived the
+    # filter and was appended again every run. This is that case.
+    withdrawn = {"source": "/research/digital-product-passport/suppliers/gone-for-good",
+                 "destination": "/research/digital-product-passport/suppliers",
+                 "permanent": False}
 
-    out = run({"redirects": [briefing, pro, stale, unrelated]}, {"acme", "beta"})
+    out = run({"redirects": [briefing, pro, stale, unrelated, withdrawn]}, {"acme", "beta"})
     got = out.get("redirects", [])
     srcs = {r["source"] for r in got}
 
@@ -134,6 +140,14 @@ def main():
           f"missing from {sorted(srcs)}")
     check("nothing is duplicated",
           len(srcs) == len(got), "the same source is written twice")
+
+    # RUNNING TWICE MUST BE A NO-OP. Every rule this generator writes points into
+    # the register, so a second pass has to replace them, never append. The
+    # withdrawn-row rules broke exactly this and nothing noticed for a run.
+    twice = run(out, {"acme", "beta"}).get("redirects", [])
+    check("running the generator twice changes nothing",
+          json.dumps(twice, sort_keys=True) == json.dumps(got, sort_keys=True),
+          f"{len(got)} redirects became {len(twice)}")
 
     print(f"\n  {len(PASS)} passed, {len(FAIL)} failed\n")
     if FAIL:

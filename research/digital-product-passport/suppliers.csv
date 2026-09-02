@@ -1,5 +1,4 @@
 id,name,website,domain,hq_country,hq_city,entity_type,sectors,founded_year,ownership,funding_stage,total_disclosed_funding,last_funding_date,status,evidence_url,source,source_date,confidence
-unnamed-durable-rfid-and-secured-qr-for-textile,(unnamed) Durable RFID and secured QR for textile,,,,,not-a-supplier,textiles,,,,,,active,,digital-product-passport.pro directory,2026-07-28,unverified
 360-smart-connect,360 Smart Connect,https://360sc.io,360sc.io,France,Trans en Provence,platform,construction,,,,,,active,https://360sc.io/digitalproductpassport/,official company website,2026-07-28,verified
 3e-exchange,3E Exchange,https://www.3eco.com,3eco.com,USA,Carlsbad,platform,"textiles,furniture,construction,electronics,chemicals",1988,subsidiary of New Mountain Capital,subsidiary,,,active,https://www.3eco.com/3e-solutions/supply-chain-visibility/3e-exchange/,official company website; official investor portfolio,2026-07-28,verified
 accentis-cis,Accentis CIS,https://www.accentis.org,accentis.org,,,consultancy,,,,,,,active,https://www.accentis.org/,official company website,2026-07-28,claimed
@@ -52,7 +51,6 @@ digipropass,DigiProPass,https://digipropass.com,digipropass.com,United Kingdom,L
 distinkt,Distinkt,https://trustdistinkt.com,trustdistinkt.com,Spain,Barcelona,platform,,,,,,,active,https://trustdistinkt.com/products/dpp,official company website and privacy policy,2026-07-28,verified
 dnv,DNV,https://www.dnv.com,dnv.com,Norway,Høvik,consultancy,"batteries,textiles,electronics",,,,,,active,https://www.dnv.com/services/digital-product-passport-dpp/,official company website and terms of use,2026-07-28,verified
 dpp-hero,DPP HERO,https://dpphero.com,dpphero.com,Germany,Hemmingen,platform,batteries,,sole proprietor (Niels van Veen),,,,active,https://dpphero.com/en/imprint,official company website and imprint,2026-07-28,verified
-dpp-services,DPP Services,,,,,platform,,,,,,,active,,identity research; no primary source found,2026-07-28,unverified
 dpp-studio-by-ez-lab,DPP Studio by EZ Lab,https://www.dppstudio.it,dppstudio.it,Italy,Padua,platform,"textiles,food,cosmetics,furniture,electronics",,product of EZ Lab Srl,,EUR 0.742m+,,active,https://www.dppstudio.it/en/,official product and company websites,2026-07-28,verified
 dpp-pro,DPP.PRO,https://digital-product-passport.pro,digital-product-passport.pro,Germany,Munich,not-a-supplier,,,,,,,active,https://digital-product-passport.pro,official company website,2026-07-31,claimed
 dpp4-0,DPP4.0,https://industrialdigitaltwin.org/dpp4-0,industrialdigitaltwin.org,,,not-a-supplier,electronics,,,,,,active,https://industrialdigitaltwin.org/dpp4-0,official IDTA project page,2026-07-28,claimed
@@ -64,7 +62,6 @@ e-circular-aps,E Circular ApS,https://circulareconomyinternet.com,circulareconom
 echo-prm-gmbh,ECHO PRM GmbH,https://echoprm.com,echoprm.com,Germany,Betzigau,platform,,,,,,,active,https://echoprm.com/en/the-digital-product-passport/,official website and imprint,2026-07-28,verified
 eclass-e-v,ECLASS e.V.,https://eclass.eu/en,eclass.eu,Germany,Cologne,standards-body,,,,,,,active,https://eclass.eu/en/application/digital-product-passport-dpp,official company website,2026-07-30,verified
 ecoviator,Ecoviator,https://ecoviator.com,ecoviator.com,Germany,Munich,consultancy,,,independent (Wolfgang Steiner),,,,active,https://ecoviator.com/,official website and imprint,2026-07-28,verified
-emblem,Emblem,,,,,platform,"textiles,furniture",,,,,,active,https://dppindex.eu/dpp-providers/emblem,dppindex.eu,2026-07-28,unverified
 emidat,Emidat,https://www.emidat.com,emidat.com,Germany,Munich,platform,construction,,,,,,active,https://www.emidat.com/,official website and imprint,2026-07-28,verified
 energy-web,Energy Web,https://www.energyweb.org,energyweb.org,Switzerland,Zug,middleware,,,nonprofit foundation,,,,active,https://energywebx.medium.com/energy-web-joins-cirpass-to-lay-the-ground-for-the-deployment-of-european-digital-passport-products-ccbeaa1678f4,"official website, privacy policy, and official publisher channel",2026-07-28,verified
 enseso-d-o-o,ENSESO d.o.o,https://enseso.com,enseso.com,Croatia,Zagreb,platform,food,,,,,,active,https://sunrise2027.ai/about,official corporate and product websites; product privacy policy,2026-07-28,verified
@@ -96,7 +93,6 @@ ipoint-systems,iPoint-systems,https://www.ipoint-systems.com,ipoint-systems.com,
 ixalab-2026,Ixalab.2026,https://ixalab.com,ixalab.com,Uruguay,,platform,textiles,,,,,,active,https://ixalab.com/en/ts-eng/,official company website and Uruguay industrial property bulletin,2026-07-28,verified
 k4security-co-ltd,"K4SECURITY Co., Ltd",https://www.k4-security.com/,k4-security.com,South Korea,Seoul,platform,,,,,,,active,https://k4-dpp.com/,"official company and product websites, plus official partner release",2026-07-28,claimed
 kelpai,kelpAi,https://kelpai.co.uk,kelpai.co.uk,United Kingdom,Belfast,platform,"textiles,furniture,construction",2026,,,,,active,https://kelpai.co.uk/,official company website and Companies House,2026-07-28,verified
-kerion-x-core,Kerion X Core,,,,,platform,,,,,,,active,https://digital-product-passport.pro/showroom/kerion-x-core/,digital-product-passport.pro directory; primary-source verification pass,2026-07-28,unverified
 kevla-gmbh,Kevla GmbH,https://www.kevla.io,kevla.io,Germany,Berlin,middleware,,,"joint venture of PwC Germany, adesso, and Kiwa",,,,active,https://www.kevla.io/en/usecases/digital-product-passport,official company legal notice and Kiwa press release,2026-07-28,verified
 kezzler,Kezzler,https://kezzler.com,kezzler.com,Norway,Oslo,platform,"batteries,textiles",,,,,,active,https://kezzler.com/digital-product-passport/,official company website and Brønnøysund Register,2026-07-28,verified
 kinset,Kinset,https://www.kinset.com,kinset.com,Ireland,Dublin,platform,"textiles,tyres,furniture,electronics,chemicals,general",2023,,,,,active,https://www.kinset.com/product/digital-product-passports/,"official company website, legal policy, and CRO Gazette",2026-07-28,verified
@@ -109,7 +105,6 @@ luxima,Luxima,https://luxima.io,luxima.io,Ireland,Dublin,platform,"textiles,tyre
 lw3-private-limited,LW3 Private Limited,https://www.lw3.world,lw3.world,India,Guwahati,platform,batteries,,,,,,active,https://lw3.world/blog/10/green-hydrogen-digital-product-passport,official company website,2026-07-28,claimed
 lyondellbasell,LyondellBasell,https://www.lyondellbasell.com,lyondellbasell.com,,,not-a-supplier,chemicals,,public (NYSE: LYB),,,,active,https://www.lyondellbasell.com,official company website and SEC filing,2026-07-28,unverified
 madaster,Madaster,https://madaster.com,madaster.com,Netherlands,Laren,platform,construction,,,,,,active,https://madaster.com,official company website and corporate document,2026-07-28,verified
-magellan-tx-dpp,MAGELLAN (TX DPP),,,,,platform,textiles,,,,,,active,https://digital-product-passport.pro/showroom/txdpp/,digital-product-passport.pro directory,2026-07-28,unverified
 meatec,MEAtec,https://www.mea-tec.com,mea-tec.com,Germany,Stuttgart,platform,"batteries,textiles,electronics",,,,,,active,https://www.mea-tec.com/jobs/product-designer---battery-passport-system,official company website,2026-07-28,claimed
 merloop,Merloop,https://merloop.eu,merloop.eu,Germany,Ludwigsburg,platform,,,,,,,active,https://merloop.eu/,official product website and privacy policy,2026-07-28,verified
 miceliodata,MicelioData,https://miceliodata.eu,miceliodata.eu,Spain,Madrid,platform,textiles,,,,,,active,https://miceliodata.eu/,official company website,2026-07-28,claimed
