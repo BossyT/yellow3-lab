@@ -25,8 +25,8 @@
   <nav class="site-nav y3nav">
     <a href="/" class="brand"><img src="/logo.png" alt="yellow3" /></a>
     <div class="nav-mid" id="navMid">
-      <a href="/research">Research</a>
-      <a href="/research/digital-product-passport" class="active">Digital Product Passport</a>
+      <a href="/research" class="active">Research</a>
+      <a href="/research/digital-product-passport">Digital Product Passport</a>
       <a href="/platforms">Platforms</a>
       <a href="/insights/">Insights</a>
       <a href="/advisory">Advisory</a>
@@ -70,8 +70,9 @@
           <p class="eyebrow"><i></i> Independently researched</p>
           <h2>A public evidence record,<br />not a supplier score.</h2>
         </div>
-        <p class="intro-copy">Ten independent checks show what yellow3 lab could establish
-        from public sources on the date shown. Every finding keeps its provenance.</p>
+        <p class="intro-copy">These checks record what yellow3 could establish from public
+        sources on the date shown. They are not a rating. Where yellow3 found no public
+        evidence, that is not a finding about the supplier&rsquo;s underlying capability.</p>
       </section>
 
       <section class="facts-grid"><article><span>Headquarters</span><strong>Geneva, Switzerland</strong><small>Primary source</small></article><article><span>Sectors</span><strong>Not recorded</strong><small>No public disclosure found</small></article><article><span>Ownership</span><strong>Not disclosed</strong><small>No public disclosure found</small></article><article><span>Funding</span><strong>Not disclosed</strong><small>Checked 28 Jul 2026</small></article></section>
@@ -158,7 +159,7 @@
 (function(){
   var CHECKS=JSON.parse(document.getElementById('checkData').textContent);
   var LABEL={verified:'Public evidence found',company:'Company states',
-             'not-found':'No public evidence found',unassessed:'Not yet assessed'};
+             'not-found':'No public evidence found by yellow3',unassessed:'Not yet assessed'};
 
   // ---- layers
   var tabs=document.querySelectorAll('.layer-tabs button'),

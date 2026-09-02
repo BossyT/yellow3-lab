@@ -334,7 +334,9 @@ def register_nav(counts, active=""):
 STATUS_LABEL = {
     "verified": "Public evidence found",
     "company": "Company states",
-    "not-found": "No public evidence found",
+    # "by yellow3" is load-bearing, ruled 2 Sep 2026: the label states the limit
+    # of OUR review, not a fact about the supplier's capability.
+    "not-found": "No public evidence found by yellow3",
     "unassessed": "Not yet assessed",
 }
 
@@ -524,8 +526,9 @@ def profile_html(r, counts, cap):
           <p class="eyebrow"><i></i> Independently researched</p>
           <h2>A public evidence record,<br />not a supplier score.</h2>
         </div>
-        <p class="intro-copy">Ten independent checks show what yellow3 lab could establish
-        from public sources on the date shown. Every finding keeps its provenance.</p>
+        <p class="intro-copy">These checks record what yellow3 could establish from public
+        sources on the date shown. They are not a rating. Where yellow3 found no public
+        evidence, that is not a finding about the supplier&rsquo;s underlying capability.</p>
       </section>
 
       <section class="facts-grid">{facts}</section>
@@ -551,7 +554,7 @@ def profile_html(r, counts, cap):
 (function(){
   var CHECKS=JSON.parse(document.getElementById('checkData').textContent);
   var LABEL={verified:'Public evidence found',company:'Company states',
-             'not-found':'No public evidence found',unassessed:'Not yet assessed'};
+             'not-found':'No public evidence found by yellow3',unassessed:'Not yet assessed'};
 
   // ---- layers
   var tabs=document.querySelectorAll('.layer-tabs button'),
@@ -1993,38 +1996,32 @@ def directory_html(rows, counts, cap):
     </div>
   </section>
 
+  <section class="evidence-band" id="states">
+    <div class="evidence-copy">
+      <p class="section-kicker">Capability evidence</p>
+      <h2>What the capability states mean</h2>
+      <p>Each check records the strongest conclusion yellow3 could establish from public sources
+      on the date shown. These are evidence states, not capability ratings.</p>
+      <p><strong>Public evidence found</strong> means the evidence reviewed supports the
+      check.</p>
+      <p><strong>Company states</strong> means the supplier states the capability publicly, but
+      the supporting material did not establish the check to yellow3&rsquo;s evidence
+      standard.</p>
+      <p><strong>No public evidence found by yellow3</strong> means the review did not establish
+      relevant public evidence in the sources inspected. It is not a finding that the supplier
+      lacks the capability.</p>
+    </div>
+  </section>
+
   <section class="evidence-band" id="how">
     <div class="evidence-copy">
-      <p class="section-kicker">How we work</p>
-      <h2>Researched by agents, reviewed by a human, dated at finding level.</h2>
-      <p>The research in this register is conducted by AI agents under human supervision and
-      review. The agents inspect public sources, capture the relevant evidence and record when
-      it was found. A human defines the research questions, establishes the evidence rules,
-      reviews material findings and remains accountable for the published result.</p>
-      <p>That is why 190 organisations carry the same ten checks with assessment dates separated
-      by only a few days: the research was conducted systematically in batches, rather than one
-      company at a time over months. Explaining that is worth more than creating the impression
-      of something slower.</p>
-      <p><strong>What the system is not permitted to do.</strong> A finding cannot be recorded
-      without supporting evidence. A demonstrated finding must carry the text that supports it,
-      because a description of a page is not a substitute for the evidence on it. The system
-      cannot turn an interpretation into a quotation, and it cannot conclude that a supplier
-      fails a check merely because public evidence was not found. The strongest negative we
-      publish is that no relevant public evidence was established - a statement about published
-      evidence, not about the supplier's underlying capability.</p>
-      <p><strong>When we find nothing, we show where we looked.</strong> Each such finding
-      records the domain inspected, the pages reviewed and what each returned, the terms
-      searched, and why the search was concluded. You can judge whether we searched the wrong
-      place or applied the method badly.</p>
-      <p><strong>What the original method missed.</strong> Until 5 August 2026 we considered only
-      evidence published on a supplier's own domain, so work published through an open-source
-      organisation or an external documentation repository could be excluded by rule. That
-      restriction was wrong. It was identified by a reader rather than by us, and it is fixed:
-      relevant public evidence outside a supplier's own domain now counts.</p>
-      <p><strong>Findings are not permanent.</strong> A supplier may publish tomorrow what it
-      had not published today. Records are reviewed in later sweeps and updated when the
-      evidence changes. We would rather publish a correction than defend an outdated
-      conclusion.</p>
+      <p class="section-kicker">How the research is produced</p>
+      <h2>Researched by agents. Reviewed by a human.</h2>
+      <p>The research in this register is produced by AI agents under human supervision and
+      review, in batches. A human defines the research questions and evidence rules, reviews
+      material findings and remains accountable for every published record.</p>
+      <p>When a correction is supported by public evidence, yellow3 reviews the finding, updates
+      the record and preserves the source and date so the change can be inspected.</p>
     </div>
     <div class="evidence-rule">
       <div><span>01</span><strong>No source, no finding.</strong></div>
@@ -2037,30 +2034,18 @@ def directory_html(rows, counts, cap):
     <div class="evidence-copy">
       <p class="section-kicker">Our interest, declared</p>
       <h2>We work in this market. You should know that before relying on our research.</h2>
-      <p>yellow3 lab is not a neutral observer of the Digital Product Passport market. We advise
-      companies on DPP strategy, publish research about the market, and are building a paid
-      service that helps buyers evaluate and select suppliers using the evidence in this
-      register. That gives us a commercial interest in the market we assess, and hiding it in a
-      footer would not meet the standard we expect of others.</p>
-      <p><strong>Suppliers do not pay us. Ever.</strong> Not to appear, not to improve their
-      position, not to change how they are described, not for faster assessment, and not for
-      verification. There are no sponsored placements and no paid findings, and there never will
-      be. The moment a finding can be purchased it loses its value - for buyers, and for every
-      supplier that chose not to pay.</p>
-      <p><strong>Buyers pay us</strong> to research their specific requirements and support their
-      procurement decisions. That work does not alter the evidence standard and does not change
-      any published finding.</p>
-      <p><strong>We do not operate Digital Product Passports.</strong> We do not host, issue,
-      resolve, maintain or publish them. The suppliers in this register do that. We research and
-      assess the evidence available about them.</p>
-      <p>Our independence does not rest on asking you to trust our intentions. Every finding
-      carries a source and a date, so you can inspect the evidence, challenge the conclusion and
-      tell us when we are wrong.</p>
-    </div>
-    <div class="evidence-rule">
-      <div><span>01</span><strong>Suppliers never pay us for anything.</strong></div>
-      <div><span>02</span><strong>Buyers never see a finding we would not publish.</strong></div>
-      <div><span>03</span><strong>Every finding can be checked without us.</strong></div>
+      <p>yellow3 lab participates commercially in the market this register catalogues. We sell
+      buyer-side Digital Product Passport services and operate the
+      <a href="https://buyer.yellow3.io/">Digital Product Passport Buyer Platform</a>, which uses
+      evidence from this register to help buyers evaluate and select suppliers.</p>
+      <p>Suppliers cannot pay to appear, rank, receive faster assessment or change a finding.
+      There are no sponsored placements or paid findings.</p>
+      <p>Buyers pay yellow3 for research and support with their own procurement decisions. That
+      work does not alter the register&rsquo;s evidence standard or any published finding.</p>
+      <p>We do not operate Digital Product Passports. We do not host, issue, resolve, maintain or
+      publish them. The suppliers in this register do that.</p>
+      <p>Every finding carries a source and a date, so readers can inspect the evidence,
+      challenge the conclusion and request a correction.</p>
     </div>
   </section>
 
@@ -2124,8 +2109,21 @@ def write_redirects(ids):
     """
     with open(VERCEL, encoding="utf-8") as fh:
         conf = json.load(fh)
+    # KEEP BY DESTINATION, NOT BY SOURCE PREFIX.
+    #
+    # This filter used to drop every redirect whose SOURCE sat under
+    # /research/digital-product-passport/, on the assumption the register owned
+    # that whole space. It does not. gen_briefing.py writes the Monday
+    # Briefing's two permanent 307s there, and every run of this generator
+    # silently deleted them - the same route that 404ed in production from
+    # launch until 1 September 2026.
+    #
+    # Every redirect this function writes points INTO /suppliers/, so that is
+    # the honest test of ownership. A stale supplier redirect still gets
+    # dropped and rewritten; a sibling route owned by another generator
+    # survives.
     keep = [r for r in conf.get("redirects", [])
-            if "/research/digital-product-passport/" not in r["source"]
+            if "/research/digital-product-passport/suppliers/" not in r.get("destination", "")
             or r["source"].endswith("/pro")]
     moved = [{"source": f"/research/digital-product-passport/{i}",
               "destination": f"/research/digital-product-passport/suppliers/{i}",
