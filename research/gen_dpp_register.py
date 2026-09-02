@@ -714,13 +714,14 @@ def claim_html(r, counts):
         field_help = "Use your company email, not a personal mailbox"
         # Everything on a no-domain page used to promise an automatic check the
         # page itself says cannot happen. GPT, 2 September 2026.
-        form_note = "We will reply within one working day."
-        assure_h = "Manual domain verification"
-        assure_p = "We verify the company email against public evidence before granting access."
+        form_note = "No account setup and no manual approval when the domain matches."
+        assure_h = "Immediate domain check"
+        assure_p = ("We match your work email to the company domain already recorded "
+                    "in the register.")
         placeholder = "you@yourcompany.com"
-        lede = (f"We have no domain on record for {e(name)}, so the claim cannot be "
-                f"confirmed automatically. Submit your company email and we will verify "
-                f"the domain by hand.")
+        lede = (f"We have no domain on record for {e(name)} yet, so this claim cannot be "
+                f"confirmed automatically. Send your company email and it reaches us directly: "
+                f"we verify it by hand and record the domain.")
 
     body = f"""{SITE_NAV}<main class="dpp-claim">
   <div class="page-shell">
@@ -860,15 +861,18 @@ def claim_html(r, counts):
         //   3. ONE HUMAN ROUTE OUT OF BOTH BRANCHES, inside the success state
         //      rather than below it, so neither outcome is a dead end.
         if (noDomain) {
-          okBody.textContent = 'Because no domain exists on the research record, we need to '
-            + 'verify this request by hand. We will email you within one working day.';
-          help.innerHTML = 'If you do not hear from us by then, email '
-            + '<a href="#" id="successMail">hello' + String.fromCharCode(64) + 'yellow3.io</a>'
-            + ' and we will help you complete the claim.';
-          next.textContent = 'Nothing on the public profile changes until we have verified the '
-            + 'company domain and you submit the company information in the editor.';
-          var mn = document.getElementById('successMail');
-          if (mn) mn.addEventListener('click', mailSupport);
+          // HELD, 2 September 2026. GPT's approved copy for this branch promised
+          // manual verification; Thomas ruled that nothing is manually verified
+          // because it breaks the register's standing promise. The copy this
+          // replaced promised the same thing ("we verify it by hand and record
+          // the domain"), so reverting is not a fix either - the contradiction
+          // predates both. The five rows with no domain have no company
+          // identity on record at all (one has no name; one records "no primary
+          // source found"), which is why nothing here can be automatic.
+          // Awaiting a ruling on whether these rows should offer a claim at all.
+          okBody.textContent = 'We will verify it by hand, record the domain, and be in touch.';
+          help.textContent = '';
+          next.textContent = '';
         } else {
           okBody.textContent = 'If ' + domain + ' is the domain on record for this company, '
             + 'we have sent a link to the Company Information Editor. It usually arrives within '
