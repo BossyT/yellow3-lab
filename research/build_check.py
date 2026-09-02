@@ -767,6 +767,26 @@ def main() -> int:
         else:
             print('  ok  briefing media is portrait and present')
 
+    # 9. No generator may delete a route owned by another generator.
+    #    gen_dpp_register.py and gen_briefing.py both write redirects into the
+    #    same vercel.json. The register used to claim everything whose path
+    #    STARTED under /research/digital-product-passport/, so every research
+    #    pull silently deleted the Monday Briefing's permanent shortcut, and
+    #    that route 404ed in production from launch until 1 September 2026.
+    #    Nothing was checking; a link checker in an unrelated gate found it.
+    #    Ruled by GPT on 2 September 2026: that failure must not be able to
+    #    return silently. The test runs the real write_redirects() against a
+    #    copy of the real vercel.json, so it cannot pass by construction.
+    r = subprocess.run([sys.executable,
+                        str(ROOT / 'research' / 'redirect_ownership_test.py')],
+                       capture_output=True, text=True)
+    if r.returncode:
+        FAIL.append('redirect ownership:\n      '
+                    + '\n      '.join(l.rstrip() for l in (r.stdout or '').splitlines()
+                                      if l.strip() and not l.strip().startswith('ok')))
+    else:
+        print('  ok  no generator deletes another generator\'s routes')
+
     if FAIL:
         print('\nBUILD REFUSED\n')
         for f in FAIL:
