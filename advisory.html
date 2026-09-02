@@ -221,7 +221,24 @@
 .ad1 .boundary .wrap{display:grid;grid-template-columns:.42fr 1.58fr;gap:72px}
 .ad1 .boundary p{font-size:14px;color:var(--muted);max-width:900px}
 .ad1 .boundary strong{color:var(--ink)}
+/* Purchasable offers. Same tokens and weights as the rest of .ad1 - the price
+   sits at body weight beside the name, so it reads as part of the offer. */
+.ad1 .offer{border-top:1px solid var(--ink);padding-top:26px;margin-top:56px;display:grid;grid-template-columns:.42fr 1.58fr;gap:72px}
+.ad1 .offer-body{max-width:720px}
+.ad1 .offer h3{font-size:34px;line-height:1.04;letter-spacing:-.035em;font-weight:400;margin-bottom:14px}
+.ad1 .offer-price{font-size:17px;font-weight:700;margin-bottom:16px}
+.ad1 .offer-price .vat{font-weight:400;color:var(--muted)}
+.ad1 .offer p{font-size:17px;line-height:1.55;color:var(--body);margin-bottom:26px;max-width:640px}
+.ad1 .offers{display:grid;grid-template-columns:1fr 1fr;gap:0 72px;border-top:1px solid var(--ink);padding-top:40px}
+.ad1 .offers .offer{border-top:0;padding-top:0;margin-top:0;display:block;padding-bottom:56px}
+.ad1 .offers h3{font-size:28px}
+.ad1 .briefings h2{margin-bottom:56px}
 @media(max-width:760px){
+.ad1 .offer{display:block;gap:0}
+.ad1 .offers{grid-template-columns:1fr;gap:0;padding-top:30px}
+.ad1 .offers .offer{padding-bottom:44px}
+.ad1 .offer h3,.ad1 .offers h3{font-size:26px}
+.ad1 .briefings h2{margin-bottom:36px}
 .ad1 .wrap{width:min(calc(100% - 36px),var(--max))}
 .ad1 .hero{padding:72px 0 64px}
 .ad1 .hero-top{margin-bottom:68px}
@@ -338,6 +355,16 @@
         </div>
       </div>
 
+      <div class="offer">
+        <div class="kicker">Available now</div>
+        <div class="offer-body">
+          <h3>Digital Product Passport Market Readiness</h3>
+          <div class="offer-price">€4,900 · ten working days <span class="vat">· excluding VAT</span></div>
+          <p>An independent review of where your products stand against Digital Product Passport obligations with established dates. You receive a written readiness review and a working entry in the Buyer Platform.</p>
+          <a class="link-yellow" href="https://buy.stripe.com/7sY3cxa2m0K892G8fOawo09">Start the readiness review →</a>
+        </div>
+      </div>
+
       <div class="dpp-action">
         <p>Engagements are scoped around the buyer's programme and the judgment points where independent human involvement is actually useful.</p>
         <a class="link" href="/contact">Discuss Digital Product Passport Advisory →</a>
@@ -371,7 +398,7 @@
           </article>
         </div>
 
-        <p class="eu-note">EU Desk is in development. No signup, pricing or current availability is being offered on this page.</p>
+        <p class="eu-note">The persistent EU Desk service is in development. Digital Product Passport Market Readiness is available now as a fixed-scope engagement.</p>
       </div>
     </div>
   </section>
@@ -424,6 +451,38 @@
       <div class="retainer-action">
         <p>The retainer buys continuing independent judgment and research capacity. It does not buy unlimited meetings, delivery labour or a permanent onsite resource.</p>
         <a class="link-yellow" href="/contact">Discuss Strategic Advisory →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section briefings">
+    <div class="wrap">
+      <h2 class="h2">Briefings and working sessions</h2>
+      <div class="offers">
+        <div class="offer">
+          <h3>Advisory Session</h3>
+          <div class="offer-price">€490 <span class="vat">· excluding VAT</span></div>
+          <p>Bring one defined question. Test it against the available evidence and make the next decision explicit.</p>
+          <a class="link-yellow" href="https://buy.stripe.com/dRm00l6Qa3WkbaO8fOawo00">Book an Advisory Session →</a>
+        </div>
+        <div class="offer">
+          <h3>Executive Briefing</h3>
+          <div class="offer-price">90 minutes · €1,500 <span class="vat">· excluding VAT</span></div>
+          <p>A focused briefing for the executives responsible for a consequential technology, artificial intelligence or European market decision.</p>
+          <a class="link-yellow" href="https://buy.stripe.com/bJe3cx0rM1OcdiWanWawo02">Book an Executive Briefing →</a>
+        </div>
+        <div class="offer">
+          <h3>Board Briefing</h3>
+          <div class="offer-price">2 hours · €3,000 <span class="vat">· excluding VAT</span></div>
+          <p>A board-level briefing on the evidence, material uncertainties and decisions that require ownership.</p>
+          <a class="link-yellow" href="https://buy.stripe.com/28E28t1vQfF21Ae67Gawo03">Book a Board Briefing →</a>
+        </div>
+        <div class="offer">
+          <h3>Leadership Workshop</h3>
+          <div class="offer-price">Half day · €4,500 <span class="vat">· excluding VAT</span></div>
+          <p>A working session that makes assumptions, trade-offs and accountabilities visible before a direction is chosen.</p>
+          <a class="link-yellow" href="https://buy.stripe.com/8x2cN75M6eAYgv88fOawo04">Book a Leadership Workshop →</a>
+        </div>
       </div>
     </div>
   </section>
