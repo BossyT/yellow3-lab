@@ -6,7 +6,7 @@ never appear on a public list, and this file is committed.
 
 Written by research/dpp_queue_report.py.
 
-- generated: 2026-09-04
+- generated: 2026-09-05
 - submissions in store: 0
 - submissions still marked queued: 0
 - of those, already in the register: 0  (bookkeeping, not a company waiting)
