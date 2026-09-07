@@ -323,6 +323,157 @@
         "order": "PUBLISH ISSUE 002. GPT designed and delivered the edition and Thomas approved it. Terminal implements.",
         "releases": "markersConfirmed only. checkedAt is a real completed check at 2026-08-30T12:00:00+02:00 and is not released by this approval."
       }
+    },
+    {
+      "slug": "2026-09-07",
+      "locale": "en",
+      "status": "draft",
+      "issueNumber": "003",
+      "weekLabel": "31 August - 6 September 2026",
+      "publicationDate": "2026-09-07",
+      "publicationTime": "07:30 CEST",
+      "checkedAt": "2026-09-07T08:05:00+02:00",
+      "researchNote": "003 / 2026",
+      "headline": "The Digital Product Passport is becoming infrastructure",
+      "seo": {
+        "title": "The Digital Product Passport is becoming infrastructure | Digital Product Passport Weekly Briefing",
+        "description": "Standards, factory data and global interoperability."
+      },
+      "video": {
+        "src": "/media/briefing/bianca-2026-09-07-en.mp4",
+        "poster": "/media/briefing/bianca-2026-09-07-en.jpg",
+        "durationSeconds": 187.308,
+        "isoDuration": "PT3M7.308S",
+        "width": 720,
+        "height": 1280,
+        "presenter": "Bianca",
+        "sourceFile": "yellow3-monday-briefing-issue-003.mp4",
+        "sourceSha256": "359d4be36cbd1980b281adad856c4351ff3d0a5cd47d7f984f5227b5e6e68081",
+        "posterFrameSeconds": 0.6,
+        "posterSource": "frame grab at 0.6s by research/briefing_media.py. Issue 003 shipped no poster; issue 002's was supplied with its package.",
+        "deliverySize": "42.0 MB at 1879 kbit/s, 720x1280, audio copied from the master",
+        "shapeNote": "720x1280 portrait, same shape approved for issue 002. Source sha256 verified against assets/video/*.sha256 in the package."
+      },
+      "framing": {
+        "lineOne": "One development. Four connected facts.",
+        "lineTwo": "One clear conclusion."
+      },
+      "stories": [
+        {
+          "number": "01",
+          "category": "REGULATORY UPDATE",
+          "headline": "Europe moves toward completing the technical framework",
+          "consequence": "The Commission roadmap points to September for the remaining two horizontal standards."
+        },
+        {
+          "number": "02",
+          "category": "DEADLINE CLARIFICATION",
+          "headline": "September is a standards milestone",
+          "consequence": "It is not a new compliance deadline for another product category."
+        },
+        {
+          "number": "03",
+          "category": "IMPLEMENTATION EVIDENCE",
+          "headline": "Factory data can generate the passport",
+          "consequence": "OPC-based reference architecture shows product-specific information being derived from production data."
+        },
+        {
+          "number": "04",
+          "category": "STRATEGIC RADAR",
+          "headline": "Global DPP standardisation starts meeting in Berlin",
+          "consequence": "ISO/IEC JTC 5 meets 7 to 9 September with 32 participating and 16 observing members."
+        }
+      ],
+      "transcript": [
+        "Good morning, and welcome to the yellow3 Monday Morning Briefing for 7 September 2026.",
+        "The main Digital Product Passport story this week is not another deadline.",
+        "It is the infrastructure now starting to form around it.",
+        "First, to Brussels.",
+        "The European Commission’s current roadmap points to September for the decision covering the final two horizontal Digital Product Passport standards.",
+        "Six standards have already been cited.",
+        "The remaining areas include access rights, information security, confidentiality, and the authentication and reliability of passport data.",
+        "That is important because the technical framework is getting much closer to completion.",
+        "But there is one distinction worth making.",
+        "September is a standards milestone.",
+        "It is not a new compliance deadline for another product category.",
+        "Now to implementation.",
+        "On 3 September, the OPC Foundation presented an open-source reference implementation showing how a Digital Product Passport can be generated directly from industrial production data.",
+        "In the example, a product is tracked through manufacturing by serial number.",
+        "Data from the production process can then be used to calculate product-specific information, including carbon footprint, collect relevant quality information, and generate the passport itself.",
+        "That is a significant development.",
+        "Because it points to a very different future from the one many companies are still preparing for.",
+        "The Digital Product Passport may not become another system where somebody manually enters information after a product is made.",
+        "Instead, it can increasingly become an output of the production process itself.",
+        "The OPC Foundation is clear that this is still a reference implementation, not a finished compliance product.",
+        "But the direction matters.",
+        "And there is another important development today.",
+        "From 7 to 9 September, the new ISO and IEC Joint Technical Committee for the Digital Product Passport is holding its first meeting in Berlin.",
+        "Thirty-two countries are participating, with another sixteen observing.",
+        "The objective is international interoperability.",
+        "And that takes the Digital Product Passport discussion beyond Europe.",
+        "Last week, the United Nations Economic and Social Commission for Asia and the Pacific also brought Digital Product Passports into a wider discussion on cross-border trade, alongside international standards organisations, digital trade infrastructure and global logistics.",
+        "Taken together, the signal is becoming clearer.",
+        "The Digital Product Passport is starting to move beyond being treated simply as a European sustainability compliance requirement.",
+        "It is becoming part of a much larger technical infrastructure connecting products, factories, supply chains, regulators and international trade.",
+        "And for businesses, that changes the question.",
+        "It is becoming less about:",
+        "Which Digital Product Passport platform should we buy?",
+        "And much more about:",
+        "Can we produce trusted product information at the source, maintain the evidence behind it, and move that information reliably across systems?",
+        "That is where the real implementation challenge is starting to appear.",
+        "We will keep watching the evidence.",
+        "This is yellow3."
+      ],
+      "sources": [
+        {
+          "ref": "01",
+          "publisher": "European Commission",
+          "title": "Digital Product Passport",
+          "url": "https://single-market-economy.ec.europa.eu/single-market/digital-product-passport_en",
+          "checkedAt": "2026-09-07T08:05:00+02:00",
+          "pending": false
+        },
+        {
+          "ref": "02",
+          "publisher": "EUR-Lex",
+          "title": "Commission Implementing Decision (EU) 2026/1736 of 14 July 2026",
+          "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D1736",
+          "checkedAt": "2026-09-07T08:05:00+02:00",
+          "pending": false
+        },
+        {
+          "ref": "03",
+          "publisher": "WIOT Group",
+          "title": "Digital Product Passport: OPC Foundation Automates DPPs",
+          "url": "https://wiot-group.com/think/en/news/opc-foundation-digital-product-passport-opc-ua/",
+          "checkedAt": "2026-09-07T08:05:00+02:00",
+          "pending": false
+        },
+        {
+          "ref": "04",
+          "publisher": "ISO",
+          "title": "ISO/IEC JTC 5, Digital Product Passport",
+          "url": "https://www.iso.org/committee/11760382.html",
+          "checkedAt": "2026-09-07T08:05:00+02:00",
+          "pending": false
+        },
+        {
+          "ref": "05",
+          "publisher": "United Nations ESCAP",
+          "title": "Digital Product Passport: Transforming Cross-Border Trade",
+          "url": "https://www.unescap.org/events/2026/digital-product-passport-transforming-cross-border-trade",
+          "checkedAt": "2026-09-07T08:05:00+02:00",
+          "pending": false
+        }
+      ],
+      "evidenceNote": "The underlying OPC Foundation open-source Digital Product Passport architecture predates the 3 September publication reporting it. 3 September is the date of that implementation report, not the date the architecture first existed.",
+      "weekNumber": 37,
+      "weekIso": "2026-W37",
+      "reportedWeekIso": "2026-W36",
+      "weekNote": "weekNumber 37 is the PUBLICATION week (Mon 7 - Sun 13 Sep 2026). The edition REPORTS 2026-W36, 31 August - 6 September, which is weekLabel.",
+      "markersConfirmed": false,
+      "markersNote": "NOT SUPPLIED. The issue-003 package gives nine navigation-level section cues in 11-SECTION-CUES.md, not four story markers, and no markerLabel/markerValue per card. Nothing is inferred here: the four markers and their labels have to come from GPT or be measured and heard by Thomas.",
+      "checkedNote": "08:05 is the mtime of 03-SOURCE-RECORD.md inside the issue-003 package, which is when the source record was written. The package states the date only; this is the nearest real completed-check time in evidence rather than a guess."
     }
   ]
 }
