@@ -327,7 +327,7 @@
     {
       "slug": "2026-09-07",
       "locale": "en",
-      "status": "draft",
+      "status": "ready",
       "issueNumber": "003",
       "weekLabel": "31 August-6 September 2026",
       "publicationDate": "2026-09-07",
@@ -482,8 +482,14 @@
       "weekIso": "2026-W37",
       "reportedWeekIso": "2026-W36",
       "weekNote": "weekNumber 37 is the PUBLICATION week (Mon 7 - Sun 13 Sep 2026). The edition REPORTS 2026-W36, 31 August - 6 September, which is weekLabel.",
-      "markersConfirmed": false,
-      "markersNote": "Markers [0, 40.8, 52.7, 103.7] supplied in the issue-003 package, measured from the final recording. Row 02 begins at 'But there is one distinction worth making.', row 03 at 'Now to implementation.', row 04 at 'And there is another important development today.' The conclusion at ~138.1s does NOT create a fifth row. Held false until Thomas has HEARD the three non-zero transitions - the package states his approval of the visual reference does not replace the audible check."
+      "markersConfirmed": true,
+      "markersNote": "Markers [0, 40.8, 52.7, 103.7] measured by GPT from the final recording and documented against the spoken transitions: row 02 'But there is one distinction worth making.', row 03 'Now to implementation.', row 04 'And there is another important development today.' The conclusion at ~138.1s does NOT create a fifth row. CONFIRMED BY THOMAS on 7 September 2026 by his ruling that his approval of GPT's package is the approval, the package having been delivered as complete and measured. Recorded as it happened: this is an authority decision by the publication owner, not a separate listening pass by the terminal.",
+      "publishApproval": {
+        "approvedBy": "Thomas Christian Melskens",
+        "date": "2026-09-07",
+        "order": "PUBLISH ISSUE 003. GPT designed and delivered the full package and Thomas approved it. Terminal implements.",
+        "releases": "markersConfirmed, on Thomas's ruling that confirming GPT's package constitutes approval. Nothing else is released: every source, URL, timestamp and duration is real and measured."
+      }
     }
   ]
 }
