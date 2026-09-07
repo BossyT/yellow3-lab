@@ -329,15 +329,15 @@
       "locale": "en",
       "status": "draft",
       "issueNumber": "003",
-      "weekLabel": "31 August - 6 September 2026",
+      "weekLabel": "31 August-6 September 2026",
       "publicationDate": "2026-09-07",
-      "publicationTime": "07:30 CEST",
-      "checkedAt": "2026-09-07T08:05:00+02:00",
+      "publicationTime": null,
+      "checkedAt": "2026-09-07T10:44:00+02:00",
       "researchNote": "003 / 2026",
       "headline": "The Digital Product Passport is becoming infrastructure",
       "seo": {
         "title": "The Digital Product Passport is becoming infrastructure | Digital Product Passport Weekly Briefing",
-        "description": "Standards, factory data and global interoperability."
+        "description": "European Digital Product Passport standards, factory-data implementation and international standardisation are converging into technical infrastructure."
       },
       "video": {
         "src": "/media/briefing/bianca-2026-09-07-en.mp4",
@@ -347,41 +347,52 @@
         "width": 720,
         "height": 1280,
         "presenter": "Bianca",
-        "sourceFile": "yellow3-monday-briefing-issue-003.mp4",
+        "sourceFile": "bianca-2026-09-07-original.mp4",
         "sourceSha256": "359d4be36cbd1980b281adad856c4351ff3d0a5cd47d7f984f5227b5e6e68081",
-        "posterFrameSeconds": 0.6,
-        "posterSource": "frame grab at 0.6s by research/briefing_media.py. Issue 003 shipped no poster; issue 002's was supplied with its package.",
+        "posterSource": "supplied with the issue-003 package as assets/bianca-2026-09-07-poster.jpg, 720x1280 full-frame, installed byte-identical. Not the 0.6s frame grab.",
         "deliverySize": "42.0 MB at 1879 kbit/s, 720x1280, audio copied from the master",
-        "shapeNote": "720x1280 portrait, same shape approved for issue 002. Source sha256 verified against assets/video/*.sha256 in the package."
+        "shapeNote": "720x1280 full-frame portrait, the package's mediaCorrection. The supplied MP4 remains the authoritative archive media; this is the delivery encode - video only, audio copied and verified bit-for-bit identical."
       },
       "framing": {
-        "lineOne": "One development. Four connected facts.",
-        "lineTwo": "One clear conclusion."
+        "lineOne": "Not another deadline.",
+        "lineTwo": "Infrastructure is starting to form."
       },
       "stories": [
         {
           "number": "01",
-          "category": "REGULATORY UPDATE",
+          "category": "Regulatory update",
           "headline": "Europe moves toward completing the technical framework",
-          "consequence": "The Commission roadmap points to September for the remaining two horizontal standards."
+          "consequence": "The Commission roadmap points to September for the remaining two horizontal standards.",
+          "markerLabel": "EU STANDARDS",
+          "markerValue": "2 REMAINING",
+          "startSeconds": 0
         },
         {
           "number": "02",
-          "category": "DEADLINE CLARIFICATION",
-          "headline": "September is a standards milestone",
-          "consequence": "It is not a new compliance deadline for another product category."
+          "category": "Deadline clarification",
+          "headline": "September is a standards milestone, not a new compliance deadline",
+          "consequence": "September changes the technical framework. It does not add a new product-category deadline.",
+          "markerLabel": "EU TIMELINE",
+          "markerValue": "SEPT 2026",
+          "startSeconds": 40.8
         },
         {
           "number": "03",
-          "category": "IMPLEMENTATION EVIDENCE",
+          "category": "Implementation evidence",
           "headline": "Factory data can generate the passport",
-          "consequence": "OPC-based reference architecture shows product-specific information being derived from production data."
+          "consequence": "An open-source OPC reference solution derives product-specific passport data from production.",
+          "markerLabel": "OPC FOUNDATION",
+          "markerValue": "OPEN SOURCE",
+          "startSeconds": 52.7
         },
         {
           "number": "04",
-          "category": "STRATEGIC RADAR",
-          "headline": "Global DPP standardisation starts meeting in Berlin",
-          "consequence": "ISO/IEC JTC 5 meets 7 to 9 September with 32 participating and 16 observing members."
+          "category": "Strategic radar",
+          "headline": "Global Digital Product Passport standardisation begins in Berlin",
+          "consequence": "ISO/IEC JTC 5 meets 7-9 September with 32 participating and 16 observing members.",
+          "markerLabel": "ISO/IEC JTC 5",
+          "markerValue": "32 + 16",
+          "startSeconds": 103.7
         }
       ],
       "transcript": [
@@ -430,31 +441,31 @@
           "publisher": "European Commission",
           "title": "Digital Product Passport",
           "url": "https://single-market-economy.ec.europa.eu/single-market/digital-product-passport_en",
-          "checkedAt": "2026-09-07T08:05:00+02:00",
+          "checkedAt": "2026-09-07T10:44:00+02:00",
           "pending": false
         },
         {
           "ref": "02",
           "publisher": "EUR-Lex",
-          "title": "Commission Implementing Decision (EU) 2026/1736 of 14 July 2026",
+          "title": "Commission Implementing Decision (EU) 2026/1736 of 14 July 2026 on harmonised standards for digital product passports",
           "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026D1736",
-          "checkedAt": "2026-09-07T08:05:00+02:00",
+          "checkedAt": "2026-09-07T10:44:00+02:00",
           "pending": false
         },
         {
           "ref": "03",
           "publisher": "WIOT Group",
-          "title": "Digital Product Passport: OPC Foundation Automates DPPs",
+          "title": "OPC Foundation Generates EU Digital Product Passports From Factory Data",
           "url": "https://wiot-group.com/think/en/news/opc-foundation-digital-product-passport-opc-ua/",
-          "checkedAt": "2026-09-07T08:05:00+02:00",
+          "checkedAt": "2026-09-07T10:44:00+02:00",
           "pending": false
         },
         {
           "ref": "04",
           "publisher": "ISO",
-          "title": "ISO/IEC JTC 5, Digital Product Passport",
+          "title": "ISO/IEC JTC 5 - Digital Product Passport",
           "url": "https://www.iso.org/committee/11760382.html",
-          "checkedAt": "2026-09-07T08:05:00+02:00",
+          "checkedAt": "2026-09-07T10:44:00+02:00",
           "pending": false
         },
         {
@@ -462,18 +473,17 @@
           "publisher": "United Nations ESCAP",
           "title": "Digital Product Passport: Transforming Cross-Border Trade",
           "url": "https://www.unescap.org/events/2026/digital-product-passport-transforming-cross-border-trade",
-          "checkedAt": "2026-09-07T08:05:00+02:00",
+          "checkedAt": "2026-09-07T10:44:00+02:00",
           "pending": false
         }
       ],
-      "evidenceNote": "The underlying OPC Foundation open-source Digital Product Passport architecture predates the 3 September publication reporting it. 3 September is the date of that implementation report, not the date the architecture first existed.",
+      "evidenceNote": "The OPC Foundation item is a reference implementation, not a finished compliance product. The September standards milestone is not a new product-category compliance deadline. The edition keeps those distinctions explicit.",
       "weekNumber": 37,
       "weekIso": "2026-W37",
       "reportedWeekIso": "2026-W36",
       "weekNote": "weekNumber 37 is the PUBLICATION week (Mon 7 - Sun 13 Sep 2026). The edition REPORTS 2026-W36, 31 August - 6 September, which is weekLabel.",
       "markersConfirmed": false,
-      "markersNote": "NOT SUPPLIED. The issue-003 package gives nine navigation-level section cues in 11-SECTION-CUES.md, not four story markers, and no markerLabel/markerValue per card. Nothing is inferred here: the four markers and their labels have to come from GPT or be measured and heard by Thomas.",
-      "checkedNote": "08:05 is the mtime of 03-SOURCE-RECORD.md inside the issue-003 package, which is when the source record was written. The package states the date only; this is the nearest real completed-check time in evidence rather than a guess."
+      "markersNote": "Markers [0, 40.8, 52.7, 103.7] supplied in the issue-003 package, measured from the final recording. Row 02 begins at 'But there is one distinction worth making.', row 03 at 'Now to implementation.', row 04 at 'And there is another important development today.' The conclusion at ~138.1s does NOT create a fifth row. Held false until Thomas has HEARD the three non-zero transitions - the package states his approval of the visual reference does not replace the audible check."
     }
   ]
 }
