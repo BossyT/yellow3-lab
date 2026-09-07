@@ -89,3 +89,25 @@ jobs:
             git commit -m "Research: daily model-adoption pull ($(date -u +%Y-%m-%d))"
             git push
           fi
+
+      # DOES WHAT WE JUST PUSHED ACTUALLY DEPLOY?
+      #
+      # build_check.py IS the Vercel build command. Until 7 September 2026 this
+      # workflow never ran it, so a pull could commit a tree the site refuses to
+      # build - and it did: on 6 September a newly charting developer ("meta")
+      # had no region recorded, the gate refused, and production silently kept
+      # serving the 4 September build. The workflow went green. Nobody knew for
+      # a day, and then only because Vercel emailed Thomas.
+      #
+      # This runs AFTER the push on purpose. The snapshot is per-date and
+      # immutable, so refusing to commit would lose that day's data permanently;
+      # the data is worth keeping even on a day the site cannot build. What was
+      # missing was not a block, it was a NOISE - so the job now goes red, which
+      # is a notification, while the data is safely recorded.
+      - name: Verify the pushed tree still deploys
+        run: |
+          if ! python3 research/build_check.py; then
+            echo "::error::The data was committed, but the site will NOT deploy."
+            echo "::error::Production keeps serving the previous build until this is fixed."
+            exit 1
+          fi
