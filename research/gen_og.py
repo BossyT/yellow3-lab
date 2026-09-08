@@ -18,9 +18,25 @@ wins. Nothing is ever truncated and no ellipsis is ever added.
 
     python3 research/gen_og.py            render all 290 + QA report
     python3 research/gen_og.py --check    QA only, no PNGs written
+    python3 research/gen_og.py --only research/x.html --install
+                                         render just those pages and put the
+                                         cards straight into og/cards/
 
 Nothing here touches a page's og:image tag. Wiring is a separate step and only
 after the contact sheet is reviewed.
+
+WHY --only AND --install EXIST, added 8 September 2026. A new page arrives with
+an og:image tag pointing at a card nobody has rendered yet, and build_check
+refuses the deploy - correctly, since a social card that 404s is a link that
+looks broken everywhere it is shared. That happened on three Monday Briefings
+running, and each time the fix was a full 304-card render followed by copying
+one file by hand.
+
+The review step is NOT bypassed for a bulk run: a full render still writes only
+to the build dir and still produces the contact sheet, because that is when a
+frozen frame meeting new copy deserves eyes. --install is for the case where the
+card is MISSING and the page is already written: there is nothing to compare
+against, the frame is frozen, and the only variable is the page's own title.
 """
 
 import concurrent.futures
@@ -446,6 +462,32 @@ def serve():
     sys.exit("could not serve the build root on port %d" % PORT)
 
 
+def only_filter(pages):
+    """--only SUBSTR [SUBSTR...] - keep pages whose rel path contains one."""
+    if "--only" not in sys.argv:
+        return pages
+    wanted = [a for a in sys.argv[sys.argv.index("--only") + 1:] if not a.startswith("--")]
+    if not wanted:
+        sys.exit("--only needs at least one path fragment")
+    kept = [p for p in pages if any(w in p["rel"] for w in wanted)]
+    if not kept:
+        sys.exit("--only matched no indexable page: " + ", ".join(wanted))
+    return kept
+
+
+def install(pages, outdir):
+    """Copy rendered cards into og/cards/, which is what the pages actually link."""
+    dest = os.path.join(ROOT, "og", "cards")
+    os.makedirs(dest, exist_ok=True)
+    done = []
+    for p in pages:
+        png = os.path.join(outdir, (p["slug"] or "index") + ".png")
+        if os.path.exists(png):
+            shutil.copy2(png, os.path.join(dest, os.path.basename(png)))
+            done.append(os.path.basename(png))
+    return done
+
+
 def main():
     check_only = "--check" in sys.argv
     outdir = os.path.join(BUILD, "out")
@@ -454,7 +496,7 @@ def main():
     logo_w, logo_ink = logo_reference()
     print("brand contract: /logo.png resolves, renders %dx47, %d ink pixels\n" % (logo_w, logo_ink))
 
-    pages = collect()
+    pages = only_filter(collect())
     print("collected %d indexable pages" % len(pages))
     srv = serve()
     try:
@@ -516,6 +558,12 @@ def main():
               % (len(done) - len(missing) - len(bad), len(bad)))
         for rel, ink in bad[:10]:
             print("     BRAND CONTRACT FAILED  %s  (%d ink px)" % (rel, ink))
+
+        if "--install" in sys.argv:
+            put = install(pages, outdir)
+            print("\n  installed %d card(s) into og/cards/" % len(put))
+            for name in put[:10]:
+                print("     " + name)
 
         n, size = contact_sheet(pages, outdir, os.path.join(BUILD, "contact-sheet.png"))
         print("  contact sheet: %d cards, %dx%d" % (n, size[0], size[1]))

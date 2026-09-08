@@ -79,6 +79,7 @@ import html
 import json
 import pathlib
 import re
+import subprocess
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -1488,6 +1489,47 @@ def sync_hub(ready: list) -> str:
     return f'updated: latest {latest["slug"]}, {len(eds)} edition(s) in the archive'
 
 
+def ensure_social_cards(paths: list[pathlib.Path]) -> None:
+    """A published edition must not link a social card that does not exist.
+
+    Every edition page carries an og:image derived from its route, and
+    build_check refuses a deploy when that file is missing - correctly, because
+    a card that 404s is a link that looks broken everywhere it is shared. Three
+    Monday Briefings in a row were caught by that gate at the last step, and
+    each time the fix was the same two commands run by hand.
+
+    So the generator now finishes its own job. Only MISSING cards are rendered:
+    an existing card is never regenerated here, because re-rendering a card that
+    has already been reviewed belongs in a full gen_og.py pass with its contact
+    sheet, not in a weekly publish.
+    """
+    cards = ROOT / 'og' / 'cards'
+    missing = []
+    for path in paths:
+        rel = path.relative_to(ROOT).as_posix()
+        name = re.sub(r'[^a-z0-9]+', '-', rel[:-5].lower()).strip('-') + '.png'
+        if not (cards / name).exists():
+            missing.append(rel)
+    if not missing:
+        print('  ok     social cards already exist for every edition page')
+        return
+    print(f'  ..     rendering {len(missing)} missing social card(s)')
+    r = subprocess.run([sys.executable, str(ROOT / 'research' / 'gen_og.py'),
+                        '--install', '--only', *missing],
+                       capture_output=True, text=True)
+    if r.returncode != 0:
+        # Never fatal. The pages are written and correct; build_check will
+        # refuse the deploy and say exactly which card is missing, which is a
+        # better failure than losing the edition over a renderer.
+        print('  WARN   social card render failed - run gen_og.py --install --only '
+              + ' '.join(missing))
+        print('         ' + (r.stderr or r.stdout).strip().splitlines()[-1:][0] if (r.stderr or r.stdout).strip() else '')
+        return
+    for line in r.stdout.splitlines():
+        if 'installed' in line or line.strip().endswith('.png'):
+            print('  ' + line.strip())
+
+
 def main() -> int:
     args = set(sys.argv[1:])
     check_only = '--check' in args
@@ -1575,6 +1617,7 @@ def main() -> int:
         alternates.setdefault(ed['slug'], {})[ed['locale']] = \
             f'{BASE}{route_for(ed["locale"])}/{ed["slug"]}'
 
+    written_pages: list[pathlib.Path] = []
     for locale in LOCALES:
         group = by_locale.get(locale)
         if not group:
@@ -1590,6 +1633,7 @@ def main() -> int:
                             prev_ed, next_ed, False, alternates.get(ed['slug'])),
                 encoding='utf-8')
             print(f'  wrote  {path.relative_to(ROOT)}')
+            written_pages.append(path)
 
     # THE PERMANENT ROUTE SERVES NO HTML. GPT's ruling of 23 Aug 2026, option E:
     # the dated editions are the documents and the permanent route is a
@@ -1610,6 +1654,8 @@ def main() -> int:
             print(f'  wrote  vercel.json  307 {route} -> {route}/{newest["slug"]}')
         else:
             print(f'  ok     vercel.json  307 {route} already points at {newest["slug"]}')
+
+    ensure_social_cards(written_pages)
 
     hub = sync_hub(ready)
     print(f'  {"ok    " if "updated" not in hub else "wrote "} hub briefing block: {hub}')
