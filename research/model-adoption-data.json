@@ -3,25 +3,25 @@
   "title": "AI model adoption",
   "thesis": "See which AI models the world is actually using, where they were built, and how the balance is changing. The live chart updates as new routed traffic is recorded, so rankings and regional shares can shift at any time. Return regularly to follow the movement.",
   "status": "live",
-  "as_of": "2026-09-06",
-  "as_of_pretty": "6 September 2026",
-  "generated_utc": "2026-09-07T12:54:37Z",
-  "refreshed_cet": "7 Sep 2026, 14:54 CET",
+  "as_of": "2026-09-07",
+  "as_of_pretty": "7 September 2026",
+  "generated_utc": "2026-09-08T11:34:11Z",
+  "refreshed_cet": "8 Sep 2026, 13:34 CET",
   "source": {
     "name": "OpenRouter",
     "url": "https://openrouter.ai/rankings",
-    "line": "Source: OpenRouter (openrouter.ai/rankings), as of 6 September 2026."
+    "line": "Source: OpenRouter (openrouter.ai/rankings), as of 7 September 2026."
   },
   "window": {
     "current": [
-      "2026-08-31",
-      "2026-09-06"
+      "2026-09-01",
+      "2026-09-07"
     ],
     "prior": [
-      "2026-08-24",
-      "2026-08-30"
+      "2026-08-25",
+      "2026-08-31"
     ],
-    "days_history": 126
+    "days_history": 127
   },
   "regions": [
     "Asia",
@@ -35,65 +35,65 @@
     "US": "#3b6ea5",
     "Other": "#a8a6a1"
   },
-  "payoff": "Asia leads with 62% of routed tokens this week (+10.5 points), while Europe sits at 0.06%.",
+  "payoff": "Asia leads with 62% of routed tokens this week (+6.5 points), while Europe sits at 0.06%.",
   "share": [
     {
       "region": "Asia",
-      "pct": 62.34,
-      "delta_pp": 10.53,
-      "delta_pp_4w": 4.74,
+      "pct": 62.1,
+      "delta_pp": 6.54,
+      "delta_pp_4w": 5.02,
       "models": 16,
       "lead": {
         "name": "Tencent Hy4 Preview",
         "rank": 1,
-        "of": 61,
-        "pct": 12.708
+        "of": 62,
+        "pct": 14.192
       }
     },
     {
       "region": "Europe",
       "pct": 0.06,
-      "delta_pp": 0.03,
-      "delta_pp_4w": -0.09,
+      "delta_pp": 0.06,
+      "delta_pp_4w": -0.13,
       "models": 0,
       "lead": {
         "name": "Mistral Nemo",
         "rank": 57,
-        "of": 61,
-        "pct": 0.06
+        "of": 62,
+        "pct": 0.058
       }
     },
     {
       "region": "US",
-      "pct": 31.48,
-      "delta_pp": 2.54,
-      "delta_pp_4w": -4.0,
+      "pct": 31.73,
+      "delta_pp": 1.83,
+      "delta_pp_4w": -4.27,
       "models": 14,
       "lead": {
         "name": "OpenAI GPT 5.6 Luna",
         "rank": 2,
-        "of": 61,
-        "pct": 11.205
+        "of": 62,
+        "pct": 11.807
       }
     },
     {
       "region": "Other",
-      "pct": 6.12,
-      "delta_pp": -13.1,
-      "delta_pp_4w": -0.65,
+      "pct": 6.11,
+      "delta_pp": -8.42,
+      "delta_pp_4w": -0.61,
       "models": 0,
       "lead": {
         "name": "Thinkingmachines Inkling (free)",
-        "rank": 48,
-        "of": 61,
-        "pct": 0.16
+        "rank": 47,
+        "of": 62,
+        "pct": 0.17
       }
     }
   ],
   "leaderboard": [
     {
       "rank": 1,
-      "prev_rank": 10,
+      "prev_rank": 9,
       "move": "up",
       "new": false,
       "model": "tencent/hy4-preview-20260827",
@@ -101,11 +101,11 @@
       "slug": "tencent-hy4-preview",
       "developer": "Tencent",
       "region": "Asia",
-      "pct": 12.71
+      "pct": 14.19
     },
     {
       "rank": 2,
-      "prev_rank": 4,
+      "prev_rank": 3,
       "move": "up",
       "new": false,
       "model": "openai/gpt-5.6-luna-20260709",
@@ -113,23 +113,11 @@
       "slug": "openai-gpt-5-6-luna",
       "developer": "OpenAI",
       "region": "US",
-      "pct": 11.21
+      "pct": 11.81
     },
     {
       "rank": 3,
-      "prev_rank": 6,
-      "move": "up",
-      "new": false,
-      "model": "z-ai/glm-5.3-flash-20260826",
-      "name": "Z.ai GLM 5.3 Flash",
-      "slug": "z-ai-glm-5-3-flash",
-      "developer": "Z.ai",
-      "region": "Asia",
-      "pct": 10.73
-    },
-    {
-      "rank": 4,
-      "prev_rank": 2,
+      "prev_rank": 1,
       "move": "down",
       "new": false,
       "model": "deepseek/deepseek-v4-flash-20260731",
@@ -137,25 +125,24 @@
       "slug": "deepseek-v4-flash",
       "developer": "DeepSeek",
       "region": "Asia",
-      "pct": 10.7,
+      "pct": 10.27,
       "release": "31 Jul 2026"
     },
     {
-      "rank": 5,
-      "prev_rank": 8,
-      "move": "up",
+      "rank": 4,
+      "prev_rank": 4,
+      "move": "flat",
       "new": false,
-      "model": "deepseek/deepseek-v4-flash-20260423",
-      "name": "DeepSeek V4 Flash (23 Apr 2026)",
-      "slug": "deepseek-v4-flash",
-      "developer": "DeepSeek",
+      "model": "z-ai/glm-5.3-flash-20260826",
+      "name": "Z.ai GLM 5.3 Flash",
+      "slug": "z-ai-glm-5-3-flash",
+      "developer": "Z.ai",
       "region": "Asia",
-      "pct": 4.49,
-      "release": "23 Apr 2026"
+      "pct": 10.18
     },
     {
-      "rank": 6,
-      "prev_rank": 12,
+      "rank": 5,
+      "prev_rank": 11,
       "move": "up",
       "new": false,
       "model": "minimax/minimax-m3-20260531:free",
@@ -163,11 +150,36 @@
       "slug": "minimax-m3-free",
       "developer": "MiniMax",
       "region": "Asia",
-      "pct": 4.34
+      "pct": 4.28
+    },
+    {
+      "rank": 6,
+      "prev_rank": 7,
+      "move": "up",
+      "new": false,
+      "model": "deepseek/deepseek-v4-flash-20260423",
+      "name": "DeepSeek V4 Flash (23 Apr 2026)",
+      "slug": "deepseek-v4-flash",
+      "developer": "DeepSeek",
+      "region": "Asia",
+      "pct": 4.25,
+      "release": "23 Apr 2026"
     },
     {
       "rank": 7,
-      "prev_rank": 5,
+      "prev_rank": 8,
+      "move": "up",
+      "new": false,
+      "model": "nvidia/nemotron-3-ultra-550b-a55b-20260604:free",
+      "name": "NVIDIA Nemotron 3 Ultra 550b A55b (free)",
+      "slug": "nvidia-nemotron-3-ultra-550b-a55b-free",
+      "developer": "NVIDIA",
+      "region": "US",
+      "pct": 3.09
+    },
+    {
+      "rank": 8,
+      "prev_rank": 6,
       "move": "down",
       "new": false,
       "model": "tencent/hy3-20260706",
@@ -175,23 +187,11 @@
       "slug": "tencent-hy3",
       "developer": "Tencent",
       "region": "Asia",
-      "pct": 3.46
-    },
-    {
-      "rank": 8,
-      "prev_rank": 7,
-      "move": "down",
-      "new": false,
-      "model": "nvidia/nemotron-3-ultra-550b-a55b-20260604:free",
-      "name": "NVIDIA Nemotron 3 Ultra 550b A55b (free)",
-      "slug": "nvidia-nemotron-3-ultra-550b-a55b-free",
-      "developer": "NVIDIA",
-      "region": "US",
-      "pct": 3.15
+      "pct": 3.05
     },
     {
       "rank": 9,
-      "prev_rank": 19,
+      "prev_rank": 17,
       "move": "up",
       "new": false,
       "model": "z-ai/glm-5.3-20260816",
@@ -199,11 +199,11 @@
       "slug": "z-ai-glm-5-3",
       "developer": "Z.ai",
       "region": "Asia",
-      "pct": 2.62
+      "pct": 2.74
     },
     {
       "rank": 10,
-      "prev_rank": 3,
+      "prev_rank": 5,
       "move": "down",
       "new": false,
       "model": "xiaomi/mimo-v2.5-20260422",
@@ -211,31 +211,31 @@
       "slug": "xiaomi-mimo-v2-5",
       "developer": "Xiaomi",
       "region": "Asia",
-      "pct": 2.04
+      "pct": 2.11
     },
     {
       "rank": 11,
-      "prev_rank": 11,
-      "move": "flat",
+      "prev_rank": 12,
+      "move": "up",
       "new": false,
       "model": "z-ai/glm-5.2-20260616",
       "name": "Z.ai GLM 5.2",
       "slug": "z-ai-glm-5-2",
       "developer": "Z.ai",
       "region": "Asia",
-      "pct": 2.03
+      "pct": 2.01
     },
     {
       "rank": 12,
-      "prev_rank": 9,
-      "move": "down",
+      "prev_rank": 13,
+      "move": "up",
       "new": false,
-      "model": "google/gemini-3.7-flash-20260813",
-      "name": "Google Gemini 3.7 Flash",
-      "slug": "google-gemini-3-7-flash",
-      "developer": "Google",
+      "model": "openai/gpt-5.6-sol-20260709",
+      "name": "OpenAI GPT 5.6 Sol",
+      "slug": "openai-gpt-5-6-sol",
+      "developer": "OpenAI",
       "region": "US",
-      "pct": 1.82
+      "pct": 1.65
     },
     {
       "rank": 13,
@@ -247,23 +247,23 @@
       "slug": "moonshotai-kimi-k3",
       "developer": "Moonshot",
       "region": "Asia",
-      "pct": 1.71
-    },
-    {
-      "rank": 14,
-      "prev_rank": 14,
-      "move": "flat",
-      "new": false,
-      "model": "openai/gpt-5.6-sol-20260709",
-      "name": "OpenAI GPT 5.6 Sol",
-      "slug": "openai-gpt-5-6-sol",
-      "developer": "OpenAI",
-      "region": "US",
       "pct": 1.63
     },
     {
+      "rank": 14,
+      "prev_rank": 10,
+      "move": "down",
+      "new": false,
+      "model": "google/gemini-3.7-flash-20260813",
+      "name": "Google Gemini 3.7 Flash",
+      "slug": "google-gemini-3-7-flash",
+      "developer": "Google",
+      "region": "US",
+      "pct": 1.58
+    },
+    {
       "rank": 15,
-      "prev_rank": 17,
+      "prev_rank": 18,
       "move": "up",
       "new": false,
       "model": "anthropic/claude-opus-5-20260723",
@@ -271,7 +271,7 @@
       "slug": "anthropic-claude-opus-5",
       "developer": "Anthropic",
       "region": "US",
-      "pct": 1.54
+      "pct": 1.56
     },
     {
       "rank": 16,
@@ -283,10 +283,22 @@
       "slug": "minimax-m3",
       "developer": "MiniMax",
       "region": "Asia",
-      "pct": 1.25
+      "pct": 1.21
     },
     {
       "rank": 17,
+      "prev_rank": null,
+      "move": "new",
+      "new": true,
+      "model": "google/gemini-3.8-flash-20260902",
+      "name": "Google Gemini 3.8 Flash",
+      "slug": "google-gemini-3-8-flash",
+      "developer": "Google",
+      "region": "US",
+      "pct": 1.12
+    },
+    {
+      "rank": 18,
       "prev_rank": 20,
       "move": "up",
       "new": false,
@@ -295,35 +307,10 @@
       "slug": "anthropic-claude-sonnet-5",
       "developer": "Anthropic",
       "region": "US",
-      "pct": 1.15
-    },
-    {
-      "rank": 18,
-      "prev_rank": 18,
-      "move": "flat",
-      "new": false,
-      "model": "poolside/laguna-s-2.1-20260720:free",
-      "name": "Poolside Laguna S 2.1 (free)",
-      "slug": "poolside-laguna-s-2-1-free",
-      "developer": "Poolside",
-      "region": "US",
-      "pct": 1.15
+      "pct": 1.1
     },
     {
       "rank": 19,
-      "prev_rank": 13,
-      "move": "down",
-      "new": false,
-      "model": "deepseek/deepseek-v4-pro-20260423",
-      "name": "DeepSeek V4 Pro (23 Apr 2026)",
-      "slug": "deepseek-v4-pro",
-      "developer": "DeepSeek",
-      "region": "Asia",
-      "pct": 1.09,
-      "release": "23 Apr 2026"
-    },
-    {
-      "rank": 20,
       "prev_rank": 26,
       "move": "up",
       "new": false,
@@ -332,7 +319,19 @@
       "slug": "upstage-solar-pro4",
       "developer": "upstage",
       "region": "Asia",
-      "pct": 1.05
+      "pct": 1.08
+    },
+    {
+      "rank": 20,
+      "prev_rank": 19,
+      "move": "down",
+      "new": false,
+      "model": "poolside/laguna-s-2.1-20260720:free",
+      "name": "Poolside Laguna S 2.1 (free)",
+      "slug": "poolside-laguna-s-2-1-free",
+      "developer": "Poolside",
+      "region": "US",
+      "pct": 1.08
     },
     {
       "rank": 21,
@@ -344,59 +343,23 @@
       "slug": "anthropic-claude-4-6-sonnet",
       "developer": "Anthropic",
       "region": "US",
-      "pct": 1.0
+      "pct": 1.06
     },
     {
       "rank": 22,
-      "prev_rank": 23,
-      "move": "up",
-      "new": false,
-      "model": "nvidia/nemotron-3.5-lightning-20260807:free",
-      "name": "NVIDIA Nemotron 3.5 Lightning (free)",
-      "slug": "nvidia-nemotron-3-5-lightning-free",
-      "developer": "NVIDIA",
-      "region": "US",
-      "pct": 0.93
-    },
-    {
-      "rank": 23,
-      "prev_rank": null,
-      "move": "new",
-      "new": true,
-      "model": "google/gemini-3.8-flash-20260902",
-      "name": "Google Gemini 3.8 Flash",
-      "slug": "google-gemini-3-8-flash",
-      "developer": "Google",
-      "region": "US",
-      "pct": 0.92
-    },
-    {
-      "rank": 24,
-      "prev_rank": 21,
+      "prev_rank": 14,
       "move": "down",
       "new": false,
-      "model": "deepseek/deepseek-v4-pro-20260813",
-      "name": "DeepSeek V4 Pro (13 Aug 2026)",
+      "model": "deepseek/deepseek-v4-pro-20260423",
+      "name": "DeepSeek V4 Pro (23 Apr 2026)",
       "slug": "deepseek-v4-pro",
       "developer": "DeepSeek",
       "region": "Asia",
-      "pct": 0.9,
-      "release": "13 Aug 2026"
+      "pct": 0.98,
+      "release": "23 Apr 2026"
     },
     {
-      "rank": 25,
-      "prev_rank": 25,
-      "move": "flat",
-      "new": false,
-      "model": "google/gemini-3-flash-preview-20251217",
-      "name": "Google Gemini 3 Flash Preview",
-      "slug": "google-gemini-3-flash-preview",
-      "developer": "Google",
-      "region": "US",
-      "pct": 0.75
-    },
-    {
-      "rank": 26,
+      "rank": 23,
       "prev_rank": null,
       "move": "new",
       "new": true,
@@ -405,11 +368,48 @@
       "slug": "meta-muse-spark-1-3-contributor",
       "developer": "meta",
       "region": "US",
+      "pct": 0.93
+    },
+    {
+      "rank": 24,
+      "prev_rank": 23,
+      "move": "down",
+      "new": false,
+      "model": "nvidia/nemotron-3.5-lightning-20260807:free",
+      "name": "NVIDIA Nemotron 3.5 Lightning (free)",
+      "slug": "nvidia-nemotron-3-5-lightning-free",
+      "developer": "NVIDIA",
+      "region": "US",
+      "pct": 0.87
+    },
+    {
+      "rank": 25,
+      "prev_rank": 21,
+      "move": "down",
+      "new": false,
+      "model": "deepseek/deepseek-v4-pro-20260813",
+      "name": "DeepSeek V4 Pro (13 Aug 2026)",
+      "slug": "deepseek-v4-pro",
+      "developer": "DeepSeek",
+      "region": "Asia",
+      "pct": 0.87,
+      "release": "13 Aug 2026"
+    },
+    {
+      "rank": 26,
+      "prev_rank": 25,
+      "move": "down",
+      "new": false,
+      "model": "google/gemini-3-flash-preview-20251217",
+      "name": "Google Gemini 3 Flash Preview",
+      "slug": "google-gemini-3-flash-preview",
+      "developer": "Google",
+      "region": "US",
       "pct": 0.72
     },
     {
       "rank": 27,
-      "prev_rank": 45,
+      "prev_rank": 40,
       "move": "up",
       "new": false,
       "model": "inclusionai/ling-3.0-flash-fin-20260827:free",
@@ -417,10 +417,22 @@
       "slug": "inclusionai-ling-3-0-flash-fin-free",
       "developer": "inclusionAI",
       "region": "Asia",
-      "pct": 0.71
+      "pct": 0.69
     },
     {
       "rank": 28,
+      "prev_rank": 46,
+      "move": "up",
+      "new": false,
+      "model": "minimax/minimax-m2.7-20260318:free",
+      "name": "MiniMax M2.7 (free)",
+      "slug": "minimax-m2-7-free",
+      "developer": "MiniMax",
+      "region": "Asia",
+      "pct": 0.62
+    },
+    {
+      "rank": 29,
       "prev_rank": 22,
       "move": "down",
       "new": false,
@@ -429,19 +441,7 @@
       "slug": "google-gemini-2-5-flash-lite",
       "developer": "Google",
       "region": "US",
-      "pct": 0.61
-    },
-    {
-      "rank": 29,
-      "prev_rank": 50,
-      "move": "up",
-      "new": false,
-      "model": "minimax/minimax-m2.7-20260318:free",
-      "name": "MiniMax M2.7 (free)",
-      "slug": "minimax-m2-7-free",
-      "developer": "MiniMax",
-      "region": "Asia",
-      "pct": 0.59
+      "pct": 0.58
     },
     {
       "rank": 30,
@@ -453,7 +453,7 @@
       "slug": "openai-gpt-5-6-terra",
       "developer": "OpenAI",
       "region": "US",
-      "pct": 0.49
+      "pct": 0.46
     }
   ],
   "records": [
@@ -473,25 +473,25 @@
     {
       "key": "current_streak",
       "label": "Current number one",
-      "value": "OpenAI GPT 5.6 Luna",
+      "value": "Tencent Hy4 Preview",
       "detail": "1 day running"
     },
     {
       "key": "biggest_mover",
       "label": "Biggest weekly mover",
-      "value": "#46 \u2192 #30",
+      "value": "#44 \u2192 #30",
       "detail": "DeepSeek V4 Flash Vision Exp"
     },
     {
       "key": "steepest_fall",
       "label": "Steepest fall",
-      "value": "#11 \u2192 #29",
-      "detail": "Google Gemini 3.7 Flash"
+      "value": "#28 \u2192 #48",
+      "detail": "OpenAI GPT OSS 20b"
     },
     {
       "key": "new_entrants",
       "label": "New entrants this week",
-      "value": "8",
+      "value": "9",
       "detail": "Meta Muse Spark 1.3 Contributor and others"
     }
   ],
