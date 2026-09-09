@@ -3,3 +3,4 @@
 2026-07-31 | go-trace.com | recorded | clean
 2026-07-31 | digital-product-passport.pro | recorded | clean
 2026-08-24 | repass.io | recorded | confidence held at claimed: the source is not a legal or registration statement
+2026-09-09 | wiara.com | recorded | headquarters not publicly established

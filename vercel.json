@@ -1033,6 +1033,11 @@
       "permanent": true
     },
     {
+      "source": "/research/digital-product-passport/wiara",
+      "destination": "/research/digital-product-passport/suppliers/wiara",
+      "permanent": true
+    },
+    {
       "source": "/research/digital-product-passport/wiseside",
       "destination": "/research/digital-product-passport/suppliers/wiseside",
       "permanent": true
